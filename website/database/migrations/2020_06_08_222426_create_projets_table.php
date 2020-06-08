@@ -1,0 +1,46 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateProjetsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('projets', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->json('images');
+            $table->string('link_github');
+            $table->string('link_download')->nullable();
+            $table->string('link_doc');
+            $table->BigInteger('chef_projet_id')->unsigned();
+            $table->BigInteger('pole_id')->unsigned();
+            $table->timestamps();
+
+            $table->foreign('chef_projet_id')
+                ->references('id')
+                ->on('users');
+
+            $table->foreign('pole_id')
+                ->references('id')
+                ->on('poles');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('projets');
+    }
+}
