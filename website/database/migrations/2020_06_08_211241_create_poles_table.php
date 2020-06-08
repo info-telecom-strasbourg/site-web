@@ -17,7 +17,8 @@ class CreatePolesTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('desc');
-            $table->integer('respo_id');
+            $table->BigInteger('respo_id')->unsigned();
+            $table->foreign('respo_id')->references('id')->on('users');
         });
     }
 
