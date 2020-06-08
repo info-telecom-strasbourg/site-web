@@ -32,6 +32,23 @@ class CreateProjetsTable extends Migration
                 ->references('id')
                 ->on('poles');
         });
+
+        Schema::create('projets_participants', function (Blueprint $table) {
+            $table->id();
+            $table->BigInteger('projet_id')->unsigned();
+            $table->BigInteger('user_id')->unsigned();
+            $table->timestamps();
+
+            $table->unique('projet_id', 'user_id');
+
+            $table->foreign('projet_id')
+                ->references('id')
+                ->on('projets');
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users');
+        });
     }
 
     /**
