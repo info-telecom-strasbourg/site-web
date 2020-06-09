@@ -1,0 +1,20 @@
+.line-under-title{
+     height: 2px;
+     color: #4472C4;
+     background-color: #4472C4;
+     width: 5%;
+     border: none;
+ }
+
+.line-voir-plus{
+    height: 2px;
+    color: #A4A4A4;
+    background-color: #A4A4A4;
+    width: 100%;
+    border: none;
+}
+
+.btn-rounded{
+	background-color: #254395;
+	border-radius: 25px ;
+}
