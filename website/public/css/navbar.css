@@ -33,7 +33,7 @@ li.dropdown:hover>.dropdown-menu {
 
 .navbar {
     height: 70px;
-    background-color: rgb(92, 111, 163);
+    background-color: transparent;
     transition: background-color 1s ease 0s;
 }
 
