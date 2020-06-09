@@ -1,0 +1,19 @@
+.styled {
+    border-radius: 50px;
+    line-height: 2.5;
+    padding: 0 20px;
+    font-size: 1rem;
+    text-align: center;
+    color: #fff;
+    background-color: transparent;
+    border-color: #254395;
+}
+
+.styled:hover {
+    background-color: #254395;
+    border-color: transparent;
+}
+
+.carousel-item {
+    font-family: 'Roboto';
+}
