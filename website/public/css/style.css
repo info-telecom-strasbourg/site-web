@@ -16,5 +16,18 @@
 
 .btn-rounded{
 	background-color: #254395;
-	border-radius: 25px ;
+	border-radius: 50px ;
+	border-color: transparent;
+}
+
+.carte-projet{
+
+}
+
+.images-projet{
+
+}
+
+.card-body{
+	background-color: #EDECEC;
 }
