@@ -24,3 +24,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/poles', 'PoleController@index')->name('pole.show');
 Route::get('/poles/{pole}', 'PoleController@show')->name('pole.show');
 
+// Route::get('/projets', 'ProjetController@index')->name('projets.index');
+Route::get('/projets', function () {
+	return view('projets.index');
+})->name('projets.index');

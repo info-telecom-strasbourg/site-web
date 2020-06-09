@@ -31,3 +31,28 @@
 .card-body{
 	background-color: #EDECEC;
 }
+
+/* Breadcrumb */
+.breadcrumb {
+	background-color: transparent;
+}
+
+.breadcrumb i {
+    color: black;
+}
+
+/* Filter options */
+.filter-options {
+    background-color: #E5E5E5;
+    margin-top: 20px;
+    padding-top: 5px;
+    padding-bottom: 23px;
+}
+
+.filter-options .col-md-3 {
+    margin-top: 10px;
+}
+
+.col-md-3  button {
+    width: 100%;
+}
