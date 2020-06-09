@@ -1,5 +1,3 @@
-<link rel="stylesheet" type="text/css" href="css/navbar.css">
-
 <div class="navbar-bar" id="navbar-bar">
     <nav class="navbar navbar-expand-sm">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,4 +47,3 @@
 </div>
 </div>
 
-<script src="../ressources/js/navbar.js"></script>
