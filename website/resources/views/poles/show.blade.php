@@ -14,9 +14,9 @@
 
 			<!-- Exemple de carte -->
 
-			<div class="card text-center shadow mb-5 bg-white rounded" style="width: 18rem;">
+			<div class="card text-center shadow mb-5 bg-white rounded">
 				<img class="card-img-top" src="/images/projets/Objection.png" alt="Card image cap">
-				<div class="card-body">
+				<div class="card-body d-flex flex-column">
 					<h5 class="card-title text-center font-weight-bold">Objection !</h5>
 					<p class="card-text">Avis, argument, etc., que l'on met en avant pour s'opposer à une proposition, une affirmation.</p>
 					<a href="#" class="btn btn-rounded btn-primary" type="button">Découvrir</a>
