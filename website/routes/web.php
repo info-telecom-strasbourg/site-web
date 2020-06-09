@@ -20,3 +20,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/poles', 'PoleController@index')->name('pole.show');
+Route::get('/poles/{pole}', 'PoleController@show')->name('pole.show');
+
