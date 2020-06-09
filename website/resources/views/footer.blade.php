@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-6 mt-md-0 mt-3">
                 <h5 class="text-uppercase font-weight-bold">Info Télécom Strasbourg</h5>
-                <p>300 Bd Sébastien Brant <br> CS 10414 - F 67400 ILLKIRCH GRAFFENSTADENT</p>
+                <p>300 Bd Sébastien Brant <br> CS 10414 - F 67400 ILLKIRCH-GRAFFENSTADEN</p>
             </div>
             <hr class="clearfix w-100 d-md-none pb-3">
             <div class="col-md-6 mb-md-0 mb-3">
