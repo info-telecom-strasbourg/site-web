@@ -33,6 +33,7 @@ class CreateProjetsTable extends Migration
                 ->on('poles');
         });
 
+        /* linking table between projets and users to create the association between a project and a user */
         Schema::create('projets_participants', function (Blueprint $table) {
             $table->id();
             $table->BigInteger('projet_id')->unsigned();
