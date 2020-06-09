@@ -26,6 +26,7 @@
 			        </span>
 				</div>
 		</div>
+
     	<!-- Filter options -->
     	<div class="filter-options container">
     		<h2>Filtres</h2>
@@ -47,6 +48,25 @@
 				</div>
 				<div class="col-md-3 text-center">
 					<button type="submit" class="btn btn-primary btn-primary btn-rounded">FILTRER</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="container pt-5">
+			<div class="row">
+				<div class="col-md-3">
+					<div class="card text-center rounded">
+						<img class="card-img-top" src="/images/test.jpg" alt="Card image cap">
+						<div class="card-body d-flex flex-column">
+							<h5 class="card-title text-center font-weight-bold">
+								$projet->title
+							</h5>
+							<p class="card-text">
+								$projet->desc
+							</p>
+							<a href="/poles/{ $projet->id }" class="btn btn-rounded btn-primary" type="button">DÉCOUVRIR</a>
+						</div>
+				  	</div>
 				</div>
 			</div>
 		</div>
