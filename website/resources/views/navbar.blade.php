@@ -2,6 +2,9 @@
     <a class="navbar-brand" href="#">
         <img src="images/logo/logo.png" width="90" height="90" alt="Logo du site">
     </a>
+    <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="nav navbar-nav ml-auto">
             <li class="nav-item active">
@@ -35,7 +38,5 @@
             <a href="#" class="btn btn-rounded btn-primary connexion" type="button">CONNEXION</a>
         </ul>
     </div>
-    <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+    
 </nav>

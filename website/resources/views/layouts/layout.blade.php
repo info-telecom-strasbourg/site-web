@@ -27,8 +27,6 @@
 </head>
 
 <body>
-
-    <!-- Navigation bar -->
     @include('navbar')
     <!-- Main content -->
     <div class="page">
@@ -44,7 +42,6 @@
         </div>
     </div>
 
-    <!-- Footer -->
     @include('footer')
 
     <script src="js/navbar.js"></script>
