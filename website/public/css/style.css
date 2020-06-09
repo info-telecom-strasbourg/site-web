@@ -1,0 +1,164 @@
+/* Gestion de breadcrumb */
+
+.breadcrumb {
+    background-color: transparent;
+}
+
+
+/* Gestion du carousel d'actualité */
+
+.styled {
+    border-radius: 50px;
+    line-height: 2.5;
+    padding: 0 20px;
+    font-size: 1rem;
+    text-align: center;
+    color: #fff;
+    background-color: transparent;
+    border-color: #254395;
+    font-family: 'Roboto';
+}
+
+.styled:hover {
+    background-color: #254395;
+    border-color: transparent;
+}
+
+.carousel-item {
+    font-family: 'Roboto';
+}
+
+.carousel-caption {
+    top: 50%;
+    transform: translateY(-50%);
+    bottom: initial;
+}
+
+.carousel-caption h1 {
+    font-size: 4em;
+    font-weight: bold;
+}
+
+.carousel-caption p {
+    font-size: 1.5em;
+}
+
+.carousel-item img {
+    filter: brightness(100%);
+    -webkit-filter: brightness(100%);
+}
+
+
+/* Gestion du footer */
+
+.page-footer {
+    background-color: #5C6FA3;
+    color: white;
+    font-family: 'Roboto';
+}
+
+
+/* Gestion de la navbar */
+
+li.dropdown:hover>.dropdown-menu {
+    display: block;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: white;
+    padding-left: .7rem;
+    padding-right: .7rem;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    color: white;
+}
+
+.navbar-brand {
+    position: fixed;
+    top: 10px;
+    margin-left: 50px;
+}
+
+.navbar-brand img {
+    border-radius: 50%;
+    box-shadow: 0px 5px 14px -2px rgba(0, 0, 0, 0.75);
+}
+
+.navbar {
+    background-color: transparent;
+    transition: background-color 1s ease 0s;
+    padding: 0;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.nav-item {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 18px;
+    padding-right: 18px;
+}
+
+.active {
+    background-color: #254395;
+}
+
+.btn-rounded {
+    background-color: #254395;
+    border-radius: 50px;
+    border-color: transparent;
+}
+
+.connexion {
+    margin-left: 325px;
+    margin-right: 50px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.full-screen {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.navbar-toggler {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 992px) {
+    .connexion {
+        margin-left: 0;
+    }
+    .nav {
+        margin-top: 100px;
+        margin-left: 100px;
+    }
+}
+
+
+/* Gestion du footer  */
+
+.footer-copyright {
+    margin-right: 20px;
+}
+
+.list-inline-item {
+    margin-right: 50px;
+    margin-left: 50px;
+    margin-top: 40px;
+}
+
+.fa-github {
+    color: rgba(255, 255, 255, 0.9)
+}
+
+.fa-facebook {
+    color: rgba(255, 255, 255, 0.9)
+}
+
+.fa-envelope {
+    color: rgba(255, 255, 255, 0.9)
+}
