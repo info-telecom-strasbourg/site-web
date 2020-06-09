@@ -54,20 +54,44 @@
 
 		<div class="container pt-5">
 			<div class="row">
+
+				@if(isset($projets))
+
+				@forelse ($projets as $projet)
 				<div class="col-md-3">
 					<div class="card text-center rounded">
 						<img class="card-img-top" src="/images/test.jpg" alt="Card image cap">
 						<div class="card-body d-flex flex-column">
 							<h5 class="card-title text-center font-weight-bold">
-								$projet->title
 							</h5>
 							<p class="card-text">
-								$projet->desc
+								<span>{{ mb_strlen( $projet->desc ) > 200 ? mb_substr($projet->desc, 0, 200) . ' ...' : $projet->desc }}
+                                </span>
 							</p>
 							<a href="/poles/{ $projet->id }" class="btn btn-rounded btn-primary" type="button">DÉCOUVRIR</a>
 						</div>
 				  	</div>
 				</div>
+				
+				@empty
+
+				<div class="alert alert-secondary alert-dismissible fade show col" role="alert">
+					Aucun projets n'a été trouvé
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    					<span aria-hidden="true">&times;</span>
+  					</button>
+				</div>
+				@endforelse
+
+				@else
+				<div class="alert alert-secondary alert-dismissible fade show col" role="alert">
+					Aucun projets n'a été trouvé
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    					<span aria-hidden="true">&times;</span>
+  					</button>
+				</div>
+				
+				@endif
 			</div>
 		</div>
 
