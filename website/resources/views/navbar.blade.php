@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+<nav class="navbar navbar-expand-custom navbar-light fixed-top">
     <a class="navbar-brand" href="#">
         <img src="images/logo/logo.png" width="90" height="90" alt="Logo du site">
     </a>
