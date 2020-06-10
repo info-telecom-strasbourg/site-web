@@ -21,6 +21,7 @@ class CreateProjetsTable extends Migration
             $table->string('link_github');
             $table->string('link_download')->nullable();
             $table->string('link_doc');
+            $table->boolean('complete');
             $table->BigInteger('chef_projet_id')->unsigned();
             $table->BigInteger('pole_id')->unsigned();
             $table->timestamps();
