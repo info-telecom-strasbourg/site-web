@@ -21,6 +21,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/poles', 'PoleController@index')->name('pole.show');
+Route::get('/poles', 'PoleController@index')->name('poles.index');
 Route::get('/poles/{pole}', 'PoleController@show')->name('pole.show');
-
