@@ -17,7 +17,7 @@
         <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
     </ol>
     <div class="carousel-inner" height="100%">
-        <div class="carousel-item active actu">
+        <div class="carousel-item active actu full-screen">
             <div class="carousel-caption">
                 <h1>Info Telecom Strasbourg</h1>
                 <br>
@@ -26,7 +26,7 @@
                 <input class="favorite styled" type="button" value="Découvrir nos projets">
             </div>
         </div>
-        <div class="carousel-item actu">
+        <div class="carousel-item actu full-screen">
             <div class="carousel-caption">
                 <h1>Info Telecom Strasbourg</h1>
                 <br>
@@ -35,7 +35,7 @@
                 <input class="favorite styled" type="button" value="Découvrir nos projets">
             </div>
         </div>
-        <div class="carousel-item actu">
+        <div class="carousel-item actu full-screen">
             <div class="carousel-caption">
                 <h1>Info Telecom Strasbourg</h1>
                 <br>
@@ -44,7 +44,7 @@
                 <input class="favorite styled" type="button" value="Découvrir nos projets">
             </div>
         </div>
-        <div class="carousel-item actu">
+        <div class="carousel-item actu full-screen">
             <div class="carousel-caption">
                 <h1>Info Telecom Strasbourg</h1>
                 <br>
