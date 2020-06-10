@@ -18,6 +18,7 @@
 	background-color: #254395;
 	border-radius: 50px ;
 	border-color: transparent;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
 }
 
 .carte-projet{
@@ -30,4 +31,43 @@
 
 .card-body{
 	background-color: #EDECEC;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+	background-color: transparent;
+}
+
+.breadcrumb i {
+    color: black;
+}
+
+/* Filter options */
+.filter-options {
+    background-color: #E5E5E5;
+    margin-top: 20px;
+    padding-top: 5px;
+    padding-bottom: 23px;
+}
+
+.filter-options .col-md-3 {
+    margin-top: 10px;
+}
+
+.col-md-3  button {
+    width: 100%;
+}
+
+/* Card */
+.card {
+    width: 16rem;
+    min-height: 400px;
+    box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.25);
+}
+
+.card .btn {
+    margin-top: auto;
+    margin-bottom: 5px;
+    margin-left: 30px;
+    margin-right: 30px;
 }

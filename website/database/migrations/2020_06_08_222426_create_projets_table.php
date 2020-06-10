@@ -16,6 +16,7 @@ class CreateProjetsTable extends Migration
         Schema::create('projets', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->text('desc');
             $table->json('images');
             $table->string('link_github');
             $table->string('link_download')->nullable();
