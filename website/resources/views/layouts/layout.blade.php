@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,6 +16,8 @@
     <link rel="stylesheet" href="{{URL::asset('css/style.css')}}">
     <link rel="stylesheet" href="{{URL::asset('css/fonts.css')}}">
 
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+
     <!-- JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -22,11 +25,9 @@
 
     <title>@yield('title')</title>
 </head>
+
 <body>
-
-    <!-- Navigation bar -->
     @include('navbar')
-
     <!-- Main content -->
     <div class="page">
         <!-- Breadcrumbs -->
@@ -41,19 +42,10 @@
         </div>
     </div>
 
-    <!-- Footer -->
     @include('footer')
+
+    <script src="js/website.js"></script>
+
 </body>
 
-<!-- Sticky navbar -->
-<script>
-    window.onscroll = () => {
-        const nav = document.querySelector('.navbar');
-        var sticky = nav.offsetTop;
-        if(this.scrollY > sticky)
-            nav.classList.add('scroll');
-        else
-            nav.classList.remove('scroll');
-    };
-</script>
 </html>
