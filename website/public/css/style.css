@@ -152,7 +152,7 @@ li.dropdown:hover>.dropdown-menu {
 }
 
 .navbar-light .navbar-toggler {
-    border-color: rgba(255,255,255,.1);
+    border-color: rgba(255, 255, 255, .1);
 }
 
 .fa-bars {
@@ -164,12 +164,11 @@ li.dropdown:hover>.dropdown-menu {
     background-color: transparent;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1199px) {
     .nav-item {
         padding-top: .2rem;
         padding-bottom: .2rem;
     }
-
     .navbar-collapse {
         margin-top: 50px;
         margin-bottom: 5px;
@@ -183,6 +182,7 @@ li.dropdown:hover>.dropdown-menu {
 .dropdown-menu {
     box-shadow: 0px 7px 17px -5px rgba(0, 0, 0, 0.35);
 }
+
 
 /* Gestion du footer  */
 
