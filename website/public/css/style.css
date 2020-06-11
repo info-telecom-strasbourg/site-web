@@ -60,6 +60,16 @@
     font-size: 1.5em;
 }
 
+@media only screen and (max-width: 800px) {
+    #carouselExampleIndicators .carousel-caption h1 {
+        font-size: 3em;
+        font-weight: bold;
+    }
+    #carouselExampleIndicators .carousel-caption p {
+        font-size: 1.3em;
+    }
+}
+
 #carouselExampleIndicators .actu {
     width: 100%;
     height: 100vh;
@@ -98,7 +108,7 @@ li.dropdown:hover>.dropdown-menu {
 .navbar-brand {
     position: fixed;
     top: 10px;
-    margin-left: 50px;
+    margin-left: 1rem;
 }
 
 .navbar-brand img {
@@ -107,6 +117,7 @@ li.dropdown:hover>.dropdown-menu {
 }
 
 .navbar {
+    height: 70px !important;
     background-color: transparent;
     transition: background-color 1s ease 0s;
     padding: 0;
@@ -148,7 +159,7 @@ li.dropdown:hover>.dropdown-menu {
     margin-bottom: 1rem;
 }
 
-.navbar-light .navbar-toggler {
+.navbar-default .navbar-toggler {
     border-color: rgba(255, 255, 255, .1);
 }
 
@@ -161,18 +172,18 @@ li.dropdown:hover>.dropdown-menu {
     background-color: transparent;
 }
 
-@media (max-width: 1199px) {
+@media only screen and (max-width: 1199px) {
     .nav-item {
         padding-top: .2rem;
         padding-bottom: .2rem;
     }
     .navbar-collapse {
         margin-top: 50px;
-        margin-bottom: 5px;
         background-color: rgba(0, 0, 0, 0.7);
     }
-    .connextion {
+    .connexion {
         margin-right: auto;
+        margin-bottom: 10px;
     }
 }
 

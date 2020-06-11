@@ -1,17 +1,19 @@
-<nav class="navbar navbar-expand-xl navbar-light fixed-top justify-content-start">
+<nav class="navbar navbar-expand-xl navbar-light fixed-top">
     <a class="navbar-brand" href="#">
         <img src="images/logo/logo.png" width="90" height="90" alt="Logo du site">
     </a>
+
     <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <i class="fas fa-bars"></i>
     </button>
-    <ul class="nav navbar-nav flex-row justify-content-xl-center justify-content-start flex-nowrap not-shown">
+
+    <ul class="nav navbar-nav not-shown">
         <li class="nav-item hidden">
             <a href="#" class="btn btn-rounded btn-primary connexion" type="button">CONNEXION</a>
         </li>
     </ul>
-    <div class="collapse navbar-collapse justify-content-between align-items-center w-100" id="navbarSupportedContent">
-        <ul class="navbar-nav mx-auto text-xl-center text-left">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mx-auto">
             <li class="nav-item active">
                 <a class="nav-link" href="#">ACCUEIL <span class="sr-only">(current)</span></a>
             </li>
@@ -41,7 +43,7 @@
                 <a class="nav-link" href="#">CONTACT</a>
             </li>
         </ul>  
-        <ul class="nav navbar-nav flex-row justify-content-md-center justify-content-start flex-nowrap">
+        <ul class="nav navbar-nav">
             <li class="nav-item">
                 <a href="#" class="btn btn-rounded btn-primary connexion" type="button">CONNEXION</a>
             </li>
