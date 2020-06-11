@@ -17,7 +17,7 @@
         <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
     </ol>
     <div class="carousel-inner" height="100%">
-        <div class="carousel-item active actu">
+        <div class="carousel-item active actu full-screen">
             <div class="carousel-caption">
                 <h1>Info Telecom Strasbourg</h1>
                 <br>
@@ -26,7 +26,7 @@
                 <input class="favorite styled" type="button" value="Découvrir nos projets">
             </div>
         </div>
-        <div class="carousel-item actu">
+        <div class="carousel-item actu full-screen">
             <div class="carousel-caption">
                 <h1>Info Telecom Strasbourg</h1>
                 <br>
@@ -35,7 +35,7 @@
                 <input class="favorite styled" type="button" value="Découvrir nos projets">
             </div>
         </div>
-        <div class="carousel-item actu">
+        <div class="carousel-item actu full-screen">
             <div class="carousel-caption">
                 <h1>Info Telecom Strasbourg</h1>
                 <br>
@@ -44,7 +44,7 @@
                 <input class="favorite styled" type="button" value="Découvrir nos projets">
             </div>
         </div>
-        <div class="carousel-item actu">
+        <div class="carousel-item actu full-screen">
             <div class="carousel-caption">
                 <h1>Info Telecom Strasbourg</h1>
                 <br>
@@ -69,8 +69,6 @@
     <br>
     <h1 class="title lg text-center"> Nos pôles d'activités </h1>
     <hr class="line-under-title">
-    <br>
-    <br>
     <div class="activites">
         <div class="card">
             <img src="images/illustrations/cours.jpg" style=" width: 500px; height: 300px;position:relative; z-index:3;">
@@ -228,8 +226,7 @@
         <br>
         <br>
         <div class="google-agenda">
-            <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23039BE5&amp;ctz=America%2FPort_of_Spain&amp;src=aW5mby50ZWxlY29tLnN0cmFzYm91cmdAZ21haWwuY29t&amp;color=%23E67C73&amp;showTabs=1&amp;showCalendars=0&amp;showPrint=0&amp;showTitle=0&amp;showTz=0&amp;showDate=1&amp;showNav=0" style="border:solid 1px #777" width="800" height="600" frameborder="0" scrolling="no"></iframe>
-        </div>
+            <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=America%2FPort_of_Spain&amp;src=aW5mby50ZWxlY29tLnN0cmFzYm91cmdAZ21haWwuY29t&amp;color=%23E67C73&amp;showTitle=0&amp;showPrint=0&amp;showDate=1&amp;showTabs=1&amp;showCalendars=0&amp;showTz=0" style="border:solid 1px #777" width="800" height="600" frameborder="0" scrolling="no"></iframe> </div>
         <br>
         <br>
     </div>
@@ -265,12 +262,63 @@
         <br>
         <h1 class="title lg text-center"> Notre équipe </h1>
         <hr class="line-under-title">
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+        <div class="respos">
+            <div class="respo">
+                <img class="profil-rounded" src="images/logo/collet.jpg">
+                <p id="nom"> Hugo Laullier </p>
+                <p id="fonction"> Président</p>
+            </div>
+            <div class="respo">
+                <img class="profil-rounded" src="images/logo/collet.jpg">
+                <p id="nom"> Christophe Collet </p>
+                <p id="fonction"> Directeur</p>
+            </div>
+            <div class="respo">
+                <img class="profil-rounded" src="images/logo/collet.jpg">
+                <p id="nom"> Christophe Collet </p>
+                <p id="fonction"> Directeur</p>
+            </div>
+            <div class="respo">
+                <img class="profil-rounded" src="images/logo/collet.jpg">
+                <p id="nom"> Christophe Collet </p>
+                <p id="fonction"> Directeur</p>
+            </div>
+            <div class="respo">
+                <img class="profil-rounded" src="images/logo/collet.jpg">
+                <p id="nom"> Christophe Collet </p>
+                <p id="fonction"> Directeur</p>
+            </div>
+            <div class="respo">
+                <img class="profil-rounded" src="images/logo/collet.jpg">
+                <p id="nom"> Christophe Collet </p>
+                <p id="fonction"> Directeur</p>
+            </div>
+            <div class="respo">
+                <img class="profil-rounded" src="images/logo/collet.jpg">
+                <p id="nom"> Christophe Collet </p>
+                <p id="fonction"> Directeur</p>
+            </div>
+            <div class="respo">
+                <img class="profil-rounded" src="images/logo/collet.jpg">
+                <p id="nom"> Christophe Collet </p>
+                <p id="fonction"> Directeur</p>
+            </div>
+            <div class="respo">
+                <img class="profil-rounded" src="images/logo/collet.jpg">
+                <p id="nom"> Christophe Collet </p>
+                <p id="fonction"> Directeur</p>
+            </div>
+            <div class="respo">
+                <img class="profil-rounded" src="images/logo/collet.jpg">
+                <p id="nom"> Christophe Collet </p>
+                <p id="fonction"> Directeur</p>
+            </div>
+            <div class="respo">
+                <img class="profil-rounded" src="images/logo/collet.jpg">
+                <p id="nom"> Christophe Collet </p>
+                <p id="fonction"> Directeur</p>
+            </div>
+        </div>
         <br>
         <br>
     </div>
@@ -280,11 +328,19 @@
         <br>
         <h1 class="title lg text-center"> Le mot du Directeur </h1>
         <hr class="line-under-title">
-        <br>
-        <br>
-        <p> "Pour un hypocrite être démasqué est un échec, mais se démasquer est une victoire." </p>
-        <br>
-        <br>
+        <div class="directeur">
+            <br>
+            <br>
+            <h5> L’Association d’Informatique de Télécom Physique Strasbourg a tout mon soutien et je salue ses projets particulièrement ambitieux.
+                Ce projet associatif renforcera j’en suis certain l’entraide entre élèves-ingénieurs et par là même leur sentiment d’appartenance à une grande école d'ingénieurs.
+                Les 5 Pôles mis en place permettent aux élèves de mettre en pratique et compléter leur formation académique, que ce soit à travers le développement de programmes utiles, de jeux vidéo, d’applications mobiles ou de site Web.
+                J’encourage particulièrement la participation à des compétitions informatiques bénéfiques à la visibilité de Télécom Physique Strasbourg et de son Département Informatique et Réseaux. <br>Vous pourrez compter sur le soutien de votre directeur !" </h5>
+            <img class="profil-rounded" src="images/logo/collet.jpg">
+            <p id="nom"> Christophe Collet </p>
+            <p id="fonction">Directeur de l’école d’ingénieurs Télécom Physique Strasbourg</p>
+            <br>
+            <br>
+        </div>
     </div>
 
     <div class="section" id="contact">
@@ -294,51 +350,31 @@
         <hr class="line-under-title">
         <br>
         <br>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 mt-3 contact-widget-section2 wow animated fadeInLeft" data-wow-delay=".2s">
-                    <div class="map">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2642.3720999403968!2d7.7347999514380845!3d48.52610033189745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4796ca33e265b8bf%3A0x3a9eb5576462d5e3!2sT%C3%A9l%C3%A9com%20Physique%20Strasbourg!5e0!3m2!1sfr!2sfr!4v1591805091984!5m2!1sfr!2sfr" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+        <div class="box">
+            <div id="gmap" class="col-sm-3 contact-widget-section2 wow animated fadeInLeft" data-wow-delay=".2s">
+                <div class="map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2642.3720999403968!2d7.7347999514380845!3d48.52610033189745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4796ca33e265b8bf%3A0x3a9eb5576462d5e3!2sT%C3%A9l%C3%A9com%20Physique%20Strasbourg!5e0!3m2!1sfr!2sfr!4v1591805091984!5m2!1sfr!2sfr" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                </div>
+            </div>
+
+            <!-- Formulaire de contact -->
+            <div id="form-contact" class="col-sm-3 wow animated fadeInRight" data-wow-delay=".2s">
+                <form>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                     </div>
-
-
-                </div>
-
-                <!-- Formulaire de contact -->
-                <div class="col-md-6 wow animated fadeInRight" data-wow-delay=".2s">
-                    <form class="shake" role="form" method="post" id="contactForm" name="contact-form" data-toggle="validator">
-                        <!-- Nom -->
-                        <div class="form-group label-floating">
-                            <label class="control-label" for="name">Nom</label>
-                            <input class="form-control" id="name" type="text" name="name" required data-error="Entre votre nom">
-                            <div class="help-block with-errors"></div>
-                        </div>
-                        <!-- Email -->
-                        <div class="form-group label-floating">
-                            <label class="control-label" for="email">Email</label>
-                            <input class="form-control" id="email" type="email" name="email" required data-error="Entre votre email">
-                            <div class="help-block with-errors"></div>
-                        </div>
-                        <!-- Sujet -->
-                        <div class="form-group label-floating">
-                            <label class="control-label">Sujet</label>
-                            <input class="form-control" id="msg_subject" type="text" name="subject" required data-error="Entrer le sujet de votre message">
-                            <div class="help-block with-errors"></div>
-                        </div>
-                        <!-- Message -->
-                        <div class="form-group label-floating">
-                            <label for="message" class="control-label">Message</label>
-                            <textarea class="form-control" rows="3" id="message" name="message" required data-error="Entrer votre message"></textarea>
-                            <div class="help-block with-errors"></div>
-                        </div>
-                        <!-- Envoyer -->
-                        <div class="form-submit mt-5">
-                            <button class="btn btn-common" type="submit" id="form-submit"><i class="material-icons mdi mdi-message-outline"></i> Envoyer</button>
-                            <div id="msgSubmit" class="h3 text-center hidden"></div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </form>
-                </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
             </div>
         </div>
         <br>
