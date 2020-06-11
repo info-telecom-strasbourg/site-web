@@ -8,21 +8,35 @@ class Cours extends Model
 {
 	protected $guarded = [];
 
-	/* Return the list of creators of the lesson */
+	/**
+	* Get the list of creators of the lesson
+	*/
     public function creators()
     {
-        return $this->hasMany(User::class);
+        return $this->belongsToMany(User::class, 'cours_createurs');
     }
 
-	/* List the refereneces of a lesson */
-    // public function references()
-    // {
-    //     return ;
-    // }
+	/**
+	* Get the refereneces of a lesson
+	*/
+    public function refs()
+    {
+        return $this->belongsToMany(Reference::class, 'refs_cours');
+    }
 
-	/* Return the list of dates for a lesson */
-	// public function dates()
-	// {
-	// 	return
-	// }
+	/**
+	* Get the list of dates for a lesson
+	*/
+	public function dates()
+	{
+		return $this->belongsToMany(Date::class, 'dates_cours');
+	}
+
+	/**
+	* Get the tags of a lesson
+	*/
+	public function tags()
+	{
+		return $this->belongsToMany(Tag::class, 'tags_cours');
+	}
 }
