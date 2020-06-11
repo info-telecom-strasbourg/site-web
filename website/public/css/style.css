@@ -138,3 +138,31 @@
 .login-container .styled {
     margin-top: 10%;
 }
+
+/****** List users ******/
+.profil-rounded {
+    width: 110px;
+    height: 110px;
+    border: none;
+    -moz-border-radius: 75px;
+    -webkit-border-radius: 75px;
+    border-radius: 75px;
+}
+
+.respo #nom {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: black;
+}
+
+.respo:hover {
+    color: underline #254395;
+}
+
+.respo #fonction {
+    margin-top: -10px;
+    text-align: center;
+    color: #4d4d4d;
+}
