@@ -40,7 +40,7 @@
             </li>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">CONTACT</a>
+                <a class="nav-link js-scrollTo" href="#contact-anchor">CONTACT</a>
             </li>
         </ul>  
         <ul class="nav navbar-nav">
