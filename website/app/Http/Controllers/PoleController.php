@@ -28,14 +28,19 @@ class PoleController extends Controller
 
     }
 
-    public function edit()
+    public function edit(Pole $pole)
     {
-
+		return view('poles.edit',compact('pole'));
     }
 
-    public function update()
+    public function update(Pole $pole)
     {
+		$pole->update(request()->validate([
+			'title' => 'required',
+			'desc' => 'required',
+		]));
 
+		return redirect('/poles'.$pole->id);
     }
 
     public function destroy()
@@ -44,8 +49,3 @@ class PoleController extends Controller
     }
 
 }
-
-//index
-//show
-//create
-//

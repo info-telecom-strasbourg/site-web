@@ -8,6 +8,7 @@ class Pole extends Model
 {
     protected $guarded = [];
 
+
 	/* Return the responsible of the pole */
     public function respo()
     {

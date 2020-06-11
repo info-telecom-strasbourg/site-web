@@ -44,4 +44,12 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Projet::class);
     }
+
+	/**
+	* Get the lessons of the user
+	*/
+	public function cours()
+	{
+		$this->belongsToMany(Cours::class);
+	}
 }
