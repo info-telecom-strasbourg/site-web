@@ -61,14 +61,14 @@
 						<div class="col-md-3 text-center">
 							<a href="#" class="respo">
 					            <img class="profil-rounded" src="images/defaut/profil.jpg">
-					            <p id="nom"> Hugo Laullier </p>
-					            <p id="fonction"> Président</p>
+					            <p id="nom">{{ $user->name }}</p>
+					            <p id="fonction">{{ $user->role->role }}</p>
 					        </a>
 						</div>
-				
+						
 					<!-- Pagination links -->
 					{{ $users->links() }}
-					
+
 					@empty
 
 						<div class="alert alert-secondary alert-dismissible fade show col" role="alert">

@@ -73,6 +73,9 @@
 						  	</div>
 						</div>
 				
+					<!-- Pagination links -->
+					{{ $projets->links() }}
+					
 					@empty
 
 						<div class="alert alert-secondary alert-dismissible fade show col" role="alert">
@@ -83,8 +86,6 @@
 						</div>
 					@endforelse
 
-					<!-- Pagination links -->
-					{{ $projets->links() }}
 				@else
 					<div class="alert alert-secondary alert-dismissible fade show col" role="alert">
 						Aucun projets n'a été trouvé
