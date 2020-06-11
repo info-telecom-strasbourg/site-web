@@ -100,7 +100,6 @@
  }
  
  .navbar {
-     height: 70px !important;
      background-color: transparent;
      transition: background-color 1s ease 0s;
      padding: 0;
