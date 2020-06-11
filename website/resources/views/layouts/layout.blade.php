@@ -27,7 +27,7 @@
 </head>
 
 <body>
-    @include('navbar')
+    {{-- @include('navbar') --}}
     <!-- Main content -->
     <div class="page">
         <!-- Breadcrumbs -->
@@ -42,7 +42,7 @@
         </div>
     </div>
 
-    @include('footer')
+    {{-- @include('footer') --}}
 
     <script src="js/website.js"></script>
 
