@@ -117,7 +117,6 @@ li.dropdown:hover>.dropdown-menu {
 }
 
 .navbar {
-    height: 70px !important;
     background-color: transparent;
     transition: background-color 1s ease 0s;
     padding: 0;
@@ -210,16 +209,14 @@ li.dropdown:hover>.dropdown-menu {
     margin-top: 40px;
 }
 
-.fa-github {
+.social-buttons .fab,
+.social-buttons .fas {
     color: rgba(255, 255, 255, 0.9)
 }
 
-.fa-facebook {
-    color: rgba(255, 255, 255, 0.9)
-}
-
-.fa-envelope {
-    color: rgba(255, 255, 255, 0.9)
+.social-buttons .fab:hover,
+.social-buttons .fas:hover {
+    color: rgba(215, 215, 215, 0.9)
 }
 
 
@@ -228,33 +225,37 @@ li.dropdown:hover>.dropdown-menu {
 
 /* Général */
 
-.section .grise {
+.section.grise {
     background-color: #e4ecfe;
 }
 
 
 /* Activités */
 
-.activites {
-    display: flex;
-    justify-content: center;
-}
-
 .activites .card {
-    display: flex;
-    flex-wrap: wrap;
-    margin-left: 50px;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    width: 500px;
-    height: 300px;
+    width: 400px;
+    height: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 70px;
+    margin-top: 40px;
+    border: none;
 }
 
 .activites a {
-    position: absolute;
-    z-index: 4;
-    background: transparent;
+    display: block;
+    width: 100%;
+    text-align: center;
+    color: white;
+    text-decoration: none;
 }
+
+#conteneur_slider {
+    position: absolute;
+}
+
+
+/* Nos projets */
 
 @media (max-width: 768px) {
     #nos-projets .carousel-inner .carousel-item>div {
@@ -271,9 +272,6 @@ li.dropdown:hover>.dropdown-menu {
     display: flex;
     background-color: transparent;
 }
-
-
-/* Nos projets */
 
 @media (min-width: 768px) {
     #nos-projets .carousel-inner .carousel-item-right.active,
@@ -306,6 +304,10 @@ li.dropdown:hover>.dropdown-menu {
 
 /* Quelques chiffres */
 
+#quelques-chiffres {
+    padding-bottom: 50px;
+}
+
 #quelques-chiffres .chiffres {
     display: flex;
     flex-direction: row;
@@ -336,11 +338,21 @@ li.dropdown:hover>.dropdown-menu {
 }
 
 .respo #nom {
+    margin-top: 20px;
     text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: black;
+}
+
+.respo:hover {
+    text-decoration: underline #254395;
 }
 
 .respo #fonction {
+    margin-top: -10px;
     text-align: center;
+    color: #4d4d4d;
 }
 
 
@@ -353,23 +365,24 @@ li.dropdown:hover>.dropdown-menu {
 #mot-du-directeur #nom {
     margin-top: 30px;
     font-weight: bold;
-    font-size: 30px;
+    font-size: 1.5em;
 }
 
 #mot-du-directeur #fonction {
+    color: #4d4d4d;
     margin-top: -10px;
 }
 
 #mot-du-directeur h5 {
     font-style: italic;
     margin-bottom: 100px;
-    font-size: 1.5em;
+    font-size: 1.3em;
+    margin-left: 200px;
+    margin-right: 200px;
 }
 
 #mot-du-directeur .directeur {
-    margin-left: auto;
-    margin-right: auto;
-    width: 100em;
+    justify-content: center;
 }
 
 
