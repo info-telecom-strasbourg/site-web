@@ -9,7 +9,7 @@
 @section('content')
 
 
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+<section id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -62,9 +62,9 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
     </a>
-</div>
+</section>
 
-<div class="section" id="poles-activites">
+<section class="section" id="poles-activites">
     <br>
     <br>
     <h1 class="title lg text-center"> Nos pôles d'activités </h1>
@@ -108,9 +108,9 @@
             </div>
         </div>
     </div>
-</div>
+</section>
 
-<div class="section grise" id="nos-projets">
+<section class="section grise" id="nos-projets">
     <br>
     <br>
     <h1 class="title lg text-center"> Nos derniers projets </h1>
@@ -219,10 +219,10 @@
     </div>
     <br>
     <br>
-</div>
+</section>
 
 
-<div class="section" id="agenda">
+<section class="section" id="agenda">
     <br>
     <br>
     <h1 class="title lg text-center"> Agenda </h1>
@@ -233,9 +233,9 @@
         <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=America%2FPort_of_Spain&amp;src=aW5mby50ZWxlY29tLnN0cmFzYm91cmdAZ21haWwuY29t&amp;color=%23E67C73&amp;showTitle=0&amp;showPrint=0&amp;showDate=1&amp;showTabs=1&amp;showCalendars=0&amp;showTz=0" style="border:solid 1px #777" width="800" height="600" frameborder="0" scrolling="no"></iframe> </div>
     <br>
     <br>
-</div>
+</section>
 
-<div class="section grise" id="quelques-chiffres">
+<section class="section grise" id="quelques-chiffres">
     <br>
     <br>
     <h1 class="title lg text-center"> Quelques chiffres </h1>
@@ -260,65 +260,65 @@
         </div>
     </div>
     <br>
-</div>
+</section>
 
-<div class="section" id="equipe">
+<section class="section" id="equipe">
     <br>
     <br>
     <h1 class="title lg text-center"> Notre équipe </h1>
     <hr class="line-under-title">
     <div class="respos">
-        <a href = "#" class="respo">
+        <a href="#" class="respo">
             <img class="profil-rounded" src="images/defaut/profil.jpg">
             <p id="nom"> Hugo Laullier </p>
             <p id="fonction"> Président</p>
         </a>
-        <a href = "#" class="respo">
+        <a href="#" class="respo">
             <img class="profil-rounded" src="images/defaut/profil.jpg">
             <p id="nom"> Gonçalo Giga </p>
             <p id="fonction"> Secrétaire</p>
         </a>
-        <a href = "#" class="respo">
+        <a href="#" class="respo">
             <img class="profil-rounded" src="images/defaut/profil.jpg">
             <p id="nom"> Clara Schild </p>
             <p id="fonction"> Trésorière</p>
         </a>
-        <a href = "#" class="respo">
+        <a href="#" class="respo">
             <img class="profil-rounded" src="images/defaut/profil.jpg">
             <p id="nom"> Lucas Schaeffer </p>
             <p id="fonction"> Responsable support</p>
         </a>
-        <a href = "#" class="respo">
+        <a href="#" class="respo">
             <img class="profil-rounded" src="images/defaut/profil.jpg">
             <p id="nom"> Michael Hofmann </p>
             <p id="fonction"> Responsable <br> communication</p>
         </a>
-        <a href = "#" class="respo">
+        <a href="#" class="respo">
             <img class="profil-rounded" src="images/defaut/profil.jpg">
             <p id="nom"> Yassine El Aiouilli </p>
             <p id="fonction"> Responsable <br> sponsor</p>
         </a>
-        <a href = "#" class="respo">
+        <a href="#" class="respo">
             <img class="profil-rounded" src="images/defaut/profil.jpg">
             <p id="nom"> Céline Ly </p>
             <p id="fonction"> Responsable <br> compétition</p>
         </a>
-        <a href = "#" class="respo">
+        <a href="#" class="respo">
             <img class="profil-rounded" src="images/defaut/profil.jpg">
             <p id="nom"> Thomas Rives </p>
             <p id="fonction"> Responsable <br> programmation utilitaire</p>
         </a>
-        <a href = "#" class="respo">
+        <a href="#" class="respo">
             <img class="profil-rounded" src="images/defaut/profil.jpg">
             <p id="nom"> Valentin Comps </p>
             <p id="fonction"> Responsable <br> applications et site web</p>
         </a>
-        <a href = "#" class="respo">
+        <a href="#" class="respo">
             <img class="profil-rounded" src="images/defaut/profil.jpg">
             <p id="nom"> Idriss Larbi </p>
             <p id="fonction"> Responsable jeux vidéo</p>
         </a>
-        <a href = "#" class="respo">
+        <a href="#" class="respo">
             <img class="profil-rounded" src="images/defaut/profil.jpg">
             <p id="nom"> Clément Rossetti </p>
             <p id="fonction"> Responsable consultant</p>
@@ -326,9 +326,9 @@
     </div>
     <br>
     <br>
-</div>
+</section>
 
-<div class="section grise" id="mot-du-directeur">
+<section class="section grise" id="mot-du-directeur">
     <br>
     <br>
     <h1 class="title lg text-center"> Le mot du Directeur </h1>
@@ -347,49 +347,42 @@
         <br>
         <br>
     </div>
-</div>
+</section>
 
-<div class="section" id="contact">
-    <br>
-    <br>
+
+<section class="resume-section p-4 p-lg-5 text-center" id="contact">
     <h1 class="title lg text-center"> Contact </h1>
     <hr class="line-under-title">
     <br>
     <br>
-    <div class="box">
-        <div id="gmap" class="col-sm-3 contact-widget-section2 wow animated fadeInLeft" data-wow-delay=".2s">
-            <div class="map">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2642.3720999403968!2d7.7347999514380845!3d48.52610033189745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4796ca33e265b8bf%3A0x3a9eb5576462d5e3!2sT%C3%A9l%C3%A9com%20Physique%20Strasbourg!5e0!3m2!1sfr!2sfr!4v1591805091984!5m2!1sfr!2sfr" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+    <div class="container" style="max-width: 100%;">
+        <div class="row" style="justify-content: space-around;">
+            <div id="gmap" class="col-sm-3 contact-widget-section2 wow animated fadeInLeft col-md-6" data-wow-delay=".2s" style="max-width: 600px">
+                <div class="map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2642.3720999403968!2d7.7347999514380845!3d48.52610033189745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4796ca33e265b8bf%3A0x3a9eb5576462d5e3!2sT%C3%A9l%C3%A9com%20Physique%20Strasbourg!5e0!3m2!1sfr!2sfr!4v1591805091984!5m2!1sfr!2sfr" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                </div>
+            </div>
+            <div class="contact-form col-md-6">
+                <h2>Formulaire de contact</h2>
+                <form class="contact-form d-flex flex-column align-items-center" action="https://formspree.io/youremail@mail.com" method="POST">
+                    <div class="form-group" style="width: 100%;">
+                        <input type="name" class="form-control" placeholder="Nom" name="name" required />
+                    </div>
+                    <div class="form-group" style="width: 100%;">
+                        <input type="email" class="form-control" placeholder="Email" name="name" required />
+                    </div>
+                    <div class="form-group" style="width: 100%;">
+                        <input type="text" class="form-control" placeholder="Sujet" name="subject" required />
+                    </div>
+                    <div class="form-group" style="width: 100%;">
+                        <textarea class="form-control" type="text" placeholder="Message" rows="6" name="name" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-rounded btn-primary" style="width: 200px;">Envoyer</button>
+                </form>
             </div>
         </div>
-
-        <div id="form-contact" class="col-sm-3 wow animated fadeInRight" data-wow-delay=".2s">
-            <form>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                </div>
-                <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-        </div>
     </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-</div>
-
+</section>
 
 
 

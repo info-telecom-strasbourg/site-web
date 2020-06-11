@@ -36,16 +36,16 @@ $(document).ready(function() {
     // Update on window resize
     $(window).resize(function() {
 
+        $(".hidden").remove(); // remove it 
+
         if ($("body").hasClass("xl")) {
             // Remove hide button that is used to center links 
             // in the navbar when the navbar is collapsed to be sure that we don't
             // add it two times, then add it
 
-            $(".hidden").remove(); // remove it 
             $(".not-shown").html("<li class='nav-item hidden'><a href='#'' class='btn btn-rounded btn-primary connexion' type='button'>CONNEXION</a></li>"); // add it
             $('.navbar-collapse').css('background-color', 'transparent');
         } else {
-            $(".hidden").remove();
             $('.navbar-collapse').css('background-color', 'rgba(0, 0, 0, 0.7)');
         }
     });
