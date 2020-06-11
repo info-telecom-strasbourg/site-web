@@ -21,24 +21,18 @@ $(document).ready(function() {
         }
     })
 
-    // Remove hide button that is used to center links 
-    // in the navbar when the navbar is collapsed
-    // if ($(window).width() < 1200) {
-    //     $(".hidden").remove();
-    // }
-
-    /* Resize */
-
     var $item = $('.carousel-item');        // get carousel item
     var $wHeight = $(window).height();      // get window height
 
     $item.height($wHeight);         // set height of carousel item to window height
 
 
-
+    // Remove hide button that is used to center links 
+    // in the navbar when the navbar is collapsed
     if (!$("body").hasClass("xl")) { 
             $(".hidden").remove();
     }
+
     // Update on window resize
     $( window ).resize( function() {
 
