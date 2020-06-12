@@ -70,11 +70,11 @@
     <h1 class="title lg text-center"> Nos pôles d'activités </h1>
     <hr class="line-under-title">
     <div class="activites">
-            <a id="cours" href="#" class="btn btn-primary">Cours & Accompagnements</a>
-            <a id="web" href="#" class="btn btn-primary">Applications & Sites Web</a>
-            <a id="prog" href="#" class="btn btn-primary">Programmation utilitaire</a>
-            <a id="compet" href="#" class="btn btn-primary">Compétitions</a>
-            <a id="jeux" href="#" class="btn btn-primary">Jeux Vidéos</a>
+        <div class="container" id="cours-container"><a id="cours" href="#" class="btn btn-primary"><p>Cours & Accompagnements</p></a></div>
+        <div class="container" id="web-container"><a id="web" href="#" class="btn btn-primary"><p>Applications & Sites Web</p></a></div>
+        <div class="container" id="prog-container"><a id="prog" href="#" class="btn btn-primary"><p>Programmation utilitaire</p></a></div>
+        <div class="container" id="compet-container"><a id="compet" href="#" class="btn btn-primary"><p>Compétitions</p></a></div>
+        <div class="container" id="jeux-container"><a id="jeux" href="#" class="btn btn-primary"><p>Jeux Vidéos</p></a></div>
     </div>
 </section>
 
@@ -291,6 +291,28 @@
             <p id="nom"> Clément Rossetti </p>
             <p id="fonction"> Responsable consultant</p>
         </a>
+    </div>
+    <br>
+    <br>
+</section>
+
+<section class="section grise" id="association">
+    <br>
+    <br>
+    <h1 class="title lg text-center"> Notre association </h1>
+    <hr class="line-under-title">
+    <div class="asso-text">
+    </div>
+    <br>
+    <br>
+</section>
+
+<section class="section" id="partenariat">
+<br>
+    <br>
+    <h1 class="title lg text-center"> Nos partenaires </h1>
+    <hr class="line-under-title">
+    <div class="asso-text">
     </div>
     <br>
     <br>

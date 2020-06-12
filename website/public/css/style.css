@@ -227,7 +227,47 @@
             flex-wrap: wrap;
         }
         
+        #poles-activites .activites p {
+            margin-top: 100px;
+        }
+        
         #poles-activites .activites a {
+            width: 500px;
+            height: 250px;
+            position: relative;
+            background-color: transparent;
+            /* border: none; */
+            margin-top: auto;
+            margin-bottom: auto;
+            font-weight: bold;
+            font-size: 1.7em;
+        }
+        
+        #poles-activites .activites a:hover {
+            filter: brightness(.5);
+        }
+        
+        #poles-activites #cours-container {
+            background-image: url('../images/illustrations/cours.jpg');
+        }
+        
+        #poles-activites #web-container {
+            background-image: url('../images/illustrations/web.jpg');
+        }
+        
+        #poles-activites #prog-container {
+            background-image: url('../images/illustrations/prog.jpg');
+        }
+        
+        #poles-activites #compet-container {
+            background-image: url('../images/illustrations/compet.jpg');
+        }
+        
+        #poles-activites #jeux-container {
+            background-image: url('../images/illustrations/jeux.jpg');
+        }
+        
+        #poles-activites .container {
             width: 500px;
             height: 250px;
             margin-left: auto;
@@ -237,27 +277,17 @@
             border: none;
             background-repeat: no-repeat;
             background-size: 100% 100%;
-            filter: brightness(.85);
+            position: relative;
         }
         
-        #poles-activites .activites #cours {
-            background-image: url('../images/illustrations/cours.jpg');
-        }
-        
-        #poles-activites .activites #web {
-            background-image: url('../images/illustrations/web.jpg');
-        }
-        
-        #poles-activites .activites #prog {
-            background-image: url('../images/illustrations/prog.jpg');
-        }
-        
-        #poles-activites .activites #compet {
-            background-image: url('../images/illustrations/compet.jpg');
-        }
-        
-        #poles-activites .activites #jeux {
-            background-image: url('../images/illustrations/jeux.jpg');
+        #poles-activites .container::before {
+            content: "";
+            background: rgba(0, 0, 0, 0.35);
+            position: absolute;
+            bottom: 0;
+            top: 0;
+            left: 0;
+            right: 0;
         }
         /* Nos projets */
         
