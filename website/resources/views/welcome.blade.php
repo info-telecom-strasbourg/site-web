@@ -70,43 +70,11 @@
     <h1 class="title lg text-center"> Nos pôles d'activités </h1>
     <hr class="line-under-title">
     <div class="activites">
-        <div class="container" style="max-width: 100%;">
-            <div class="row">
-                <div class="card col-md-3">
-                    <img src="images/illustrations/cours.jpg" style=" width: 100%; height: 100%;">
-                    <div id="conteneur_slider">
-                        <a href="#" class="btn btn-primary">Cours & Accompagnements</a>
-                    </div>
-                </div>
-                <div class="card col-md-3">
-                    <img src="images/illustrations/web.jpg" style="  width: 100%; height: 100%;">
-                    <div id="conteneur_slider">
-                        <a href="#" class="btn btn-primary">Applications & Sites Web</a>
-                    </div>
-                </div>
-                <div class="card col-md-3">
-                    <img src="images/illustrations/prog.jpg" style="  width: 100%; height: 100%;">
-                    <div id="conteneur_slider">
-                        <a href="#" class="btn btn-primary">Programmation utilitaire</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="card col-md-3">
-                    <img src="images/illustrations/compet.jpg" style="  width: 100%; height: 100%;">
-                    <div id="conteneur_slider">
-                        <a href="#" class="btn btn-primary">Compétitions</a>
-                    </div>
-                </div>
-                <div class="card col-md-3">
-                    <img src="images/illustrations/jeux.jpg" style=" width: 100%; height: 100%;">
-                    <div id="conteneur_slider">
-                        <a href="#" class="btn btn-primary">Jeux Vidéos</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+            <a id="cours" href="#" class="btn btn-primary">Cours & Accompagnements</a>
+            <a id="web" href="#" class="btn btn-primary">Applications & Sites Web</a>
+            <a id="prog" href="#" class="btn btn-primary">Programmation utilitaire</a>
+            <a id="compet" href="#" class="btn btn-primary">Compétitions</a>
+            <a id="jeux" href="#" class="btn btn-primary">Jeux Vidéos</a>
     </div>
 </section>
 
@@ -363,7 +331,6 @@
                 </div>
             </div>
             <div id="contact_cont" class="contact-form col-md-6">
-                <h2>Formulaire de contact</h2>
                 <form class="contact-form d-flex flex-column align-items-center" action="https://formspree.io/youremail@mail.com" method="POST">
                     <div class="form-group" style="width: 100%;">
                         <input type="name" class="form-control" placeholder="Nom" name="name" required />
@@ -375,7 +342,7 @@
                         <input type="text" class="form-control" placeholder="Sujet" name="subject" required />
                     </div>
                     <div class="form-group" style="width: 100%;">
-                        <textarea class="form-control" type="text" placeholder="Message" rows="6" name="name" required></textarea>
+                        <textarea class="form-control" type="text" placeholder="Message" rows="9" name="name" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-rounded btn-primary" style="width: 200px;">Envoyer</button>
                 </form>
