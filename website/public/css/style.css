@@ -1,4 +1,4 @@
- /* ##########################   Général   ########################## */
+/* ##########################   Général   ########################## */
  
  .line-under-title {
      height: 2px;
@@ -25,7 +25,7 @@
     background-color: transparent;
 }
 
- /* ##########################   Gestion du carousel d'actualité   ########################## */
+/* ##########################   Gestion du carousel d'actualité   ########################## */
  
  #carouselExampleIndicators .styled {
      border-radius: 50px;
@@ -190,15 +190,12 @@
  .dropdown-menu {
      box-shadow: 0px 7px 17px -5px rgba(0, 0, 0, 0.35);
  }
- /* ##########################   Gestion du footer   ##########################*/
- 
+
+/* ##########################   Gestion du footer   ##########################*/
  .page-footer {
      background-color: #5C6FA3;
      color: white;
      font-family: 'Roboto';
-     position: absolute;
-     bottom: 0;
-     width: 100%;
  }
  
  .footer-copyright {
