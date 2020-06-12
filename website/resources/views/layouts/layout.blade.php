@@ -30,21 +30,24 @@
 </head>
 
 <body>
+     <!-- Navbar -->
     @include('navbar')
+
     <!-- Main content -->
     <div class="page">
         <!-- Breadcrumbs -->
-        <!-- <div class="breadcrumb-container" aria-label="breadcrumb">
+        <div class="breadcrumb-container container" aria-label="breadcrumb">
             <ol class="breadcrumb">
                 @yield('breadcrumb')
             </ol>
-        </div> -->
+        </div>
 
         <div class="main-content">
             @yield('content')
         </div>
     </div>
 
+    <!-- Footer -->
     @include('footer')
 
     <script src="js/website.js"></script>
