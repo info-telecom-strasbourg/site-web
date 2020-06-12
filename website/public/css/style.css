@@ -1,4 +1,4 @@
- /* ##########################   Général   ##########################*/
+ /* ##########################   Général   ########################## */
  
  .line-under-title {
      height: 2px;
@@ -7,7 +7,25 @@
      width: 5%;
      border: none;
  }
- /* ##########################   Gestion du carousel d'actualité   ##########################*/
+
+/* ##########################   Breadcrumb   ########################## */
+.breadcrumb-container {
+    margin-top: 100px;
+}
+
+.breadcrumb {
+    background-color: transparent;
+}
+
+.breadcrumb i {
+    color: black;
+}
+
+.breadcrumb .active {
+    background-color: transparent;
+}
+
+ /* ##########################   Gestion du carousel d'actualité   ########################## */
  
  #carouselExampleIndicators .styled {
      border-radius: 50px;
@@ -72,7 +90,7 @@
      left: 0;
      right: 0;
  }
- /* ##########################   Gestion de la navbar   ##########################*/
+ /* ##########################   Gestion de la navbar   ########################## */
  
  li.dropdown:hover>.dropdown-menu {
      display: block;
@@ -178,6 +196,9 @@
      background-color: #5C6FA3;
      color: white;
      font-family: 'Roboto';
+     position: absolute;
+     bottom: 0;
+     width: 100%;
  }
  
  .footer-copyright {
