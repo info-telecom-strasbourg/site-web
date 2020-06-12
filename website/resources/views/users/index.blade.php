@@ -92,9 +92,6 @@
 					        </a>
 						</div>
 
-					<!-- Pagination links -->
-					{{ $users->links() }}
-
 					@empty
 
 						<div class="alert alert-secondary alert-dismissible fade show col" role="alert">
@@ -113,6 +110,10 @@
 	  					</button>
 					</div>
 				@endif
+			</div>
+			<div class="row justify-content-center link-margin-top">
+				<!-- Pagination links -->
+				{{ $users->links() }}
 			</div>
 		</div>
 

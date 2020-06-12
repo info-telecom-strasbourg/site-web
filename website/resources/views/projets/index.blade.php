@@ -72,9 +72,6 @@
 								</div>
 						  	</div>
 						</div>
-				
-					<!-- Pagination links -->
-					{{ $projets->links() }}
 					
 					@empty
 
@@ -94,6 +91,10 @@
 	  					</button>
 					</div>
 				@endif
+			</div>
+			<div class="row justify-content-center link-margin-top">
+				<!-- Pagination links -->
+				{{ $projets->links() }}
 			</div>
 		</div>
 

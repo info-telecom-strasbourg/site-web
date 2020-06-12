@@ -163,7 +163,7 @@
 }
 
 .respo:hover {
-    color: underline #254395;
+    color: underline black;
 }
 
 .respo #fonction {
@@ -172,4 +172,16 @@
     color: #4d4d4d;
 }
 
+/**************************** Pagination ****************************/
+.link-margin-top {
+    margin-top: 40px;
+}
 
+.page-link {
+    color: #254395;
+}
+
+.page-item.active .page-link {
+    background-color: #254395;
+    border-color: #254395;
+}
