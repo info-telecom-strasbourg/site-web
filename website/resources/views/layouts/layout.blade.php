@@ -45,11 +45,13 @@
     <!-- Main content -->
     <div class="page">
         <!-- Breadcrumbs -->
+        @if (!Request::is('/'))
         <div class="breadcrumb-container container" aria-label="breadcrumb">
             <ol class="breadcrumb">
                 @yield('breadcrumb')
             </ol>
         </div>
+        @endif
 
         <div class="main-content">
             @yield('content')
