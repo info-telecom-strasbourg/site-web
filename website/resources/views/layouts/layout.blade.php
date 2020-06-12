@@ -33,6 +33,15 @@
      <!-- Navbar -->
     @include('navbar')
 
+    {{-- If the route is not welcome we change the navbar background color --}}
+    @if (!Request::is('/'))
+        <style>
+            .navbar {
+                background-color: rgb(92, 111, 163);
+            }
+        </style>
+    @endif
+
     <!-- Main content -->
     <div class="page">
         <!-- Breadcrumbs -->
