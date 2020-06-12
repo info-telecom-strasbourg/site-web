@@ -220,26 +220,44 @@
         }
         /* Activités */
         
-        .activites .card {
-            width: 400px;
+        #poles-activites .activites {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        #poles-activites .activites a {
+            width: 500px;
             height: 250px;
             margin-left: auto;
             margin-right: auto;
-            margin-bottom: 70px;
+            margin-bottom: 90px;
             margin-top: 40px;
             border: none;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            filter: brightness(.85);
         }
         
-        .activites a {
-            display: block;
-            width: 100%;
-            text-align: center;
-            color: white;
-            text-decoration: none;
+        #poles-activites .activites #cours {
+            background-image: url('../images/illustrations/cours.jpg');
         }
         
-        #conteneur_slider {
-            position: absolute;
+        #poles-activites .activites #web {
+            background-image: url('../images/illustrations/web.jpg');
+        }
+        
+        #poles-activites .activites #prog {
+            background-image: url('../images/illustrations/prog.jpg');
+        }
+        
+        #poles-activites .activites #compet {
+            background-image: url('../images/illustrations/compet.jpg');
+        }
+        
+        #poles-activites .activites #jeux {
+            background-image: url('../images/illustrations/jeux.jpg');
         }
         /* Nos projets */
         
@@ -365,11 +383,6 @@
         }
         /* Contact */
         
-        #contact h2 {
-            padding-bottom: 20px;
-            margin-top: -20px;
-        }
-        
         @media only screen and (max-width: 1443px) {
             #contact .row {
                 flex-direction: row-reverse;
@@ -378,9 +391,6 @@
             #contact iframe {
                 width: 527px;
                 margin-top: 60px;
-            }
-            #contact h2 {
-                margin-top: -20px;
             }
             #contact #contact_cont {
                 min-width: 660px;
