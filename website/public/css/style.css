@@ -140,6 +140,11 @@
 }
 
 /**************************** List users ****************************/
+.total-members {
+    font-style: italic;
+    margin-bottom: 0;
+}
+
 .profil-rounded {
     width: 110px;
     height: 110px;
@@ -166,3 +171,5 @@
     text-align: center;
     color: #4d4d4d;
 }
+
+

@@ -30,27 +30,53 @@
     	<!-- Filter options -->
     	<div class="filter-options container">
     		<h2>Filtres</h2>
-    		<div class="row">
+			<form method="GET" action="{{ route('register')}}" style="width: 100%" class="row">
     			<div class="col-md-3">
 					<select class="form-control">
-						<option disabled selected hidden>Rôle</option>
+						<option readonly selected hidden>Rôle</option>
+						
+						@if(isset($roles))
+
+	                    @foreach ($roles as $key => $role)
+	                    <option value="{{ $key + 1 }}">{{ $role->role }}</option>
+	                    @endforeach
+	                    
+	                    @endif
+
 					</select>
 				</div>
 				<div class="col-md-3">
 					<select class="form-control">
-						<option disabled selected hidden>Membre</option>
+						<option readonly selected hidden>Membre</option>
+
+						@if(isset($all_users))
+
+	                    @foreach ($all_users as $key => $user)
+	                    <option value="{{ $key + 1 }}">{{ $user->name }}</option>
+	                    @endforeach
+	                    
+	                    @endif
+
 					</select>
 				</div>
 				<div class="col-md-3">
 					<select class="form-control">
-						<option disabled selected hidden>Trié par</option>
+						<option readonly selected hidden>Trié par</option>
+	                    
+	                    <option value="1">Ordre alphabétique</option>
+	                    <option value="1">Ordre alphabétique inverse</option>
+	                    <option value="2">Date d'inscription</option>
+	                    <option value="3">Par rôle</option>
+
+
 					</select>
 				</div>
 				<div class="col-md-3 text-center">
 					<button type="submit" class="btn btn-primary btn-primary btn-rounded">FILTRER</button>
 				</div>
-			</div>
+			</form>
 		</div>
+		<p class="total-members">Membres : {{ $all_users->count() }}</p>
 
 		<div class="container pt-5">
 			<div class="row">
@@ -65,7 +91,7 @@
 					            <p id="fonction">{{ $user->role->role }}</p>
 					        </a>
 						</div>
-						
+
 					<!-- Pagination links -->
 					{{ $users->links() }}
 

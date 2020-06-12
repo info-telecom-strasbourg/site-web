@@ -17,7 +17,7 @@
     <hr class="line-under-title">
 
     <div class="container pt-3">
-        <form method="POSt" action="{{ route('register')}}" >
+        <form method="POST" action="{{ route('register')}}" >
             @csrf
             <div class="form-group">
                 <label for="name">{{ __('Name') }}</label>
@@ -45,12 +45,15 @@
                 <label for="role">Mot de passe</label>
                 <select class="custom-select" id="role" name="role" required>
                     <option selected readonly>Choisir un role ...</option>
+                    
                     @if(isset($roles))
 
                     @foreach ($roles as $key => $role)
                     <option value="{{ $key + 1 }}">{{ $role->role }}</option>
                     @endforeach
+
                     @endif
+
                 </select>
 
                 @error('role')
