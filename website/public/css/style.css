@@ -102,10 +102,6 @@
      padding-right: .7rem;
  }
  
- .navbar-light .navbar-nav .nav-link:hover {
-     color: white;
- }
- 
  .navbar-brand {
      position: fixed;
      top: 10px;
@@ -132,10 +128,22 @@
      padding-left: 18px;
      padding-right: 18px;
  }
+
+ .nav-item:hover {
+    background-color: #254395;
+ }
  
  .active {
      background-color: #254395;
  }
+
+.navbar-light .navbar-nav .active>.nav-link {
+    color: white;
+}
+
+.navbar-light .navbar-nav .active>.nav-link:hover {
+    color: black;
+}
  
  .btn-rounded {
      background-color: #254395;
