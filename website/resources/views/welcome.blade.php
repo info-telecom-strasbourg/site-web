@@ -123,7 +123,7 @@
                 <div class="carousel-inner w-100" role="listbox">
                     <div class="carousel-item active">
                         <div class="col-md-4">
-                            <div class="card text-center shadow mb-5 bg-white rounded" style="width: 18rem;">
+                            <div class="card text-center shadow mb-5 bg-white rounded" style="width: 18rem; margin: auto;">
                                 <img class="card-img-top" src="/images/projets/projet.jpg" alt="Card image cap">
                                 <div class="card-body">
                                     <h5 class="card-title text-center font-weight-bold">Site web ITS</h5>
@@ -137,7 +137,7 @@
                     </div>
                     <div class="carousel-item">
                         <div class="col-md-4">
-                            <div class="card text-center shadow mb-5 bg-white rounded" style="width: 18rem;">
+                            <div class="card text-center shadow mb-5 bg-white rounded" style="width: 18rem; margin: auto;">
                                 <img class="card-img-top" src="/images/projets/projet.jpg" alt="Card image cap">
                                 <div class="card-body">
                                     <h5 class="card-title text-center font-weight-bold">Site web ITS</h5>
@@ -151,7 +151,7 @@
                     </div>
                     <div class="carousel-item">
                         <div class="col-md-4">
-                            <div class="card text-center shadow mb-5 bg-white rounded" style="width: 18rem;">
+                            <div class="card text-center shadow mb-5 bg-white rounded" style="width: 18rem; margin: auto;">
                                 <img class="card-img-top" src="/images/projets/projet.jpg" alt="Card image cap">
                                 <div class="card-body">
                                     <h5 class="card-title text-center font-weight-bold">Site web ITS</h5>
@@ -165,7 +165,7 @@
                     </div>
                     <div class="carousel-item">
                         <div class="col-md-4">
-                            <div class="card text-center shadow mb-5 bg-white rounded" style="width: 18rem;">
+                            <div class="card text-center shadow mb-5 bg-white rounded" style="width: 18rem; margin: auto;">
                                 <img class="card-img-top" src="/images/projets/projet.jpg" alt="Card image cap">
                                 <div class="card-body">
                                     <h5 class="card-title text-center font-weight-bold">Site web ITS</h5>
@@ -179,7 +179,7 @@
                     </div>
                     <div class="carousel-item">
                         <div class="col-md-4">
-                            <div class="card text-center shadow mb-5 bg-white rounded" style="width: 18rem;">
+                            <div class="card text-center shadow mb-5 bg-white rounded" style="width: 18rem; margin: auto;">
                                 <img class="card-img-top" src="/images/projets/projet.jpg" alt="Card image cap">
                                 <div class="card-body">
                                     <h5 class="card-title text-center font-weight-bold">Site web ITS</h5>
@@ -193,7 +193,7 @@
                     </div>
                     <div class="carousel-item">
                         <div class="col-md-4">
-                            <div class="card text-center shadow mb-5 bg-white rounded" style="width: 18rem;">
+                            <div class="card text-center shadow mb-5 bg-white rounded" style="width: 18rem; margin: auto;">
                                 <img class="card-img-top" src="/images/projets/projet.jpg" alt="Card image cap">
                                 <div class="card-body">
                                     <h5 class="card-title text-center font-weight-bold">Site web ITS</h5>
