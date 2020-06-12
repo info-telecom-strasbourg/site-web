@@ -1,4 +1,4 @@
-.line-under-title{
+.line-under-title {
      height: 2px;
      color: #4472C4;
      background-color: #4472C4;
@@ -6,7 +6,7 @@
      border: none;
  }
 
-.line-voir-plus{
+.line-voir-plus {
     height: 2px;
     color: #A4A4A4;
     background-color: #A4A4A4;
@@ -14,22 +14,15 @@
     border: none;
 }
 
-.btn-rounded{
+.btn-rounded {
 	background-color: #254395;
 	border-radius: 50px ;
 	border-color: transparent;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
 }
 
-.carte-projet{
 
-}
-
-.images-projet{
-
-}
-
-.card-body{
+.card-body {
 	background-color: #EDECEC;
 }
 
@@ -72,7 +65,7 @@
     margin-right: 30px;
 }
 
-.sep-cards {
+.sep-items {
 	margin-bottom: 30px;
 }
 
@@ -83,4 +76,13 @@
     -moz-border-radius: 75px;
     -webkit-border-radius: 75px;
     border-radius: 75px;
+}
+
+.link-member {
+	color: black;
+}
+
+a.link-member:hover {
+	color: black;
+	text-decoration: underline;
 }
