@@ -369,16 +369,36 @@
             margin-top: -20px;
         }
         
-        @media only screen and (max-width: 1295px) {
-            #contact h2 {
-                margin-top: 40px;
+        @media only screen and (max-width: 1443px) {
+            #contact .row {
+                flex-direction: row-reverse;
+                flex-wrap: wrap-reverse;
             }
             #contact iframe {
                 width: 527px;
+                margin-top: 60px;
+            }
+            #contact h2 {
+                margin-top: -20px;
+            }
+            #contact #contact_cont {
+                min-width: 660px;
+            }
+            #contact .form-control {
+                width: 100%;
             }
         }
         
-        @media only screen and (max-width: 575px) {
+        @media only screen and (max-width: 664px) {
+            #contact #contact_cont {
+                min-width: 100%;
+            }
+            #contact .form-control {
+                width: 100%;
+            }
+        }
+        
+        @media only screen and (max-width: 574px) {
             #contact iframe {
                 width: 100%;
             }
