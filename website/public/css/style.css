@@ -1,4 +1,6 @@
-.line-under-title{
+ /* ##########################   Général   ##########################*/
+ 
+ .line-under-title {
      height: 2px;
      color: #4472C4;
      background-color: #4472C4;
@@ -185,3 +187,198 @@
     background-color: #254395;
     border-color: #254395;
 }
+
+/* ##########################   Gestion du carousel d'actualité   ##########################*/
+ 
+ #carouselExampleIndicators .styled {
+     border-radius: 50px;
+     line-height: 2.5;
+     padding: 0 20px;
+     font-size: 1rem;
+     text-align: center;
+     color: #fff;
+     background-color: transparent;
+     border-color: #254395;
+     font-family: 'Roboto';
+ }
+ 
+ #carouselExampleIndicators .styled:hover {
+     background-color: #254395;
+     border-color: transparent;
+ }
+ 
+ #carouselExampleIndicators .carousel-item {
+     font-family: 'Roboto';
+ }
+ 
+ #carouselExampleIndicators .carousel-caption {
+     top: 50%;
+     transform: translateY(-50%);
+     bottom: initial;
+ }
+ 
+ #carouselExampleIndicators .carousel-caption h1 {
+     font-size: 4em;
+     font-weight: bold;
+ }
+ 
+ #carouselExampleIndicators .carousel-caption p {
+     font-size: 1.5em;
+ }
+ 
+ @media only screen and (max-width: 800px) {
+     #carouselExampleIndicators .carousel-caption h1 {
+         font-size: 3em;
+         font-weight: bold;
+     }
+     #carouselExampleIndicators .carousel-caption p {
+         font-size: 1.3em;
+     }
+ }
+ 
+ #carouselExampleIndicators .actu {
+     width: 100%;
+     height: 100vh;
+     background: url('../images/actu/actu.jpeg') top center;
+     background-size: cover;
+     position: relative;
+ }
+ 
+ #carouselExampleIndicators .actu:before {
+     content: "";
+     background: rgba(0, 0, 0, 0.35);
+     position: absolute;
+     bottom: 0;
+     top: 0;
+     left: 0;
+     right: 0;
+ }
+ /* ##########################   Gestion de la navbar   ##########################*/
+ 
+ li.dropdown:hover>.dropdown-menu {
+     display: block;
+ }
+ 
+ .navbar-light .navbar-nav .nav-link {
+     color: white;
+     padding-left: .7rem;
+     padding-right: .7rem;
+ }
+ 
+ .navbar-light .navbar-nav .nav-link:hover {
+     color: white;
+ }
+ 
+ .navbar-brand {
+     position: fixed;
+     top: 10px;
+     margin-left: 1rem;
+ }
+ 
+ .navbar-brand img {
+     border-radius: 50%;
+     box-shadow: 0px 5px 14px -2px rgba(0, 0, 0, 0.75);
+ }
+ 
+ .navbar {
+     background-color: transparent;
+     transition: background-color 1s ease 0s;
+     padding: 0;
+     padding-left: 20px;
+     padding-right: 20px;
+     box-shadow: 0px 7px 17px -5px rgba(0, 0, 0, 0.5);
+ }
+ 
+ .nav-item {
+     padding-top: 1rem;
+     padding-bottom: 1rem;
+     padding-left: 18px;
+     padding-right: 18px;
+ }
+ 
+ .active {
+     background-color: #254395;
+ }
+ 
+ .btn-rounded {
+     background-color: #254395;
+     border-radius: 50px;
+     border-color: transparent;
+ }
+ 
+ .hidden {
+     visibility: hidden;
+     cursor: default;
+ }
+ 
+ .full-screen {
+     background-size: cover;
+     background-position: center;
+     background-repeat: no-repeat;
+ }
+ 
+ .navbar-toggler {
+     margin-top: 1rem;
+     margin-bottom: 1rem;
+ }
+ 
+ .navbar-default .navbar-toggler {
+     border-color: rgba(255, 255, 255, .1);
+ }
+ 
+ .fa-bars {
+     font-size: 25px;
+     color: white;
+ }
+ 
+ .navbar-collapse {
+     background-color: transparent;
+ }
+ 
+ @media only screen and (max-width: 1199px) {
+     .nav-item {
+         padding-top: .2rem;
+         padding-bottom: .2rem;
+     }
+     .navbar-collapse {
+         margin-top: 50px;
+         background-color: rgba(0, 0, 0, 0.7);
+     }
+     .connexion {
+         margin-right: auto;
+         margin-bottom: 10px;
+     }
+ }
+ 
+ .dropdown-menu {
+     box-shadow: 0px 7px 17px -5px rgba(0, 0, 0, 0.35);
+ }
+ /* ##########################   Gestion du footer   ##########################*/
+ 
+ .page-footer {
+     background-color: #5C6FA3;
+     color: white;
+     font-family: 'Roboto';
+ }
+ 
+ .footer-copyright {
+     margin-right: 20px;
+ }
+ 
+ .list-inline-item {
+     margin-right: 50px;
+     margin-left: 50px;
+     margin-top: 40px;
+ }
+ 
+ .fa-github {
+     color: rgba(255, 255, 255, 0.9)
+ }
+ 
+ .fa-facebook {
+     color: rgba(255, 255, 255, 0.9)
+ }
+ 
+ .fa-envelope {
+     color: rgba(255, 255, 255, 0.9)
+ }
