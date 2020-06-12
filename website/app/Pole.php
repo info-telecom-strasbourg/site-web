@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Pole extends Model
 {
     protected $guarded = [];
+	public $timestamps = false;
 
 
 	/* Return the responsible of the pole */
