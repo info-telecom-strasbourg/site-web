@@ -69,12 +69,32 @@
     <br>
     <h1 class="title lg text-center"> Nos pôles d'activités </h1>
     <hr class="line-under-title">
-    <div class="activites">
-        <div class="container" id="cours-container"><a id="cours" href="#" class="btn btn-primary"><p>Cours & Accompagnements</p></a></div>
-        <div class="container" id="web-container"><a id="web" href="#" class="btn btn-primary"><p>Applications & Sites Web</p></a></div>
-        <div class="container" id="prog-container"><a id="prog" href="#" class="btn btn-primary"><p>Programmation utilitaire</p></a></div>
-        <div class="container" id="compet-container"><a id="compet" href="#" class="btn btn-primary"><p>Compétitions</p></a></div>
-        <div class="container" id="jeux-container"><a id="jeux" href="#" class="btn btn-primary"><p>Jeux Vidéos</p></a></div>
+    <div class="row justify-content-center">
+        <div class="card" id="cours-container">
+            <a class="card-img d-flex align-items-center justify-content-center rgba-black-strong py-5 px-4" href="#">
+                <h3 class="text-white text-center" id="web">Cours & Accompagnement</h3>
+            </a>
+        </div>
+        <div class="card" id="web-container">
+            <a class="card-img d-flex align-items-center justify-content-center rgba-black-strong py-5 px-4" href="#">
+                <h3 class="text-white text-center" id="web">Applications & Sites Web</h3>
+            </a>
+        </div>
+        <div class="card" id="prog-container">
+            <a class="card-img d-flex align-items-center justify-content-center rgba-black-strong py-5 px-4" href="#">
+                <h3 class="text-white text-center" id="web">Programmation utilitaire</h3>
+            </a>
+        </div>
+        <div class="card" id="compet-container">
+            <a class="card-img d-flex align-items-center justify-content-center rgba-black-strong py-5 px-4" href="#">
+                <h3 class="text-white text-center" id="web">Compétitions</h3>
+            </a>
+        </div>
+        <div class="card" id="jeux-container">
+            <a class="card-img d-flex align-items-center justify-content-center rgba-black-strong py-5 px-4" href="#">
+                <h3 class="text-white text-center" id="web">Jeux vidéos</h3>
+            </a>
+        </div>
     </div>
 </section>
 
@@ -236,61 +256,85 @@
     <h1 class="title lg text-center"> Notre équipe </h1>
     <hr class="line-under-title">
     <div class="respos">
-        <a href="#" class="respo">
-            <img class="profil-rounded" src="images/defaut/profil.jpg">
-            <p id="nom"> Hugo Laullier </p>
-            <p id="fonction"> Président</p>
-        </a>
-        <a href="#" class="respo">
-            <img class="profil-rounded" src="images/defaut/profil.jpg">
-            <p id="nom"> Gonçalo Giga </p>
-            <p id="fonction"> Secrétaire</p>
-        </a>
-        <a href="#" class="respo">
-            <img class="profil-rounded" src="images/defaut/profil.jpg">
-            <p id="nom"> Clara Schild </p>
-            <p id="fonction"> Trésorière</p>
-        </a>
-        <a href="#" class="respo">
-            <img class="profil-rounded" src="images/defaut/profil.jpg">
-            <p id="nom"> Lucas Schaeffer </p>
-            <p id="fonction"> Responsable support</p>
-        </a>
-        <a href="#" class="respo">
-            <img class="profil-rounded" src="images/defaut/profil.jpg">
-            <p id="nom"> Michael Hofmann </p>
-            <p id="fonction"> Responsable <br> communication</p>
-        </a>
-        <a href="#" class="respo">
-            <img class="profil-rounded" src="images/defaut/profil.jpg">
-            <p id="nom"> Yassine El Aiouilli </p>
-            <p id="fonction"> Responsable <br> sponsor</p>
-        </a>
-        <a href="#" class="respo">
-            <img class="profil-rounded" src="images/defaut/profil.jpg">
-            <p id="nom"> Céline Ly </p>
-            <p id="fonction"> Responsable <br> compétition</p>
-        </a>
-        <a href="#" class="respo">
-            <img class="profil-rounded" src="images/defaut/profil.jpg">
-            <p id="nom"> Thomas Rives </p>
-            <p id="fonction"> Responsable <br> programmation utilitaire</p>
-        </a>
-        <a href="#" class="respo">
-            <img class="profil-rounded" src="images/defaut/profil.jpg">
-            <p id="nom"> Valentin Comps </p>
-            <p id="fonction"> Responsable <br> applications et site web</p>
-        </a>
-        <a href="#" class="respo">
-            <img class="profil-rounded" src="images/defaut/profil.jpg">
-            <p id="nom"> Idriss Larbi </p>
-            <p id="fonction"> Responsable jeux vidéo</p>
-        </a>
-        <a href="#" class="respo">
-            <img class="profil-rounded" src="images/defaut/profil.jpg">
-            <p id="nom"> Clément Rossetti </p>
-            <p id="fonction"> Responsable consultant</p>
-        </a>
+        <div class="row">
+            <div class="col-md-3 text-center">
+            <a href="#" class="respo">
+                <img class="profil-rounded" src="images/defaut/profil.jpg">
+                <p id="nom"> Hugo Laullier </p>
+                <p id="fonction"> Président</p>
+            </a>
+            </div>
+            <div class="col-md-3 text-center">
+                <a href="#" class="respo">
+                    <img class="profil-rounded" src="images/defaut/profil.jpg">
+                    <p id="nom"> Gonçalo Giga </p>
+                    <p id="fonction"> Secrétaire</p>
+                </a>
+            </div>
+            <div class="col-md-3 text-center">
+                <a href="#" class="respo">
+                    <img class="profil-rounded" src="images/defaut/profil.jpg">
+                    <p id="nom"> Clara Schild </p>
+                    <p id="fonction"> Trésorière</p>
+                </a>
+            </div>
+            <div class="col-md-3 text-center">
+                <a href="#" class="respo">
+                    <img class="profil-rounded" src="images/defaut/profil.jpg">
+                    <p id="nom"> Lucas Schaeffer </p>
+                    <p id="fonction"> Responsable support</p>
+                </a>
+            </div>
+            <div class="col-md-3 text-center">
+                <a href="#" class="respo">
+                    <img class="profil-rounded" src="images/defaut/profil.jpg">
+                    <p id="nom"> Michael Hofmann </p>
+                    <p id="fonction"> Responsable <br> communication</p>
+                </a>
+            </div>
+            <div class="col-md-3 text-center">
+                <a href="#" class="respo">
+                    <img class="profil-rounded" src="images/defaut/profil.jpg">
+                    <p id="nom"> Yassine El Aiouilli </p>
+                    <p id="fonction"> Responsable <br> sponsor</p>
+                </a>
+            </div>
+            <div class="col-md-3 text-center">
+                <a href="#" class="respo">
+                    <img class="profil-rounded" src="images/defaut/profil.jpg">
+                    <p id="nom"> Céline Ly </p>
+                    <p id="fonction"> Responsable <br> compétition</p>
+                </a>
+            </div>
+            <div class="col-md-3 text-center">
+                <a href="#" class="respo">
+                    <img class="profil-rounded" src="images/defaut/profil.jpg">
+                    <p id="nom"> Thomas Rives </p>
+                    <p id="fonction"> Responsable <br> programmation utilitaire</p>
+                </a>
+            </div>
+            <div class="col-md-3 text-center">
+                <a href="#" class="respo">
+                    <img class="profil-rounded" src="images/defaut/profil.jpg">
+                    <p id="nom"> Valentin Comps </p>
+                    <p id="fonction"> Responsable <br> applications et site web</p>
+                </a>
+            </div>
+            <div class="col-md-3 text-center">
+                <a href="#" class="respo">
+                    <img class="profil-rounded" src="images/defaut/profil.jpg">
+                    <p id="nom"> Idriss Larbi </p>
+                    <p id="fonction"> Responsable jeux vidéo</p>
+                </a>
+            </div>
+            <div class="col-md-3 text-center">
+                <a href="#" class="respo">
+                    <img class="profil-rounded" src="images/defaut/profil.jpg">
+                    <p id="nom"> Clément Rossetti </p>
+                    <p id="fonction"> Responsable consultant</p>
+                </a>
+            </div>
+        </div>
     </div>
     <br>
     <br>
@@ -308,7 +352,7 @@
 </section>
 
 <section class="section" id="partenariat">
-<br>
+    <br>
     <br>
     <h1 class="title lg text-center"> Nos partenaires </h1>
     <hr class="line-under-title">
@@ -347,12 +391,12 @@
     <br>
     <div class="container" style="max-width: 100%;">
         <div class="row" style="justify-content: space-around;">
-            <div id="gmap" class="col-sm-3 contact-widget-section2 wow animated fadeInLeft col-md-6" data-wow-delay=".2s" style="max-width: 600px">
+            <div id="gmap" class="col-md-5 contact-widget-section2 wow animated fadeInLeft" data-wow-delay=".2s" style="max-width: 600px">
                 <div class="map">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2642.3720999403968!2d7.7347999514380845!3d48.52610033189745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4796ca33e265b8bf%3A0x3a9eb5576462d5e3!2sT%C3%A9l%C3%A9com%20Physique%20Strasbourg!5e0!3m2!1sfr!2sfr!4v1591805091984!5m2!1sfr!2sfr" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
                 </div>
             </div>
-            <div id="contact_cont" class="contact-form col-md-6">
+            <div id="contact_cont" class="contact-form col-md-5">
                 <form class="contact-form d-flex flex-column align-items-center" action="https://formspree.io/youremail@mail.com" method="POST">
                     <div class="form-group" style="width: 100%;">
                         <input type="name" class="form-control" placeholder="Nom" name="name" required />

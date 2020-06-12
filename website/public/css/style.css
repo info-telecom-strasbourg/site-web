@@ -220,31 +220,33 @@
         }
         /* Activités */
         
-        #poles-activites .activites {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
-        #poles-activites .activites p {
-            margin-top: 100px;
-        }
-        
-        #poles-activites .activites a {
+        #poles-activites .card {
+            margin: 10px;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
             width: 500px;
             height: 250px;
-            position: relative;
-            background-color: transparent;
-            /* border: none; */
-            margin-top: auto;
-            margin-bottom: auto;
-            font-weight: bold;
-            font-size: 1.7em;
+            text-align: center;
+            background-position: center;
+            transition-duration: .2s;
         }
         
-        #poles-activites .activites a:hover {
+        #poles-activites .card-img {
+            height: 100%;
+        }
+        
+        .rgba-black-strong,
+        .rgba-black-strong:after {
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+        
+        #poles-activites .card-img:hover {
+            text-decoration: none;
+        }
+        
+        #poles-activites .card:hover {
             filter: brightness(.5);
+            background-size: 150% 150%;
         }
         
         #poles-activites #cours-container {
@@ -265,29 +267,6 @@
         
         #poles-activites #jeux-container {
             background-image: url('../images/illustrations/jeux.jpg');
-        }
-        
-        #poles-activites .container {
-            width: 500px;
-            height: 250px;
-            margin-left: auto;
-            margin-right: auto;
-            margin-bottom: 90px;
-            margin-top: 40px;
-            border: none;
-            background-repeat: no-repeat;
-            background-size: 100% 100%;
-            position: relative;
-        }
-        
-        #poles-activites .container::before {
-            content: "";
-            background: rgba(0, 0, 0, 0.35);
-            position: absolute;
-            bottom: 0;
-            top: 0;
-            left: 0;
-            right: 0;
         }
         /* Nos projets */
         
@@ -352,20 +331,6 @@
         }
         /* Notre équipe */
         
-        .respos {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        
-        .respo {
-            margin-left: 130px;
-            margin-right: 130px;
-            margin-top: 50px;
-            margin-bottom: 50px;
-            text-align: center;
-        }
-        
         .respo #nom {
             margin-top: 20px;
             text-align: center;
@@ -413,7 +378,7 @@
         }
         /* Contact */
         
-        @media only screen and (max-width: 1443px) {
+        @media only screen and (max-width: 1200px) {
             #contact .row {
                 flex-direction: row-reverse;
                 flex-wrap: wrap-reverse;
