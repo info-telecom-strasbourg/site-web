@@ -30,17 +30,17 @@ class PoleController extends Controller
 
     public function edit(Pole $pole)
     {
-		return view('poles.edit',compact('pole'));
+		return view('poles.edit', compact('pole'));
     }
 
     public function update(Pole $pole)
     {
 		$pole->update(request()->validate([
 			'title' => 'required',
-			'desc' => 'required',
+			'desc' => 'required'
 		]));
 
-		return redirect('/poles'.$pole->id);
+		return view('poles.show', compact('pole'));
     }
 
     public function destroy()
