@@ -37,3 +37,7 @@ Route::get('/cours', function () {
 })->name('cours.index');
 
 Route::get('/cours/{cours}', 'CoursController@show')->name('cours.show');
+
+Route::get('/test', function (){
+	return view('test');
+});
