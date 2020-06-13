@@ -30,21 +30,35 @@
 </head>
 
 <body>
+     <!-- Navbar -->
     @include('navbar')
+
+    {{-- If the route is not welcome we change the navbar background color --}}
+    @if (!Request::is('/'))
+        <style>
+            .navbar {
+                background-color: rgb(92, 111, 163);
+            }
+        </style>
+    @endif
+
     <!-- Main content -->
     <div class="page">
         <!-- Breadcrumbs -->
-        <!-- <div class="breadcrumb-container" aria-label="breadcrumb">
+        @if (!Request::is('/'))
+        <div class="breadcrumb-container container" aria-label="breadcrumb">
             <ol class="breadcrumb">
                 @yield('breadcrumb')
             </ol>
-        </div> -->
+        </div>
+        @endif
 
         <div class="main-content">
             @yield('content')
         </div>
     </div>
 
+    <!-- Footer -->
     @include('footer')
 
     <script src="js/website.js"></script>

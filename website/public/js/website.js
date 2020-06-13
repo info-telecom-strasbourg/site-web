@@ -37,7 +37,6 @@ $(document).ready(function() {
     $(window).resize(function() {
 
         $(".hidden").remove(); // remove it 
-
         if ($("body").hasClass("xl")) {
             // Remove hide button that is used to center links 
             // in the navbar when the navbar is collapsed to be sure that we don't
