@@ -35,32 +35,34 @@
 
 					@if(isset($pole->projets))
 
-					@forelse ($pole->projets as $projet)
-					<div id="proj-card" class="col-md-auto sep-items">
-						<div class="card text-center rounded">
-							<img class="card-img-top" src="/images/projets/Objection.png" alt="Card image cap">
-							<div class="card-body d-flex flex-column">
-								<h5 class="card-title text-center font-weight-bold">
-									Objection !
-								</h5>
-								<p class="card-text">
-									<span>{{ mb_strlen( $projet->desc ) > 200 ? mb_substr($projet->desc, 0, 200) . ' ...' : $projet->desc }}
-	                                </span>
-								</p>
-								<a href="/poles/{{ $projet->id }}" class="btn btn-rounded btn-primary" type="button">DÉCOUVRIR</a>
-							</div>
-					  	</div>
-					</div>
+						<?php $pos=0; ?>
+						@forelse ($pole->projets as $projet)
 
-					@empty
+						<div id="proj-card" class="col-md-auto sep-items">
+							<div class="card text-center rounded">
+								<img class="card-img-top" src="/images/projets/Objection.png" alt="Card image cap">
+								<div class="card-body d-flex flex-column">
+									<h5 class="card-title text-center font-weight-bold">
+										Objection !
+									</h5>
+									<p class="card-text">
+										<span>{{ mb_strlen( $projet->desc ) > 200 ? mb_substr($projet->desc, 0, 200) . ' ...' : $projet->desc }}
+		                                </span>
+									</p>
+									<a href="/poles/{{ $projet->id }}" class="btn btn-rounded btn-primary" type="button">DÉCOUVRIR</a>
+								</div>
+						  	</div>
+						</div>
+						<?php $pos++; ?>
+						@empty
 
-					<div class="alert alert-secondary alert-dismissible fade show col" role="alert">
-						Aucun projets n'a été trouvé
-						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-	    					<span aria-hidden="true">&times;</span>
-	  					</button>
-					</div>
-					@endforelse
+						<div class="alert alert-secondary alert-dismissible fade show col" role="alert">
+							Aucun projets n'a été trouvé
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		    					<span aria-hidden="true">&times;</span>
+		  					</button>
+						</div>
+						@endforelse
 
 					@else
 					<div class="alert alert-secondary alert-dismissible fade show col" role="alert">
