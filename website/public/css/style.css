@@ -363,6 +363,27 @@
             #nos-projets .carousel-inner .carousel-item>div:first-child {
                 display: block;
             }
+            #nos-projets .rounded-circle {
+                margin: 50px;
+            }
+        }
+        
+        @media (min-width: 767px) {
+            #nos-projets .rounded-circle {
+                margin: -30px;
+            }
+        }
+        
+        @media (max-width: 510px) {
+            #nos-projets .rounded-circle {
+                margin: 20px;
+            }
+        }
+        
+        @media (max-width: 446px) {
+            #nos-projets .rounded-circle {
+                margin: 0;
+            }
         }
         
         #nos-projets .carousel-inner .carousel-item.active,
