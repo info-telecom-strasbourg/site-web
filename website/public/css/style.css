@@ -621,3 +621,19 @@
         #contact .line-under-title {
             margin-bottom: 60px;
         }
+        /* ##########################   Besoin d'aide   ##########################*/
+        
+        #besoin-aide .formulaire-besoin-aide {
+            padding-left: 100px;
+            padding-right: 100px;
+        }
+        
+        #besoin-aide label {
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+        
+        #besoin-aide {
+            padding-top: 20px;
+            padding-bottom: 100px;
+        }
