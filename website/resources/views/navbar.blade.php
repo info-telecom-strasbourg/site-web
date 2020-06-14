@@ -36,7 +36,7 @@
                 <a class="nav-link" href="/users">MEMBRES</a>
             </li>
             <li class="nav-item {{ Request::is('A_COMPLETER') ? 'active' : ''  }}">
-                <a class="nav-link" href="#A_COMPLETER">BESOIN D'AIDE</a>
+                <a class="nav-link" href="besoin-aide">BESOIN D'AIDE</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link js-scrollTo" href="#contact-anchor">CONTACT</a>
