@@ -65,6 +65,7 @@
     </div>
 </section>
 
+
 <section class="section" id="poles-activites">
     <h1 class="title lg text-center"> Nos pôles d'activités </h1>
     <hr class="line-under-title">
@@ -209,29 +210,27 @@
     <h1 class="title lg text-center"> Agenda </h1>
     <hr class="line-under-title">
     <div class="google-agenda">
-        <iframe src="https://calendar.google.com/calendar/embed?src=2h92ucplu6oi74i5p33u2lnghk%40group.calendar.google.com&ctz=America%2FPort_of_Spain" style="border: 0;" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
-    </div>
+        <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=America%2FPort_of_Spain&amp;src=Mmg5MnVjcGx1Nm9pNzRpNXAzM3UybG5naGtAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;color=%23F6BF26&amp;showTitle=0&amp;showPrint=0&amp;showTabs=1&amp;showTz=0&amp;showCalendars=0" style="border:solid 1px #777" width="100%" height="600" frameborder="0" scrolling="no"></iframe> </div>
 </section>
 
-<section class="section grise" id="quelques-chiffres">
-    <h1 class="title lg text-center"> Quelques chiffres </h1>
+<section class="section grise" id="association">
+    <h1 class="title lg text-center"> Notre association </h1>
     <hr class="line-under-title">
-    <div class="chiffres">
-        <div class="chiffre">
-            <h1>10</h1>
-            PROJETS
-        </div>
-        <div class="chiffre">
-            <h1>100</h1>
-            MEMBRES
-        </div>
-        <div class="chiffre">
-            <h1>5</h1>
-            POLES
-        </div>
-        <div class="chiffre">
-            <h1>1ère</h1>
-            ANNEE
+    <div class="asso container-fluid">
+        <div class="row justify-content-around">
+            <div class="col-md-7" id="asso-txt">
+                <p>
+                    Cette année, une toute nouvelle association voit le jour dans ton école ! ITS te propose de découvrir le monde du numérique sous toutes ses formes.<br><br>
+                    Au travers de 5 pôles, tu pourras développer des sites web et des applications, réaliser des petits programmes utiles, créer ton propre jeu PC, participer à de grandes compétitions informatiques, ou encore bénéficier de notre structure d'entraide.<br><br>
+                    Si tu as besoin d'aide avec ton ordinateur, ou si tu souhaites obtenir de précieux conseils en programmation ou en cybersécurité, nous sommes aussi là pour toi !<br><br>
+                    ITS c'est avant tout une association qui te permettra de progresser en informatique dans un cadre chaleureux et agréable. Et ceci, quel que soient ton niveau et tes objectifs.<br><br>
+                    Alors n'hésite plus, ITS t'ouvre ses portes en Septembre pour ton plus grand bonheur !
+                </p>
+            </div>
+            <div class="col-md-5" id="asso-img">
+                <img src="/images/illustrations/tps.jpg" alt="Photo de TPS">
+                <p>Ecole d'ingénieur Télécom Physique Strasbourg</p>
+            </div>
         </div>
     </div>
 </section>
@@ -324,33 +323,40 @@
     </div>
 </section>
 
-<section class="section grise" id="association">
-    <h1 class="title lg text-center"> Notre association </h1>
+
+<section class="section grise" id="quelques-chiffres">
+    <h1 class="title lg text-center"> Quelques chiffres </h1>
     <hr class="line-under-title">
-    <div class="asso-container">
-        <div class="text-asso">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus feugiat mollis elit eu porta. Duis at dictum dui, a imperdiet felis. Pellentesque laoreet eu odio a maximus. Curabitur tempor, dui sed viverra bibendum, arcu elit imperdiet nulla, feugiat porttitor elit eros eu nisi.<br><br>
-            Vestibulum vel justo egestas, tempus risus id, sodales diam. Ut euismod congue tellus. Cras ultrices tincidunt justo vitae scelerisque. Nunc sed nulla erat. Curabitur ultricies tincidunt dolor, in tempor ante placerat sed. Praesent dui turpis, faucibus ut blandit eget, iaculis id arcu. Vestibulum volutpat sit amet orci a volutpat. Curabitur posuere posuere metus in sodales. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent euismod quam lacus, sit amet tempus arcu dapibus pellentesque.<br><br>
-            Quisque quis quam suscipit, facilisis dui sit amet, congue purus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sit amet vestibulum augue, imperdiet sagittis eros. Nunc auctor ultricies neque vitae finibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec nec condimentum eros. Praesent volutpat scelerisque ligula, vel iaculis dui lobortis et. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer egestas velit maximus lorem iaculis, at commodo purus molestie. Proin justo leo, malesuada vel iaculis id, faucibus rutrum risus.<br><br>
+    <div class="chiffres">
+        <div class="chiffre">
+            <h1>10</h1>
+            PROJETS
         </div>
-        <div class="img-asso-container">
-            <img class="img-asso" src="/images/illustrations/tps.jpg" alt="Photo de TPS">
-            <p>Ecole d'ingénieur Télécom Physique Strasbourg</p>
+        <div class="chiffre">
+            <h1>100</h1>
+            MEMBRES
+        </div>
+        <div class="chiffre">
+            <h1>5</h1>
+            POLES
+        </div>
+        <div class="chiffre">
+            <h1>1ère</h1>
+            ANNEE
         </div>
     </div>
 </section>
+
 
 <section class="section" id="mot-du-directeur">
     <h1 class="title lg text-center"> Le mot du Directeur </h1>
     <hr class="line-under-title">
     <div class="directeur">
-        <br>
-        <br>
         <h5> L’Association d’Informatique de Télécom Physique Strasbourg a tout mon soutien et je salue ses projets particulièrement ambitieux.<br><br>
             Ce projet associatif renforcera j’en suis certain l’entraide entre élèves-ingénieurs et par là même leur sentiment d’appartenance à une grande école d'ingénieurs.<br><br>
             Les 5 Pôles mis en place permettent aux élèves de mettre en pratique et compléter leur formation académique, que ce soit à travers le développement de programmes utiles, de jeux vidéo, d’applications mobiles ou de site Web.<br><br>
             J’encourage particulièrement la participation à des compétitions informatiques bénéfiques à la visibilité de Télécom Physique Strasbourg et de son Département Informatique et Réseaux.<br><br>Vous pourrez compter sur le soutien de votre directeur ! </h5>
-        <img class="profil-rounded" src="images/logo/collet.jpg">
+        <img class="profil-rounded" src="/images/logo/collet.jpg">
         <p id="nom"> Christophe Collet </p>
         <p id="fonction">Directeur de l’école d’ingénieurs Télécom Physique Strasbourg</p>
     </div>
@@ -360,22 +366,33 @@
     <h1 class="title lg text-center"> Nos partenaires </h1>
     <hr class="line-under-title">
     <div class="partenaires">
-        <a href="https://physique-ingenierie.fr/" class="logo" id="psi">
-            <img class="logo-pres" src="images/logo/psi.png" alt="Logo de PSI">
-            <p>PSI Junior-Entreprise</p>
-        </a>
-        <a href="http://www.telecom-physique.fr/" class="logo" id="tps">
-            <img class="logo-pres" src="images/logo/tps.png" alt="Logo de TPS">
-            <p>Télécom Physique Strasbourg</p>
-        </a>
-        <a href="https://robot-ps.com/" class="logo" id="rts">
-            <img class="logo-pres" src="images/logo/rts.png" alt="Logo de RTS">
-            <p>Robot Télécom Strasbourg</p>
-        </a>
+        <div class="partenaire">
+            <a href="https://physique-ingenierie.fr/" class="logo" id="psi">
+                <img class="logo-pres" src="/images/logo/psi.png" alt="Logo de PSI">
+                <p>PSI Junior-Entreprise</p>
+            </a>
+        </div>
+
+        <div class="partenaire">
+            <a href="http://www.telecom-physique.fr/" class="logo" id="tps">
+
+                <img class="logo-pres" src="/images/logo/tps.png" alt="Logo de TPS">
+                <p>Télécom Physique Strasbourg</p>
+            </a>
+        </div>
+
+        <div class="partenaire">
+            <a href="https://robot-ps.com/" class="logo" id="rts">
+                <img class="logo-pres" src="/images/logo/rts.png" alt="Logo de RTS">
+                <p>Robot Télécom Strasbourg</p>
+            </a>
+        </div>
+
     </div>
+    <a id="contact-anchor"></a>
 </section>
-<a id="contact-anchor"></a>
-<section class="resume-section p-4 p-lg-5 text-center" id="contact">
+
+<section class="section p-4 p-lg-5 text-center" id="contact">
     <h1 class="title lg text-center"> Contact </h1>
     <hr class="line-under-title">
     <div class="container-fluid">
@@ -397,7 +414,7 @@
                         <input type="text" class="form-control" placeholder="Objet" name="objet" required />
                     </div>
                     <div class="form-group" style="width: 100%;">
-                        <textarea class="form-control" type="text" placeholder="Message" rows="9" name="name" required></textarea>
+                        <textarea class="form-control" type="text" placeholder="Message" rows="9" name="name" style="resize: none;" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-rounded btn-primary" style="width: 200px;">Envoyer</button>
                 </form>
