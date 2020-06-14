@@ -1,4 +1,4 @@
- /* ##########################   Général   ##########################*/
+/* ##########################   Général   ########################## */
  
  .line-under-title {
      height: 2px;
@@ -7,7 +7,25 @@
      width: 5%;
      border: none;
  }
- /* ##########################   Gestion du carousel d'actualité   ##########################*/
+
+/* ##########################   Breadcrumb   ########################## */
+.breadcrumb-container {
+    margin-top: 100px;
+}
+
+.breadcrumb {
+    background-color: transparent;
+}
+
+.breadcrumb i {
+    color: black;
+}
+
+.breadcrumb .active {
+    background-color: transparent;
+}
+
+/* ##########################   Gestion du carousel d'actualité   ########################## */
  
  #carouselExampleIndicators .styled {
      border-radius: 50px;
@@ -72,7 +90,7 @@
      left: 0;
      right: 0;
  }
- /* ##########################   Gestion de la navbar   ##########################*/
+ /* ##########################   Gestion de la navbar   ########################## */
  
  li.dropdown:hover>.dropdown-menu {
      display: block;
@@ -82,10 +100,6 @@
      color: white;
      padding-left: .7rem;
      padding-right: .7rem;
- }
- 
- .navbar-light .navbar-nav .nav-link:hover {
-     color: white;
  }
  
  .navbar-brand {
@@ -114,10 +128,22 @@
      padding-left: 18px;
      padding-right: 18px;
  }
+
+ .nav-item:hover {
+    background-color: #254395;
+ }
  
  .active {
      background-color: #254395;
  }
+
+.navbar-light .navbar-nav .active>.nav-link {
+    color: white;
+}
+
+.navbar-light .navbar-nav .active>.nav-link:hover {
+    color: black;
+}
  
  .btn-rounded {
      background-color: #254395;
@@ -172,8 +198,8 @@
  .dropdown-menu {
      box-shadow: 0px 7px 17px -5px rgba(0, 0, 0, 0.35);
  }
- /* ##########################   Gestion du footer   ##########################*/
- 
+
+/* ##########################   Gestion du footer   ##########################*/
  .page-footer {
      background-color: #5C6FA3;
      color: white;
