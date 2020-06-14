@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Cours extends Model
 {
 	protected $guarded = [];
+	public $timestamps = false;
 
 	/**
 	* Get the list of creators of the lesson
@@ -17,11 +18,11 @@ class Cours extends Model
     }
 
 	/**
-	* Get the refereneces of a lesson
+	* Get the references of a lesson
 	*/
     public function refs()
     {
-        return $this->belongsToMany(Reference::class, 'refs_cours');
+        return $this->hasMany(Reference::class);
     }
 
 	/**

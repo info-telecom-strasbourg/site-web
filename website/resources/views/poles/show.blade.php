@@ -43,7 +43,7 @@
 								<img class="card-img-top" src="/images/projets/Objection.png" alt="Card image cap">
 								<div class="card-body d-flex flex-column">
 									<h5 class="card-title text-center font-weight-bold">
-										Objection !
+										{{ $projet->title }}
 									</h5>
 									<p class="card-text">
 										<span>{{ mb_strlen( $projet->desc ) > 200 ? mb_substr($projet->desc, 0, 200) . ' ...' : $projet->desc }}
