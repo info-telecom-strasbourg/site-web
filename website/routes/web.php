@@ -36,7 +36,12 @@ Route::get('/cours', function () {
 	return view('poles.cours.index');
 })->name('cours.index');
 
+Route::post('/cours', 'CoursController@store')->name('cours.store');
+
+Route::get('/cours/create','CoursController@create')->name('cours.create');
+Route::get('/cours/{cours}/edit', 'CoursController@edit')->name('cours.edit');
 Route::get('/cours/{cours}', 'CoursController@show')->name('cours.show');
+Route::put('/poles/{cours}', 'PoleController@update')->name('cours.update');
 
 Route::get('/test', function (){
 	return view('test');
