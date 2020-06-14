@@ -5,14 +5,14 @@ $(document).ready(function() {
     $(document).on('scroll', function(e) {
         var rgba = $(document).scrollTop() / 500;
 
-        // change the color of the navbar 
+        // change the color of the navbar
         // (from transparent to blue) when scrolling down
         $('.fixed-top').css('background-color', 'rgba(92, 111, 163,' + rgba + ')');
 
         // if the user scrolls the black filter is removed from the collapse navbar
         $('.navbar-collapse').css('background-color', 'transparent');
 
-        // if the user scrolls to the top, 
+        // if the user scrolls to the top,
         // a black filter is added to the collapse navbar
         if (!$("body").hasClass("xl")) {
             if ($(document).scrollTop() == 0) {
@@ -27,7 +27,7 @@ $(document).ready(function() {
     $item.height($wHeight); // set height of carousel item to window height
 
 
-    // Remove hide button that is used to center links 
+    // Remove hide button that is used to center links
     // in the navbar when the navbar is collapsed
     if (!$("body").hasClass("xl")) {
         $(".hidden").remove();
@@ -38,7 +38,7 @@ $(document).ready(function() {
 
         $(".hidden").remove(); // remove it
         if ($("body").hasClass("xl")) {
-            // Remove hide button that is used to center links 
+            // Remove hide button that is used to center links
             // in the navbar when the navbar is collapsed to be sure that we don't
             // add it two times, then add it
 
@@ -48,4 +48,14 @@ $(document).ready(function() {
             $('.navbar-collapse').css('background-color', 'rgba(0, 0, 0, 0.7)');
         }
     });
+});
+
+// Hide the project if there is too much project to display (keep 8 projects)
+$("div#proj-card:gt(7)").addClass("hid").hide();
+
+
+//display more if the user click on the button
+$("div#voir-plus").click(function(e) {
+	e.preventDefault();
+	$("div#proj-card.hid:lt(8)").fadeIn("slow").removeClass("hid");
 });
