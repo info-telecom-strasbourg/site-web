@@ -14,8 +14,8 @@
     </ul>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mx-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">ACCUEIL <span class="sr-only">(current)</span></a>
+            <li class="nav-item {{ Request::is('/') ? 'active' : ''  }}">
+                <a class="nav-link" href="/">ACCUEIL <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -29,23 +29,25 @@
                     <a class="dropdown-item" href="#">Jeux Vidéos</a>
                 </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">PROJETS</a>
+            <li class="nav-item {{ Request::is('projets') ? 'active' : ''  }}">
+                <a class="nav-link" href="/projets">PROJETS</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">MEMBRES</a>
+            <li class="nav-item {{ Request::is('users') ? 'active' : ''  }}">
+                <a class="nav-link" href="/users">MEMBRES</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">BESOIN D'AIDE</a>
+            {{-- TODO lien a ajouter --}}
+            <li class="nav-item {{ Request::is('A_COMPLETER') ? 'active' : ''  }}">
+                <a class="nav-link" href="#A_COMPLETER">BESOIN D'AIDE</a>
             </li>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">CONTACT</a>
+            {{-- TODO lien a ajouter --}}
+            <li class="nav-item {{ Request::is('A_COMPLETER') ? 'active' : ''  }}">
+                <a class="nav-link" href="contact">CONTACT</a>
             </li>
         </ul>  
         <ul class="nav navbar-nav">
             <li class="nav-item">
-                <a href="#" class="btn btn-rounded btn-primary connexion" type="button">CONNEXION</a>
+                <a href="/login" class="btn btn-rounded btn-primary connexion" type="button">CONNEXION</a>
             </li>
         </ul>
     </div>
