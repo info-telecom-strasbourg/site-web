@@ -10,6 +10,8 @@ use App\Reference;
 
 use Illuminate\Http\UploadedFile;
 
+use Illuminate\Support\Facades\Storage;
+
 class CoursController extends Controller
 {
 	/**
@@ -42,12 +44,16 @@ class CoursController extends Controller
 
 		if ($request->has('link_support'))
 		{
+			$pos = 0;
 			foreach ($request->link_support as $file)
 			{
+				$path = Storage::putFile('supports', $file, 'private');
 				$name = $file->getClientOriginalName();
-				$path = public_path('/supports/');
-				$file->move($path, $name);
-				Reference::create([ 'ref' => $name, 'cours_id' => $cours->id ]);
+				Reference::create([ 'ref' => $path,
+					'visibility' => array_key_exists($name, $request->visibility),
+					'name' => $name,
+					'cours_id' => $cours->id
+				]);
 			}
 		}
 		return redirect('/cours');

@@ -38,9 +38,12 @@ Création d'un cours
 
 
 		<div class="form-group">
-			<label for="link_support">Choose a file</label>
+			<label for="link_support">Choisissez un fichier</label>
 			<br>
-			<input type="file" id="link_support" name="link_support[]" accept="public/supports/pdf" multiple>
+			<input type="file" id="link_support" name="link_support[]" multiple>
+		</div>
+
+		<div class="form-group" id="choose-visibility">
 		</div>
 
 		<button type="submit" class="btn btn-primary btn-rounded">AJOUTER</button>

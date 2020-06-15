@@ -62,12 +62,30 @@
 				<h4 class="title md text-left">Support</h4>
 				<!-- Bouton pour DL le support -->
 				<!-- TODO dans autres pages -->
-				@foreach ($cours->refs as $ref)
-				<div class="p-2 bd-highlight"><input class="btn btn-rounded btn-primary" type="button" value="TÉLÉCHARGE LE SUPPORT" onclick="self.location.href='/supports/{{ $ref->ref }}'"></div>
-				@endforeach
+				<div id="select-files">
+					@foreach ($cours->refs as $ref)
+					@if ($ref->visibility == 1)
+					@auth
+						<div>
+							<input type="checkbox" id="file-select" name="{{ $ref->name }}">
+							<label for="{{ $ref->name }}">{{ $ref->name }}</label>
+						</div>
+					@endauth
+					@else
+						<div>
+							<input type="checkbox" id="file-select" name="{{ $ref->name }}">
+							<label for="{{ $ref->name }}">{{ $ref->name }}</label>
+						</div>
+					@endif
+					@endforeach
+
+				</div>
+				<div class="p-2 bd-highlight"><input id="download-sup" class="btn btn-rounded btn-primary" type="button" value="TÉLÉCHARGER LE SUPPORT"></div>
 			@endif
 
         </div>
     </div>
 </div>
 @endsection
+
+<!-- auth()->check() -->
