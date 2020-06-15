@@ -17,65 +17,15 @@
 
     <div class="container pt-3">
     	<!-- Search bar -->
-		<div class="input-group md-form form-sm form-2 pl-0">
-			<input class="form-control my-0 py-1 lime-border" type="text" placeholder="Rechercher" aria-label="Rechercher">
-			<div class="input-group-append">
-				<span class="input-group-text lime lighten-2" id="basic-text1">
-					<i class="fas fa-search text-grey" aria-hidden="true">
-					</i>
-				</span>
+    	<form>
+			<div class="input-group md-form form-sm form-2 pl-0">
+				<input class="form-control my-0 py-1 lime-border" type="search" name=search placeholder="Rechercher" aria-label="Rechercher">
+				<button class="input-group-append input-group-text lime lighten-2 btn btn-search" type="submit">
+					<i class="fas fa-search text-grey" aria-hidden="true"></i>
+				</button>
 			</div>
-		</div>
+		</form>
 
-    	<!-- Filter options -->
-    	<div class="filter-options container">
-    		<h2>Filtres</h2>
-			<form method="GET" action="{{ route('register')}}" style="width: 100%" class="row">
-    			<div class="col-md-3">
-					<select class="form-control">
-						<option readonly selected hidden>Rôle</option>
-						
-						@if(isset($roles))
-
-	                    @foreach ($roles as $key => $role)
-	                    <option value="{{ $key + 1 }}">{{ $role->role }}</option>
-	                    @endforeach
-	                    
-	                    @endif
-
-					</select>
-				</div>
-				<div class="col-md-3">
-					<select class="form-control">
-						<option readonly selected hidden>Membre</option>
-
-						@if(isset($all_users))
-
-	                    @foreach ($all_users as $key => $user)
-	                    <option value="{{ $key + 1 }}">{{ $user->name }}</option>
-	                    @endforeach
-	                    
-	                    @endif
-
-					</select>
-				</div>
-				<div class="col-md-3">
-					<select class="form-control">
-						<option readonly selected hidden>Trié par</option>
-	                    
-	                    <option value="1">Ordre alphabétique</option>
-	                    <option value="1">Ordre alphabétique inverse</option>
-	                    <option value="2">Date d'inscription</option>
-	                    <option value="3">Par rôle</option>
-
-
-					</select>
-				</div>
-				<div class="col-md-3 text-center">
-					<button type="submit" class="btn btn-primary btn-primary btn-rounded">FILTRER</button>
-				</div>
-			</form>
-		</div>
 		<p class="total-members">Membres : {{ $all_users->count() }}</p>
 
 		<div class="container pt-5">
