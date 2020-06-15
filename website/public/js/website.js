@@ -1,8 +1,20 @@
 $(document).ready(function() {
+
+    // color navbar when loading page
+    if (window.location.pathname == '/') {
+        var rgba = $(document).scrollTop() / 500;
+        $('.fixed-top').css('background-color', 'rgba(92, 111, 163,' + rgba + ')');
+    }
+    else {
+        $('.fixed-top').css('background-color', 'rgb(92, 111, 163)');
+    }
+
     /* Scroll */
 
     // function when user scrolls
     $(document).on('scroll', function(e) {
+        if (window.location.pathname != '/')
+            return;
         var rgba = $(document).scrollTop() / 500;
 
         // change the color of the navbar 
@@ -19,7 +31,7 @@ $(document).ready(function() {
                 $('.navbar-collapse').css('background-color', 'rgba(0, 0, 0, 0.7)');
             }
         }
-    })
+    });
 
     var $item = $('.carousel-item'); // get carousel item
     var $wHeight = $(window).height(); // get window height
