@@ -21,6 +21,10 @@ Route::get('/besoin-aide', function () {
     return view('besoin-aide');
 });
 
+Route::get('/page-admin', function () {
+    return view('dark-page');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

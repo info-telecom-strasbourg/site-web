@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-xl navbar-light fixed-top">
-    <a class="navbar-brand" href="#">
-        <img src="images/logo/logo.png" width="90" height="90" alt="Logo du site">
+    <a class="navbar-brand" href="/page-admin">
+        <img src="/images/logo/logo.png" width="90" height="90" alt="Logo du site">
     </a>
 
     <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,7 +13,7 @@
         </li>
     </ul>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mx-auto">
+        <ul class="navbar-nav mx-auto navbar-nav">
             <li class="nav-item {{ Request::is('/') ? 'active' : ''  }}">
                 <a class="nav-link" href="/">ACCUEIL <span class="sr-only">(current)</span></a>
             </li>
@@ -36,7 +36,7 @@
                 <a class="nav-link" href="/users">MEMBRES</a>
             </li>
             <li class="nav-item {{ Request::is('A_COMPLETER') ? 'active' : ''  }}">
-                <a class="nav-link" href="besoin-aide">BESOIN D'AIDE</a>
+                <a class="nav-link" href="/besoin-aide">BESOIN D'AIDE</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link js-scrollTo" href="#contact-anchor">CONTACT</a>

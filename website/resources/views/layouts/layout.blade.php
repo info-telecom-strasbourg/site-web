@@ -31,7 +31,10 @@
 
 <body>
      <!-- Navbar -->
-    @include('navbar')
+     {{-- If the route is not page-admin we display the navbar --}}
+    @if (!Request::is('dark-page'))
+        <!-- @include('navbar') -->
+    @endif
 
     {{-- If the route is not welcome we change the navbar background color --}}
     @if (!Request::is('/'))
@@ -45,13 +48,13 @@
     <!-- Main content -->
     <div class="page">
         <!-- Breadcrumbs -->
-        @if (!Request::is('/'))
+        <!-- @if (!Request::is('/'))
         <div class="breadcrumb-container container" aria-label="breadcrumb">
             <ol class="breadcrumb">
                 @yield('breadcrumb')
             </ol>
         </div>
-        @endif
+        @endif -->
 
         <div class="main-content">
             @yield('content')
