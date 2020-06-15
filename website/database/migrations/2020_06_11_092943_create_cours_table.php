@@ -17,6 +17,7 @@ class CreateCoursTable extends Migration
             $table->id();
 			$table->string('title');
 			$table->text('desc');
+			$table->json('links')->nullable();
         });
 
 

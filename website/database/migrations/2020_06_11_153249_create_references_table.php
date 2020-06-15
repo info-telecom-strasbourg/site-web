@@ -19,11 +19,14 @@ class CreateReferencesTable extends Migration
 		Schema::create('references', function (Blueprint $table) {
             $table->id();
 			$table->string('ref');
+			$table->boolean('visibility')->default(false);
+			$table->string('name');
 			$table->BigInteger('cours_id')->unsigned();
 
 			$table->foreign('cours_id')
                 ->references('id')
-                ->on('cours');
+                ->on('cours')
+				->onDelete('cascade');
         });
     }
 

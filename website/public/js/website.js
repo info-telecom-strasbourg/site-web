@@ -59,3 +59,25 @@ $("div#voir-plus").click(function(e) {
 	e.preventDefault();
 	$("div#proj-card.hid:lt(8)").fadeIn("slow").removeClass("hid");
 });
+
+//Download multiple files
+$("#download-sup").click(function(e) {
+	e.preventDefault();
+	$("input[type=checkbox]#file-select:checked").each(function () {
+		// alert("/supports/"+ $(this).attr("name"));
+		window.open("/supports/"+ $(this).attr("name"), "_blank", null);
+	});
+});
+
+$('input[type="file"]#link_support').val('');
+
+//Create checkbox for each file
+$('input[type="file"]#link_support').change(function(e) {
+	$('div#choose-visibility').empty();
+	$(e.target.files).each(function () {
+		$('div#choose-visibility').append('<div>');
+		$('div#choose-visibility').append('<input type="checkbox" id="' + this.name + '" name="visibility[' + this.name +']" >');
+		$('div#choose-visibility').append('<label for="' + this.name + '">' + this.name + '</label>');
+		$('div#choose-visibility').append('</div>');
+	});
+});
