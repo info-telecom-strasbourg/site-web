@@ -20,6 +20,10 @@
         .main {
             font-family: 'Roboto';
         }
+        
+        a {
+            outline: none;
+        }
         /* ##########################   Breadcrumb   ########################## */
         
         .breadcrumb-container {
@@ -141,7 +145,7 @@
             padding-right: 18px;
         }
         
-        .nav-item:hover {
+        .navbar-nav.onglets .nav-item:hover {
             background-color: #254395;
         }
         
@@ -151,10 +155,6 @@
         
         .navbar-light .navbar-nav .active>.nav-link {
             color: white;
-        }
-        
-        .navbar-light .navbar-nav .active>.nav-link:hover {
-            color: black;
         }
         
         .btn-rounded {
@@ -656,4 +656,99 @@
         #besoin-aide {
             padding-top: 20px;
             padding-bottom: 100px;
+        }
+        /* ##########################   Dark page   ##########################*/
+        /* Général */
+        
+        body {
+            background-color: #131722;
+        }
+        
+        .page-footer {
+            background-color: #20242e;
+        }
+        
+        .dark-page .line-under-title {
+            background-color: white;
+            color: white;
+        }
+        
+        .dark-page h1 {
+            color: white;
+        }
+        /* Navbar */
+        
+        .bandeau-dark {
+            height: 72px;
+            background-color: #20242e;
+        }
+        
+        .navbar-dark-brand {
+            margin-top: -70px;
+            margin-bottom: 30px;
+        }
+        
+        .navbar-dark-brand img {
+            border-radius: 50%;
+            box-shadow: 0px 5px 14px -2px rgba(0, 0, 0, 0.75);
+        }
+        
+        .dark-page .nav {
+            background-color: #20242e;
+            width: 400px;
+            text-align: center;
+            padding-top: 30px;
+        }
+        
+        .dark-page .col-md-2,
+        .dark-page .col-md-10 {
+            padding-left: 0;
+            padding-right: 0;
+        }
+        
+        .dark-page .container {
+            max-width: 100%;
+            padding-left: 0;
+            padding-right: 0;
+        }
+        
+        .dark-page .row {
+            margin-left: 0;
+            margin-right: 0;
+        }
+        
+        .dark-page .active {
+            background-color: transparent;
+        }
+        
+        .dark-page .nav-link.active {
+            background-color: #131722;
+        }
+        
+        .dark-page .tab-pane {
+            padding-top: 30px;
+        }
+        
+        .dark-page .nav-link {
+            padding-top: 20px;
+            padding-bottom: 20px;
+            font-weight: bold;
+            color: white;
+            border-radius: 0;
+        }
+        
+        .dark-page .dropdown {
+            float: right;
+            margin-right: 40px;
+            margin-top: 18px;
+        }
+        
+        .dark-page .btn {
+            background-color: transparent;
+            border: transparent;
+            box-shadow: none;
+        }
+        
+        .dark-page .dropdown-menu {
+            width: 100%;
         }
