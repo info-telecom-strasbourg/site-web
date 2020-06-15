@@ -31,7 +31,8 @@ class CreateDatesTable extends Migration
 
 			$table->foreign('cours_id')
                 ->references('id')
-                ->on('cours');
+                ->on('cours')
+				->onDelete('cascade');
 
 			$table->foreign('date_id')
                 ->references('id')
