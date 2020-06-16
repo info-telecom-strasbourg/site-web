@@ -11,11 +11,10 @@
         <div>
             <p>{{ $cours->desc }}</p>
             <h4 class="title md text-left">Créateurs du cours</h4>
-			<!-- Forelse sur les Créateurs -->
+			<!-- Créateurs -->
 			<div class="container pt-5">
-				<div class="row">
+				<div class="row align-items-center">
 					@if(isset($cours))
-
 						@forelse ($cours->creators as $creator)
 							<div class="col-md-auto sep-items">
 								<a href="#" class="link-member">
@@ -24,9 +23,10 @@
 								<a/>
 							</div>
 						@empty
-							<h4 class="title md text-center">Ce cours a été créé par un anonyme</h4>
+							<div>
+								Ce cours a été créé par un anonyme
+							</div>
 						@endforelse
-
 					@else
 						<h4 class="title md text-center">Ce cours n'existe pas</h4>
 					@endif
@@ -34,58 +34,79 @@
 			</div>
 
 
+			<!-- Dates -->
 			<h4 class="title md text-left">Dates</h4>
-			<div class="container-fluid">
-				<div class="row">
+			<div class="container">
 					@if(isset($cours))
-
 						@forelse ($cours->dates as $date)
-							<div class="col-2-auto align-self-center">
-								<img src="/images/projets/Objection.png" alt="Nouveau !" width=100px height=100px />
+							<div class="row align-items-center">
+								<div class="col-auto sep-chevr">
+									<i id="chevron-date-supports" class="fas fa-chevron-right fa-2x">
+									</i>
+								</div>
+								<div class="col sep-chevr">
+									{{ $date->date }}
+								</div>
 							</div>
-							<div class="col-auto align-self-center">{{ $date->date }}</div>
-							<div class="w-100"></div>
 							@empty
-								<h4 class="title md text-center">Aucune date de prévue</h4>
+								<div>
+									Aucune date n'est prévue pour ce cours
+								</div>
 						@endforelse
 
 					@else
-						<h4 class="title md text-center">Aucune date de prévue</h4>
+						<div>
+							Aucune date n'est prévue pour ce cours
+						</div>
 					@endif
-				</div>
 			</div>
-		<div>
 
+
+			<!-- Références -->
 			<h4 class="title md text-left">Références</h4>
 
+
+			<!-- Supports -->
 			@if (isset ($cours->refs))
 				<h4 class="title md text-left">Support</h4>
 				<!-- Bouton pour DL le support -->
 				<!-- TODO dans autres pages -->
-				<div id="select-files">
+				<div id="select-files" class="container">
 					@foreach ($cours->refs as $ref)
-					@if ($ref->visibility == 1)
-					@auth
-						<div>
-							<input type="checkbox" id="file-select" name="{{ $ref->name }}">
-							<label for="{{ $ref->name }}">{{ $ref->name }}</label>
+						<div class="row align-items-center">
+							@if ($ref->visibility == 1)
+								@auth
+									<div class="col-auto sep-chevr">
+										<i id="chevron-date-supports" class="fas fa-chevron-right fa-2x"></i>
+									</div>
+									<div class="p-2 bd-highlight col sep-chevr">
+										<a class="link-black" href="#" download="{{ $ref->name }}">
+											{{ $ref->name }}
+										</a>
+										<!-- En discuter avec Clara !!!! Pb pour télécharger -->
+									</div>
+								@endauth
+							@else
+								<div class="col-auto sep-chevr">
+									<i id="chevron-date-supports" class="fas fa-chevron-right fa-2x"></i>
+								</div>
+								<div class="p-2 bd-highlight col sep-chevr">
+									<a class="link-black" href="#" download="{{ $ref->name }}">
+										{{ $ref->name }}
+									</a>
+								</div>
+							@endif
 						</div>
-					@endauth
-					@else
-						<div>
-							<input type="checkbox" id="file-select" name="{{ $ref->name }}">
-							<label for="{{ $ref->name }}">{{ $ref->name }}</label>
-						</div>
-					@endif
 					@endforeach
-
 				</div>
-				<div class="p-2 bd-highlight"><input id="download-sup" class="btn btn-rounded btn-primary" type="button" value="TÉLÉCHARGER LE SUPPORT"></div>
 			@endif
 
-        </div>
+		</div>
     </div>
 </div>
 @endsection
 
-<!-- auth()->check() -->
+<!--
+Les dates
+Les sources (links)
+ -->

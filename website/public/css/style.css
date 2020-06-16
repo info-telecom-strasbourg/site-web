@@ -88,7 +88,7 @@
  	color: black;
  	text-decoration: underline;
  }
- 
+
  /* ##########################   Gestion du carousel d'actualité   ##########################*/
 
  #carouselExampleIndicators .styled {
@@ -283,3 +283,47 @@
  .fa-envelope {
      color: rgba(255, 255, 255, 0.9)
  }
+
+/* ##########################   Breadcrumb   ########################## */
+.breadcrumb-container {
+    margin-top: 100px;
+}
+
+.breadcrumb {
+    background-color: transparent;
+}
+
+.breadcrumb i {
+    color: black;
+}
+
+.breadcrumb .active {
+    background-color: transparent;
+}
+
+.desc {
+	resize: none;
+	width: 100%;
+    height: 300px;
+}
+
+/* ##########################   Cours   ########################## */
+
+i#chevron-date-supports {
+	position: absolute;
+	color: #254395;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+a.link-black {
+	color: black;
+}
+
+a.link-black:hover {
+	color: #007bff;
+}
+
+.sep-chevr {
+	margin-bottom: 15px;
+}

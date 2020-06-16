@@ -54,17 +54,10 @@
 					@endif
 				</div>
 			</div>
-		<div>
-
-			<h4 class="title md text-left">Références</h4>
-
-			@if (isset ($cours->link_support))
-				<h4 class="title md text-left">Support</h4>
-				<!-- Bouton pour DL le support -->
-				<div class="p-2 bd-highlight"><input class="btn btn-rounded btn-primary" type="button" value="TÉLÉCHARGE LE SUPPORT" onclick="self.location.href='/supports/{{ $cours->link_support }}'"></div>
-			@endif
-
-        </div>
     </div>
 </div>
 @endsection
+
+<!--
+Dossier comme pour cours avec index/show/create (si on est le respo).....
+ -->
