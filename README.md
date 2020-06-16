@@ -85,6 +85,17 @@ php artisan config:clear
 php artisan cache:clear
 ```
 
+Dans le php.ini, décommenter les lignes:
+
+```
+extension=curl
+extension=fileinfo
+extension=mbstring
+extension=openssl
+extension=pdo_mysql
+extension=pdo_pgsql
+```
+
 ## Quelques rappels Git
 
 Essayez de créer une branch par fonctionnalitée:
