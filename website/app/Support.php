@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Reference extends Model
+class Support extends Model
 {
 	protected $fillable = ['ref', 'visibility', 'name', 'cours_id'];
 	public $timestamps = false;

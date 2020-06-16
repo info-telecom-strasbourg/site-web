@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReferencesTable extends Migration
+class CreateSupportsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,7 +16,7 @@ class CreateReferencesTable extends Migration
 		/**
 		 * references for lessons
 		 */
-		Schema::create('references', function (Blueprint $table) {
+		Schema::create('supports', function (Blueprint $table) {
             $table->id();
 			$table->string('ref');
 			$table->boolean('visibility')->default(false);
@@ -37,6 +37,6 @@ class CreateReferencesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('references');
+        Schema::dropIfExists('supports');
     }
 }

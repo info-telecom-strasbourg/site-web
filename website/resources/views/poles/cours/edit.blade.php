@@ -48,10 +48,10 @@ Création d'un cours
 		<!-- Pour supprimer des fichiers -->
 		<h4 class="title md text-left">Supprimer des fichiers</h4>
 		<div class="form-group" id="delete-files">
-			@forelse ( $cours->refs as $ref )
+			@forelse ( $cours->supports as $support )
 				<div>
-					<input type="checkbox" id="{{ $ref->name }}" name="{{ $ref->name }}" value="{{ $ref->name }}">
-    				<label for="{{ $ref->name }}">{{ $ref->name }}</label>
+					<input type="checkbox" id="{{ $support->name }}" name="{{ $support->name }}" value="{{ $support->name }}">
+    				<label for="{{ $support->name }}">{{ $ref->name }}</label>
 				</div>
 			@empty
 			<div>
