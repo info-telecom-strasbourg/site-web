@@ -8,7 +8,7 @@ use App\Pole;
 
 class PoleController extends Controller
 {
-    public function index(Pole $pole)
+    public function index()
     {
         return Pole::all();
     }

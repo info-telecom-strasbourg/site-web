@@ -102,3 +102,7 @@
     </div>
 </div>
 @endsection
+
+<!--
+Bouton Edit si on est le respo
+ -->

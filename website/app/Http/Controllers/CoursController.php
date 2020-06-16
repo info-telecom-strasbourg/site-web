@@ -8,6 +8,8 @@ use App\Cours;
 
 use App\Reference;
 
+use App\Pole;
+
 use Illuminate\Http\UploadedFile;
 
 use Illuminate\Support\Facades\Storage;
@@ -17,9 +19,11 @@ class CoursController extends Controller
 	/**
 	 * Get all the lessons
 	 */
-	public function index(Cours $cours)
+	public function index()
 	{
-		return Cours::all();
+		$pole = Pole::where('title', 'Cours')->get();
+		$cours = Cours::all();
+		return view('poles.cours.index', ['cours' => $cours, 'pole' => $pole[0]]);
 	}
 
 	public function show(Cours $cours)
@@ -50,24 +54,24 @@ class CoursController extends Controller
 				$path = Storage::putFile('supports', $file, 'private');
 				$name = $file->getClientOriginalName();
 				Reference::create([ 'ref' => $path,
-					'visibility' => array_key_exists($name, $request->visibility),
+					'visibility' => ($request->has('visibility')) ? array_key_exists($name, $request->visibility) : 0,
 					'name' => $name,
 					'cours_id' => $cours->id
 				]);
 			}
 		}
-		return redirect('/cours');
+		return redirect('/poles/cours');
 	}
 
 	public function edit(Cours $cours)
 	{
-		return view('cours.edit',compact('cours'));
+		return view('poles.cours.edit',compact('cours'));
 	}
 
 	public function update(Cours $cours)
 	{
 		$cours->update(validateCours());
-		return redirect('/cours');
+		return redirect('/poles/cours');
 	}
 
 	public function destroy()

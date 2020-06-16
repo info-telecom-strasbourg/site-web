@@ -18,17 +18,27 @@
 				<div class="form-group">
 					<label class="label" for="title">Titre</label>
 					<div class="control">
-						<input class="form-control" type="text" value="{{ $pole->title }}" id="title" name="title">
+						<input class="form-control @error('title') is-invalid @enderror" type="text" value="{{ $pole->title }}" id="title" name="title" required>
 					</div>
 				</div>
+				@error('title')
+					<span class="invalid-feedback" role="alert">
+						<strong>{{ $message }}</strong>
+					</span>
+				@enderror
 
 				<!-- Decription -->
 				<div class="form-group">
 					<label class="label" for="desc">Decription</label>
 					<div class="control">
-						<textarea class="form-control" id="desc" name="desc" rows="3">{{ $pole->desc }}</textarea>
+						<textarea class="form-control desc @error('desc') is-invalid @enderror" id="desc" name="desc" rows="3" required>{{ $pole->desc }}</textarea>
 					</div>
 				</div>
+				@error('desc')
+					<span class="invalid-feedback" role="alert">
+						<strong>{{ $message }}</strong>
+					</span>
+				@enderror
 
 				<!-- Bouton submit -->
 
