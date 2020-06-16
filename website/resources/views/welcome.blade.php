@@ -8,13 +8,14 @@
 
 @section('content')
 
+<!-- Carousel d'actualités -->
 <section class="section" id="actu">
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <div id="carousel-actualite" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+            <li data-target="#carousel-actualite" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-actualite" data-slide-to="1"></li>
+            <li data-target="#carousel-actualite" data-slide-to="2"></li>
+            <li data-target="#carousel-actualite" data-slide-to="3"></li>
         </ol>
         <div class="carousel-inner" height="100%">
             <div class="carousel-item active actu full-screen">
@@ -54,18 +55,18 @@
                 </div>
             </div>
         </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <a class="carousel-control-prev" href="#carousel-actualite" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
         </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <a class="carousel-control-next" href="#carousel-actualite" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
     </div>
 </section>
 
-
+<!-- Pôles d'activités -->
 <section class="section" id="poles-activites">
     <h1 class="title lg text-center"> Nos pôles d'activités </h1>
     <hr class="line-under-title">
@@ -100,8 +101,9 @@
     </div>
 </section>
 
+<!-- Nos projets -->
 <section class="section grise" id="nos-projets">
-    <h1 class="title lg text-center"> Nos derniers projets </h1>
+    <h1 class="title lg text-center"> Nos projets </h1>
     <hr class="line-under-title">
     <div class="container-fluid text-center my-3">
         <div class="row mx-auto my-auto">
@@ -205,7 +207,7 @@
     </div>
 </section>
 
-
+<!-- Agenda -->
 <section class="section" id="agenda">
     <h1 class="title lg text-center"> Agenda </h1>
     <hr class="line-under-title">
@@ -213,6 +215,7 @@
         <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=America%2FPort_of_Spain&amp;src=Mmg5MnVjcGx1Nm9pNzRpNXAzM3UybG5naGtAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;color=%23F6BF26&amp;showTitle=0&amp;showPrint=0&amp;showTabs=1&amp;showTz=0&amp;showCalendars=0" style="border:solid 1px #777" width="100%" height="600" frameborder="0" scrolling="no"></iframe> </div>
 </section>
 
+<!-- Notre association -->
 <section class="section grise" id="association">
     <h1 class="title lg text-center"> Notre association </h1>
     <hr class="line-under-title">
@@ -235,6 +238,7 @@
     </div>
 </section>
 
+<!-- Notre équipe -->
 <section class="section" id="equipe">
     <h1 class="title lg text-center"> Notre équipe </h1>
     <hr class="line-under-title">
@@ -244,77 +248,77 @@
                 <div class="col-md-3 text-center">
                     <a href="#" class="respo">
                         <img class="profil-rounded" src="images/defaut/profil.jpg">
-                        <p id="nom"> Hugo Laullier </p>
+                        <p id="nom"> Hugo LAULLIER </p>
                         <p id="fonction"> Président</p>
                     </a>
                 </div>
                 <div class="col-md-3 text-center">
                     <a href="#" class="respo">
                         <img class="profil-rounded" src="images/defaut/profil.jpg">
-                        <p id="nom"> Gonçalo Giga </p>
+                        <p id="nom"> Gonçalo GIGA </p>
                         <p id="fonction"> Secrétaire</p>
                     </a>
                 </div>
                 <div class="col-md-3 text-center">
                     <a href="#" class="respo">
                         <img class="profil-rounded" src="images/defaut/profil.jpg">
-                        <p id="nom"> Clara Schild </p>
+                        <p id="nom"> Clara SCHILD </p>
                         <p id="fonction"> Trésorière</p>
                     </a>
                 </div>
                 <div class="col-md-3 text-center">
                     <a href="#" class="respo">
                         <img class="profil-rounded" src="images/defaut/profil.jpg">
-                        <p id="nom"> Lucas Schaeffer </p>
+                        <p id="nom"> Lucas SCHAEFFER </p>
                         <p id="fonction"> Responsable support</p>
                     </a>
                 </div>
                 <div class="col-md-3 text-center">
                     <a href="#" class="respo">
                         <img class="profil-rounded" src="images/defaut/profil.jpg">
-                        <p id="nom"> Michael Hofmann </p>
+                        <p id="nom"> Michael HOFMANN </p>
                         <p id="fonction"> Responsable <br> communication</p>
                     </a>
                 </div>
                 <div class="col-md-3 text-center">
                     <a href="#" class="respo">
                         <img class="profil-rounded" src="images/defaut/profil.jpg">
-                        <p id="nom"> Yassine El Aiouilli </p>
+                        <p id="nom"> Yassine EL AIOUILLI </p>
                         <p id="fonction"> Responsable <br> sponsor</p>
                     </a>
                 </div>
                 <div class="col-md-3 text-center">
                     <a href="#" class="respo">
                         <img class="profil-rounded" src="images/defaut/profil.jpg">
-                        <p id="nom"> Céline Ly </p>
+                        <p id="nom"> Céline LY </p>
                         <p id="fonction"> Responsable <br> compétition</p>
                     </a>
                 </div>
                 <div class="col-md-3 text-center">
                     <a href="#" class="respo">
                         <img class="profil-rounded" src="images/defaut/profil.jpg">
-                        <p id="nom"> Thomas Rives </p>
+                        <p id="nom"> Thomas RIVES </p>
                         <p id="fonction"> Responsable <br> programmation utilitaire</p>
                     </a>
                 </div>
                 <div class="col-md-3 text-center">
                     <a href="#" class="respo">
                         <img class="profil-rounded" src="images/defaut/profil.jpg">
-                        <p id="nom"> Valentin Comps </p>
+                        <p id="nom"> Valentin COMPS </p>
                         <p id="fonction"> Responsable <br> applications et site web</p>
                     </a>
                 </div>
                 <div class="col-md-3 text-center">
                     <a href="#" class="respo">
                         <img class="profil-rounded" src="images/defaut/profil.jpg">
-                        <p id="nom"> Idriss Larbi </p>
+                        <p id="nom"> Idriss LARBI </p>
                         <p id="fonction"> Responsable jeux vidéo</p>
                     </a>
                 </div>
                 <div class="col-md-3 text-center">
                     <a href="#" class="respo">
                         <img class="profil-rounded" src="images/defaut/profil.jpg">
-                        <p id="nom"> Clément Rossetti </p>
+                        <p id="nom"> Clément ROSSETTI </p>
                         <p id="fonction"> Responsable consultant</p>
                     </a>
                 </div>
@@ -323,7 +327,7 @@
     </div>
 </section>
 
-
+<!-- Quelques chiffres -->
 <section class="section grise" id="quelques-chiffres">
     <h1 class="title lg text-center"> Quelques chiffres </h1>
     <hr class="line-under-title">
@@ -347,7 +351,7 @@
     </div>
 </section>
 
-
+<!-- Le mot du directeur -->
 <section class="section" id="mot-du-directeur">
     <h1 class="title lg text-center"> Le mot du Directeur </h1>
     <hr class="line-under-title">
@@ -362,6 +366,7 @@
     </div>
 </section>
 
+<!-- Partenariat -->
 <section class="section grise" id="partenariat">
     <h1 class="title lg text-center"> Nos partenaires </h1>
     <hr class="line-under-title">
@@ -392,6 +397,7 @@
     <a id="contact-anchor"></a>
 </section>
 
+<!-- Contact -->
 <section class="section p-4 p-lg-5 text-center" id="contact">
     <h1 class="title lg text-center"> Contact </h1>
     <hr class="line-under-title">

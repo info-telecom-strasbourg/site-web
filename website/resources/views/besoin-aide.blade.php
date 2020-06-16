@@ -3,7 +3,8 @@
 @section('title', "ITS")
 
 @section('breadcrumb')
-
+<li class="breadcrumb-item"><a href="/"><i class="fas fa-home"></i></a></li>
+<li class="breadcrumb-item active">Besoin d'aide</li>
 @endsection
 
 @section('content')
@@ -47,7 +48,7 @@
                 <input type="file" class="form-control-file" id="exampleFormControlFile1">
             </div>
             <div class="form-group" style="width: 100%;">
-            <label for="exampleFormControlFile1">Description de la demande</label>
+                <label for="exampleFormControlFile1">Description de la demande</label>
                 <textarea class="form-control" type="text" placeholder="Message" rows="9" name="name" style="resize: none;" required></textarea>
             </div>
             <button type="submit" class="btn btn-rounded btn-primary" style="width: 200px;">Envoyer</button>

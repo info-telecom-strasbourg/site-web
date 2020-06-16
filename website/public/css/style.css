@@ -27,7 +27,8 @@
         /* ##########################   Breadcrumb   ########################## */
         
         .breadcrumb-container {
-            margin-top: 100px;
+            margin-top: 72px;
+            margin-left: 120px;
         }
         
         .breadcrumb {
@@ -40,71 +41,6 @@
         
         .breadcrumb .active {
             background-color: transparent;
-        }
-        /* ##########################   Gestion du carousel d'actualité   ##########################*/
-        
-        #carouselExampleIndicators .styled {
-            border-radius: 50px;
-            line-height: 2.5;
-            padding: 0 20px;
-            font-size: 1rem;
-            text-align: center;
-            color: #fff;
-            background-color: transparent;
-            border-color: #254395;
-            font-family: 'Roboto';
-        }
-        
-        #carouselExampleIndicators .styled:hover {
-            background-color: #254395;
-            border-color: transparent;
-        }
-        
-        #carouselExampleIndicators .carousel-item {
-            font-family: 'Roboto';
-        }
-        
-        #carouselExampleIndicators .carousel-caption {
-            top: 50%;
-            transform: translateY(-50%);
-            bottom: initial;
-        }
-        
-        #carouselExampleIndicators .carousel-caption h1 {
-            font-size: 4em;
-            font-weight: bold;
-        }
-        
-        #carouselExampleIndicators .carousel-caption p {
-            font-size: 1.5em;
-        }
-        
-        @media only screen and (max-width: 800px) {
-            #carouselExampleIndicators .carousel-caption h1 {
-                font-size: 3em;
-                font-weight: bold;
-            }
-            #carouselExampleIndicators .carousel-caption p {
-                font-size: 1.3em;
-            }
-        }
-        
-        #carouselExampleIndicators .actu {
-            width: 100%;
-            height: 100vh;
-            background: url('../images/actu/actu.jpeg') top center;
-            background-size: cover;
-            position: relative;
-        }
-        
-        #carouselExampleIndicators .actu:before {
-            content: "";
-            background: rgba(0, 0, 0, 0.35);
-            position: absolute;
-            bottom: 0;
-            top: 0;
-            left: 0;
-            right: 0;
         }
         /* ##########################   Gestion de la navbar   ########################## */
         
@@ -136,6 +72,7 @@
             padding-left: 20px;
             padding-right: 20px;
             box-shadow: 0px 7px 17px -5px rgba(0, 0, 0, 0.5);
+            min-height: 72px;
         }
         
         .nav-item {
@@ -145,8 +82,12 @@
             padding-right: 18px;
         }
         
-        .navbar-nav.onglets .nav-item:hover {
+        .navbar-nav .nav-item.onglet:hover {
             background-color: #254395;
+        }
+        
+        .navbar-nav a {
+            text-decoration: none;
         }
         
         .active {
@@ -154,6 +95,10 @@
         }
         
         .navbar-light .navbar-nav .active>.nav-link {
+            color: white;
+        }
+        
+        .navbar-light .navbar-nav .nav-link:hover {
             color: white;
         }
         
@@ -299,6 +244,71 @@
             .section .title {
                 font-size: 2.0rem;
             }
+        }
+        /* Carousel d'actualités */
+        
+        #carousel-actualite .styled {
+            border-radius: 50px;
+            line-height: 2.5;
+            padding: 0 20px;
+            font-size: 1rem;
+            text-align: center;
+            color: #fff;
+            background-color: transparent;
+            border-color: #254395;
+            font-family: 'Roboto';
+        }
+        
+        #carousel-actualite .styled:hover {
+            background-color: #254395;
+            border-color: transparent;
+        }
+        
+        #carousel-actualite .carousel-item {
+            font-family: 'Roboto';
+        }
+        
+        #carousel-actualite .carousel-caption {
+            top: 50%;
+            transform: translateY(-50%);
+            bottom: initial;
+        }
+        
+        #carousel-actualite .carousel-caption h1 {
+            font-size: 4em;
+            font-weight: bold;
+        }
+        
+        #carousel-actualite .carousel-caption p {
+            font-size: 1.5em;
+        }
+        
+        @media only screen and (max-width: 800px) {
+            #carousel-actualite .carousel-caption h1 {
+                font-size: 3em;
+                font-weight: bold;
+            }
+            #carousel-actualite .carousel-caption p {
+                font-size: 1.3em;
+            }
+        }
+        
+        #carousel-actualite .actu {
+            width: 100%;
+            height: 100vh;
+            background: url('../images/actu/actu.jpeg') top center;
+            background-size: cover;
+            position: relative;
+        }
+        
+        #carousel-actualite .actu:before {
+            content: "";
+            background: rgba(0, 0, 0, 0.35);
+            position: absolute;
+            bottom: 0;
+            top: 0;
+            left: 0;
+            right: 0;
         }
         /* Activités */
         
@@ -660,14 +670,6 @@
         /* ##########################   Dark page   ##########################*/
         /* Général */
         
-        body {
-            background-color: #131722;
-        }
-        
-        .page-footer {
-            background-color: #20242e;
-        }
-        
         .dark-page .line-under-title {
             background-color: white;
             color: white;
@@ -695,26 +697,24 @@
         
         .dark-page .nav {
             background-color: #20242e;
-            width: 400px;
+            width: 300px;
             text-align: center;
             padding-top: 30px;
-        }
-        
-        .dark-page .col-md-2,
-        .dark-page .col-md-10 {
             padding-left: 0;
             padding-right: 0;
+        }
+        
+        .dark-page .tab-content {
+            padding-left: 0;
+            padding-right: 0;
+            width: 100%;
         }
         
         .dark-page .container {
             max-width: 100%;
             padding-left: 0;
             padding-right: 0;
-        }
-        
-        .dark-page .row {
-            margin-left: 0;
-            margin-right: 0;
+            display: flex;
         }
         
         .dark-page .active {
@@ -735,6 +735,7 @@
             font-weight: bold;
             color: white;
             border-radius: 0;
+            font-size: 1rem;
         }
         
         .dark-page .dropdown {
@@ -751,4 +752,43 @@
         
         .dark-page .dropdown-menu {
             width: 100%;
+        }
+        
+        .dark-page .bandeau-dark img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        @media only screen and (max-width: 1088px) {
+            .dark-page .nav {
+                width: 200px;
+            }
+            .dark-page .nav-link {
+                font-size: 0.95rem;
+            }
+        }
+        
+        @media only screen and (max-width: 800px) {
+            .dark-page .total {
+                display: none;
+            }
+            .dark-page .dropdown {
+                margin-right: 10px;
+            }
+            .dark-page .nav {
+                width: 100%;
+            }
+        }
+        
+        @media only screen and (min-width: 800px) {
+            .dark-page .short {
+                display: none;
+            }
+        }
+        
+        @media only screen and (max-width: 436px) {
+            .dark-page .title {
+                font-size: 1.8rem;
+            }
         }

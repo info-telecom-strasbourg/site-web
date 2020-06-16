@@ -14,10 +14,12 @@
     </ul>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mx-auto navbar-nav">
-            <li class="nav-item {{ Request::is('/') ? 'active' : ''  }}">
-                <a class="nav-link" href="/">ACCUEIL <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item dropdown">
+            <a href="/">
+                <li class="nav-item onglet {{ Request::is('/') ? 'active' : ''  }}">
+                    <div class="nav-link">ACCUEIL <span class="sr-only">(current)</span></div>
+                </li>
+            </a>
+            <li class="nav-item onglet dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     PÔLES
                 </a>
@@ -29,19 +31,27 @@
                     <a class="dropdown-item" href="#">Jeux Vidéos</a>
                 </div>
             </li>
-            <li class="nav-item {{ Request::is('projets') ? 'active' : ''  }}">
-                <a class="nav-link" href="/projets">PROJETS</a>
-            </li>
-            <li class="nav-item {{ Request::is('users') ? 'active' : ''  }}">
-                <a class="nav-link" href="/users">MEMBRES</a>
-            </li>
-            <li class="nav-item {{ Request::is('A_COMPLETER') ? 'active' : ''  }}">
-                <a class="nav-link" href="/besoin-aide">BESOIN D'AIDE</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link js-scrollTo" href="#contact-anchor">CONTACT</a>
-            </li>
-        </ul>  
+            <a href="/projets">
+                <li class="nav-item onglet {{ Request::is('projets') ? 'active' : ''  }}">
+                    <div class="nav-link">PROJETS</div>
+                </li>
+            </a>
+            <a href="/users">
+                <li class="nav-item onglet {{ Request::is('users') ? 'active' : ''  }}">
+                    <div class="nav-link">MEMBRES</div>
+                </li>
+            </a>
+            <a href="/besoin-aide">
+                <li class="nav-item onglet {{ Request::is('besoin-aide') ? 'active' : ''  }}">
+                    <div class="nav-link">BESOIN D'AIDE</div>
+                </li>
+            </a>
+            <a class="js-scrollTo" href="/#contact-anchor">
+                <li class="nav-item onglet">
+                    <div class="nav-link" >CONTACT</div>
+                </li>
+            </a>
+        </ul>
         <ul class="nav navbar-nav">
             <li class="nav-item">
                 <a href="/login" class="btn btn-rounded btn-primary connexion" type="button">CONNEXION</a>
