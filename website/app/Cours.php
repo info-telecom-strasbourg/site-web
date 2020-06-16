@@ -20,9 +20,9 @@ class Cours extends Model
 	/**
 	* Get the references of a lesson
 	*/
-    public function refs()
+    public function supports()
     {
-        return $this->hasMany(Reference::class);
+        return $this->hasMany(Support::class);
     }
 
 	/**

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Cours;
 
-use App\Reference;
+use App\Support;
 
 use App\Pole;
 
@@ -53,7 +53,7 @@ class CoursController extends Controller
 			{
 				$path = Storage::putFile('supports', $file, 'private');
 				$name = $file->getClientOriginalName();
-				Reference::create([ 'ref' => $path,
+				Support::create([ 'ref' => $path,
 					'visibility' => ($request->has('visibility')) ? array_key_exists($name, $request->visibility) : 0,
 					'name' => $name,
 					'cours_id' => $cours->id

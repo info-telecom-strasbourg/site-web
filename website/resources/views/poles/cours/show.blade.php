@@ -67,21 +67,21 @@
 
 
 			<!-- Supports -->
-			@if (isset ($cours->refs))
+			@if (isset ($cours->supports))
 				<h4 class="title md text-left">Support</h4>
 				<!-- Bouton pour DL le support -->
 				<!-- TODO dans autres pages -->
 				<div id="select-files" class="container">
-					@foreach ($cours->refs as $ref)
+					@foreach ($cours->supports as $support)
 						<div class="row align-items-center">
-							@if ($ref->visibility == 1)
+							@if ($support->visibility == 1)
 								@auth
 									<div class="col-auto sep-chevr">
 										<i id="chevron-date-supports" class="fas fa-chevron-right fa-2x"></i>
 									</div>
 									<div class="p-2 bd-highlight col sep-chevr">
-										<a class="link-black" href="#" download="{{ $ref->name }}">
-											{{ $ref->name }}
+										<a class="link-black" href="#" download="{{ $support->name }}">
+											{{ $support->name }}
 										</a>
 										<!-- En discuter avec Clara !!!! Pb pour télécharger -->
 									</div>
@@ -91,8 +91,8 @@
 									<i id="chevron-date-supports" class="fas fa-chevron-right fa-2x"></i>
 								</div>
 								<div class="p-2 bd-highlight col sep-chevr">
-									<a class="link-black" href="#" download="{{ $ref->name }}">
-										{{ $ref->name }}
+									<a class="link-black" href="#" download="{{ $support->name }}">
+										{{ $support->name }}
 									</a>
 								</div>
 							@endif
