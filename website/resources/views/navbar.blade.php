@@ -1,7 +1,13 @@
 <nav class="navbar navbar-expand-xl navbar-light fixed-top">
-    <a class="navbar-brand" href="/page-admin">
-        <img src="/images/logo/logo.png" width="90" height="90" alt="Logo du site">
-    </a>
+    @if (Auth::check() && Auth::user()->role_id == 4)
+        <a class="navbar-brand" href="/page-admin">
+            <img src="/images/logo/logo.png" width="90" height="90" alt="Logo du site">
+        </a>
+    @else
+        <a class="navbar-brand">
+            <img src="/images/logo/logo.png" width="90" height="90" alt="Logo du site">
+        </a>
+    @endif
 
     <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <i class="fas fa-bars"></i>
