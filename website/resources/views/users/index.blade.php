@@ -19,7 +19,7 @@
     	<!-- Search bar -->
     	<form>
 			<div class="input-group md-form form-sm form-2 pl-0">
-				<input class="form-control my-0 py-1 lime-border" type="search" name=search placeholder="Rechercher" aria-label="Rechercher">
+				<input class="form-control my-0 py-1 lime-border" type="search" name="search" id="search" placeholder="Rechercher" aria-label="Rechercher" value="{{ $search }}">
 				<button class="input-group-append input-group-text lime lighten-2 btn btn-search" type="submit">
 					<i class="fas fa-search text-grey" aria-hidden="true"></i>
 				</button>
@@ -32,24 +32,19 @@
 			<div class="row">
 
 				@if(isset($users))
-					@php $idx = 0; @endphp
+					@php 
+						$bureaus = []; 
+						$respo = []; 
+						$membres = []; 
+					@endphp
 					@forelse ($users as $user)
-						@if ($user->role->poste == 'CA' && $idx == 0)
-							<h2 class="col-12 title-users">Bureau</h2>
-						@elseif ($user->role->poste == 'Respo' && $idx == 3)
-							<h2 class="col-12 title-users">Responsables</h2>
-						@elseif ($user->role->poste == 'Membre' && $idx == 10)
-							<h2 class="col-12 title-users">Membres</h2>
+						@if ($user->role->poste == 'Bureau')
+							@php $bureaus[] = $user; @endphp
+						@elseif ($user->role->poste == 'Respo')
+							@php $respos[] = $user; @endphp
+						@elseif ($user->role->poste == 'Membre')
+							@php $membres[] = $user; @endphp
 						@endif
-						@php $idx += 1; @endphp
-
-						<div class="col-md-3 text-center user">
-							<a href="#" class="respo">
-					            <img class="profil-rounded" src="images/defaut/profil.jpg">
-					            <p id="nom">{{ $user->name }}</p>
-					            <p id="fonction">{{ $user->role->role }}</p>
-					        </a>
-						</div>
 
 					@empty
 
@@ -59,7 +54,47 @@
 		    					<span aria-hidden="true">&times;</span>
 		  					</button>
 						</div>
+						
 					@endforelse
+						
+					@if ($bureaus)
+						<h2 class="col-12 title-users">Bureau</h2>
+						@foreach ($bureaus as $bureau)
+							<div class="col-md-3 text-center user">
+								<a href="#" class="respo">
+						            <img class="profil-rounded" src="images/defaut/profil.jpg">
+						            <p id="nom">{{ $bureau->name }}</p>
+						            <p id="fonction">{{ $bureau->role->role }}</p>
+						        </a>
+							</div>
+						@endforeach
+					@endif
+					
+					@if ($respos)
+						<h2 class="col-12 title-users">Responsables</h2>
+						@foreach ($respos as $respo)
+							<div class="col-md-3 text-center user">
+								<a href="#" class="respo">
+						            <img class="profil-rounded" src="images/defaut/profil.jpg">
+						            <p id="nom">{{ $respo->name }}</p>
+						            <p id="fonction">{{ $respo->role->role }}</p>
+						        </a>
+							</div>
+						@endforeach
+					@endif
+
+					@if ($membres)
+						<h2 class="col-12 title-users">Membres</h2>
+						@foreach ($membres as $membre)
+							<div class="col-md-3 text-center user">
+								<a href="#" class="respo">
+						            <img class="profil-rounded" src="images/defaut/profil.jpg">
+						            <p id="nom">{{ $membre->name }}</p>
+						            <p id="fonction">{{ $membre->role->role }}</p>
+						        </a>
+							</div>
+						@endforeach
+					@endif
 
 				@else
 					<div class="alert alert-secondary alert-dismissible fade show col" role="alert">

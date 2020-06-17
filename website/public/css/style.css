@@ -408,7 +408,7 @@ li.dropdown:hover>.dropdown-menu {
 .title-users {
     margin-bottom: 25px;
     margin-top: 20px;
-    padding: 0;
+    padding-left: 0;
 }
 
 .title-users:first-of-type {
