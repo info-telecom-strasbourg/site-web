@@ -31,6 +31,7 @@ Route::get('/projets', function () {
 	return view('projets.index');
 })->name('projets.index');
 
+/*########## Cours ########## */
 Route::post('/poles/cours', 'CoursController@store')->name('poles.cours.store');
 
 Route::get('/poles/cours/create','CoursController@create')->name('poles.cours.create');
@@ -39,9 +40,25 @@ Route::get('poles/cours/{cours}/edit', 'CoursController@edit')->name('poles.cour
 Route::get('/poles/cours/{cours}', 'CoursController@show')->name('poles.cours.show');
 Route::put('/poles/cours/{cours}', 'PoleController@update')->name('poles.cours.update');
 
+/*########## Poles classiques ########## */
+
 Route::get('/poles/{pole}/edit', 'PoleController@edit')->name('pole.edit');
+
+
+/*########## Poles compétitions ########## */
+Route::get('/poles/compétiton', 'CompetitionController@index')->name('poles.competitions.index');
+Route::get('/poles/compétiton/create','CompetitionController@create')->name('poles.competitions.create');
+Route::get('/poles/compétiton/{competition}', 'CompetitionController@show')->name('poles.competitions.show');
+Route::get('/poles/compétiton/{competition}/edit', 'CompetitionController@edit')->name('poles.competitions.edit');
+Route::put('/poles/compétiton/{competition}', 'CompetitionController@update')->name('poles.competitions.update');
+
+
 Route::get('/poles/{pole}', 'PoleController@show')->name('pole.show');
 Route::put('/poles/{pole}', 'PoleController@update')->name('pole.update');
+
+
+
+
 
 Route::get('/test', function (){
 	return view('test');
