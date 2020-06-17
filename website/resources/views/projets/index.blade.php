@@ -17,15 +17,14 @@
 
     <div class="container pt-3">
     	<!-- Search bar -->
-		<div class="input-group md-form form-sm form-2 pl-0">
-			<input class="form-control my-0 py-1 lime-border" type="text" placeholder="Rechercher" aria-label="Rechercher">
-			<div class="input-group-append">
-				<span class="input-group-text lime lighten-2" id="basic-text1">
-					<i class="fas fa-search text-grey" aria-hidden="true">
-					</i>
-				</span>
+		<form>
+			<div class="input-group md-form form-sm form-2 pl-0">
+				<input class="form-control my-0 py-1 lime-border" type="search" name="search" id="search" placeholder="Rechercher" aria-label="Rechercher" value="{{-- {{ $search }} --}}">
+				<button class="input-group-append input-group-text lime lighten-2 btn btn-search" type="submit">
+					<i class="fas fa-search text-grey" aria-hidden="true"></i>
+				</button>
 			</div>
-		</div>
+		</form>
 
     	<!-- Filter options -->
     	<div class="filter-options container">

@@ -15,8 +15,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('role_id')->orderBy('name')->get();
+        $users = User::search()->orderBy('role_id')->orderBy('name')->get();
         $nbUsers = User::count();
-        return view('users.index', compact('users', 'nbUsers'));
+        $search = request()->search;
+        return view('users.index', compact('users', 'nbUsers', 'search'));
     }
+
+
 }
