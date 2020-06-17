@@ -23,7 +23,7 @@ Route::get('/besoin-aide', function () {
 
 Route::get('/page-admin', function () {
     return view('dark-page');
-});
+})->middleware('admin');
 
 Auth::routes();
 
