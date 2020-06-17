@@ -17,6 +17,14 @@
     <hr class="line-under-title">
 
     <div class="container pt-3">
+        @error('erreur')
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+               {{ $message }}
+                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @enderror
         <form method="POST" action="{{ route('register')}}" >
             @csrf
             <div class="form-group">
@@ -42,7 +50,7 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="role">Mot de passe</label>
+                <label for="role">Role</label>
                 <select class="custom-select" id="role" name="role" required>
                     <option selected readonly>Choisir un role ...</option>
                     
