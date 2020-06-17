@@ -26,15 +26,24 @@
 			</div>
 		</form>
 
-		<p class="total-members">Membres : {{ $all_users->count() }}</p>
+		<p class="total-members">Membres : {{ $nbUsers }}</p>
 
 		<div class="container pt-5">
 			<div class="row">
 
 				@if(isset($users))
-
+					@php $idx = 0; @endphp
 					@forelse ($users as $user)
-						<div class="col-md-3 text-center">
+						@if ($user->role->poste == 'CA' && $idx == 0)
+							<h2 class="col-12 title-users">Bureau</h2>
+						@elseif ($user->role->poste == 'Respo' && $idx == 3)
+							<h2 class="col-12 title-users">Responsables</h2>
+						@elseif ($user->role->poste == 'Membre' && $idx == 10)
+							<h2 class="col-12 title-users">Membres</h2>
+						@endif
+						@php $idx += 1; @endphp
+
+						<div class="col-md-3 text-center user">
 							<a href="#" class="respo">
 					            <img class="profil-rounded" src="images/defaut/profil.jpg">
 					            <p id="nom">{{ $user->name }}</p>
@@ -60,10 +69,6 @@
 	  					</button>
 					</div>
 				@endif
-			</div>
-			<div class="row justify-content-center link-margin-top">
-				<!-- Pagination links -->
-				{{ $users->links() }}
 			</div>
 		</div>
 

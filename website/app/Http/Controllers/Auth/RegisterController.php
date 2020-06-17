@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use App\Role;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -49,12 +50,25 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
+        $validator = Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'role' => ['required'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
+
+        $validator->after(function ($validator) use ($data) {
+            if ($data['role'] < 11) {
+                $count = User::where('role_id', $data['role'])->count();
+                $role = Role::where('id', $data['role'])->first();
+                if ($count > 0) {
+                    // dd($count);
+                    $validator->errors()->add('erreur', 'Vous ne pouvez pas créer un nouveau ' . strtolower($role->role) . '.');  ;
+                }
+            }
+        });
+
+        return $validator;
     }
 
     /**

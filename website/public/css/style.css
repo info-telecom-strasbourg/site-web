@@ -43,7 +43,8 @@
 
 /* ##########################   Breadcrumb   ########################## */
 .breadcrumb-container {
-    margin-top: 100px;
+    margin-top: 72px;
+    margin-left: 120px;
 }
 
 .breadcrumb {
@@ -293,6 +294,7 @@ li.dropdown:hover>.dropdown-menu {
  padding-left: 20px;
  padding-right: 20px;
  box-shadow: 0px 7px 17px -5px rgba(0, 0, 0, 0.5);
+ min-height: 72px;
 }
 
 .nav-item {
@@ -303,19 +305,19 @@ li.dropdown:hover>.dropdown-menu {
 }
 
 .nav-item:hover {
-background-color: #254395;
+    background-color: #254395;
 }
 
 .active {
- background-color: #254395;
+    background-color: #254395;
 }
 
 .navbar-light .navbar-nav .active>.nav-link {
-color: white;
+    color: white;
 }
 
-.navbar-light .navbar-nav .active>.nav-link:hover {
-color: black;
+.navbar-light .navbar-nav .nav-link:hover {
+    color: white;
 }
 
 .btn-rounded {
@@ -399,4 +401,20 @@ color: black;
 
 .fa-envelope {
  color: rgba(255, 255, 255, 0.9)
+}
+
+/* ##########################   Users index page   ########################## */
+
+.title-users {
+    margin-bottom: 25px;
+    margin-top: 20px;
+    padding: 0;
+}
+
+.title-users:first-of-type {
+    margin-top: 0;
+}
+
+.user {
+    margin-bottom: 30px;
 }
