@@ -81,3 +81,42 @@ $('input[type="file"]#link_support').change(function(e) {
 		$('div#choose-visibility').append('</div>');
 	});
 });
+
+//////
+
+$(document).ready(function() {
+    $('#datepicker').datepicker({
+        startDate: new Date(),
+        multidate: true,
+        format: "dd/mm/yyyy",
+        daysOfWeekHighlighted: "5,6",
+        datesDisabled: ['31/08/2017'],
+        language: 'en'
+    }).on('changeDate', function(e) {
+        // `e` here contains the extra attributes
+        $(this).find('.input-group-addon .count').text(' ' + e.dates.length);
+    });
+});
+
+
+////////////////////////////////////////////////////////////////
+
+var calendarPres = new ej.calendars.Calendar({
+        isMultiSelection: true,
+		values:[new Date('1/1/2020')]
+    });
+calendarPres.appendTo('#cal-pres-dates');
+
+var calendarDist = new ej.calendars.Calendar({
+        isMultiSelection: true,
+		values:[new Date('1/1/2020')]
+    });
+calendarDist.appendTo('#cal-dist-dates');
+
+$('#submit-btn').click(function() {
+	alert("OK");
+	alert(calendarDist.values.join("////"));
+	alert(calendarPres.values.join("////"));
+});
+
+$('button.e-today').remove();

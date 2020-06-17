@@ -7,7 +7,7 @@ Création d'un cours
 @section('content')
 
 <div class="container">
-	<form class="" action="{{ route('poles.cours.store') }}" method="POST" enctype="multipart/form-data">
+	<form class="" action="/poles/cours/{{ $cours->id }}" method="POST" enctype="multipart/form-data">
 		@csrf
 		@method('PUT')
 
@@ -51,7 +51,7 @@ Création d'un cours
 			@forelse ( $cours->supports as $support )
 				<div>
 					<input type="checkbox" id="{{ $support->name }}" name="{{ $support->name }}" value="{{ $support->name }}">
-    				<label for="{{ $support->name }}">{{ $ref->name }}</label>
+    				<label for="{{ $support->name }}">{{ $support->name }}</label>
 				</div>
 			@empty
 			<div>

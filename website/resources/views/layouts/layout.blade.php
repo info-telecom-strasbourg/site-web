@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel = "icon" href = "{{ asset('images/logo/logo.png') }}" type = "image/x-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
@@ -12,11 +13,19 @@
     <link href="{{ URL::asset('lib/fontawesome/css/all.css') }}" rel="stylesheet">
 
     <!-- CSS -->
+	<!-- ####################################"" -->
+	<link href="//cdn.syncfusion.com/ej2/ej2-base/styles/material.css" rel="stylesheet">
+    <link href="//cdn.syncfusion.com/ej2/ej2-buttons/styles/material.css" rel="stylesheet">
+    <link href="//cdn.syncfusion.com/ej2/ej2-calendars/styles/material.css" rel="stylesheet">
+	<script src="https://cdn.syncfusion.com/ej2/dist/ej2.min.js" type="text/javascript"></script>
+	<!-- ####################################"" -->
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="{{URL::asset('css/style.css')}}">
     <link rel="stylesheet" href="{{URL::asset('css/fonts.css')}}">
 
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+
 
     <!-- JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -25,8 +34,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
     <title>@yield('title')</title>
-    <link rel = "icon" href = "images/logo/logo.png" type = "image/x-icon"> 
-    
 </head>
 
 <body>
@@ -34,11 +41,11 @@
     <!-- Main content -->
     <div class="page">
         <!-- Breadcrumbs -->
-        <!-- <div class="breadcrumb-container" aria-label="breadcrumb">
+        <div class="breadcrumb-container" aria-label="breadcrumb">
             <ol class="breadcrumb">
                 @yield('breadcrumb')
             </ol>
-        </div> -->
+        </div>
 
         <div class="main-content">
             @yield('content')
@@ -47,7 +54,7 @@
 
     @include('footer')
 
-    <script src="js/website.js"></script>
+    <script src="/js/website.js"></script>
 
 </body>
 

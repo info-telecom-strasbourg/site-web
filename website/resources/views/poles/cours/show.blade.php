@@ -45,7 +45,7 @@
 									</i>
 								</div>
 								<div class="col sep-chevr">
-									{{ $date->date }}
+									{{ Carbon\Carbon::parse($date->date)->format('d/m/Y') }}
 								</div>
 							</div>
 							@empty

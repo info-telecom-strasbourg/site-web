@@ -21,9 +21,9 @@ class CoursController extends Controller
 	 */
 	public function index()
 	{
-		$pole = Pole::where('title', 'Cours')->get();
+		$pole = Pole::where('title', 'Cours')->first();
 		$cours = Cours::all();
-		return view('poles.cours.index', ['cours' => $cours, 'pole' => $pole[0]]);
+		return view('poles.cours.index', ['cours' => $cours, 'pole' => $pole]);
 	}
 
 	public function show(Cours $cours)
@@ -44,11 +44,11 @@ class CoursController extends Controller
 	 */
 	public function store(Request $request)
 	{
+		dd($request);
 		$cours = Cours::create($this->validateCours());
 
 		if ($request->has('link_support'))
 		{
-			$pos = 0;
 			foreach ($request->link_support as $file)
 			{
 				$path = Storage::putFile('supports', $file, 'private');
@@ -71,6 +71,7 @@ class CoursController extends Controller
 	public function update(Cours $cours)
 	{
 		$cours->update(validateCours());
+
 		return redirect('/poles/cours');
 	}
 
@@ -84,6 +85,6 @@ class CoursController extends Controller
 		return request()->validate([
 			'title' => 'required',
 			'desc' => 'required',
-		]);;
+		]);
 	}
 }
