@@ -7,7 +7,7 @@ Création d'un cours
 @section('content')
 
 <div class="container">
-	<form class="" action="{{ route('poles.cours.store') }}" method="post" enctype="multipart/form-data">
+	<form id="creat-cours" class="" action="{{ route('poles.cours.store') }}" method="post" enctype="multipart/form-data">
 		@csrf
 
 		<div class="form-group">
@@ -46,7 +46,41 @@ Création d'un cours
 		<div class="form-group" id="choose-visibility">
 		</div>
 
-		<button type="submit" class="btn btn-primary btn-rounded">AJOUTER</button>
+
+		<div class="dates-select">
+			<div class="dates-pres">
+				Dates en présentiel:
+				<div id="calendar-pres">
+		        	<div id="cal-pres-dates">
+
+		        	</div>
+    			</div>
+			</div>
+
+			<div class="dates-dist">
+				Dates en distenciel:
+				<div id="calendar-dist">
+		        	<div id="cal-dist-dates">
+
+		        	</div>
+    			</div>
+			</div>
+		</div>
+
+
+
+		<button id="submit-btn" type="submit" class="btn btn-primary btn-rounded">AJOUTER</button>
 	</form>
 </div>
+<script>
+	var elePres = document.getElementById('calendar-pres');
+	if(elePres) {
+		elePres.style.visibility = "visible";
+	 }
+
+	 var eleDist = document.getElementById('calendar-dist');
+ 	if(eleDist) {
+ 		eleDist.style.visibility = "visible";
+ 	 }
+</script>
 @endsection
