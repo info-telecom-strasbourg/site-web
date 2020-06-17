@@ -53,6 +53,10 @@
             padding-left: .7rem;
             padding-right: .7rem;
         }
+
+        .navbar-light .navbar-nav .show>.nav-link {
+            color: white;
+        }
         
         .navbar-brand {
             position: fixed;
