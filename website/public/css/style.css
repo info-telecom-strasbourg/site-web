@@ -744,9 +744,13 @@
             margin-top: 18px;
         }
         
-        .dark-page .btn {
+        .dark-page .dropdown .dropdown-toggle {
             background-color: transparent;
             border: transparent;
+            box-shadow: none;
+        }
+
+        .dark-page .show>.btn-secondary.dropdown-toggle:focus {
             box-shadow: none;
         }
         
