@@ -13,11 +13,19 @@
         <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle total" type="button" data-toggle="dropdown">
                 <img class="profil-rounded" src="images/defaut/profil.jpg">
-                Lucas SCHAEFFER
+                {{ Auth::user()->name }}
             </button>
             <div class="dropdown-menu dropdown-menu-right">
                 <a class="dropdown-item" href="#">Profil</a>
-                <a class="dropdown-item" href="#">Déconnexion</a>
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+                    Déconnexion
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
             </div>
         </div>
 
@@ -27,7 +35,15 @@
             </button>
             <div class="dropdown-menu dropdown-menu-right">
                 <a class="dropdown-item" href="#">Profil</a>
-                <a class="dropdown-item" href="#">Déconnexion</a>
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+                    Déconnexion
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
             </div>
         </div>
     </div>
