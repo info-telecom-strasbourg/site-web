@@ -60,14 +60,6 @@ $("div#voir-plus").click(function(e) {
 	$("div#proj-card.hid:lt(8)").fadeIn("slow").removeClass("hid");
 });
 
-//Download multiple files
-$("#download-sup").click(function(e) {
-	e.preventDefault();
-	$("input[type=checkbox]#file-select:checked").each(function () {
-		// alert("/supports/"+ $(this).attr("name"));
-		window.open("/supports/"+ $(this).attr("name"), "_blank", null);
-	});
-});
 
 $('input[type="file"]#link_support').val('');
 
@@ -101,6 +93,7 @@ $(document).ready(function() {
 
 ////////////////////////////////////////////////////////////////
 
+/* ########## Pour les calendriers ##########*/
 var calendarPres = new ej.calendars.Calendar({
         isMultiSelection: true,
 		values:[]
@@ -113,10 +106,38 @@ var calendarDist = new ej.calendars.Calendar({
     });
 calendarDist.appendTo('#cal-dist-dates');
 
+var calendarDist = new ej.calendars.Calendar({
+        isMultiSelection: true,
+		values:[]
+    });
+calendarDist.appendTo('#cal-comp-dates');
+
+$('#submit-btn').click(function() {
+
+});
+
+$('button.e-today').remove();
+
+/* TODO: Parser les dates */
+
+// A enlever à la fin 
 $('#submit-btn').click(function() {
 	alert("OK");
 	alert(calendarDist.values.join("////"));
 	alert(calendarPres.values.join("////"));
 });
 
-$('button.e-today').remove();
+
+/* ########## Compétitions ##########*/
+
+//Max 3 Images
+$("button.compet").click(function(e){
+    var $fileUpload = $("input#images");
+    if (parseInt($fileUpload.get(0).files.length)>3){
+		e.preventDefault();
+		$("input#images").val('');
+		alert("3 images maximums !!");
+    }
+});
+
+// TODO: vérifier si une date à été mises
