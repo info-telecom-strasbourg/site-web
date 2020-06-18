@@ -103,13 +103,13 @@ $(document).ready(function() {
 
 var calendarPres = new ej.calendars.Calendar({
         isMultiSelection: true,
-		values:[new Date('1/1/2020')]
+		values:[]
     });
 calendarPres.appendTo('#cal-pres-dates');
 
 var calendarDist = new ej.calendars.Calendar({
         isMultiSelection: true,
-		values:[new Date('1/1/2020')]
+		values:[]
     });
 calendarDist.appendTo('#cal-dist-dates');
 

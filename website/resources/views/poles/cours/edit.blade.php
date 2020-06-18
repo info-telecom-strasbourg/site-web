@@ -1,12 +1,15 @@
 @extends('layouts.layout')
 
 @section('title')
-Création d'un cours
+Modification d'un cours
 @endsection
 
 @section('content')
 
 <div class="container">
+	<h1 class="title lg text-center">
+		Modification du cours: {{ $cours->title }}
+	</h1>
 	<form class="" action="/poles/cours/{{ $cours->id }}" method="POST" enctype="multipart/form-data">
 		@csrf
 		@method('PUT')
@@ -59,9 +62,47 @@ Création d'un cours
 			</div>
 			@endforelse
 		</div>
-		<div class="text-center">
+
+		<!-- Modifier les dates -->
+		<div class="dates-select">
+			<h4 class="title lg text-left">
+				Dates en présentiels
+			</h4>
+			<div class="dates-pres">
+				<div id="calendar-pres">
+		        	<div id="cal-pres-dates">
+
+		        	</div>
+    			</div>
+			</div>
+
+			<h4 class="title lg text-left">
+				Dates en distanciels
+			</h4>
+			<div class="dates-dist">
+				<div id="calendar-dist">
+		        	<div id="cal-dist-dates">
+
+		        	</div>
+    			</div>
+			</div>
+		</div>
+
+
+		<div class="text-center" style="margin-top:25px; margin-bottom:25px">
 			<button type="submit" class="btn btn-primary btn-rounded">Edit</button>
 		</div>
 	</form>
 </div>
+<script>
+	var elePres = document.getElementById('calendar-pres');
+	if(elePres) {
+		elePres.style.visibility = "visible";
+	 }
+
+	 var eleDist = document.getElementById('calendar-dist');
+ 	if(eleDist) {
+ 		eleDist.style.visibility = "visible";
+ 	 }
+</script>
 @endsection
