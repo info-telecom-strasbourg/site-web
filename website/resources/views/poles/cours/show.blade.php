@@ -45,7 +45,7 @@
 									</i>
 								</div>
 								<div class="col sep-chevr">
-									{{ Carbon\Carbon::parse($date->date)->format('d/m/Y') }}
+									{{ \Carbon\Carbon::parse($date->date)->translatedFormat('l d F') }}
 								</div>
 							</div>
 							@empty
@@ -80,7 +80,7 @@
 										<i id="chevron-date-supports" class="fas fa-chevron-right fa-2x"></i>
 									</div>
 									<div class="p-2 bd-highlight col sep-chevr">
-										<a class="link-black" href="#" download="{{ $support->name }}">
+										<a class="link-black" href="/download/{{ $support->ref }}">
 											{{ $support->name }}
 										</a>
 										<!-- En discuter avec Clara !!!! Pb pour télécharger -->
@@ -91,7 +91,7 @@
 									<i id="chevron-date-supports" class="fas fa-chevron-right fa-2x"></i>
 								</div>
 								<div class="p-2 bd-highlight col sep-chevr">
-									<a class="link-black" href="#" download="{{ $support->name }}">
+									<a class="link-black" href="/download/{{ $support->id }}">
 										{{ $support->name }}
 									</a>
 								</div>

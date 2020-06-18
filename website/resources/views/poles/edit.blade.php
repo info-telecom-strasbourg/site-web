@@ -42,7 +42,7 @@
 
 				<!-- Bouton submit -->
 
-				<div class="text-center">
+				<div class="text-center" style="margin-top:25px; margin-bottom:25px">
 					<button type="submit" class="btn btn-primary btn-rounded">Edit</button>
 				</div>
 

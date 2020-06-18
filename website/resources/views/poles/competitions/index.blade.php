@@ -32,3 +32,11 @@
 	</div>
 </div>
 @endsection
+
+<!--
+$images = json_decode($compet->images)      là j'ai mes images
+$images[0] pour 1ère images
+$images[1] = "nouveauChemin"
+
+$compet->images = tojson(MonArray)
+ -->

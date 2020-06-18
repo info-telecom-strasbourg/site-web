@@ -44,7 +44,6 @@ class CoursController extends Controller
 	 */
 	public function store(Request $request)
 	{
-		dd($request);
 		$cours = Cours::create($this->validateCours());
 
 		if ($request->has('link_support'))
@@ -86,5 +85,11 @@ class CoursController extends Controller
 			'title' => 'required',
 			'desc' => 'required',
 		]);
+	}
+
+	public function downloadFile ($id)
+	{
+		$supp = Support::where('id', $id)->first();
+		return Storage::download($supp->ref, $supp->name);
 	}
 }
