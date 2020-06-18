@@ -31,7 +31,7 @@ class CompetitionController extends Controller
 	 */
 	public function create()
 	{
-		return view('poles.competition.create');
+		return view('poles.competitions.create');
 	}
 
 	/**
@@ -39,6 +39,8 @@ class CompetitionController extends Controller
 	 */
 	public function store()
 	{
+		$validation = $this->validateCompetiton();
+		dd('OK');
 		Competition::create($this->validateCompetiton());
 		return redirect('poles.competition.index');
 	}

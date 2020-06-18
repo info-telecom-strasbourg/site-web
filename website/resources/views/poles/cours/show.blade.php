@@ -45,7 +45,7 @@
 									</i>
 								</div>
 								<div class="col sep-chevr">
-									{{ \Carbon\Carbon::parse($date->date)->translatedFormat('l d F') }}
+									{{ \Carbon\Carbon::parse($date->date)->translatedFormat('l d F Y') }}
 								</div>
 							</div>
 							@empty

@@ -10,7 +10,7 @@ Création d'un cours
 	<h1 class="title lg text-center">
 		Création d'un cours
 	</h1>
-	<form id="creat-cours" class="" action="{{ route('poles.cours.store') }}" method="post" enctype="multipart/form-data">
+	<form id="creat-cours" action="{{ route('poles.cours.store') }}" method="post" enctype="multipart/form-data">
 		@csrf
 
 		<div class="form-group">

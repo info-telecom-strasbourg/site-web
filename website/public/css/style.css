@@ -329,7 +329,7 @@ a.link-black:hover {
 }
 
 /* ##########################   Calendriers   ########################## */
-#calendar-pres #calendar-dist{
+#calendar-pres #calendar-dist #calendar-comp {
     visibility: hidden;
     max-width: 250px;
 }
@@ -343,7 +343,7 @@ a.link-black:hover {
     left: 45%;
 }
 
-#cal-pres-dates #cal-dist-dates {
+#cal-pres-dates #cal-dist-dates #cal-comp-dates {
     display: block;
 }
 
