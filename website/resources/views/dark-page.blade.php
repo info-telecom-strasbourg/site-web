@@ -8,6 +8,12 @@
 
 @section('content')
 
+<style>
+    #content {
+        padding-bottom: 0;    /* Footer height */
+    }
+</style>
+
 <section class="dark-page" id="vue-ens">
     <div class="bandeau-dark">
         <div class="dropdown">
@@ -70,7 +76,7 @@
             <a class="nav-link" id="v-pills-helpdesk-tab" data-toggle="pill" href="#v-pills-helpdesk" role="tab" aria-controls="v-pills-helpdesk" aria-selected="false">HELPDESK</a>
             <a class="nav-link" id="v-pills-membres-tab" data-toggle="pill" href="#v-pills-membres" role="tab" aria-controls="v-pills-membres" aria-selected="false">MEMBRES</a>
         </div>
-        <div class="tab-content" id="v-pills-tabContent">
+        <div class="tab-content" id="v-pills-tabContent" style="padding-bottom: 400px">
             <div class="tab-pane fade show active" id="v-pills-ens" role="tabpanel" aria-labelledby="v-pills-ens-tab">
                 <h1 class="title lg text-center"> Vue d'ensemble </h1>
                 <hr class="line-under-title">
