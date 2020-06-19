@@ -135,6 +135,11 @@ display: block;
     background-color: #254395;
     border-radius: 50px;
     border-color: transparent;
+    outline: none;
+}
+
+.btn-roundet:focus {
+    outline: none;
 }
 
 .hidden {
