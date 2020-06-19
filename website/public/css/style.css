@@ -44,14 +44,24 @@
         }
         /* ##########################   Gestion de la navbar   ########################## */
         
-        li.dropdown:hover>.dropdown-menu {
+        /*li.dropdown:hover>.dropdown-menu {
             display: block;
-        }
+        }*/
         
         .navbar-light .navbar-nav .nav-link {
             color: white;
             padding-left: .7rem;
             padding-right: .7rem;
+        }
+
+        .navbar-light .navbar-nav .nav-link:visited {
+            color: white;
+            opacity: 1;
+        }
+
+        .navbar-light .navbar-nav .nav-link:link {
+            color: white;
+            opacity: 1;
         }
 
         .navbar-light .navbar-nav .show>.nav-link {
@@ -84,8 +94,13 @@
             padding-bottom: 1rem;
             padding-left: 18px;
             padding-right: 18px;
+            background-color: transparent;
         }
-        
+
+        .dropdown-click {
+            background-color: #254395;
+        }
+
         .navbar-nav .nav-item.onglet:hover {
             background-color: #254395;
         }

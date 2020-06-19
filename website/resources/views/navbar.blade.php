@@ -25,7 +25,7 @@
                     <div class="nav-link">ACCUEIL <span class="sr-only">(current)</span></div>
                 </li>
             </a>
-            <li class="nav-item onglet dropdown">
+            <li class="nav-item onglet dropdown" id="poles">
                 <a id="navbarDropdownMenuLink" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                     PÔLES
                 </a>

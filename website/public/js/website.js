@@ -103,4 +103,19 @@ $(document).ready(function() {
             return false;
         });
     }
+
+     /* Add background color to nav-item Pôles if the dropdown is expanded
+        by adding a class
+      */
+    $(document).mouseup(function(e){
+        var link = $("#navbarDropdownMenuLink");
+
+        // Remove the class 
+        if(link.has(e.target).length === 0 && $('#poles').hasClass("show")){
+            $('#poles').removeClass('dropdown-click');
+        }
+        else if (link.is(e.target)) {   // Add the class 
+            $('#poles').addClass('dropdown-click');
+        }
+    });
 });
