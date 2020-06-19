@@ -34,7 +34,7 @@
 				@if(isset($users))
 					@php 
 						$bureaus = []; 
-						$respo = []; 
+						$respos = []; 
 						$membres = []; 
 					@endphp
 					@forelse ($users as $user)
