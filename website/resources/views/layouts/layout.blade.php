@@ -58,24 +58,26 @@
     </style>
     @endif
 
-    <!-- Main content -->
     <div class="page">
-        <!-- Breadcrumbs -->
-        @if (!Request::is('/') && !Request::is('page-admin'))
-        <div class="breadcrumb-container" aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                @yield('breadcrumb')
-            </ol>
-        </div>
-        @endif
+        <!-- Main content -->
+        <div id="content">
+            <!-- Breadcrumbs -->
+            @if (!Request::is('/') && !Request::is('page-admin'))
+            <div class="breadcrumb-container" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    @yield('breadcrumb')
+                </ol>
+            </div>
+            @endif
 
-        <div class="main-content">
-            @yield('content')
+            <div class="main-content">
+                @yield('content')
+            </div>
         </div>
+
+        <!-- Footer -->
+        @include('footer')
     </div>
-
-    <!-- Footer -->
-    @include('footer')
 
     <script src="js/website.js"></script>
 
