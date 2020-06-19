@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProjetRequest;
 use App\Projet;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -17,6 +18,7 @@ class ProjetController extends Controller
     {
         $projet = Projet::findOrFail($id);
         $projet->load('chef');
+        $projet->load('participants');
         return view('projet.show', ['projet' => $projet]);
     }
 
@@ -26,7 +28,8 @@ class ProjetController extends Controller
      */
     public function index($id)
     {
-        abort(400, "Not implemented");
+        $projets = Projet::all();
+        return view('projet.index', ['projet' => $projets ]);
     }
 
     /**
@@ -41,28 +44,59 @@ class ProjetController extends Controller
     /**
      * Enregistre un nouveau projet
      *
+     * TODO : verfifier les droits de l'utilisateur
+     * TODO : error handling
+     * 
      * @param  Request $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(ProjetRequest $request)
     {
-        $this->validate($request, [
-            'title' => 'required|max:255',
-            'link_github' => 'url',
-            'link_download' => 'url',
-            'link_doc' => 'url',
-            'chef_projet_id' => '',
-            'pole_id' => ''
-
-        ]);
-
+        $validated = $request->validated();
         $projet = Projet::create([
             'title' => $request->name,
+            'chef_projet_id' => $request->chef_projet_id,
             'link_github' => $request->link_github,
             'link_download' => $request->link_download,
             'link_doc' => $request->link_doc
         ]);
 
+        $projet->save();
+    
         return redirect('/projets');
+    }
+
+    public function edit($id)
+    {
+        $projet = Projet::find($id);
+
+        return view('projet.edit', ['projet' => $projet]);
+    }
+
+    public function update(ProjetRequest $request, $id) 
+    {
+        $validated = $request->validated();
+
+        $projet = Projet::find($id);
+        $projet->update([
+            'title' => $request->name,
+            'chef_projet_id' => $request->chef_projet_id,
+            'link_github' => $request->link_github,
+            'link_download' => $request->link_download,
+            'link_doc' => $request->link_doc
+        ]);
+
+        $projet->save();
+
+        return redirect('/projets');
+    }
+
+    public function destroy($id)
+    {
+        $projet = Projet::find($id);
+
+        $projet->delete();
+
+        return redirect("/projets");
     }
 }
