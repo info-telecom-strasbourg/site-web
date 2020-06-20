@@ -25,3 +25,6 @@ Route::get('/projets', 'ProjetController@index');
 Route::get('/projet/{id}', 'ProjetController@show');
 Route::get('/projet/create', 'ProjetController@create');
 Route::post('/projet/create', 'ProjetController@store');
+Route::get('/projet/edit/{id}', 'ProjetController@edit');
+Route::put( '/projet/edit', 'ProjetController@update');
+Route::delete('/projet/delete', 'ProjetController@update');
