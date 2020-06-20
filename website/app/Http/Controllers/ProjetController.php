@@ -66,6 +66,10 @@ class ProjetController extends Controller
         return redirect('/projets');
     }
 
+    /**
+     * Affiche le formulaire d'édition de projet
+     * TODO : la vue associée
+     */
     public function edit($id)
     {
         $projet = Projet::find($id);
@@ -73,6 +77,9 @@ class ProjetController extends Controller
         return view('projet.edit', ['projet' => $projet]);
     }
 
+    /**
+     * Met à jour un projet 
+     */
     public function update(ProjetRequest $request, $id) 
     {
         $validated = $request->validated();
@@ -91,6 +98,9 @@ class ProjetController extends Controller
         return redirect('/projets');
     }
 
+    /**
+     * Supprime un projet
+     */
     public function destroy($id)
     {
         $projet = Projet::find($id);
