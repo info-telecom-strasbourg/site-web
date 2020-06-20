@@ -28,7 +28,7 @@ class ProjetController extends Controller
     public function index($id)
     {
         $projets = Projet::all();
-        return view('projet.index', ['projet' => $projets ]);
+        return view('projet.index', ['projet' => $projets]);
     }
 
     /**
@@ -62,7 +62,7 @@ class ProjetController extends Controller
         ]);
 
         $projet->save();
-    
+
         return redirect('/projets');
     }
 
@@ -86,7 +86,7 @@ class ProjetController extends Controller
      * @param int $id
      * @return Response 
      */
-    public function update(ProjetRequest $request, $id) 
+    public function update(ProjetRequest $request, $id)
     {
         $validated = $request->validated();
 
