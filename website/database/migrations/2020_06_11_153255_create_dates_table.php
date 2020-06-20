@@ -18,25 +18,8 @@ class CreateDatesTable extends Migration
 		 */
 		Schema::create('dates', function (Blueprint $table) {
             $table->id();
+			$table->boolean('presentiel');
 			$table->date('date');
-        });
-
-		/**
-		 * Link dates and lessons
-		 */
-		Schema::create('dates_cours', function (Blueprint $table) {
-            $table->id();
-			$table->BigInteger('cours_id')->unsigned();
-			$table->BigInteger('date_id')->unsigned();
-
-			$table->foreign('cours_id')
-                ->references('id')
-                ->on('cours')
-				->onDelete('cascade');
-
-			$table->foreign('date_id')
-                ->references('id')
-                ->on('dates');
         });
     }
 
@@ -48,6 +31,5 @@ class CreateDatesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('dates');
-        Schema::dropIfExists('dates_cours');
     }
 }

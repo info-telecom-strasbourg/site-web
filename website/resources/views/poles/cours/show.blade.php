@@ -34,24 +34,55 @@
 			</div>
 
 
-			<!-- Dates -->
-			<h4 class="title md text-left">Dates</h4>
+			<!-- Dates en présentiels -->
+			<h4 class="title md text-left">Dates en présentiels</h4>
 			<div class="container">
 					@if(isset($cours))
 						@forelse ($cours->dates as $date)
-							<div class="row align-items-center">
-								<div class="col-auto sep-chevr">
-									<i id="chevron-date-supports" class="fas fa-chevron-right fa-2x">
-									</i>
+							@if ($date->presentiel == 1)
+								<div class="row align-items-center">
+									<div class="col-auto sep-chevr">
+										<i id="chevron-date-supports" class="fas fa-chevron-right fa-2x">
+										</i>
+									</div>
+									<div class="col sep-chevr">
+										{{ \Carbon\Carbon::parse($date->date)->translatedFormat('l d F Y') }}
+									</div>
 								</div>
-								<div class="col sep-chevr">
-									{{ \Carbon\Carbon::parse($date->date)->translatedFormat('l d F Y') }}
-								</div>
+							@endif
+						@empty
+							<div>
+								Aucune date n'est prévue pour ce cours
 							</div>
-							@empty
-								<div>
-									Aucune date n'est prévue pour ce cours
+						@endforelse
+
+					@else
+						<div>
+							Aucune date n'est prévue pour ce cours
+						</div>
+					@endif
+			</div>
+
+			<!-- Dates en distanciels -->
+			<h4 class="title md text-left">Dates en présentiels</h4>
+			<div class="container">
+					@if(isset($cours))
+						@forelse ($cours->dates as $date)
+							@if ($date->presentiel == 0)
+								<div class="row align-items-center">
+									<div class="col-auto sep-chevr">
+										<i id="chevron-date-supports" class="fas fa-chevron-right fa-2x">
+										</i>
+									</div>
+									<div class="col sep-chevr">
+										{{ \Carbon\Carbon::parse($date->date)->translatedFormat('l d F Y') }}
+									</div>
 								</div>
+							@endif
+						@empty
+							<div>
+								Aucune date n'est prévue pour ce cours
+							</div>
 						@endforelse
 
 					@else

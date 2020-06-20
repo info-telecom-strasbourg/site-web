@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Date extends Model
+class CoursCreateurs extends Model
 {
 	protected $guarded = [];
 	public $timestamps = false;
