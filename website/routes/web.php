@@ -17,6 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/besoin-aide', function () {
+    return view('besoin-aide');
+});
+
+Route::get('/page-admin', function () {
+    return view('dark-page');
+})->middleware('admin');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
