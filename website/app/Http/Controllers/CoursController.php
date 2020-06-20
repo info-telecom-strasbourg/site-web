@@ -10,6 +10,10 @@ use App\Support;
 
 use App\Pole;
 
+use App\Date;
+
+use App\DatesCours;
+
 use Illuminate\Http\UploadedFile;
 
 use Illuminate\Support\Facades\Storage;
@@ -46,6 +50,7 @@ class CoursController extends Controller
 	{
 		$cours = Cours::create($this->validateCours());
 
+		// Create the supports if they exists
 		if ($request->has('link_support'))
 		{
 			foreach ($request->link_support as $file)
@@ -59,6 +64,34 @@ class CoursController extends Controller
 				]);
 			}
 		}
+
+		// create the dates
+		if ($request->has('dates_pres'))
+		{
+			foreach ($request->dates_pres as $date)
+			{
+				$newDate = Date::create(['presentiel' => 1,
+					'date' => $date
+				]);
+				DatesCours::create(['cours_id' => $cours->id,
+					'date_id' => $newDate->id
+				]);
+			}
+		}
+
+		if ($request->has('dates_dist'))
+		{
+			foreach ($request->dates_dist as $date)
+			{
+				$newDate = Date::create([ 'presentiel' => 0,
+					'date' => $date
+				]);
+				DatesCours::create(['cours_id' => $cours->id,
+					'date_id' => $newDate->id
+				]);
+			}
+		}
+
 		return redirect('/poles/cours');
 	}
 

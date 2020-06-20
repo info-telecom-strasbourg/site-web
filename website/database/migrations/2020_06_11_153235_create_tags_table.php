@@ -20,22 +20,6 @@ class CreateTagsTable extends Migration
             $table->id();
 			$table->string('tag');
         });
-		/**
-		 * link lessons and tags
-		 */
-		Schema::create('tags_cours', function (Blueprint $table) {
-            $table->id();
-			$table->BigInteger('cours_id')->unsigned();
-			$table->BigInteger('tag_id')->unsigned();
-
-			$table->foreign('cours_id')
-                ->references('id')
-                ->on('cours');
-
-			$table->foreign('tag_id')
-                ->references('id')
-                ->on('tags');
-        });
     }
 
     /**
@@ -46,6 +30,5 @@ class CreateTagsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('tags');
-        Schema::dropIfExists('tags_cours');
     }
 }
