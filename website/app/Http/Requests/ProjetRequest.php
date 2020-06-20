@@ -26,11 +26,12 @@ class ProjetRequest extends FormRequest
     {
         return [
             'title' => 'required|max:255',
+            'images' => 'json',
             'link_github' => 'url',
             'link_download' => 'url',
             'link_doc' => 'url',
-            'chef_projet_id' => 'integer',
-            'pole_id' => 'integer'
+            'chef_projet_id' => 'required|integer',
+            'pole_id' => 'required|integer'
         ];
     }
 }
