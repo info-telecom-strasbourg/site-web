@@ -11,11 +11,10 @@ class ProjetController extends Controller
 {
     /**
      * Affiche un projet sur une page seule
-     * @param int $id
+     * @param Projet $projet
      */
-    public function show($id)
+    public function show(Projet $projet)
     {
-        $projet = Projet::findOrFail($id);
         $projet->load('chef');
         $projet->load('participants');
         return view('projet.show', ['projet' => $projet]);
@@ -25,7 +24,7 @@ class ProjetController extends Controller
      * Affiche la liste des projets
      * TODO : faire la vue associée
      */
-    public function index($id)
+    public function index()
     {
         $projets = Projet::all();
         return view('projet.index', ['projet' => $projets]);
@@ -52,16 +51,8 @@ class ProjetController extends Controller
     public function store(ProjetRequest $request)
     {
         $validated = $request->validated();
-        $projet = Projet::create([
-            'title' => $request->name,
-            'images' => $request->images,
-            'chef_projet_id' => $request->chef_projet_id,
-            'link_github' => $request->link_github,
-            'link_download' => $request->link_download,
-            'link_doc' => $request->link_doc
-        ]);
 
-        $projet->save();
+        $projet = Projet::create($validated);
 
         return redirect('/projets');
     }
@@ -70,12 +61,10 @@ class ProjetController extends Controller
      * Affiche le formulaire d'édition de projet
      * TODO : la vue associée
      * 
-     * @param int $id
+     * @param Projet $projet
      */
-    public function edit($id)
+    public function edit(Projet $projet)
     {
-        $projet = Projet::find($id);
-
         return view('projet.edit', ['projet' => $projet]);
     }
 
@@ -83,24 +72,14 @@ class ProjetController extends Controller
      * Met à jour un projet
      * 
      * @param ProjetRequest $request
-     * @param int $id
+     * @param Projet $projet
      * @return Response 
      */
-    public function update(ProjetRequest $request, $id)
+    public function update(ProjetRequest $request, Projet $projet)
     {
         $validated = $request->validated();
 
-        $projet = Projet::find($id);
-        $projet->update([
-            'title' => $request->name,
-            'images' => $request->images,
-            'chef_projet_id' => $request->chef_projet_id,
-            'link_github' => $request->link_github,
-            'link_download' => $request->link_download,
-            'link_doc' => $request->link_doc
-        ]);
-
-        $projet->save();
+        $projet->update($validated);
 
         return redirect('/projets');
     }
@@ -108,13 +87,11 @@ class ProjetController extends Controller
     /**
      * Supprime un projet
      * 
-     * @param int $id
+     * @param Projet $projet
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(Projet $projet)
     {
-        $projet = Projet::find($id);
-
         $projet->delete();
 
         return redirect("/projets");

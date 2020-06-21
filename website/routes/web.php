@@ -21,10 +21,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/projets', 'ProjetController@index');
-Route::get('/projet/{id}', 'ProjetController@show');
-Route::get('/projet/create', 'ProjetController@create');
-Route::post('/projet/create', 'ProjetController@store');
-Route::get('/projet/edit/{id}', 'ProjetController@edit');
-Route::patch('/projet/edit', 'ProjetController@update');
-Route::delete('/projet/delete/{id}', 'ProjetController@destroy');
+Route::get('/projets', 'ProjetController@index')->name('projet.index');
+Route::get('/projet/create', 'ProjetController@create')->name('projet.create');
+Route::post('/projet/create', 'ProjetController@store')->name('projet.store');
+Route::get('/projet/edit/{projet}', 'ProjetController@edit')->name('projet.edit');
+Route::patch('/projet/edit', 'ProjetController@update')->name('projet.update');
+Route::delete('/projet/delete/{id}', 'ProjetController@destroy')->name('projet.destroy');
+Route::get('/projet/{projet}', 'ProjetController@show')->name('projet.show');

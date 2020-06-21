@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Projet extends Model
 {
     /**
+     * Attributs assignables en masse
+     *
+     * @var array
+     */
+    protected $guarded = ['id'];
+
+    /**
      * Renvoie le chef de projet
      */
     public function chef()
