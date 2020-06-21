@@ -73,9 +73,7 @@ class CoursController extends Controller
 				$newDate = Date::create(['presentiel' => 1,
 					'date' => $date
 				]);
-				DatesCours::create(['cours_id' => $cours->id,
-					'date_id' => $newDate->id
-				]);
+				$cours->dates()->attach($newDate->id);
 			}
 		}
 
@@ -86,9 +84,7 @@ class CoursController extends Controller
 				$newDate = Date::create([ 'presentiel' => 0,
 					'date' => $date
 				]);
-				DatesCours::create(['cours_id' => $cours->id,
-					'date_id' => $newDate->id
-				]);
+				$cours->dates()->attach($newDate->id);
 			}
 		}
 
