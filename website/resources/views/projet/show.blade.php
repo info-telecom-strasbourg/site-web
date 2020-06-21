@@ -26,7 +26,7 @@
     <hr />
     <h2>Participants</h2>
     @foreach ($projet->participants as $participant)
-    <p>{{ $participant }}</p>
+    <p>{{ $participant->name }}</p>
     @endforeach
     <h2>Le projet en images</h2>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
