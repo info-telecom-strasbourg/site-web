@@ -58,7 +58,7 @@
 			</div>
 
 			<!-- Bouton "Voir-plus" -->
-			@if(isset($pole->projets) && $pole->projets->count() > 0)
+			@if(isset($pole->projets) && $pole->projets->count() > 8)
 		        <div id="line-btn-vp" class="d-flex justify-content-center">
 		          <div class="p-2 bd-highlight flex-grow-1"><hr class="line-voir-plus"></div>
 		          <div class="p-2 bd-highlight"><input id="voir-plus" class="btn btn-rounded btn-primary" type="button" value="Voir-plus"></div>

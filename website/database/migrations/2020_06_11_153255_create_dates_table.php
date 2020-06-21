@@ -22,6 +22,9 @@ class CreateDatesTable extends Migration
 			$table->date('date');
         });
 
+		/**
+		 * linking table between lessons and dates
+		 */
 		Schema::create('dates_cours', function (Blueprint $table) {
             $table->id();
 			$table->BigInteger('cours_id')->unsigned();
