@@ -55,10 +55,26 @@ $("div#proj-card:gt(7)").addClass("hid").hide();
 
 
 //display more if the user click on the button
-$("div#voir-plus").click(function(e) {
+$("input#voir-plus").click(function(e) {
 	e.preventDefault();
 	$("div#proj-card.hid:lt(8)").fadeIn("slow").removeClass("hid");
+	if ($(".hid").length === 0)
+	{
+		$("div#line-btn-vp").remove();
+	}
 });
+
+$("div#cours-liste:gt(7)").addClass("hid").hide();
+
+$("input#voir-plus").click(function(e) {
+	e.preventDefault();
+	$("div#cours-liste.hid:lt(8)").fadeIn("slow").removeClass("hid");
+	if ($(".hid").length === 0)
+	{
+		$("div#line-btn-vp").remove();
+	}
+});
+
 
 
 $('input[type="file"]#link_support').val('');
@@ -239,7 +255,6 @@ $('div.e-control.e-calendar.e-lib.e-keyboard').each(function () {
 
 $('button.e-today').remove();
 
-/* TODO: Parser les dates */
 
 function parseDate (dateTable, inputName) {
 	$.each(dateTable, function ( index, value ) {
@@ -294,9 +309,6 @@ $('#submit-btn-crt-crs').click(function() {
 	parseDate(calendarPres.values, 'dates_pres');
 });
 
-// Tue Jun 09 2020
-//YYYY-MM-JJ
-
 
 /* ########## Compétitions ##########*/
 
@@ -311,3 +323,5 @@ $("button.compet").click(function(e){
 });
 
 // TODO: vérifier si une date à été mises
+
+//["image1", "image2"]

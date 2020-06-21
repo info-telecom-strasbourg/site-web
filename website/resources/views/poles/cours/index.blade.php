@@ -13,7 +13,7 @@
             <h4 class="title md text-left">Liste des cours</h4>
 			<div class="container">
 				@forelse ($cours as $cour)
-					<div class="row align-items-center">
+					<div id="cours-liste" class="row align-items-center">
 						<div class="col-auto sep-chevr">
 							<i id="chevron-date-supports" class="fas fa-chevron-right fa-2x">
 							</i>
@@ -28,6 +28,16 @@
 					</div>
 				@endforelse
 			</div>
+
+			@if(isset($cours) && $cours->count() > 0)
+		        <div id="line-btn-vp" class="d-flex justify-content-center">
+		          <div class="p-2 bd-highlight flex-grow-1"><hr class="line-voir-plus"></div>
+		          <div class="p-2 bd-highlight"><input id="voir-plus" class="btn btn-rounded btn-primary" type="button" value="Voir-plus"></div>
+		          <div class="p-2 bd-highlight flex-grow-1"><hr class="line-voir-plus"></div>
+		        </div>
+			@endif
+
+
 	    </div>
 	</div>
 </div>
