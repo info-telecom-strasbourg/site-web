@@ -12,30 +12,12 @@
             <p>{{ $pole->desc }} </p>
             <h4 class="title md text-left">Projets</h4>
 
-			<!-- Exemple de carte -->
-
-			<div class="card text-center shadow mb-5 bg-white rounded" hidden>
-				<img class="card-img-top" src="/images/projets/Objection.png"
-				alt="Card image cap">
-				<div class="card-body d-flex flex-column">
-					<h5 class="card-title text-center font-weight-bold">
-						Objection !
-					</h5>
-					<p class="card-text">Avis, argument, etc., que l'on met en
-						avant pour s'opposer à une proposition, une affirmation.
-					</p>
-					<a href="#" class="btn btn-rounded btn-primary"
-					type="button">Découvrir</a>
-				</div>
-		  	</div>
-
 			<!-- Liste des projets -->
 			<div class="container pt-5">
 				<div class="row justify-content-center">
 
 					@if(isset($pole->projets))
 
-						<?php $pos=0; ?>
 						@forelse ($pole->projets as $projet)
 
 						<div id="proj-card" class="col-md-auto sep-items">
@@ -53,7 +35,6 @@
 								</div>
 						  	</div>
 						</div>
-						<?php $pos++; ?>
 						@empty
 
 						<div class="alert alert-secondary alert-dismissible fade show col" role="alert">
@@ -77,12 +58,16 @@
 			</div>
 
 			<!-- Bouton "Voir-plus" -->
+			@if(isset($pole->projets) && $pole->projets->count() > 0)
+		        <div id="line-btn-vp" class="d-flex justify-content-center">
+		          <div class="p-2 bd-highlight flex-grow-1"><hr class="line-voir-plus"></div>
+		          <div class="p-2 bd-highlight"><input id="voir-plus" class="btn btn-rounded btn-primary" type="button" value="Voir-plus"></div>
+		          <div class="p-2 bd-highlight flex-grow-1"><hr class="line-voir-plus"></div>
+		        </div>
+			@endif
 
-            <div id="voir-plus" class="d-flex justify-content-center">
-              <div class="p-2 bd-highlight flex-grow-1"><hr class="line-voir-plus"></div>
-              <div class="p-2 bd-highlight"><input class="btn btn-rounded btn-primary" type="button" value="Voir-plus"></div>
-              <div class="p-2 bd-highlight flex-grow-1"><hr class="line-voir-plus"></div>
-            </div>
+
+
 			<h4 class="title md text-left">Responsable {{ $pole->title }}</h4>
 			<div class="text-left">
 				<a href="#" class="link-member">

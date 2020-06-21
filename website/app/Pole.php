@@ -19,6 +19,6 @@ class Pole extends Model
 	/* Return all the projects of the pole */
     public function projets()
     {
-        return $this->hasMany(Projet::class);
+        return $this->hasMany(Projet::class)->orderBy('id', 'DESC');
     }
 }
