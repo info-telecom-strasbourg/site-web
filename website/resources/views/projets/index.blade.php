@@ -57,12 +57,25 @@
 					</select>
 				</div>
 				<div class="col-md-3">
+					<select class="form-control" name="partner" id="partner">
+						<option readonly selected hidden value="">Collaborateurs</option>
+
+						@isset($partners)
+							@foreach ($partners as $key => $partner)
+								<option value="{{ $key + 1 }}" @if ($filters[2] == ($key + 1)) selected @endif>{{ $partner->name }}</option>
+							@endforeach
+
+							<option value="" name="reset">Reset</option>
+						@endisset
+					</select>
+				</div>
+				<div class="col-md-3">
 					<select class="form-control" name="trie" id="trie">
 						<option readonly selected hidden value="">Trié par</option>
 
-						<option value="1" @if ($filters[2] == 1) selected @endif>Ordre alphabétique</option>
-	                    <option value="2" @if ($filters[2] == 2) selected @endif>Ordre alphabétique inverse</option>
-	                    <option value="3" @if ($filters[2] == 3) selected @endif>Date de début</option>
+						<option value="1" @if ($filters[3] == 1) selected @endif>Ordre alphabétique</option>
+	                    <option value="2" @if ($filters[3] == 2) selected @endif>Ordre alphabétique inverse</option>
+	                    <option value="3" @if ($filters[3] == 3) selected @endif>Date de début</option>
 
 	                    <option value="" name="reset">Reset</option>
 					</select>
@@ -107,7 +120,7 @@
 
 					<div class="row justify-content-center link-margin-top">
 						<!-- Pagination links -->
-						{{-- {{ $projets->links() }} --}}
+						{{ $projets->links() }}
 					</div>
 				@else
 					<div class="alert alert-secondary alert-dismissible fade show col" role="alert">

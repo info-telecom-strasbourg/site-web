@@ -123,7 +123,7 @@ $(document).ready(function() {
     /* ##########################   Reset Projets filter   ########################## */
     /*
      * If reset value in select menu is selected the below code changes the 
-     * text of the reset option.
+     * text of the reset option and submit filter form.
      */
 
     /*** Reset pole filter ***/
@@ -134,6 +134,7 @@ $(document).ready(function() {
         // if the option has the name reset, change the text 
         if (pole.is('[name="reset"]') ) {
             $('#pole option[name="reset"]').text('Pôle');
+            $('.filter-options').submit();
         }
     });
 
@@ -145,6 +146,19 @@ $(document).ready(function() {
         // if the option has the name reset, change the text 
         if (membre.is('[name="reset"]') ) {
             $('#membre option[name="reset"]').text('Membre');
+            $('.filter-options').submit();
+        }
+    });
+
+    /*** Reset partner filter ***/
+    $('#partner').change(function() {
+        // get the selected option
+        var partner = $("#partner option:selected");
+
+        // if the option has the name reset, change the text 
+        if (partner.is('[name="reset"]') ) {
+            $('#partner option[name="reset"]').text('Collaborateur');
+            $('.filter-options').submit();
         }
     });
 
@@ -156,6 +170,7 @@ $(document).ready(function() {
         // if the option has the name reset, change the text 
         if (trie.is('[name="reset"]') ) {
             $('#trie option[name="reset"]').text('Trié par');
+            $('.filter-options').submit();
         }
     });
 

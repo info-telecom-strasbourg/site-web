@@ -30,6 +30,14 @@ class Projet extends Model
     }
 
     /**
+     * Renvoie le collaborateur du projet
+     */
+    public function collaborateur()
+    {
+        return $this->belongsTo('App\Collaborateur');
+    }
+
+    /**
      * Renvoie les utilisateurs participants au projet
      */
     public function participants() 
@@ -71,8 +79,11 @@ class Projet extends Model
         }
 
         if (!empty(request()->membre)) {
-            // $userId = User::where('id', request()->search)->get(['id']);
             $query = $query->join('projets_participants', 'projets.id', '=', 'projets_participants.projet_id')->where('user_id', request()->membre);
+        }
+
+        if (!empty(request()->partner)) {
+            $query = $query->where('collaborateur_id', request()->partner);
         }
 
         if (!empty(request()->trie)) {
