@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjetRequest;
 use App\Projet;
+use App\User;
 use Illuminate\Http\Response;
 
 class ProjetController extends Controller
@@ -22,12 +23,27 @@ class ProjetController extends Controller
 
     /**
      * Affiche la liste des projets
-     * TODO : faire la vue associée
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $projets = Projet::all();
-        return view('projets.index', ['projet' => $projets]);
+        $projets = Projet::search()->filter()->paginate(24);
+
+        $participants = User::all();
+
+        $poles = [];
+        foreach (Projet::all() as $projet) {
+            $poles[] = $projet->pole;
+        }
+
+        $search = request()->search;
+
+        $filters = [];
+        $filters[0] = request()->pole;
+        $filters[1] = request()->membre;
+        $filters[2] = request()->trie;
+
+        return view('projets.index', compact('projets', 'poles', 'participants', 'search', 'filters'));
     }
 
     /**

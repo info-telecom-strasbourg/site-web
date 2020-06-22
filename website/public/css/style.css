@@ -847,6 +847,10 @@ display: block;
     width: 100%;
 }
 
+.btn-search:focus {
+    outline:0 !important;
+}
+
 /* ##########################   Card   ########################## */
 #projets-container .card {
     width: 16rem;

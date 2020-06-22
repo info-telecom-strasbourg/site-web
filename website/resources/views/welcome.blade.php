@@ -368,7 +368,7 @@
 
 <!-- Partenariat -->
 <section class="section grise" id="partenariat">
-    <h1 class="title lg text-center"> Nos partenaires </h1>
+    <h1 class="title lg text-center"> Nos collaborateurs </h1>
     <hr class="line-under-title">
     <div class="partenaires">
         <div class="partenaire">
