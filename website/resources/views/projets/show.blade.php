@@ -4,7 +4,8 @@
 
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="/"><i class="fas fa-home"></i></a></li>
-    <li class="breadcrumb-item active">Projets</li>
+    <li class="breadcrumb-item"><a href="/projets?page={{ intval($projet->id / 24) + 1 }}">Projets</a></li>
+    <li class="breadcrumb-item active">{{ $projet->title }}</li>
 @endsection
 
 @section('content')

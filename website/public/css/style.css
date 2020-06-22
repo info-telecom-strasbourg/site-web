@@ -973,6 +973,12 @@ display: block;
     }
 }
 
+/* ##########################   Confirm password   ########################## */
+#confirm .password-forget {
+    background-color: transparent;
+    margin-left: 16px;
+}
+
 /* ##########################   List users   ########################## */
 .total-members {
     font-style: italic;
