@@ -33,7 +33,7 @@
 <body>
     <!-- Navbar -->
     {{-- If the route is not page-admin we display the navbar --}}
-    @if (!Request::is('page-admin') && !Request::is('login'))
+    @if (!Request::is('page-admin') && !Request::is('login') && !Request::is('password/*'))
         @include('partials.navbar')
     @endif
 
@@ -62,7 +62,7 @@
         <!-- Main content -->
         <div id="content">
             <!-- Breadcrumbs -->
-            @if (!Request::is('/') && !Request::is('page-admin') && !Request::is('login'))
+            @if (!Request::is('/') && !Request::is('page-admin') && !Request::is('login') && !Request::is('password/*'))
             <div class="breadcrumb-container" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     @yield('breadcrumb')
@@ -76,7 +76,7 @@
         </div>
 
         <!-- Footer -->
-        @if (!Request::is('login'))
+        @if (!Request::is('login') && !Request::is('password/*'))
         @include('partials.footer')
         @endif
     </div>
