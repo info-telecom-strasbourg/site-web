@@ -3,8 +3,8 @@
 @section('title', 'Projets')
 
 @section('breadcrumb')
-<li class="breadcrumb-item"><a href="/"><i class="fas fa-home"></i></a></li>
-<li class="breadcrumb-item active">Projets</li>
+	<li class="breadcrumb-item"><a href="/"><i class="fas fa-home"></i></a></li>
+	<li class="breadcrumb-item active">Projets</li>
 @endsection
 
 @section('content')
@@ -123,10 +123,4 @@
     </div>
 </div>
 
-<script>
-function clear(id, text) {
-    alert("#"."id");
-    $("#"."id")[0].selectedIndex = 0;
-}
-</script>
 @endsection
