@@ -53,7 +53,7 @@ class CreateProjetsTable extends Migration
             $table->BigInteger('user_id')->unsigned();
             $table->timestamps();
 
-            $table->unique(['projet_id', 'user_id', 'id']);
+            $table->unique(['projet_id', 'user_id']);
 
             $table->foreign('projet_id')
                 ->references('id')
