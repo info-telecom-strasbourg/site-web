@@ -17,6 +17,7 @@
     <hr class="line-under-title">
 
     <div class="container pt-3">
+        <p class="text-center">{{ $projet->desc }}</p>
         <h2>
             Chef de projet
         </h2>
@@ -37,6 +38,10 @@
         @foreach ($projet->participants as $participant)
             <p>{{ $participant->name }}</p>
         @endforeach
+        @if(!empty($projet->collaborateur))
+        <h2>Collaborateur</h2>
+            <p>{{ $projet->collaborateur->name }}</p>
+        @endif
         <h2>Le projet en images</h2>
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -67,6 +72,19 @@
         <h2>
             Liens utiles
         </h2>
+        <div class="social-buttons row align-item-center justify-content-center" id="projet-show">
+            <a class="social-icons d-flex align-items-center" href="{{ $projet->link_github }}">
+                <i class="fab fa-github fa-3x fa-lg mr-3"></i>Github
+            </a>
+            @if(!empty($projet->link_download))
+            <a class="social-icons d-flex align-items-center" href="{{ $projet->link_download }}">
+                <i class="fas fa-download fa-3x fa-lg mr-3"></i>Téléchargement
+            </a>
+            @endif
+            <a class="social-icons d-flex align-items-center" href="{{ $projet->link_doc }}">
+                <i class="fas fa-envelope fa-3x fa-lg mr-3"></i>Documentation
+            </a>
+        </div>
     </div>
 </div>
 
