@@ -81,7 +81,7 @@
         @endif
     </div>
 
-    <script src="js/website.js"></script>
+    <script src="{{ asset('js/website.js') }}"></script>
 
 </body>
 
