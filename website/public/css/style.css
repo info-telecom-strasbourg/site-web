@@ -224,6 +224,24 @@ display: block;
     margin-bottom: 18px
 }
 
+#projet-show a i {
+    color: gray;
+}
+
+.social-buttons a {
+    color: gray;
+}
+
+.social-buttons a:hover {
+    text-decoration: none;
+    color: black;
+}
+
+#projet-show a:hover i {
+    text-decoration: none;
+    color: black;
+}
+
 .social-icons {
     margin-left: 50px;
 }
