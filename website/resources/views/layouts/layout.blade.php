@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel = "icon" href = "{{ asset('images/logo/logo.png') }}" type = "image/x-icon"> 
+    <link rel = "icon" href = "{{ asset('images/logo/logo.png') }}" type = "image/x-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
@@ -26,41 +26,58 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
-    <title>@yield('title')</title>    
+    <title>@yield('title')</title>
+
 </head>
 
 <body>
-     <!-- Navbar -->
-    @include('navbar')
+    <!-- Navbar -->
+    {{-- If the route is not page-admin we display the navbar --}}
+    @if (!Request::is('page-admin'))
+        @include('navbar')
+    @endif
+
+    @if (Request::is('page-admin'))
+        <style>
+            body {
+                background-color: #131722;
+            }
+
+            .page-footer {
+                background-color: #20242e;
+            }
+        </style>
+    @endif
 
     {{-- If the route is not welcome we change the navbar background color --}}
-    {{-- @if (!Request::is('/'))
+    @if (!Request::is('/'))
         <style>
             .navbar {
                 background-color: rgb(92, 111, 163);
             }
         </style>
-    @endif --}}
+    @endif
 
-    <!-- Main content -->
     <div class="page">
-        
-        <!-- Breadcrumbs -->
-        @if (!Request::is('/'))
-        <div class="breadcrumb-container" aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                @yield('breadcrumb')
-            </ol>
-        </div>
-        @endif
+        <!-- Main content -->
+        <div id="content">
+            <!-- Breadcrumbs -->
+            @if (!Request::is('/') && !Request::is('page-admin'))
+            <div class="breadcrumb-container" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    @yield('breadcrumb')
+                </ol>
+            </div>
+            @endif
 
-        <div class="main-content">
-            @yield('content')
+            <div class="main-content">
+                @yield('content')
+            </div>
         </div>
+
+        <!-- Footer -->
+        @include('footer')
     </div>
-
-    <!-- Footer -->
-    @include('footer')
 
     <script src="js/website.js"></script>
 
