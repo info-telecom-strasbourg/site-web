@@ -24,7 +24,7 @@
                     <br>
                     <p>Notre toute nouvelle association débarque à TPS</p>
                     <br>
-                    <input class="favorite styled" type="button" value="Découvrir nos projets">
+                    <input class="favorite styled" value="Découvrir nos projets">
                 </div>
             </div>
             <div class="carousel-item actu full-screen">
@@ -33,7 +33,7 @@
                     <br>
                     <p>Notre toute nouvelle association débarque à TPS</p>
                     <br>
-                    <input class="favorite styled" type="button" value="Découvrir nos projets">
+                    <input class="favorite styled" value="Découvrir nos projets">
                 </div>
             </div>
             <div class="carousel-item actu full-screen">
@@ -42,7 +42,7 @@
                     <br>
                     <p>Notre toute nouvelle association débarque à TPS</p>
                     <br>
-                    <input class="favorite styled" type="button" value="Découvrir nos projets">
+                    <input class="favorite styled" value="Découvrir nos projets">
                 </div>
             </div>
             <div class="carousel-item actu full-screen">

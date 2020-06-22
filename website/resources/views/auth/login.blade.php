@@ -4,6 +4,12 @@
 
 @section('content')
 
+<style>
+    #content {
+        padding-bottom: 0;    /* Footer height */
+    }
+</style>
+
 <div class="login-container full-screen">
     <div class="container text-center">
         <div class="row justify-content-center min-vh-100">
@@ -14,8 +20,8 @@
                         <p>Heureux de vous revoir !</p>
                         <p>Connectez-vous avec votre compte</p>
                     </div>
-                    <div class="row justify-content-center align-items-end flex-grow-1">
-                        <form method="POST" action="{{ route('login') }}" style="width: 50%">
+                    <div class="row justify-content-center flex-grow-1" id="form-container">
+                        <form method="POST" action="{{ route('login') }}">
                         @csrf
                             <div class="form-group email-group">
                                 <label for="email">E-MAIL</label>
@@ -41,7 +47,7 @@
                             <div class="form-group row">
                                 <div class="col-sm-6">
                                     @if (Route::has('password.request'))
-                                        <a href="{{ route('password.request') }}" style="color: #15F6FC; margin-top: 5px;">
+                                        <a href="{{ route('password.request') }}" class="password-forget">
                                             Mot de passe oublié ?
                                         </a>
                                     @endif
@@ -72,16 +78,10 @@
 // permet de faire en sorte que le carousel fasse exactement la taille de l'écran
 // de l'utilisateur
 
-var $item = $('.login-container');
-var $wHeight = $(window).height();
-
-$item.height($wHeight);
-$item.addClass('full-screen');
-
-$(window).on('resize', function() {
-    $wHeight = $(document).height();
-    $item.height($wHeight);
-});
+// $(window).on('resize', function() {
+//     $wHeight = $(document).height();
+//     $item.height($wHeight);
+// });
 </script>
 @endsection
 
