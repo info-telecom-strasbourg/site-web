@@ -19,7 +19,7 @@
     	<!-- Search bar -->
 		<form>
 			<div class="input-group md-form form-sm form-2 pl-0">
-				<input class="form-control my-0 py-1 lime-border" type="search" name="search" id="search" placeholder="Rechercher" aria-label="Rechercher" value="{{-- {{ $search }} --}}">
+				<input class="form-control my-0 py-1 lime-border" type="search" name="search" id="search" placeholder="Rechercher" aria-label="Rechercher" value="{{ $search }}">
 				<button class="input-group-append input-group-text lime lighten-2 btn btn-search" type="submit">
 					<i class="fas fa-search text-grey" aria-hidden="true"></i>
 				</button>
@@ -27,29 +27,51 @@
 		</form>
 
     	<!-- Filter options -->
-    	<div class="filter-options container">
+    	<form class="filter-options container">
     		<h2>Filtres</h2>
     		<div class="row">
     			<div class="col-md-3">
-					<select class="form-control">
-						<option disabled selected hidden>Pôle</option>
+					<select class="form-control" name="pole" id="pole">
+						<option readonly selected hidden value="">Pôle</option>
+
+						@isset($poles)
+							@foreach ($poles as $key => $pole)
+								<option value="{{ $key + 1 }}" @if ($filters[0] == ($key + 1)) selected @endif>{{ $pole->title }} </option>
+							@endforeach
+
+							<option value="" name="reset">Reset</option>
+						@endisset
 					</select>
 				</div>
 				<div class="col-md-3">
-					<select class="form-control">
-						<option disabled selected hidden>Membre</option>
+					<select class="form-control" name="membre" id="membre">
+						<option readonly selected hidden value="">Membre</option>
+
+						@isset($participants)
+							@foreach ($participants as $key => $participant)
+								<option value="{{ $key + 1 }}" @if ($filters[1] == ($key + 1)) selected @endif>{{ $participant->name }}</option>
+							@endforeach
+
+							<option value="" name="reset">Reset</option>
+						@endisset
 					</select>
 				</div>
 				<div class="col-md-3">
-					<select class="form-control">
-						<option disabled selected hidden>Trié par</option>
+					<select class="form-control" name="trie" id="trie">
+						<option readonly selected hidden value="">Trié par</option>
+
+						<option value="1" @if ($filters[2] == 1) selected @endif>Ordre alphabétique</option>
+	                    <option value="2" @if ($filters[2] == 2) selected @endif>Ordre alphabétique inverse</option>
+	                    <option value="3" @if ($filters[2] == 3) selected @endif>Date de début</option>
+
+	                    <option value="" name="reset">Reset</option>
 					</select>
 				</div>
 				<div class="col-md-3 text-center">
 					<button type="submit" class="btn btn-primary btn-primary btn-rounded">FILTRER</button>
 				</div>
 			</div>
-		</div>
+		</form>
 
 		<div class="container pt-5">
 			<div class="row">
@@ -57,17 +79,18 @@
 				@if(isset($projets))
 
 					@forelse ($projets as $projet)
-						<div class="col-md-3" id="projets-container">
+						<div class="col-md" id="projets-container">
 							<div class="card text-center rounded">
 								<img class="card-img-top" src="/images/test.jpg" alt="Card image cap">
 								<div class="card-body d-flex flex-column">
 									<h5 class="card-title text-center font-weight-bold">
+										{{ $projet->title }}
 									</h5>
 									<p class="card-text">
 										<span>{{ mb_strlen( $projet->desc ) > 200 ? mb_substr($projet->desc, 0, 200) . ' ...' : $projet->desc }}
 		                                </span>
 									</p>
-									<a href="/poles/{{ $projet->id }}" class="btn btn-rounded btn-primary" type="button">DÉCOUVRIR</a>
+									<a href="/projets/{{ $projet->id }}" class="btn btn-rounded btn-primary" type="button">DÉCOUVRIR</a>
 								</div>
 						  	</div>
 						</div>
@@ -84,7 +107,7 @@
 
 					<div class="row justify-content-center link-margin-top">
 						<!-- Pagination links -->
-						{{ $projets->links() }}
+						{{-- {{ $projets->links() }} --}}
 					</div>
 				@else
 					<div class="alert alert-secondary alert-dismissible fade show col" role="alert">
@@ -100,4 +123,10 @@
     </div>
 </div>
 
+<script>
+function clear(id, text) {
+    alert("#"."id");
+    $("#"."id")[0].selectedIndex = 0;
+}
+</script>
 @endsection
