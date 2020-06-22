@@ -17,6 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/besoin-aide', function () {
+    return view('besoin-aide');
+});
+
+Route::get('/page-admin', function () {
+    return view('dark-page');
+})->middleware('admin');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -26,11 +34,9 @@ Route::get('/poles', 'PoleController@index')->name('pole.index');
 Route::get('/poles/{pole}', 'PoleController@show')->name('pole.show');
 
 /***** Route projets *****/
-// Route::get('/projets', 'ProjetController@index')->name('projets.index');
-// Route::get('/projets/{projet}', 'ProjetController@show')->name('projets.show');
-Route::get('/projets', function () {
-	return view('projets.index');
-})->name('projets.index');
+Route::resources([
+    'projets' => "ProjetController"
+]);
 
 /***** Route users *****/
 Route::get('/users', 'UserController@index')->name('users.index');

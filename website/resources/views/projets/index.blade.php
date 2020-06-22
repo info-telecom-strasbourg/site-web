@@ -57,7 +57,7 @@
 				@if(isset($projets))
 
 					@forelse ($projets as $projet)
-						<div class="col-md-3">
+						<div class="col-md-3" id="projets-container">
 							<div class="card text-center rounded">
 								<img class="card-img-top" src="/images/test.jpg" alt="Card image cap">
 								<div class="card-body d-flex flex-column">
