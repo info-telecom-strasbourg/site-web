@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjetRequest;
 use App\Projet;
 use App\User;
+use App\Pole;
+use App\Collaborateur;
 use Illuminate\Http\Response;
 
 class ProjetController extends Controller
@@ -31,19 +33,19 @@ class ProjetController extends Controller
 
         $participants = User::all();
 
-        $poles = [];
-        foreach (Projet::all() as $projet) {
-            $poles[] = $projet->pole;
-        }
+        $poles = Pole::all();
+        
+        $partners = Collaborateur::all();
 
         $search = request()->search;
 
         $filters = [];
         $filters[0] = request()->pole;
         $filters[1] = request()->membre;
-        $filters[2] = request()->trie;
+        $filters[2] = request()->partner;
+        $filters[3] = request()->trie;
 
-        return view('projets.index', compact('projets', 'poles', 'participants', 'search', 'filters'));
+        return view('projets.index', compact('projets', 'poles', 'participants', 'partners', 'search', 'filters'));
     }
 
     /**
