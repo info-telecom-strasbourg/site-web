@@ -7,14 +7,14 @@
             </div>
             <hr class="clearfix w-100 d-lg-none pb-3">
             <div class="col-lg-6 mb-lg-0 mb-3">
-                <div class="social-buttons">
-                            <a type="button" class="github" href="#" style="margin-left: 50px">
+                <div class="social-buttons row align-item-center justify-content-center">
+                            <a class="social-icons" href="#">
                                 <i class="fab fa-github fa-4x fa-lg mr-3"></i>
                             </a>
-                            <a type="button" class="github" href="#" style="margin-left: 50px">
+                            <a class="social-icons" href="#">
                                 <i class="fab fa-facebook fa-4x fa-lg mr-3"></i>
                             </a>
-                            <a type="button" class="github" href="#" style="margin-left: 50px">
+                            <a class="social-icons" href="#">
                                 <i class="fas fa-envelope fa-4x fa-lg mr-3"></i>
                             </a>
                 </div>
