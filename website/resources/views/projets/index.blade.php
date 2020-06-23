@@ -87,7 +87,7 @@
 		</form>
 
 		<div class="container pt-5">
-			<div class="row">
+			<div class="row justify-content-center">
 
 				@if(isset($projets))
 

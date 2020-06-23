@@ -27,7 +27,7 @@ Route::get('/page-admin', function () {
 
 Auth::routes();
 
-// Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register')->middleware('admin');
+Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register')->middleware('admin');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
