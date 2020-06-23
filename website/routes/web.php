@@ -38,7 +38,7 @@ Route::get('/poles/cours/create','CoursController@create')->name('poles.cours.cr
 Route::get('poles/cours/{cours}/edit', 'CoursController@edit')->name('poles.cours.edit');
 
 Route::get('/poles/cours/{cours}', 'CoursController@show')->name('poles.cours.show');
-Route::put('/poles/cours/{cours}', 'PoleController@update')->name('poles.cours.update');
+Route::put('/poles/cours/{cours}', 'CoursController@update')->name('poles.cours.update');
 
 
 
