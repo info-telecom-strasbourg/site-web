@@ -50,6 +50,7 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        // create validator 
         $validator = Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -57,13 +58,21 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
+        /* 
+         * perform further validation after validation is completed
+         * check if a user with a role that belongs to the Bureau or Respo
+         * is not created twice
+         */
         $validator->after(function ($validator) use ($data) {
-            if ($data['role'] < 11) {
-                $count = User::where('role_id', $data['role'])->count();
-                $role = Role::where('id', $data['role'])->first();
-                if ($count > 0) {
-                    // dd($count);
-                    $validator->errors()->add('erreur', 'Vous ne pouvez pas créer un nouveau ' . strtolower($role->role) . '.');  ;
+            // get the role
+            $selectRole = Role::where('id', $data['role'])->first();
+
+            // loop through the role that aren't unique
+            foreach (Role::getMassRoles() as $massRole) {
+                // if the selected role is not mass assignable, throw an error
+                if ($selectRole->role != $massRole) {
+                    $validator->errors()->add('erreur', 'Vous ne pouvez pas créer un nouveau ' . strtolower($selectRole->role) . '.');
+                    break;
                 }
             }
         });
