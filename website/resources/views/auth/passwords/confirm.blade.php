@@ -1,40 +1,63 @@
-@extends('layouts.app')
+@extends('layouts.layout')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Confirm Password') }}</div>
+
+<style>
+    #content {
+        padding-bottom: 0;    /* Footer height */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100vh;
+        background: url('../images/fond/login-fond.png') top center;
+        background-size: cover;
+        position: relative;
+    }
+
+    .main-content {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+</style>
+
+            <div class="card" style="width: 700px; background-color: rgba(0, 0, 0, 0.7); color: white;" id="confirm">
+                <div class="card-header" style="background-color: rgba(0, 0, 0, 0.9);">{{ __('Confirmer votre mot de passe') }}</div>
                 <div class="card-body">
-                    {{ __('Please confirm your password before continuing.') }}
+                    {{ __('Confirmer votre mot de passe pour continuer') }}
 
                     <form method="POST" action="{{ route('password.confirm') }}">
                         @csrf
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                        <div class="form-group text-center" style="margin-bottom: 30px; margin-top: 30px;">
+                            <label for="password" class="col-md-4 col-form-label">{{ __('Mot de passe') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                            <div class="row justify-content-center">
+                                <div class="col-md-6">
+                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
-                                @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
+                                    @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Confirm Password') }}
+                        <div class="form-group row mb-0 justify-content-center align-items-center">
+                            <div class="col-xs-6">
+                                <button type="submit" class="btn btn-primary btn-rounded">
+                                    {{ __('Confirmer') }}
                                 </button>
-
+                            </div>
+                            <div class="col-xs-6">
                                 @if (Route::has('password.request'))
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    {{ __('Forgot Your Password?') }}
+                                <a class="password-forget" href="{{ route('password.request') }}">
+                                    {{ __('Mot de passe oublié?') }}
                                 </a>
                                 @endif
                             </div>

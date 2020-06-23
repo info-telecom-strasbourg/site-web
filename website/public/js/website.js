@@ -37,7 +37,7 @@ $(document).ready(function() {
                 $('.navbar-collapse').css('background-color', 'rgba(0, 0, 0, 0.7)');
             }
         }
-    })
+    });
 
     var $item = $('#carousel-actualite .carousel-item'); // get carousel item
     var $wHeight = $(window).height(); // get window height
@@ -118,4 +118,60 @@ $(document).ready(function() {
             $('#poles').addClass('dropdown-click');
         }
     });
+
+
+    /* ##########################   Reset Projets filter   ########################## */
+    /*
+     * If reset value in select menu is selected the below code changes the 
+     * text of the reset option and submit filter form.
+     */
+
+    /*** Reset pole filter ***/
+    $('#pole').change(function() {
+        // get the selected option
+        var pole = $("#pole option:selected");
+
+        // if the option has the name reset, change the text 
+        if (pole.is('[name="reset"]') ) {
+            $('#pole option[name="reset"]').text('Pôle');
+            $('.filter-options').submit();
+        }
+    });
+
+    /*** Reset membre filter ***/
+    $('#membre').change(function() {
+        // get the selected option
+        var membre = $("#membre option:selected");
+
+        // if the option has the name reset, change the text 
+        if (membre.is('[name="reset"]') ) {
+            $('#membre option[name="reset"]').text('Membre');
+            $('.filter-options').submit();
+        }
+    });
+
+    /*** Reset partner filter ***/
+    $('#partner').change(function() {
+        // get the selected option
+        var partner = $("#partner option:selected");
+
+        // if the option has the name reset, change the text 
+        if (partner.is('[name="reset"]') ) {
+            $('#partner option[name="reset"]').text('Collaborateur');
+            $('.filter-options').submit();
+        }
+    });
+
+    /*** Reset trie filter ***/
+    $('#trie').change(function() {
+        // get the selected option
+        var trie = $("#trie option:selected");
+
+        // if the option has the name reset, change the text 
+        if (trie.is('[name="reset"]') ) {
+            $('#trie option[name="reset"]').text('Trié par');
+            $('.filter-options').submit();
+        }
+    });
+
 });
