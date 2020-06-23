@@ -86,7 +86,7 @@ Création d'un cours
 			</div>
 		</div>
 
-		<div id="dates-crt-crs">
+		<div id="dates-crs">
 
 		</div>
 

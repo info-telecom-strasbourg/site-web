@@ -300,7 +300,7 @@ function parseDate (dateTable, inputName) {
 			case 'Dec':
 				month = '12';
 		}
-		$('div#dates-crt-crs').append('<input type="text" name="' + inputName + '[]" value="'+ year + '-' + month + '-' + day + '" hidden>')
+		$('div#dates-crs').append('<input type="text" name="' + inputName + '[]" value="'+ year + '-' + month + '-' + day + '" hidden>');
 	});
 }
 

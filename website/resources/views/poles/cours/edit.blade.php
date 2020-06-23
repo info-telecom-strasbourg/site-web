@@ -31,7 +31,7 @@ Modification d'un cours
 		<h4 class="title md text-left">Description</h4>
 		<div class="form-group">
 			<div class="control">
-				<textarea class="desc @error('desc') is-invalid @enderror" id="desc" name="desc" rows="3" required>{{ $cours->desc }}</textarea>
+				<textarea class="form-control desc @error('desc') is-invalid @enderror" id="desc" name="desc" rows="5" required>{{ $cours->desc }}</textarea>
 			</div>
 
 			@error('desc')
@@ -69,8 +69,8 @@ Modification d'un cours
 				Dates en présentiels
 			</h4>
 			<div class="dates-pres">
-				<div id="calendar-pres">
-		        	<div id="cal-pres-dates">
+				<div id="calendar-pres-upd">
+		        	<div id="cal-pres-dates-upd">
 
 		        	</div>
     			</div>
@@ -80,29 +80,64 @@ Modification d'un cours
 				Dates en distanciels
 			</h4>
 			<div class="dates-dist">
-				<div id="calendar-dist">
-		        	<div id="cal-dist-dates">
+				<div id="calendar-dist-upd">
+		        	<div id="cal-dist-dates-upd">
 
 		        	</div>
     			</div>
 			</div>
 		</div>
 
+		<div id="dates-crs">
+
+		</div>
+
 
 		<div class="text-center" style="margin-top:25px; margin-bottom:25px">
-			<button type="submit" class="btn btn-primary btn-rounded">Edit</button>
+			<button id="submit-btn-edt-crs" type="submit" class="btn btn-primary btn-rounded">Edit</button>
 		</div>
 	</form>
 </div>
 <script>
-	var elePres = document.getElementById('calendar-pres');
-	if(elePres) {
-		elePres.style.visibility = "visible";
-	 }
+	var elePresUpd = document.getElementById('calendar-pres-upd');
+	if(elePresUpd)
+	{
+		elePresUpd.style.visibility = "visible";
+	}
 
-	 var eleDist = document.getElementById('calendar-dist');
- 	if(eleDist) {
- 		eleDist.style.visibility = "visible";
- 	 }
+	var eleDistUpd = document.getElementById('calendar-dist-upd');
+	if(eleDistUpd)
+	{
+		eleDistUpd.style.visibility = "visible";
+	}
+
+	var calendarPresUpd = new ej.calendars.Calendar({
+		isMultiSelection: true,
+		values:[]
+	});
+
+	var calendarDistUpd = new ej.calendars.Calendar({
+		isMultiSelection: true,
+		values:[]
+	});
+
+	// Search the dates and make them appear into the calendar
+	var dateList = '{{ $cours->dates }}'.split("},");
+	$.each(dateList, function(key, value) {
+		var splitedObj = value.split("&quot;");
+		if (splitedObj[4] === ":1,")
+		   calendarPresUpd.values.push(new Date(splitedObj[7]));
+	   else if (splitedObj[4] === ":0,")
+		   calendarDistUpd.values.push(new Date(splitedObj[7]));
+	});
+
+	calendarPresUpd.appendTo('#cal-pres-dates-upd');
+	calendarDistUpd.appendTo('#cal-dist-dates-upd');
+
+	$('#submit-btn-edt-crs').click(function() {
+		parseDate(calendarDistUpd.values, 'dates_dist');
+		parseDate(calendarPresUpd.values, 'dates_pres');
+	});
+
 </script>
 @endsection

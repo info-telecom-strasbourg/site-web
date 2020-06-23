@@ -98,6 +98,7 @@ class CoursController extends Controller
 
 	public function update(Cours $cours)
 	{
+		dd(request());
 		$cours->update(validateCours());
 
 		return redirect('/poles/cours');

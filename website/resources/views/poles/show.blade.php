@@ -10,7 +10,7 @@
         <hr class="line-under-title">
         <div>
             <p>{{ $pole->desc }} </p>
-            <h4 class="title md text-left">Projets</h4>
+            <h4 class="title md text-left">{{ $pole->title }}</h4>
 
 			<!-- Liste des projets -->
 			<div class="container pt-5">
