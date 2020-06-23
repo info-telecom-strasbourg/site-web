@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjetRequest;
 use App\Projet;
+use App\User;
+use App\Pole;
+use App\Collaborateur;
 use Illuminate\Http\Response;
 
 class ProjetController extends Controller
@@ -17,17 +20,32 @@ class ProjetController extends Controller
     {
         $projet->load('chef');
         $projet->load('participants');
-        return view('projet.show', ['projet' => $projet]);
+        return view('projets.show', ['projet' => $projet]);
     }
 
     /**
      * Affiche la liste des projets
-     * TODO : faire la vue associée
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $projets = Projet::all();
-        return view('projet.index', ['projet' => $projets]);
+        $projets = Projet::search()->filter()->paginate(24);
+
+        $participants = User::all();
+
+        $poles = Pole::all();
+        
+        $partners = Collaborateur::all();
+
+        $search = request()->search;
+
+        $filters = [];
+        $filters[0] = request()->pole;
+        $filters[1] = request()->membre;
+        $filters[2] = request()->partner;
+        $filters[3] = request()->trie;
+
+        return view('projets.index', compact('projets', 'poles', 'participants', 'partners', 'search', 'filters'));
     }
 
     /**
@@ -36,7 +54,7 @@ class ProjetController extends Controller
      */
     public function create()
     {
-        return view('projet.create');
+        return view('projets.create');
     }
 
     /**
@@ -65,7 +83,7 @@ class ProjetController extends Controller
      */
     public function edit(Projet $projet)
     {
-        return view('projet.edit', ['projet' => $projet]);
+        return view('projets.edit', ['projet' => $projet]);
     }
 
     /**

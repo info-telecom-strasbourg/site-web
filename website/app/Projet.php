@@ -7,14 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Projet extends Model
 {
     /**
-     * Attributs assignables en masse
+     * Attributs qui ne sont pas assignables en masse.
      *
      * @var array
      */
     protected $guarded = ['id'];
 
     /**
-     * Renvoie le chef de projet
+     * Renvoie le chef de projet.
      */
     public function chef()
     {
@@ -22,7 +22,23 @@ class Projet extends Model
     }
 
     /**
-     * Renvoie les utilisateurs participants au projet
+     * Renvoie le pole de projet.
+     */
+    public function pole()
+    {
+        return $this->belongsTo('App\Pole');
+    }
+
+    /**
+     * Renvoie le collaborateur du projet.
+     */
+    public function collaborateur()
+    {
+        return $this->belongsTo('App\Collaborateur');
+    }
+
+    /**
+     * Renvoie les utilisateurs participants au projet.
      */
     public function participants() 
     {
@@ -30,12 +46,48 @@ class Projet extends Model
     }
 
     /**
-     * Renvoie le pole du projet
+     * Scope a query to only include researched projects.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
      */
-    /*
-    public function pole() 
+    public function scopeSearch($query)
     {
-        return $this->belongsTo('App\Pole');   
+        return empty(request()->search) ? $query : $query->where('title', 'like', '%'.request()->search.'%')->orWhere('desc', 'like', '%'.request()->search.'%');
     }
-    */
+
+    /**
+     * Scope a query to only include filtered projects.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeFilter($query)
+    {
+        if (!empty(request()->pole)) {
+            $query = $query->where('pole_id', request()->pole);
+        }
+
+        if (!empty(request()->membre)) {
+            $query = $query->join('projets_participants', 'projets.id', '=', 'projets_participants.projet_id')->where('user_id', request()->membre);
+        }
+
+        if (!empty(request()->partner)) {
+            $query = $query->where('collaborateur_id', request()->partner);
+        }
+
+        if (!empty(request()->trie)) {
+            if (request()->trie == 1) {
+                $query = $query->orderBy('title', 'asc');
+            }
+            else if (request()->trie == 2) {
+                $query = $query->orderBy('title', 'desc');
+            }
+            else {
+                $query = $query->orderBy('projets.created_at', 'asc');
+            }
+        }
+
+        return $query;
+    }
 }

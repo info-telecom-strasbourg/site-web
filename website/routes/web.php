@@ -27,8 +27,19 @@ Route::get('/page-admin', function () {
 
 Auth::routes();
 
+// Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register')->middleware('admin');
+
 Route::get('/home', 'HomeController@index')->name('home');
 
+/***** Route poles *****/
+Route::get('/poles', 'PoleController@index')->name('pole.index');
+Route::get('/poles/{pole}', 'PoleController@show')->name('pole.show');
+
+/***** Route projets *****/
 Route::resources([
     'projets' => "ProjetController"
 ]);
+
+/***** Route users *****/
+Route::get('/users', 'UserController@index')->name('users.index');
+// Route::get('/users/{user}', 'UserController@show')->name('users.show');
