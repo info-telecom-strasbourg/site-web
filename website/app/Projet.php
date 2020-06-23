@@ -7,14 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Projet extends Model
 {
     /**
-     * Attributs assignables en masse
+     * Attributs qui ne sont pas assignables en masse.
      *
      * @var array
      */
     protected $guarded = ['id'];
 
     /**
-     * Renvoie le chef de projet
+     * Renvoie le chef de projet.
      */
     public function chef()
     {
@@ -22,7 +22,7 @@ class Projet extends Model
     }
 
     /**
-     * Renvoie le pole de projet
+     * Renvoie le pole de projet.
      */
     public function pole()
     {
@@ -30,7 +30,7 @@ class Projet extends Model
     }
 
     /**
-     * Renvoie le collaborateur du projet
+     * Renvoie le collaborateur du projet.
      */
     public function collaborateur()
     {
@@ -38,22 +38,12 @@ class Projet extends Model
     }
 
     /**
-     * Renvoie les utilisateurs participants au projet
+     * Renvoie les utilisateurs participants au projet.
      */
     public function participants() 
     {
         return $this->belongsToMany('App\User', 'projets_participants', 'projet_id', 'user_id');
     }
-
-    /**
-     * Renvoie le pole du projet
-     */
-    /*
-    public function pole() 
-    {
-        return $this->belongsTo('App\Pole');   
-    }
-    */
 
     /**
      * Scope a query to only include researched projects.
