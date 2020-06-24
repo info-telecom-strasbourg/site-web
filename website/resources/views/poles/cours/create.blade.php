@@ -43,6 +43,27 @@ Création d'un cours
 			@enderror
 		</div>
 
+		<h4 class="title lg text-left">
+			Créateurs
+		</h4>
+		<select class="form-control" name="creators[]" id="creators" multiple required>
+            <option readonly selected hidden value="">Créateurs</option>
+
+            @isset($users)
+                @foreach ($users as $user)
+                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                @endforeach
+            @endisset
+        </select>
+
+
+		<div class="form-group">
+			<h4 class="title lg">
+				Image pour la vignette du cours (optionnelle)
+			</h4>
+			<input type="file" id="image_crs" name="image_crs">
+		</div>
+
 
 		<div class="form-group">
 			<h4 class="title lg text-left">
@@ -52,6 +73,9 @@ Création d'un cours
 			<input type="file" id="link_support" name="link_support[]" multiple>
 		</div>
 
+		<h4 class="title lg text-left" id="choose-visibility">
+			Cochez les fichiers réservés aux membres
+		</h4>
 		<div class="form-group" id="choose-visibility">
 		</div>
 
@@ -98,13 +122,15 @@ Création d'un cours
 </div>
 <script>
 	var elePres = document.getElementById('calendar-pres');
-	if(elePres) {
+	if(elePres)
+	{
 		elePres.style.visibility = "visible";
-	 }
+	}
 
-	 var eleDist = document.getElementById('calendar-dist');
- 	if(eleDist) {
+	var eleDist = document.getElementById('calendar-dist');
+ 	if(eleDist)
+	{
  		eleDist.style.visibility = "visible";
- 	 }
+ 	}
 </script>
 @endsection

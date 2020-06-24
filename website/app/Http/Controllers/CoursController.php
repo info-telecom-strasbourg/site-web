@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Cours;
 
+use App\User;
+
 use App\Support;
 
 use App\Pole;
@@ -40,7 +42,8 @@ class CoursController extends Controller
 	 */
 	public function create()
 	{
-		return view('poles.cours.create');
+		$users = User::all();
+		return view('poles.cours.create', compact('users'));
 	}
 
 	/**
@@ -48,6 +51,7 @@ class CoursController extends Controller
 	 */
 	public function store(Request $request)
 	{
+
 		$cours = Cours::create($this->validateCours());
 
 		// Create the supports if they exists
@@ -63,6 +67,26 @@ class CoursController extends Controller
 					'cours_id' => $cours->id
 				]);
 			}
+		}
+
+		//Create the image if it exists
+		if($request->has('image_crs'))
+		{
+			$path = Storage::putFile('public/images', $request->image_crs, 'private');
+			$path = substr($path, 7);
+			$cours->image = [$path];
+		}
+		else
+		{
+			$cours->image = ['images/default/'.strval(random_int ( 1 , 5 ).'.jpg')];
+		}
+
+		$cours->save();
+
+		//create the creators
+		foreach ($request->creators as $creator)
+		{
+			$cours->creators()->attach($creator);
 		}
 
 		// create the dates
@@ -96,10 +120,63 @@ class CoursController extends Controller
 		return view('poles.cours.edit',compact('cours'));
 	}
 
+	/**
+	 * Update a lesson
+	 */
 	public function update(Cours $cours)
 	{
-		dd(request());
-		$cours->update(validateCours());
+		$cours->update($this->validateCours());
+
+		//Create the image if it exists
+		if(request()->has('image_crs'))
+		{
+			if (file_exists(storage_path('app/public/'.json_decode($cours->image)[0])))
+				unlink(storage_path('app/public/'.json_decode($cours->image)[0]));
+
+			$path = Storage::putFile('public/images', request()->image_crs, 'private');
+			$path = substr($path, 7);
+			$cours->image = [$path];
+			$cours->save();
+		}
+
+		//add and delete files
+		if (request()->has('del_file'))
+		{
+			foreach (request()->del_file as $file)
+			{
+				$fileToDel = \DB::table('supports')->where('name', $file)->first();
+				$fileToDel = Support::find($fileToDel->id);
+				unlink(storage_path('app/'.$fileToDel->ref));
+				$fileToDel->delete();
+			}
+		}
+
+
+		//delete all the dates
+		$cours->dates()->detach();
+
+		// change the dates
+		if (request()->has('dates_pres'))
+		{
+			foreach (request()->dates_pres as $date)
+			{
+				$newDate = Date::create(['presentiel' => 1,
+					'date' => $date
+				]);
+				$cours->dates()->attach($newDate->id);
+			}
+		}
+
+		if (request()->has('dates_dist'))
+		{
+			foreach (request()->dates_dist as $date)
+			{
+				$newDate = Date::create([ 'presentiel' => 0,
+					'date' => $date
+				]);
+				$cours->dates()->attach($newDate->id);
+			}
+		}
 
 		return redirect('/poles/cours');
 	}
@@ -109,11 +186,11 @@ class CoursController extends Controller
 
 	}
 
-	public function  validateCours ()
+	public function validateCours ()
 	{
 		return request()->validate([
 			'title' => 'required',
-			'desc' => 'required',
+			'desc' => 'required'
 		]);
 	}
 

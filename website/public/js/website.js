@@ -1,136 +1,72 @@
-$(document).ready(function() {
-    /* Scroll */
-
-    // function when user scrolls
-    $(document).on('scroll', function(e) {
-        var rgba = $(document).scrollTop() / 500;
-
-        // change the color of the navbar
-        // (from transparent to blue) when scrolling down
-        $('.fixed-top').css('background-color', 'rgba(92, 111, 163,' + rgba + ')');
-
-        // if the user scrolls the black filter is removed from the collapse navbar
-        $('.navbar-collapse').css('background-color', 'transparent');
-
-        // if the user scrolls to the top,
-        // a black filter is added to the collapse navbar
-        if (!$("body").hasClass("xl")) {
-            if ($(document).scrollTop() == 0) {
-                $('.navbar-collapse').css('background-color', 'rgba(0, 0, 0, 0.7)');
-            }
-        }
-    })
-
-    var $item = $('.carousel-item'); // get carousel item
-    var $wHeight = $(window).height(); // get window height
-
-    $item.height($wHeight); // set height of carousel item to window height
-
-
-    // Remove hide button that is used to center links
-    // in the navbar when the navbar is collapsed
-    if (!$("body").hasClass("xl")) {
-        $(".hidden").remove();
-    }
-
-    // Update on window resize
-    $(window).resize(function() {
-
-        $(".hidden").remove(); // remove it
-        if ($("body").hasClass("xl")) {
-            // Remove hide button that is used to center links
-            // in the navbar when the navbar is collapsed to be sure that we don't
-            // add it two times, then add it
-
-            $(".not-shown").html("<li class='nav-item hidden'><a href='#'' class='btn btn-rounded btn-primary connexion' type='button'>CONNEXION</a></li>"); // add it
-            $('.navbar-collapse').css('background-color', 'transparent');
-        } else {
-            $('.navbar-collapse').css('background-color', 'rgba(0, 0, 0, 0.7)');
-        }
-    });
-});
-
-// Hide the project if there is too much project to display (keep 8 projects)
-$("div#proj-card:gt(7)").addClass("hid").hide();
-
-
-//display more if the user click on the button
-$("input#voir-plus").click(function(e) {
-	e.preventDefault();
-	$("div#proj-card.hid:lt(8)").fadeIn("slow").removeClass("hid");
-	if ($(".hid").length === 0)
-	{
-		$("div#line-btn-vp").remove();
-	}
-});
-
-$("div#cours-liste:gt(7)").addClass("hid").hide();
-
-$("input#voir-plus").click(function(e) {
-	e.preventDefault();
-	$("div#cours-liste.hid:lt(8)").fadeIn("slow").removeClass("hid");
-	if ($(".hid").length === 0)
-	{
-		$("div#line-btn-vp").remove();
-	}
-});
-
-
-
-$('input[type="file"]#link_support').val('');
-
-//Create checkbox for each file
-$('input[type="file"]#link_support').change(function(e) {
-	$('div#choose-visibility').empty();
-	$(e.target.files).each(function () {
-		$('div#choose-visibility').append('<div>');
-		$('div#choose-visibility').append('<input type="checkbox" id="' + this.name + '" name="visibility[' + this.name +']" >');
-		$('div#choose-visibility').append('<label for="' + this.name + '">' + this.name + '</label>');
-		$('div#choose-visibility').append('</div>');
+function parseDate (dateTable, inputName) {
+	$.each(dateTable, function ( index, value ) {
+		var str = value.toString();
+		var day = str.substring(8,10);
+		var monthName = str.substring(4,7);
+		var year = str.substring(11,15);
+		var month;
+		switch (monthName) {
+			case 'Jan':
+				month = '01';
+				break;
+			case 'Feb':
+				month = '02';
+				break;
+			case 'Mar':
+				month = '03';
+				break;
+			case 'Apr':
+				month = '04';
+				break;
+			case 'May':
+				month = '05';
+				break;
+			case 'Jun':
+				month = '06';
+				break;
+			case 'Jul':
+				month = '07';
+				break;
+			case 'Aug':
+				month = '08';
+				break;
+			case 'Sep':
+				month = '09';
+				break;
+			case 'Oct':
+				month = '10';
+				break;
+			case 'Nov':
+				month = '11';
+				break;
+			case 'Dec':
+				month = '12';
+		}
+		$('div#dates-crs').append('<input type="text" name="' + inputName + '[]" value="'+ year + '-' + month + '-' + day + '" hidden>');
 	});
-});
-
-//////
-
-$(document).ready(function() {
-    $('#datepicker').datepicker({
-        startDate: new Date(),
-        multidate: true,
-        format: "dd/mm/yyyy",
-        daysOfWeekHighlighted: "5,6",
-        datesDisabled: ['31/08/2017'],
-        language: 'en'
-    }).on('changeDate', function(e) {
-        // `e` here contains the extra attributes
-        $(this).find('.input-group-addon .count').text(' ' + e.dates.length);
-    });
-});
-
-
-////////////////////////////////////////////////////////////////
-
-/* ########## Pour les calendriers ##########*/
-var calendarPres = new ej.calendars.Calendar({
-        isMultiSelection: true,
-		values:[]
-    });
-calendarPres.appendTo('#cal-pres-dates');
-
-var calendarDist = new ej.calendars.Calendar({
-        isMultiSelection: true,
-		values:[]
-    });
-calendarDist.appendTo('#cal-dist-dates');
-
-var calendarComp = new ej.calendars.Calendar({
-        isMultiSelection: true,
-		values:[]
-    });
-calendarComp.appendTo('#cal-comp-dates');
+}
 
 // Traduction des jours dans les calendriers
 
 // Traduction des mois
+
+var calendarPres = new ej.calendars.Calendar({
+		isMultiSelection: true,
+		values:[]
+	});
+calendarPres.appendTo('#cal-pres-dates');
+
+var calendarDist = new ej.calendars.Calendar({
+		isMultiSelection: true,
+		values:[]
+	});
+calendarDist.appendTo('#cal-dist-dates');
+
+var calendarComp = new ej.calendars.Calendar({
+		isMultiSelection: true,
+		values:[]
+	});
+calendarComp.appendTo('#cal-comp-dates');
 
 $('div.e-day.e-title').each(function () {
 	var title = $(this).html();
@@ -251,77 +187,270 @@ $('div.e-control.e-calendar.e-lib.e-keyboard').each(function () {
 	});
 });
 
-
-
 $('button.e-today').remove();
+$('#choose-visibility').hide();
 
 
-function parseDate (dateTable, inputName) {
-	$.each(dateTable, function ( index, value ) {
-		var str = value.toString();
-		var day = str.substring(8,10);
-		var monthName = str.substring(4,7);
-		var year = str.substring(11,15);
-		var month;
-		switch (monthName) {
-			case 'Jan':
-				month = '01';
-				break;
-			case 'Feb':
-				month = '02';
-				break;
-			case 'Mar':
-				month = '03';
-				break;
-			case 'Apr':
-				month = '04';
-				break;
-			case 'May':
-				month = '05';
-				break;
-			case 'Jun':
-				month = '06';
-				break;
-			case 'Jul':
-				month = '07';
-				break;
-			case 'Aug':
-				month = '08';
-				break;
-			case 'Sep':
-				month = '09';
-				break;
-			case 'Oct':
-				month = '10';
-				break;
-			case 'Nov':
-				month = '11';
-				break;
-			case 'Dec':
-				month = '12';
-		}
-		$('div#dates-crs').append('<input type="text" name="' + inputName + '[]" value="'+ year + '-' + month + '-' + day + '" hidden>');
-	});
-}
-
-$('#submit-btn-crt-crs').click(function() {
-	parseDate(calendarDist.values, 'dates_dist');
-	parseDate(calendarPres.values, 'dates_pres');
-});
 
 
-/* ########## Compétitions ##########*/
-
-//Max 3 Images
-$("button.compet").click(function(e){
-    var $fileUpload = $("input#images");
-    if (parseInt($fileUpload.get(0).files.length)>3){
-		e.preventDefault();
-		$("input#images").val('');
-		alert("3 images maximums !!");
+$(document).ready(function() {
+    // color navbar when loading page
+    if (window.location.pathname == '/') {
+        var rgba = $(document).scrollTop() / 500;
+        // Adjust the background color of the navbar when the navbar is collapsed
+        $('.fixed-top').css('background-color', 'rgba(92, 111, 163,' + rgba + ')');
+        if ($(document).scrollTop() != 0) {
+            $('.navbar-collapse').css('background-color', 'transparent');
+        }
+    } else {
+        // Adjust the background color of the navbar when the navbar is collapsed
+        $('.fixed-top').css('background-color', 'rgb(92, 111, 163)');
+        if (!$("body").hasClass("xl")) {
+            $('.navbar-collapse').css('background-color', 'transparent');
+        }
     }
+
+    /* Scroll */
+
+    // function when user scrolls
+    $(document).on('scroll', function(e) {
+        if (window.location.pathname != '/')
+            return;
+        var rgba = $(document).scrollTop() / 500;
+
+        // change the color of the navbar
+        // (from transparent to blue) when scrolling down
+        $('.fixed-top').css('background-color', 'rgba(92, 111, 163,' + rgba + ')');
+
+        // if the user scrolls the black filter is removed from the collapse navbar
+        $('.navbar-collapse').css('background-color', 'transparent');
+
+        // if the user scrolls to the top,
+        // a black filter is added to the collapse navbar
+        if (!$("body").hasClass("xl")) {
+            if ($(document).scrollTop() == 0) {
+                $('.navbar-collapse').css('background-color', 'rgba(0, 0, 0, 0.7)');
+            }
+        }
+    });
+
+    var $item = $('#carousel-actualite .carousel-item'); // get carousel item
+    var $wHeight = $(window).height(); // get window height
+
+    $item.height($wHeight); // set height of carousel item to window height
+
+
+    // Remove hide button that is used to center links
+    // in the navbar when the navbar is collapsed
+    if (!$("body").hasClass("xl")) {
+        $(".hidden").remove();
+    }
+
+    // Update on window resize
+    $(window).resize(function() {
+        $(".hidden").remove(); // remove it
+        if ($("body").hasClass("xl")) {
+            // Remove hide button that is used to center links
+            // in the navbar when the navbar is collapsed to be sure that we don't
+            // add it two times, then add it
+
+            $(".not-shown").html("<li class='nav-item hidden'><a href='#'' class='btn btn-rounded btn-primary connexion' type='button'>CONNEXION</a></li>"); // add it
+            $('.navbar-collapse').css('background-color', 'transparent');
+        } else {
+            // Adjust the background color of the navbar when the navbar is collapsed
+            $('.navbar-collapse').css('background-color', 'rgba(0, 0, 0, 0.7)');
+            if ((window.location.pathname != '/') || ($(document).scrollTop() != 0)) {
+                $('.navbar-collapse').css('background-color', 'transparent');
+            }
+        }
+    });
+
+    // The amount of time to delay between automatically cycling an item.
+    $('#recipeCarousel').carousel({
+        interval: 10000
+    })
+
+
+    // Allows to correctly animate the multiple carousel (for projects)
+    $('#nos-projets .carousel .carousel-item').each(function() {
+        var minPerSlide = 3;
+        var next = $(this).next();
+        if (!next.length) {
+            next = $(this).siblings(':first');
+        }
+        next.children(':first-child').clone().appendTo($(this));
+
+        for (var i = 0; i < minPerSlide; i++) {
+            next = next.next();
+            if (!next.length) {
+                next = $(this).siblings(':first');
+            }
+            next.children(':first-child').clone().appendTo($(this));
+        }
+    });
+
+	//Allows to progressively descend the page to move to the contact section
+    if (window.location.pathname == '/') {
+        $('.js-scrollTo').on('click', function() {
+            var page = $('.js-scrollTo').attr('href');
+            var anchor = page.substring(1, page.length);
+            var speed = 750;
+            $('html, body').animate({ scrollTop: $(anchor).offset().top }, speed);
+            return false;
+        });
+    }
+
+     /* Add background color to nav-item Pôles if the dropdown is expanded
+        by adding a class
+      */
+    $(document).mouseup(function(e){
+        var link = $("#navbarDropdownMenuLink");
+
+        // Remove the class
+        if(link.has(e.target).length === 0 && $('#poles').hasClass("show")){
+            $('#poles').removeClass('dropdown-click');
+        }
+        else if (link.is(e.target)) {   // Add the class
+            $('#poles').addClass('dropdown-click');
+        }
+    });
+
+
+    /* ##########################   Reset Projets filter   ########################## */
+    /*
+     * If reset value in select menu is selected the below code changes the
+     * text of the reset option and submit filter form.
+     */
+
+    /*** Reset pole filter ***/
+    $('#pole').change(function() {
+        // get the selected option
+        var pole = $("#pole option:selected");
+
+        // if the option has the name reset, change the text
+        if (pole.is('[name="reset"]') ) {
+            $('#pole option[name="reset"]').text('Pôle');
+            $('.filter-options').submit();
+        }
+    });
+
+    /*** Reset membre filter ***/
+    $('#membre').change(function() {
+        // get the selected option
+        var membre = $("#membre option:selected");
+
+        // if the option has the name reset, change the text
+        if (membre.is('[name="reset"]') ) {
+            $('#membre option[name="reset"]').text('Membre');
+            $('.filter-options').submit();
+        }
+    });
+
+    /*** Reset partner filter ***/
+    $('#partner').change(function() {
+        // get the selected option
+        var partner = $("#partner option:selected");
+
+        // if the option has the name reset, change the text
+        if (partner.is('[name="reset"]') ) {
+            $('#partner option[name="reset"]').text('Collaborateur');
+            $('.filter-options').submit();
+        }
+    });
+
+    /*** Reset trie filter ***/
+    $('#trie').change(function() {
+        // get the selected option
+        var trie = $("#trie option:selected");
+
+        // if the option has the name reset, change the text
+        if (trie.is('[name="reset"]') ) {
+            $('#trie option[name="reset"]').text('Trié par');
+            $('.filter-options').submit();
+        }
+    });
+
+
+	/* ##########################   Hide projects   ########################## */
+
+	$("div#proj-card:gt(7)").addClass("hid").hide();
+
+
+	//display more if the user click on the button
+	$("input#voir-plus").click(function(e) {
+		e.preventDefault();
+		$("div#proj-card.hid:lt(8)").fadeIn("slow").removeClass("hid");
+		if ($(".hid").length === 0)
+		{
+			$("div#line-btn-vp").remove();
+		}
+	});
+
+
+	$("div#cours-liste:gt(7)").addClass("hid").hide();
+
+	$("input#voir-plus").click(function(e) {
+		e.preventDefault();
+		$("div#cours-liste.hid:lt(8)").fadeIn("slow").removeClass("hid");
+		if ($(".hid").length === 0)
+		{
+			$("div#line-btn-vp").remove();
+		}
+	});
+
+
+
+
+	$('input[type="file"]#link_support').val('');
+
+
+	//Create checkbox for each file
+	$('input[type="file"]#link_support').change(function(e) {
+		if (e.target.files.length === 0)
+		{
+			$('#choose-visibility').hide();
+		}
+		else
+		{
+			$('#choose-visibility').fadeIn("slow");
+		}
+		$('div#choose-visibility').empty();
+		$(e.target.files).each(function () {
+			$('div#choose-visibility').append('<div>');
+			$('div#choose-visibility').append('<input type="checkbox" id="' + this.name + '" name="visibility[' + this.name +']" >');
+			$('div#choose-visibility').append('<label for="' + this.name + '">' + this.name + '</label>');
+			$('div#choose-visibility').append('</div>');
+		});
+	});
+
+	//////
+
+	$('button#submit-btn-crt-crs').click(function() {
+		parseDate(calendarDist.values, 'dates_dist');
+		parseDate(calendarPres.values, 'dates_pres');
+	});
+
+
+    $('#datepicker').datepicker({
+        startDate: new Date(),
+        multidate: true,
+        format: "dd/mm/yyyy",
+        daysOfWeekHighlighted: "5,6",
+        datesDisabled: ['31/08/2017'],
+        language: 'en'
+    }).on('changeDate', function(e) {
+        // `e` here contains the extra attributes
+        $(this).find('.input-group-addon .count').text(' ' + e.dates.length);
+    });
+	/* ########## Compétitions ##########*/
+
+	//Max 3 Images
+	$("button.compet").click(function(e){
+	    var $fileUpload = $("input#images");
+	    if (parseInt($fileUpload.get(0).files.length)>3){
+			e.preventDefault();
+			$("input#images").val('');
+			alert("3 images maximums !!");
+	    }
+	});
 });
-
-// TODO: vérifier si une date à été mises
-
-//["image1", "image2"]
