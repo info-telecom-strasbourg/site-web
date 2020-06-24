@@ -13,8 +13,10 @@ class PoleController extends Controller
         return Pole::all();
     }
 
-    public function show(Pole $pole)
+    public function show($pole)
     {
+		$pole = \DB::table('poles')->where('title', str_replace('_', ' ', $pole))->first();
+		$pole = Pole::find($pole->id);
 		if ($pole->specifique_display == 0)
         	return view('poles.show', compact('pole'));
 		else
