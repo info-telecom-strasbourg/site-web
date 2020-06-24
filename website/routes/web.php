@@ -17,28 +17,34 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/besoin-aide', function () {
+    return view('besoin-aide');
+});
+
+Route::get('/page-admin', function () {
+    return view('dark-page');
+})->middleware('admin');
+
 Auth::routes();
+
+Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register')->middleware('admin');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+/***** Route poles *****/
 Route::get('/poles', 'PoleController@index')->name('pole.index');
 
 Route::get('/poles/cours', 'CoursController@index')->name('poles.cours.index');
 
-// Route::get('/projets', 'ProjetController@index')->name('projets.index');
-// Route::get('/projets/{projet}', 'ProjetController@show')->name('projets.show');
-Route::get('/projets', function () {
-	return view('projets.index');
-})->name('projets.index');
 
 /*########## Cours ########## */
 Route::post('/poles/cours', 'CoursController@store')->name('poles.cours.store');
 
-Route::get('/poles/cours/create','CoursController@create')->name('poles.cours.create');
-Route::get('poles/cours/{cours}/edit', 'CoursController@edit')->name('poles.cours.edit');
+Route::get('/poles/cours/create','CoursController@create')->name('poles.cours.create')->middleware('can:create,App\Cours');
+Route::get('poles/cours/{cours}/edit', 'CoursController@edit')->name('poles.cours.edit')->middleware('can:update,cours');
 
 Route::get('/poles/cours/{cours}', 'CoursController@show')->name('poles.cours.show');
-Route::put('/poles/cours/{cours}', 'CoursController@update')->name('poles.cours.update');
+Route::put('/poles/cours/{cours}', 'CoursController@update')->name('poles.cours.update')->middleware('can:update,cours');
 
 
 
@@ -64,3 +70,12 @@ Route::get('/download/{path}', 'CoursController@downloadFile');
 Route::get('/test', function (){
 	return view('test');
 });
+
+/***** Route projets *****/
+Route::resources([
+    'projets' => "ProjetController"
+]);
+
+/***** Route users *****/
+Route::get('/users', 'UserController@index')->name('users.index');
+// Route::get('/users/{user}', 'UserController@show')->name('users.show');

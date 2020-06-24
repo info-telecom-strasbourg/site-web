@@ -10,6 +10,7 @@ Modification d'un cours
 	<h1 class="title lg text-center">
 		Modification du cours: {{ $cours->title }}
 	</h1>
+	<hr class="line-under-title">
 	<form class="" action="/poles/cours/{{ $cours->id }}" method="POST" enctype="multipart/form-data">
 		@csrf
 		@method('PUT')
@@ -42,6 +43,13 @@ Modification d'un cours
 
 		</div>
 
+		<div class="form-group">
+			<h4 class="title lg">
+				Changement de la vignette du cours
+			</h4>
+			<input type="file" id="image_crs" name="image_crs">
+		</div>
+
 		<!-- Pour ajouter un/des fichiers -->
 		<h4 class="title md text-left">Ajouter des fichiers</h4>
 		<div class="form-group">
@@ -49,42 +57,44 @@ Modification d'un cours
 		</div>
 
 		<!-- Pour supprimer des fichiers -->
-		<h4 class="title md text-left">Supprimer des fichiers</h4>
-		<div class="form-group" id="delete-files">
-			@forelse ( $cours->supports as $support )
-				<div>
-					<input type="checkbox" id="{{ $support->name }}" name="{{ $support->name }}" value="{{ $support->name }}">
-    				<label for="{{ $support->name }}">{{ $support->name }}</label>
-				</div>
-			@empty
-			<div>
-				Il n'y a aucun support pour ce cours.
+		@if(!empty($cours->supports[0]))
+			<h4 class="title md text-left">Supprimer des fichiers</h4>
+			<div class="form-group" id="delete-files">
+				@foreach ( $cours->supports as $support )
+					<div>
+						<input type="checkbox" id="{{ $support->name }}" name="del_file[]" value="{{ $support->name }}">
+	    				<label for="{{ $support->name }}">{{ $support->name }}</label>
+					</div>
+				@endforeach
 			</div>
-			@endforelse
-		</div>
+		@endif
 
 		<!-- Modifier les dates -->
-		<div class="dates-select">
-			<h4 class="title lg text-left">
-				Dates en présentiels
-			</h4>
-			<div class="dates-pres">
-				<div id="calendar-pres-upd">
-		        	<div id="cal-pres-dates-upd">
+		<div class="row justify-content-around dates-select">
+			<div class="col-md-auto">
+				<h4 class="title lg text-left">
+					Dates en présentiels
+				</h4>
+				<div class="dates-pres">
+					<div id="calendar-pres-upd">
+			        	<div id="cal-pres-dates-upd">
 
-		        	</div>
-    			</div>
+			        	</div>
+	    			</div>
+				</div>
 			</div>
 
-			<h4 class="title lg text-left">
-				Dates en distanciels
-			</h4>
-			<div class="dates-dist">
-				<div id="calendar-dist-upd">
-		        	<div id="cal-dist-dates-upd">
+			<div class="col-md-auto">
+				<h4 class="title lg text-left">
+					Dates en distanciels
+				</h4>
+				<div class="dates-dist">
+					<div id="calendar-dist-upd">
+			        	<div id="cal-dist-dates-upd">
 
-		        	</div>
-    			</div>
+			        	</div>
+	    			</div>
+				</div>
 			</div>
 		</div>
 

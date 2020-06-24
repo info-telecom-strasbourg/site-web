@@ -20,7 +20,7 @@ class CreateSupportsTable extends Migration
             $table->id();
 			$table->string('ref');
 			$table->boolean('visibility')->default(false);
-			$table->string('name');
+			$table->string('name')->unique();
 			$table->BigInteger('cours_id')->unsigned();
 
 			$table->foreign('cours_id')
