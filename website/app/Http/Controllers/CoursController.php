@@ -191,7 +191,7 @@ class CoursController extends Controller
 
 	public function changeImage(Cours $cours)
 	{
-		if (file_exists(storage_path('app/public/'.json_decode($cours->image)[0])))
+		if (file_exists(storage_path('app/public/'.json_decode($cours->image)[0])) && substr(json_decode($cours->image)[0],0,15) != "images/default/")
 			unlink(storage_path('app/public/'.json_decode($cours->image)[0]));
 
 		$cours->image = [$this->saveImage(request(),$cours)];
