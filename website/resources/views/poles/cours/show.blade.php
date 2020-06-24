@@ -32,12 +32,6 @@
 					@endif
 				</div>
 			</div>
-			
-			<div>
-				{{ asset('storage/'.json_decode($cours->image)[0]) }}
-				<img src="{{ asset('storage/'.json_decode($cours->image)[0]) }}" style="width: 100px; height: 100px;">
-			</div>
-
 
 			<!-- Dates en présentiels -->
 			<h4 class="title md text-left">Dates en présentiels</h4>
@@ -149,13 +143,13 @@
 					@endforeach
 				</div>
 			@endif
-			
+
 			@can('update', $cours)
 			<div class="text-center" style="margin-top:25px; margin-bottom:25px">
 				<a class="btn btn-primary btn-rounded" href="/poles/cours/{{ $cours->id }}/edit">Editer</a>
 			</div>
 			@endcan
-			
+
 		</div>
     </div>
 </div>

@@ -12,21 +12,48 @@
             <p>{{ $pole->desc }}</p>
             <h4 class="title md text-left">Liste des cours</h4>
 			<div class="container">
-				@forelse ($cours as $cour)
-					<div id="cours-liste" class="row align-items-center">
-						<div class="col-auto sep-chevr">
-							<i id="chevron-date-supports" class="fas fa-chevron-right fa-2x">
-							</i>
+				<div class="container pt-5">
+					<div class="row justify-content-center">
+
+						@if(isset($cours))
+							@forelse ($cours as $cour)
+
+								<div id="proj-card" class="col-md-auto sep-items">
+									<div class="card text-center rounded">
+										<img class="card-img-top" src="{{ asset('storage/'.json_decode($cour->image)[0]) }}" alt="Card image cap">
+										<div class="card-body d-flex flex-column">
+											<h5 class="card-title text-center font-weight-bold">
+												{{ $cour->title }}
+											</h5>
+											<p class="card-text">
+												<span>{{ mb_strlen( $cour->desc ) > 200 ? mb_substr($cour->desc, 0, 200) . ' ...' : $cour->desc }}
+				                                </span>
+											</p>
+											<a href="/poles/cours/{{ $cour->id }}" class="btn btn-rounded btn-primary" type="button">DÉCOUVRIR</a>
+										</div>
+								  	</div>
+								</div>
+							@empty
+
+							<div class="alert alert-secondary alert-dismissible fade show col" role="alert">
+								Aucun projets n'a été trouvé
+								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			    					<span aria-hidden="true">&times;</span>
+			  					</button>
+							</div>
+							@endforelse
+
+						@else
+						<div class="alert alert-secondary alert-dismissible fade show col" role="alert">
+							Aucun projets n'a été trouvé
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		    					<span aria-hidden="true">&times;</span>
+		  					</button>
 						</div>
-						<div class="col sep-chevr">
-							<a href="/poles/cours/{{ $cour->id }}" class="link-black">{{ $cour->title }}</a>
-						</div>
+
+						@endif
 					</div>
-				@empty
-					<div>
-						Il n'y a pas de cours disponibles.
-					</div>
-				@endforelse
+				</div>
 			</div>
 
 			@if(isset($cours) && $cours->count() > 8)

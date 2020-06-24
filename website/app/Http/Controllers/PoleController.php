@@ -15,7 +15,10 @@ class PoleController extends Controller
 
     public function show(Pole $pole)
     {
-        return view('poles.show', compact('pole'));
+		if ($pole->specifique_display == 0)
+        	return view('poles.show', compact('pole'));
+		else
+			return Redirect::back();
     }
 
     public function create()

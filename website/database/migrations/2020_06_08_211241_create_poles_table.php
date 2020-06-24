@@ -18,7 +18,7 @@ class CreatePolesTable extends Migration
             $table->string('title');
             $table->text('desc');
             $table->BigInteger('respo_id')->unsigned();
-			$table->boolean('spécifique_diplay');
+			$table->boolean('specifique_diplay');
             $table->foreign('respo_id')->references('id')->on('users');
         });
     }

@@ -153,7 +153,7 @@ class CoursController extends Controller
 
 
 		//delete all the dates
-		$cours->dates()->detach();
+		$cours->dates()->delete();
 
 		// change the dates
 		if (request()->has('dates_pres'))

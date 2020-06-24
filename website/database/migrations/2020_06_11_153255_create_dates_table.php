@@ -37,7 +37,8 @@ class CreateDatesTable extends Migration
 
 			$table->foreign('date_id')
                 ->references('id')
-                ->on('dates');
+                ->on('dates')
+				->onDelete('cascade');
         });
     }
 
@@ -49,6 +50,6 @@ class CreateDatesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('dates');
-        Schema::dropIfExists('dates_cours');
+		Schema::dropIfExists('dates_cours');
     }
 }
