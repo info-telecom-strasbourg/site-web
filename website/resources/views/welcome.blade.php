@@ -73,27 +73,27 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="card" id="cours-container">
-                <a class="card-img d-flex align-items-center justify-content-center rgba-black-strong py-5 px-4" href="#">
+                <a class="card-img d-flex align-items-center justify-content-center rgba-black-strong py-5 px-4" href="/poles/cours">
                     <h3 class="text-white text-center" id="web">Cours & Accompagnement</h3>
                 </a>
             </div>
             <div class="card" id="web-container">
-                <a class="card-img d-flex align-items-center justify-content-center rgba-black-strong py-5 px-4" href="#">
+                <a class="card-img d-flex align-items-center justify-content-center rgba-black-strong py-5 px-4" href="/poles/Applications_et_sites_Web">
                     <h3 class="text-white text-center" id="web">Applications & Sites Web</h3>
                 </a>
             </div>
             <div class="card" id="prog-container">
-                <a class="card-img d-flex align-items-center justify-content-center rgba-black-strong py-5 px-4" href="#">
+                <a class="card-img d-flex align-items-center justify-content-center rgba-black-strong py-5 px-4" href="/poles/Programmation_utilitaire">
                     <h3 class="text-white text-center" id="web">Programmation utilitaire</h3>
                 </a>
             </div>
             <div class="card" id="compet-container">
-                <a class="card-img d-flex align-items-center justify-content-center rgba-black-strong py-5 px-4" href="#">
+                <a class="card-img d-flex align-items-center justify-content-center rgba-black-strong py-5 px-4" href="/poles/compétitions">
                     <h3 class="text-white text-center" id="web">Compétitions</h3>
                 </a>
             </div>
             <div class="card" id="jeux-container">
-                <a class="card-img d-flex align-items-center justify-content-center rgba-black-strong py-5 px-4" href="#">
+                <a class="card-img d-flex align-items-center justify-content-center rgba-black-strong py-5 px-4" href="/poles/Jeux_vidéos">
                     <h3 class="text-white text-center" id="web">Jeux vidéos</h3>
                 </a>
             </div>
