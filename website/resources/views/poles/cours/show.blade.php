@@ -32,6 +32,11 @@
 					@endif
 				</div>
 			</div>
+			
+			<div>
+				{{ asset('storage/'.json_decode($cours->image)[0]) }}
+				<img src="{{ asset('storage/'.json_decode($cours->image)[0]) }}" style="width: 100px; height: 100px;">
+			</div>
 
 
 			<!-- Dates en présentiels -->
@@ -94,11 +99,24 @@
 
 
 			<!-- Références -->
-			<h4 class="title md text-left">Références</h4>
+			@if(isset($cours->links))
+				<h4 class="title md text-left">Références</h4>
+				@foreach (json_decode($cours->links, true) as $link)
+				<div class="row align-items-center">
+					<div class="col-auto sep-chevr">
+						<i id="chevron-date-supports" class="fas fa-chevron-right fa-2x">
+						</i>
+					</div>
+					<div class="col sep-chevr">
+						<a href="{{ $link }}" class="link-black" target="_blank">{{ $link }}</a>
+					</div>
+				</div>
+				@endforeach
+			@endif
 
 
 			<!-- Supports -->
-			@if (isset ($cours->supports))
+			@if (!empty($cours->supports[0]))
 				<h4 class="title md text-left">Support</h4>
 				<!-- Bouton pour DL le support -->
 				<!-- TODO dans autres pages -->
@@ -111,7 +129,7 @@
 										<i id="chevron-date-supports" class="fas fa-chevron-right fa-2x"></i>
 									</div>
 									<div class="p-2 bd-highlight col sep-chevr">
-										<a class="link-black" href="/download/{{ $support->ref }}">
+										<a class="link-black" href="/download/{{ $support->id }}">
 											{{ $support->name }}
 										</a>
 										<!-- En discuter avec Clara !!!! Pb pour télécharger -->
@@ -131,7 +149,13 @@
 					@endforeach
 				</div>
 			@endif
-
+			
+			@can('update', $cours)
+			<div class="text-center" style="margin-top:25px; margin-bottom:25px">
+				<a class="btn btn-primary btn-rounded" href="/poles/cours/{{ $cours->id }}/edit">Editer</a>
+			</div>
+			@endcan
+			
 		</div>
     </div>
 </div>
