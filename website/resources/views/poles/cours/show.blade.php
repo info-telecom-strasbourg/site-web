@@ -37,18 +37,16 @@
 			<h4 class="title md text-left">Dates en présentiels</h4>
 			<div class="container">
 					@if(isset($cours))
-						@forelse ($cours->dates as $date)
-							@if ($date->presentiel == 1)
-								<div class="row align-items-center">
-									<div class="col-auto sep-chevr">
-										<i id="chevron-date-supports" class="fas fa-chevron-right fa-2x">
-										</i>
-									</div>
-									<div class="col sep-chevr">
-										{{ \Carbon\Carbon::parse($date->date)->translatedFormat('l d F Y') }}
-									</div>
+						@forelse ($cours->dates->where('presentiel', 1) as $date)
+							<div class="row align-items-center">
+								<div class="col-auto sep-chevr">
+									<i id="chevron-date-supports" class="fas fa-chevron-right fa-2x">
+									</i>
 								</div>
-							@endif
+								<div class="col sep-chevr">
+									{{ \Carbon\Carbon::parse($date->date)->translatedFormat('l d F Y') }}
+								</div>
+							</div>
 						@empty
 							<div>
 								Aucune date n'est prévue pour ce cours
@@ -63,21 +61,19 @@
 			</div>
 
 			<!-- Dates en distanciels -->
-			<h4 class="title md text-left">Dates en présentiels</h4>
+			<h4 class="title md text-left">Dates en distanciels</h4>
 			<div class="container">
 					@if(isset($cours))
-						@forelse ($cours->dates as $date)
-							@if ($date->presentiel == 0)
-								<div class="row align-items-center">
-									<div class="col-auto sep-chevr">
-										<i id="chevron-date-supports" class="fas fa-chevron-right fa-2x">
-										</i>
-									</div>
-									<div class="col sep-chevr">
-										{{ \Carbon\Carbon::parse($date->date)->translatedFormat('l d F Y') }}
-									</div>
+						@forelse ($cours->dates->where('presentiel', 0) as $date)
+							<div class="row align-items-center">
+								<div class="col-auto sep-chevr">
+									<i id="chevron-date-supports" class="fas fa-chevron-right fa-2x">
+									</i>
 								</div>
-							@endif
+								<div class="col sep-chevr">
+									{{ \Carbon\Carbon::parse($date->date)->translatedFormat('l d F Y') }}
+								</div>
+							</div>
 						@empty
 							<div>
 								Aucune date n'est prévue pour ce cours

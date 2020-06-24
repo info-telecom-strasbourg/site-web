@@ -51,73 +51,34 @@ class CoursController extends Controller
 	 */
 	public function store(Request $request)
 	{
-
 		$cours = Cours::create($this->validateCours());
 
 		// Create the supports if they exists
 		if ($request->has('link_support'))
-		{
-			foreach ($request->link_support as $file)
-			{
-				$path = Storage::putFile('supports', $file, 'private');
-				$name = $file->getClientOriginalName();
-				Support::create([ 'ref' => $path,
-					'visibility' => ($request->has('visibility')) ? array_key_exists($name, $request->visibility) : 0,
-					'name' => $name,
-					'cours_id' => $cours->id
-				]);
-			}
-		}
+			$this->saveFiles($request, $cours);
+
 
 		//Create the image if it exists
 		if($request->has('image_crs'))
-		{
-			$path = Storage::putFile('public/images', $request->image_crs, 'private');
-			$path = substr($path, 7);
-			$cours->image = [$path];
-		}
+			$cours->image = [$this->saveImage($request,$cours)];
 		else
-		{
 			$cours->image = ['images/default/'.strval(random_int ( 1 , 5 ).'.jpg')];
-		}
-
 		$cours->save();
 
 		//create the creators
 		foreach ($request->creators as $creator)
-		{
 			$cours->creators()->attach($creator);
-		}
 
 		// create the dates
-		if ($request->has('dates_pres'))
-		{
-			foreach ($request->dates_pres as $date)
-			{
-				$newDate = Date::create(['presentiel' => 1,
-					'date' => $date
-				]);
-				$cours->dates()->attach($newDate->id);
-			}
-		}
-
-		if ($request->has('dates_dist'))
-		{
-			foreach ($request->dates_dist as $date)
-			{
-				$newDate = Date::create([ 'presentiel' => 0,
-					'date' => $date
-				]);
-				$cours->dates()->attach($newDate->id);
-			}
-		}
+		$this->saveDates($request, $cours);
 
 		return redirect('/poles/cours');
 	}
 
 	public function edit(Cours $cours)
 	{
-		return view('poles.cours.edit',compact('cours'));
+		$users = User::all();
+		return view('poles.cours.edit',compact('cours', 'users'));
 	}
 
 	/**
@@ -127,56 +88,25 @@ class CoursController extends Controller
 	{
 		$cours->update($this->validateCours());
 
+		if (request()->has('link_support'))
+			$this->saveFiles(request(), $cours);
+
 		//Create the image if it exists
 		if(request()->has('image_crs'))
-		{
-			if (file_exists(storage_path('app/public/'.json_decode($cours->image)[0])))
-				unlink(storage_path('app/public/'.json_decode($cours->image)[0]));
-
-			$path = Storage::putFile('public/images', request()->image_crs, 'private');
-			$path = substr($path, 7);
-			$cours->image = [$path];
-			$cours->save();
-		}
+			$this->changeImage($cours);
 
 		//add and delete files
 		if (request()->has('del_file'))
-		{
-			foreach (request()->del_file as $file)
-			{
-				$fileToDel = \DB::table('supports')->where('name', $file)->first();
-				$fileToDel = Support::find($fileToDel->id);
-				unlink(storage_path('app/'.$fileToDel->ref));
-				$fileToDel->delete();
-			}
-		}
+			$this->deleteFiles();
 
+		if (request()->has('creators'))
+			$this->addCreators($cours);
 
 		//delete all the dates
 		$cours->dates()->delete();
 
 		// change the dates
-		if (request()->has('dates_pres'))
-		{
-			foreach (request()->dates_pres as $date)
-			{
-				$newDate = Date::create(['presentiel' => 1,
-					'date' => $date
-				]);
-				$cours->dates()->attach($newDate->id);
-			}
-		}
-
-		if (request()->has('dates_dist'))
-		{
-			foreach (request()->dates_dist as $date)
-			{
-				$newDate = Date::create([ 'presentiel' => 0,
-					'date' => $date
-				]);
-				$cours->dates()->attach($newDate->id);
-			}
-		}
+		$this->saveDates(request(), $cours);
 
 		return redirect('/poles/cours');
 	}
@@ -198,5 +128,73 @@ class CoursController extends Controller
 	{
 		$supp = Support::where('id', $id)->first();
 		return Storage::download($supp->ref, $supp->name);
+	}
+
+	public function saveFiles (Request $request, Cours $cours)
+	{
+		foreach ($request->link_support as $file)
+		{
+			$path = Storage::putFile('supports', $file, 'private');
+			$name = $file->getClientOriginalName();
+			Support::create([ 'ref' => $path,
+				'visibility' => ($request->has('visibility')) ? array_key_exists($name, $request->visibility) : 0,
+				'name' => $name,
+				'cours_id' => $cours->id
+			]);
+		}
+	}
+
+	public function saveImage (Request $request, Cours $cours)
+	{
+		$path = Storage::putFile('public/images', $request->image_crs, 'private');
+		return substr($path, 7);
+	}
+
+	public function saveDates (Request $request, Cours $cours)
+	{
+		if (request()->has('dates_pres'))
+			foreach ($request->dates_pres as $date)
+			{
+				$newDate = Date::create(['presentiel' => 1,
+					'date' => $date
+				]);
+				$cours->dates()->attach($newDate->id);
+			}
+
+		if (request()->has('dates_dist'))
+			foreach ($request->dates_dist as $date)
+			{
+				$newDate = Date::create(['presentiel' => 0,
+					'date' => $date
+				]);
+				$cours->dates()->attach($newDate->id);
+			}
+	}
+
+	public function addCreators(Cours $cours)
+	{
+		foreach (request()->creators as $creator)
+			if ($cours->creators()->where('user_id',$creator)->count() == 0)
+				$cours->creators()->attach($creator);
+	}
+
+	public function deleteFiles()
+	{
+		foreach (request()->del_file as $file)
+		{
+			$fileToDel = \DB::table('supports')->where('name', $file)->first();
+			$fileToDel = Support::find($fileToDel->id);
+			unlink(storage_path('app/'.$fileToDel->ref));
+			$fileToDel->delete();
+		}
+	}
+
+	public function changeImage(Cours $cours)
+	{
+		if (file_exists(storage_path('app/public/'.json_decode($cours->image)[0])))
+			unlink(storage_path('app/public/'.json_decode($cours->image)[0]));
+
+		$cours->image = [$this->saveImage(request(),$cours)];
+		$cours->save();
 	}
 }
