@@ -46,7 +46,7 @@ Création d'un cours
 		<h4 class="title lg text-left">
 			Créateurs
 		</h4>
-		<select class="form-control" name="creators[]" id="creators" multiple required>
+		<select class="form-control" name="creators[]" id="creators" required multiple>
             <option readonly selected hidden value="">Créateurs</option>
 
             @isset($users)

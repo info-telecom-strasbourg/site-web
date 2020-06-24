@@ -190,6 +190,11 @@ $('div.e-control.e-calendar.e-lib.e-keyboard').each(function () {
 $('button.e-today').remove();
 $('#choose-visibility').hide();
 
+/* ##########################   Hide projects   ########################## */
+
+$("div#proj-card:gt(5)").addClass("hid").hide();
+$("div#cours-liste:gt(5)").addClass("hid").hide();
+
 
 
 
@@ -371,15 +376,10 @@ $(document).ready(function() {
     });
 
 
-	/* ##########################   Hide projects   ########################## */
-
-	$("div#proj-card:gt(7)").addClass("hid").hide();
-
-
 	//display more if the user click on the button
 	$("input#voir-plus").click(function(e) {
 		e.preventDefault();
-		$("div#proj-card.hid:lt(8)").fadeIn("slow").removeClass("hid");
+		$("div#proj-card.hid:lt(6)").fadeIn("slow").removeClass("hid");
 		if ($(".hid").length === 0)
 		{
 			$("div#line-btn-vp").remove();
@@ -387,11 +387,9 @@ $(document).ready(function() {
 	});
 
 
-	$("div#cours-liste:gt(7)").addClass("hid").hide();
-
 	$("input#voir-plus").click(function(e) {
 		e.preventDefault();
-		$("div#cours-liste.hid:lt(8)").fadeIn("slow").removeClass("hid");
+		$("div#cours-liste.hid:lt(6)").fadeIn("slow").removeClass("hid");
 		if ($(".hid").length === 0)
 		{
 			$("div#line-btn-vp").remove();

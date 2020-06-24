@@ -64,6 +64,12 @@
 		        </div>
 			@endif
 
+			@auth
+				<div class="text-center" style="margin-top:25px; margin-bottom:25px">
+					<a class="btn btn-primary btn-rounded" href="/poles/cours/create">Créer un cours</a>
+				</div>
+			@endauth
+
 
 	    </div>
 	</div>

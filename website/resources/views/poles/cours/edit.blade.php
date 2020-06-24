@@ -43,6 +43,19 @@ Modification d'un cours
 
 		</div>
 
+		<h4 class="title lg text-left">
+			Ajouter des créateurs
+		</h4>
+		<select class="form-control" name="creators[]" id="creators" multiple>
+            <option readonly selected hidden value="">Créateurs</option>
+
+            @isset($users)
+                @foreach ($users as $user)
+                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                @endforeach
+            @endisset
+        </select>
+
 		<div class="form-group">
 			<h4 class="title lg">
 				Changement de la vignette du cours
@@ -54,6 +67,8 @@ Modification d'un cours
 		<h4 class="title md text-left">Ajouter des fichiers</h4>
 		<div class="form-group">
 			<input type="file" id="link_support" name="link_support[]" multiple>
+		</div>
+		<div class="form-group" id="choose-visibility">
 		</div>
 
 		<!-- Pour supprimer des fichiers -->
