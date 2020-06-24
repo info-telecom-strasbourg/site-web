@@ -31,7 +31,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="/poles/cours">Cours & Accompagnements</a>
-                    <a class="dropdown-item" href="/poles/Applications_et_sitesWeb">Applications & Sites Web</a>
+                    <a class="dropdown-item" href="/poles/Applications_et_sites_Web">Applications & Sites Web</a>
                     <a class="dropdown-item" href="/poles/Programmation_utilitaire">Programmation utilitaire</a>
                     <a class="dropdown-item" href="/poles/compétitions">Compétitions</a>
                     <a class="dropdown-item" href="/poles/Jeux_vidéos">Jeux Vidéos</a>
