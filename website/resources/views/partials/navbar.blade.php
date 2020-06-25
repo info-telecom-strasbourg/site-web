@@ -29,11 +29,12 @@
                 <a id="navbarDropdownMenuLink" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                     PÔLES
                 </a>
+				<!-- TODO tout mettre en minuscule dans lien et bdd -->
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="/poles/cours">Cours & Accompagnements</a>
                     <a class="dropdown-item" href="/poles/Applications_et_sites_Web">Applications & Sites Web</a>
                     <a class="dropdown-item" href="/poles/Programmation_utilitaire">Programmation utilitaire</a>
-                    <a class="dropdown-item" href="/poles/compétitions">Compétitions</a>
+                    <a class="dropdown-item" href="/poles/Compétitions">Compétitions</a>
                     <a class="dropdown-item" href="/poles/Jeux_vidéos">Jeux Vidéos</a>
                 </div>
             </li>

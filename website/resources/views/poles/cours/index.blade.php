@@ -5,7 +5,7 @@
 
     <div class="content-fluid">
         <h1 class="title lg text-center">
-            Pôle {{ $pole->title }}
+            Pôle {{ ucfirst($pole->title) }}
         </h1>
         <hr class="line-under-title">
         <div>
@@ -56,7 +56,7 @@
 				</div>
 			</div>
 
-			@if(isset($cours) && $cours->count() > 8)
+			@if(isset($cours) && $cours->count() > 6)
 		        <div id="line-btn-vp" class="d-flex justify-content-center">
 		          <div class="p-2 bd-highlight flex-grow-1"><hr class="line-voir-plus"></div>
 		          <div class="p-2 bd-highlight"><input id="voir-plus" class="btn btn-rounded btn-primary" type="button" value="Voir-plus"></div>
