@@ -46,12 +46,12 @@ Création d'un cours
 		<h4 class="title lg text-left">
 			Créateurs
 		</h4>
-		<select class="form-control" name="creators[]" id="creators" required multiple>
+		<select class="custom-select" name="creators[]" id="creators" size="4" required multiple>
             <option readonly selected hidden value="">Créateurs</option>
 
             @isset($users)
                 @foreach ($users as $user)
-                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                    <option value="{{ $user->id }}" {{ auth()->user()->is($user) ? 'selected' : '' }}>{{ $user->name }}</option>
                 @endforeach
             @endisset
         </select>
