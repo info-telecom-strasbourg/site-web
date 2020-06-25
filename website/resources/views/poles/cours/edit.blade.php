@@ -77,7 +77,7 @@ Modification d'un cours
 			<div class="form-group" id="delete-files">
 				@foreach ( $cours->supports as $support )
 					<div>
-						<input type="checkbox" id="{{ $support->name }}" name="del_file[]" value="{{ $support->name }}">
+						<input type="checkbox" id="{{ $support->name }}" name="del_file[]" value="{{ $support->ref }}">
 	    				<label for="{{ $support->name }}">{{ $support->name }}</label>
 					</div>
 				@endforeach
