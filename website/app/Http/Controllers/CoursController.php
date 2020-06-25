@@ -97,7 +97,7 @@ class CoursController extends Controller
 
 		//add and delete files
 		if (request()->has('del_file'))
-			$this->deleteFiles();
+			$this->deleteFiles($cours);
 
 		if (request()->has('creators'))
 			$this->addCreators($cours);
@@ -119,10 +119,8 @@ class CoursController extends Controller
 
 		foreach ($cours->supports as $file)
 		{
-			$fileToDel = \DB::table('supports')->where('id', $file->id)->first();
-			$fileToDel = Support::find($fileToDel->id);
-			unlink(storage_path('app/'.$fileToDel->ref));
-			$fileToDel->delete();
+			unlink(storage_path('app/'.$file->ref));
+			$file->delete();
 		}
 		$cours->delete();
 		return redirect('/poles/cours');
@@ -190,12 +188,11 @@ class CoursController extends Controller
 				$cours->creators()->attach($creator);
 	}
 
-	public function deleteFiles()
+	public function deleteFiles(Cours $cours)
 	{
 		foreach (request()->del_file as $file)
 		{
-			$fileToDel = \DB::table('supports')->where('name', $file)->first();
-			$fileToDel = Support::find($fileToDel->id);
+			$fileToDel = $cours->supports->where('ref', $file)->first();
 			unlink(storage_path('app/'.$fileToDel->ref));
 			$fileToDel->delete();
 		}
