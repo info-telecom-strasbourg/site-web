@@ -108,12 +108,24 @@ class CoursController extends Controller
 		// change the dates
 		$this->saveDates(request(), $cours);
 
-		return redirect('/poles/cours');
+		return redirect('/poles/cours/'.$cours->id);
 	}
 
-	public function destroy()
+	public function destroy(Cours $cours)
 	{
+		$cours->dates()->delete();
+		if (file_exists(storage_path('app/public/'.json_decode($cours->image)[0])) && substr(json_decode($cours->image)[0],0,15) != "images/default/")
+			unlink(storage_path('app/public/'.json_decode($cours->image)[0]));
 
+		foreach ($cours->supports as $file)
+		{
+			$fileToDel = \DB::table('supports')->where('id', $file->id)->first();
+			$fileToDel = Support::find($fileToDel->id);
+			unlink(storage_path('app/'.$fileToDel->ref));
+			$fileToDel->delete();
+		}
+		$cours->delete();
+		return redirect('/poles/cours');
 	}
 
 	public function validateCours ()
