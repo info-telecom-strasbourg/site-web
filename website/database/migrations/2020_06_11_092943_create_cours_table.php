@@ -31,11 +31,13 @@ class CreateCoursTable extends Migration
 
 			$table->foreign('user_id')
                 ->references('id')
-                ->on('users');
+                ->on('users')
+				->onDelete('cascade');
 
 			$table->foreign('cours_id')
                 ->references('id')
-                ->on('cours');
+                ->on('cours')
+				->onDelete('cascade');
         });
     }
 
