@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\Request;
+
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
@@ -94,5 +97,37 @@ class RegisterController extends Controller
             'role_id' => $data['role'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+        /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function showRegistrationForm()
+    {
+        $roles = Role::all();
+        return view('auth.register', compact('roles'));
+    }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        if ($response = $this->registered($request, $user)) {
+            return $response;
+        }
+
+        return $request->wantsJson()
+                    ? new Response('', 201)
+                    : redirect($this->redirectPath());
     }
 }

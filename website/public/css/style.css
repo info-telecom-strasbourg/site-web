@@ -486,8 +486,8 @@ display: block;
 }
 
 #nos-projets .card {
-	width: 18rem;
-	margin: auto;
+    width: 16rem;
+    margin: auto;
 }
 
 @media (max-width: 1000px) and (min-width: 768px) {
@@ -1154,6 +1154,21 @@ a.link-black:hover {
 }
 
 .page-item.active .page-link {
-	background-color: #254395;
-	border-color: #254395;
+    background-color: #254395;
+    border-color: #254395;
+}
+
+/* ##########################   Projet show   ########################## */
+.user-link {
+    color: black;
+}
+
+.user-link:hover {
+    color: black;
+    text-decoration: none;
+    cursor: default;
+}
+
+.user-link .card:hover {
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
 }
