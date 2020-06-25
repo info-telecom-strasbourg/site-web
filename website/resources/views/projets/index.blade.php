@@ -118,10 +118,6 @@
 						</div>
 					@endforelse
 
-					<div class="row justify-content-center link-margin-top">
-						<!-- Pagination links -->
-						{{ $projets->links() }}
-					</div>
 				@else
 					<div class="alert alert-secondary alert-dismissible fade show col" role="alert">
 						Aucun projets n'a été trouvé
@@ -131,6 +127,10 @@
 					</div>
 				@endif
 			</div>
+			<div class="row justify-content-center link-margin-top">
+						<!-- Pagination links -->
+						{{ $projets->links() }}
+					</div>
 		</div>
 
     </div>

@@ -42,4 +42,4 @@ Route::resources([
 
 /***** Route users *****/
 Route::get('/users', 'UserController@index')->name('users.index');
-// Route::get('/users/{user}', 'UserController@show')->name('users.show');
+Route::get('/users/{user}', 'UserController@show')->name('users.show');
