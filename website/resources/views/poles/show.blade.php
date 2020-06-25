@@ -5,7 +5,7 @@
 
     <div class="content-fluid">
         <h1 class="title lg text-center">
-            Pôle {{ $pole->title }}
+            Pôle {{ ucfirst($pole->title) }}
         </h1>
         <hr class="line-under-title">
         <div>

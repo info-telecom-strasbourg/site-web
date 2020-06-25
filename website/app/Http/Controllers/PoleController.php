@@ -15,8 +15,7 @@ class PoleController extends Controller
 
     public function show($pole)
     {
-		$pole = \DB::table('poles')->where('title', str_replace('_', ' ', $pole))->first();
-		$pole = Pole::find($pole->id);
+		$pole = Pole::where('title', str_replace('_', ' ', $pole))->first();
 		if ($pole->specifique_display == 0)
         	return view('poles.show', compact('pole'));
 		else
