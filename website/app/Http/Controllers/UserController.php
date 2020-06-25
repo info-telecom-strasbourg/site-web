@@ -21,5 +21,9 @@ class UserController extends Controller
         return view('users.index', compact('users', 'nbUsers', 'search'));
     }
 
+    public function show(User $user)
+    {
+        return view('users.show', compact('user'));
+    }
 
 }

@@ -61,7 +61,7 @@
 						<h2 class="col-12 title-users">Bureau</h2>
 						@foreach ($bureaus as $bureau)
 							<div class="col-md-3 text-center user">
-								<a href="#" class="respo">
+								<a href="/users/{{ $bureau->id }}" class="respo">
 						            <img class="profil-rounded" src="images/defaut/profil.jpg">
 						            <p id="nom">{{ $bureau->name }}</p>
 						            <p id="fonction">{{ $bureau->role->role }}</p>
@@ -74,7 +74,7 @@
 						<h2 class="col-12 title-users">Responsables</h2>
 						@foreach ($respos as $respo)
 							<div class="col-md-3 text-center user">
-								<a href="#" class="respo">
+								<a href="/users/{{ $respo->id }}" class="respo">
 						            <img class="profil-rounded" src="images/defaut/profil.jpg">
 						            <p id="nom">{{ $respo->name }}</p>
 						            <p id="fonction">{{ $respo->role->role }}</p>
@@ -87,7 +87,7 @@
 						<h2 class="col-12 title-users">Membres</h2>
 						@foreach ($membres as $membre)
 							<div class="col-md-3 text-center user">
-								<a href="#" class="respo">
+								<a href="/users/{{ $membre->id }}" class="respo">
 						            <img class="profil-rounded" src="images/defaut/profil.jpg">
 						            <p id="nom">{{ $membre->name }}</p>
 						            <p id="fonction">{{ $membre->role->role }}</p>

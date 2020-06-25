@@ -21,18 +21,20 @@
         <h2>
             Chef de projet
         </h2>
-        <div class="card p-2 rounded" style="max-width: 220px;">
-            <div class="row no-gutters">
-                <div class="col-md-4" style="max-width: 60px;">
-                    <img src="/images/logo/logo.png" class="card-img">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title"> {{ $projet->chef->name }}</h5>
+        <a href="/users/{{ $projet->chef->id }}" class="user-link">
+            <div class="card p-2 rounded" style="max-width: 220px; cursor: pointer;">
+                <div class="row no-gutters align-items-center">
+                    <div class="col-md-4" style="max-width: 60px;">
+                        <img src="/images/defaut/profil.jpg" class="card-img">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title" style="margin-bottom: 0;"> {{ $projet->chef->name }}</h5>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </a>
         <hr />
         <h2>Participants</h2>
         @foreach ($projet->participants as $participant)
@@ -43,7 +45,7 @@
             <p>{{ $projet->collaborateur->name }}</p>
         @endif
         <h2>Le projet en images</h2>
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <div id="carouselExampleIndicators" class="carousel slide" data-interval="false">
             <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                 <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
