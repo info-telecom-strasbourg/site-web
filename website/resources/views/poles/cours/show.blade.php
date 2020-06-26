@@ -143,25 +143,26 @@
 				<div class="row align-items-center">
 					@if ($support->visibility == 1)
 					@auth
-					<div class="col-auto sep-chevr">
-						<i id="chevron-date-supports" class="fas fa-download fa-2x"></i>
-					</div>
-					<div class="bd-highlight col sep-chevr">
-						<a class="link-black" href="/download/{{ $support->id }}">
-							{{ $support->name }}
-						</a>
-						<!-- En discuter avec Clara !!!! Pb pour télécharger -->
-					</div>
+					<a class="link-black row align-items-center" href="/download/{{ $support->id }}">
+						<div class="col-auto sep-chevr">
+							<i id="chevron-date-supports" class="fas fa-download fa-2x"></i>
+						</div>
+						<div class="bd-highlight col sep-chevr">
+								{{ $support->name }}
+						</div>
+					</a>
+					<div class="w-100"></div>
 					@endauth
 					@else
-					<div class="col-auto sep-chevr">
-						<i id="chevron-date-supports" class="fas fa-download fa-2x"></i>
-					</div>
-					<div class="bd-highlight col sep-chevr">
-						<a class="link-black" href="/download/{{ $support->id }}">
-							{{ $support->name }}
-						</a>
-					</div>
+					<a class="link-black row align-items-center" href="/download/{{ $support->id }}">
+						<div class="col-auto sep-chevr">
+							<i id="chevron-date-supports" class="fas fa-download fa-2x"></i>
+						</div>
+						<div class="bd-highlight col sep-chevr">
+								{{ $support->name }}
+						</div>
+					</a>
+					<div class="w-100"></div>
 					@endif
 				</div>
 				@endforeach

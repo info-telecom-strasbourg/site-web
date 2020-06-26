@@ -1,3 +1,5 @@
+//Parse the datas from the calendar
+// From "sun jan 03 2020" to "2020-01-03"
 function parseDate (dateTable, inputName) {
 	$.each(dateTable, function ( index, value ) {
 		var str = value.toString();
@@ -46,10 +48,6 @@ function parseDate (dateTable, inputName) {
 	});
 }
 
-// Traduction des jours dans les calendriers
-
-// Traduction des mois
-
 var calendarPres = new ej.calendars.Calendar({
 		isMultiSelection: true,
 		values:[]
@@ -68,6 +66,7 @@ var calendarComp = new ej.calendars.Calendar({
 	});
 calendarComp.appendTo('#cal-comp-dates');
 
+// Traduction of the calendar
 $('div.e-day.e-title').each(function () {
 	var title = $(this).html();
 	var month = title.substring(0, title.length - 5);
@@ -124,6 +123,7 @@ $('div.e-day.e-title').each(function () {
 	});
 });
 
+// The traduction must be done each time the user press the button
 $('div.e-control.e-calendar.e-lib.e-keyboard').each(function () {
 	$(this).click(function () {
 		$('div.e-day.e-title').each(function () {
@@ -425,15 +425,16 @@ $(document).ready(function() {
 		else
 			$('div.to-hide').fadeIn("slow");
 
-			$('div#new-files').remove();
+		$('div#new-files').remove();
+
 		$(e.target.files).each(function () {
 			$('div#choose-new-statut').append('<div id="new-files" class="row justify-content-start">\
 				<div class="col-auto">' + this.name +'</div>\
 				<div class="col-auto">\
 					<div class="form-group">\
-						<select class="form-control form-control-sm" name="'+ this.name + '">\
-							<option value="1">Public</option>\
-							<option value="2" selected>Privé</option>\
+						<select class="form-control form-control-sm" name="visibility_new[]">\
+							<option value="0">Public</option>\
+							<option value="1" selected>Privé</option>\
 						</select>\
 					</div>\
 				</div>\

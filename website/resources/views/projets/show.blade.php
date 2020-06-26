@@ -20,20 +20,20 @@
         <p>{{ $projet->desc }}</p>
         <div class="bordure"></div>
         <h4 class="title md text-center">Chef de projet</h4>
-        <a href="/users/{{ $projet->chef->id }}" class="user-link">
-            <div class="card p-2 rounded" style="max-width: 220px; cursor: pointer;">
-                <div class="row no-gutters align-items-center" style="flex-wrap: unset">
-                    <div class="col-md-4" style="max-width: 60px;">
-                        <img src="/images/defaut/profil.jpg" class="card-img">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <p class="card-title" style="margin-bottom: 0;"> {{ $projet->chef->name }}</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="card p-2 rounded chef-projet" style="max-width: 220px; cursor: pointer;">
+				<a href="/users/{{ $projet->chef->id }}" class="user-link">
+	                <div class="row no-gutters align-items-center" style="flex-wrap: unset">
+	                    <div class="col-md-4" style="max-width: 60px;">
+	                        <img src="/images/defaut/profil.jpg" class="card-img">
+	                    </div>
+	                    <div class="col-md-8">
+	                        <div class="card-body">
+	                            <p class="card-title" style="margin-bottom: 0;"> {{ $projet->chef->name }}</p>
+	                        </div>
+	                    </div>
+	                </div>
+				</a>
             </div>
-        </a>
 
         @if(!$projet->participants->isEmpty())
         <div class="bordure"></div>
