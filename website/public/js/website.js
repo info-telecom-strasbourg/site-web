@@ -49,6 +49,66 @@ function parseDate (dateTable, inputName) {
 	});
 }
 
+/*** Translate the calendars ***/
+function translateCalendar (that) {
+	var title = that.html();
+	var month = title.substring(0, title.length - 5);
+	var year = title.substring(title.length - 5, title.length);
+	that.empty();
+	switch (month) {
+		case 'January':
+			that.append('Janvier' + year);
+			break;
+		case 'February':
+			that.append('Févrirer' + year);
+			break;
+		case 'March':
+			that.append('Mars' + year);
+			break;
+		case 'April':
+			that.append('Avril' + year);
+			break;
+		case 'May':
+			that.append('Mai' + year);
+			break;
+		case 'June':
+			that.append('Juin' + year);
+			break;
+		case 'July':
+			that.append('Juillet' + year);
+			break;
+		case 'August':
+			that.append('Août' + year);
+			break;
+		case 'September':
+			that.append('Septembre' + year);
+			break;
+		case 'October':
+			that.append('Octobre' + year);
+			break;
+		case 'November':
+			that.append('Novembre' + year);
+			break;
+		case 'December':
+			that.append('Decembre' + year);
+			break;
+		default:
+			that.append(month + year);
+	}
+	$('thead.e-week-header').each(function () {
+		$(this).empty();
+		$(this).append('<tr>');
+		$(this).append('<th>Di</th>');
+		$(this).append('<th>Lu</th>');
+		$(this).append('<th>Ma</th>');
+		$(this).append('<th>Me</th>');
+		$(this).append('<th>Je</th>');
+		$(this).append('<th>Ve</th>');
+		$(this).append('<th>Sa</th>');
+		$(this).append('</tr>');
+	});
+}
+
 /*** Create variables to store the informations from the calendars ***/
 
 var calendarPres = new ej.calendars.Calendar({
@@ -71,121 +131,14 @@ calendarComp.appendTo('#cal-comp-dates');
 
 /*** Translate the calendar after the user changed the month ***/
 $('div.e-day.e-title').each(function () {
-	var title = $(this).html();
-	var month = title.substring(0, title.length - 5);
-	var year = title.substring(title.length - 5, title.length);
-	$(this).empty();
-	switch (month) {
-		case 'January':
-			$(this).append('Janvier' + year);
-			break;
-		case 'February':
-			$(this).append('Févrirer' + year);
-			break;
-		case 'March':
-			$(this).append('Mars' + year);
-			break;
-		case 'April':
-			$(this).append('Avril' + year);
-			break;
-		case 'May':
-			$(this).append('Mai' + year);
-			break;
-		case 'June':
-			$(this).append('Juin' + year);
-			break;
-		case 'July':
-			$(this).append('Juillet' + year);
-			break;
-		case 'August':
-			$(this).append('Août' + year);
-			break;
-		case 'September':
-			$(this).append('Septembre' + year);
-			break;
-		case 'October':
-			$(this).append('Octobre' + year);
-			break;
-		case 'November':
-			$(this).append('Novembre' + year);
-			break;
-		case 'December':
-			$(this).append('Decembre' + year);
-	}
-	$('thead.e-week-header').each(function () {
-		$(this).empty();
-		$(this).append('<tr>');
-		$(this).append('<th>Di</th>');
-		$(this).append('<th>Lu</th>');
-		$(this).append('<th>Ma</th>');
-		$(this).append('<th>Me</th>');
-		$(this).append('<th>Je</th>');
-		$(this).append('<th>Ve</th>');
-		$(this).append('<th>Sa</th>');
-		$(this).append('</tr>');
-	});
+	translateCalendar($(this));
 });
 
 /*** Translate the calendar after the user changed the month ***/
 $('div.e-control.e-calendar.e-lib.e-keyboard').each(function () {
 	$(this).click(function () {
 		$('div.e-day.e-title').each(function () {
-			var title = $(this).html();
-			var month = title.substring(0, title.length - 5);
-			var year = title.substring(title.length - 5, title.length);
-			$(this).empty();
-			switch (month) {
-				case 'January':
-					$(this).append('Janvier' + year);
-					break;
-				case 'February':
-					$(this).append('Févrirer' + year);
-					break;
-				case 'March':
-					$(this).append('Mars' + year);
-					break;
-				case 'April':
-					$(this).append('Avril' + year);
-					break;
-				case 'May':
-					$(this).append('Mai' + year);
-					break;
-				case 'June':
-					$(this).append('Juin' + year);
-					break;
-				case 'July':
-					$(this).append('Juillet' + year);
-					break;
-				case 'August':
-					$(this).append('Août' + year);
-					break;
-				case 'September':
-					$(this).append('Septembre' + year);
-					break;
-				case 'October':
-					$(this).append('Octobre' + year);
-					break;
-				case 'November':
-					$(this).append('Novembre' + year);
-					break;
-				case 'December':
-					$(this).append('Decembre' + year);
-					break;
-				default:
-					$(this).append(month + year);
-			}
-			$('thead.e-week-header').each(function () {
-				$(this).empty();
-				$(this).append('<tr>');
-				$(this).append('<th>Di</th>');
-				$(this).append('<th>Lu</th>');
-				$(this).append('<th>Ma</th>');
-				$(this).append('<th>Me</th>');
-				$(this).append('<th>Je</th>');
-				$(this).append('<th>Ve</th>');
-				$(this).append('<th>Sa</th>');
-				$(this).append('</tr>');
-			});
+			translateCalendar($(this));
 		});
 	});
 });
