@@ -405,21 +405,50 @@ $(document).ready(function() {
 	//Create checkbox for each file
 	$('input[type="file"]#link_support').change(function(e) {
 		if (e.target.files.length === 0)
-		{
 			$('#choose-visibility').hide();
-		}
 		else
-		{
 			$('#choose-visibility').fadeIn("slow");
-		}
+
 		$('div#choose-visibility').empty();
 		$(e.target.files).each(function () {
-			$('div#choose-visibility').append('<div>');
-			$('div#choose-visibility').append('<input type="checkbox" id="' + this.name + '" name="visibility[' + this.name +']" >');
-			$('div#choose-visibility').append('<label for="' + this.name + '">' + this.name + '</label>');
-			$('div#choose-visibility').append('</div>');
+			$('div#choose-visibility').append('<div>\
+				<input type="checkbox" id="' + this.name + '" name="visibility[' + this.name +']" >\
+				<label for="' + this.name + '">' + this.name + '</label>\
+			</div>');
 		});
 	});
+
+	$('input[type="file"]#link_support_mod').change(function(e) {
+
+		$(e.target.files).each(function () {
+			$('div#choose-new-statut').append('<div class="row justify-content-start">\
+				<div class="col-auto">' + this.name +'</div>\
+				<div class="col-auto">\
+					<div class="form-group">\
+						<select class="form-control form-control-sm" name="'+ this.name + '">\
+							<option value="1">Public</option>\
+							<option value="2" selected>Privé</option>\
+						</select>\
+					</div>\
+				</div>\
+				</div>');
+		});
+	});
+
+	// <div class="row justify-content-start">
+	// 	<div class="col-auto">
+	// 		{{ $support->name }}
+	// 	</div>
+	// 	<div class="col-auto">
+	// 		<div class="form-group">
+	// 			<select class="form-control form-control-sm" name="{{ $support->name }}">
+	// 				<option value="1" {{ $support->visibility == 0 ? 'selected' : ' '}}>Public</option>
+	// 				<option value="2" {{ $support->visibility == 1 ? 'selected' : ' '}}>Privé</option>
+	// 				<option value="3">Supprimer</option>
+	// 			</select>
+	// 		</div>
+	// 	</div>
+	// </div>
 
 	//////
 
