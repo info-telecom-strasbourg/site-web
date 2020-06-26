@@ -173,6 +173,9 @@
 			<div class="text-center" style="margin-top:25px; margin-bottom:25px">
 				<a class="btn btn-primary btn-rounded" href="/poles/cours/{{ $cours->id }}/edit">Editer</a>
 			</div>
+			<div class="text-center" style="margin-top:25px; margin-bottom:25px">
+				<a class="btn btn-primary btn-rounded" href="/poles/cours/{{ $cours->id }}/destroy">Supprimer</a>
+			</div>
 			@endcan
 
 		</div>
