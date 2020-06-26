@@ -86,11 +86,42 @@ class CoursController extends Controller
 	 */
 	public function update(Cours $cours)
 	{
-		dd(request());
+		if (request()->has('link_support'))
+		{
+			foreach(request()->link_support as $key => $file)
+			{
+				$path = Storage::putFile('supports', $file, 'private');
+				$name = $file->getClientOriginalName();
+				Support::create([ 'ref' => $path,
+				'visibility' => request()->visibility_new[$key],
+				'name' => $name,
+				'cours_id' => $cours->id
+				]);
+			}
+		}
+
+		if (request()->has('visibility_change'))
+		{
+			foreach (request()->visibility_change as $key => $value)
+			{
+				$file = Support::find($key);
+				// If the value is 2, then the user want to delete the file, else,
+				// he want to change the visibility
+				if ($value == 2)
+				{
+					unlink(storage_path('app/'.$file->ref));
+					$file->delete();
+				}
+				else
+				{
+					$file->visibility = $value;
+					$file->save();
+				}
+			}
+		}
+
 		$cours->update($this->validateCours());
 
-		if (request()->has('link_support'))
-			$this->saveFiles(request(), $cours);
 
 		//Create the image if it exists
 		if(request()->has('image_crs'))

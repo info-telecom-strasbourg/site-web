@@ -80,18 +80,14 @@ Modification d'un cours
 				</div>
 				<div class="col-auto">
 					<div class="form-group">
-						<select class="form-control form-control-sm" name="mod_vis[{{ $support->id }}]">
-							<option value="1" {{ $support->visibility == 0 ? 'selected' : ' '}}>Public</option>
-							<option value="2" {{ $support->visibility == 1 ? 'selected' : ' '}}>Privé</option>
-							<option value="3">Supprimer</option>
+						<select class="form-control form-control-sm" name="visibility_change[{{ $support->id }}]">
+							<option value="0" {{ $support->visibility == 0 ? 'selected' : ' '}}>Public</option>
+							<option value="1" {{ $support->visibility == 1 ? 'selected' : ' '}}>Privé</option>
+							<option value="2">Supprimer</option>
 						</select>
 					</div>
 				</div>
 			</div>
-			<!-- <div>
-				<input type="checkbox" id="{{ $support->name }}" name="del_file[]" value="{{ $support->ref }}">
-				<label for="{{ $support->name }}">{{ $support->name }}</label>
-			</div> -->
 		@empty
 
 		@endforelse
@@ -133,7 +129,7 @@ Modification d'un cours
 
 
 		<div class="text-center" style="margin-top:25px; margin-bottom:25px">
-			<button id="submit-btn-edt-crs" type="submit" class="btn btn-primary btn-rounded">Edit</button>
+			<button id="submit-btn-edt-crs" type="submit" class="btn btn-primary btn-rounded">Enregistrer</button>
 		</div>
 	</form>
 </div>

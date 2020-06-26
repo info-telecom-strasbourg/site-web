@@ -354,10 +354,10 @@
     <h1 class="title lg text-center"> Le mot du Directeur </h1>
     <hr class="line-under-title">
     <div class="directeur">
-        <h5> L’Association d’Informatique de Télécom Physique Strasbourg a tout mon soutien et je salue ses projets particulièrement ambitieux.<br><br>
+        <p style="font-style: italic;"> "L’Association d’Informatique de Télécom Physique Strasbourg a tout mon soutien et je salue ses projets particulièrement ambitieux.<br><br>
             Ce projet associatif renforcera j’en suis certain l’entraide entre élèves-ingénieurs et par là même leur sentiment d’appartenance à une grande école d'ingénieurs.<br><br>
             Les 5 Pôles mis en place permettent aux élèves de mettre en pratique et compléter leur formation académique, que ce soit à travers le développement de programmes utiles, de jeux vidéo, d’applications mobiles ou de site Web.<br><br>
-            J’encourage particulièrement la participation à des compétitions informatiques bénéfiques à la visibilité de Télécom Physique Strasbourg et de son Département Informatique et Réseaux.<br><br>Vous pourrez compter sur le soutien de votre directeur ! </h5>
+            J’encourage particulièrement la participation à des compétitions informatiques bénéfiques à la visibilité de Télécom Physique Strasbourg et de son Département Informatique et Réseaux.<br><br>Vous pourrez compter sur le soutien de votre directeur !"</p>
         <img class="profil-rounded" src="/images/logo/collet.jpg">
         <p id="nom"> Christophe Collet </p>
         <p id="fonction">Directeur de l’école d’ingénieurs Télécom Physique Strasbourg</p>
