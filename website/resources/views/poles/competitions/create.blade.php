@@ -33,7 +33,7 @@ Création d'une compétition
 			</h4>
 
 			<div class="control">
-				<textarea class="desc @error('desc') is-invalid @enderror" id="desc" name="desc" rows="3" required>{{ old('desc') }}</textarea>
+				<textarea class="form-control desc @error('desc') is-invalid @enderror" id="desc" name="desc" rows="5" required>{{ old('desc') }}</textarea>
 			</div>
 
 			@error('desc')

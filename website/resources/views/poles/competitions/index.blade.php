@@ -10,24 +10,25 @@
         <hr class="line-under-title">
         <div>
             <p>{{ $pole->desc }}</p>
-            <h4 class="title md text-left">Liste des cours</h4>
-			<div class="container">
-				@forelse ($compets as $compet)
-					<div class="row align-items-center">
+            <h4 class="title md text-left">Liste des compétitions</h4>
+			<dl class="container">
+				@foreach ($compets as $compet)
+					<dt class="row align-items-center">
 						<div class="col-auto sep-chevr">
 							<i id="chevron-date-supports" class="fas fa-chevron-right fa-2x">
 							</i>
 						</div>
 						<div class="col sep-chevr">
-							<a href="/poles/cours/{{ $compet->id }}" class="link-black">{{ $compet->title }}</a>
+							<a href="/poles/compétitions/{{ $compet->id }}" class="link-black">{{ $compet->title }}</a>
 						</div>
-					</div>
-				@empty
-					<div>
-						Il n'y a pas de compétitions disponibles.
-					</div>
-				@endforelse
-			</div>
+                        <div class="col sep-chevr">
+						</div>
+					</dt>
+                    <dd>
+                        {{ $compet->desc }}
+                    </dd>
+				@endforeach
+			</dl>
 	    </div>
 	</div>
 </div>
