@@ -21,9 +21,9 @@ class CompetitionController extends Controller
 	/**
 	 * Show a competition
 	 */
-	public function show(Competition $compet)
+	public function show(Competition $competition)
 	{
-		return view('poles.competition.show', compact('compet'));
+		return view('poles.competitions.show', [ 'compet' => $competition ]);
 	}
 
 	/**
@@ -42,12 +42,12 @@ class CompetitionController extends Controller
 		$validation = $this->validateCompetiton();
 		dd('OK');
 		Competition::create($this->validateCompetiton());
-		return redirect('poles.competition.index');
+		return redirect('poles.competitions.index');
 	}
 
 	public function edit(Competition $compet)
 	{
-		redirect('poles.competition.edit', compact('compet'));
+		redirect('poles.competitions.edit', compact('compet'));
 	}
 
 	public function update(Cours $cours)
