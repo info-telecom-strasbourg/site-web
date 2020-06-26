@@ -22,7 +22,7 @@
 
 							<div id="proj-card" class="col-md-auto sep-items">
 								<div class="card text-center rounded">
-									<img class="card-img-top" src="/images/projets/Objection.png" alt="Card image cap">
+									<img class="card-img-top" src="{{ asset('storage/'.json_decode($projet->images)[0]) }}" alt="Card image cap">
 									<div class="card-body d-flex flex-column">
 										<h5 class="card-title text-center font-weight-bold">
 											{{ $projet->title }}
@@ -75,14 +75,14 @@
 					{{ $pole->respo->name }}
 				</a>
 			</div>
-			<div class="text-center">
-				<button type="submit" class="btn btn-primary btn-rounded" onclick="self.location.href='/poles/{{ $pole->id }}/edit'">Edit</button>
-			</div>
+			@auth
+			@if ( $pole->respo->id == Auth::user()->id)
+				<div class="text-center">
+					<button type="submit" class="btn btn-primary btn-rounded" onclick="self.location.href='/poles/{{ $pole->id }}/edit'">Edit</button>
+				</div>
+			@endif
+			@endauth
         </div>
-
-
-
-
 
     </div>
 </div>

@@ -31,7 +31,7 @@
 							<div class="card p-2 rounded" style="max-width: 220px; cursor: pointer;">
 								<div class="row no-gutters align-items-center" style="flex-wrap: unset">
 									<div class="col-md-4" style="max-width: 60px;">
-										<img src="/images/defaut/profil.jpg" class="card-img">
+										<img src="{{ asset('storage/'.json_decode($creator->profil_picture)[0]) }}" class="card-img">
 									</div>
 									<div class="col-md-8">
 										<div class="card-body">
