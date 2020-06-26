@@ -1,5 +1,6 @@
-//Parse the datas from the calendar
-// From "sun jan 03 2020" to "2020-01-03"
+/*** Parse the datas from the calendar
+	 From "sun jan 03 2020" to "2020-01-03"
+***/
 function parseDate (dateTable, inputName) {
 	$.each(dateTable, function ( index, value ) {
 		var str = value.toString();
@@ -48,6 +49,8 @@ function parseDate (dateTable, inputName) {
 	});
 }
 
+/*** Create variables to store the informations from the calendars ***/
+
 var calendarPres = new ej.calendars.Calendar({
 		isMultiSelection: true,
 		values:[]
@@ -66,7 +69,7 @@ var calendarComp = new ej.calendars.Calendar({
 	});
 calendarComp.appendTo('#cal-comp-dates');
 
-// Traduction of the calendar
+/*** Translate the calendar after the user changed the month ***/
 $('div.e-day.e-title').each(function () {
 	var title = $(this).html();
 	var month = title.substring(0, title.length - 5);
@@ -123,7 +126,7 @@ $('div.e-day.e-title').each(function () {
 	});
 });
 
-// The traduction must be done each time the user press the button
+/*** Translate the calendar after the user changed the month ***/
 $('div.e-control.e-calendar.e-lib.e-keyboard').each(function () {
 	$(this).click(function () {
 		$('div.e-day.e-title').each(function () {
@@ -187,11 +190,17 @@ $('div.e-control.e-calendar.e-lib.e-keyboard').each(function () {
 	});
 });
 
+/*** Just to delete a button on the calendar ***/
 $('button.e-today').remove();
+
+/*** Hide the title to select files visibility in create page
+	If there is no file selected, it will remains hidden
+***/
 $('#choose-visibility').hide();
 
-/* ##########################   Hide projects   ########################## */
+/* ##########################   Hide projects/lessons   ########################## */
 
+/*** Hide the projects/lessons if there is more than 6***/
 $("div#proj-card:gt(5)").addClass("hid").hide();
 $("div#cours-liste:gt(5)").addClass("hid").hide();
 
@@ -376,19 +385,11 @@ $(document).ready(function() {
     });
 
 
-	//display more if the user click on the button
+	/*** If there is more than 6 lessons/projects, some are hidden.
+		 This function will display 6 more lessons ***/
 	$("input#voir-plus").click(function(e) {
 		e.preventDefault();
 		$("div#proj-card.hid:lt(6)").fadeIn("slow").removeClass("hid");
-		if ($(".hid").length === 0)
-		{
-			$("div#line-btn-vp").remove();
-		}
-	});
-
-
-	$("input#voir-plus").click(function(e) {
-		e.preventDefault();
 		$("div#cours-liste.hid:lt(6)").fadeIn("slow").removeClass("hid");
 		if ($(".hid").length === 0)
 		{
@@ -397,13 +398,12 @@ $(document).ready(function() {
 	});
 
 
-
-
+	/*** Remove the files selected if you refresh the page ***/
 	$('input[type="file"]#link_support').val('');
 	$('input[type="file"]#link_support_mod').val('');
 
 
-	//Create checkbox for each file
+	/*** Create checkbox for each file to choose wich one will be private  ***/
 	$('input[type="file"]#link_support').change(function(e) {
 		if (e.target.files.length === 0)
 			$('#choose-visibility').hide();
@@ -419,6 +419,7 @@ $(document).ready(function() {
 		});
 	});
 
+	/*** Add the select list to choose the visibility for the new file ***/
 	$('input[type="file"]#link_support_mod').change(function(e) {
 		if (e.target.files.length === 0)
 			$('div.to-hide').hide();
@@ -442,14 +443,14 @@ $(document).ready(function() {
 		});
 	});
 
-	//////
-
+	/*** Convert the dates given by the calendar in date for the database ***/
 	$('button#submit-btn-crt-crs').click(function() {
 		parseDate(calendarDist.values, 'dates_dist');
 		parseDate(calendarPres.values, 'dates_pres');
 	});
 
 
+	/*** Create the calendars ***/
     $('#datepicker').datepicker({
         startDate: new Date(),
         multidate: true,
@@ -463,7 +464,7 @@ $(document).ready(function() {
     });
 	/* ########## Compétitions ##########*/
 
-	//Max 3 Images
+	/*** Prevent the user to put more than 3 images for a compétition ***/
 	$("button.compet").click(function(e){
 	    var $fileUpload = $("input#images");
 	    if (parseInt($fileUpload.get(0).files.length)>3){
