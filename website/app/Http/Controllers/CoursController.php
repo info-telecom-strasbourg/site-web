@@ -86,6 +86,7 @@ class CoursController extends Controller
 	 */
 	public function update(Cours $cours)
 	{
+		dd(request());
 		$cours->update($this->validateCours());
 
 		if (request()->has('link_support'))

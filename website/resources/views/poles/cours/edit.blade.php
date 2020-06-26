@@ -70,32 +70,32 @@ Modification d'un cours
 		</div>
 
 		<!-- Pour modifier des fichiers -->
-		@if(!empty($cours->supports[0]))
-			<h4 class="title md text-left">Choisir le status des fichiers des fichiers</h4>
-			<div class="form-group" id="choose-new-statut">
-				@foreach ( $cours->supports as $support )
+		<h4 class="title md text-left">Choisir le status des fichiers des fichiers</h4>
+		<div class="form-group {{ !empty($cours->supports[0]) ? 'to-hide' : '' }}" id="choose-new-statut">
+		@forelse ( $cours->supports as $support )
 
-					<div class="row justify-content-start">
-						<div class="col-auto">
-							{{ $support->name }}
-						</div>
-						<div class="col-auto">
-							<div class="form-group">
-								<select class="form-control form-control-sm" name="{{ $support->name }}">
-									<option value="1" {{ $support->visibility == 0 ? 'selected' : ' '}}>Public</option>
-									<option value="2" {{ $support->visibility == 1 ? 'selected' : ' '}}>Privé</option>
-									<option value="3">Supprimer</option>
-								</select>
-							</div>
-						</div>
+			<div class="row justify-content-start">
+				<div class="col-auto">
+					{{ $support->name }}
+				</div>
+				<div class="col-auto">
+					<div class="form-group">
+						<select class="form-control form-control-sm" name="mod_vis[{{ $support->id }}]">
+							<option value="1" {{ $support->visibility == 0 ? 'selected' : ' '}}>Public</option>
+							<option value="2" {{ $support->visibility == 1 ? 'selected' : ' '}}>Privé</option>
+							<option value="3">Supprimer</option>
+						</select>
 					</div>
-					<!-- <div>
-						<input type="checkbox" id="{{ $support->name }}" name="del_file[]" value="{{ $support->ref }}">
-	    				<label for="{{ $support->name }}">{{ $support->name }}</label>
-					</div> -->
-				@endforeach
+				</div>
 			</div>
-		@endif
+			<!-- <div>
+				<input type="checkbox" id="{{ $support->name }}" name="del_file[]" value="{{ $support->ref }}">
+				<label for="{{ $support->name }}">{{ $support->name }}</label>
+			</div> -->
+		@empty
+
+		@endforelse
+		</div>
 
 
 		<!-- Modifier les dates -->
