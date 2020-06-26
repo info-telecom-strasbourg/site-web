@@ -22,36 +22,34 @@
                 <div class="carousel-caption">
                     <h1>Info Telecom Strasbourg</h1>
                     <br>
-                    <p>Notre toute nouvelle association débarque à TPS</p>
+                    <p>Notre toute nouvelle association débaque à TPS en Septembre</p>
                     <br>
                     <input class="favorite styled" value="Découvrir nos projets">
                 </div>
             </div>
             <div class="carousel-item actu full-screen">
                 <div class="carousel-caption">
-                    <h1>Info Telecom Strasbourg</h1>
+                    <h1>RTS - Strategy</h1>
                     <br>
-                    <p>Notre toute nouvelle association débarque à TPS</p>
+                    <p>Développement de la stratégie du robot de RTS qui participera à la Coupe de France de la Robotique 2020</p>
                     <br>
-                    <input class="favorite styled" value="Découvrir nos projets">
+                    <input class="favorite styled" value="Voir le projet">
                 </div>
             </div>
             <div class="carousel-item actu full-screen">
                 <div class="carousel-caption">
-                    <h1>Info Telecom Strasbourg</h1>
+                    <h1>Site web 2.0</h1>
                     <br>
-                    <p>Notre toute nouvelle association débarque à TPS</p>
+                    <p>Développement de nouvelles fonctionnalités pour notre site web</p>
                     <br>
-                    <input class="favorite styled" value="Découvrir nos projets">
+                    <input class="favorite styled" value="Voir le projet">
                 </div>
             </div>
             <div class="carousel-item actu full-screen">
                 <div class="carousel-caption">
-                    <h1>Info Telecom Strasbourg</h1>
+                    <h1>Partenariats</h1>
                     <br>
-                    <p>Notre toute nouvelle association débarque à TPS</p>
-                    <br>
-                    <input class="favorite styled" type="button" value="Découvrir nos projets">
+                    <p>Nous remercions RTS et PSI de nous accorder leur confiance pour travailler ensemble l'année prochaine</p>
                 </div>
             </div>
         </div>
