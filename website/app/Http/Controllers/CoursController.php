@@ -67,7 +67,7 @@ class CoursController extends Controller
 			foreach ($request->link_support as $file)
 			{
 				$name = $file->getClientOriginalName();
-				$this->saveFile($file, $name, $cours->id, ($request->has('visibility')) ? array_key_exists($name, $request->visibility) : 0);
+				$this->saveFile($file, $name, $cours, ($request->has('visibility')) ? array_key_exists($name, $request->visibility) : 0);
 			}
 		}
 
@@ -111,7 +111,7 @@ class CoursController extends Controller
 
 		if (request()->has('visibility_change'))
 			foreach (request()->visibility_change as $key => $value)
-				changeVisibility($key, $value);
+				$this->changeVisibility($key, $value);
 
 		$cours->update($this->validateCours());
 
@@ -175,16 +175,16 @@ class CoursController extends Controller
 	 * Save a file in the database and in the support directory
 	 * @param file: the file you want to save
 	 * @param name: the name given before hatching
-	 * @param coursId: the id of the lesson the file is attached to
+	 * @param cours: the id of the lesson the file is attached to
 	 * @param visibility: the visibility of the lesson (1 = private/ 0 = public)
 	 */
-	public function saveFile ($file, $name, $coursId, bool $visibility)
+	public function saveFile ($file, $name, $cours, bool $visibility)
 	{
 		$path = Storage::putFile('supports', $file, 'private');
 		Support::create([ 'ref' => $path,
 			'visibility' => $visibility,
 			'name' => $name,
-			'cours_id' => $coursId
+			'cours_id' => $cours->id
 		]);
 	}
 
