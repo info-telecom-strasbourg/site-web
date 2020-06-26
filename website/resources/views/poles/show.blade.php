@@ -76,11 +76,11 @@
 				</a>
 			</div>
 			@auth
-			@if ( $pole->respo->id == Auth::user()->id)
-				<div class="text-center">
-					<button type="submit" class="btn btn-primary btn-rounded" onclick="self.location.href='/poles/{{ $pole->id }}/edit'">Edit</button>
-				</div>
-			@endif
+				@if ( $pole->respo->id == Auth::user()->id)
+					<div class="text-center">
+						<button type="submit" class="btn btn-primary btn-rounded" onclick="self.location.href='/poles/{{ $pole->id }}/edit'">Edit</button>
+					</div>
+				@endif
 			@endauth
         </div>
 
