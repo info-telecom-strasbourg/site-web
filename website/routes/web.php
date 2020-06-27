@@ -48,7 +48,7 @@ Route::get('/poles/cours/{cours}/edit', 'CoursController@edit')->name('poles.cou
 Route::get('/poles/cours/{cours}/destroy', 'CoursController@destroy')->name('poles.cours.delete')->middleware('can:update,cours');
 
 Route::get('/poles/cours/{cours}', 'CoursController@show')->name('poles.cours.show');
-Route::put('/poles/cours/{cours}', 'CoursController@update')->name('poles.cours.update')->middleware('can:update,App\Cours');
+Route::put('/poles/cours/{cours}', 'CoursController@update')->name('poles.cours.update')->middleware('can:update,cours');
 
 
 
