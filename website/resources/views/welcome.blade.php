@@ -76,12 +76,12 @@
                 </a>
             </div>
             <div class="card" id="web-container">
-                <a class="card-img d-flex align-items-center justify-content-center rgba-black-strong py-5 px-4" href="/poles/Applications_et_sites_Web">
+                <a class="card-img d-flex align-items-center justify-content-center rgba-black-strong py-5 px-4" href="/poles/applications_et_sites_web">
                     <h3 class="text-white text-center" id="web">Applications & Sites Web</h3>
                 </a>
             </div>
             <div class="card" id="prog-container">
-                <a class="card-img d-flex align-items-center justify-content-center rgba-black-strong py-5 px-4" href="/poles/Programmation_utilitaire">
+                <a class="card-img d-flex align-items-center justify-content-center rgba-black-strong py-5 px-4" href="/poles/programmation_utilitaire">
                     <h3 class="text-white text-center" id="web">Programmation utilitaire</h3>
                 </a>
             </div>
@@ -91,7 +91,7 @@
                 </a>
             </div>
             <div class="card" id="jeux-container">
-                <a class="card-img d-flex align-items-center justify-content-center rgba-black-strong py-5 px-4" href="/poles/Jeux_vidéos">
+                <a class="card-img d-flex align-items-center justify-content-center rgba-black-strong py-5 px-4" href="/poles/jeux_vidéos">
                     <h3 class="text-white text-center" id="web">Jeux vidéos</h3>
                 </a>
             </div>
