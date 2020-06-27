@@ -71,7 +71,7 @@
 			<h4 class="title md text-left">Responsable {{ $pole->title }}</h4>
 			<div class="text-left">
 				<a href="#" class="link-member">
-					<img src="/images/projets/Objection.png" class="profil-rounded mr-md-3"/>
+					<img src="{{ asset('storage/'.json_decode($pole->respo->profil_picture)[0]) }}" class="profil-rounded mr-md-3"/>
 					{{ $pole->respo->name }}
 				</a>
 			</div>
