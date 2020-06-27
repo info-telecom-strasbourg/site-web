@@ -44,8 +44,8 @@ Route::get('/poles/cours', 'CoursController@index')->name('poles.cours.index');
 Route::post('/poles/cours', 'CoursController@store')->name('poles.cours.store');
 
 Route::get('/poles/cours/create','CoursController@create')->name('poles.cours.create')->middleware('can:create,App\Cours');
-Route::get('/poles/cours/{cours}/edit', 'CoursController@edit')->name('poles.cours.edit')->middleware('can:update,App\Cours');
-Route::get('/poles/cours/{cours}/destroy', 'CoursController@destroy')->name('poles.cours.delete')->middleware('can:update,App\Cours');
+Route::get('/poles/cours/{cours}/edit', 'CoursController@edit')->name('poles.cours.edit')->middleware('can:update,cours');
+Route::get('/poles/cours/{cours}/destroy', 'CoursController@destroy')->name('poles.cours.delete')->middleware('can:update,cours');
 
 Route::get('/poles/cours/{cours}', 'CoursController@show')->name('poles.cours.show');
 Route::put('/poles/cours/{cours}', 'CoursController@update')->name('poles.cours.update')->middleware('can:update,App\Cours');
@@ -62,8 +62,8 @@ Route::put('/poles/compétition/{competition}', 'CompetitionController@update')-
 
 
 Route::get('/poles/{pole}', 'PoleController@show')->name('pole.show');
-Route::put('/poles/{pole}', 'PoleController@update')->name('pole.update')->middleware('can:update,App\Pole');
-Route::get('/poles/{pole}/edit', 'PoleController@edit')->name('pole.edit')->middleware('can:update,App\Pole');
+Route::put('/poles/{pole}', 'PoleController@update')->name('pole.update')->middleware('can:update,pole');
+Route::get('/poles/{pole}/edit', 'PoleController@edit')->name('pole.edit')->middleware('can:update,pole');
 
 /*########## Download ########## */
 Route::get('/download/{path}', 'CoursController@downloadFile');
