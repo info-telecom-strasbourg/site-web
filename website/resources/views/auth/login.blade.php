@@ -18,7 +18,9 @@
                     <div class="row justify-content-center d-flex flex-column">
                         <h1 class="h1">Se connecter</h1>
                         <p>Heureux de vous revoir !</p>
-                        <p>Connectez-vous avec votre compte</p>
+                        <p>
+                            <a href="/#contact" class="respo-support">Envoyez nous un message</a> pour devenir membre <br> et pouvoir vous connecter.
+                        </p>
                     </div>
                     <div class="row justify-content-center flex-grow-1" id="form-container">
                         <form method="POST" action="{{ route('login') }}">
@@ -66,6 +68,7 @@
                             
 
                             <button type="submit" class="favorite styled">SE CONNECTER</button>
+
                         </form>
                     </div>
                 </div>
