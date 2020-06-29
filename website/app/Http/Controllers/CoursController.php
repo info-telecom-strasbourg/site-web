@@ -23,7 +23,8 @@ use Illuminate\Support\Facades\Storage;
 class CoursController extends Controller
 {
 	/**
-	 * Get all the lessons and send them to the index view
+	 * Get all the lessons and associate pole and send them to the index view.
+	 *
 	 * @return view with all lessons available
 	 */
 	public function index()
@@ -34,8 +35,9 @@ class CoursController extends Controller
 	}
 
 	/**
-	 * Show a lesson
-	 * @param cours: the lesson you want to display
+	 * Show a specified lesson.
+	 *
+	 * @param App\Cours cours: the lesson you want to display
 	 * @return view of a specific lesson
 	 */
 	public function show(Cours $cours)
@@ -44,7 +46,8 @@ class CoursController extends Controller
 	}
 
 	/**
-	 * Return view to create a lesson
+	 * Show the form to create a lesson.
+	 *
 	 * @return view to create a lesson
 	 */
 	public function create()
@@ -54,14 +57,16 @@ class CoursController extends Controller
 	}
 
 	/**
-	 * Store a new lesson
-	 * @param request: the user request
+	 * Store a new lesson.
+	 *
+	 * @param \Illuminate\Http\Request $request: the user request
 	 * @return redirect to the lesson's index
 	 */
 	public function store(Request $request)
 	{
 		$cours = Cours::create($this->validateCours());
 
+		// if there are supports, save them
 		if ($request->has('link_support'))
 		{
 			foreach ($request->link_support as $file)
@@ -71,25 +76,30 @@ class CoursController extends Controller
 			}
 		}
 
+		// if there is an image, save the image, otherwise take a random one
 		if($request->has('image_crs'))
-			$cours->image = [$this->saveImage($request,$cours)];
+			$cours->image = [$this->saveImage($request, $cours)];
 		else
 			$cours->image = [$this->selectDefaultImage()];
 
+		// save the lesson
 		$cours->save();
 
+		// add the creators to the bdd
 		foreach ($request->creators as $creator)
 			$cours->creators()->attach($creator);
 
-
+		// save lessons dates
 		$this->saveDates($request, $cours);
 
 		return redirect('/poles/cours');
 	}
 
 	/**
-	 * Allow the creators to edit their lesson
-	 * @param cours: the lesson you want to edit
+	 * Show the form for editing the specified lesson.
+	 * Allow the creators to edit their lesson.
+	 *
+	 * @param App\Cours $cours: the lesson you want to edit
 	 * @return view to edit the lesson
 	 */
 	public function edit(Cours $cours)
@@ -99,57 +109,81 @@ class CoursController extends Controller
 	}
 
 	/**
-	 * Update a lesson
-	 * @param cours: the lesson you want to update
+	 * Update the specified lesson.
+	 *
+	 * @param App\Cours $cours: the lesson you want to update
 	 * @return redirect to the lesson's specific page
 	 */
 	public function update(Cours $cours)
 	{
-		if (request()->has('link_support'))
-			foreach(request()->link_support as $key => $file)
+		// if there are supports, save them
+		if (request()->has('link_support')) 
+		{
+			foreach(request()->link_support as $key => $file) 
+			{
 				$this->saveFile($file, $file->getClientOriginalName(), $cours, request()->visibility_new[$key]);
+			}
+		}
 
-		if (request()->has('visibility_change'))
-			foreach (request()->visibility_change as $key => $value)
+		// change the visibility of the supports if it has changed
+		if (request()->has('visibility_change')) 
+		{
+			foreach (request()->visibility_change as $key => $value) 
+			{
 				$this->changeVisibility($key, $value);
+			}
+		}
 
+		// update the lesson
 		$cours->update($this->validateCours());
 
+		// change lesson's image
 		if(request()->has('image_crs'))
 			$this->changeImage($cours);
 
+		// add creators
 		if (request()->has('creators'))
 			$this->addCreators($cours);
 
+		// delete old dates
 		$cours->dates()->delete();
 
+		// save new dates
 		$this->saveDates(request(), $cours);
 
 		return redirect('/poles/cours/'.$cours->id);
 	}
 
 	/**
-	 * Delete a lesson and everything attached to it
-	 * @param cours: the lesson you want to delete
+	 * Delete a lesson and everything attached to it.
+	 *
+	 * @param App\Cours $cours: the lesson you want to delete
 	 * @return redirect to the lesson's index
 	 */
 	public function destroy(Cours $cours)
 	{
+		// delete all dates associate to the lesson in database and in storage
 		$cours->dates()->delete();
-		if (file_exists(storage_path('app/public/'.json_decode($cours->image)[0])) && substr(json_decode($cours->image)[0],0,15) != "images/default/")
+		if (file_exists(storage_path('app/public/'.json_decode($cours->image)[0])) && substr(json_decode($cours->image)[0],0,15) != "images/default/") 
+		{
 			unlink(storage_path('app/public/'.json_decode($cours->image)[0]));
+		}
 
+		// delete all supports in database and in storage
 		foreach ($cours->supports as $file)
 		{
 			unlink(storage_path('app/'.$file->ref));
 			$file->delete();
 		}
+
+		// delete the lesson
 		$cours->delete();
 		return redirect('/poles/cours');
 	}
 
 	/**
 	 * Validate the user's request to create a lesson
+	 *
 	 * @return validated request
 	 */
 	public function validateCours ()
@@ -161,8 +195,9 @@ class CoursController extends Controller
 	}
 
 	/**
-	 * Download a file
-	 * @param id: the id of the file the user want to download
+	 * Download a file.
+	 *s
+	 * @param id: the id of the file the user wants to download
 	 * @return downloaded file with readable name
 	 */
 	public function downloadFile ($id)
@@ -172,7 +207,8 @@ class CoursController extends Controller
 	}
 
 	/**
-	 * Save a file in the database and in the support directory
+	 * Save a file in the database and in the support directory.
+	 *
 	 * @param file: the file you want to save
 	 * @param name: the name given before hatching
 	 * @param cours: the id of the lesson the file is attached to
@@ -180,7 +216,10 @@ class CoursController extends Controller
 	 */
 	public function saveFile ($file, $name, $cours, bool $visibility)
 	{
+		// save the file in the storage folder
 		$path = Storage::putFile('supports', $file, 'private');
+
+		// save the file in the database
 		Support::create([ 'ref' => $path,
 			'visibility' => $visibility,
 			'name' => $name,
@@ -189,8 +228,9 @@ class CoursController extends Controller
 	}
 
 	/**
-	 * Save an image given by the user
-	 * @param request: the request of the user
+	 * Save an image given by the user in the public storage folder.
+	 *
+	 * @param \Illuminate\Http\Request  $request: the request of the user
 	 * @return path to find the image
 	 */
 	public function saveImage (Request $request)
@@ -200,49 +240,62 @@ class CoursController extends Controller
 	}
 
 	/**
-	 * Save the dates that the user selected
-	 * @param request: the user's request
-	 * @param cours: the lesson to wich the dates are linked to
+	 * Save the dates that the user selected.
+	 *
+	 * @param \Illuminate\Http\Request  $request: the user's request
+	 * @param cours: the lesson to which the dates are linked to
 	 */
 	public function saveDates (Request $request, Cours $cours)
 	{
+		// if there are face-to-face dates
 		if (request()->has('dates_pres'))
 		{
 			foreach ($request->dates_pres as $date)
 			{
+				// create a new date in the database
 				$newDate = Date::create(['presentiel' => 1,
 					'date' => $date
 				]);
+
+				// add the date to the list of dates for this lesson
 				$cours->dates()->attach($newDate->id);
 			}
 		}
 
+		// if there are remote dates
 		if (request()->has('dates_dist'))
 		{
 			foreach ($request->dates_dist as $date)
 			{
+				// create a new date in the database
 				$newDate = Date::create(['presentiel' => 0,
 					'date' => $date
 				]);
+
+				// add the date to the list of dates for this lesson
 				$cours->dates()->attach($newDate->id);
 			}
 		}
 	}
 
 	/**
-	 * Add new creators (if they are not already in the list)
-	 * @param cours: the lesson you want to add creators
+	 * Add new creators (if they are not already in the list).
+	 *
+	 * @param App\Cours $cours: the lesson you want to add creators
 	 */
 	public function addCreators(Cours $cours)
 	{
-		foreach (request()->creators as $creator)
+		foreach (request()->creators as $creator) 
+		{
 			if ($cours->creators()->where('user_id',$creator)->count() == 0)
 				$cours->creators()->attach($creator);
+		}
 	}
 
 	/**
-	 * Delete the previous image if it's not a default image and set the new image
-	 * @param cours: the lesson we want to edit
+	 * Delete the previous image if it's not a default image and set the new image.
+	 *
+	 * @param App\Cours $cours: the lesson we want to edit
 	 */
 	public function changeImage(Cours $cours)
 	{
