@@ -25,7 +25,7 @@
                     <div class="nav-link">ACCUEIL <span class="sr-only">(current)</span></div>
                 </li>
             </a>
-            <li class="nav-item onglet dropdown" id="poles">
+            <li class="nav-item onglet dropdown {{ Request::is('poles/*') ? 'active' : ''  }}" id="poles">
                 <a id="navbarDropdownMenuLink" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                     PÔLES
                 </a>
@@ -39,7 +39,7 @@
                 </div>
             </li>
             <a href="/projets">
-                <li class="nav-item onglet {{ Request::is('projets') ? 'active' : ''  }}">
+                <li class="nav-item onglet {{ Request::is('projets*') ? 'active' : ''  }}">
                     <div class="nav-link">PROJETS</div>
                 </li>
             </a>

@@ -131,10 +131,6 @@ display: block;
     background-color: transparent;
 }
 
-.dropdown-item:hover {
-    background-color: #254395;
-}
-
 .dropdown-click {
     background-color: #254395;
 }
