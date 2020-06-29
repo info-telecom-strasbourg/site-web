@@ -8,10 +8,10 @@
             <hr class="clearfix w-100 d-lg-none pb-3">
             <div class="col-lg-6 mb-lg-0 mb-3">
                 <div class="social-buttons row align-item-center justify-content-center">
-                            <a class="social-icons" href="#">
+                            <a class="social-icons" href="https://github.com/info-telecom-strasbourg/">
                                 <i class="fab fa-github fa-4x fa-lg mr-3"></i>
                             </a>
-                            <a class="social-icons" href="#">
+                            <a class="social-icons" href="https://www.facebook.com/Info.Telecom.Strasbourg/">
                                 <i class="fab fa-facebook fa-4x fa-lg mr-3"></i>
                             </a>
                             <a class="social-icons" href="#">

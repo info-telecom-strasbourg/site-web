@@ -37,7 +37,7 @@ class CoursController extends Controller
 	/**
 	 * Show a specified lesson.
 	 *
-	 * @param App\Cours cours: the lesson you want to display
+	 * @param App\Cours $cours: the lesson you want to display
 	 * @return view of a specific lesson
 	 */
 	public function show(Cours $cours)
@@ -299,10 +299,12 @@ class CoursController extends Controller
 	 */
 	public function changeImage(Cours $cours)
 	{
-		if (file_exists(storage_path('app/public/'.json_decode($cours->image)[0])) && substr(json_decode($cours->image)[0],0,15) != "images/default/")
+		if (file_exists(storage_path('app/public/'.json_decode($cours->image)[0])) && substr(json_decode($cours->image)[0],0,15) != "images/default/") 
+		{
 			unlink(storage_path('app/public/'.json_decode($cours->image)[0]));
+		}
 
-		$cours->image = [$this->saveImage(request(),$cours)];
+		$cours->image = [$this->saveImage(request(), $cours)];
 		$cours->save();
 	}
 
@@ -329,12 +331,13 @@ class CoursController extends Controller
 	{
 		$file = Support::find($key);
 
+		// if the value is 2 delete the file
 		if ($value == 2)
 		{
 			unlink(storage_path('app/'.$file->ref));
 			$file->delete();
 		}
-		else
+		else 	// change the visibiity of the file
 		{
 			$file->visibility = $value;
 			$file->save();
