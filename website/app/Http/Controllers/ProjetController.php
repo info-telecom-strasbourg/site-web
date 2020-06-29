@@ -14,6 +14,7 @@ class ProjetController extends Controller
 {
     /**
      * Affiche un projet sur une page seule
+     * Display
      * @param Projet $projet
      */
     public function show(Projet $projet)
