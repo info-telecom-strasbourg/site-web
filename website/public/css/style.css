@@ -334,11 +334,13 @@ display: block;
     background-color: transparent;
     border-color: #254395;
     font-family: 'Roboto';
+    outline: none;
 }
 
 #carousel-actualite .styled:hover {
     background-color: #254395;
     border-color: transparent;
+    outline: none;
 }
 
 #carousel-actualite .carousel-item {

@@ -24,7 +24,9 @@
                     <br>
                     <p>Notre toute nouvelle association débaque à TPS en Septembre</p>
                     <br>
-                    <input class="favorite styled" value="Découvrir nos projets">
+                    <form action="projets">
+                        <input class="favorite styled" type="submit" value="Découvrir nos projets">
+                    </form>
                 </div>
             </div>
             <div class="carousel-item actu full-screen">
@@ -33,7 +35,9 @@
                     <br>
                     <p>Développement de la stratégie du robot de RTS qui participera à la Coupe de France de la Robotique 2020</p>
                     <br>
-                    <input class="favorite styled" value="Voir le projet">
+                    <form action="#">
+                        <input class="favorite styled" type="submit" value="Voir le projet">
+                    </form>
                 </div>
             </div>
             <div class="carousel-item actu full-screen">
@@ -42,7 +46,9 @@
                     <br>
                     <p>Développement de nouvelles fonctionnalités pour notre site web</p>
                     <br>
-                    <input class="favorite styled" value="Voir le projet">
+                    <form action="#">
+                        <input class="favorite styled" type="submit" value="Voir le projet">
+                    </form>
                 </div>
             </div>
             <div class="carousel-item actu full-screen">
