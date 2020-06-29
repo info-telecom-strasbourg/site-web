@@ -1159,11 +1159,13 @@ div.bordure {
     background-color: transparent;
     border-color: #254395;
     border-width: 4px;
+    outline: none;
 }
 
 .styled:hover {
     background-color: #254395;
     border-color: transparent;
+    outline: none;
 }
 
 .login-container .styled {
@@ -1178,6 +1180,11 @@ div.bordure {
 
 .password-forget:hover {
     color: #15F6FC;
+}
+
+.respo-support {
+    color: white;
+    text-decoration: underline;
 }
 
 @media only screen and (max-width: 600px) {
