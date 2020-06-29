@@ -7,14 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Projet extends Model
 {
     /**
-     * Attributs qui ne sont pas assignables en masse.
+     * Not mass assignable attributes. 
      *
      * @var array
      */
     protected $guarded = ['id'];
 
     /**
-     * Renvoie le chef de projet.
+     * Gets the project leader.
      */
     public function chef()
     {
@@ -22,7 +22,7 @@ class Projet extends Model
     }
 
     /**
-     * Renvoie le pole de projet.
+     * Gets the pole of project.
      */
     public function pole()
     {
@@ -30,7 +30,7 @@ class Projet extends Model
     }
 
     /**
-     * Renvoie le collaborateur du projet.
+     * Gets the project partner.
      */
     public function collaborateur()
     {
@@ -38,7 +38,7 @@ class Projet extends Model
     }
 
     /**
-     * Renvoie les utilisateurs participants au projet.
+     * Gets the projects participants.
      */
     public function participants()
     {

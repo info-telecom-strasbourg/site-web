@@ -10,7 +10,7 @@ class Support extends Model
 	public $timestamps = false;
 
 	/**
-	 *
+	 * Gets the cours.
 	 */
     public function cours()
 	{
