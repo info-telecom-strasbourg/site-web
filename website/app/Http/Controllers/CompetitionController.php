@@ -11,15 +11,15 @@ use App\Pole;
 class CompetitionController extends Controller
 {
 	/**
-	 * List all the competitions
+	 * List all the competitions.
 	 */
     public function index()
-	{
+	{		
 		return view('poles.competitions.index', [ 'compets' => Competition::all(), 'pole' => Pole::where('title', 'Compétition')->first() ]);
 	}
 
 	/**
-	 * Show a competition
+	 * Show a specified competition.
 	 */
 	public function show(Competition $compet)
 	{
@@ -27,7 +27,7 @@ class CompetitionController extends Controller
 	}
 
 	/**
-	 * Return view to create a competition
+	 * Return view to create a competition.
 	 */
 	public function create()
 	{
@@ -35,31 +35,41 @@ class CompetitionController extends Controller
 	}
 
 	/**
-	 * Store a new lesson
+	 * Store a new lesson.
 	 */
 	public function store()
 	{
-		$validation = $this->validateCompetiton();
-		dd('OK');
 		Competition::create($this->validateCompetiton());
 		return redirect('poles.competition.index');
 	}
 
+	/**
+	 * Show the form for editing the specified competition.
+	 */
 	public function edit(Competition $compet)
 	{
 		redirect('poles.competition.edit', compact('compet'));
 	}
 
-	public function update(Cours $cours)
+	/*
+	 * Update the specified competition.
+	 */
+	public function update(Competition $compet)
 	{
 		//TODO ce truc
 	}
 
+	/**
+	 * Remove the specified lesson.
+	 */
 	public function destroy()
 	{
 
 	}
 
+	/**
+	 * Validate parameters.
+	 */
 	public function  validateCompetiton ()
 	{
 		return request()->validate([
