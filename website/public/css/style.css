@@ -373,8 +373,6 @@ display: block;
 #carousel-actualite .actu {
     width: 100%;
     height: 100vh;
-    background: url('../images/actu/actu.jpeg') top center;
-    background-size: cover;
     position: relative;
 }
 
@@ -948,15 +946,15 @@ i#chevron-date-supports {
 
 a.link-black {
     color: black;
-	cusor:default;
+    cusor: default;
 }
 
 a.link-black:hover {
-	cursor:default;
+    cursor: default;
 }
 
 .support-download-hover:hover {
-	color: #007bff;
+    color: #007bff;
 }
 
 .sep-chevr {
