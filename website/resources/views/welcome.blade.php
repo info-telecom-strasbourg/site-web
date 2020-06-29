@@ -122,7 +122,7 @@
                                     <p class="card-text">Nous développons le site de notre association afin de vous permettre d'avoir un
                                         accès à tous nos projets! (1)
                                     </p>
-                                    <a href="#" class="btn btn-rounded btn-primary" type="button">Découvrir</a>
+                                    <a href="#" class="btn btn-rounded btn-primary">Découvrir</a>
                                 </div>
                             </div>
                         </div>
@@ -136,7 +136,7 @@
                                     <p class="card-text">Nous développons le site de notre association afin de vous permettre d'avoir un
                                         accès à tous nos projets! (2)
                                     </p>
-                                    <a href="#" class="btn btn-rounded btn-primary" type="button">Découvrir</a>
+                                    <a href="#" class="btn btn-rounded btn-primary">Découvrir</a>
                                 </div>
                             </div>
                         </div>
@@ -150,7 +150,7 @@
                                     <p class="card-text">Nous développons le site de notre association afin de vous permettre d'avoir un
                                         accès à tous nos projets! (3)
                                     </p>
-                                    <a href="#" class="btn btn-rounded btn-primary" type="button">Découvrir</a>
+                                    <a href="#" class="btn btn-rounded btn-primary">Découvrir</a>
                                 </div>
                             </div>
                         </div>
@@ -164,7 +164,7 @@
                                     <p class="card-text">Nous développons le site de notre association afin de vous permettre d'avoir un
                                         accès à tous nos projets! (4)
                                     </p>
-                                    <a href="#" class="btn btn-rounded btn-primary" type="button">Découvrir</a>
+                                    <a href="#" class="btn btn-rounded btn-primary">Découvrir</a>
                                 </div>
                             </div>
                         </div>
@@ -178,7 +178,7 @@
                                     <p class="card-text">Nous développons le site de notre association afin de vous permettre d'avoir un
                                         accès à tous nos projets! (5)
                                     </p>
-                                    <a href="#" class="btn btn-rounded btn-primary" type="button">Découvrir</a>
+                                    <a href="#" class="btn btn-rounded btn-primary">Découvrir</a>
                                 </div>
                             </div>
                         </div>
@@ -192,7 +192,7 @@
                                     <p class="card-text">Nous développons le site de notre association afin de vous permettre d'avoir un
                                         accès à tous nos projets! (6)
                                     </p>
-                                    <a href="#" class="btn btn-rounded btn-primary" type="button">Découvrir</a>
+                                    <a href="#" class="btn btn-rounded btn-primary">Découvrir</a>
                                 </div>
                             </div>
                         </div>

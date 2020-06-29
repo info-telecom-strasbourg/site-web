@@ -62,7 +62,7 @@
         <ul class="nav navbar-nav">
             @guest
                 <li class="nav-item">
-                    <a href="/login" class="btn btn-rounded btn-primary connexion" type="button">CONNEXION</a>
+                    <a href="/login" class="btn btn-rounded btn-primary connexion">CONNEXION</a>
                 </li>
             @else
                 <li class="nav-item dropdown">
