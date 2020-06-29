@@ -18,25 +18,25 @@
             <li data-target="#carousel-actualite" data-slide-to="3"></li>
         </ol>
         <div class="carousel-inner" height="100%">
-            <div class="carousel-item active actu full-screen">
+            <div class="carousel-item active actu full-screen" style="background: url('../images/actu/actu_1.jpg') top center; background-size: cover;">
                 <div class="carousel-caption">
                     <h1>Info Telecom Strasbourg</h1>
                     <br>
-                    <p>Notre toute nouvelle association débaque à TPS en Septembre</p>
+                    <p>Notre toute nouvelle association débaque à TPS en Septembre !</p>
                     <br>
                     <input class="favorite styled" value="Découvrir nos projets">
                 </div>
             </div>
-            <div class="carousel-item actu full-screen">
+            <div class="carousel-item actu full-screen" style="background: url('../images/actu/actu_2.jpg') top center; background-size: cover;">
                 <div class="carousel-caption">
                     <h1>RTS - Strategy</h1>
                     <br>
-                    <p>Développement de la stratégie du robot de RTS qui participera à la Coupe de France de la Robotique 2020</p>
+                    <p>Développement de la stratégie du robot de RTS qui participera à la Coupe de France de Robotique 2020</p>
                     <br>
                     <input class="favorite styled" value="Voir le projet">
                 </div>
             </div>
-            <div class="carousel-item actu full-screen">
+            <div class="carousel-item actu full-screen" style="background: url('../images/actu/actu_3.jpg') top center; background-size: cover;">
                 <div class="carousel-caption">
                     <h1>Site web 2.0</h1>
                     <br>
@@ -45,9 +45,9 @@
                     <input class="favorite styled" value="Voir le projet">
                 </div>
             </div>
-            <div class="carousel-item actu full-screen">
+            <div class="carousel-item actu full-screen" style="background: url('../images/actu/actu_4.jpg') top center; background-size: cover;">
                 <div class="carousel-caption">
-                    <h1>Partenariats</h1>
+                    <h1>Collaborations</h1>
                     <br>
                     <p>Nous remercions RTS et PSI de nous accorder leur confiance pour travailler ensemble l'année prochaine</p>
                 </div>
