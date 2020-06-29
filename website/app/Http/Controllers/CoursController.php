@@ -307,7 +307,8 @@ class CoursController extends Controller
 	}
 
 	/**
-	 * Select a default image
+	 * Select a default image.
+	 *
 	 * @return path to the image
 	 */
 	public function selectDefaultImage()
@@ -316,10 +317,11 @@ class CoursController extends Controller
 	}
 
 	/**
-	 * Change the visibility of existing files
+	 * Change the visibility of existing files.
 	 * 0: public
 	 * 1: private
-	 * 2:delete
+	 * 2: delete
+	 *
 	 * @param key: the id of the support we want to edit
 	 * @param value: the new visibility for the support
 	 */

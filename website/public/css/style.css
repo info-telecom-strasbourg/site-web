@@ -659,12 +659,14 @@ display: block;
 
 /* Mot du directeur */
 
-#mot-du-directeur .line-under-title {
-    margin-bottom: 100px;
-}
 
 #mot-du-directeur {
     text-align: center;
+}
+
+.directeur {
+    margin-right: 25px;
+    margin-left: 25px;
 }
 
 #mot-du-directeur #nom {
