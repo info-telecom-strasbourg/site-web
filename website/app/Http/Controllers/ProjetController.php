@@ -13,9 +13,9 @@ use Illuminate\Http\Response;
 class ProjetController extends Controller
 {
     /**
-     * Affiche un projet sur une page seule
-     * Display
-     * @param Projet $projet
+     * Display a specific project.
+     *
+     * @param App|Projet $projet
      */
     public function show(Projet $projet)
     {
@@ -25,7 +25,8 @@ class ProjetController extends Controller
     }
 
     /**
-     * Affiche la liste des projets
+     * Display the list of projects.
+     *
      * @return \Illuminate\Http\Response
      */
     public function index()
