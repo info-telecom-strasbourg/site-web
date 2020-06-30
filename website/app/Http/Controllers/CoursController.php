@@ -316,7 +316,7 @@ class CoursController extends Controller
 	 */
 	public function selectDefaultImage()
 	{
-		return 'images/default/cours/'.strval(random_int ( 1 , 5 ).'.jpg');
+		return 'images/default/cours/'.strval(random_int (1, 5).'.jpg');
 	}
 
 	/**
