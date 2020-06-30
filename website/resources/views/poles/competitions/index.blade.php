@@ -11,7 +11,7 @@
         <div>
             <p>{{ $pole->desc }}</p>
             <h4 class="title md text-left">Liste des compétitions</h4>
-			<div class="container">
+			<div class="container pt-5">
 				@forelse ($compets as $compet)
 					<div class="row align-items-center">
 						<div class="col-auto sep-chevr">
@@ -23,8 +23,11 @@
 						</div>
 					</div>
 				@empty
-					<div>
-						Il n'y a pas de compétitions disponibles.
+					<div class="alert alert-secondary alert-dismissible fade show col" role="alert">
+						Aucune compétitions n'a été trouvé
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
 					</div>
 				@endforelse
 			</div>

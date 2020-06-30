@@ -97,7 +97,7 @@
                 </a>
             </div>
             <div class="card" id="jeux-container">
-                <a class="card-img d-flex align-items-center justify-content-center rgba-black-strong py-5 px-4" href="/poles/jeux_vidéos">
+                <a class="card-img d-flex align-items-center justify-content-center rgba-black-strong py-5 px-4" href="/poles/jeux_videos">
                     <h3 class="text-white text-center" id="web">Jeux vidéos</h3>
                 </a>
             </div>

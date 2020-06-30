@@ -29,7 +29,7 @@
                 <a id="navbarDropdownMenuLink" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                     PÔLES
                 </a>
-				<!-- TODO tout mettre en minuscule dans lien et bdd -->
+
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="/poles/cours">Cours & Accompagnements</a>
                     <a class="dropdown-item" href="/poles/applications_et_sites_web">Applications & Sites Web</a>
