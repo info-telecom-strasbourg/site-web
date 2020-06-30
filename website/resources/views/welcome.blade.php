@@ -293,14 +293,16 @@
     <h1 class="title lg text-center"> Nos collaborateurs </h1>
     <hr class="line-under-title">
     <div class="partenaires">
+        @foreach($partners as $partner)
         <div class="partenaire">
-            <a href="https://physique-ingenierie.fr/" class="logo" id="psi">
-                <img class="logo-pres" src="/images/logo/psi.png" alt="Logo de PSI">
-                <p>PSI Junior-Entreprise</p>
+            <a href="{{ $partner->link }}" class="logo">
+                <img class="logo-pres" src="{{ asset($partner->image) }}" alt="Logo de {{ $partner->name }}">
+                <p>{{ $partner->name }}</p>
             </a>
         </div>
+        @endforeach
 
-        <div class="partenaire">
+        {{-- <div class="partenaire">
             <a href="http://www.telecom-physique.fr/" class="logo" id="tps">
 
                 <img class="logo-pres" src="/images/logo/tps.png" alt="Logo de TPS">
@@ -313,7 +315,7 @@
                 <img class="logo-pres" src="/images/logo/rts.png" alt="Logo de RTS">
                 <p>Robot Télécom Strasbourg</p>
             </a>
-        </div>
+        </div> --}}
 
     </div>
     <a id="contact-anchor"></a>
