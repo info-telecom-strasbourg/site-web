@@ -8,7 +8,7 @@ class Role extends Model
 {
 	protected $guarded = [];
 
-	/*
+	/**
 	 * Roles that can be mass asigned.
 	 */
 	private static $massRoles = ['Membre'];
