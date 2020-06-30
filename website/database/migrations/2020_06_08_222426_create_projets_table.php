@@ -16,6 +16,8 @@ class CreateProjetsTable extends Migration
         Schema::create('collaborateurs', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('link');
+            $table->string('image');
             $table->timestamps();
         });
 
