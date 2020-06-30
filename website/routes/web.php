@@ -53,12 +53,12 @@ Route::put('/poles/cours/{cours}', 'CoursController@update')->name('poles.cours.
 
 
 /*########## Poles compétitions ########## */
-Route::post('/poles/compétitions', 'CompetitionController@store')->name('poles.competitions.store');
-Route::get('/poles/compétitions', 'CompetitionController@index')->name('poles.competitions.index');
-Route::get('/poles/compétition/create','CompetitionController@create')->name('poles.competitions.create');
-Route::get('/poles/compétition/{competition}', 'CompetitionController@show')->name('poles.competitions.show');
-Route::get('/poles/compétition/{competition}/edit', 'CompetitionController@edit')->name('poles.competitions.edit');
-Route::put('/poles/compétition/{competition}', 'CompetitionController@update')->name('poles.competitions.update');
+Route::post('/poles/competitions', 'CompetitionController@store')->name('poles.competitions.store');
+Route::get('/poles/competitions', 'CompetitionController@index')->name('poles.competitions.index');
+Route::get('/poles/competitions/create','CompetitionController@create')->name('poles.competitions.create');
+Route::get('/poles/competitions/{compet}', 'CompetitionController@show')->name('poles.competitions.show');
+Route::get('/poles/competitions/{compet}/edit', 'CompetitionController@edit')->name('poles.competitions.edit');
+Route::put('/poles/competitions/{compet}', 'CompetitionController@update')->name('poles.competitions.update');
 
 
 Route::get('/poles/{pole}', 'PoleController@show')->name('pole.show');

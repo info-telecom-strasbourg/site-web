@@ -12,19 +12,7 @@ use Illuminate\Http\Response;
 
 class ProjetController extends Controller
 {
-    /**
-     * Display a specific project.
-     *
-     * @param App|Projet $projet
-     */
-    public function show(Projet $projet)
-    {
-        $projet->load('chef');
-        $projet->load('participants');
-        return view('projets.show', ['projet' => $projet]);
-    }
-
-    /**
+        /**
      * Display the list of projects.
      *
      * @return \Illuminate\Http\Response
@@ -41,6 +29,7 @@ class ProjetController extends Controller
 
         $search = request()->search;
 
+        // filters options that has been selected
         $filters = [];
         $filters[0] = request()->pole;
         $filters[1] = request()->membre;
@@ -51,8 +40,23 @@ class ProjetController extends Controller
     }
 
     /**
-     * Renvoie le formulaire de création de projet
+     * Display a specific project.
+     *
+     * @param App|Projet $projet
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Projet $projet)
+    {
+        $projet->load('chef');
+        $projet->load('participants');
+        return view('projets.show', ['projet' => $projet]);
+    }
+
+    /**
+     * Show the form to create a project.
      * TODO : faire la vue associée
+     *
+     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -60,28 +64,27 @@ class ProjetController extends Controller
     }
 
     /**
-     * Enregistre un nouveau projet
+     * Store a new project.
      *
      * TODO : verfifier les droits de l'utilisateur
      * TODO : error handling
      * 
      * @param  ProjetRequest $request
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function store(ProjetRequest $request)
     {
-        $validated = $request->validated();
-
-        $projet = Projet::create($validated);
+        $projet = Projet::create($request->validated());
 
         return redirect('/projets');
     }
 
     /**
-     * Affiche le formulaire d'édition de projet
+     * Show the form for editing the specified project.
      * TODO : la vue associée
      * 
-     * @param Projet $projet
+     * @param App\projet $projet
+     * @return \Illuminate\Http\Response
      */
     public function edit(Projet $projet)
     {
@@ -89,11 +92,11 @@ class ProjetController extends Controller
     }
 
     /**
-     * Met à jour un projet
+     * Update the specified project.
      * 
      * @param ProjetRequest $request
-     * @param Projet $projet
-     * @return Response 
+     * @param App\Projet $projet
+     * @return \Illuminate\Http\Response
      */
     public function update(ProjetRequest $request, Projet $projet)
     {
@@ -105,10 +108,10 @@ class ProjetController extends Controller
     }
 
     /**
-     * Supprime un projet
+     * Remove the specified project.
      * 
-     * @param Projet $projet
-     * @return Response
+     * @param App\Projet $projet
+     * @return \Illuminate\Http\Response
      */
     public function destroy(Projet $projet)
     {

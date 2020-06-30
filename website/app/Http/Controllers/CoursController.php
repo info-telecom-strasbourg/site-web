@@ -23,9 +23,9 @@ use Illuminate\Support\Facades\Storage;
 class CoursController extends Controller
 {
 	/**
-	 * Get all the lessons and associate pole and send them to the index view.
+	 * Display all lessons with associate pole and send them to the index view.
 	 *
-	 * @return view with all lessons available
+	 * @return \Illuminate\Http\Response
 	 */
 	public function index()
 	{
@@ -38,7 +38,7 @@ class CoursController extends Controller
 	 * Show a specified lesson.
 	 *
 	 * @param App\Cours $cours: the lesson you want to display
-	 * @return view of a specific lesson
+	 * @return \Illuminate\Http\Response
 	 */
 	public function show(Cours $cours)
 	{
@@ -48,7 +48,7 @@ class CoursController extends Controller
 	/**
 	 * Show the form to create a lesson.
 	 *
-	 * @return view to create a lesson
+	 * @return \Illuminate\Http\Response
 	 */
 	public function create()
 	{
@@ -60,7 +60,7 @@ class CoursController extends Controller
 	 * Store a new lesson.
 	 *
 	 * @param \Illuminate\Http\Request $request: the user request
-	 * @return redirect to the lesson's index
+	 * @return \Illuminate\Http\Response to the lesson's index page
 	 */
 	public function store(Request $request)
 	{
@@ -100,7 +100,7 @@ class CoursController extends Controller
 	 * Allow the creators to edit their lesson.
 	 *
 	 * @param App\Cours $cours: the lesson you want to edit
-	 * @return view to edit the lesson
+	 * @return \Illuminate\Http\Response
 	 */
 	public function edit(Cours $cours)
 	{
@@ -112,7 +112,7 @@ class CoursController extends Controller
 	 * Update the specified lesson.
 	 *
 	 * @param App\Cours $cours: the lesson you want to update
-	 * @return redirect to the lesson's specific page
+	 * @return \Illuminate\Http\Response to the lesson's specific page
 	 */
 	public function update(Cours $cours)
 	{
@@ -158,7 +158,7 @@ class CoursController extends Controller
 	 * Delete a lesson and everything attached to it.
 	 *
 	 * @param App\Cours $cours: the lesson you want to delete
-	 * @return redirect to the lesson's index
+	 * @return \Illuminate\Http\Response to the lesson's index
 	 */
 	public function destroy(Cours $cours)
 	{
@@ -178,6 +178,7 @@ class CoursController extends Controller
 
 		// delete the lesson
 		$cours->delete();
+
 		return redirect('/poles/cours');
 	}
 
@@ -196,9 +197,9 @@ class CoursController extends Controller
 
 	/**
 	 * Download a file.
-	 *s
+	 *
 	 * @param id: the id of the file the user wants to download
-	 * @return downloaded file with readable name
+	 * @return link to download file with readable name
 	 */
 	public function downloadFile ($id)
 	{
@@ -281,7 +282,7 @@ class CoursController extends Controller
 	/**
 	 * Add new creators (if they are not already in the list).
 	 *
-	 * @param App\Cours $cours: the lesson you want to add creators
+	 * @param App\Cours $cours: the lesson you want to add creators to
 	 */
 	public function addCreators(Cours $cours)
 	{
@@ -293,7 +294,7 @@ class CoursController extends Controller
 	}
 
 	/**
-	 * Delete the previous image if it's not a default image and set the new image.
+	 * Delete the first image if it's not a default image and set the new image.
 	 *
 	 * @param App\Cours $cours: the lesson we want to edit
 	 */
@@ -309,7 +310,7 @@ class CoursController extends Controller
 	}
 
 	/**
-	 * Select a default image.
+	 * Select a random default image.
 	 *
 	 * @return path to the image
 	 */

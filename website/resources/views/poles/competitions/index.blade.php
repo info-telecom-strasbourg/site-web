@@ -10,7 +10,7 @@
         <hr class="line-under-title">
         <div>
             <p>{{ $pole->desc }}</p>
-            <h4 class="title md text-left">Liste des cours</h4>
+            <h4 class="title md text-left">Liste des compétitions</h4>
 			<div class="container">
 				@forelse ($compets as $compet)
 					<div class="row align-items-center">
