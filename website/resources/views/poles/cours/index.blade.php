@@ -40,21 +40,21 @@
 								</div>
 							@empty
 
+								<div class="alert alert-secondary alert-dismissible fade show col" role="alert">
+									Aucun cours n'a été trouvé
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				    					<span aria-hidden="true">&times;</span>
+				  					</button>
+								</div>
+							@endforelse
+
+						@else
 							<div class="alert alert-secondary alert-dismissible fade show col" role="alert">
-								Aucun projets n'a été trouvé
+								Aucun cours n'a été trouvé
 								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 			    					<span aria-hidden="true">&times;</span>
 			  					</button>
 							</div>
-							@endforelse
-
-						@else
-						<div class="alert alert-secondary alert-dismissible fade show col" role="alert">
-							Aucun projets n'a été trouvé
-							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-		    					<span aria-hidden="true">&times;</span>
-		  					</button>
-						</div>
 
 						@endif
 					</div>

@@ -34,7 +34,7 @@
                     <a class="dropdown-item" href="/poles/cours">Cours & Accompagnements</a>
                     <a class="dropdown-item" href="/poles/applications_et_sites_web">Applications & Sites Web</a>
                     <a class="dropdown-item" href="/poles/programmation_utilitaire">Programmation utilitaire</a>
-                    <a class="dropdown-item" href="/poles/compétitions">Compétitions</a>
+                    <a class="dropdown-item" href="/poles/competitions">Compétitions</a>
                     <a class="dropdown-item" href="/poles/jeux_vidéos">Jeux Vidéos</a>
                 </div>
             </li>

@@ -11,7 +11,7 @@ class PoleController extends Controller
     /**
      * Display all poles.
      *
-     * @return view with all poles available
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -21,12 +21,12 @@ class PoleController extends Controller
     /**
      * Show a specified pole.
      *
-     * @param App\Pole $pole: the pole you want to display
-     * @return view of a specific lesson
+     * @param string $pole: the pole you want to display
+     * @return \Illuminate\Http\Response
      */
     public function show($pole)
     {
-    $pole = Pole::where('title', str_replace('_', ' ', $pole))->first();
+        $pole = Pole::where('title', str_replace('_', ' ', $pole))->first();
 		if ($pole->specifique_display == 0)
         	return view('poles.show', compact('pole'));
 		else
@@ -36,7 +36,7 @@ class PoleController extends Controller
     /**
      * Show the form to create a pole.
      *
-     * @return view to create a pole
+     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -45,6 +45,8 @@ class PoleController extends Controller
 
     /**
      * Store a new pole.
+     *
+     * @return \Illuminate\Http\Response
      */
     public function store()
     {
@@ -55,7 +57,7 @@ class PoleController extends Controller
      * Show the form for editing the specified pole.
      *
      * @param App\Pole $pole: the pole you want to edit
-     * @return view to edit the pole
+     * @return \Illuminate\Http\Response
      */
     public function edit(Pole $pole)
     {
@@ -66,7 +68,7 @@ class PoleController extends Controller
      * Update the specified pole.
      *
      * @param App\Pole $pole: the pole you want to update
-     * @return redirect to the pole's specific page
+     * @return \Illuminate\Http\Response to the pole's specific page
      */
     public function update(Pole $pole)
     {
@@ -79,7 +81,9 @@ class PoleController extends Controller
     }
 
     /**
-     * Delete a pole and everything attached to it.
+     * Delete a specific pole and everything attached to it.
+     *
+     * @return \Illuminate\Http\Response
      */
     public function destroy()
     {

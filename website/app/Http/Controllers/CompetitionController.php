@@ -12,22 +12,28 @@ class CompetitionController extends Controller
 {
 	/**
 	 * List all the competitions.
+	 *
+	 * @return \Illuminate\Http\Response
 	 */
     public function index()
 	{		
-		return view('poles.competitions.index', [ 'compets' => Competition::all(), 'pole' => Pole::where('title', 'Compétition')->first() ]);
+		return view('poles.competitions.index', [ 'compets' => Competition::all(), 'pole' => Pole::where('title', 'compétitions')->first() ]);
 	}
 
 	/**
 	 * Show a specified competition.
+	 *
+	 * @return \Illuminate\Http\Response
 	 */
 	public function show(Competition $compet)
 	{
-		return view('poles.competition.show', compact('compet'));
+		return view('poles.competitions.show', compact('compet'));
 	}
 
 	/**
-	 * Return view to create a competition.
+	 * Show the form to create a competition.
+	 *
+	 * @return \Illuminate\Http\Response
 	 */
 	public function create()
 	{
@@ -35,24 +41,30 @@ class CompetitionController extends Controller
 	}
 
 	/**
-	 * Store a new lesson.
+	 * Store a new competition.
+	 *
+	 * @return \Illuminate\Http\Response
 	 */
 	public function store()
 	{
 		Competition::create($this->validateCompetiton());
-		return redirect('poles.competition.index');
+		return redirect('poles.competitions.index');
 	}
 
 	/**
 	 * Show the form for editing the specified competition.
+	 *
+	 * @return \Illuminate\Http\Response
 	 */
 	public function edit(Competition $compet)
 	{
-		redirect('poles.competition.edit', compact('compet'));
+		return view('poles.competitions.edit', compact('compet'));
 	}
 
-	/*
+	/**
 	 * Update the specified competition.
+	 *
+	 * @return \Illuminate\Http\Response
 	 */
 	public function update(Competition $compet)
 	{
@@ -61,6 +73,8 @@ class CompetitionController extends Controller
 
 	/**
 	 * Remove the specified lesson.
+	 *
+	 * @return \Illuminate\Http\Response
 	 */
 	public function destroy()
 	{

@@ -92,7 +92,7 @@
                 </a>
             </div>
             <div class="card" id="compet-container">
-                <a class="card-img d-flex align-items-center justify-content-center rgba-black-strong py-5 px-4" href="/poles/compétitions">
+                <a class="card-img d-flex align-items-center justify-content-center rgba-black-strong py-5 px-4" href="/poles/competitions">
                     <h3 class="text-white text-center" id="web">Compétitions</h3>
                 </a>
             </div>
