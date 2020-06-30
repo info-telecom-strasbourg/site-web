@@ -424,27 +424,6 @@ display: block;
     background-size: 150% 150%;
 }
 
-#poles-activites #cours-container {
-    background-image: url('../images/illustrations/cours.jpg');
-}
-
-#poles-activites #web-container {
-    background-image: url('../images/illustrations/web.jpg');
-}
-
-#poles-activites #prog-container {
-    background-image: url('../images/illustrations/prog.jpg');
-}
-
-#poles-activites #compet-container {
-    background-image: url('../images/illustrations/compet.jpg');
-}
-
-#poles-activites #jeux-container {
-    background-image: url('../images/illustrations/jeux.jpg');
-}
-
-
 /* Nos projets */
 
 @media (max-width: 767px) {

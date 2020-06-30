@@ -77,32 +77,12 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             @foreach ($poles as $pole)
-            <div class="card" style="background-image: url('../images/illustrations/cours.jpg');">
-                <a class="card-img d-flex align-items-center justify-content-center rgba-black-strong py-5 px-4" href="/poles/cours">
-                    <h3 class="text-white text-center" id="web">Cours & Accompagnement</h3>
+            <div class="card" style="background-image: url('{{ asset($pole->image) }}')">
+                <a class="card-img d-flex align-items-center justify-content-center rgba-black-strong py-5 px-4" href="/poles/{{ $pole->slug }}">
+                    <h3 class="text-white text-center" id="web">{{ $pole->title }}</h3>
                 </a>
             </div>
             @endforeach
-            <div class="card" id="web-container">
-                <a class="card-img d-flex align-items-center justify-content-center rgba-black-strong py-5 px-4" href="/poles/applications_et_sites_web">
-                    <h3 class="text-white text-center" id="web">Applications & Sites Web</h3>
-                </a>
-            </div>
-            <div class="card" id="prog-container">
-                <a class="card-img d-flex align-items-center justify-content-center rgba-black-strong py-5 px-4" href="/poles/programmation_utilitaire">
-                    <h3 class="text-white text-center" id="web">Programmation utilitaire</h3>
-                </a>
-            </div>
-            <div class="card" id="compet-container">
-                <a class="card-img d-flex align-items-center justify-content-center rgba-black-strong py-5 px-4" href="/poles/competitions">
-                    <h3 class="text-white text-center" id="web">Compétitions</h3>
-                </a>
-            </div>
-            <div class="card" id="jeux-container">
-                <a class="card-img d-flex align-items-center justify-content-center rgba-black-strong py-5 px-4" href="/poles/jeux_videos">
-                    <h3 class="text-white text-center" id="web">Jeux vidéos</h3>
-                </a>
-            </div>
         </div>
     </div>
 </section>

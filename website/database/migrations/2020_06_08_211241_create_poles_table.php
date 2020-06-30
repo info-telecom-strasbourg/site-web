@@ -18,6 +18,8 @@ class CreatePolesTable extends Migration
             $table->string('title');
             $table->string('slug');
             $table->text('desc');
+            // the poles images are in storage/images/poles folder
+            $table->string('image');
             $table->BigInteger('respo_id')->unsigned();
             $table->foreign('respo_id')->references('id')->on('users');
         });
