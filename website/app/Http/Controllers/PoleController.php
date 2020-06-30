@@ -26,11 +26,8 @@ class PoleController extends Controller
      */
     public function show($pole)
     {
-        $pole = Pole::where('title', str_replace('_', ' ', $pole))->first();
-		if ($pole->specifique_display == 0)
-        	return view('poles.show', compact('pole'));
-		else
-			return Redirect::back();
+        $pole = Pole::where('slug', $pole)->first();
+        return view('poles.show', compact('pole'));
     }
 
     /**

@@ -16,9 +16,9 @@ class CreatePolesTable extends Migration
         Schema::create('poles', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('slug');
             $table->text('desc');
             $table->BigInteger('respo_id')->unsigned();
-			$table->boolean('specifique_display');
             $table->foreign('respo_id')->references('id')->on('users');
         });
     }

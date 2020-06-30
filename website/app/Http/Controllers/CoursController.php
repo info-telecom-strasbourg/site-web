@@ -29,7 +29,7 @@ class CoursController extends Controller
 	 */
 	public function index()
 	{
-		$pole = Pole::where('title', 'Cours')->first();
+		$pole = Pole::where('slug', 'cours')->first();
 		$cours = Cours::orderBy('id', 'DESC')->get();
 		return view('poles.cours.index', ['cours' => $cours, 'pole' => $pole]);
 	}
