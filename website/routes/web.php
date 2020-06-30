@@ -16,9 +16,7 @@ use App\Pole;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'WelcomeController@welcome')->name('welcome');
 
 Route::get('/besoin-aide', function () {
     return view('besoin-aide');

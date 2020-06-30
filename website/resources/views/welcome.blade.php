@@ -76,11 +76,13 @@
     <hr class="line-under-title">
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="card" id="cours-container">
+            @foreach ($poles as $pole)
+            <div class="card" style="background-image: url('../images/illustrations/cours.jpg');">
                 <a class="card-img d-flex align-items-center justify-content-center rgba-black-strong py-5 px-4" href="/poles/cours">
                     <h3 class="text-white text-center" id="web">Cours & Accompagnement</h3>
                 </a>
             </div>
+            @endforeach
             <div class="card" id="web-container">
                 <a class="card-img d-flex align-items-center justify-content-center rgba-black-strong py-5 px-4" href="/poles/applications_et_sites_web">
                     <h3 class="text-white text-center" id="web">Applications & Sites Web</h3>
@@ -249,83 +251,15 @@
     <div class="respos">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-3 text-center">
-                    <a href="#" class="respo">
-                        <img class="profil-rounded" src="images/defaut/profil.jpg">
-                        <p id="nom"> Hugo LAULLIER </p>
-                        <p id="fonction"> Président</p>
-                    </a>
-                </div>
-                <div class="col-md-3 text-center">
-                    <a href="#" class="respo">
-                        <img class="profil-rounded" src="images/defaut/profil.jpg">
-                        <p id="nom"> Gonçalo GIGA </p>
-                        <p id="fonction"> Secrétaire</p>
-                    </a>
-                </div>
-                <div class="col-md-3 text-center">
-                    <a href="#" class="respo">
-                        <img class="profil-rounded" src="images/defaut/profil.jpg">
-                        <p id="nom"> Clara SCHILD </p>
-                        <p id="fonction"> Trésorière</p>
-                    </a>
-                </div>
-                <div class="col-md-3 text-center">
-                    <a href="#" class="respo">
-                        <img class="profil-rounded" src="images/defaut/profil.jpg">
-                        <p id="nom"> Lucas SCHAEFFER </p>
-                        <p id="fonction"> Responsable support</p>
-                    </a>
-                </div>
-                <div class="col-md-3 text-center">
-                    <a href="#" class="respo">
-                        <img class="profil-rounded" src="images/defaut/profil.jpg">
-                        <p id="nom"> Michael HOFMANN </p>
-                        <p id="fonction"> Responsable <br> communication</p>
-                    </a>
-                </div>
-                <div class="col-md-3 text-center">
-                    <a href="#" class="respo">
-                        <img class="profil-rounded" src="images/defaut/profil.jpg">
-                        <p id="nom"> Yassine EL AIOUILLI </p>
-                        <p id="fonction"> Responsable <br> sponsor</p>
-                    </a>
-                </div>
-                <div class="col-md-3 text-center">
-                    <a href="#" class="respo">
-                        <img class="profil-rounded" src="images/defaut/profil.jpg">
-                        <p id="nom"> Céline LY </p>
-                        <p id="fonction"> Responsable <br> compétition</p>
-                    </a>
-                </div>
-                <div class="col-md-3 text-center">
-                    <a href="#" class="respo">
-                        <img class="profil-rounded" src="images/defaut/profil.jpg">
-                        <p id="nom"> Thomas RIVES </p>
-                        <p id="fonction"> Responsable <br> programmation utilitaire</p>
-                    </a>
-                </div>
-                <div class="col-md-3 text-center">
-                    <a href="#" class="respo">
-                        <img class="profil-rounded" src="images/defaut/profil.jpg">
-                        <p id="nom"> Valentin COMPS </p>
-                        <p id="fonction"> Responsable <br> applications et site web</p>
-                    </a>
-                </div>
-                <div class="col-md-3 text-center">
-                    <a href="#" class="respo">
-                        <img class="profil-rounded" src="images/defaut/profil.jpg">
-                        <p id="nom"> Idriss LARBI </p>
-                        <p id="fonction"> Responsable jeux vidéo</p>
-                    </a>
-                </div>
-                <div class="col-md-3 text-center">
-                    <a href="#" class="respo">
-                        <img class="profil-rounded" src="images/defaut/profil.jpg">
-                        <p id="nom"> Clément ROSSETTI </p>
-                        <p id="fonction"> Responsable consultant</p>
-                    </a>
-                </div>
+                @foreach ($team as $user)
+                    <div class="col-md-3 text-center">
+                        <a href="/users/{{ $user->id }}" class="respo">
+                            <img class="profil-rounded" src="{{ asset('storage/'.$user->profil_picture) }}">
+                            <p id="nom">{{ $user->name }}</p>
+                            <p id="fonction">{{ $user->role->role }}</p>
+                        </a>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>
@@ -337,19 +271,23 @@
     <hr class="line-under-title">
     <div class="chiffres">
         <div class="chiffre">
-            <h1>10</h1>
+            <h1>{{ $nbProjets }}</h1>
             PROJETS
         </div>
         <div class="chiffre">
-            <h1>100</h1>
+            <h1>{{ $nbUsers }}</h1>
             MEMBRES
         </div>
         <div class="chiffre">
-            <h1>5</h1>
+            <h1>{{ $nbPoles }}</h1>
             POLES
         </div>
         <div class="chiffre">
-            <h1>1ère</h1>
+            @if ($years == 1)
+                <h1>{{ $years }}ère</h1>
+            @else
+                <h1>{{ $years }}ème</h1>
+            @endif
             ANNEE
         </div>
     </div>
