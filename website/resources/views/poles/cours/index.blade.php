@@ -31,7 +31,7 @@
 												{{ $cour->title }}
 											</h5>
 											<p class="card-text">
-												<span>{{ mb_strlen( $cour->desc ) > 54 ? mb_substr($cour->desc, 0, 54) . ' ...' : $cour->desc }}
+												<span>{{ mb_strlen( $cour->desc ) > 57 ? mb_substr($cour->desc, 0, 54) . ' ...' : $cour->desc }}
 				                                </span>
 											</p>
 											<a href="/poles/cours/{{ $cour->id }}" class="btn btn-rounded btn-primary" type="button">DÉCOUVRIR</a>
