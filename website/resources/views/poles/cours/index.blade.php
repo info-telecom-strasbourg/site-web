@@ -70,19 +70,17 @@
 			@endif
 
 			@auth
-				<div class="text-center" style="margin-top:25px; margin-bottom:25px">
+				<div class="text-center" style="margin-top:25px; margin-bottom:25px;">
 					<a class="btn btn-primary btn-rounded" href="/poles/cours/create">Créer un cours</a>
 				</div>
+				@can ('update', $pole)
+					<div class="text-center" style="margin-top:25px; margin-bottom:25px;">
+						<button type="submit" class="btn btn-primary btn-rounded" onclick="self.location.href='/poles/{{ $pole->id }}/edit'">Éditer</button>
+					</div>
+				@endcan
 			@endauth
-
 
 	    </div>
 	</div>
 </div>
 @endsection
-
-<!--
-Bouton edit si on est le créateur du cours_id
-Lien vers la page du cours
-Mise en page
- -->
