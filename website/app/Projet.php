@@ -53,6 +53,9 @@ class Projet extends Model
      */
     public function scopeSearch($query)
     {
+        // if a search value has been specified, search if the a title or the
+        // description has this value
+        // otherwise return the query
         return empty(request()->search) ? $query : $query->where('title', 'like', '%'.request()->search.'%')->orWhere('desc', 'like', '%'.request()->search.'%');
     }
 
@@ -64,18 +67,22 @@ class Projet extends Model
      */
     public function scopeFilter($query)
     {
+        // if a pole was specified
         if (!empty(request()->pole)) {
             $query = $query->where('pole_id', request()->pole);
         }
 
+        // if a user was specified
         if (!empty(request()->membre)) {
             $query = $query->join('projets_participants', 'projets.id', '=', 'projets_participants.projet_id')->where('user_id', request()->membre);
         }
 
+        // if a partner was specified
         if (!empty(request()->partner)) {
             $query = $query->where('collaborateur_id', request()->partner);
         }
 
+        // if a sort option was specified
         if (!empty(request()->trie)) {
             if (request()->trie == 1) {
                 $query = $query->orderBy('title', 'asc');

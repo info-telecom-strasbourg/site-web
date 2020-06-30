@@ -10,7 +10,7 @@ class Cours extends Model
 	public $timestamps = false;
 
 	/**
-	 * Get the list of creators of the lesson
+	 * Get the list of creators of the lesson.
 	 */
     public function creators()
     {
@@ -18,7 +18,7 @@ class Cours extends Model
     }
 
 	/**
-	 * Get the references of a lesson
+	 * Get the references of a lesson.
 	 */
     public function supports()
     {
@@ -26,7 +26,7 @@ class Cours extends Model
     }
 
 	/**
-	 * Get the list of dates for a lesson
+	 * Get the list of dates for a lesson.
 	 */
 	public function dates()
 	{
@@ -34,7 +34,7 @@ class Cours extends Model
 	}
 
 	/**
-	 * Get the tags of a lesson
+	 * Get the tags of a lesson.
 	 */
 	public function tags()
 	{

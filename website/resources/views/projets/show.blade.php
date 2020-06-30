@@ -20,11 +20,11 @@
         <p>{{ $projet->desc }}</p>
         <div class="bordure"></div>
         <h4 class="title md text-center">Chef de projet</h4>
-            <div class="card p-2 rounded chef-projet" style="max-width: 220px; cursor: pointer;">
+            <div class="card p-2 rounded chef-projet" style="width: 220px; cursor: pointer;">
 				<a href="/users/{{ $projet->chef->id }}" class="user-link">
 	                <div class="row no-gutters align-items-center" style="flex-wrap: unset">
 	                    <div class="col-md-4" style="max-width: 60px;">
-	                        <img src="{{ asset('storage/'.json_decode($projet->chef->profil_picture)[0]) }}" class="card-img">
+	                        <img src="{{ asset('storage/'.$projet->chef->profil_picture) }}" class="card-img">
 	                    </div>
 	                    <div class="col-md-8">
 	                        <div class="card-body">
