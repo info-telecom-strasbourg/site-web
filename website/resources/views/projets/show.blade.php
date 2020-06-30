@@ -20,33 +20,43 @@
         <p>{{ $projet->desc }}</p>
         <div class="bordure"></div>
         <h4 class="title md text-center">Chef de projet</h4>
-            <div class="card p-2 rounded chef-projet" style="width: 220px; cursor: pointer;">
-				<a href="/users/{{ $projet->chef->id }}" class="user-link">
-	                <div class="row no-gutters align-items-center" style="flex-wrap: unset">
-	                    <div class="col-md-4" style="max-width: 60px;">
-	                        <img src="{{ asset('storage/'.$projet->chef->profil_picture) }}" class="card-img">
-	                    </div>
-	                    <div class="col-md-8">
-	                        <div class="card-body">
-	                            <p class="card-title" style="margin-bottom: 0;"> {{ $projet->chef->name }}</p>
-	                        </div>
-	                    </div>
-	                </div>
-				</a>
+        <div class="container pt-5" style="padding-top: 1rem !important; margin-bottom: -35px;">
+            <div class="row align-items-center">
+                <div class="col-md-auto sep-items">
+                    <a href="/users/{{ $projet->chef->id }}" class="user-link">
+                        <div class="card p-2 rounded chef-projet" style="min-width: 220px !important; height: 100px !important; cursor: pointer;">
+                            <div class="row no-gutters align-items-center" style="flex-wrap: unset; height: 100% !important;">
+                                <div class="col-md-4" style="width: 60px !important;">
+                                    <img src="{{ asset('storage/'.$projet->chef->profil_picture) }}" class="card-img" style="width: 60px !important;">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <p class="card-title" style="margin-bottom: 0;"> {{ $projet->chef->name }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
             </div>
+        </div>
 
-        @if(!$projet->participants->isEmpty())
-        <div class="bordure"></div>
-        <h4 class="title md text-center">Participants</h4>
-        @foreach ($projet->participants as $participant)
-        <p>{{ $participant->name }}</p>
-        @endforeach
+        <!-- Participants -->
+        @if (!$projet->participants->isEmpty())
+            <div class="bordure"></div>
+            <h4 class="title md text-center">Participants</h4>
+            @foreach ($projet->participants as $participant)
+                <p>{{ $participant->name }}</p>
+            @endforeach
         @endif
+
+        <!-- Collaborateur -->
         @if(!empty($projet->collaborateur))
-        <div class="bordure"></div>
-        <h4 class="title md text-center">Collaborateurs</h4>
-        <p>{{ $projet->collaborateur->name }}</p>
+            <div class="bordure"></div>
+            <h4 class="title md text-center">Collaborateurs</h4>
+            <p>{{ $projet->collaborateur->name }}</p>
         @endif
+
         <div class="bordure"></div>
         <h4 class="title md text-center">Le projet en images</h4>
         <div style="display : flex; justify-content :center; margin-top: 40px; margin-bottom: 40px;">
@@ -85,9 +95,9 @@
                 <i class="fab fa-github fa-3x fa-lg mr-3"></i>Github
             </a>
             @if(!empty($projet->link_download))
-            <a class="social-icons d-flex align-items-center" href="{{ $projet->link_download }}">
-                <i class="fas fa-download fa-3x fa-lg mr-3"></i>Téléchargement
-            </a>
+                <a class="social-icons d-flex align-items-center" href="{{ $projet->link_download }}">
+                    <i class="fas fa-download fa-3x fa-lg mr-3"></i>Téléchargement
+                </a>
             @endif
             <a class="social-icons d-flex align-items-center" href="{{ $projet->link_doc }}">
                 <i class="fas fa-envelope fa-3x fa-lg mr-3"></i>Documentation

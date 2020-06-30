@@ -47,9 +47,8 @@
 				@enderror
 
 				<!-- Bouton submit -->
-
 				<div class="text-center" style="margin-top:25px; margin-bottom:25px">
-					<button type="submit" class="btn btn-primary btn-rounded">Edit</button>
+					<button type="submit" class="btn btn-primary btn-rounded">Enregistrer</button>
 				</div>
 
 			</form>

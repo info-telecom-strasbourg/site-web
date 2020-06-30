@@ -30,7 +30,7 @@
 			<!-- Créateurs -->
 			<div class="container pt-5" style="padding-top: 1rem !important; margin-bottom: -35px;">
 				<div class="row align-items-center">
-					@if(isset($cours))
+					@if (isset($cours))
 						@forelse ($cours->creators as $creator)
 							<div class="col-md-auto sep-items">
 								<a href="/users/{{ $creator->id }}" class="user-link">
@@ -61,11 +61,11 @@
 				</div>
 			</div>
 
-			<!-- Dates en présentiels -->
+			<!-- Dates en présentiel -->
 			<div class="bordure"></div>
 			<h4 class="title md text-center">Dates en présentiel</h4>
 			<div class="container" style="margin-top: 30px;">
-				@if(isset($cours))
+				@if (isset($cours))
 					@php $datesPresentiel = 0; @endphp
 					@forelse ($cours->dates as $date)
 						@if ($date->presentiel == 1)
@@ -94,11 +94,11 @@
 				@endif
 			</div>
 
-			<!-- Dates en distanciels -->
+			<!-- Dates en distanciel -->
 			<div class="bordure"></div>
 			<h4 class="title md text-center">Dates en distanciel (sur Discord)</h4>
 			<div class="container" style="margin-top: 30px;">
-				@if(isset($cours))
+				@if (isset($cours))
 					@php $datesDistanciel = 0; @endphp
 					@forelse ($cours->dates as $date)
 						@if ($date->presentiel == 0)
@@ -129,7 +129,7 @@
 
 
 			<!-- Références -->
-			@if(isset($cours->links))
+			@if (isset($cours->links))
 				<div class="bordure"></div>
 				<h4 class="title md text-center">Références</h4>
 				@foreach (json_decode($cours->links, true) as $link)
@@ -184,14 +184,13 @@
 			@endif
 
 			@can('update', $cours)
-				<div class="text-center" style="margin-top:25px; margin-bottom:25px">
-					<a class="btn btn-primary btn-rounded" href="/poles/cours/{{ $cours->id }}/edit">Editer</a>
+				<div class="text-center" style="margin-top:25px; margin-bottom:25px;">
+					<a class="btn btn-primary btn-rounded" href="/poles/cours/{{ $cours->id }}/edit">Éditer</a>
 				</div>
-				<div class="text-center" style="margin-top:25px; margin-bottom:25px">
+				<div class="text-center" style="margin-top:25px; margin-bottom:25px;">
 					<a class="btn btn-primary btn-rounded" href="/poles/cours/{{ $cours->id }}/destroy">Supprimer</a>
 				</div>
 			@endcan
-
 		</div>
 	</div>
 </div>
