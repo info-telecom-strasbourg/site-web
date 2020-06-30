@@ -4,6 +4,12 @@
 Création d'un cours
 @endsection
 
+@section('breadcrumb')
+<li class="breadcrumb-item"><a href="/"><i class="fas fa-home"></i></a></li>
+<li class="breadcrumb-item active"><a href="/poles/cours">Pôle Cours</a></li>
+<li class="breadcrumb-item active">Création</li>
+@endsection
+
 @section('content')
 
 <div class="container">

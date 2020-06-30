@@ -24,7 +24,7 @@ class PoleController extends Controller
      * @param App\Pole $pole: the pole you want to display
      * @return view of a specific lesson
      */
-    public function show(Pole $pole)
+    public function show($pole)
     {
     $pole = Pole::where('title', str_replace('_', ' ', $pole))->first();
 		if ($pole->specifique_display == 0)

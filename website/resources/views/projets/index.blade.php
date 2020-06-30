@@ -100,7 +100,7 @@
 										{{ $projet->title }}
 									</h5>
 									<p class="card-text">
-										<span>{{ mb_strlen( $projet->desc ) > 200 ? mb_substr($projet->desc, 0, 200) . ' ...' : $projet->desc }}
+										<span>{{ mb_strlen( $cour->desc ) > 54 ? mb_substr($cour->desc, 0, 54) . ' ...' : $cour->desc }}
 		                                </span>
 									</p>
 									<a href="/projets/{{ $projet->id }}" class="btn btn-rounded btn-primary" type="button">DÉCOUVRIR</a>
