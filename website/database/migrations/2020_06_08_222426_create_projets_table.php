@@ -59,11 +59,13 @@ class CreateProjetsTable extends Migration
 
             $table->foreign('projet_id')
                 ->references('id')
-                ->on('projets');
+                ->on('projets')
+                ->onDelete('cascade');
 
             $table->foreign('user_id')
                 ->references('id')
-                ->on('users');
+                ->on('users')
+                ->onDelete('cascade');
         });
     }
 

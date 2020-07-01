@@ -116,7 +116,11 @@
                     <button type="submit" class="btn btn-primary btn-rounded" onclick="self.location.href='/projets/{{ $projet->id }}/edit'">Éditer</button>
                 </div>
                 <div class="text-center" style="margin-top:25px; margin-bottom:25px;">
-                    <button type="submit" class="btn btn-primary btn-rounded" onclick="self.location.href='/projets/{{ $projet->id }}/destroy'">Supprimer</button>
+                    <form action="/projets/{{ $projet->id }}" method="POST">
+                        @method('DELETE')
+                        @csrf
+                        <button type="submit" class="btn btn-primary btn-rounded" onclick="return confirm('Voulez-vous vraiment supprimer ce projet ?')">Supprimer</button>
+                    </form>
                 </div>
             </div>
         @endcan

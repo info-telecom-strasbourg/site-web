@@ -170,15 +170,15 @@ class CoursController extends Controller
 
 		// delete all dates associate to the lesson in database and in storage
 		$cours->dates()->delete();
-		if (file_exists(storage_path('app/public/'.json_decode($cours->image)[0])) && substr(json_decode($cours->image)[0],0,15) != "images/default/") 
+		if (file_exists(storage_path('app/public/' . json_decode($cours->image)[0])) && substr(json_decode($cours->image)[0], 0, 15) != "images/default/") 
 		{
-			unlink(storage_path('app/public/'.json_decode($cours->image)[0]));
+			unlink(storage_path('app/public/' . json_decode($cours->image)[0]));
 		}
 
 		// delete all supports in database and in storage
 		foreach ($cours->supports as $file)
 		{
-			unlink(storage_path('app/'.$file->ref));
+			unlink(storage_path('app/' . $file->ref));
 			$file->delete();
 		}
 
@@ -260,7 +260,8 @@ class CoursController extends Controller
 			foreach ($request->dates_pres as $date)
 			{
 				// create a new date in the database
-				$newDate = Date::create(['presentiel' => 1,
+				$newDate = Date::create([
+					'presentiel' => 1,
 					'date' => $date
 				]);
 
@@ -275,7 +276,8 @@ class CoursController extends Controller
 			foreach ($request->dates_dist as $date)
 			{
 				// create a new date in the database
-				$newDate = Date::create(['presentiel' => 0,
+				$newDate = Date::create([
+					'presentiel' => 0,
 					'date' => $date
 				]);
 
@@ -294,7 +296,7 @@ class CoursController extends Controller
 	{
 		foreach (request()->creators as $creator) 
 		{
-			if ($cours->creators()->where('user_id',$creator)->count() == 0)
+			if ($cours->creators()->where('user_id', $creator)->count() == 0)
 				$cours->creators()->attach($creator);
 		}
 	}
@@ -306,9 +308,9 @@ class CoursController extends Controller
 	 */
 	public function changeImage(Cours $cours)
 	{
-		if (file_exists(storage_path('app/public/'.json_decode($cours->image)[0])) && substr(json_decode($cours->image)[0],0,15) != "images/default/") 
+		if (file_exists(storage_path('app/public/' . json_decode($cours->image)[0])) && substr(json_decode($cours->image)[0], 0, 15) != "images/default/") 
 		{
-			unlink(storage_path('app/public/'.json_decode($cours->image)[0]));
+			unlink(storage_path('app/public/' . json_decode($cours->image)[0]));
 		}
 
 		$cours->image = [$this->saveImage(request(), $cours)];
@@ -322,7 +324,7 @@ class CoursController extends Controller
 	 */
 	public function selectDefaultImage()
 	{
-		return 'images/default/cours/'.strval(random_int (1, 5).'.jpg');
+		return 'images/default/cours/' . strval(random_int (1, 5).'.jpg');
 	}
 
 	/**
@@ -341,7 +343,7 @@ class CoursController extends Controller
 		// if the value is 2 delete the file
 		if ($value == 2)
 		{
-			unlink(storage_path('app/'.$file->ref));
+			unlink(storage_path('app/' . $file->ref));
 			$file->delete();
 		}
 		else 	// change the visibiity of the file
