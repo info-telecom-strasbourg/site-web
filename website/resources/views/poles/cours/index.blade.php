@@ -61,6 +61,7 @@
 				</div>
 			</div>
 
+			<!-- Button to see more -->
 			@if(isset($cours) && $cours->count() > 6)
 		        <div id="line-btn-vp" class="d-flex justify-content-center">
 		          <div class="p-2 bd-highlight flex-grow-1"><hr class="line-voir-plus"></div>
@@ -68,6 +69,29 @@
 		          <div class="p-2 bd-highlight flex-grow-1"><hr class="line-voir-plus"></div>
 		        </div>
 			@endif
+
+			<!-- Responsable -->
+			<h4 class="title md text-left respo">Responsable {{ strtolower($pole->title) }}</h4>
+			<div class="container pt-5" style="padding-top: 1rem !important; margin-bottom: -35px;">
+				<div class="row align-items-center">
+					<div class="col-md-auto sep-items">
+						<a href="/users/{{ $pole->respo->id }}" class="user-link">
+							<div class="card p-2 rounded chef-projet" style="min-width: 220px !important; height: 100px !important; cursor: pointer;">
+								<div class="row no-gutters align-items-center" style="flex-wrap: unset; height: 100% !important;">
+									<div class="col-md-4" style="width: 60px !important;">
+										<img src="{{ asset($pole->respo->profil_picture) }}" class="card-img profil-rounded" style="width: 60px !important; height: 60px !important;">
+									</div>
+									<div class="col-md-8">
+										<div class="card-body">
+											<h5 class="card-title" style="margin-bottom: 0;"> {{ $pole->respo->name }}</h5>
+										</div>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
 
 			@can ('create', 'App\Cours')
 				<div class="text-center" style="margin-top:25px; margin-bottom:25px;">
