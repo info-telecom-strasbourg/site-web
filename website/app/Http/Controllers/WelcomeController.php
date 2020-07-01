@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+
+use App\Mail\ContactMe;
 
 use App\Pole;
 use App\User;
@@ -43,5 +46,17 @@ class WelcomeController extends Controller
         $years = date("Y") - 2019;
 
         return view('welcome', compact('poles', 'team', 'partners', 'nbProjets', 'nbUsers', 'nbPoles', 'years'));
+    }
+
+    public function store(Request $request) 
+    {
+        $request->validate(['email' => 'required|email']);
+
+        // send the email
+        Mail::to($request->email)
+            ->send(new ContactMe($request->name, $request->subject, $request->email, $request->messages));
+
+        return redirect('/#contact-anchor')
+            ->with('message', 'Votre demande de contact a été envyoyé.');
     }
 }
