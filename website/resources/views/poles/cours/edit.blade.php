@@ -23,8 +23,9 @@
 		@method('PUT')
 
 		<!-- Pour le titre -->
-		<h4 class="title md text-left">Titre</h4>
 		<div class="form-group">
+			<label for="title" class="form-title-small">Titre</label>
+
 			<input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ $cours->title }}" required autocomplete="title" autofocus>
 
 			@error('title')
@@ -36,11 +37,10 @@
 		</div>
 
 		<!-- Pour la description -->
-		<h4 class="title md text-left">Description</h4>
 		<div class="form-group">
-			<div class="control">
-				<textarea class="form-control desc @error('desc') is-invalid @enderror" id="desc" name="desc" rows="5" required>{{ $cours->desc }}</textarea>
-			</div>
+			<label for="desc" class="form-title-small">Description</label>
+
+			<textarea class="form-control desc @error('desc') is-invalid @enderror" id="desc" name="desc" rows="5" required>{{ $cours->desc }}</textarea>
 
 			@error('desc')
 				<span class="invalid-feedback" role="alert">
@@ -50,34 +50,37 @@
 
 		</div>
 
-		<h4 class="title lg text-left">
-			Ajouter des créateurs
-		</h4>
-		<select class="form-control" name="creators[]" id="creators" multiple>
-            <option readonly selected hidden value="">Créateurs</option>
+		<div class="form-group">
+			<label for="creators" class="form-title-small">Ajouter des créateurs</label>
+			
+			<select class="custom-select" name="creators[]" id="creators" multiple>
+	            <option readonly selected hidden value="">Créateurs</option>
 
-            @isset($users)
-                @foreach ($users as $user)
-                    <option value="{{ $user->id }}">{{ $user->name }}</option>
-                @endforeach
-            @endisset
-        </select>
+	            @isset($users)
+	                @foreach ($users as $user)
+	                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+	                @endforeach
+	            @endisset
+	        </select>
+	    </div>
 
 		<div class="form-group">
-			<h4 class="title lg">
-				Changement de la vignette du cours
-			</h4>
+			<label for="image_crs" class="form-title-small">				Changement de la vignette du cours</label>
+			<br>
 			<input type="file" id="image_crs" name="image_crs">
 		</div>
 
 		<!-- Pour ajouter un/des fichiers -->
-		<h4 class="title md text-left">Ajouter des fichiers</h4>
 		<div class="form-group">
+			<label for="link_support_mod" class="form-title-small">		
+				Ajouter des fichiers
+			</label>
+			<br>
 			<input type="file" id="link_support_mod" name="link_support[]" multiple>
 		</div>
 
 		<!-- Pour modifier des fichiers -->
-		<h4 class="title md text-left">Choisir le status des fichiers des fichiers</h4>
+		<h4 class="form-title">Choisir le status des fichiers des fichiers</h4>
 		<div class="form-group {{ !empty($cours->supports[0]) ? 'to-hide' : '' }}" id="choose-new-statut">
 		@forelse ( $cours->supports as $support )
 
@@ -102,11 +105,12 @@
 
 
 		<!-- Modifier les dates -->
+		<h4 class="form-title">Dates du cours</h4>
 		<div class="row justify-content-around dates-select">
 			<div class="col-md-auto">
-				<h4 class="title lg text-left">
+				<label class="form-title-small">				
 					Dates en présentiels
-				</h4>
+				</label>
 				<div class="dates-pres">
 					<div id="calendar-pres-upd">
 			        	<div id="cal-pres-dates-upd">
@@ -117,9 +121,9 @@
 			</div>
 
 			<div class="col-md-auto">
-				<h4 class="title lg text-left">
+				<label class="form-title-small">				
 					Dates en distanciels
-				</h4>
+				</label>
 				<div class="dates-dist">
 					<div id="calendar-dist-upd">
 			        	<div id="cal-dist-dates-upd">
