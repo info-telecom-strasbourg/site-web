@@ -234,7 +234,7 @@
                 @foreach ($team as $user)
                     <div class="col-md-3 text-center">
                         <a href="/users/{{ $user->id }}" class="respo">
-                            <img class="profil-rounded" src="{{ asset('storage/'.$user->profil_picture) }}">
+                            <img class="profil-rounded" src="{{ asset($user->profil_picture) }}">
                             <p id="nom">{{ $user->name }}</p>
                             <p id="fonction">{{ $user->role->role }}</p>
                         </a>
@@ -301,22 +301,6 @@
             </a>
         </div>
         @endforeach
-
-        {{-- <div class="partenaire">
-            <a href="http://www.telecom-physique.fr/" class="logo" id="tps">
-
-                <img class="logo-pres" src="/images/logo/tps.png" alt="Logo de TPS">
-                <p>Télécom Physique Strasbourg</p>
-            </a>
-        </div>
-
-        <div class="partenaire">
-            <a href="https://robot-ps.com/" class="logo" id="rts">
-                <img class="logo-pres" src="/images/logo/rts.png" alt="Logo de RTS">
-                <p>Robot Télécom Strasbourg</p>
-            </a>
-        </div> --}}
-
     </div>
     <a id="contact-anchor"></a>
 </section>
@@ -333,18 +317,29 @@
                 </div>
             </div>
             <div id="contact_cont" class="contact-form col-md-5">
-                <form class="contact-form d-flex flex-column align-items-center" action="https://formspree.io/youremail@mail.com" method="POST">
+                <!-- Confirmtion email was send -->
+                @if (session('message'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('message') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
+
+                <form class="contact-form d-flex flex-column align-items-center" action="/contact" method="POST">
+                    @csrf
                     <div class="form-group" style="width: 100%;">
                         <input type="name" class="form-control" placeholder="Nom" name="name" required />
                     </div>
                     <div class="form-group" style="width: 100%;">
-                        <input type="email" class="form-control" placeholder="Email" name="name" required />
+                        <input type="email" class="form-control" placeholder="Email" name="email" required />
                     </div>
                     <div class="form-group" style="width: 100%;">
-                        <input type="text" class="form-control" placeholder="Objet" name="objet" required />
+                        <input type="text" class="form-control" placeholder="Objet" name="subject" required />
                     </div>
                     <div class="form-group" style="width: 100%;">
-                        <textarea class="form-control" type="text" placeholder="Message" rows="9" name="name" style="resize: none;" required></textarea>
+                        <textarea class="form-control" type="text" placeholder="Message" rows="9" name="messages" style="resize: none;" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-rounded btn-primary" style="width: 200px;">Envoyer</button>
                 </form>

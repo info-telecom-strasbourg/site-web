@@ -721,10 +721,6 @@ display: block;
     }
 }
 
-#contact .line-under-title {
-    margin-bottom: 60px;
-}
-
 
 /* ##########################   Besoin d'aide   ########################## */
 
@@ -749,7 +745,7 @@ display: block;
 
 /* Général */
 
-.dark-page .line-under-title {
+.dark-page .s-title {
     background-color: white;
     color: white;
 }
