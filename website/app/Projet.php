@@ -42,7 +42,7 @@ class Projet extends Model
      */
     public function participants()
     {
-        return $this->belongsToMany('App\User', 'projets_participants', 'projet_id', 'user_id');
+        return $this->belongsToMany('App\User', 'projets_participants', 'projet_id', 'user_id')->orderBy('name');;
     }
 
     /**
