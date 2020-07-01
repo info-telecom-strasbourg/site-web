@@ -48,7 +48,7 @@
             <div class="form-group">
                 <label for="pole_id" class="form-title-small @error('pole_id') is-invalid @enderror">Pôle</label>
                 <select class="custom-select" id="pole_id" name="pole_id" required>
-                    <option selected readonly hidden>Choisir un pôle ...</option>
+                    <option selected readonly>Choisir un pôle ...</option>
                     
                     @isset($poles)
 
@@ -69,7 +69,7 @@
             <div class="form-group">
                 <label for="chef_projet_id" class="form-title-small">Chef de projet</label>
                 <select class="custom-select @error('chef_projet_id') is-invalid @enderror" id="chef_projet_id" name="chef_projet_id" required>
-                    <option selected readonly hidden>Choisir un chef de projet ...</option>
+                    <option selected readonly>Choisir un chef de projet ...</option>
                     
                     @isset($users)
 
@@ -87,6 +87,26 @@
                     </span>
                 @enderror
             </div>
+            <div class="form-group">
+                <label for="participants" class="form-title-small">Ajouter des participants</label>
+                <select class="custom-select @error('participants') is-invalid @enderror" id="participants" name="participants[]" multiple>                    
+                    @isset($users)
+                        @foreach ($users as $user)
+                            @if (!$projet->participants->contains($user->id))
+                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                            @endif
+                        @endforeach
+
+                    @endisset
+
+                </select>
+
+                @error('participants')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>Choisissez des participans</strong>
+                    </span>
+                @enderror
+            </div>
             <div class="custom-control custom-checkbox" style="margin-bottom: 1rem;">
                 <input id="complete-status" type="checkbox" class="custom-control-input" name="complete" @if ($projet->complete == 1) checked="checked" @endif value="1">
 
@@ -99,6 +119,14 @@
                 <br>
 
                 <input type="file" id="images" name="images[]" multiple>
+            </div>
+            <div class="form-group row align-items-center">
+                @foreach (json_decode($projet->images) as $key => $image)
+                    <div class="col-md-3">
+                            <img src="{{ asset('storage/' . $image) }}" alt=" {{ $key }} slide" style="height: 100px !important;">
+                            <input type="checkbox" name="removeImages[{{ $key }}]" value="1">
+                    </div>
+                @endforeach
             </div>
             <h4 class="form-title">Liens</h4>
             <div class="form-group">

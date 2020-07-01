@@ -18,7 +18,7 @@
 			<div class="container" id="description" style="margin-top: 50px;">
 				<div class="row">
 					<div class="col-3 disp">
-						<img src="{{ asset(json_decode($cours->image)[0]) }}" alt="Decriptive image">
+						<img src="{{ asset('storage/' . json_decode($cours->image)[0]) }}" alt="Decriptive image">
 					</div>
 					<div class="col-9 disp">
 						<p>{{ $cours->desc }}</p>
@@ -37,7 +37,7 @@
 									<div class="card p-2 rounded chef-projet" style="min-width: 220px !important; height: 100px !important; cursor: pointer;">
 										<div class="row no-gutters align-items-center" style="flex-wrap: unset; height: 100% !important;">
 											<div class="col-md-4" style="width: 60px !important;">
-												<img src="{{ asset($creator->profil_picture) }}" class="card-img profil-rounded" style="width: 60px !important; height: 60px !important;">
+												<img src="{{ asset('storage/' . $creator->profil_picture) }}" class="card-img profil-rounded" style="width: 60px !important; height: 60px !important;">
 											</div>
 											<div class="col-md-8">
 												<div class="card-body">
@@ -81,9 +81,6 @@
 							@php $datesPresentiel += 1; @endphp
 						@endif
 					@empty
-						<div>
-							Aucune date n'est prévue pour ce cours.
-						</div>
 					@endforelse
 
 				@endif
@@ -114,9 +111,6 @@
 							@php $datesDistanciel += 1; @endphp
 						@endif
 					@empty
-						<div>
-							Aucune date n'est prévue pour ce cours.
-						</div>
 					@endforelse
 
 				@endif

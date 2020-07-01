@@ -45,7 +45,7 @@
             <div class="form-group">
                 <label for="pole_id" class="form-title-small">Pôle</label>
                 <select class="custom-select @error('pole_id') is-invalid @enderror" id="pole_id" name="pole_id" required>
-                    <option selected readonly hidden>Choisir un pôle ...</option>
+                    <option selected readonly>Choisir un pôle ...</option>
                     
                     @isset($poles)
 
@@ -66,7 +66,7 @@
             <div class="form-group">
                 <label for="chef_projet_id" class="form-title-small">Chef de projet</label>
                 <select class="custom-select @error('chef_projet_id') is-invalid @enderror" id="chef_projet_id" name="chef_projet_id" required>
-                    <option selected readonly hidden>Choisir un chef de projet ...</option>
+                    <option selected readonly>Choisir un chef de projet ...</option>
                     
                     @isset($users)
 
@@ -86,9 +86,7 @@
             </div>
             <div class="form-group">
                 <label for="participants" class="form-title-small">Participants</label>
-                <select class="custom-select @error('participants') is-invalid @enderror" id="participants" name="participants[]" required multiple>
-                    <option selected readonly hidden>Choisir les participants ...</option>
-                    
+                <select class="custom-select @error('participants') is-invalid @enderror" id="participants" name="participants[]" multiple>                    
                     @isset($users)
 
                         @foreach ($users as $user)

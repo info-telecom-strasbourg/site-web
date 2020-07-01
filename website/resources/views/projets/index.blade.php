@@ -98,7 +98,7 @@
 					@forelse ($projets as $projet)
 						<div class="col-md sep-items" id="projets-container">
 							<div class="card text-center rounded">
-								<img class="card-img-top" src="{{ asset(json_decode($projet->images)[0]) }}" alt="Card image cap">
+								<img class="card-img-top" src="{{ asset('storage/' . json_decode($projet->images)[0]) }}" alt="Card image cap">
 								<div class="card-body d-flex flex-column">
 									<h5 class="card-title text-center font-weight-bold">
 										{{ $projet->title }}

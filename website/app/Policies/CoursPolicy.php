@@ -53,6 +53,9 @@ class CoursPolicy
      */
     public function update(User $user, Cours $cours)
     {
+        if (!auth()->check())
+            return false;
+
 		foreach ($cours->creators as $creator)
 		{
         	if ($creator->id == $user->id)
