@@ -1300,3 +1300,13 @@ div.bordure {
 .respo {
     margin-top: 20px;
 }
+
+/* ##########################   Create / edit form   ########################## */
+
+.form-title {
+    margin-top: 40px;
+}
+
+.form-title-small {
+    margin-top: 10px;
+}

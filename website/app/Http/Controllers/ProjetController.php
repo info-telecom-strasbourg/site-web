@@ -96,6 +96,26 @@ class ProjetController extends Controller
         else
             $projet->images = [$this->selectDefaultImage($projet->pole_id)];
 
+        // the team leader is not present in the contributor list
+        $teamLeaderPresent = false;
+
+        // add the contributors to the database
+        if ($request->has('participants')) 
+        {
+            foreach ($request->participants as $participant) 
+            {
+                $projet->participants()->attach($participant);
+
+                // look if the team leader has been added to the contributors
+                if ($participant == $request->chef_projet_id)
+                    $teamLeaderPresent = true;
+            }
+        }
+
+        // add the team leader to the contributors if he wasn't added
+        if (!$teamLeaderPresent)
+            $projet->participants()->attach($request->chef_projet_id);
+
         $projet->save();
 
         return redirect('/projets');
@@ -110,7 +130,9 @@ class ProjetController extends Controller
      */
     public function edit(Projet $projet)
     {
-        return view('projets.edit', ['projet' => $projet]);
+        $users = User::all();
+        $poles = Pole::all();
+        return view('projets.edit', compact('projet', 'users', 'poles'));
     }
 
     /**
@@ -122,11 +144,11 @@ class ProjetController extends Controller
      */
     public function update(ProjetRequest $request, Projet $projet)
     {
-        $validated = $request->validated();
+        $validatedData = $request->validated();
 
-        $projet->update($validated);
+        $projet->update($validatedData);
 
-        return redirect('/projets');
+        return view('projets.show', compact('projet'));
     }
 
     /**
