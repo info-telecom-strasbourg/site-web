@@ -36,7 +36,7 @@
                         <div class="card p-2 rounded chef-projet" style="min-width: 220px !important; height: 100px !important; cursor: pointer;">
                             <div class="row no-gutters align-items-center" style="flex-wrap: unset; height: 100% !important;">
                                 <div class="col-md-4" style="width: 60px !important;">
-                                    <img src="{{ asset('storage/'.$projet->chef->profil_picture) }}" class="card-img profil-rounded" style="width: 60px !important; height: 60px !important;">
+                                    <img src="{{ asset($projet->chef->profil_picture) }}" class="card-img profil-rounded" style="width: 60px !important; height: 60px !important;">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">

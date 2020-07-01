@@ -8,14 +8,14 @@
 @endsection
 
 @section('title')
-Modification d'un cours
+Édition d'un cours
 @endsection
 
 @section('content')
 
 <div class="container">
 	<h1 class="title lg text-center">
-		Modification du cours: {{ $cours->title }}
+		Édition du cours : {{ $cours->title }}
 	</h1>
 	<hr class="line-under-title">
 	<form class="" action="/poles/cours/{{ $cours->id }}" method="POST" enctype="multipart/form-data">

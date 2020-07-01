@@ -75,7 +75,8 @@
 
 						<option value="1" @if ($filters[3] == 1) selected @endif>Ordre alphabétique</option>
 	                    <option value="2" @if ($filters[3] == 2) selected @endif>Ordre alphabétique inverse</option>
-	                    <option value="3" @if ($filters[3] == 3) selected @endif>Date de début</option>
+	                    <option value="3" @if ($filters[3] == 3) selected @endif>Date de création</option>
+	                    <option value="4" @if ($filters[3] == 3) selected @endif>Date de création inverse</option>
 
 	                    <option value="" name="reset">Reset</option>
 					</select>
@@ -136,7 +137,7 @@
 			</div>
 			@can ('create', 'App\Projet')
 				<div class="text-center" style="margin-top:25px; margin-bottom:25px;">
-					<button type="submit" class="btn btn-primary btn-rounded" onclick="self.location.href='/poles/{{ $pole->id }}/edit'">Créer un projet</button>
+					<button type="submit" class="btn btn-primary btn-rounded" onclick="self.location.href='/projets/create'">Créer un projet</button>
 				</div>
 			@endcan
 		</div>

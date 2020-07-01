@@ -90,8 +90,11 @@ class Projet extends Model
             else if (request()->trie == 2) {
                 $query = $query->orderBy('title', 'desc');
             }
-            else {
+            else if (request()->trie == 3) {
                 $query = $query->orderBy('projets.created_at', 'asc');
+            }
+            else {
+                $query = $query->orderBy('projets.created_at', 'desc');
             }
         }
 

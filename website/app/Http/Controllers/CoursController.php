@@ -85,7 +85,7 @@ class CoursController extends Controller
 		// save the lesson
 		$cours->save();
 
-		// add the creators to the bdd
+		// add the creators to the database
 		foreach ($request->creators as $creator)
 			$cours->creators()->attach($creator);
 

@@ -1,10 +1,11 @@
 @extends('layouts.layout')
 
-@section('title', 'Création d\'un projet')
+@section('title', 'Édition d\'un projet')
 
 @section('breadcrumb')
 <li class="breadcrumb-item"><a href="/"><i class="fas fa-home"></i></a></li>
 <li class="breadcrumb-item"><a href="/projets">Projets</a></li>
+<li class="breadcrumb-item"><a href="/projets/{{ $projet->id }}">{{ $projet->title }}</a></li>
 <li class="breadcrumb-item active">Création</li>
 @endsection
 
@@ -12,17 +13,19 @@
 
 <div class="container">
     <h1 class="title lg text-center">
-        Création d'un projet
+        Édition du projet : {{ $projet->title }}
     </h1>
     <hr class="line-under-title">
 
     <div class="container pt-3">
-        <form action="/projets" method="POST" enctype="multipart/form-data">
+        <form action="/projets/{{ $projet->id }}" method="POST" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
+
             <div class="form-group">
                 <label for="title" class="form-title-small">Titre</label>
 
-                <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}" required autocomplete="title" autofocus>
+                <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ $projet->title }}" required autocomplete="title" autofocus>
 
                 @error('title')
                     <span class="invalid-feedback" role="alert">
@@ -33,7 +36,7 @@
             <div class="form-group">
                 <label for="desc" class="form-title-small">Description</label>
 
-                <textarea class="form-control @error('desc') is-invalid @enderror desc" id="desc" name="desc" rows="5" required>{{ old('desc') }}</textarea>
+                <textarea class="form-control @error('desc') is-invalid @enderror desc" id="desc" name="desc" rows="5" required>{{ $projet->desc }}</textarea>
 
 
                 @error('desc')
@@ -43,14 +46,14 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="pole_id" class="form-title-small">Pôle</label>
-                <select class="custom-select @error('pole_id') is-invalid @enderror" id="pole_id" name="pole_id" required>
+                <label for="pole_id" class="form-title-small @error('pole_id') is-invalid @enderror">Pôle</label>
+                <select class="custom-select" id="pole_id" name="pole_id" required>
                     <option selected readonly hidden>Choisir un pôle ...</option>
                     
                     @isset($poles)
 
                         @foreach ($poles as $pole)
-                            <option value="{{ $pole->id }}" @if (old('pole_id') == $pole->id) selected @endif>{{ $pole->title }}</option>
+                            <option value="{{ $pole->id }}" @if ($projet->pole_id == $pole->id) selected @endif>{{ $pole->title }}</option>
                         @endforeach
 
                     @endisset
@@ -71,7 +74,7 @@
                     @isset($users)
 
                         @foreach ($users as $user)
-                            <option value="{{ $user->id }}" @if (old('chef_projet_id') == $user->id) selected @endif>{{ $user->name }}</option>
+                            <option value="{{ $user->id }}" @if ($projet->chef_projet_id == $user->id) selected @endif>{{ $user->name }}</option>
                         @endforeach
 
                     @endisset
@@ -84,29 +87,8 @@
                     </span>
                 @enderror
             </div>
-            <div class="form-group">
-                <label for="participants" class="form-title-small">Participants</label>
-                <select class="custom-select @error('participants') is-invalid @enderror" id="participants" name="participants[]" required multiple>
-                    <option selected readonly hidden>Choisir les participants ...</option>
-                    
-                    @isset($users)
-
-                        @foreach ($users as $user)
-                            <option value="{{ $user->id }}">{{ $user->name }}</option>
-                        @endforeach
-
-                    @endisset
-
-                </select>
-
-                @error('participants')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>Choisissez des participans</strong>
-                    </span>
-                @enderror
-            </div>
             <div class="custom-control custom-checkbox" style="margin-bottom: 1rem;">
-                <input id="complete-status" type="checkbox" class="custom-control-input" name="complete" value="1">
+                <input id="complete-status" type="checkbox" class="custom-control-input" name="complete" @if ($projet->complete == 1) checked="checked" @endif value="1">
 
                 <label class="custom-control-label form-title-small" for="complete">Projet compléter</label>
             </div>
@@ -127,7 +109,7 @@
                         <i class="fab fa-github" style="font-size: 1rem;"></i>
                     </div>
                 </div>
-                    <input type="url" class="form-control @error('link_github') is-invalid @enderror" id="link_github" name="link_github" placeholder="Lien du repository GitHub" value="{{ old('link_github') }}">
+                    <input type="url" class="form-control @error('link_github') is-invalid @enderror" id="link_github" name="link_github" placeholder="Lien du repository GitHub" value="{{ $projet->link_github }}">
                     
                     @error('link_github')
                         <span class="invalid-feedback" role="alert">
@@ -144,7 +126,7 @@
                         <i class="fas fa-file-alt"></i>
                     </div>
                 </div>
-                    <input type="url" class="form-control @error('link_doc') is-invalid @enderror" id="link_doc" name="link_doc" placeholder="Lien vers la documentation"value="{{ old('link_doc') }}">
+                    <input type="url" class="form-control @error('link_doc') is-invalid @enderror" id="link_doc" name="link_doc" placeholder="Lien vers la documentation"value="{{ $projet->link_doc }}">
                     
                     @error('link_doc')
                         <span class="invalid-feedback" role="alert">
@@ -161,7 +143,7 @@
                         <i class="fas fa-download"></i>
                     </div>
                 </div>
-                    <input type="url" class="form-control @error('link_download') is-invalid @enderror" id="link_download" name="link_download" placeholder="Lien pour le téléchargement" value="{{ old('link_download') }}">
+                    <input type="url" class="form-control @error('link_download') is-invalid @enderror" id="link_download" name="link_download" placeholder="Lien pour le téléchargement" value="@if (!empty($projet->link_download)) {{ $projet->link_download }} @endif">
 
                     @error('link_download')
                         <span class="invalid-feedback" role="alert">
@@ -171,7 +153,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-rounded" style="margin-top:25px; margin-bottom:25px;">AJOUTER</button>
+            <button type="submit" class="btn btn-primary btn-rounded" style="margin-top:25px; margin-bottom:25px;">Enregistrer</button>
         </form>
     </div>
 </div>
