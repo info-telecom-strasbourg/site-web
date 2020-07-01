@@ -192,6 +192,15 @@ s     *
             $projet->images = json_encode($images);
         }
 
+        // add the contributors to the database
+        if ($request->has('participants')) 
+        {
+            foreach ($request->participants as $participant) 
+            {
+                $projet->participants()->attach($participant);
+            }
+        }
+
         // get edited data
         $validatedData = $request->validated();
 
