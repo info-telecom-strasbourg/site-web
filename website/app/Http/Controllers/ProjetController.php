@@ -64,16 +64,14 @@ class ProjetController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Projet::class);
         $users = User::all();
-        $poles = Pole::all();
+        $poles = Pole::whereNotIn('slug', ['cours', 'competitions'])->get();
         return view('projets.create', compact('users', 'poles'));
     }
 
     /**
      * Store a new project.
-     *
-     * TODO : verfifier les droits de l'utilisateur
-     * TODO : error handling
      * 
      * @param  ProjetRequest $request
      * @return \Illuminate\Http\Response
@@ -118,20 +116,20 @@ class ProjetController extends Controller
 
         $projet->save();
 
-        return redirect('/projets');
+        return redirect('/projets/'.$projet->id);
     }
 
     /**
      * Show the form for editing the specified project.
-     * TODO : la vue associée
-     * 
+s     * 
      * @param App\projet $projet
      * @return \Illuminate\Http\Response
      */
     public function edit(Projet $projet)
     {
+        $this->authorize('update', $projet);
         $users = User::all();
-        $poles = Pole::all();
+        $poles = Pole::whereNotIn('slug', ['cours', 'competitions'])->get();
         return view('projets.edit', compact('projet', 'users', 'poles'));
     }
 
@@ -144,11 +142,63 @@ class ProjetController extends Controller
      */
     public function update(ProjetRequest $request, Projet $projet)
     {
+        $this->authorize('update', $projet);
+
+        // convert the json encoded string of the images paths
+        // into an array
+        $projetImages = json_decode($projet->images);
+
+        // if some images needs to be removed
+        if ($request->has('removeImages'))
+        {
+            foreach ($request->removeImages as $index => $value) 
+            {
+                // delete the image
+                if (file_exists(storage_path('app/public/' . $projetImages[$index])) && substr($projetImages[$index], 0, 15) != "images/default/")
+                {
+                    unlink(storage_path('app/public/'.$projetImages[$index]));
+                }
+                // remove the images at given index
+                unset($projetImages[$index]);
+            }
+        }
+
+        // if there are images, save the images
+        if ($request->has('images')) 
+        {
+            foreach ($request->images as $image) 
+            {
+                $projetImages[] = $this->saveImage($image, $projet);
+            }
+        }
+
+        // if there are no images, take a default one
+        if (empty($projetImages))
+        {
+            $projet->images = [$this->selectDefaultImage($projet->pole_id)];
+        }
+        else 
+        {
+            // store the images in a new array
+            $idx = 0;
+            $images = [];
+            foreach ($projetImages as $image) 
+            {
+                $images[] = $image;
+            }
+
+            // convert the image array into 
+            // a string containing the json representation
+            $projet->images = json_encode($images);
+        }
+
+        // get edited data
         $validatedData = $request->validated();
 
+        // updata project
         $projet->update($validatedData);
 
-        return view('projets.show', compact('projet'));
+        return redirect('/projets/'.$projet->id);
     }
 
     /**
@@ -173,20 +223,20 @@ class ProjetController extends Controller
     {
         switch ($poleId) {
             case 1:
-                return 'storage/images/default/cours/'.strval(random_int (1, 5).'.jpg');
+                return 'images/default/cours/'.strval(random_int (1, 5).'.jpg');
                 break;
             case 2:
-                return 'storage/images/default/web/'.strval(random_int (1, 5).'.jpg');
+                return 'images/default/web/'.strval(random_int (1, 5).'.jpg');
                 break;
             case 3:
             case 4:
-                return 'storage/images/default/prog/'.strval(random_int (1, 5).'.jpg');
+                return 'images/default/prog/'.strval(random_int (1, 5).'.jpg');
                 break;
             case 5:
-                return 'storage/images/default/jeux/'.strval(random_int (1, 5).'.jpg');
+                return 'images/default/jeux/'.strval(random_int (1, 5).'.jpg');
                 break;
             default:
-                return 'storage/images/default/'.strval(random_int (1, 5).'.jpg');
+                return 'images/default/'.strval(random_int (1, 5).'.jpg');
                 break;
         }
     }
@@ -199,7 +249,7 @@ class ProjetController extends Controller
      */
     public function saveImage($image)
     {
-        $path = Storage::putFile('public/images/', $image, 'private');
-        return 'storage/'.substr($path, 7);
+        $path = Storage::putFile('public/images', $image, 'private');
+        return substr($path, 7);
     }
 }

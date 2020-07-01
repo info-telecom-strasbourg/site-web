@@ -52,6 +52,7 @@ class CoursController extends Controller
 	 */
 	public function create()
 	{
+		$this->authorize('create', Cours::class);
 		$users = User::all();
 		return view('poles.cours.create', compact('users'));
 	}
@@ -104,6 +105,7 @@ class CoursController extends Controller
 	 */
 	public function edit(Cours $cours)
 	{
+		$this->authorize('update', $cours);
 		$users = User::all();
 		return view('poles.cours.edit',compact('cours', 'users'));
 	}
@@ -116,6 +118,8 @@ class CoursController extends Controller
 	 */
 	public function update(Cours $cours)
 	{
+		$this->authorize('update', $cours);
+
 		// if there are supports, save them
 		if (request()->has('link_support')) 
 		{
@@ -162,6 +166,8 @@ class CoursController extends Controller
 	 */
 	public function destroy(Cours $cours)
 	{
+		$this->authorize('update', $cours);
+
 		// delete all dates associate to the lesson in database and in storage
 		$cours->dates()->delete();
 		if (file_exists(storage_path('app/public/'.json_decode($cours->image)[0])) && substr(json_decode($cours->image)[0],0,15) != "images/default/") 
@@ -237,7 +243,7 @@ class CoursController extends Controller
 	public function saveImage (Request $request)
 	{
 		$path = Storage::putFile('public/images', $request->image_crs, 'private');
-        return 'storage/'.substr($path, 7);
+        return substr($path, 7);
 	}
 
 	/**

@@ -58,6 +58,7 @@ class PoleController extends Controller
      */
     public function edit(Pole $pole)
     {
+        $this->authorize('update', $pole);
 		return view('poles.edit', compact('pole'));
     }
 
@@ -69,6 +70,7 @@ class PoleController extends Controller
      */
     public function update(Pole $pole)
     {
+        $this->authorize('update', $pole);
 		$pole->update(request()->validate([
 			'title' => 'required',
 			'desc' => 'required'

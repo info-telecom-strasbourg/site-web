@@ -36,7 +36,7 @@
                         <div class="card p-2 rounded chef-projet" style="min-width: 220px !important; height: 100px !important; cursor: pointer;">
                             <div class="row no-gutters align-items-center" style="flex-wrap: unset; height: 100% !important;">
                                 <div class="col-md-4" style="width: 60px !important;">
-                                    <img src="{{ asset($projet->chef->profil_picture) }}" class="card-img profil-rounded" style="width: 60px !important; height: 60px !important;">
+                                    <img src="{{ asset('storage/' . $projet->chef->profil_picture) }}" class="card-img profil-rounded" style="width: 60px !important; height: 60px !important;">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
@@ -69,29 +69,25 @@
 
         <div class="bordure"></div>
         <h4 class="title md text-center">Le projet en images</h4>
-        <div style="display : flex; justify-content :center; margin-top: 40px; margin-bottom: 40px;">
-            <div id="carouselExampleIndicators" class="carousel slide" data-interval="false">
+        <div class="row justify-content-center" style="margin-top: 40px; margin-bottom: 40px;">
+            <div id="carouselProjetImage" class="carousel slide row w-100 justify-content-center" data-interval="false">
                 <ol class="carousel-indicators">
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                    @foreach (json_decode($projet->images) as $image)
+                        <li data-target="#carouselProjetImage" data-slide-to="0" class="@if ($loop->first) active @endif"></li>
+                    @endforeach
                 </ol>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img class="d-block w-100" src="{{ asset('storage/'.json_decode($projet->images)[0]) }}" alt="First slide">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100" src="/images/illustrations/prog.jpg" alt="Second slide">
-                    </div>
-                    <div class="carousel-item">
-                    <img class="d-block w-100" src="/images/illustrations/prog.jpg" alt="Third slide">
+                <div class="carousel-inner col-md-6" style="background-color: transparent;">
+                    @foreach (json_decode($projet->images) as $key => $image)
+                        <div class="carousel-item text-center @if ($loop->first) active @endif" style="background-color: transparent;">
+                            <img src="{{ asset('storage/' . $image) }}" alt=" {{ $key }} slide" style="height: 300px !important;">
+                        </div>
+                    @endforeach
                 </div>
-                </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev" style="background-color: #1b1b1b; width: 40px; height: 40px; border-radius: 50%; top: 50%; margin-left: 10px;">
+                <a class="carousel-control-prev col-md-3" href="#carouselProjetImage" role="button" data-slide="prev" style="background-color: #1b1b1b; width: 40px; height: 40px; border-radius: 50%; top: 50%; margin-left: 10px;">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="sr-only">Previous</span>
                 </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next" style="background-color: #1b1b1b; width: 40px; height: 40px; border-radius: 50%; top: 50%; margin-right: 10px;">
+                <a class="carousel-control-next col-md-3" href="#carouselProjetImage" role="button" data-slide="next" style="background-color: #1b1b1b; width: 40px; height: 40px; border-radius: 50%; top: 50%; margin-right: 10px;">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                 </a>
