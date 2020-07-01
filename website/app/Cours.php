@@ -14,7 +14,7 @@ class Cours extends Model
 	 */
     public function creators()
     {
-        return $this->belongsToMany(User::class, 'cours_createurs');
+        return $this->belongsToMany(User::class, 'cours_createurs')->orderBy('name');
     }
 
 	/**
