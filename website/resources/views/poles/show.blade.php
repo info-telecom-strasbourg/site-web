@@ -15,8 +15,7 @@
         <hr class="line-under-title">
         <div>
             <p>{{ $pole->desc }}</p>
-            <h4 class="title md text-left">{{ $pole->title }}</h4>
-
+            <h4 class="title md text-left">Nos {{ strtolower($pole->title) }}</h4>
 			<!-- Liste des projets -->
 			<div class="container pt-5">
 				<div class="row justify-content-center">
@@ -40,23 +39,24 @@
 									</div>
 							  	</div>
 							</div>
+						
 						@empty
 
+							<div class="alert alert-secondary alert-dismissible fade show col" role="alert">
+								Aucun projets n'a été trouvé
+								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			    					<span aria-hidden="true">&times;</span>
+			  					</button>
+							</div>
+						@endforelse
+
+					@else
 						<div class="alert alert-secondary alert-dismissible fade show col" role="alert">
 							Aucun projets n'a été trouvé
 							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 		    					<span aria-hidden="true">&times;</span>
 		  					</button>
 						</div>
-						@endforelse
-
-					@else
-					<div class="alert alert-secondary alert-dismissible fade show col" role="alert">
-						Aucun projets n'a été trouvé
-						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-	    					<span aria-hidden="true">&times;</span>
-	  					</button>
-					</div>
 
 					@endif
 				</div>
@@ -71,9 +71,8 @@
 		        </div>
 			@endif
 
-
-
-			<h4 class="title md text-left">Responsable {{ $pole->title }}</h4>
+			<!-- Responsable -->
+			<h4 class="title md text-left respo">Responsable {{ strtolower($pole->title) }}</h4>
 			<div class="container pt-5" style="padding-top: 1rem !important; margin-bottom: -35px;">
 				<div class="row align-items-center">
 					<div class="col-md-auto sep-items">
