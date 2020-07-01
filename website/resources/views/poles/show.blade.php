@@ -27,7 +27,7 @@
 
 							<div id="proj-card" class="col-md-auto sep-items">
 								<div class="card text-center rounded">
-									<img class="card-img-top" src="{{ asset('storage/'.json_decode($projet->images)[0]) }}" alt="Card image cap">
+									<img class="card-img-top" src="{{ asset(json_decode($projet->images)[0]) }}" alt="Card image cap">
 									<div class="card-body d-flex flex-column">
 										<h5 class="card-title text-center font-weight-bold">
 											{{ $projet->title }}
@@ -81,7 +81,7 @@
 							<div class="card p-2 rounded chef-projet" style="min-width: 220px !important; height: 100px !important; cursor: pointer;">
 								<div class="row no-gutters align-items-center" style="flex-wrap: unset; height: 100% !important;">
 									<div class="col-md-4" style="width: 60px !important;">
-										<img src="{{ asset('storage/'.$pole->respo->profil_picture) }}" class="card-img profil-rounded" style="width: 60px !important; height: 60px !important;">
+										<img src="{{ asset($pole->respo->profil_picture) }}" class="card-img profil-rounded" style="width: 60px !important; height: 60px !important;">
 									</div>
 									<div class="col-md-8">
 										<div class="card-body">
@@ -95,13 +95,11 @@
 				</div>
 			</div>
 			
-			@auth
-				@can ('update', $pole)
-					<div class="text-center" style="margin-top:25px; margin-bottom:25px;">
-						<button type="submit" class="btn btn-primary btn-rounded" onclick="self.location.href='/poles/{{ $pole->id }}/edit'">Éditer</button>
-					</div>
-				@endcan
-			@endauth
+			@can ('update', $pole)
+				<div class="text-center" style="margin-top:25px; margin-bottom:25px;">
+					<button type="submit" class="btn btn-primary btn-rounded" onclick="self.location.href='/poles/{{ $pole->id }}/edit'">Éditer</button>
+				</div>
+			@endcan
         </div>
 
     </div>

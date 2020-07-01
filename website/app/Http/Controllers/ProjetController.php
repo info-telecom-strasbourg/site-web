@@ -3,12 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Http\Requests\ProjetRequest;
 use App\Projet;
 use App\User;
 use App\Pole;
 use App\Collaborateur;
 use Illuminate\Http\Response;
+
+use Illuminate\Http\UploadedFile;
+
+use Illuminate\Support\Facades\Storage;
 
 class ProjetController extends Controller
 {
@@ -54,13 +59,14 @@ class ProjetController extends Controller
 
     /**
      * Show the form to create a project.
-     * TODO : faire la vue associée
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        return view('projets.create');
+        $users = User::all();
+        $poles = Pole::all();
+        return view('projets.create', compact('users', 'poles'));
     }
 
     /**
@@ -74,7 +80,23 @@ class ProjetController extends Controller
      */
     public function store(ProjetRequest $request)
     {
-        $projet = Projet::create($request->validated());
+        $validatedData = $request->validated();
+        $projet = Projet::create($validatedData);
+
+        // if there are images, save the images, otherwise take a random one
+        if ($request->has('images')) 
+        {
+            $projetImages = [];
+            foreach ($request->images as $image) 
+            {
+                $projetImages[] = $this->saveImage($image, $projet);
+            }
+            $projet->images = json_encode($projetImages);
+        }
+        else
+            $projet->images = [$this->selectDefaultImage($projet->pole_id)];
+
+        $projet->save();
 
         return redirect('/projets');
     }
@@ -118,5 +140,44 @@ class ProjetController extends Controller
         $projet->delete();
 
         return redirect("/projets");
+    }
+
+    /**
+     * Select a random default image.
+     *
+     * @return path to the image
+     */
+    public function selectDefaultImage($poleId)
+    {
+        switch ($poleId) {
+            case 1:
+                return 'storage/images/default/cours/'.strval(random_int (1, 5).'.jpg');
+                break;
+            case 2:
+                return 'storage/images/default/web/'.strval(random_int (1, 5).'.jpg');
+                break;
+            case 3:
+            case 4:
+                return 'storage/images/default/prog/'.strval(random_int (1, 5).'.jpg');
+                break;
+            case 5:
+                return 'storage/images/default/jeux/'.strval(random_int (1, 5).'.jpg');
+                break;
+            default:
+                return 'storage/images/default/'.strval(random_int (1, 5).'.jpg');
+                break;
+        }
+    }
+
+    /**
+     * Save an image given by the user in the public storage folder.
+     *
+     * @param $image: the image to be stored
+     * @return path to find the image
+     */
+    public function saveImage($image)
+    {
+        $path = Storage::putFile('public/images/', $image, 'private');
+        return 'storage/'.substr($path, 7);
     }
 }

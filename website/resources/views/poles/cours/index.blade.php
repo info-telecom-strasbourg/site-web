@@ -25,7 +25,7 @@
 
 								<div id="proj-card" class="col-md-auto sep-items">
 									<div class="card text-center rounded">
-										<img class="card-img-top" src="{{ asset('storage/'.json_decode($cour->image)[0]) }}" alt="Card image cap">
+										<img class="card-img-top" src="{{ asset(json_decode($cour->image)[0]) }}" alt="Card image cap">
 										<div class="card-body d-flex flex-column">
 											<h5 class="card-title text-center font-weight-bold">
 												{{ $cour->title }}
@@ -69,16 +69,16 @@
 		        </div>
 			@endif
 
-			@auth
+			@can ('create', 'App\Cours')
 				<div class="text-center" style="margin-top:25px; margin-bottom:25px;">
 					<a class="btn btn-primary btn-rounded" href="/poles/cours/create">Créer un cours</a>
 				</div>
-				@can ('update', $pole)
-					<div class="text-center" style="margin-top:25px; margin-bottom:25px;">
-						<button type="submit" class="btn btn-primary btn-rounded" onclick="self.location.href='/poles/{{ $pole->id }}/edit'">Éditer</button>
-					</div>
-				@endcan
-			@endauth
+			@endcan
+			@can ('update', $pole)
+				<div class="text-center" style="margin-top:25px; margin-bottom:25px;">
+					<button type="submit" class="btn btn-primary btn-rounded" onclick="self.location.href='/poles/{{ $pole->id }}/edit'">Éditer</button>
+				</div>
+			@endcan
 
 	    </div>
 	</div>

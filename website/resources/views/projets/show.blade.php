@@ -17,11 +17,20 @@
     <hr class="line-under-title">
 
     <div class="container pt-3">
+        @if ($projet->complete == 1) 
+            <div class="alert alert-success" role="alert">
+                Projet finis
+            </div>
+        @else
+            <div class="alert alert-info" role="alert">
+                Projet en cours
+            </div>
+        @endif
         <p>{{ $projet->desc }}</p>
         <div class="bordure"></div>
         <h4 class="title md text-center">Chef de projet</h4>
         <div class="container pt-5" style="padding-top: 1rem !important; margin-bottom: -35px;">
-            <div class="row align-items-center">
+            <div class="row align-items-center justify-content-between">
                 <div class="col-md-auto sep-items">
                     <a href="/users/{{ $projet->chef->id }}" class="user-link">
                         <div class="card p-2 rounded chef-projet" style="min-width: 220px !important; height: 100px !important; cursor: pointer;">
@@ -40,6 +49,7 @@
                 </div>
             </div>
         </div>
+
 
         <!-- Participants -->
         @if (!$projet->participants->isEmpty())
@@ -90,7 +100,7 @@
 
         <div class="bordure"></div>
         <h4 class="title md text-center">Liens utiles</h4>
-        <div class="social-buttons row align-item-center justify-content-center" id="projet-show">
+        <div class="social-buttons row align-item-center justify-content-center" id="projet-show" style="margin-bottom: 40px;">
             <a class="social-icons d-flex align-items-center" href="{{ $projet->link_github }}">
                 <i class="fab fa-github fa-3x fa-lg mr-3"></i>Github
             </a>
@@ -100,9 +110,20 @@
                 </a>
             @endif
             <a class="social-icons d-flex align-items-center" href="{{ $projet->link_doc }}">
-                <i class="fas fa-envelope fa-3x fa-lg mr-3"></i>Documentation
+                <i class="far fa-file-alt fa-3x fa-lg mr-3"></i>Documentation
             </a>
         </div>
+
+        @can ('update', $projet)
+            <div class="d-flex flex-row justify-content-around" style="margin-top: auto;">
+                <div class="text-center" style="margin-top:25px; margin-bottom:25px;">
+                    <button type="submit" class="btn btn-primary btn-rounded" onclick="self.location.href='/projets/{{ $projet->id }}/edit'">Éditer</button>
+                </div>
+                <div class="text-center" style="margin-top:25px; margin-bottom:25px;">
+                    <button type="submit" class="btn btn-primary btn-rounded" onclick="self.location.href='/projets/{{ $projet->id }}/destroy'">Supprimer</button>
+                </div>
+            </div>
+        @endcan
     </div>
 </div>
 

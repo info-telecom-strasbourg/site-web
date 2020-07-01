@@ -18,7 +18,7 @@
 			<div class="container" id="description" style="margin-top: 50px;">
 				<div class="row">
 					<div class="col-3 disp">
-						<img src="{{ asset('storage/'.json_decode($cours->image)[0]) }}" alt="Decriptive image">
+						<img src="{{ asset(json_decode($cours->image)[0]) }}" alt="Decriptive image">
 					</div>
 					<div class="col-9 disp">
 						<p>{{ $cours->desc }}</p>
@@ -37,7 +37,7 @@
 									<div class="card p-2 rounded chef-projet" style="min-width: 220px !important; height: 100px !important; cursor: pointer;">
 										<div class="row no-gutters align-items-center" style="flex-wrap: unset; height: 100% !important;">
 											<div class="col-md-4" style="width: 60px !important;">
-												<img src="{{ asset('storage/'.$creator->profil_picture) }}" class="card-img profil-rounded" style="width: 60px !important; height: 60px !important;">
+												<img src="{{ asset($creator->profil_picture) }}" class="card-img profil-rounded" style="width: 60px !important; height: 60px !important;">
 											</div>
 											<div class="col-md-8">
 												<div class="card-body">
@@ -184,11 +184,13 @@
 			@endif
 
 			@can('update', $cours)
-				<div class="text-center" style="margin-top:25px; margin-bottom:25px;">
-					<a class="btn btn-primary btn-rounded" href="/poles/cours/{{ $cours->id }}/edit">Éditer</a>
-				</div>
-				<div class="text-center" style="margin-top:25px; margin-bottom:25px;">
-					<a class="btn btn-primary btn-rounded" href="/poles/cours/{{ $cours->id }}/destroy">Supprimer</a>
+			    <div class="d-flex flex-row justify-content-around" style="margin-top: auto;">
+					<div class="text-center" style="margin-top:25px; margin-bottom:25px;">
+						<a class="btn btn-primary btn-rounded" href="/poles/cours/{{ $cours->id }}/edit">Éditer</a>
+					</div>
+					<div class="text-center" style="margin-top:25px; margin-bottom:25px;">
+						<a class="btn btn-primary btn-rounded" href="/poles/cours/{{ $cours->id }}/destroy">Supprimer</a>
+					</div>
 				</div>
 			@endcan
 		</div>

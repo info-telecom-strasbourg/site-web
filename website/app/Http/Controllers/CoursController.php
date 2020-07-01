@@ -77,8 +77,8 @@ class CoursController extends Controller
 		}
 
 		// if there is an image, save the image, otherwise take a random one
-		if($request->has('image_crs'))
-			$cours->image = [$this->saveImage($request, $cours)];
+		if ($request->has('image_crs'))
+			$cours->image = [$this->saveImage($request, $cours)];	// cours en trop TO DO ??????
 		else
 			$cours->image = [$this->selectDefaultImage()];
 
@@ -237,7 +237,7 @@ class CoursController extends Controller
 	public function saveImage (Request $request)
 	{
 		$path = Storage::putFile('public/images', $request->image_crs, 'private');
-		return substr($path, 7);
+        return 'storage/'.substr($path, 7);
 	}
 
 	/**
