@@ -154,10 +154,8 @@ s     *
             foreach ($request->removeImages as $index => $value) 
             {
                 // delete the image
-                if (file_exists(storage_path('app/public/' . $projetImages[$index])) && substr($projetImages[$index], 0, 15) != "images/default/")
-                {
-                    unlink(storage_path('app/public/'.$projetImages[$index]));
-                }
+                $this->deleteImage($projetImages[$index]);        
+
                 // remove the images at given index
                 unset($projetImages[$index]);
             }
@@ -218,6 +216,13 @@ s     *
      */
     public function destroy(Projet $projet)
     {
+        $this->authorize('update', $projet);
+
+        // delete all images in storage
+        foreach (json_decode($projet->images) as $image) 
+            $this->deleteImage($image);        
+
+        // delete the project
         $projet->delete();
 
         return redirect("/projets");
@@ -232,20 +237,20 @@ s     *
     {
         switch ($poleId) {
             case 1:
-                return 'images/default/cours/'.strval(random_int (1, 5).'.jpg');
+                return 'images/default/cours/' . strval(random_int (1, 5).'.jpg');
                 break;
             case 2:
-                return 'images/default/web/'.strval(random_int (1, 5).'.jpg');
+                return 'images/default/web/' . strval(random_int (1, 5).'.jpg');
                 break;
             case 3:
             case 4:
-                return 'images/default/prog/'.strval(random_int (1, 5).'.jpg');
+                return 'images/default/prog/' . strval(random_int (1, 5).'.jpg');
                 break;
             case 5:
-                return 'images/default/jeux/'.strval(random_int (1, 5).'.jpg');
+                return 'images/default/jeux/' . strval(random_int (1, 5).'.jpg');
                 break;
             default:
-                return 'images/default/'.strval(random_int (1, 5).'.jpg');
+                return 'images/default/' . strval(random_int (1, 5).'.jpg');
                 break;
         }
     }
@@ -260,5 +265,18 @@ s     *
     {
         $path = Storage::putFile('public/images', $image, 'private');
         return substr($path, 7);
+    }
+
+    /**
+     * Delete an image in public storage folder.
+     *
+     * @param $imagePath: the image to be deleted
+     */
+    public function deleteImage($imagePath)
+    {
+        if (file_exists(storage_path('app/public/' . $imagePath)) && substr($imagePath, 0, 15) != "images/default/")
+        {
+                unlink(storage_path('app/public/' . $imagePath));
+        }
     }
 }
