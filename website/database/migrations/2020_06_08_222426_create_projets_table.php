@@ -25,11 +25,11 @@ class CreateProjetsTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('desc');
-            $table->json('images');
+            $table->json('images')->nullable();
             $table->string('link_github');
             $table->string('link_download')->nullable();
             $table->string('link_doc');
-            $table->boolean('complete');
+            $table->boolean('complete')->default(0);
             $table->BigInteger('chef_projet_id')->unsigned();
             $table->BigInteger('pole_id')->unsigned();
             $table->BigInteger('collaborateur_id')->unsigned()->nullable();

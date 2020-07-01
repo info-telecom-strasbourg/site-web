@@ -83,6 +83,9 @@
 				<div class="col-md-3 text-center">
 					<button type="submit" class="btn btn-primary btn-primary btn-rounded">FILTRER</button>
 				</div>
+				<div class="col-md-3 text-center" style="opacity: .75;">
+					<a href="/projets" class="btn btn-primary btn-primary btn-rounded">RESET</a>
+				</div>
 			</div>
 		</form>
 
@@ -94,7 +97,7 @@
 					@forelse ($projets as $projet)
 						<div class="col-md sep-items" id="projets-container">
 							<div class="card text-center rounded">
-								<img class="card-img-top" src="/images/test.jpg" alt="Card image cap">
+								<img class="card-img-top" src="{{ asset(json_decode($projet->images)[0]) }}" alt="Card image cap">
 								<div class="card-body d-flex flex-column">
 									<h5 class="card-title text-center font-weight-bold">
 										{{ $projet->title }}
@@ -128,9 +131,14 @@
 				@endif
 			</div>
 			<div class="row justify-content-center link-margin-top">
-						<!-- Pagination links -->
-						{{ $projets->links() }}
-					</div>
+				<!-- Pagination links -->
+				{{ $projets->links() }}
+			</div>
+			@can ('create', 'App\Projet')
+				<div class="text-center" style="margin-top:25px; margin-bottom:25px;">
+					<button type="submit" class="btn btn-primary btn-rounded" onclick="self.location.href='/poles/{{ $pole->id }}/edit'">Créer un projet</button>
+				</div>
+			@endcan
 		</div>
 
     </div>

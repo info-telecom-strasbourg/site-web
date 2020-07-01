@@ -2,15 +2,15 @@
 
 namespace App\Policies;
 
-use App\Pole;
+use App\Projet;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class PolePolicy
+class ProjetPolicy
 {
     use HandlesAuthorization;
 
-	/**
+    /**
      * Determine whether the user can view any models.
      *
      * @param  \App\User  $user
@@ -25,10 +25,10 @@ class PolePolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Cours  $cours
+     * @param  \App\Projet  $projet
      * @return mixed
      */
-    public function view(User $user, Cours $cours)
+    public function view(User $user, Projet $projet)
     {
         //
     }
@@ -41,29 +41,32 @@ class PolePolicy
      */
     public function create(User $user)
     {
-		//
+        return auth()->check() 
+            && ($user->role_id == 8 
+                || $user->role_id == 9 
+                || $user->role_id == 10);
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Cours  $cours
+     * @param  \App\Projet  $projet
      * @return mixed
      */
-    public function update(User $user, Pole $pole)
+    public function update(User $user, Projet $projet)
     {
-		return auth()->check() && $user->id == $pole->respo->id;
+        return auth()->check() && $user->id == $projet->chef->id;
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Cours  $cours
+     * @param  \App\Projet  $projet
      * @return mixed
      */
-    public function delete(User $user, Cours $cours)
+    public function delete(User $user, Projet $projet)
     {
         //
     }
@@ -72,10 +75,10 @@ class PolePolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Cours  $cours
+     * @param  \App\Projet  $projet
      * @return mixed
      */
-    public function restore(User $user, Cours $cours)
+    public function restore(User $user, Projet $projet)
     {
         //
     }
@@ -84,10 +87,10 @@ class PolePolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Cours  $cours
+     * @param  \App\Projet  $projet
      * @return mixed
      */
-    public function forceDelete(User $user, Cours $cours)
+    public function forceDelete(User $user, Projet $projet)
     {
         //
     }

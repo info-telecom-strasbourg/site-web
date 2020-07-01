@@ -26,12 +26,31 @@ class ProjetRequest extends FormRequest
     {
         return [
             'title' => 'required|max:255',
-            'images' => 'json',
-            'link_github' => 'url',
-            'link_download' => 'url',
-            'link_doc' => 'url',
+            'desc' => 'required',
+            'link_github' => 'required|url',
+            'link_download' => 'nullable|url',
+            'link_doc' => 'required|url',
+            'complete' => 'boolean',
             'chef_projet_id' => 'required|integer',
             'pole_id' => 'required|integer'
+        ];
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'title.required' => 'Un tire est nécéssaire',
+            'desc.required'  => 'Une description est nécéssaire',
+            'link_github.required'  => 'Un lien GitHub est nécéssaire',
+            'link_doc.required'  => 'Un lien vers la documentation est nécéssaire',
+            'complete.required'  => 'Indqué si le projet est finis ou pas',
+            'chef_projet_id.required'  => 'Indiqué le chef de projet',
+            'pole_id.required'  => 'Indiqué le pôle auquel appartient le projet',
         ];
     }
 }
