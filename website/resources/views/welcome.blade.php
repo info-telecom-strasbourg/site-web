@@ -77,7 +77,7 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             @foreach ($poles as $pole)
-            <div class="card" style="background-image: url('{{ asset($pole->image) }}')">
+            <div class="card" style="background-image: url({{ asset('storage/' . $pole->image) }})">
                 <a class="card-img d-flex align-items-center justify-content-center rgba-black-strong py-5 px-4" href="/poles/{{ $pole->slug }}">
                     <h3 class="text-white text-center" id="web">{{ $pole->title }}</h3>
                 </a>
@@ -234,7 +234,7 @@
                 @foreach ($team as $user)
                     <div class="col-md-3 text-center">
                         <a href="/users/{{ $user->id }}" class="respo">
-                            <img class="profil-rounded" src="{{ asset($user->profil_picture) }}">
+                            <img class="profil-rounded" src="{{ asset('storage/' . $user->profil_picture) }}">
                             <p id="nom">{{ $user->name }}</p>
                             <p id="fonction">{{ $user->role->role }}</p>
                         </a>
