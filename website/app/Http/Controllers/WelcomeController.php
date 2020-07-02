@@ -48,6 +48,9 @@ class WelcomeController extends Controller
         return view('welcome', compact('poles', 'team', 'partners', 'nbProjets', 'nbUsers', 'nbPoles', 'years'));
     }
 
+    /**
+     * Send contact email.
+     */
     public function store(Request $request) 
     {
         $request->validate(['email' => 'required|email']);

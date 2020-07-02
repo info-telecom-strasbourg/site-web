@@ -113,7 +113,13 @@
                     Images
                 </label>
                 <br>
-                <input type="file" id="images" name="images[]" multiple>
+                <input class="@error('images') is-invalid @enderror" type="file" id="images" name="images[]" multiple>
+
+                @error('images')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>Il faut ajouter une image</strong>
+                    </span>
+                @enderror
             </div>
             <h4 class="form-title">Liens</h4>
             <div class="form-group">
