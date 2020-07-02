@@ -978,7 +978,7 @@ div.bordure {
 
 /* ##########################   Calendriers   ########################## */
 
-#calendar-pres #calendar-dist #calendar-comp {
+#calendar-pres #calendar-dist #calendar-comp #calendar-pres-upd #calendar-dist-upd #calendar-comp-upd {
     visibility: hidden;
     max-width: 250px;
 }
@@ -992,7 +992,7 @@ div.bordure {
     left: 45%;
 }
 
-#cal-pres-dates #cal-dist-dates #cal-comp-dates {
+#cal-pres-dates #cal-dist-dates #cal-comp-dates #cal-pres-dates-upd #cal-dist-dates-upd #cal-comp-upd {
     display: block;
 }
 
