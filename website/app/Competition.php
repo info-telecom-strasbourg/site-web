@@ -24,6 +24,4 @@ class Competition extends Model
 	{
 		return $this->belongsToMany(Date::class, 'dates_comp');
 	}
-
-
 }

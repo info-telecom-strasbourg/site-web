@@ -49,17 +49,37 @@ class CompetitionController extends Controller
 	public function store(Request $request)
 	{
 		$compet = Competition::create($this->validateCompetiton());
-		$competImage = [];
 
-		foreach ($request->dates_comp as $key => $value)
+		// add dates
+		foreach ($request->dates_comp as $date)
 		{
+			// create a new date in the database
 			$newDate = Date::create([
 				'presentiel' => 1,
-				'date' => $value
+				'date' => $date
 			]);
+
+			// add the date to the list of dates for this lesson
 			$compet->dates()->attach($newDate->id);
 		}
-		return redirect('/poles/competitions/index');
+
+		// add images
+		if ($request->has('images'))
+        {
+            $competImages = [];
+            foreach ($request->images as $image)
+            {
+                $competImages[] = $this->saveImage($image);
+            }
+            $compet->images = json_encode($competImages);
+        }
+        else
+            $compet->images = [$this->selectDefaultImage()];
+
+        // save competition
+        $compet->save();
+
+		return redirect('/poles/competitions/' . $compet->id);
 	}
 
 	/**
@@ -100,7 +120,29 @@ class CompetitionController extends Controller
 		return request()->validate([
 			'title' => 'required',
 			'desc' => 'required',
-			'website' => 'required',
+			'website' => 'required'
 		]);
+	}
+
+	/**
+     * Save an image given by the user in the public storage folder.
+     *
+     * @param $image: the image to be stored
+     * @return path to find the image
+     */
+    public function saveImage($image)
+    {
+        $path = Storage::putFile('public/images', $image, 'private');
+        return substr($path, 7);
+    }
+
+   	/**
+	 * Select a random default image.
+	 *
+	 * @return path to the image
+	 */
+	public function selectDefaultImage()
+	{
+		return 'images/default/prog/' . strval(random_int (1, 5) . '.jpg');
 	}
 }

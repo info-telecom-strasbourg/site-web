@@ -6,7 +6,7 @@
 
 @section('breadcrumb')
 <li class="breadcrumb-item"><a href="/"><i class="fas fa-home"></i></a></li>
-<li class="breadcrumb-item"><a href="/poles/cours">Pôle Cours</a></li>
+<li class="breadcrumb-item"><a href="/poles/cours">Pôle cours & accompagnement</a></li>
 <li class="breadcrumb-item"><a href="/poles/cours/{{ $cours->id }}">{{ $cours->title }}</a></li>
 <li class="breadcrumb-item active">Édition</li>
 @endsection
@@ -84,8 +84,8 @@
 			</div>
 
 			<!-- Pour modifier des fichiers -->
-			<h4 class="form-title">Choisir le status des fichiers des fichiers</h4>
 			<div class="form-group {{ !empty($cours->supports[0]) ? 'to-hide' : '' }}" id="choose-new-statut">
+			<h4 class="form-title">Choisir le status des fichiers des fichiers</h4>
 			@forelse ( $cours->supports as $support )
 
 				<div class="row justify-content-start">
