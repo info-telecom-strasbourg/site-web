@@ -91,90 +91,21 @@
         <div class="row mx-auto my-auto">
             <div id="recipeCarousel" class="carousel slide w-100" data-ride="carousel">
                 <div class="carousel-inner w-100" role="listbox">
-                    <div class="carousel-item active">
-                        <div class="col-md-4">
-                            <div class="card text-center shadow mb-5 bg-white rounded">
-                                <img class="card-img-top" src="/images/projets/projet.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title text-center font-weight-bold">Site web ITS</h5>
-                                    <p class="card-text">Nous développons le site de notre association afin de vous permettre d'avoir un
-                                        accès à tous nos projets! (1)
-                                    </p>
-                                    <a href="#" class="btn btn-rounded btn-primary">Découvrir</a>
+                    @foreach ($projets as $projet)
+                        <div class="carousel-item @if ($loop->first) active @endif">
+                            <div class="col-md-4">
+                                <div class="card text-center shadow mb-5 bg-white rounded">
+                                    <img class="card-img-top" src="{{ asset('storage/' . json_decode($projet->projet->images)[0]) }}" alt="Card image cap">
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="card-title text-center font-weight-bold">{{ $projet->projet->title }}</h5>
+                                        <p class="card-text">{{ mb_strlen( $projet->projet->desc ) > 57 ? mb_substr($projet->projet->desc, 0, 54) . ' ...' : $projet->projet->desc }}
+                                        </p>
+                                        <a href="/projets/{{ $projet->projet_id }}" class="btn btn-rounded btn-primary">Découvrir</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="col-md-4">
-                            <div class="card text-center shadow mb-5 bg-white rounded">
-                                <img class="card-img-top" src="/images/projets/projet.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title text-center font-weight-bold">Site web ITS</h5>
-                                    <p class="card-text">Nous développons le site de notre association afin de vous permettre d'avoir un
-                                        accès à tous nos projets! (2)
-                                    </p>
-                                    <a href="#" class="btn btn-rounded btn-primary">Découvrir</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="col-md-4">
-                            <div class="card text-center shadow mb-5 bg-white rounded">
-                                <img class="card-img-top" src="/images/projets/projet.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title text-center font-weight-bold">Site web ITS</h5>
-                                    <p class="card-text">Nous développons le site de notre association afin de vous permettre d'avoir un
-                                        accès à tous nos projets! (3)
-                                    </p>
-                                    <a href="#" class="btn btn-rounded btn-primary">Découvrir</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="col-md-4">
-                            <div class="card text-center shadow mb-5 bg-white rounded">
-                                <img class="card-img-top" src="/images/projets/projet.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title text-center font-weight-bold">Site web ITS</h5>
-                                    <p class="card-text">Nous développons le site de notre association afin de vous permettre d'avoir un
-                                        accès à tous nos projets! (4)
-                                    </p>
-                                    <a href="#" class="btn btn-rounded btn-primary">Découvrir</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="col-md-4">
-                            <div class="card text-center shadow mb-5 bg-white rounded">
-                                <img class="card-img-top" src="/images/projets/projet.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title text-center font-weight-bold">Site web ITS</h5>
-                                    <p class="card-text">Nous développons le site de notre association afin de vous permettre d'avoir un
-                                        accès à tous nos projets! (5)
-                                    </p>
-                                    <a href="#" class="btn btn-rounded btn-primary">Découvrir</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="col-md-4">
-                            <div class="card text-center shadow mb-5 bg-white rounded">
-                                <img class="card-img-top" src="/images/projets/projet.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title text-center font-weight-bold">Site web ITS</h5>
-                                    <p class="card-text">Nous développons le site de notre association afin de vous permettre d'avoir un
-                                        accès à tous nos projets! (6)
-                                    </p>
-                                    <a href="#" class="btn btn-rounded btn-primary">Découvrir</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 <a class="carousel-control-prev w-auto" href="#recipeCarousel" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
