@@ -120,6 +120,7 @@
 
                 <input type="file" id="images" name="images[]" multiple>
             </div>
+            <h4 class="form-title">Cochez les images à supprimer</h4>
             <div class="form-group row align-items-center">
                 @foreach (json_decode($projet->images) as $key => $image)
                     <div class="col-md-3">
