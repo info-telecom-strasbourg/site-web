@@ -25,7 +25,7 @@ class CompetitionController extends Controller
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show(Competition $competition)
+	public function show(Competition $compet)
 	{
 		return view('poles.competitions.show', compact('compet'));
 	}
