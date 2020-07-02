@@ -32,6 +32,17 @@ class WelcomeController extends Controller
         // get all partners
         $partners = Collaborateur::all();
 
+        // get the date and time to know if the projects needs to be updated
+        $day = date('z') % 14;
+        $hour = date('H');
+        $min = date('i');
+        $seconds = date('s');
+
+        if ($day == 0 && $hour == 0 && $min == 0 && $seconds == 0)
+        {
+            // random
+        }
+
         /** Numbers **/
         // get number of projects
         $nbProjets = Projet::count();
@@ -44,6 +55,7 @@ class WelcomeController extends Controller
 
         // get number of years since the creation of ITS
         $years = date("Y") - 2019;
+
 
         return view('welcome', compact('poles', 'team', 'partners', 'nbProjets', 'nbUsers', 'nbPoles', 'years'));
     }
