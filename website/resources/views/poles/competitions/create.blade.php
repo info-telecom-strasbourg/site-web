@@ -15,7 +15,9 @@ Création d'une compétition
 <div class="container">
 	<h1 class="title lg text-center">
 		Création d'une compétition
-	</h1>
+	</h1>	
+	<hr class="line-under-title">
+	
 	<div class="container pt-3">
 		<form id="creat-comp" action="{{ route('poles.competitions.store') }}" method="post" enctype="multipart/form-data">
 			@csrf
