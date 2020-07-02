@@ -6,7 +6,7 @@ Création d'une compétition
 
 @section('breadcrumb')
 <li class="breadcrumb-item"><a href="/"><i class="fas fa-home"></i></a></li>
-<li class="breadcrumb-item active"><a href="/poles/competitions">Pôle Compétition</a></li>
+<li class="breadcrumb-item active"><a href="/poles/competitions">Pôle compétition</a></li>
 <li class="breadcrumb-item active">Création</li>
 @endsection
 
@@ -15,15 +15,15 @@ Création d'une compétition
 <div class="container">
 	<h1 class="title lg text-center">
 		Création d'une compétition
-	</h1>
+	</h1>	
+	<hr class="line-under-title">
+
 	<div class="container pt-3">
 		<form id="creat-comp" action="{{ route('poles.competitions.store') }}" method="post" enctype="multipart/form-data">
 			@csrf
 
 			<div class="form-group">
-				<h4 class="title lg text-left">
-					Nom
-				</h4>
+				<label for="title" class="form-title-small">Nom</label>
 
 				<input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}" required autocomplete="title" autofocus>
 
@@ -35,12 +35,10 @@ Création d'une compétition
 			</div>
 
 			<div class="form-group">
-				<h4 class="title lg text-left">
-					Description
-				</h4>
+				<label for="desc" class="form-title-small">Description</label>
 
 				<div class="control">
-					<textarea class="desc @error('desc') is-invalid @enderror" id="desc" name="desc" rows="3" required>{{ old('desc') }}</textarea>
+					<textarea class="desc form-control @error('desc') is-invalid @enderror" id="desc" name="desc" rows="5" required>{{ old('desc') }}</textarea>
 				</div>
 
 				@error('desc')
@@ -50,50 +48,63 @@ Création d'une compétition
 				@enderror
 			</div>
 
+			<div class="form-group">
+				<div class="dates-select">
+					<label class="form-title-small">
+						Dates de compétitions
+					</label>
+					<div class="dates-comp">
+						<div id="calendar-comp">
+				        	<div id="cal-comp-dates">
 
-			<div class="dates-select">
-				<h4 class="title lg text-left">
-					Dates de compétitions
-				</h4>
-				<div class="dates-comp">
-					<div id="calendar-comp">
-			        	<div id="cal-comp-dates">
+				        	</div>
+		    			</div>
+					</div>
+				</div>
+				<div id="dates-select">
 
-			        	</div>
-	    			</div>
 				</div>
 			</div>
 
 			<div class="form-group">
-				<h4 class="title lg text-left">
+				<label for="desc" class="form-title-small">
 					Images (3 maximum)
-				</h4>
-
+				</label>
+				<br>
 				<input type="file" id="images" name="images[]" multiple>
 			</div>
 
-			<h4 class="title lg text-left">
-				Lien vers le site web
-			</h4>
-
-			<input id="website" type="text" class="form-control @error('website') is-invalid @enderror" name="website" value="{{ old('website') }}" required autocomplete="website">
-			@error('website')
-			<span class="invalid-feedback" role="alert">
-				<strong>{{ $message }}</strong>
-			</span>
-			@enderror
+			<div class="form-group" style="margin-top: 40px;">
+                <label class="sr-only form-title-small" for="website">Lien vers le site web</label>
+                <div class="input-group mb-2">
+	                <div class="input-group-prepend">
+	                    <div class="input-group-text">                
+	                        <i class="fas fa-globe" style="font-size: 1rem;"></i>
+	                    </div>
+	                </div>
+	                <input type="url" class="form-control @error('website') is-invalid @enderror" id="website" name="website" placeholder="Lien vers le site web" value="{{ old('website') }}">
+                    
+                    @error('website')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
 
 			<div class="text-center" style="margin-top:25px; margin-bottom:25px">
-				<button id="submit-btn-crt-cpt" type="submit" class="btn btn-primary btn-rounded compet">AJOUTER</button>
+				<button id="create-cpt" type="submit" class="btn btn-primary btn-rounded compet">AJOUTER</button>
 			</div>
+
 		</form>
 	</div>
 </div>
 <script>
 	var datesComp = document.getElementById('calendar-comp');
-	if(datesComp) {
+	if(datesComp)
+	{
 		datesComp.style.visibility = "visible";
-	 }
+	}
 </script>
 @endsection
 

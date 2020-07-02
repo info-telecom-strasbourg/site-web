@@ -120,7 +120,7 @@ class ProjetController extends Controller
 
         $projet->save();
 
-        return redirect('/projets/'.$projet->id);
+        return redirect('/projets/' . $projet->id);
     }
 
     /**

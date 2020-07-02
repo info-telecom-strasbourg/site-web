@@ -8,6 +8,10 @@ use App\Competition;
 
 use App\Pole;
 
+use App\Date;
+
+use Illuminate\Support\Facades\Storage;
+
 class CompetitionController extends Controller
 {
 	/**
@@ -17,7 +21,7 @@ class CompetitionController extends Controller
 	 */
     public function index()
 	{
-		return view('poles.competitions.index', [ 'compets' => Competition::all(), 'pole' => Pole::where('title', 'compétitions')->first() ]);
+		return view('poles.competitions.index', [ 'compets' => Competition::all(), 'pole' => Pole::where('slug', 'competitions')->first() ]);
 	}
 
 	/**
@@ -27,7 +31,7 @@ class CompetitionController extends Controller
 	 */
 	public function show(Competition $compet)
 	{
-		return view('poles.competitions.show', compact('compet'));
+		return view('poles/competitions/show', [ 'compet' => $compet ]);
 	}
 
 	/**
@@ -46,10 +50,41 @@ class CompetitionController extends Controller
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		Competition::create($this->validateCompetiton());
-		return redirect('poles.competitions.index');
+		$compet = Competition::create($this->validateCompetiton());
+
+		// add dates
+		foreach ($request->dates_comp as $date)
+		{
+			// create a new date in the database
+			$newDate = Date::create([
+				'presentiel' => 1,
+				'date' => $date
+			]);
+
+			// add the date to the list of dates for this lesson
+			$compet->dates()->attach($newDate->id);
+		}
+
+		// add images
+		if ($request->has('images'))
+        {
+            $competImages = [];
+            foreach ($request->images as $image)
+            {
+                $competImages[] = $this->saveImage($image);
+            }
+            $compet->images = json_encode($competImages);
+        }
+        else
+            $compet->images = [$this->selectDefaultImage()];
+
+
+        // save competition
+        $compet->save();
+
+		return redirect('/poles/competitions/' . $compet->id);
 	}
 
 	/**
@@ -88,12 +123,31 @@ class CompetitionController extends Controller
 	public function  validateCompetiton ()
 	{
 		return request()->validate([
-			'id' => 'required',
 			'title' => 'required',
 			'desc' => 'required',
-			'date' => 'required',
-			'images' => 'required',
-			'website' => 'required',
+			'website' => 'required'
 		]);
+	}
+
+	/**
+     * Save an image given by the user in the public storage folder.
+     *
+     * @param $image: the image to be stored
+     * @return path to find the image
+     */
+    public function saveImage($image)
+    {
+        $path = Storage::putFile('public/images', $image, 'private');
+        return substr($path, 7);
+    }
+
+   	/**
+	 * Select a random default image.
+	 *
+	 * @return path to the image
+	 */
+	public function selectDefaultImage()
+	{
+		return 'images/default/prog/' . strval(random_int (1, 5) . '.jpg');
 	}
 }

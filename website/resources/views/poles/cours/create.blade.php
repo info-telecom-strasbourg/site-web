@@ -38,7 +38,7 @@ Création d'un cours
 				<label for="desc" class="form-title-small">Description</label>
 
 				<div class="control">
-					<textarea class="form-control @error('desc') is-invalid @enderror desc" id="desc" name="desc" rows="5" required>{{ old('desc') }}</textarea>
+					<textarea class="desc form-control @error('desc') is-invalid @enderror" id="desc" name="desc" rows="5" required>{{ old('desc') }}</textarea>
 				</div>
 
 				@error('desc')
@@ -113,7 +113,7 @@ Création d'un cours
 				</div>
 			</div>
 
-			<div id="dates-crs">
+			<div id="dates-select">
 
 			</div>
 
