@@ -18,7 +18,7 @@
                 <div class="carousel-caption">
                     <h1>Info Telecom Strasbourg</h1>
                     <br>
-                    <p>Notre toute nouvelle association débaque à TPS en Septembre !</p>
+                    <p>Notre toute nouvelle association débarque à TPS en Septembre !</p>
                     <br>
                     <form action="projets">
                         <input class="favorite styled" type="submit" value="Découvrir nos projets">
@@ -29,7 +29,7 @@
                 <div class="carousel-caption">
                     <h1>RTS - Strategy</h1>
                     <br>
-                    <p>Développement de la stratégie du robot de RTS qui participera à la Coupe de France de Robotique 2020</p>
+                    <p>Développement de la stratégie du robot de RTS pour la Coupe de France de Robotique 2020</p>
                     <br>
                     <form action="#">
                         <input class="favorite styled" type="submit" value="Voir le projet">
@@ -139,13 +139,13 @@
                     Cette année, une toute nouvelle association voit le jour dans ton école ! ITS te propose de découvrir le monde du numérique sous toutes ses formes.<br><br>
                     Au travers de 5 pôles, tu pourras développer des sites web et des applications, réaliser des petits programmes utiles, créer ton propre jeu PC, participer à de grandes compétitions informatiques, ou encore bénéficier de notre structure d'entraide.<br><br>
                     Si tu as besoin d'aide avec ton ordinateur, ou si tu souhaites obtenir de précieux conseils en programmation ou en cybersécurité, nous sommes aussi là pour toi !<br><br>
-                    ITS c'est avant tout une association qui te permettra de progresser en informatique dans un cadre chaleureux et agréable. Et ceci, quel que soient ton niveau et tes objectifs.<br><br>
+                    ITS c'est avant tout une association qui te permettra de progresser en informatique dans un cadre chaleureux et agréable. Et ceci, quels que soient ton niveau et tes objectifs.<br><br>
                     Alors n'hésite plus, ITS t'ouvre ses portes en Septembre pour ton plus grand bonheur !
                 </p>
             </div>
             <div class="col-md-5" id="asso-img">
                 <img src="/images/illustrations/tps.jpg" alt="Photo de TPS">
-                <p>Ecole d'ingénieur Télécom Physique Strasbourg</p>
+                <p>École d'ingénieur Télécom Physique Strasbourg</p>
             </div>
         </div>
     </div>
@@ -187,7 +187,7 @@
         </div>
         <div class="chiffre">
             <h1>{{ $nbPoles }}</h1>
-            POLES
+            PÔLES
         </div>
         <div class="chiffre">
             @if ($years == 1)
@@ -207,8 +207,8 @@
     <div class="directeur">
         <p style="font-style: italic;"> "L’Association d’Informatique de Télécom Physique Strasbourg a tout mon soutien et je salue ses projets particulièrement ambitieux.<br><br>
             Ce projet associatif renforcera j’en suis certain l’entraide entre élèves-ingénieurs et par là même leur sentiment d’appartenance à une grande école d'ingénieurs.<br><br>
-            Les 5 Pôles mis en place permettent aux élèves de mettre en pratique et compléter leur formation académique, que ce soit à travers le développement de programmes utiles, de jeux vidéo, d’applications mobiles ou de site Web.<br><br>
-            J’encourage particulièrement la participation à des compétitions informatiques bénéfiques à la visibilité de Télécom Physique Strasbourg et de son Département Informatique et Réseaux.<br><br>Vous pourrez compter sur le soutien de votre directeur !"</p>
+            Les 5 pôles mis en place permettent aux élèves de mettre en pratique et compléter leur formation académique, que ce soit à travers le développement de programmes utiles, de jeux vidéo, d’applications mobiles ou de site Web.<br><br>
+            J’encourage particulièrement la participation à des compétitions informatiques bénéfiques à la visibilité de Télécom Physique Strasbourg et de son département Informatique et Réseaux.<br><br>Vous pourrez compter sur le soutien de votre directeur !"</p>
         <img class="profil-rounded" src="/images/logo/collet.jpg">
         <p id="nom"> Christophe Collet </p>
         <p id="fonction">Directeur de l’école d’ingénieurs Télécom Physique Strasbourg</p>

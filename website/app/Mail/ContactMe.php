@@ -43,6 +43,6 @@ class ContactMe extends Mailable
     {
         return $this->markdown('emails.contact-me')
             ->replyTo($this->email)
-            ->subject('' . $this->subject);
+            ->subject('[Contact] ' . $this->subject);
     }
 }

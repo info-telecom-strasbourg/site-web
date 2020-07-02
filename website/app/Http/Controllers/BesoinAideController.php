@@ -16,10 +16,10 @@ class BesoinAideController extends Controller
     public function store(Request $request) 
     {
         // send the email
-        Mail::to("clara.schild@gmail.com")
+        Mail::to("info.telecom.strasbourg@gmail.com")
             ->send(new BesoinAide($request->type, $request->appareil, $request->os, $request->files, $request->desc));
 
         return redirect('/besoin-aide')
-            ->with('message', 'Votre demande de contact a été envyoyé.');
+            ->with('message', 'Votre demande d\'aide a été envoyé.');
     }
 }

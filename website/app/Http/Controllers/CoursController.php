@@ -107,7 +107,7 @@ class CoursController extends Controller
 	{
 		$this->authorize('update', $cours);
 		$users = User::all();
-		return view('poles.cours.edit',compact('cours', 'users'));
+		return view('poles.cours.edit', compact('cours', 'users'));
 	}
 
 	/**
