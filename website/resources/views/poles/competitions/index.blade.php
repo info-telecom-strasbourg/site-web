@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', 'Pôle' . $pole->title)
+@section('title', 'Pôle ' . $pole->title)
 
 @section('content')
 <div class="container">

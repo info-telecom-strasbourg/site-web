@@ -1,13 +1,12 @@
 @component('mail::message')
 
-# Demande de contact
+# Besoin d'aide
 
 
-### De : {{ $type }}
-### Object : {{ $appareil }} {{ $os }}
-
-<br>
-
+### Type de demande : {{ $type }}
+### Appareil : {{ $appareil }} 
+### Système d'exploitation : {{ $os }}
+### Messages :
 {{ $desc }}
 
 @endcomponent

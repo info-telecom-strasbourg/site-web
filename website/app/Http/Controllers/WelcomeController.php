@@ -26,7 +26,8 @@ class WelcomeController extends Controller
     	$poles = Pole::all();
 
     	// get roles ids for the team
-    	$rolesIds = Role::whereIn('poste', array('Bureau', 'Respo'))->get(['id']);
+        $rolesIds = Role::whereIn('poste', array('Bureau', 'Respo'))->get(['id']);
+
     	// get the team
         $team = User::whereIn('role_id', $rolesIds)->get();
 
@@ -96,6 +97,6 @@ class WelcomeController extends Controller
             ->send(new ContactMe($request->name, $request->subject, $request->email, $request->messages));
 
         return redirect('/#contact-anchor')
-            ->with('message', 'Votre demande de contact a été envyoyé.');
+            ->with('message', 'Votre demande de contact a été envoyé.');
     }
 }

@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', 'Pôle' . $pole->title)
+@section('title', 'Pôle ' . $pole->title)
 
 @section('breadcrumb')
 <li class="breadcrumb-item"><a href="/"><i class="fas fa-home"></i></a></li>

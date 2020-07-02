@@ -85,7 +85,7 @@
 					<button type="submit" class="btn btn-primary btn-primary btn-rounded">FILTRER</button>
 				</div>
 				<div class="col-md-3 text-center" style="opacity: .75;">
-					<a href="/projets" class="btn btn-primary btn-primary btn-rounded">RESET</a>
+					<a href="/projets" class="btn btn-primary btn-primary btn-rounded w-100">RESET</a>
 				</div>
 			</div>
 		</form>
