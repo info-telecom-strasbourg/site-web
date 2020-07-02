@@ -104,7 +104,7 @@
                 @enderror
             </div>
             <div class="custom-control custom-checkbox" style="margin-bottom: 1rem;">
-                <input id="complete-status" type="checkbox" class="custom-control-input" name="complete" value="1">
+                <input id="complete" type="checkbox" class="custom-control-input" name="complete" value="1">
 
                 <label class="custom-control-label form-title-small" for="complete">Projet compléter</label>
             </div>
