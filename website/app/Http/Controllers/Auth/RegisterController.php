@@ -57,7 +57,7 @@ class RegisterController extends Controller
         $validator = Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'role' => ['required'],
+            'role' => ['required', 'integer'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
@@ -70,17 +70,29 @@ class RegisterController extends Controller
             // get the role
             $selectRole = Role::where('id', $data['role'])->first();
 
-            // loop through the role that aren't unique
-            foreach (Role::getMassRoles() as $massRole) {
-                // if the selected role is not mass assignable, throw an error
-                if ($selectRole->role != $massRole) {
-                    $validator->errors()->add('erreur', 'Vous ne pouvez pas créer un nouveau ' . strtolower($selectRole->role) . '.');
-                    break;
-                }
+            // selectRole isn't an object, thus no role was found
+            if (!is_object($selectRole))
+                return $validator;
+
+            // if the selected role is not mass assignable, throw an error
+            if ($selectRole->is_unique == 1) {
+                $validator->errors()->add('erreur', 'Vous ne pouvez pas créer un nouveau ' . strtolower($selectRole->role) . '.');
             }
         });
 
         return $validator;
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'password' => 'Le mot de passe n\'est pas identique',
+        ];
     }
 
     /**
@@ -106,7 +118,7 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        $roles = Role::all();
+        $roles = Role::where('is_unique', '=', 0)->get();
         return view('auth.register', compact('roles'));
     }
 
