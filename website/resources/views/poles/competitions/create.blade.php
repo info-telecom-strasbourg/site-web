@@ -15,7 +15,7 @@ Création d'une compétition
 <div class="container">
 	<h1 class="title lg text-center">
 		Création d'une compétition
-	</h1>	
+	</h1>
 	<hr class="line-under-title">
 
 	<div class="container pt-3">
@@ -49,6 +49,19 @@ Création d'une compétition
 			</div>
 
 			<div class="form-group">
+				<label for="competitors" class="form-title-small">Ajouter des competitors</label>
+				<select class="custom-select" name="competitors[]" id="competitors" size="4" required multiple>
+		            <option readonly selected hidden value="">participants</option>
+
+		            @isset($users)
+		                @foreach ($users as $user)
+		                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+		                @endforeach
+		            @endisset
+		        </select>
+			</div>
+
+			<div class="form-group">
 				<div class="dates-select">
 					<label class="form-title-small">
 						Dates de compétitions
@@ -78,12 +91,12 @@ Création d'une compétition
                 <label class="sr-only form-title-small" for="website">Lien vers le site web</label>
                 <div class="input-group mb-2">
 	                <div class="input-group-prepend">
-	                    <div class="input-group-text">                
+	                    <div class="input-group-text">
 	                        <i class="fas fa-globe" style="font-size: 1rem;"></i>
 	                    </div>
 	                </div>
 	                <input type="url" class="form-control @error('website') is-invalid @enderror" id="website" name="website" placeholder="Lien vers le site web" value="{{ old('website') }}">
-                    
+
                     @error('website')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>

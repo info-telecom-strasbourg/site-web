@@ -53,9 +53,9 @@ class CompetitionPolicy
      * @param  \App\Competition  $competition
      * @return mixed
      */
-    public function update(User $user, Competition $competition)
+    public function update(User $user)
     {
-		return auth()->check() && $user->role_id == Role::where('role','Responsable compétition')->pluck('id');
+		return auth()->check() && ($user->role_id == Role::where('role','Responsable compétition')->pluck('id')->first());
     }
 
     /**

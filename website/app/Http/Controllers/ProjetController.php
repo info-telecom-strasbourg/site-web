@@ -29,7 +29,7 @@ class ProjetController extends Controller
         $participants = User::all();
 
         $poles = Pole::all();
-        
+
         $partners = Collaborateur::all();
 
         $search = request()->search;
@@ -72,7 +72,7 @@ class ProjetController extends Controller
 
     /**
      * Store a new project.
-     * 
+     *
      * @param  ProjetRequest $request
      * @return \Illuminate\Http\Response
      */
@@ -82,10 +82,10 @@ class ProjetController extends Controller
         $projet = Projet::create($validatedData);
 
         // if there are images, save the images, otherwise take a random one
-        if ($request->has('images')) 
+        if ($request->has('images'))
         {
             $projetImages = [];
-            foreach ($request->images as $image) 
+            foreach ($request->images as $image)
             {
                 $projetImages[] = $this->saveImage($image, $projet);
             }
@@ -98,9 +98,9 @@ class ProjetController extends Controller
         $teamLeaderPresent = false;
 
         // add the contributors to the database
-        if ($request->has('participants')) 
+        if ($request->has('participants'))
         {
-            foreach ($request->participants as $participant) 
+            foreach ($request->participants as $participant)
             {
                 $projet->participants()->attach($participant);
 
@@ -121,7 +121,7 @@ class ProjetController extends Controller
 
     /**
      * Show the form for editing the specified project.
-s     * 
+     * 
      * @param App\projet $projet
      * @return \Illuminate\Http\Response
      */
@@ -135,7 +135,7 @@ s     *
 
     /**
      * Update the specified project.
-     * 
+     *
      * @param ProjetRequest $request
      * @param App\Projet $projet
      * @return \Illuminate\Http\Response
@@ -151,10 +151,10 @@ s     *
         // if some images needs to be removed
         if ($request->has('removeImages'))
         {
-            foreach ($request->removeImages as $index => $value) 
+            foreach ($request->removeImages as $index => $value)
             {
                 // delete the image
-                $this->deleteImage($projetImages[$index]);        
+                $this->deleteImage($projetImages[$index]);
 
                 // remove the images at given index
                 unset($projetImages[$index]);
@@ -162,9 +162,9 @@ s     *
         }
 
         // if there are images, save the images
-        if ($request->has('images')) 
+        if ($request->has('images'))
         {
-            foreach ($request->images as $image) 
+            foreach ($request->images as $image)
             {
                 $projetImages[] = $this->saveImage($image, $projet);
             }
@@ -175,25 +175,25 @@ s     *
         {
             $projet->images = [$this->selectDefaultImage($projet->pole_id)];
         }
-        else 
+        else
         {
             // store the images in a new array
             $idx = 0;
             $images = [];
-            foreach ($projetImages as $image) 
+            foreach ($projetImages as $image)
             {
                 $images[] = $image;
             }
 
-            // convert the image array into 
+            // convert the image array into
             // a string containing the json representation
             $projet->images = json_encode($images);
         }
 
         // add the contributors to the database
-        if ($request->has('participants')) 
+        if ($request->has('participants'))
         {
-            foreach ($request->participants as $participant) 
+            foreach ($request->participants as $participant)
             {
                 $projet->participants()->attach($participant);
             }
@@ -210,7 +210,7 @@ s     *
 
     /**
      * Remove the specified project.
-     * 
+     *
      * @param App\Projet $projet
      * @return \Illuminate\Http\Response
      */
@@ -219,8 +219,8 @@ s     *
         $this->authorize('update', $projet);
 
         // delete all images in storage
-        foreach (json_decode($projet->images) as $image) 
-            $this->deleteImage($image);        
+        foreach (json_decode($projet->images) as $image)
+            $this->deleteImage($image);
 
         // delete the project
         $projet->delete();

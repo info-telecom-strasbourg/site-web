@@ -414,6 +414,12 @@ $(document).ready(function() {
 			alert("3 images maximums");
 	    }
 
+		if (parseInt(fileUpload.get(0).files.length) === 0)
+		{
+			e.preventDefault();
+			alert("Il faut au moins une image");
+	    }
+
 		if (calendarComp.values.length === 0)
 		{
 			e.preventDefault();
@@ -421,6 +427,7 @@ $(document).ready(function() {
 		}
 		parseDate(calendarComp.values, 'dates_comp');
 	});
+
 
 	/*** Create the calendars ***/
     $('#datepicker').datepicker({

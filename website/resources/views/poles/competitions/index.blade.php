@@ -92,12 +92,12 @@
 			</div>
 		</div>
 
-		@can ('create', 'App\Cours')
+		@can ('create', 'App\Competition')
 			<div class="text-center" style="margin-top:25px; margin-bottom:25px;">
-				<a class="btn btn-primary btn-rounded" href="/poles/competitionscours/create">Créer une compétition</a>
+				<a class="btn btn-primary btn-rounded" href="/poles/competitions/create">Créer une compétition</a>
 			</div>
 		@endcan
-		@can ('update', $pole)
+		@can ('update', $compet)
 			<div class="text-center" style="margin-top:25px; margin-bottom:25px;">
 				<button type="submit" class="btn btn-primary btn-rounded" onclick="self.location.href='/poles/{{ $pole->id }}/edit'">Éditer</button>
 			</div>
