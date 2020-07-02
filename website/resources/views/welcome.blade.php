@@ -1,10 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', "ITS")
-
-@section('breadcrumb')
-
-@endsection
+@section('title', 'ITS')
 
 @section('content')
 

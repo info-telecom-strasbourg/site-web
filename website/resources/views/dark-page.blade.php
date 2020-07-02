@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', "ITS")
+@section('title', 'Admin')
 
 @section('breadcrumb')
 
