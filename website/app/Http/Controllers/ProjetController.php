@@ -84,6 +84,10 @@ class ProjetController extends Controller
         // if there are images, save the images, otherwise take a random one
         if ($request->has('images')) 
         {
+            $request->validate([
+                'images' => 'nullable|mimes:jpg,jpeg,png'
+            ]);
+
             $projetImages = [];
             foreach ($request->images as $image) 
             {

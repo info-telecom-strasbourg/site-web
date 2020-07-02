@@ -24,7 +24,17 @@
                 </button>
             </div>
         @else
-            <form action="https://formspree.io/youremail@mail.com" method="POST" enctype="multipart/form-data">
+        <!-- Confirmtion email was send -->
+            @if (session('message'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('message') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
+            <form action="/besoin-aide" method="POST" enctype="multipart/form-data">
+                @csrf
                 <div class="form-group">
                     <label for="type" class="form-title-small">
                         Type de demande
@@ -54,6 +64,7 @@
                         Système d'exploitation
                     </label>
                     <select class="form-control" id="os" name="os">
+                        <option>MacOS</option>
                         <option>Linux</option>
                         <option>Windows</option>
                         <option>Android</option>
@@ -61,8 +72,8 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="images" class="form-title-small">Images</label>
-                    <input type="file" class="form-control-file" id="images" name="images[]" multiple>
+                    <label for="files" class="form-title-small">Fichiers</label>
+                    <input type="file" class="form-control-file" id="files" name="files[]" multiple>
                 </div>
                 <div class="form-group">
                     <label for="desc" class="form-title-small">Description de la demande</label>
