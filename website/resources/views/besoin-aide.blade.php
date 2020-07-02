@@ -10,7 +10,9 @@
 @section('content')
 
 <div class="container">
-    <h1 class="title lg text-center"> Besoin d'aide </h1>
+    <h1 class="title lg text-center"> 
+        Besoin d'aide
+    </h1>
     <hr class="line-under-title">
 
     <div class="container pt-3">
@@ -66,7 +68,7 @@
                     <label for="desc" class="form-title-small">Description de la demande</label>
                     <textarea class="form-control" type="text" placeholder="Message" rows="9" id="desc" name="desc" style="resize: none;" required></textarea>
                 </div>
-                
+
                 <div class="text-center" style="margin-top:25px; margin-bottom:25px">
                     <button type="submit" class="btn btn-primary btn-rounded">Envoyer</button>
                 </div>

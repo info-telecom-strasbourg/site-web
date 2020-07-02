@@ -18,131 +18,134 @@
 		Édition du cours : {{ $cours->title }}
 	</h1>
 	<hr class="line-under-title">
-	<form class="" action="/poles/cours/{{ $cours->id }}" method="POST" enctype="multipart/form-data">
-		@csrf
-		@method('PUT')
 
-		<!-- Pour le titre -->
-		<div class="form-group">
-			<label for="title" class="form-title-small">Titre</label>
+	<div class="container pt-3">
+		<form class="" action="/poles/cours/{{ $cours->id }}" method="POST" enctype="multipart/form-data">
+			@csrf
+			@method('PUT')
 
-			<input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ $cours->title }}" required autocomplete="title" autofocus>
+			<!-- Pour le titre -->
+			<div class="form-group">
+				<label for="title" class="form-title-small">Titre</label>
 
-			@error('title')
-			<span class="invalid-feedback" role="alert">
-				<strong>{{ $message }}</strong>
-			</span>
-			@enderror
+				<input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ $cours->title }}" required autocomplete="title" autofocus>
 
-		</div>
-
-		<!-- Pour la description -->
-		<div class="form-group">
-			<label for="desc" class="form-title-small">Description</label>
-
-			<textarea class="form-control desc @error('desc') is-invalid @enderror" id="desc" name="desc" rows="5" required>{{ $cours->desc }}</textarea>
-
-			@error('desc')
+				@error('title')
 				<span class="invalid-feedback" role="alert">
 					<strong>{{ $message }}</strong>
 				</span>
-			@enderror
+				@enderror
 
-		</div>
+			</div>
 
-		<div class="form-group">
-			<label for="creators" class="form-title-small">Ajouter des créateurs</label>
-			
-			<select class="custom-select" name="creators[]" id="creators" multiple>
-	            <option readonly selected hidden value="">Créateurs</option>
+			<!-- Pour la description -->
+			<div class="form-group">
+				<label for="desc" class="form-title-small">Description</label>
 
-	            @isset($users)
-	                @foreach ($users as $user)
-	                    <option value="{{ $user->id }}">{{ $user->name }}</option>
-	                @endforeach
-	            @endisset
-	        </select>
-	    </div>
+				<textarea class="form-control desc @error('desc') is-invalid @enderror" id="desc" name="desc" rows="5" required>{{ $cours->desc }}</textarea>
 
-		<div class="form-group">
-			<label for="image_crs" class="form-title-small">				Changement de la vignette du cours</label>
-			<br>
-			<input type="file" id="image_crs" name="image_crs">
-		</div>
+				@error('desc')
+					<span class="invalid-feedback" role="alert">
+						<strong>{{ $message }}</strong>
+					</span>
+				@enderror
 
-		<!-- Pour ajouter un/des fichiers -->
-		<div class="form-group">
-			<label for="link_support_mod" class="form-title-small">		
-				Ajouter des fichiers
-			</label>
-			<br>
-			<input type="file" id="link_support_mod" name="link_support[]" multiple>
-		</div>
+			</div>
 
-		<!-- Pour modifier des fichiers -->
-		<h4 class="form-title">Choisir le status des fichiers des fichiers</h4>
-		<div class="form-group {{ !empty($cours->supports[0]) ? 'to-hide' : '' }}" id="choose-new-statut">
-		@forelse ( $cours->supports as $support )
+			<!-- Créateurs -->
+			<div class="form-group">
+				<label for="creators" class="form-title-small">Ajouter des créateurs</label>
+				
+				<select class="custom-select" name="creators[]" id="creators" multiple>
+		            <option readonly selected hidden value="">Créateurs</option>
 
-			<div class="row justify-content-start">
-				<div class="col-auto">
-					{{ $support->name }}
+		            @isset($users)
+		                @foreach ($users as $user)
+		                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+		                @endforeach
+		            @endisset
+		        </select>
+		    </div>
+
+			<!-- Vignette -->
+			<div class="form-group">
+				<label for="image_crs" class="form-title-small">				Changement de la vignette du cours</label>
+				<br>
+				<input type="file" id="image_crs" name="image_crs">
+			</div>
+
+			<!-- Pour ajouter un/des fichiers -->
+			<div class="form-group">
+				<label for="link_support_mod" class="form-title-small">		
+					Ajouter des fichiers
+				</label>
+				<br>
+				<input type="file" id="link_support_mod" name="link_support[]" multiple>
+			</div>
+
+			<!-- Pour modifier des fichiers -->
+			<h4 class="form-title">Choisir le status des fichiers des fichiers</h4>
+			<div class="form-group {{ !empty($cours->supports[0]) ? 'to-hide' : '' }}" id="choose-new-statut">
+			@forelse ( $cours->supports as $support )
+
+				<div class="row justify-content-start">
+					<div class="col-auto">
+						{{ $support->name }}
+					</div>
+					<div class="col-auto">
+						<div class="form-group">
+							<select class="form-control form-control-sm" name="visibility_change[{{ $support->id }}]">
+								<option value="0" {{ $support->visibility == 0 ? 'selected' : ' '}}>Public</option>
+								<option value="1" {{ $support->visibility == 1 ? 'selected' : ' '}}>Privé</option>
+								<option value="2">Supprimer</option>
+							</select>
+						</div>
+					</div>
 				</div>
-				<div class="col-auto">
-					<div class="form-group">
-						<select class="form-control form-control-sm" name="visibility_change[{{ $support->id }}]">
-							<option value="0" {{ $support->visibility == 0 ? 'selected' : ' '}}>Public</option>
-							<option value="1" {{ $support->visibility == 1 ? 'selected' : ' '}}>Privé</option>
-							<option value="2">Supprimer</option>
-						</select>
+			@empty
+
+			@endforelse
+			</div>
+
+			<!-- Modifier les dates -->
+			<h4 class="form-title">Dates du cours</h4>
+			<div class="row justify-content-around dates-select">
+				<div class="col-md-auto">
+					<label class="form-title-small">				
+						Dates en présentiels
+					</label>
+					<div class="dates-pres">
+						<div id="calendar-pres-upd">
+				        	<div id="cal-pres-dates-upd">
+
+				        	</div>
+		    			</div>
+					</div>
+				</div>
+
+				<div class="col-md-auto">
+					<label class="form-title-small">				
+						Dates en distanciels
+					</label>
+					<div class="dates-dist">
+						<div id="calendar-dist-upd">
+				        	<div id="cal-dist-dates-upd">
+
+				        	</div>
+		    			</div>
 					</div>
 				</div>
 			</div>
-		@empty
 
-		@endforelse
-		</div>
+			<div id="dates-crs">
 
-
-		<!-- Modifier les dates -->
-		<h4 class="form-title">Dates du cours</h4>
-		<div class="row justify-content-around dates-select">
-			<div class="col-md-auto">
-				<label class="form-title-small">				
-					Dates en présentiels
-				</label>
-				<div class="dates-pres">
-					<div id="calendar-pres-upd">
-			        	<div id="cal-pres-dates-upd">
-
-			        	</div>
-	    			</div>
-				</div>
 			</div>
 
-			<div class="col-md-auto">
-				<label class="form-title-small">				
-					Dates en distanciels
-				</label>
-				<div class="dates-dist">
-					<div id="calendar-dist-upd">
-			        	<div id="cal-dist-dates-upd">
-
-			        	</div>
-	    			</div>
-				</div>
+			<div class="text-center" style="margin-top:25px; margin-bottom:25px">
+				<button id="submit-btn-edt-crs" type="submit" class="btn btn-primary btn-rounded">Enregistrer</button>
 			</div>
-		</div>
-
-		<div id="dates-crs">
-
-		</div>
-
-
-		<div class="text-center" style="margin-top:25px; margin-bottom:25px">
-			<button id="submit-btn-edt-crs" type="submit" class="btn btn-primary btn-rounded">Enregistrer</button>
-		</div>
-	</form>
+		</form>
+	</div>
 </div>
 <script>
 	var elePresUpd = document.getElementById('calendar-pres-upd');
