@@ -25,7 +25,7 @@ class CompetitionController extends Controller
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show(Competition $compet)
+	public function show(Competition $competition)
 	{
 		return view('poles.competitions.show', compact('compet'));
 	}
@@ -48,9 +48,18 @@ class CompetitionController extends Controller
 	 */
 	public function store(Request $request)
 	{
-		dd($request);
-		Competition::create($this->validateCompetiton());
-		return redirect('poles.competitions.index');
+		$compet = Competition::create($this->validateCompetiton());
+		$competImage = [];
+
+		foreach ($request->dates_comp as $key => $value)
+		{
+			$newDate = Date::create([
+				'presentiel' => 1,
+				'date' => $value
+			]);
+			$compet->dates()->attach($newDate->id);
+		}
+		return redirect('/poles/competitions/index');
 	}
 
 	/**
