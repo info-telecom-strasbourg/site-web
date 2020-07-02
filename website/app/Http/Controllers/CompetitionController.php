@@ -16,7 +16,7 @@ class CompetitionController extends Controller
 	 * @return \Illuminate\Http\Response
 	 */
     public function index()
-	{		
+	{
 		return view('poles.competitions.index', [ 'compets' => Competition::all(), 'pole' => Pole::where('title', 'compétitions')->first() ]);
 	}
 
@@ -37,6 +37,7 @@ class CompetitionController extends Controller
 	 */
 	public function create()
 	{
+		$this->authorize('create', Competition::class);
 		return view('poles.competitions.create');
 	}
 
