@@ -107,7 +107,7 @@
 										<span>{{ mb_strlen( $projet->desc ) > 57 ? mb_substr($projet->desc, 0, 54) . ' ...' : $projet->desc }}
 		                                </span>
 									</p>
-									<a href="/projets/{{ $projet->id }}" class="btn btn-rounded btn-primary" type="button">DÉCOUVRIR</a>
+									<a href="/projets/{{ $projet->id }}" class="btn btn-rounded btn-primary">DÉCOUVRIR</a>
 								</div>
 						  	</div>
 						</div>

@@ -56,7 +56,7 @@
     <div class="nav flex-column nav-pills short" id="v-pills-tab" role="tablist" aria-orientation="horizontal">
         <div class="navbar-dark-brand" href="/">
             <a href="/">
-                <img src="/images/logo/logo-dark.png" width="90" height="90" alt="Logo du site">
+                <img src="/images/logo/logo-dark.png" width="90" height="100%" alt="Logo du site">
             </a>
         </div>
         <a class="nav-link active" id="v-pills-ens-tab" data-toggle="pill" href="#v-pills-ens" role="tab" aria-controls="v-pills-ens" aria-selected="true">VUE D'ENSEMBLE</a>

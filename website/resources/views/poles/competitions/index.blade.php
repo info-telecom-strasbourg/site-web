@@ -34,7 +34,7 @@
 										<span>{{ mb_strlen( $compet->desc ) > 57 ? mb_substr($compet->desc, 0, 54) . ' ...' : $compet->desc }}
 		                                </span>
 									</p>
-									<a href="/poles/competitions/{{ $compet->id }}" class="btn btn-rounded btn-primary" type="button">DÉCOUVRIR</a>
+									<a href="/poles/competitions/{{ $compet->id }}" class="btn btn-rounded btn-primary">DÉCOUVRIR</a>
 								</div>
 						  	</div>
 						</div>
@@ -94,7 +94,7 @@
 
 		@can ('create', 'App\Cours')
 			<div class="text-center" style="margin-top:25px; margin-bottom:25px;">
-				<a class="btn btn-primary btn-rounded" href="/poles/competitionscours/create">Créer une compétition</a>
+				<a class="btn btn-primary btn-rounded" href="/poles/competitions/create">Créer une compétition</a>
 			</div>
 		@endcan
 		@can ('update', $pole)

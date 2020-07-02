@@ -1,11 +1,11 @@
 <nav class="navbar navbar-expand-xl navbar-light fixed-top">
     @if (Auth::check() && Auth::user()->role_id == 4)
         <a class="navbar-brand" href="/page-admin">
-            <img src="/images/logo/logo.png" width="90" height="90" alt="Logo du site">
+            <img src="/images/logo/logo.png" width="90" height="100%" alt="Logo du site">
         </a>
     @else
         <a class="navbar-brand">
-            <img src="/images/logo/logo.png" width="90" height="90" alt="Logo du site">
+            <img src="/images/logo/logo.png" width="90" height="100%" alt="Logo du site">
         </a>
     @endif
 

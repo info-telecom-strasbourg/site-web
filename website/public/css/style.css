@@ -104,6 +104,12 @@ a {
     background-color: transparent;
 }
 
+@media only screen and (max-width: 436px) {
+    .breadcrumb-container {
+        margin-top: 120px;
+        margin-left: 30px;
+    }
+}
 
 /* ##########################   Gestion de la navbar   ########################## */
 
@@ -531,18 +537,33 @@ display: block;
 /* Agenda */
 
 .google-agenda {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: relative;
+    padding-bottom: 40%;
+    height: 0;
+    overflow: hidden;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.google-agenda iframe {
+    position: absolute;
+    top:0;
+    left: 0;
     width: 100%;
-    padding-left: 100px;
-    padding-right: 100px;
+    height: 100%;
 }
 
 @media only screen and (max-width: 990px) {
     .google-agenda {
-        padding-left: 50px;
-        padding-right: 50px;
+        padding-bottom: 70%
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .google-agenda {
+        margin-left: 0;
+        margin-right: 0;
+        padding-bottom: 150%
     }
 }
 
@@ -570,7 +591,6 @@ display: block;
 
 #partenariat .logo-pres {
     width: 213px;
-    height: 150px;
     border: none;
 }
 
@@ -578,20 +598,8 @@ display: block;
     filter: brightness(.5);
 }
 
-#partenariat .partenaires {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-
-#partenariat .partenaire {
-    margin-left: 20px;
-    margin-right: 20px;
-}
-
 #partenariat p {
-    padding-top: 12px;
+    padding-top: 5px;
     text-align: center;
     font-style: italic;
     color: grey;

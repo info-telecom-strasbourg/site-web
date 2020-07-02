@@ -55,7 +55,7 @@ class CompetitionPolicy
      */
     public function update(User $user, Competition $competition)
     {
-		return auth()->check() && $user->role_id == Role::where('role','Responsable compétition')->pluck('id');
+        return auth()->check() && ($user->role_id == Role::where('role','Responsable compétition')->pluck('id')->first());
     }
 
     /**

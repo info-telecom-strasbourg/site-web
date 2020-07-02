@@ -9,10 +9,10 @@
             <div class="col-lg-2 mb-lg-0 mb-3"></div>
             <div class="col-lg-4 mb-lg-0 mb-3">
                 <div class="social-buttons row align-item-center justify-content-center">
-                    <a class="social-icons" href="https://github.com/info-telecom-strasbourg/">
+                    <a class="social-icons" href="https://github.com/info-telecom-strasbourg/" target="_blank">
                         <i class="fab fa-github fa-4x fa-lg mr-3"></i>
                     </a>
-                    <a class="social-icons" href="https://www.facebook.com/Info.Telecom.Strasbourg/">
+                    <a class="social-icons" href="https://www.facebook.com/Info.Telecom.Strasbourg/" target="_blank">
                         <i class="fab fa-facebook fa-4x fa-lg mr-3"></i>
                     </a>
                 </div>
