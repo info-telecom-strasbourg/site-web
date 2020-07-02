@@ -12,6 +12,7 @@ use App\User;
 use App\Projet;
 use App\Role;
 use App\Collaborateur;
+use App\RandomProjet;
 
 class WelcomeController extends Controller
 {
@@ -32,17 +33,6 @@ class WelcomeController extends Controller
         // get all partners
         $partners = Collaborateur::all();
 
-        // get the date and time to know if the projects needs to be updated
-        $day = date('z') % 14;
-        $hour = date('H');
-        $min = date('i');
-        $seconds = date('s');
-
-        if ($day == 0 && $hour == 0 && $min == 0 && $seconds == 0)
-        {
-            // random
-        }
-
         /** Numbers **/
         // get number of projects
         $nbProjets = Projet::count();
@@ -57,7 +47,41 @@ class WelcomeController extends Controller
         $years = date("Y") - 2019;
 
 
-        return view('welcome', compact('poles', 'team', 'partners', 'nbProjets', 'nbUsers', 'nbPoles', 'years'));
+        // get the date and time to know if the projects needs to be updated
+        $day = date('z') % 14;
+        $hour = date('H');
+        $min = date('i');
+        $seconds = date('s');
+
+        // every 2 weeks get new random projects
+        if ($day == 0 && $hour == 0 && $min == 0 && $seconds == 0)
+        {
+            // delete all projects in database
+            RandomProjet::truncate();
+
+            // get max random number
+            if ($nbProjets < 6)
+                $maxProjets = $nbProjets;
+            else
+                $maxProjets = 6;
+
+            // get all projects in an array
+            $projetArray = Projet::all()->toArray();
+
+            // get 6 random project ids
+            $randIds = array_rand($projetArray, $maxProjets);
+
+            // create random projects
+            foreach ($randIds as $id) 
+            {
+                RandomProjet::create(['projet_id' => array_values($projetArray[$id])[0]]);
+            }
+        }
+
+
+        $projets = RandomProjet::all();
+
+        return view('welcome', compact('poles', 'team', 'partners', 'projets', 'nbProjets', 'nbUsers', 'nbPoles', 'years'));
     }
 
     /**

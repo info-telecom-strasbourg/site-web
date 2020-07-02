@@ -51,7 +51,7 @@
 							</a>
 						</div>
 					@empty
-						<div>
+						<div class="col-md-auto sep-items">
 							Ce cours a été créé par un anonyme
 						</div>
 					@endforelse
