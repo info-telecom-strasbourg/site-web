@@ -6,7 +6,7 @@
 
 @section('breadcrumb')
 <li class="breadcrumb-item"><a href="/"><i class="fas fa-home"></i></a></li>
-<li class="breadcrumb-item active"><a href="/poles/competitions">Pôle Compétition</a></li>
+<li class="breadcrumb-item active"><a href="/poles/competitions">Pôle compétition</a></li>
 <li class="breadcrumb-item"><a href="/poles/competitions/{{ $competition->id }}">{{ $competition->title }}</a></li>
 <li class="breadcrumb-item active">Édition</li>
 @endsection
@@ -15,7 +15,7 @@
 
 <div class="container">
 	<h1 class="title lg text-center">
-		Édition du cours : {{ $competition->title }}
+		Édition de la compétition : {{ $competition->title }}
 	</h1>
 	<hr class="line-under-title">
 
@@ -26,7 +26,7 @@
 
 			<!-- Pour le titre -->
 			<div class="form-group">
-				<label for="title" class="form-title-small">Titre</label>
+				<label for="title" class="form-title-small">Nom</label>
 
 				<input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ $competition->title }}" required autocomplete="title" autofocus>
 
@@ -52,22 +52,48 @@
 
 			</div>
 
+			<!-- Modifier les images -->
+			<div class="form-group">
+				<label for="link_support_mod" class="form-title-small">
+					Changer les images
+				</label>
+				<br>
+				<input type="file" id="link_im_comp" name="link_im_comp[]" multiple>
+			</div>
+
+			<!-- Pour enlever des images -->
+			<!-- images/default    14 -->
+			<?php $images = json_decode($compet->images);
+			dd($images); ?>
+			<div class="form-group {{ () ? 'to-hide' : '' }}" id="choose-new-statut">
+			<h4 class="form-title">Enlver des images</h4>
+			@forelse ( $compet->images as $image )
+
+				<div>
+					<input type="checkbox" name="{{ $image }}" value="">
+				</div>
+			@empty
+
+			@endforelse
+			</div>
 
 			<!-- Modifier les dates -->
-			<h4 class="form-title">Dates de la compétition</h4>
-			<div class="text-left">
-				<div class="dates-comp">
-					<div id="calendar-comp-upd">
-						<div id="cal-comp-upd">
+			<div class="form-group">
+				<label class="form-title-small">
+					Dates de compétitions
+				</label>
+				<div class="text-left">
+					<div class="dates-comp">
+						<div id="calendar-comp-upd">
+							<div id="cal-comp-upd">
 
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+				<div id="dates-comp">
 
-
-			<div id="dates-comp">
-
+				</div>
 			</div>
 
 			<div class="text-center" style="margin-top:25px; margin-bottom:25px">
@@ -89,7 +115,11 @@
 	});
 
 	// Search the dates and make them appear into the calendar
-	//TODO retrouver les dates....
+	var dateList = '{{ $compet->dates }}'.split("},");
+	$.each(dateList, function(key, value) {
+		var splitedObj = value.split("&quot;");
+		calendarCompUpd.values.push(new Date(splitedObj[7]));
+	});
 
 	calendarCompUpd.appendTo('#cal-comp-upd');
 
