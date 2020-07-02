@@ -40,7 +40,7 @@ Création d'une compétition
 				</h4>
 
 				<div class="control">
-					<textarea class="desc @error('desc') is-invalid @enderror" id="desc" name="desc" rows="3" required>{{ old('desc') }}</textarea>
+					<textarea class="desc form-control @error('desc') is-invalid @enderror" id="desc" name="desc" rows="5" required>{{ old('desc') }}</textarea>
 				</div>
 
 				@error('desc')
@@ -64,6 +64,10 @@ Création d'une compétition
 				</div>
 			</div>
 
+			<div id="dates-select">
+
+			</div>
+
 			<div class="form-group">
 				<h4 class="title lg text-left">
 					Images (3 maximum)
@@ -84,16 +88,17 @@ Création d'une compétition
 			@enderror
 
 			<div class="text-center" style="margin-top:25px; margin-bottom:25px">
-				<button id="submit-btn-crt-cpt" type="submit" class="btn btn-primary btn-rounded compet">AJOUTER</button>
+				<button id="submit-btn-cpt" type="submit" class="btn btn-primary btn-rounded compet">AJOUTER</button>
 			</div>
 		</form>
 	</div>
 </div>
 <script>
 	var datesComp = document.getElementById('calendar-comp');
-	if(datesComp) {
+	if(datesComp)
+	{
 		datesComp.style.visibility = "visible";
-	 }
+	}
 </script>
 @endsection
 

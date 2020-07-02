@@ -121,18 +121,18 @@ class CoursController extends Controller
 		$this->authorize('update', $cours);
 
 		// if there are supports, save them
-		if (request()->has('link_support')) 
+		if (request()->has('link_support'))
 		{
-			foreach(request()->link_support as $key => $file) 
+			foreach(request()->link_support as $key => $file)
 			{
 				$this->saveFile($file, $file->getClientOriginalName(), $cours, request()->visibility_new[$key]);
 			}
 		}
 
 		// change the visibility of the supports if it has changed
-		if (request()->has('visibility_change')) 
+		if (request()->has('visibility_change'))
 		{
-			foreach (request()->visibility_change as $key => $value) 
+			foreach (request()->visibility_change as $key => $value)
 			{
 				$this->changeVisibility($key, $value);
 			}
@@ -170,7 +170,7 @@ class CoursController extends Controller
 
 		// delete all dates associate to the lesson in database and in storage
 		$cours->dates()->delete();
-		if (file_exists(storage_path('app/public/' . json_decode($cours->image)[0])) && substr(json_decode($cours->image)[0], 0, 15) != "images/default/") 
+		if (file_exists(storage_path('app/public/' . json_decode($cours->image)[0])) && substr(json_decode($cours->image)[0], 0, 15) != "images/default/")
 		{
 			unlink(storage_path('app/public/' . json_decode($cours->image)[0]));
 		}
@@ -195,10 +195,17 @@ class CoursController extends Controller
 	 */
 	public function validateCours ()
 	{
-		return request()->validate([
-			'title' => 'required',
-			'desc' => 'required'
-		]);
+		if (request()->has('image_crs'))
+			return request()->validate([
+				'title' => 'required',
+				'desc' => 'required',
+				'image_crs' => 'mimes:application/png,jpeg'
+			]);
+		else
+			return request()->validate([
+				'title' => 'required',
+				'desc' => 'required'
+			]);
 	}
 
 	/**
@@ -294,7 +301,7 @@ class CoursController extends Controller
 	 */
 	public function addCreators(Cours $cours)
 	{
-		foreach (request()->creators as $creator) 
+		foreach (request()->creators as $creator)
 		{
 			if ($cours->creators()->where('user_id', $creator)->count() == 0)
 				$cours->creators()->attach($creator);
@@ -308,7 +315,7 @@ class CoursController extends Controller
 	 */
 	public function changeImage(Cours $cours)
 	{
-		if (file_exists(storage_path('app/public/' . json_decode($cours->image)[0])) && substr(json_decode($cours->image)[0], 0, 15) != "images/default/") 
+		if (file_exists(storage_path('app/public/' . json_decode($cours->image)[0])) && substr(json_decode($cours->image)[0], 0, 15) != "images/default/")
 		{
 			unlink(storage_path('app/public/' . json_decode($cours->image)[0]));
 		}
@@ -324,7 +331,7 @@ class CoursController extends Controller
 	 */
 	public function selectDefaultImage()
 	{
-		return 'images/default/cours/' . strval(random_int (1, 5).'.jpg');
+		return 'images/default/cours/' . strval(random_int (1, 5) . '.jpg');
 	}
 
 	/**

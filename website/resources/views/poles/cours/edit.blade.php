@@ -55,7 +55,7 @@
 			<!-- Créateurs -->
 			<div class="form-group">
 				<label for="creators" class="form-title-small">Ajouter des créateurs</label>
-				
+
 				<select class="custom-select" name="creators[]" id="creators" multiple>
 		            <option readonly selected hidden value="">Créateurs</option>
 
@@ -76,7 +76,7 @@
 
 			<!-- Pour ajouter un/des fichiers -->
 			<div class="form-group">
-				<label for="link_support_mod" class="form-title-small">		
+				<label for="link_support_mod" class="form-title-small">
 					Ajouter des fichiers
 				</label>
 				<br>
@@ -111,7 +111,7 @@
 			<h4 class="form-title">Dates du cours</h4>
 			<div class="row justify-content-around dates-select">
 				<div class="col-md-auto">
-					<label class="form-title-small">				
+					<label class="form-title-small">
 						Dates en présentiels
 					</label>
 					<div class="dates-pres">
@@ -124,7 +124,7 @@
 				</div>
 
 				<div class="col-md-auto">
-					<label class="form-title-small">				
+					<label class="form-title-small">
 						Dates en distanciels
 					</label>
 					<div class="dates-dist">
@@ -137,7 +137,7 @@
 				</div>
 			</div>
 
-			<div id="dates-crs">
+			<div id="dates-select">
 
 			</div>
 
