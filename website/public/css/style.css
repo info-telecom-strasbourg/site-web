@@ -304,8 +304,7 @@ display: block;
 }
 
 @media (max-width: 347px) {
-    .fab,
-    .fas {
+    .fab {
         font-size: 3em;
     }
 }
@@ -316,13 +315,11 @@ display: block;
     }
 }
 
-.social-buttons .fab,
-.social-buttons .fas {
+.social-buttons .fab {
     color: rgba(255, 255, 255, 0.9)
 }
 
-.social-buttons .fab:hover,
-.social-buttons .fas:hover {
+.social-buttons .fab:hover {
     color: rgba(215, 215, 215, 0.9)
 }
 
