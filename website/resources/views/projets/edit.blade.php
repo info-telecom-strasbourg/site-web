@@ -182,7 +182,9 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-rounded" style="margin-top:25px; margin-bottom:25px;">Enregistrer</button>
+            <div class="text-center" style="margin-top:25px; margin-bottom:25px">
+                <button type="submit" class="btn btn-primary btn-rounded">Enregistrer</button>
+            </div>
         </form>
     </div>
 </div>

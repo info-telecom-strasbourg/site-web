@@ -11,11 +11,10 @@
 
     <div class="content-fluid">
         <h1 class="title lg text-center">
-            Pôle {{ $pole->title }}
+            Édition pôle {{ strtolower($pole->title) }}
         </h1>
         <hr class="line-under-title">
-        <div>
-            <h4 class="title md text-left">Edition</h4>
+        <div class="container pt-3">
 			<form action="/poles/{{ $pole->id }}" method="POST">
 				@csrf
 				@method('PUT')
