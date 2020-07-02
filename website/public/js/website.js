@@ -45,7 +45,7 @@ function parseDate (dateTable, inputName) {
 			case 'Dec':
 				month = '12';
 		}
-		$('div#dates-crs').append('<input type="text" name="' + inputName + '[]" value="'+ year + '-' + month + '-' + day + '" hidden>');
+		$('div#dates-select').append('<input type="text" name="' + inputName + '[]" value="'+ year + '-' + month + '-' + day + '" hidden>');
 	});
 }
 
@@ -418,12 +418,21 @@ $(document).ready(function() {
 	/* ########## Compétitions ##########*/
 
 	/*** Prevent the user to put more than 3 images for a compétition ***/
-	$("button.compet").click(function(e){
-	    var $fileUpload = $("input#images");
-	    if (parseInt($fileUpload.get(0).files.length)>3){
-			e.preventDefault();
-			$("input#images").val('');
-			alert("3 images maximums !!");
-	    }
+	$("#create-cpt").click(function(e) {
+		alert('OK');
+	    // var fileUpload = $("input#images");
+	    // if (parseInt(fileUpload.get(0).files.length)>3)
+		// {
+		// 	e.preventDefault();
+		// 	$("input#images").val('');
+		// 	alert("3 images maximums");
+	    // }
+		//
+		// if (calendarComp.values.length === 0)
+		// {
+		// 	e.preventDefault();
+		// 	alert("Il faut au moins une date pour la compétition");
+		// }
+		// parseDate(calendarComp.values, 'dates_comp');
 	});
 });

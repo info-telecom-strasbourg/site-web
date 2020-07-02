@@ -17,7 +17,6 @@ class CreateCompetitionsTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('desc');
-            $table->date('date');
             $table->json('images');
             $table->string('result')->nullable();
             $table->string('website');

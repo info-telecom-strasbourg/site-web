@@ -48,6 +48,7 @@ class CompetitionController extends Controller
 	 */
 	public function store()
 	{
+		dd('Merde...');
 		Competition::create($this->validateCompetiton());
 		return redirect('poles.competitions.index');
 	}
@@ -88,11 +89,8 @@ class CompetitionController extends Controller
 	public function  validateCompetiton ()
 	{
 		return request()->validate([
-			'id' => 'required',
 			'title' => 'required',
 			'desc' => 'required',
-			'date' => 'required',
-			'images' => 'required',
 			'website' => 'required',
 		]);
 	}
