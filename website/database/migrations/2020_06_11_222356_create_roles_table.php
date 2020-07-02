@@ -17,6 +17,7 @@ class CreateRolesTable extends Migration
             $table->id();
             $table->string('role');
             $table->string('poste');
+            $table->boolean('is_unique')->default(0);
             $table->timestamps();
         });
     }
