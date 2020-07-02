@@ -724,7 +724,7 @@ display: block;
 
 /* ##########################   Besoin d'aide   ########################## */
 
-#besoin-aide .formulaire-besoin-aide {
+/*#besoin-aide .formulaire-besoin-aide {
     padding-left: 100px;
     padding-right: 100px;
 }
@@ -737,7 +737,7 @@ display: block;
 #besoin-aide {
     padding-top: 20px;
     padding-bottom: 100px;
-}
+}*/
 
 
 /* ##########################   Dark page   ########################## */

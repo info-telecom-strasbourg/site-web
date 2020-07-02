@@ -109,11 +109,10 @@
                 <label class="custom-control-label form-title-small" for="complete">Projet compléter</label>
             </div>
             <div class="form-group">
-                <label class="title lg text-left form-title-small">
+                <label class="form-title-small" for="images">
                     Images
                 </label>
                 <br>
-
                 <input type="file" id="images" name="images[]" multiple>
             </div>
             <h4 class="form-title">Liens</h4>
