@@ -125,7 +125,7 @@
     <h1 class="title lg text-center"> Agenda </h1>
     <hr class="line-under-title">
     <div class="google-agenda">
-        <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=America%2FPort_of_Spain&amp;src=Mmg5MnVjcGx1Nm9pNzRpNXAzM3UybG5naGtAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;color=%23F6BF26&amp;showTitle=0&amp;showPrint=0&amp;showTabs=1&amp;showTz=0&amp;showCalendars=0" style="border:solid 1px #777" width="100%" height="600" frameborder="0" scrolling="no"></iframe> </div>
+        <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=America%2FPort_of_Spain&amp;src=Mmg5MnVjcGx1Nm9pNzRpNXAzM3UybG5naGtAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;color=%23F6BF26&amp;showTitle=0&amp;showPrint=0&amp;showTabs=1&amp;showTz=0&amp;showCalendars=0" style="border:solid 1px #777" width="400px" height="600" frameborder="0" scrolling="no" id="agenda-frame"></iframe> </div>
 </section>
 
 <!-- Notre association -->
@@ -137,7 +137,7 @@
             <div class="col-md-7" id="asso-txt">
                 <p>
                     Cette année, une toute nouvelle association voit le jour dans ton école ! ITS te propose de découvrir le monde du numérique sous toutes ses formes.<br><br>
-                    Au travers de 5 pôles, tu pourras développer des sites web et des applications, réaliser des petits programmes utiles, créer ton propre jeu PC, participer à de grandes compétitions informatiques, ou encore bénéficier de notre structure d'entraide.<br><br>
+                    Au travers de 5 pôles, tu pourras développer des sites web et des applications, réaliser des petits programmes utiles, créer ton propre jeu vidéo, participer à de grandes compétitions informatiques, ou encore bénéficier de notre structure d'entraide.<br><br>
                     Si tu as besoin d'aide avec ton ordinateur, ou si tu souhaites obtenir de précieux conseils en programmation ou en cybersécurité, nous sommes aussi là pour toi !<br><br>
                     ITS c'est avant tout une association qui te permettra de progresser en informatique dans un cadre chaleureux et agréable. Et ceci, quels que soient ton niveau et tes objectifs.<br><br>
                     Alors n'hésite plus, ITS t'ouvre ses portes en Septembre pour ton plus grand bonheur !
@@ -211,7 +211,7 @@
             J’encourage particulièrement la participation à des compétitions informatiques bénéfiques à la visibilité de Télécom Physique Strasbourg et de son département Informatique et Réseaux.<br><br>Vous pourrez compter sur le soutien de votre directeur !"</p>
         <img class="profil-rounded" src="/images/logo/collet.jpg">
         <p id="nom"> Christophe Collet </p>
-        <p id="fonction">Directeur de l’école d’ingénieurs Télécom Physique Strasbourg</p>
+        <p id="fonction">Directeur de l’école d’ingénieur Télécom Physique Strasbourg</p>
     </div>
 </section>
 
@@ -219,15 +219,19 @@
 <section class="section grise" id="partenariat">
     <h1 class="title lg text-center"> Nos collaborateurs </h1>
     <hr class="line-under-title">
-    <div class="partenaires">
-        @foreach($partners as $partner)
-        <div class="partenaire">
-            <a href="{{ $partner->link }}" class="logo">
-                <img class="logo-pres" src="{{ asset($partner->image) }}" alt="Logo de {{ $partner->name }}">
-                <p>{{ $partner->name }}</p>
-            </a>
+    <div class="container-fluid">
+        <div class="row align-items-end justify-content-around">
+            @foreach($partners as $partner)
+            <div class="col-auto">
+                <a href="{{ $partner->link }}" class="logo" target="_blank">
+                    <div style="height: 150px;" class="row align-items-center">
+                        <img class="logo-pres" src="{{ asset($partner->image) }}" alt="Logo de {{ $partner->name }}">
+                    </div>
+                    <p>{{ $partner->name }}</p>
+                </a>
+            </div>
+            @endforeach
         </div>
-        @endforeach
     </div>
     <a id="contact-anchor"></a>
 </section>

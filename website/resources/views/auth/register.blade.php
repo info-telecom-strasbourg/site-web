@@ -78,7 +78,7 @@
 
                     @error('password')
                     <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
+                        <strong>Le mot de passe ne coïncide pas</strong>
                     </span>
                     @enderror
             </div>
