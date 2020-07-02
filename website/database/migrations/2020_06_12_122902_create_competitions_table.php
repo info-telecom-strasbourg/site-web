@@ -37,6 +37,21 @@ class CreateCompetitionsTable extends Migration
                 ->on('competitions')
 				->onDelete('cascade');
         });
+
+		Schema::create('dates_comp', function (Blueprint $table) {
+			$table->id();
+			$table->BigInteger('date_id')->unsigned();
+			$table->BigInteger('comp_id')->unsigned();
+			$table->foreign('comp_id')
+                ->references('id')
+                ->on('competitions')
+				->onDelete('cascade');
+
+			$table->foreign('date_id')
+                ->references('id')
+                ->on('dates')
+				->onDelete('cascade');
+		});
     }
 
     /**
@@ -48,5 +63,6 @@ class CreateCompetitionsTable extends Migration
     {
         Schema::dropIfExists('competitions');
         Schema::dropIfExists('user_compet');
+        Schema::dropIfExists('dates_comp');
     }
 }
