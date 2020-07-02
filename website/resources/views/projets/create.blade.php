@@ -169,7 +169,9 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-rounded" style="margin-top:25px; margin-bottom:25px;">AJOUTER</button>
+            <div class="text-center" style="margin-top:25px; margin-bottom:25px">
+                <button type="submit" class="btn btn-primary btn-rounded">AJOUTER</button>
+            </div>
         </form>
     </div>
 </div>
