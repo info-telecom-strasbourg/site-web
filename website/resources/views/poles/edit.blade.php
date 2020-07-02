@@ -22,7 +22,7 @@
 
 				<!-- Titre -->
 				<div class="form-group">
-					<label class="label" for="title">Titre</label>
+					<label class="form-title-small" for="title">Titre</label>
 					<div class="control">
 						<input class="form-control @error('title') is-invalid @enderror" type="text" value="{{ $pole->title }}" id="title" name="title" required>
 					</div>
@@ -35,7 +35,7 @@
 
 				<!-- Decription -->
 				<div class="form-group">
-					<label class="label" for="desc">Decription</label>
+					<label class="form-title-small" for="desc">Decription</label>
 					<div class="control">
 						<textarea class="form-control desc @error('desc') is-invalid @enderror" id="desc" name="desc" rows="3" required>{{ $pole->desc }}</textarea>
 					</div>

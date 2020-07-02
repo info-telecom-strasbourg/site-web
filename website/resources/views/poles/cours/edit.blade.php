@@ -1,14 +1,14 @@
 @extends('layouts.layout')
 
+@section('title')
+Édition d'un cours
+@endsection
+
 @section('breadcrumb')
 <li class="breadcrumb-item"><a href="/"><i class="fas fa-home"></i></a></li>
 <li class="breadcrumb-item"><a href="/poles/cours">Pôle Cours</a></li>
 <li class="breadcrumb-item"><a href="/poles/cours/{{ $cours->id }}">{{ $cours->title }}</a></li>
 <li class="breadcrumb-item active">Édition</li>
-@endsection
-
-@section('title')
-Édition d'un cours
 @endsection
 
 @section('content')

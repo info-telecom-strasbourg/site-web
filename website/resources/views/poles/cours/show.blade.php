@@ -1,5 +1,7 @@
 @extends('layouts.layout')
 
+@section('title', 'Cours - ' . {{ $cours->title }})
+
 @section('breadcrumb')
 <li class="breadcrumb-item"><a href="/"><i class="fas fa-home"></i></a></li>
 <li class="breadcrumb-item"><a href="/poles/cours">Pôle Cours</a></li>
