@@ -46,9 +46,9 @@ class CompetitionController extends Controller
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		dd('Merde...');
+		dd($request);
 		Competition::create($this->validateCompetiton());
 		return redirect('poles.competitions.index');
 	}
