@@ -8,6 +8,10 @@ use App\Competition;
 
 use App\Pole;
 
+use App\Date;
+
+use Illuminate\Support\Facades\Storage;
+
 class CompetitionController extends Controller
 {
 	/**
@@ -17,7 +21,7 @@ class CompetitionController extends Controller
 	 */
     public function index()
 	{
-		return view('poles.competitions.index', [ 'compets' => Competition::all(), 'pole' => Pole::where('title', 'compétitions')->first() ]);
+		return view('poles.competitions.index', [ 'compets' => Competition::all(), 'pole' => Pole::where('slug', 'competitions')->first() ]);
 	}
 
 	/**
@@ -25,9 +29,9 @@ class CompetitionController extends Controller
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show(Competition $competition)
+	public function show(Competition $compet)
 	{
-		return view('poles.competitions.show', compact('compet'));
+		return view('poles/competitions/show', [ 'compet' => $compet ]);
 	}
 
 	/**
@@ -75,6 +79,7 @@ class CompetitionController extends Controller
         }
         else
             $compet->images = [$this->selectDefaultImage()];
+
 
         // save competition
         $compet->save();

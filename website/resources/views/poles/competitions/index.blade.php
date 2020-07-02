@@ -25,7 +25,7 @@
 
 						<div id="proj-card" class="col-md-auto sep-items">
 							<div class="card text-center rounded">
-								<img class="card-img-top" src="{{ asset('storage/' . json_decode($compet->image)[0]) }}" alt="Card image cap">
+								<img class="card-img-top" src="{{ asset('storage/' . json_decode($compet->images)[0]) }}" alt="Card image cap">
 								<div class="card-body d-flex flex-column">
 									<h5 class="card-title text-center font-weight-bold">
 										{{ $compet->title }}
