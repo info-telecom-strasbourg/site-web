@@ -88,8 +88,9 @@ Création d'une compétition
 			@enderror
 
 			<div class="text-center" style="margin-top:25px; margin-bottom:25px">
-				<button id="submit-btn-cpt" type="submit" class="btn btn-primary btn-rounded compet">AJOUTER</button>
+				<button id="create-cpt" type="submit" class="btn btn-primary btn-rounded compet">AJOUTER</button>
 			</div>
+
 		</form>
 	</div>
 </div>

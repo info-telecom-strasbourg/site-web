@@ -418,13 +418,15 @@ $(document).ready(function() {
 	/* ########## Compétitions ##########*/
 
 	/*** Prevent the user to put more than 3 images for a compétition ***/
-	$("#create-cpt").click(function(e) {
+	$('button#create-cpt').click(function(e) {
+		e.preventDefault();
 		alert('OK');
-	    // var fileUpload = $("input#images");
+		// alert(calendarComp.values.length);
+	    // var fileUpload = $('input#images');
 	    // if (parseInt(fileUpload.get(0).files.length)>3)
 		// {
 		// 	e.preventDefault();
-		// 	$("input#images").val('');
+		// 	$('input#images').val('');
 		// 	alert("3 images maximums");
 	    // }
 		//
