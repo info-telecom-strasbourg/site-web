@@ -402,6 +402,25 @@ $(document).ready(function() {
 		parseDate(calendarPres.values, 'dates_pres');
 	});
 
+	/* ########## Compétitions ##########*/
+
+	/*** Prevent the user to put more than 3 images for a compétition ***/
+	$('button#create-cpt.compet').click(function(e) {
+	    var fileUpload = $('input#images');
+	    if (parseInt(fileUpload.get(0).files.length)>3)
+		{
+			e.preventDefault();
+			$('input#images').val('');
+			alert("3 images maximums");
+	    }
+
+		if (calendarComp.values.length === 0)
+		{
+			e.preventDefault();
+			alert("Il faut au moins une date pour la compétition");
+		}
+		parseDate(calendarComp.values, 'dates_comp');
+	});
 
 	/*** Create the calendars ***/
     $('#datepicker').datepicker({
@@ -415,26 +434,5 @@ $(document).ready(function() {
         // `e` here contains the extra attributes
         $(this).find('.input-group-addon .count').text(' ' + e.dates.length);
     });
-	/* ########## Compétitions ##########*/
 
-	/*** Prevent the user to put more than 3 images for a compétition ***/
-	$('button#create-cpt').click(function(e) {
-		e.preventDefault();
-		alert('OK');
-		// alert(calendarComp.values.length);
-	    // var fileUpload = $('input#images');
-	    // if (parseInt(fileUpload.get(0).files.length)>3)
-		// {
-		// 	e.preventDefault();
-		// 	$('input#images').val('');
-		// 	alert("3 images maximums");
-	    // }
-		//
-		// if (calendarComp.values.length === 0)
-		// {
-		// 	e.preventDefault();
-		// 	alert("Il faut au moins une date pour la compétition");
-		// }
-		// parseDate(calendarComp.values, 'dates_comp');
-	});
 });
