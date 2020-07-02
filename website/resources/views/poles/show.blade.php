@@ -4,7 +4,7 @@
 
 @section('breadcrumb')
 <li class="breadcrumb-item"><a href="/"><i class="fas fa-home"></i></a></li>
-<li class="breadcrumb-item">Pôle {{ $pole->title }}</li>
+<li class="breadcrumb-item">Pôle {{ strtolower($pole->title) }}</li>
 @endsection
 
 @section('content')
