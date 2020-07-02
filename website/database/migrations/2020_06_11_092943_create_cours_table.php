@@ -18,6 +18,26 @@ class CreateCoursTable extends Migration
 			$table->string('title');
 			$table->text('desc');
 			$table->json('links')->nullable();
+			$table->json('image')->nullable();
+        });
+
+		/**
+		 * linking table between lessons and users to create the association between a lesson and a user
+		 */
+		Schema::create('cours_createurs', function (Blueprint $table) {
+            $table->id();
+			$table->BigInteger('user_id')->unsigned();
+			$table->BigInteger('cours_id')->unsigned();
+
+			$table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+				->onDelete('cascade');
+
+			$table->foreign('cours_id')
+                ->references('id')
+                ->on('cours')
+				->onDelete('cascade');
         });
     }
 
@@ -29,5 +49,6 @@ class CreateCoursTable extends Migration
     public function down()
     {
         Schema::dropIfExists('cours');
+        Schema::dropIfExists('cours_createurs');
     }
 }
