@@ -97,11 +97,6 @@
 				<a class="btn btn-primary btn-rounded" href="/poles/competitions/create">Créer une compétition</a>
 			</div>
 		@endcan
-		@can ('update', $compet)
-			<div class="text-center" style="margin-top:25px; margin-bottom:25px;">
-				<button type="submit" class="btn btn-primary btn-rounded" onclick="self.location.href='/poles/{{ $pole->id }}/edit'">Éditer</button>
-			</div>
-		@endcan
 
     </div>
 </div>

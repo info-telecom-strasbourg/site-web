@@ -80,38 +80,42 @@
 
 			<!-- Changer les participants -->
 			<!-- competitors Ajout -->
-			<div class="form-group">
-				<label for="competitors" class="form-title-small">Ajouter des participants</label>
+			@if($compet->competitors->count() < $users->count())
+				<div class="form-group">
+					<label for="competitors" class="form-title-small">Ajouter des participants</label>
 
-				<select class="custom-select" name="competitors[]" id="competitors" multiple>
-		            	<option readonly selected hidden value="">Créateurs</option>
+					<select class="custom-select" name="competitors[]" id="competitors" multiple>
+			            	<option readonly selected hidden value="">Créateurs</option>
 
-		            @isset($users)
-		                @foreach ($users as $user)
-							@if(!$compet->competitors->contains($user->id))
-		                    	<option value="{{ $user->id }}">{{ $user->name }}</option>
-							@endif
-		                @endforeach
-		            @endisset
-		        </select>
-		    </div>
+			            @isset($users)
+			                @foreach ($users as $user)
+								@if(!$compet->competitors->contains($user->id))
+			                    	<option value="{{ $user->id }}">{{ $user->name }}</option>
+								@endif
+			                @endforeach
+			            @endisset
+			        </select>
+			    </div>
+			@endif
 
 			<!-- Créateurs enlev -->
-			<div class="form-group">
-				<label for="del_competitors" class="form-title-small">Enlever des participants</label>
+			@if($compet->competitors->count() > 0)
+				<div class="form-group">
+					<label for="del_competitors" class="form-title-small">Enlever des participants</label>
 
-				<select class="custom-select" name="del_competitors[]" id="del_competitors" multiple>
-		            	<option readonly selected hidden value="">Créateurs</option>
+					<select class="custom-select" name="del_competitors[]" id="del_competitors" multiple>
+			            	<option readonly selected hidden value="">Créateurs</option>
 
-		            @isset($users)
-		                @foreach ($users as $user)
-							@if($compet->competitors->contains($user->id))
-		                    	<option value="{{ $user->id }}">{{ $user->name }}</option>
-							@endif
-		                @endforeach
-		            @endisset
-		        </select>
-		    </div>
+			            @isset($users)
+			                @foreach ($users as $user)
+								@if($compet->competitors->contains($user->id))
+			                    	<option value="{{ $user->id }}">{{ $user->name }}</option>
+								@endif
+			                @endforeach
+			            @endisset
+			        </select>
+			    </div>
+			@endif
 
 			<!-- Modifier les dates -->
 			<div class="form-group">
