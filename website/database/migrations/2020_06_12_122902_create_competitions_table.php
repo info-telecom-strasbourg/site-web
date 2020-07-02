@@ -25,14 +25,14 @@ class CreateCompetitionsTable extends Migration
 		Schema::create('user_compet', function (Blueprint $table) {
             $table->id();
             $table->BigInteger('user_id')->unsigned();
-            $table->BigInteger('compet_id')->unsigned();
+            $table->BigInteger('competition_id')->unsigned();
 
 			$table->foreign('user_id')
                 ->references('id')
                 ->on('users')
 				->onDelete('cascade');
 
-			$table->foreign('compet_id')
+			$table->foreign('competition_id')
                 ->references('id')
                 ->on('competitions')
 				->onDelete('cascade');
@@ -41,8 +41,8 @@ class CreateCompetitionsTable extends Migration
 		Schema::create('dates_comp', function (Blueprint $table) {
 			$table->id();
 			$table->BigInteger('date_id')->unsigned();
-			$table->BigInteger('comp_id')->unsigned();
-			$table->foreign('comp_id')
+			$table->BigInteger('competition_id')->unsigned();
+			$table->foreign('competition_id')
                 ->references('id')
                 ->on('competitions')
 				->onDelete('cascade');
