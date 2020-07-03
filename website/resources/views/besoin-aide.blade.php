@@ -41,7 +41,7 @@
                     </label>
                     <select class="form-control" id="type" name="type">
                         <option>Connexion Wi-Fi Eduroam automatique</option>
-                        <option>Synconisation boîte mail Unistra sur boîte mail perso</option>
+                        <option>Synchronisation boîte mail Unistra sur boîte mail perso</option>
                         <option>Besoin d'une machine virtuelle</option>
                         <option>Problème avec un logiciel</option>
                         <option>Fichiers supprimés par erreur</option>

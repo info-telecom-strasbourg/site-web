@@ -17,7 +17,11 @@
 	<div class="container pt-3">
         <p>{{ $pole->desc }}</p>
         
-        <h4 class="title md text-left">Nos {{ strtolower($pole->title) }}</h4>
+        @if ($pole->slug == 'programmation_utilitaire')
+        	<h4 class="title md text-left">Nos programmes utilitaires</h4>
+        @else
+        	<h4 class="title md text-left">Nos {{ strtolower($pole->title) }}</h4>
+        @endif
 		
 		<!-- Liste des projets -->
 		<div class="container pt-5">
@@ -46,7 +50,7 @@
 					@empty
 
 						<div class="alert alert-secondary alert-dismissible fade show col" role="alert">
-							Aucun projets n'a été trouvé
+							Aucun projet n'a été trouvé
 							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 		    					<span aria-hidden="true">&times;</span>
 		  					</button>
@@ -55,7 +59,7 @@
 
 				@else
 					<div class="alert alert-secondary alert-dismissible fade show col" role="alert">
-						Aucun projets n'a été trouvé
+						Aucun projet n'a été trouvé
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 	    					<span aria-hidden="true">&times;</span>
 	  					</button>

@@ -20,9 +20,11 @@
     width: 110px;
     height: 110px;
     border: none;
-    -moz-border-radius: 75px;
-    -webkit-border-radius: 75px;
-    border-radius: 75px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background-position: center center;
+    background-size: cover;
 }
 
 .main {

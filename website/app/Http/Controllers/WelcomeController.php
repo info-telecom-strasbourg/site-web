@@ -61,21 +61,31 @@ class WelcomeController extends Controller
             RandomProjet::truncate();
 
             // get max random number
-            if ($nbProjets < 6)
+            if ($nbProjets == 1)
+                $maxProjets = 1;
+            else if ($nbProjets < 6)
                 $maxProjets = $nbProjets;
             else
                 $maxProjets = 6;
 
             // get all projects in an array
-            $projetArray = Projet::all()->toArray();
-
-            // get 6 random project ids
-            $randIds = array_rand($projetArray, $maxProjets);
-
-            // create random projects
-            foreach ($randIds as $id) 
+            if ($maxProjets == 1) 
             {
-                RandomProjet::create(['projet_id' => array_values($projetArray[$id])[0]]);
+                $projet = Projet::first();
+                RandomProjet::create(['projet_id' => $projet->id]);
+            }
+            else 
+            {
+                $projetArray = Projet::all()->toArray();
+
+                // get 6 random project ids
+                $randIds = array_rand($projetArray, $maxProjets);
+
+                // create random projects
+                foreach ($randIds as $id) 
+                {
+                    RandomProjet::create(['projet_id' => array_values($projetArray[$id])[0]]);
+                }
             }
         }
 
