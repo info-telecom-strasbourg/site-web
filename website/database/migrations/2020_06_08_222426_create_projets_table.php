@@ -16,6 +16,8 @@ class CreateProjetsTable extends Migration
         Schema::create('collaborateurs', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('link');
+            $table->string('image');
             $table->timestamps();
         });
 
@@ -23,11 +25,11 @@ class CreateProjetsTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('desc');
-            $table->json('images');
-            $table->string('link_github');
+            $table->json('images')->nullable();
+            $table->string('link_github')->nullable();
             $table->string('link_download')->nullable();
-            $table->string('link_doc');
-            $table->boolean('complete');
+            $table->string('link_doc')->nullable();
+            $table->boolean('complete')->default(0);
             $table->BigInteger('chef_projet_id')->unsigned();
             $table->BigInteger('pole_id')->unsigned();
             $table->BigInteger('collaborateur_id')->unsigned()->nullable();
@@ -57,11 +59,13 @@ class CreateProjetsTable extends Migration
 
             $table->foreign('projet_id')
                 ->references('id')
-                ->on('projets');
+                ->on('projets')
+                ->onDelete('cascade');
 
             $table->foreign('user_id')
                 ->references('id')
-                ->on('users');
+                ->on('users')
+                ->onDelete('cascade');
         });
     }
 

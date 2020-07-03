@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'role_id', 'password', 
+        'name', 'email', 'role_id', 'password',
     ];
 
     /**
@@ -45,6 +45,15 @@ class User extends Authenticatable
         return $this->belongsToMany(Projet::class);
     }
 
+
+	/**
+	 * Get the lessons of the user.
+	 */
+	public function cours()
+	{
+		$this->belongsToMany(Cours::class);
+	}
+
     /**
      * Get the role of the user.
      */
@@ -64,6 +73,9 @@ class User extends Authenticatable
         // get the roles id that matches the search query
         $role = Role::where('role', 'like', '%'.request()->search.'%')->get(['id']);
 
+        // if a search value has been specified, search if the a title or the
+        // description has this value
+        // otherwise return the query
         return empty(request()->search) ? $query : $query->where('name', 'like', '%'.request()->search.'%')->orWhereIn('role_id', $role);
     }
 }

@@ -18,7 +18,9 @@
                     <div class="row justify-content-center d-flex flex-column">
                         <h1 class="h1">Se connecter</h1>
                         <p>Heureux de vous revoir !</p>
-                        <p>Connectez-vous avec votre compte</p>
+                        <p>
+                            <a href="/#contact" class="respo-support">Envoyez nous un message</a> pour devenir membre et pouvoir vous connecter.
+                        </p>
                     </div>
                     <div class="row justify-content-center flex-grow-1" id="form-container">
                         <form method="POST" action="{{ route('login') }}">
@@ -28,7 +30,7 @@
                                     <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Entrer l'email">
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
+                                            <strong>Le mail n'est pas correcte</strong>
                                         </span>
                                     @enderror
                             </div>              
@@ -39,7 +41,7 @@
 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
+                                            <strong>Le mot de passe n'est pas correcte</strong>
                                         </span>
                                     @enderror
                             </div>
@@ -57,7 +59,7 @@
                                         <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                         <label class="form-check-label" for="remember">
-                                            {{ __('Remember Me') }}
+                                            Se souvenir de moi
                                         </label>
                                     </div>
                                 </div>
@@ -66,6 +68,7 @@
                             
 
                             <button type="submit" class="favorite styled">SE CONNECTER</button>
+
                         </form>
                     </div>
                 </div>

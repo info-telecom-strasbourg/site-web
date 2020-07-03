@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-     /**
+    /**
      * Display a listing of the users.
      *
      * @return \Illuminate\Http\Response
@@ -21,5 +21,14 @@ class UserController extends Controller
         return view('users.index', compact('users', 'nbUsers', 'search'));
     }
 
+    /**
+     * Display a user.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function show(User $user)
+    {
+        return view('users.show', compact('user'));
+    }
 
 }

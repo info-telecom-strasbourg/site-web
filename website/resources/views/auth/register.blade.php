@@ -28,7 +28,7 @@
         <form method="POST" action="{{ route('register')}}" >
             @csrf
             <div class="form-group">
-                <label for="name">{{ __('Name') }}</label>
+                <label for="name" class="form-title-small">Nom</label>
 
                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
@@ -39,7 +39,7 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="email">{{ __('E-Mail Address') }}</label>
+                <label for="email" class="form-title-small">Adresse email</label>
 
                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
@@ -50,15 +50,16 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="role">Role</label>
-                <select class="custom-select" id="role" name="role" required>
-                    <option selected readonly>Choisir un role ...</option>
+                <label for="role" class="form-title-small">Rôle</label>
+                <select class="custom-select @error('role') is-invalid @enderror" id="role" name="role" required>
+                    <option selected readonly>Choisir un rôle ...</option>
                     
                     @if(isset($roles))
 
-                    @foreach ($roles as $key => $role)
-                    <option value="{{ $key + 1 }}">{{ $role->role }}</option>
-                    @endforeach
+                        @foreach ($roles as $role)
+                            <option value="{{ $role->id }}" @if (old('role') == $role->id) selected @endif>{{ $role->role }}
+                            </option>
+                        @endforeach
 
                     @endif
 
@@ -71,23 +72,23 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="password">Mot de passe</label>
+                <label for="password" class="form-title-small">Mot de passe</label>
 
                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                     @error('password')
                     <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
+                        <strong>Le mot de passe ne coïncide pas</strong>
                     </span>
                     @enderror
             </div>
             <div class="form-group">
-                <label for="password-confirm">Confirmé le mot de passe</label>
+                <label for="password-confirm" class="form-title-small">Confirmer le mot de passe</label>
 
                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
             </div>
 
-            <button type="submit" class="btn btn-primary btn-rounded">AJOUTER</button>
+            <button type="submit" class="btn btn-primary btn-rounded" style="margin-top:25px; margin-bottom:25px;">AJOUTER</button>
         </form>
     </div>
 </div>

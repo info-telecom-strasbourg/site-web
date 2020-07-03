@@ -1,3 +1,165 @@
+/*** Parse the datas from the calendar
+	 From "sun jan 03 2020" to "2020-01-03"
+***/
+function parseDate (dateTable, inputName) {
+	$.each(dateTable, function ( index, value ) {
+		var str = value.toString();
+		var day = str.substring(8,10);
+		var monthName = str.substring(4,7);
+		var year = str.substring(11,15);
+		var month;
+		switch (monthName) {
+			case 'Jan':
+				month = '01';
+				break;
+			case 'Feb':
+				month = '02';
+				break;
+			case 'Mar':
+				month = '03';
+				break;
+			case 'Apr':
+				month = '04';
+				break;
+			case 'May':
+				month = '05';
+				break;
+			case 'Jun':
+				month = '06';
+				break;
+			case 'Jul':
+				month = '07';
+				break;
+			case 'Aug':
+				month = '08';
+				break;
+			case 'Sep':
+				month = '09';
+				break;
+			case 'Oct':
+				month = '10';
+				break;
+			case 'Nov':
+				month = '11';
+				break;
+			case 'Dec':
+				month = '12';
+		}
+		$('div#dates-select').append('<input type="text" name="' + inputName + '[]" value="'+ year + '-' + month + '-' + day + '" hidden>');
+	});
+}
+
+/*** Translate the calendars ***/
+function translateCalendar (that) {
+	var title = that.html();
+	var month = title.substring(0, title.length - 5);
+	var year = title.substring(title.length - 5, title.length);
+	that.empty();
+	switch (month) {
+		case 'January':
+			that.append('Janvier' + year);
+			break;
+		case 'February':
+			that.append('Févrirer' + year);
+			break;
+		case 'March':
+			that.append('Mars' + year);
+			break;
+		case 'April':
+			that.append('Avril' + year);
+			break;
+		case 'May':
+			that.append('Mai' + year);
+			break;
+		case 'June':
+			that.append('Juin' + year);
+			break;
+		case 'July':
+			that.append('Juillet' + year);
+			break;
+		case 'August':
+			that.append('Août' + year);
+			break;
+		case 'September':
+			that.append('Septembre' + year);
+			break;
+		case 'October':
+			that.append('Octobre' + year);
+			break;
+		case 'November':
+			that.append('Novembre' + year);
+			break;
+		case 'December':
+			that.append('Decembre' + year);
+			break;
+		default:
+			that.append(month + year);
+	}
+	$('thead.e-week-header').each(function () {
+		$(this).empty();
+		$(this).append('<tr>');
+		$(this).append('<th>Di</th>');
+		$(this).append('<th>Lu</th>');
+		$(this).append('<th>Ma</th>');
+		$(this).append('<th>Me</th>');
+		$(this).append('<th>Je</th>');
+		$(this).append('<th>Ve</th>');
+		$(this).append('<th>Sa</th>');
+		$(this).append('</tr>');
+	});
+}
+
+/*** Create variables to store the informations from the calendars ***/
+
+var calendarPres = new ej.calendars.Calendar({
+		isMultiSelection: true,
+		values:[]
+	});
+calendarPres.appendTo('#cal-pres-dates');
+
+var calendarDist = new ej.calendars.Calendar({
+		isMultiSelection: true,
+		values:[]
+	});
+calendarDist.appendTo('#cal-dist-dates');
+
+var calendarComp = new ej.calendars.Calendar({
+		isMultiSelection: true,
+		values:[]
+	});
+calendarComp.appendTo('#cal-comp-dates');
+
+/*** Translate the calendar after the user changed the month ***/
+$('div.e-day.e-title').each(function () {
+	translateCalendar($(this));
+});
+
+/*** Translate the calendar after the user changed the month ***/
+$('div.e-control.e-calendar.e-lib.e-keyboard').each(function () {
+	$(this).click(function () {
+		$('div.e-day.e-title').each(function () {
+			translateCalendar($(this));
+		});
+	});
+});
+
+/*** Just to delete a button on the calendar ***/
+$('button.e-today').remove();
+
+/*** Hide the title to select files visibility in create page
+	If there is no file selected, it will remains hidden
+***/
+$('#choose-visibility').hide();
+
+/* ##########################   Hide projects/lessons   ########################## */
+
+/*** Hide the projects/lessons if there is more than 6***/
+$("div#proj-card:gt(5)").addClass("hid").hide();
+$("div#cours-liste:gt(5)").addClass("hid").hide();
+
+
+
+
 $(document).ready(function() {
     // color navbar when loading page
     if (window.location.pathname == '/') {
@@ -23,14 +185,14 @@ $(document).ready(function() {
             return;
         var rgba = $(document).scrollTop() / 500;
 
-        // change the color of the navbar 
+        // change the color of the navbar
         // (from transparent to blue) when scrolling down
         $('.fixed-top').css('background-color', 'rgba(92, 111, 163,' + rgba + ')');
 
         // if the user scrolls the black filter is removed from the collapse navbar
         $('.navbar-collapse').css('background-color', 'transparent');
 
-        // if the user scrolls to the top, 
+        // if the user scrolls to the top,
         // a black filter is added to the collapse navbar
         if (!$("body").hasClass("xl")) {
             if ($(document).scrollTop() == 0) {
@@ -45,7 +207,7 @@ $(document).ready(function() {
     $item.height($wHeight); // set height of carousel item to window height
 
 
-    // Remove hide button that is used to center links 
+    // Remove hide button that is used to center links
     // in the navbar when the navbar is collapsed
     if (!$("body").hasClass("xl")) {
         $(".hidden").remove();
@@ -53,9 +215,9 @@ $(document).ready(function() {
 
     // Update on window resize
     $(window).resize(function() {
-        $(".hidden").remove(); // remove it 
+        $(".hidden").remove(); // remove it
         if ($("body").hasClass("xl")) {
-            // Remove hide button that is used to center links 
+            // Remove hide button that is used to center links
             // in the navbar when the navbar is collapsed to be sure that we don't
             // add it two times, then add it
 
@@ -75,6 +237,7 @@ $(document).ready(function() {
         interval: 10000
     })
 
+
     // Allows to correctly animate the multiple carousel (for projects)
     $('#nos-projets .carousel .carousel-item').each(function() {
         var minPerSlide = 3;
@@ -93,7 +256,7 @@ $(document).ready(function() {
         }
     });
 
-    //Allows to progressively descend the page to move to the contact section
+	//Allows to progressively descend the page to move to the contact section
     if (window.location.pathname == '/') {
         $('.js-scrollTo').on('click', function() {
             var page = $('.js-scrollTo').attr('href');
@@ -110,11 +273,11 @@ $(document).ready(function() {
     $(document).mouseup(function(e){
         var link = $("#navbarDropdownMenuLink");
 
-        // Remove the class 
+        // Remove the class
         if(link.has(e.target).length === 0 && $('#poles').hasClass("show")){
             $('#poles').removeClass('dropdown-click');
         }
-        else if (link.is(e.target)) {   // Add the class 
+        else if (link.is(e.target)) {   // Add the class
             $('#poles').addClass('dropdown-click');
         }
     });
@@ -122,7 +285,7 @@ $(document).ready(function() {
 
     /* ##########################   Reset Projets filter   ########################## */
     /*
-     * If reset value in select menu is selected the below code changes the 
+     * If reset value in select menu is selected the below code changes the
      * text of the reset option and submit filter form.
      */
 
@@ -131,7 +294,7 @@ $(document).ready(function() {
         // get the selected option
         var pole = $("#pole option:selected");
 
-        // if the option has the name reset, change the text 
+        // if the option has the name reset, change the text
         if (pole.is('[name="reset"]') ) {
             $('#pole option[name="reset"]').text('Pôle');
             $('.filter-options').submit();
@@ -143,7 +306,7 @@ $(document).ready(function() {
         // get the selected option
         var membre = $("#membre option:selected");
 
-        // if the option has the name reset, change the text 
+        // if the option has the name reset, change the text
         if (membre.is('[name="reset"]') ) {
             $('#membre option[name="reset"]').text('Membre');
             $('.filter-options').submit();
@@ -155,7 +318,7 @@ $(document).ready(function() {
         // get the selected option
         var partner = $("#partner option:selected");
 
-        // if the option has the name reset, change the text 
+        // if the option has the name reset, change the text
         if (partner.is('[name="reset"]') ) {
             $('#partner option[name="reset"]').text('Collaborateur');
             $('.filter-options').submit();
@@ -167,11 +330,109 @@ $(document).ready(function() {
         // get the selected option
         var trie = $("#trie option:selected");
 
-        // if the option has the name reset, change the text 
+        // if the option has the name reset, change the text
         if (trie.is('[name="reset"]') ) {
             $('#trie option[name="reset"]').text('Trié par');
             $('.filter-options').submit();
         }
+    });
+
+
+	/*** If there is more than 6 lessons/projects, some are hidden.
+		 This function will display 6 more lessons ***/
+	$("input#voir-plus").click(function(e) {
+		e.preventDefault();
+		$("div#proj-card.hid:lt(6)").fadeIn("slow").removeClass("hid");
+		$("div#cours-liste.hid:lt(6)").fadeIn("slow").removeClass("hid");
+		if ($(".hid").length === 0)
+		{
+			$("div#line-btn-vp").remove();
+		}
+	});
+
+
+	/*** Remove the files selected if you refresh the page ***/
+	$('input[type="file"]#link_support').val('');
+	$('input[type="file"]#link_support_mod').val('');
+
+
+	/*** Create checkbox for each file to choose wich one will be private  ***/
+	$('input[type="file"]#link_support').change(function(e) {
+		if (e.target.files.length === 0)
+			$('#choose-visibility').hide();
+		else
+			$('#choose-visibility').fadeIn("slow");
+
+		$('div#choose-visibility').empty();
+		$(e.target.files).each(function () {
+			$('div#choose-visibility').append('<div>\
+				<input type="checkbox" id="' + this.name + '" name="visibility[' + this.name +']" >\
+				<label for="' + this.name + '">' + this.name + '</label>\
+			</div>');
+		});
+	});
+
+	/*** Add the select list to choose the visibility for the new file ***/
+	$('input[type="file"]#link_support_mod').change(function(e) {
+		if (e.target.files.length === 0)
+			$('div.to-hide').hide();
+		else
+			$('div.to-hide').fadeIn("slow");
+
+		$('div#new-files').remove();
+
+		$(e.target.files).each(function () {
+			$('div#choose-new-statut').append('<div id="new-files" class="row justify-content-start">\
+				<div class="col-auto">' + this.name +'</div>\
+				<div class="col-auto">\
+					<div class="form-group">\
+						<select class="form-control form-control-sm" name="visibility_new[]">\
+							<option value="0">Public</option>\
+							<option value="1" selected>Privé</option>\
+						</select>\
+					</div>\
+				</div>\
+				</div>');
+		});
+	});
+
+	/*** Convert the dates given by the calendar in date for the database ***/
+	$('button#submit-btn-crt-crs').click(function() {
+		parseDate(calendarDist.values, 'dates_dist');
+		parseDate(calendarPres.values, 'dates_pres');
+	});
+
+	/* ########## Compétitions ##########*/
+
+	/*** Prevent the user to put more than 3 images for a compétition ***/
+	$('button#create-cpt.compet').click(function(e) {
+	    var fileUpload = $('input#images');
+	    if (parseInt(fileUpload.get(0).files.length)>3)
+		{
+			e.preventDefault();
+			$('input#images').val('');
+			alert("3 images maximums");
+	    }
+
+		if (calendarComp.values.length === 0)
+		{
+			e.preventDefault();
+			alert("Il faut au moins une date pour la compétition");
+		}
+		parseDate(calendarComp.values, 'dates_comp');
+	});
+
+	/*** Create the calendars ***/
+    $('#datepicker').datepicker({
+        startDate: new Date(),
+        multidate: true,
+        format: "dd/mm/yyyy",
+        daysOfWeekHighlighted: "5,6",
+        datesDisabled: ['31/08/2017'],
+        language: 'en'
+    }).on('changeDate', function(e) {
+        // `e` here contains the extra attributes
+        $(this).find('.input-group-addon .count').text(' ' + e.dates.length);
     });
 
 });

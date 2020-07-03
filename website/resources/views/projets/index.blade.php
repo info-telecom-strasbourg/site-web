@@ -45,7 +45,7 @@
 				</div>
 				<div class="col-md-3">
 					<select class="form-control" name="membre" id="membre">
-						<option readonly selected hidden value="">Membre</option>
+						<option readonly selected hidden value="">Participants</option>
 
 						@isset($participants)
 							@foreach ($participants as $key => $participant)
@@ -75,7 +75,8 @@
 
 						<option value="1" @if ($filters[3] == 1) selected @endif>Ordre alphabétique</option>
 	                    <option value="2" @if ($filters[3] == 2) selected @endif>Ordre alphabétique inverse</option>
-	                    <option value="3" @if ($filters[3] == 3) selected @endif>Date de début</option>
+	                    <option value="3" @if ($filters[3] == 3) selected @endif>Date de création</option>
+	                    <option value="4" @if ($filters[3] == 3) selected @endif>Date de création inverse</option>
 
 	                    <option value="" name="reset">Reset</option>
 					</select>
@@ -83,54 +84,66 @@
 				<div class="col-md-3 text-center">
 					<button type="submit" class="btn btn-primary btn-primary btn-rounded">FILTRER</button>
 				</div>
+				<div class="col-md-3 text-center" style="opacity: .75;">
+					<a href="/projets" class="btn btn-primary btn-primary btn-rounded w-100">RESET</a>
+				</div>
 			</div>
 		</form>
 
 		<div class="container pt-5">
-			<div class="row">
+			<div class="row justify-content-center">
 
 				@if(isset($projets))
-
+					{{-- {{ dd($projets) }} --}}
 					@forelse ($projets as $projet)
-						<div class="col-md" id="projets-container">
+						<div class="col-md sep-items" id="projets-container">
 							<div class="card text-center rounded">
-								<img class="card-img-top" src="/images/test.jpg" alt="Card image cap">
+								<img class="card-img-top" src="{{ asset('storage/' . json_decode($projet->images)[0]) }}" alt="Card image cap">
 								<div class="card-body d-flex flex-column">
 									<h5 class="card-title text-center font-weight-bold">
 										{{ $projet->title }}
 									</h5>
 									<p class="card-text">
-										<span>{{ mb_strlen( $projet->desc ) > 200 ? mb_substr($projet->desc, 0, 200) . ' ...' : $projet->desc }}
+										<span>{{ mb_strlen( $projet->desc ) > 57 ? mb_substr($projet->desc, 0, 54) . ' ...' : $projet->desc }}
 		                                </span>
 									</p>
-									<a href="/projets/{{ $projet->id }}" class="btn btn-rounded btn-primary" type="button">DÉCOUVRIR</a>
+									@isset ($projet->projet_id)
+										<a href="/projets/{{ $projet->projet_id }}" class="btn btn-rounded btn-primary">DÉCOUVRIR</a>
+									@else
+										<a href="/projets/{{ $projet->id }}" class="btn btn-rounded btn-primary">DÉCOUVRIR</a>
+									@endisset
 								</div>
 						  	</div>
 						</div>
-					
+
 					@empty
 
 						<div class="alert alert-secondary alert-dismissible fade show col" role="alert">
-							Aucun projets n'a été trouvé
+							Aucun projet n'a été trouvé
 							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 		    					<span aria-hidden="true">&times;</span>
 		  					</button>
 						</div>
 					@endforelse
 
-					<div class="row justify-content-center link-margin-top">
-						<!-- Pagination links -->
-						{{ $projets->links() }}
-					</div>
 				@else
 					<div class="alert alert-secondary alert-dismissible fade show col" role="alert">
-						Aucun projets n'a été trouvé
+						Aucun projet n'a été trouvé
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 	    					<span aria-hidden="true">&times;</span>
 	  					</button>
 					</div>
 				@endif
 			</div>
+			<div class="row justify-content-center link-margin-top">
+				<!-- Pagination links -->
+				{{ $projets->links() }}
+			</div>
+			@can ('create', 'App\Projet')
+				<div class="text-center" style="margin-top:25px; margin-bottom:25px;">
+					<button type="submit" class="btn btn-primary btn-rounded" onclick="self.location.href='/projets/create'">Créer un projet</button>
+				</div>
+			@endcan
 		</div>
 
     </div>
