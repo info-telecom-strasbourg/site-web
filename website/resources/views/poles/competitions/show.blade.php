@@ -95,9 +95,21 @@
 	</div>
 	<div class="w-100"></div>
 </div>
-	<div class="bordure"></div>
+
+	@if(isset($compet->images))
+		<div class="bordure"></div>
+		<h4 class="title md text-center">Photos de la compétition</h4>
+		<div class="row align-items-center justify-content-around">
+			@foreach(json_decode($compet->images) as $image)
+				<div class="col-md-auto">
+					<img src="{{ asset('storage/' . $image) }}" alt="Photo de la compétiton" class="photo-comp">
+				</div>
+			@endforeach
+		</div>
+	@endif
 
 	@isset($compet->result)
+		<div class="bordure"></div>
 		<h4 class="title md text-center">Résultats</h4>
 		<div>
 			<p>
@@ -111,14 +123,14 @@
 
 
 	@can ('update', $compet)
-	<div class="d-flex flex-row justify-content-around" style="margin-top: auto;">
-		<div class="text-center" style="margin-top:25px; margin-bottom:25px;">
-			<a class="btn btn-primary btn-rounded" href="/poles/competitions/{{ $compet->id }}/edit">Modifier cette compétition</a>
+		<div class="d-flex flex-row justify-content-around" style="margin-top: 25px;">
+			<div class="text-center" style="margin-top:25px; margin-bottom:25px;">
+				<a class="btn btn-primary btn-rounded" href="/poles/competitions/{{ $compet->id }}/edit">Modifier cette compétition</a>
+			</div>
+			<div class="text-center" style="margin-top:25px; margin-bottom:25px;">
+				<a class="btn btn-primary btn-rounded" href="/poles/competitions/{{ $compet->id }}/destroy">Supprimer</a>
+			</div>
 		</div>
-		<div class="text-center" style="margin-top:25px; margin-bottom:25px;">
-			<a class="btn btn-primary btn-rounded" href="/poles/competitions/{{ $compet->id }}/destroy">Supprimer</a>
-		</div>
-	</div>
 	@endcan
 
 

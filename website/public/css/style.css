@@ -976,6 +976,14 @@ div.bordure {
 }
 
 
+/* ##########################   Compétition   ########################## */
+.photo-comp {
+	width:300px;
+	height: auto;
+}
+
+
+
 /* ##########################   Calendriers   ########################## */
 
 #calendar-pres #calendar-dist #calendar-comp #calendar-pres-upd #calendar-dist-upd #calendar-comp-upd {
