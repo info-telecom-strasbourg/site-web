@@ -45,7 +45,7 @@
 				</div>
 				<div class="col-md-3">
 					<select class="form-control" name="membre" id="membre">
-						<option readonly selected hidden value="">Membre</option>
+						<option readonly selected hidden value="">Participants</option>
 
 						@isset($participants)
 							@foreach ($participants as $key => $participant)
@@ -115,7 +115,7 @@
 					@empty
 
 						<div class="alert alert-secondary alert-dismissible fade show col" role="alert">
-							Aucun projets n'a été trouvé
+							Aucun projet n'a été trouvé
 							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 		    					<span aria-hidden="true">&times;</span>
 		  					</button>
@@ -124,7 +124,7 @@
 
 				@else
 					<div class="alert alert-secondary alert-dismissible fade show col" role="alert">
-						Aucun projets n'a été trouvé
+						Aucun projet n'a été trouvé
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 	    					<span aria-hidden="true">&times;</span>
 	  					</button>

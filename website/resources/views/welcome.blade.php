@@ -42,7 +42,7 @@
                     <br>
                     <p>Développement de nouvelles fonctionnalités pour notre site web</p>
                     <br>
-                    <form action="#">
+                    <form action="/projets/1">
                         <input class="favorite styled" type="submit" value="Voir le projet">
                     </form>
                 </div>

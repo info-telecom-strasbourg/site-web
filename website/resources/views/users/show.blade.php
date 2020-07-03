@@ -12,7 +12,7 @@
 
 <div class="container">
     <h1 class="title lg text-center">
-        Profil - {{ $user->name }}
+        {{ $user->name }}
     </h1>
     <hr class="line-under-title">
 </div>
