@@ -28,12 +28,12 @@
         @endif
         <p>{{ $projet->desc }}</p>
         <div class="bordure"></div>
-        <h4 class="title md text-center">Chef de projet</h4>
-        <div class="container pt-5" style="padding-top: 1rem !important; margin-bottom: -35px;">
+        <div class="container" style="margin-bottom: -35px;">
             <div class="row align-items-center justify-content-between">
                 <div class="col-md-auto sep-items">
+                    <h4 class="title md text-center">Chef de projet</h4>
                     <a href="/users/{{ $projet->chef->id }}" class="user-link">
-                        <div class="card p-2 rounded chef-projet" style="min-width: 220px !important; height: 100px !important; cursor: pointer;">
+                        <div class="card p-2 rounded chef-projet mt-5" style="min-width: 220px !important; height: 100px !important; cursor: pointer;">
                             <div class="row no-gutters align-items-center" style="flex-wrap: unset; height: 100% !important;">
                                 <div class="col-md-4" style="width: 60px !important;">
                                     <img src="{{ asset('storage/' . $projet->chef->profil_picture) }}" class="card-img profil-rounded" style="width: 60px !important; height: 60px !important;">
@@ -47,24 +47,38 @@
                         </div>
                     </a>
                 </div>
+                @if(!empty($projet->collaborateur))
+                    <div class="col-md-auto sep-items">
+                        <h4 class="title md text-center">Collaborateur</h4>
+                        <a href="{{ $projet->collaborateur->link }}" class="user-link" target="_blank">
+                            <div class="card p-2 rounded chef-projet mt-5" style="min-width: 220px !important; height: 100px !important; cursor: pointer;">
+                                <div class="row no-gutters align-items-center" style="flex-wrap: unset; height: 100% !important;">
+                                    <div class="col-md-4" style="width: 60px !important;">
+                                        <img src="{{ asset($projet->collaborateur->image) }}" class="card-img profil-rounded" style="height: 80% !important; height: 80%;">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <p class="card-title" style="margin-bottom: 0;"> {{ $projet->collaborateur->name }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                @endif
             </div>
         </div>
 
 
         <!-- Participants -->
-        @if (!$projet->participants->isEmpty())
+        @if ($projet->participants->count() > 1)
             <div class="bordure"></div>
             <h4 class="title md text-center">Participants</h4>
             @foreach ($projet->participants as $participant)
-                <p>{{ $participant->name }}</p>
+                @if ($participant->id != $projet->chef->id)
+                    <p><a href="/users/{{ $participant->id }}" class="user-link">{{ $participant->name }}</a></p>
+                @endif
             @endforeach
-        @endif
-
-        <!-- Collaborateur -->
-        @if(!empty($projet->collaborateur))
-            <div class="bordure"></div>
-            <h4 class="title md text-center">Collaborateurs</h4>
-            <p>{{ $projet->collaborateur->name }}</p>
         @endif
 
         <div class="bordure"></div>
@@ -97,17 +111,21 @@
         <div class="bordure"></div>
         <h4 class="title md text-center">Liens utiles</h4>
         <div class="social-buttons row align-item-center justify-content-center" id="projet-show" style="margin-bottom: 40px;">
-            <a class="social-icons d-flex align-items-center" href="{{ $projet->link_github }}">
-                <i class="fab fa-github fa-3x fa-lg mr-3"></i>Github
-            </a>
+            @if(!empty($projet->link_github))
+                <a class="social-icons d-flex align-items-center" href="{{ $projet->link_github }}" target="_blank">
+                    <i class="fab fa-github fa-3x fa-lg mr-3"></i>Github
+                </a>
+            @endif
             @if(!empty($projet->link_download))
-                <a class="social-icons d-flex align-items-center" href="{{ $projet->link_download }}">
+                <a class="social-icons d-flex align-items-center" href="{{ $projet->link_download }}" target="_blank">
                     <i class="fas fa-download fa-3x fa-lg mr-3"></i>Téléchargement
                 </a>
             @endif
-            <a class="social-icons d-flex align-items-center" href="{{ $projet->link_doc }}">
-                <i class="far fa-file-alt fa-3x fa-lg mr-3"></i>Documentation
-            </a>
+            @if(!empty($projet->link_doc))
+                <a class="social-icons d-flex align-items-center" href="{{ $projet->link_doc }}" target="_blank">
+                    <i class="far fa-file-alt fa-3x fa-lg mr-3"></i>Documentation
+                </a>
+            @endif
         </div>
 
         @can ('update', $projet)
