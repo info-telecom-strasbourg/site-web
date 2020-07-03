@@ -103,6 +103,21 @@
                     </span>
                 @enderror
             </div>
+            <div class="form-group">
+                <label for="collaborateur_id" class="form-title-small">Collaborateur</label>
+                <select class="custom-select" id="collaborateur_id" name="collaborateur_id">     
+                    <option selected readonly>Choisir un partenaire ...</option>
+
+                    @isset($partners)
+
+                        @foreach ($partners as $parner)
+                            <option value="{{ $parner->id }}">{{ $parner->name }}</option>
+                        @endforeach
+
+                    @endisset
+
+                </select>
+            </div>
             <div class="custom-control custom-checkbox" style="margin-bottom: 1rem;">
                 <input id="complete" type="checkbox" class="custom-control-input" name="complete" value="1">
 

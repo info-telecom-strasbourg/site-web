@@ -27,9 +27,10 @@ class ProjetRequest extends FormRequest
         return [
             'title' => 'required|max:255',
             'desc' => 'required',
-            'link_github' => 'required|url',
+            'link_github' => 'nullable|url',
             'link_download' => 'nullable|url',
-            'link_doc' => 'required|url',
+            'link_doc' => 'nullable|url',
+            'collaborateur_id' => 'nullable|integer',
             'complete' => 'boolean',
             'chef_projet_id' => 'required|integer',
             'pole_id' => 'required|integer'
