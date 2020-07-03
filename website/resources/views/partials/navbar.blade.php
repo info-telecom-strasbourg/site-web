@@ -1,11 +1,11 @@
 <nav class="navbar navbar-expand-xl navbar-light fixed-top">
     @if (Auth::check() && Auth::user()->role_id == 4)
         <a class="navbar-brand" href="/page-admin">
-            <img src="/images/logo/logo.png" width="90" height="90" alt="Logo du site">
+            <img src="/images/logo/logo.png" width="90" height="100%" alt="Logo du site">
         </a>
     @else
         <a class="navbar-brand">
-            <img src="/images/logo/logo.png" width="90" height="90" alt="Logo du site">
+            <img src="/images/logo/logo.png" width="90" height="100%" alt="Logo du site">
         </a>
     @endif
 
@@ -25,20 +25,21 @@
                     <div class="nav-link">ACCUEIL <span class="sr-only">(current)</span></div>
                 </li>
             </a>
-            <li class="nav-item onglet dropdown" id="poles">
+            <li class="nav-item onglet dropdown {{ Request::is('poles/*') ? 'active' : ''  }}" id="poles">
                 <a id="navbarDropdownMenuLink" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                     PÔLES
                 </a>
+
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Cours & Accompagnements</a>
-                    <a class="dropdown-item" href="#">Applications & Sites Web</a>
-                    <a class="dropdown-item" href="#">Programmation utilitaire</a>
-                    <a class="dropdown-item" href="#">Compétitions</a>
-                    <a class="dropdown-item" href="#">Jeux Vidéos</a>
+                    <a class="dropdown-item" href="/poles/cours">Cours & Accompagnements</a>
+                    <a class="dropdown-item" href="/poles/applications_et_sites_web">Applications & Sites Web</a>
+                    <a class="dropdown-item" href="/poles/programmation_utilitaire">Programmation utilitaire</a>
+                    <a class="dropdown-item" href="/poles/competitions">Compétitions</a>
+                    <a class="dropdown-item" href="/poles/jeux_vidéos">Jeux Vidéos</a>
                 </div>
             </li>
             <a href="/projets">
-                <li class="nav-item onglet {{ Request::is('projets') ? 'active' : ''  }}">
+                <li class="nav-item onglet {{ Request::is('projets*') ? 'active' : ''  }}">
                     <div class="nav-link">PROJETS</div>
                 </li>
             </a>
@@ -61,7 +62,7 @@
         <ul class="nav navbar-nav">
             @guest
                 <li class="nav-item">
-                    <a href="/login" class="btn btn-rounded btn-primary connexion" type="button">CONNEXION</a>
+                    <a href="/login" class="btn btn-rounded btn-primary connexion">CONNEXION</a>
                 </li>
             @else
                 <li class="nav-item dropdown">
@@ -70,7 +71,7 @@
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" style="margin-right: 27px">
-                        <a class="dropdown-item" href="#">Profil</a>
+                        <a class="dropdown-item" href="/users/{{ Auth::user()->id }}">Profil</a>
                         <a class="dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">

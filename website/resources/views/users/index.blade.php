@@ -61,8 +61,8 @@
 						<h2 class="col-12 title-users">Bureau</h2>
 						@foreach ($bureaus as $bureau)
 							<div class="col-md-3 text-center user">
-								<a href="#" class="respo">
-						            <img class="profil-rounded" src="images/defaut/profil.jpg">
+								<a href="/users/{{ $bureau->id }}" class="respo">
+						            <img class="profil-rounded" src="{{ asset('storage/' . $bureau->profil_picture) }}">
 						            <p id="nom">{{ $bureau->name }}</p>
 						            <p id="fonction">{{ $bureau->role->role }}</p>
 						        </a>
@@ -74,8 +74,8 @@
 						<h2 class="col-12 title-users">Responsables</h2>
 						@foreach ($respos as $respo)
 							<div class="col-md-3 text-center user">
-								<a href="#" class="respo">
-						            <img class="profil-rounded" src="images/defaut/profil.jpg">
+								<a href="/users/{{ $respo->id }}" class="respo">
+						            <img class="profil-rounded" src="{{ asset('storage/' . $respo->profil_picture) }}">
 						            <p id="nom">{{ $respo->name }}</p>
 						            <p id="fonction">{{ $respo->role->role }}</p>
 						        </a>
@@ -87,8 +87,8 @@
 						<h2 class="col-12 title-users">Membres</h2>
 						@foreach ($membres as $membre)
 							<div class="col-md-3 text-center user">
-								<a href="#" class="respo">
-						            <img class="profil-rounded" src="images/defaut/profil.jpg">
+								<a href="/users/{{ $membre->id }}" class="respo">
+						            <img class="profil-rounded" src="{{ asset('storage/' . $membre->profil_picture) }}">
 						            <p id="nom">{{ $membre->name }}</p>
 						            <p id="fonction">{{ $membre->role->role }}</p>
 						        </a>
@@ -98,7 +98,7 @@
 
 				@else
 					<div class="alert alert-secondary alert-dismissible fade show col" role="alert">
-						Aucun membres n'a été trouvé
+						Aucun membre n'a été trouvé
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 	    					<span aria-hidden="true">&times;</span>
 	  					</button>

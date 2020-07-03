@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr" local="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel = "icon" href = "{{ asset('images/logo/logo.png') }}" type = "image/x-icon">
 
     <link rel = "icon" href = "{{ asset('images/logo/logo.png') }}" type = "image/x-icon">
 
@@ -14,11 +15,19 @@
     <link href="{{ URL::asset('lib/fontawesome/css/all.css') }}" rel="stylesheet">
 
     <!-- CSS -->
+	<!-- ####################################"" -->
+	<link href="//cdn.syncfusion.com/ej2/ej2-base/styles/material.css" rel="stylesheet">
+    <link href="//cdn.syncfusion.com/ej2/ej2-buttons/styles/material.css" rel="stylesheet">
+    <link href="//cdn.syncfusion.com/ej2/ej2-calendars/styles/material.css" rel="stylesheet">
+	<script src="https://cdn.syncfusion.com/ej2/dist/ej2.min.js" type="text/javascript"></script>
+	<!-- ####################################"" -->
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="{{URL::asset('css/style.css')}}">
     <link rel="stylesheet" href="{{URL::asset('css/fonts.css')}}">
 
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+
 
     <!-- JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -59,6 +68,7 @@
     @endif
 
     <div class="page">
+
         <!-- Main content -->
         <div id="content">
             <!-- Breadcrumbs -->
@@ -73,6 +83,7 @@
             <div class="main-content">
                 @yield('content')
             </div>
+
         </div>
 
         <!-- Footer -->
@@ -80,9 +91,7 @@
         @include('partials.footer')
         @endif
     </div>
-
     <script src="{{ asset('js/website.js') }}"></script>
-
 </body>
 
 </html>

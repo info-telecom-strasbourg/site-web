@@ -1,90 +1,147 @@
 @extends('layouts.layout')
 
-@section('title', "Projet ITS - ". $projet->title)
+@section('title', 'Projet ITS - ' . $projet->title)
 
 @section('breadcrumb')
-    <li class="breadcrumb-item"><a href="/"><i class="fas fa-home"></i></a></li>
-    <li class="breadcrumb-item"><a href="/projets?page={{ intval($projet->id / 24) + 1 }}">Projets</a></li>
-    <li class="breadcrumb-item active">{{ $projet->title }}</li>
+<li class="breadcrumb-item"><a href="/"><i class="fas fa-home"></i></a></li>
+<li class="breadcrumb-item"><a href="/projets?page={{ intval($projet->id / 24) + 1 }}">Projets</a></li>
+<li class="breadcrumb-item active">{{ $projet->title }}</li>
 @endsection
 
 @section('content')
 
-<div class="container">
+<div class="container" id="projet">
     <h1 class="title lg text-center">
         {{ $projet->title }}
     </h1>
     <hr class="line-under-title">
 
     <div class="container pt-3">
-        <p class="text-center">{{ $projet->desc }}</p>
-        <h2>
-            Chef de projet
-        </h2>
-        <div class="card p-2 rounded" style="max-width: 220px;">
-            <div class="row no-gutters">
-                <div class="col-md-4" style="max-width: 60px;">
-                    <img src="/images/logo/logo.png" class="card-img">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title"> {{ $projet->chef->name }}</h5>
-                    </div>
-                </div>
+        @if ($projet->complete == 1) 
+            <div class="alert alert-success" role="alert">
+                Projet finis
             </div>
-        </div>
-        <hr />
-        <h2>Participants</h2>
-        @foreach ($projet->participants as $participant)
-            <p>{{ $participant->name }}</p>
-        @endforeach
-        @if(!empty($projet->collaborateur))
-        <h2>Collaborateur</h2>
-            <p>{{ $projet->collaborateur->name }}</p>
+        @else
+            <div class="alert alert-info" role="alert">
+                Projet en cours
+            </div>
         @endif
-        <h2>Le projet en images</h2>
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="d-block w-100" src="/images/illustrations/prog.jpg" alt="First slide">
+        <p>{{ $projet->desc }}</p>
+        <div class="bordure"></div>
+        <div class="container" style="margin-bottom: -35px;">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-md-auto sep-items">
+                    <h4 class="title md text-center">Chef de projet</h4>
+                    <a href="/users/{{ $projet->chef->id }}" class="user-link">
+                        <div class="card p-2 rounded chef-projet mt-5" style="min-width: 220px !important; height: 100px !important; cursor: pointer;">
+                            <div class="row no-gutters align-items-center" style="flex-wrap: unset; height: 100% !important;">
+                                <div class="col-md-4" style="width: 60px !important;">
+                                    <img src="{{ asset('storage/' . $projet->chef->profil_picture) }}" class="card-img profil-rounded" style="width: 60px !important; height: 60px !important;">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <p class="card-title" style="margin-bottom: 0;"> {{ $projet->chef->name }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
                 </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="/images/illustrations/prog.jpg" alt="Second slide">
+                @if(!empty($projet->collaborateur))
+                    <div class="col-md-auto sep-items">
+                        <h4 class="title md text-center">Collaborateur</h4>
+                        <a href="{{ $projet->collaborateur->link }}" class="user-link" target="_blank">
+                            <div class="card p-2 rounded chef-projet mt-5" style="min-width: 220px !important; height: 100px !important; cursor: pointer;">
+                                <div class="row no-gutters align-items-center" style="flex-wrap: unset; height: 100% !important;">
+                                    <div class="col-md-4" style="width: 60px !important;">
+                                        <img src="{{ asset($projet->collaborateur->image) }}" class="card-img profil-rounded" style="height: 80% !important; height: 80%;">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <p class="card-title" style="margin-bottom: 0;"> {{ $projet->collaborateur->name }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                @endif
+            </div>
+        </div>
+
+
+        <!-- Participants -->
+        @if ($projet->participants->count() > 1)
+            <div class="bordure"></div>
+            <h4 class="title md text-center">Participants</h4>
+            @foreach ($projet->participants as $participant)
+                @if ($participant->id != $projet->chef->id)
+                    <p><a href="/users/{{ $participant->id }}" class="user-link">{{ $participant->name }}</a></p>
+                @endif
+            @endforeach
+        @endif
+
+        <div class="bordure"></div>
+        <h4 class="title md text-center">Le projet en images</h4>
+        <div class="row justify-content-center" style="margin-top: 40px; margin-bottom: 40px;">
+            <div id="carouselProjetImage" class="carousel slide row w-100 justify-content-center" data-interval="false">
+                <ol class="carousel-indicators">
+                    @foreach (json_decode($projet->images) as $image)
+                        <li data-target="#carouselProjetImage" data-slide-to="0" class="@if ($loop->first) active @endif"></li>
+                    @endforeach
+                </ol>
+                <div class="carousel-inner col-md-6" style="background-color: transparent;">
+                    @foreach (json_decode($projet->images) as $key => $image)
+                        <div class="carousel-item text-center @if ($loop->first) active @endif" style="background-color: transparent;">
+                            <img src="{{ asset('storage/' . $image) }}" alt=" {{ $key }} slide" style="height: 300px !important;">
+                        </div>
+                    @endforeach
                 </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="/images/illustrations/prog.jpg" alt="Third slide">
+                <a class="carousel-control-prev col-md-3" href="#carouselProjetImage" role="button" data-slide="prev" style="background-color: #1b1b1b; width: 40px; height: 40px; border-radius: 50%; top: 50%; margin-left: 10px;">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next col-md-3" href="#carouselProjetImage" role="button" data-slide="next" style="background-color: #1b1b1b; width: 40px; height: 40px; border-radius: 50%; top: 50%; margin-right: 10px;">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="bordure"></div>
+        <h4 class="title md text-center">Liens utiles</h4>
+        <div class="social-buttons row align-item-center justify-content-center" id="projet-show" style="margin-bottom: 40px;">
+            @if(!empty($projet->link_github))
+                <a class="social-icons d-flex align-items-center" href="{{ $projet->link_github }}" target="_blank">
+                    <i class="fab fa-github fa-3x fa-lg mr-3"></i>Github
+                </a>
+            @endif
+            @if(!empty($projet->link_download))
+                <a class="social-icons d-flex align-items-center" href="{{ $projet->link_download }}" target="_blank">
+                    <i class="fas fa-download fa-3x fa-lg mr-3"></i>Téléchargement
+                </a>
+            @endif
+            @if(!empty($projet->link_doc))
+                <a class="social-icons d-flex align-items-center" href="{{ $projet->link_doc }}" target="_blank">
+                    <i class="far fa-file-alt fa-3x fa-lg mr-3"></i>Documentation
+                </a>
+            @endif
+        </div>
+
+        @can ('update', $projet)
+            <div class="d-flex flex-row justify-content-around" style="margin-top: auto;">
+                <div class="text-center" style="margin-top:25px; margin-bottom:25px;">
+                    <button type="submit" class="btn btn-primary btn-rounded" onclick="self.location.href='/projets/{{ $projet->id }}/edit'">Éditer</button>
+                </div>
+                <div class="text-center" style="margin-top:25px; margin-bottom:25px;">
+                    <form action="/projets/{{ $projet->id }}" method="POST">
+                        @method('DELETE')
+                        @csrf
+                        <button type="submit" class="btn btn-primary btn-rounded" onclick="return confirm('Voulez-vous vraiment supprimer ce projet ?')">Supprimer</button>
+                    </form>
                 </div>
             </div>
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-        <h2>
-            Liens utiles
-        </h2>
-        <div class="social-buttons row align-item-center justify-content-center" id="projet-show">
-            <a class="social-icons d-flex align-items-center" href="{{ $projet->link_github }}">
-                <i class="fab fa-github fa-3x fa-lg mr-3"></i>Github
-            </a>
-            @if(!empty($projet->link_download))
-            <a class="social-icons d-flex align-items-center" href="{{ $projet->link_download }}">
-                <i class="fas fa-download fa-3x fa-lg mr-3"></i>Téléchargement
-            </a>
-            @endif
-            <a class="social-icons d-flex align-items-center" href="{{ $projet->link_doc }}">
-                <i class="fas fa-envelope fa-3x fa-lg mr-3"></i>Documentation
-            </a>
-        </div>
+        @endcan
     </div>
 </div>
 
