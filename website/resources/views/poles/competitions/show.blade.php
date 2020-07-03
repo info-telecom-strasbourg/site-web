@@ -111,10 +111,17 @@
 
 
 	@can ('update', $compet)
+	<div class="d-flex flex-row justify-content-around" style="margin-top: auto;">
 		<div class="text-center" style="margin-top:25px; margin-bottom:25px;">
 			<a class="btn btn-primary btn-rounded" href="/poles/competitions/{{ $compet->id }}/edit">Modifier cette compétition</a>
 		</div>
+		<div class="text-center" style="margin-top:25px; margin-bottom:25px;">
+			<a class="btn btn-primary btn-rounded" href="/poles/competitions/{{ $compet->id }}/destroy">Supprimer</a>
+		</div>
+	</div>
 	@endcan
+
+
 </div>
 @endsection
 

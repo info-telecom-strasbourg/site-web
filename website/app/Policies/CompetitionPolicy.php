@@ -67,7 +67,7 @@ class CompetitionPolicy
      */
     public function delete(User $user, Competition $competition)
     {
-		return auth()->check() && $user->role_id == Role::where('role','Responsable compétition')->pluck('id');
+		return auth()->check() && ($user->role_id == Role::where('role','Responsable compétition')->pluck('id')->first());
     }
 
     /**

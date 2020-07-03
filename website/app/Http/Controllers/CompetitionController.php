@@ -182,9 +182,23 @@ class CompetitionController extends Controller
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy()
+	public function destroy(Competition $compet)
 	{
+		$this->authorize('delete', $compet);
 
+		//suppression des dates de la compétition
+		$compet->dates()->delete();
+
+		//suppression de l'image enregistrée
+		unlink(storage_path('app/public/' . $compet->cover));
+
+		if(isset($compet->images))
+			foreach(json_decode($compet->images) as $image)
+				unlink(storage_path('app/public/' . $image));
+
+		$compet->delete();
+
+		return redirect('/poles/competitions');
 	}
 
 	/**
