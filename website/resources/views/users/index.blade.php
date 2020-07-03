@@ -62,7 +62,7 @@
 						@foreach ($bureaus as $bureau)
 							<div class="col-md-3 text-center user">
 								<a href="/users/{{ $bureau->id }}" class="respo">
-						            <img class="profil-rounded" src="{{ asset('storage/' . $bureau->profil_picture) }}" width="50%">
+						            <img class="profil-rounded" src="{{ asset('storage/' . $bureau->profil_picture) }}">
 						            <p id="nom">{{ $bureau->name }}</p>
 						            <p id="fonction">{{ $bureau->role->role }}</p>
 						        </a>
