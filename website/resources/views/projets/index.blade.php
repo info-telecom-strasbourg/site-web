@@ -94,7 +94,7 @@
 			<div class="row justify-content-center">
 
 				@if(isset($projets))
-
+					{{-- {{ dd($projets) }} --}}
 					@forelse ($projets as $projet)
 						<div class="col-md sep-items" id="projets-container">
 							<div class="card text-center rounded">
@@ -107,7 +107,11 @@
 										<span>{{ mb_strlen( $projet->desc ) > 57 ? mb_substr($projet->desc, 0, 54) . ' ...' : $projet->desc }}
 		                                </span>
 									</p>
-									<a href="/projets/{{ $projet->id }}" class="btn btn-rounded btn-primary">DÉCOUVRIR</a>
+									@isset ($projet->projet_id)
+										<a href="/projets/{{ $projet->projet_id }}" class="btn btn-rounded btn-primary">DÉCOUVRIR</a>
+									@else
+										<a href="/projets/{{ $projet->id }}" class="btn btn-rounded btn-primary">DÉCOUVRIR</a>
+									@endisset
 								</div>
 						  	</div>
 						</div>
