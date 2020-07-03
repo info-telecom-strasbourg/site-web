@@ -19,6 +19,7 @@
 		<div class="container" id="description" style="margin-top: 50px;">
 			<div class="row">
 				<div class="col-3 disp">
+					<img src="{{ asset('storage/' . json_decode($compet->images)[0]) }}" alt="Decriptive image">
 				</div>
 				<div class="col-9 disp">
 					<p>{{ $compet->desc }}</p>
@@ -34,7 +35,7 @@
 		<div class="row align-items-center">
 			@forelse ($compet->competitors as $competitor)
 				<div class="col-md-auto sep-items">
-					<a href="/users/{{ $creator->id }}" class="user-link">
+					<a href="/users/{{ $competitor->id }}" class="user-link">
 						<div class="card p-2 rounded chef-projet" style="min-width: 220px !important; height: 100px !important; cursor: pointer;">
 							<div class="row no-gutters align-items-center" style="flex-wrap: unset; height: 100% !important;">
 								<div class="col-md-4" style="width: 60px !important;">
@@ -58,6 +59,7 @@
 	</div>
 	<div class="bordure"></div>
 
+	<h4 class="title md text-center">Dates</h4>
 	<div class="container" style="margin-top: 30px;">
 		@forelse ($compet->dates as $date)
 			<div class="row align-items-center">
@@ -76,6 +78,18 @@
 		@endforelse
 	</div>
 	<div class="bordure"></div>
+
+	@isset($compet->result)
+		<h4 class="title md text-center">Résultats</h4>
+		<div>
+			<p>
+				@php
+					$res = str_replace('\n', '<br>', $compet->result);
+					echo $res;
+				@endphp
+			</p>
+		</div>
+	@endisset
 
 
 	@can ('update', $compet)
