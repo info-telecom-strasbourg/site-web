@@ -23,6 +23,9 @@
 				</div>
 				<div class="col-9 disp">
 					<p>{{ $compet->desc }}</p>
+					<p>
+						<a href="{{ $compet->website }}" class="link-black" target="_blank">Vers le site officiel</a>
+					</p>
 				</div>
 			</div>
 		</div>
@@ -91,12 +94,12 @@
 		</div>
 	</div>
 	<div class="col text-center">
-		{{ isset($compet->lieu) ? $compet->lieu : 'Cette compétition se déroulera à distance' }}
+		{{ isset($compet->place) ? $compet->place : 'Cette compétition se déroulera à distance' }}
 	</div>
 	<div class="w-100"></div>
 </div>
 
-	@if(isset($compet->images))
+	@if(isset($compet->images) && !empty(json_decode($compet->images)))
 		<div class="bordure"></div>
 		<h4 class="title md text-center">Photos de la compétition</h4>
 		<div class="row align-items-center justify-content-around">

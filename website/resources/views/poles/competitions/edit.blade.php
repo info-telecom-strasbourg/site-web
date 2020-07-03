@@ -99,9 +99,9 @@
 			@if(isset($compet->images))
 				<div class="form-group" id="choose-new-statut">
 					<h4 class="form-title">Cochez les images à supprimer</h4>
-		            <div class="form-group row align-items-center">
+		            <div class="form-group row align-items-center justify-content-around">
 		                @foreach (json_decode($compet->images) as $key => $image)
-		                    <div class="col-md-3">
+		                    <div class="col-md-auto">
 		                            <img src="{{ asset('storage/' . $image) }}" alt=" {{ $key }} slide" style="height: 100px !important;">
 		                            <input id="im-cmpt-del" type="checkbox" name="remove_images[{{ $key }}]" value="{{ $image }}">
 		                    </div>
