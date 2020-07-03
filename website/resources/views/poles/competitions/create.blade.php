@@ -48,17 +48,13 @@ Création d'une compétition
 				@enderror
 			</div>
 
+			<!-- Image principale -->
 			<div class="form-group">
-				<label for="competitors" class="form-title-small">Ajouter des competitors</label>
-				<select class="custom-select" name="competitors[]" id="competitors" size="4" required multiple>
-		            <option readonly selected hidden value="">participants</option>
-
-		            @isset($users)
-		                @foreach ($users as $user)
-		                    <option value="{{ $user->id }}">{{ $user->name }}</option>
-		                @endforeach
-		            @endisset
-		        </select>
+				<label for="cover" class="form-title-small">
+					Image de couverture
+				</label>
+				<br>
+				<input type="file" id="cover" name="cover" required>
 			</div>
 
 			<div class="form-group">
@@ -79,8 +75,15 @@ Création d'une compétition
 				</div>
 			</div>
 
+			<!-- lieu -->
 			<div class="form-group">
-				<label for="desc" class="form-title-small">
+				<label for="place" class="form-title-small">Lieu où se déroulera la compétition (si aucun lieu n'est renseigné, la compétition sera considérée comme étant réalisable à distance)</label>
+				<input id="place" type="text" class="form-control" name="place" value="{{ old('place') }}">
+			</div>
+
+			<!-- Images secondaires -->
+			<div class="form-group">
+				<label for="images" class="form-title-small">
 					Images (3 maximum)
 				</label>
 				<br>
@@ -104,6 +107,20 @@ Création d'une compétition
                     @enderror
                 </div>
             </div>
+
+			<!-- Competiteurs -->
+			<div class="form-group">
+				<label for="competitors" class="form-title-small">Ajouter des competitors</label>
+				<select class="custom-select" name="competitors[]" id="competitors" size="4" required multiple>
+		            <option readonly selected hidden value="">participants</option>
+
+		            @isset($users)
+		                @foreach ($users as $user)
+		                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+		                @endforeach
+		            @endisset
+		        </select>
+			</div>
 
 			<div class="text-center" style="margin-top:25px; margin-bottom:25px">
 				<button id="create-cpt" type="submit" class="btn btn-primary btn-rounded compet">AJOUTER</button>

@@ -19,7 +19,7 @@
 		<div class="container" id="description" style="margin-top: 50px;">
 			<div class="row">
 				<div class="col-3 disp">
-					<img src="{{ asset('storage/' . json_decode($compet->images)[0]) }}" alt="Decriptive image">
+					<img src="{{ asset('storage/' . $compet->cover) }}" alt="Decriptive image">
 				</div>
 				<div class="col-9 disp">
 					<p>{{ $compet->desc }}</p>
@@ -59,24 +59,42 @@
 	</div>
 	<div class="bordure"></div>
 
-	<h4 class="title md text-center">Dates</h4>
-	<div class="container" style="margin-top: 30px;">
-		@forelse ($compet->dates as $date)
-			<div class="row align-items-center">
-				<div class="col-auto sep-chevr">
-					<i id="chevron-date-supports" class="far fa-calendar-alt fa-2x">
-					</i>
-				</div>
-				<div class="col sep-chevr">
-					{{ \Carbon\Carbon::parse($date->date)->translatedFormat('l d F Y') }}
-				</div>
-			</div>
-		@empty
-			<div>
-				Aucune date n'a été renseignée pour cette compétition
-			</div>
-		@endforelse
+<div class="row align-items-center">
+	<div class="col">
+		<h4 class="title md text-center">{{ $compet->dates->count() > 1 ? 'Dates' : 'Date' }}</h4>
 	</div>
+	<div class="col">
+		<h4 class="title md text-center">Lieu</h4>
+	</div>
+	<div class="w-100"></div>
+	<div class="col text-center">
+		<div class="container" style="margin-top: 30px;">
+			<div class="row justify-content-md-center">
+				<div class="col-auto">
+					@forelse ($compet->dates as $date)
+					<div class="row align-items-center">
+						<div class="col-md-auto sep-chevr">
+							<i id="chevron-date-supports" class="far fa-calendar-alt fa-2x">
+							</i>
+						</div>
+						<div class="col-md-auto sep-chevr">
+							{{ \Carbon\Carbon::parse($date->date)->translatedFormat('l d F Y') }}
+						</div>
+					</div>
+					@empty
+					<div>
+						Aucune date n'a été renseignée pour cette compétition
+					</div>
+					@endforelse
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col text-center">
+		{{ isset($compet->lieu) ? $compet->lieu : 'Cette compétition se déroulera à distance' }}
+	</div>
+	<div class="w-100"></div>
+</div>
 	<div class="bordure"></div>
 
 	@isset($compet->result)

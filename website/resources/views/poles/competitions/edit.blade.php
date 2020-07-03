@@ -52,31 +52,81 @@
 
 			</div>
 
+			<!-- Changer la couverture -->
+			<div class="form-group">
+				<label for="cover" class="form-title-small">
+					Changer l'image de couverture
+				</label>
+				<br>
+				<input type="file" id="cover" name="cover">
+			</div>
+
+			<!-- Modifier les dates -->
+			<div class="form-group">
+				<label class="form-title-small">
+					Dates de compétitions
+				</label>
+				<div class="text-left">
+					<div class="dates-comp">
+						<div id="calendar-comp-upd">
+							<div id="cal-comp-upd">
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="dates-select">
+
+				</div>
+			</div>
+
+			<!-- lieu -->
+			<div class="form-group">
+				<label for="place" class="form-title-small">Lieu où se déroulera la compétition (si aucun lieu n'est renseigné, la compétition sera considérée comme étant réalisable à distance)</label>
+				<input id="place" type="text" class="form-control" name="place" value="{{ isset($compet->place) ? $compet->place : '' }}">
+			</div>
+
 			<!-- Modifier les images -->
 			<div class="form-group">
-				<label for="link_support_mod" class="form-title-small">
-					Changer les images
+				<label for="link_im_comp" class="form-title-small">
+					Ajouter des images
 				</label>
 				<br>
 				<input type="file" id="link_im_comp" name="link_im_comp[]" multiple>
 			</div>
 
 			<!-- Pour enlever des images -->
-			<div class="form-group" id="choose-new-statut">
-				@if(substr(json_decode($compet->images)[0], 0, 15) != "images/default/")
+			@if(isset($compet->images))
+				<div class="form-group" id="choose-new-statut">
 					<h4 class="form-title">Cochez les images à supprimer</h4>
 		            <div class="form-group row align-items-center">
 		                @foreach (json_decode($compet->images) as $key => $image)
-							@if(substr($image, 0, 15) != "images/default/")
-			                    <div class="col-md-3">
-			                            <img src="{{ asset('storage/' . $image) }}" alt=" {{ $key }} slide" style="height: 100px !important;">
-			                            <input id="im-cmpt-del" type="checkbox" name="remove_images[{{ $key }}]" value="{{ $image }}">
-			                    </div>
-							@endif
+		                    <div class="col-md-3">
+		                            <img src="{{ asset('storage/' . $image) }}" alt=" {{ $key }} slide" style="height: 100px !important;">
+		                            <input id="im-cmpt-del" type="checkbox" name="remove_images[{{ $key }}]" value="{{ $image }}">
+		                    </div>
 		                @endforeach
 		            </div>
-				@endif
-			</div>
+				</div>
+			@endif
+
+			<div class="form-group" style="margin-top: 40px;">
+                <label class="sr-only form-title-small" for="website">Lien vers le site web</label>
+                <div class="input-group mb-2">
+	                <div class="input-group-prepend">
+	                    <div class="input-group-text">
+	                        <i class="fas fa-globe" style="font-size: 1rem;"></i>
+	                    </div>
+	                </div>
+	                <input type="url" class="form-control @error('website') is-invalid @enderror" id="website" name="website" placeholder="Lien vers le site web" value="{{ $compet->website }}">
+
+                    @error('website')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
 
 			<!-- Changer les participants -->
 			<!-- competitors Ajout -->
@@ -117,43 +167,6 @@
 			    </div>
 			@endif
 
-			<!-- Modifier les dates -->
-			<div class="form-group">
-				<label class="form-title-small">
-					Dates de compétitions
-				</label>
-				<div class="text-left">
-					<div class="dates-comp">
-						<div id="calendar-comp-upd">
-							<div id="cal-comp-upd">
-
-							</div>
-						</div>
-					</div>
-				</div>
-				<div id="dates-select">
-
-				</div>
-			</div>
-
-			<div class="form-group" style="margin-top: 40px;">
-                <label class="sr-only form-title-small" for="website">Lien vers le site web</label>
-                <div class="input-group mb-2">
-	                <div class="input-group-prepend">
-	                    <div class="input-group-text">
-	                        <i class="fas fa-globe" style="font-size: 1rem;"></i>
-	                    </div>
-	                </div>
-	                <input type="url" class="form-control @error('website') is-invalid @enderror" id="website" name="website" placeholder="Lien vers le site web" value="{{ $compet->website }}">
-
-                    @error('website')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-            </div>
-
 			<div class="text-center" style="margin-top:25px; margin-bottom:25px">
 				<button id="submit-btn-edt-cmp" type="submit" class="btn btn-primary btn-rounded">Enregistrer</button>
 			</div>
@@ -187,11 +200,11 @@
 		var images = $('input#im-cmpt-del').length;
 		var imToDel = $('input#im-cmpt-del:checked').length;
 		var nbImg = images + fileUpload - imToDel;
-		if((nbImg <= 0) || (nbImg > 3))
+		if((nbImg > 3))
 		{
 			e.preventDefault();
 			$('input#link_im_comp').val('');
-			alert("Le nombre d'image doit être entre 1 et 3");
+			alert("Le nombre d'image doit être inférieur à 3");
 		}
 		else
 		{

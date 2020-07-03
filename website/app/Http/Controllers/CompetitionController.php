@@ -71,6 +71,9 @@ class CompetitionController extends Controller
 			$compet->dates()->attach($newDate->id);
 		}
 
+		//add the cover image
+		$compet->cover = $this->saveImage($request->cover);
+
 		// add images
 		if ($request->has('images'))
         {
@@ -81,13 +84,13 @@ class CompetitionController extends Controller
             }
             $compet->images = json_encode($competImages);
         }
-        else
-            $compet->images = [$this->selectDefaultImage()];
 
 		// add creators
-		if (request()->has('competitors'))
+		if ($request->has('competitors'))
 			$this->addCompetitors($compet);
 
+		if($request->has('place'))
+			$compet->place = $request->place;
 
         // save competition
         $compet->save();
@@ -118,15 +121,20 @@ class CompetitionController extends Controller
 
 		$compet->update($this->validateCompetiton());
 
+		//change the cover
+		if(request()->has('cover'))
+		{
+			unlink(storage_path('app/public/' . $compet->cover));
+			$compet->cover = $this->saveImage(request()->cover);
+		}
+
 		//add images
 		if (request()->has('link_im_comp'))
 		{
-			if(substr(json_decode($compet->images)[0], 0, 15) == "images/default/")
-				$images = [];
-			else
-			{
+			if(isset($compet->images))
 				$images = json_decode($compet->images);
-			}
+			else
+				$images = [];
 
 
 			foreach(request()->link_im_comp as $image)
@@ -160,6 +168,9 @@ class CompetitionController extends Controller
 		$compet->dates()->delete();
 
 		$this->saveDates($compet);
+
+		if (request()->has('place'))
+			$compet->place = request()->place;
 
 		$compet->save();
 
