@@ -1,4 +1,60 @@
-/* ##########################   Général   ########################## */
+/* 
+ * CSS style page  
+ * Structure of the document :
+ *  - MAIN USES (46)
+ *      . Style
+ *      . Paging
+ *      . Button
+ *      . Image
+ *      . Members
+ *      . Cards
+ *      . Filters
+ *  - LAYOUT (198)
+ *      . Breadcrumb
+ *      . Navbar
+ *      . Footer
+ *  - WELCOME PAGE (450)
+ *      . Main uses
+ *      . Carousel of news
+ *      . Activités
+ *      . Nos projets
+ *      . Agenda
+ *      . Quelques chiffres
+ *      . Partenaires
+ *      . Notre équipe
+ *      . Notre association
+ *      . Mot du directeur
+ *      . Contact
+ *  - PÔLES (876)
+ *      . Main uses
+ *      . Projets
+ *      . Cours
+ *      . Forms
+ *      . Calendars
+ *      . Users list
+ *  - BESOIN D'AIDE (1094)
+ *  - DARK PAGE (1112)
+ *      . Main uses
+ *      . Navbar
+ *  - USER ACCOUNT (1247)
+ *      . User page
+ *      . Login
+ *      . Confirm password 
+ */
+
+
+/* ##########################   MAIN USES   ########################## */
+
+
+/* >>>>>>>>>>>>>>>>>>>> Style <<<<<<<<<<<<<<<<<<<< */
+
+.main {
+    font-family: 'Roboto';
+}
+
+a {
+    outline: none;
+}
 
 .line-under-title {
     height: 2px;
@@ -8,6 +64,37 @@
     border: none;
 }
 
+
+/* >>>>>>>>>>>>>>>>>>>> Paging <<<<<<<<<<<<<<<<<<<< */
+
+.page {
+    position: relative;
+    min-height: 100vh;
+}
+
+.link-margin-top {
+    margin-top: 40px;
+}
+
+.page-link {
+    color: #254395;
+}
+
+.page-item.active .page-link {
+    background-color: #254395;
+    border-color: #254395;
+}
+
+@media only screen and (max-width: 992px) {
+    #content {
+        padding-bottom: 423.33px;
+        /* Footer height */
+    }
+}
+
+
+/* >>>>>>>>>>>>>>>>>>>> Button <<<<<<<<<<<<<<<<<<<< */
+
 .line-voir-plus {
     height: 2px;
     color: #A4A4A4;
@@ -15,6 +102,9 @@
     width: 100%;
     border: none;
 }
+
+
+/* >>>>>>>>>>>>>>>>>>>> Image <<<<<<<<<<<<<<<<<<<< */
 
 .profil-rounded {
     width: 110px;
@@ -27,36 +117,28 @@
     background-size: cover;
 }
 
-.main {
-    font-family: 'Roboto';
+
+/* >>>>>>>>>>>>>>>>>>>> Members <<<<<<<<<<<<<<<<<<<< */
+
+.sep-items {
+    margin-bottom: 30px;
 }
 
-a {
-    outline: none;
+.link-member {
+    color: black;
 }
 
-.page {
-    position: relative;
-    min-height: 100vh;
+a.link-member:hover {
+    color: black;
+    text-decoration: underline;
 }
 
-#content {
-    padding-bottom: 250px;
-    /* Footer height */
+.desc {
+    resize: none;
 }
 
-@media only screen and (max-width: 992px) {
-    #content {
-        padding-bottom: 423.33px;
-        /* Footer height */
-    }
-}
 
-.card-title {
-    font-size: 1.1rem;
-}
-
-/* ##########################   Card   ########################## */
+/* >>>>>>>>>>>>>>>>>>>> Cards <<<<<<<<<<<<<<<<<<<< */
 
 #projets-container .card,
 #proj-card .card,
@@ -86,8 +168,37 @@ a {
     height: 11rem;
 }
 
+.card-title {
+    font-size: 1.1rem;
+}
 
-/* ##########################   Breadcrumb   ########################## */
+
+/* >>>>>>>>>>>>>>>>>>>> Filters <<<<<<<<<<<<<<<<<<<< */
+
+.filter-options {
+    background-color: #E5E5E5;
+    margin-top: 20px;
+    padding-top: 5px;
+    padding-bottom: 23px;
+}
+
+.filter-options .col-md-3 {
+    margin-top: 10px;
+}
+
+.col-md-3 button {
+    width: 100%;
+}
+
+.btn-search:focus {
+    outline: 0 !important;
+}
+
+
+/* ##########################   LAYOUT   ########################## */
+
+
+/* >>>>>>>>>>>>>>>>>>>> Breacrumb <<<<<<<<<<<<<<<<<<<< */
 
 .breadcrumb-container {
     margin-top: 72px;
@@ -113,12 +224,12 @@ a {
     }
 }
 
-/* ##########################   Gestion de la navbar   ########################## */
 
+/* >>>>>>>>>>>>>>>>>>>> Navbar <<<<<<<<<<<<<<<<<<<< */
 
-/*li.dropdown:hover>.dropdown-menu {
-display: block;
-}*/
+li.dropdown:hover>.dropdown-menu {
+    display: block;
+}
 
 .navbar-light .navbar-nav .nav-link {
     color: white;
@@ -255,13 +366,17 @@ display: block;
 }
 
 
-/* ##########################   Gestion du footer   ########################## */
+/* >>>>>>>>>>>>>>>>>>>> Footer <<<<<<<<<<<<<<<<<<<< */
 
 #footer {
     position: absolute;
     bottom: 0;
     width: 100%;
     min-height: 200px;
+}
+
+#content {
+    padding-bottom: 250px;
 }
 
 .page-footer {
@@ -332,10 +447,10 @@ display: block;
 }
 
 
-/* ##########################   Page d'accueil   ########################## */
+/* ##########################   WELCOME PAGE   ########################## */
 
 
-/* Général */
+/* >>>>>>>>>>>>>>>>>>>> Main uses <<<<<<<<<<<<<<<<<<<< */
 
 .section.grise {
     background-color: #e4ecfe;
@@ -357,7 +472,7 @@ display: block;
 }
 
 
-/* Carousel d'actualités */
+/* >>>>>>>>>>>>>>>>>>>> Carousel of news <<<<<<<<<<<<<<<<<<<< */
 
 #carousel-actualite .styled {
     border-radius: 50px;
@@ -424,7 +539,7 @@ display: block;
 }
 
 
-/* Activités */
+/* >>>>>>>>>>>>>>>>>>>> Activités <<<<<<<<<<<<<<<<<<<< */
 
 #poles-activites .card {
     margin: 10px;
@@ -459,7 +574,8 @@ display: block;
     background-size: 150% 150%;
 }
 
-/* Nos projets */
+
+/* >>>>>>>>>>>>>>>>>>>> Nos projets <<<<<<<<<<<<<<<<<<<< */
 
 @media (max-width: 767px) {
     #nos-projets .carousel-inner .carousel-item>div {
@@ -536,7 +652,7 @@ display: block;
 }
 
 
-/* Agenda */
+/* >>>>>>>>>>>>>>>>>>>> Agenda <<<<<<<<<<<<<<<<<<<< */
 
 .google-agenda {
     position: relative;
@@ -549,7 +665,7 @@ display: block;
 
 .google-agenda iframe {
     position: absolute;
-    top:0;
+    top: 0;
     left: 0;
     width: 100%;
     height: 100%;
@@ -570,7 +686,7 @@ display: block;
 }
 
 
-/* Quelques chiffres */
+/* >>>>>>>>>>>>>>>>>>>> Quelques chiffres <<<<<<<<<<<<<<<<<<<< */
 
 #quelques-chiffres {
     padding-bottom: 50px;
@@ -589,7 +705,7 @@ display: block;
 }
 
 
-/* Partenaires */
+/* >>>>>>>>>>>>>>>>>>>> Partenaires <<<<<<<<<<<<<<<<<<<< */
 
 #partenariat .logo-pres {
     width: 213px;
@@ -608,7 +724,7 @@ display: block;
 }
 
 
-/* Notre équipe */
+/* >>>>>>>>>>>>>>>>>>>> Notre équipe <<<<<<<<<<<<<<<<<<<< */
 
 #equipe {
     margin-bottom: -80px;
@@ -637,7 +753,7 @@ display: block;
 }
 
 
-/* Notre association */
+/* >>>>>>>>>>>>>>>>>>>> Notre association <<<<<<<<<<<<<<<<<<<< */
 
 #association img {
     max-width: 100%;
@@ -670,8 +786,7 @@ display: block;
 }
 
 
-/* Mot du directeur */
-
+/* >>>>>>>>>>>>>>>>>>>> Mot du directeur <<<<<<<<<<<<<<<<<<<< */
 
 #mot-du-directeur {
     text-align: center;
@@ -723,7 +838,7 @@ display: block;
 }
 
 
-/* Contact */
+/* >>>>>>>>>>>>>>>>>>>> Contact <<<<<<<<<<<<<<<<<<<< */
 
 @media only screen and (max-width: 1200px) {
     #contact .row {
@@ -758,9 +873,227 @@ display: block;
 }
 
 
-/* ##########################   Besoin d'aide   ########################## */
+/* ##########################   PÔLES   ########################## */
 
-/*#besoin-aide .formulaire-besoin-aide {
+
+/* >>>>>>>>>>>>>>>>>>>> Main uses <<<<<<<<<<<<<<<<<<<< */
+
+.respo {
+    margin-top: 20px;
+}
+
+
+/* >>>>>>>>>>>>>>>>>>>> Projets <<<<<<<<<<<<<<<<<<<< */
+
+.user-link {
+    color: black;
+}
+
+.user-link:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.chef-projet:hover {
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+#projet #carouselExampleIndicators {
+    height: 400px;
+    width: 600px;
+}
+
+#projet .carousel-inner {
+    height: 100%;
+    width: 100%;
+}
+
+#projet .carousel-item {
+    height: 100%;
+    width: 100%;
+}
+
+#projet #carouselExampleIndicators img {
+    height: 100%;
+    width: 100%;
+}
+
+
+/* >>>>>>>>>>>>>>>>>>>> Cours <<<<<<<<<<<<<<<<<<<< */
+
+i#chevron-date-supports {
+    color: #254395;
+}
+
+a.link-black {
+    color: black;
+    cursor: default;
+}
+
+a.link-black:hover {
+    cursor: default;
+}
+
+.support-download-hover:hover {
+    color: #007bff;
+}
+
+.sep-chevr {
+    margin-bottom: 15px;
+    padding-right: 0px;
+}
+
+div.bordure {
+    border-bottom: 1px solid #5C6FA3;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+#cours .disp img {
+    width: 100%;
+}
+
+#cours .col-md-auto {
+    display: flex;
+    justify-content: center;
+}
+
+@media only screen and (max-width: 992px) {
+    #cours .disp img {
+        width: 300px;
+        padding-bottom: 30px;
+    }
+    #cours .col-3 {
+        display: flex;
+        justify-content: center;
+    }
+    #cours #description .row {
+        flex-direction: column;
+    }
+    #cours .disp {
+        min-width: 100%;
+    }
+}
+
+
+/* >>>>>>>>>>>>>>>>>>>> Forms <<<<<<<<<<<<<<<<<<<< */
+
+.form-title {
+    margin-top: 40px;
+}
+
+.form-title-small {
+    margin-top: 10px;
+    font-size: 1.1rem;
+}
+
+
+/* >>>>>>>>>>>>>>>>>>>> Calendars <<<<<<<<<<<<<<<<<<<< */
+
+#calendar-pres #calendar-dist #calendar-comp #calendar-pres-upd #calendar-dist-upd #calendar-comp-upd {
+    visibility: hidden;
+    max-width: 250px;
+}
+
+#loader {
+    color: #008cff;
+    height: 40px;
+    width: 30%;
+    position: absolute;
+    top: 45%;
+    left: 45%;
+}
+
+#cal-pres-dates #cal-dist-dates #cal-comp-dates #cal-pres-dates-upd #cal-dist-dates-upd #cal-comp-upd {
+    display: block;
+}
+
+.e-calendar .e-content td.e-selected span.e-day,
+.e-bigger.e-small .e-calendar .e-content td.e-selected span.e-day {
+    background-color: #254395;
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+}
+
+.e-calendar .e-content td.e-today.e-selected:hover span.e-day,
+.e-calendar .e-content td.e-selected:hover span.e-day,
+.e-calendar .e-content td.e-selected.e-focused-date span.e-day,
+.e-bigger.e-small .e-calendar .e-content td.e-today.e-selected:hover span.e-day,
+.e-bigger.e-small .e-calendar .e-content td.e-selected:hover span.e-day,
+.e-bigger.e-small .e-calendar .e-content td.e-selected.e-focused-date span.e-day {
+    background-color: #254395;
+    color: #fff;
+}
+
+.e-calendar .e-content td.e-today:hover span.e-day,
+.e-calendar .e-content td.e-focused-date.e-today:hover span.e-day,
+.e-calendar .e-content td.e-focused-date.e-today:focus span.e-day,
+.e-bigger.e-small .e-calendar .e-content td.e-today:hover span.e-day,
+.e-bigger.e-small .e-calendar .e-content td.e-focused-date.e-today:hover span.e-day,
+.e-bigger.e-small .e-calendar .e-content td.e-focused-date.e-today:focus span.e-day {
+    background-color: #eee;
+    border: 1px solid #254395;
+    color: #254395;
+}
+
+.e-calendar .e-content td.e-focused-date.e-today span.e-day,
+.e-bigger.e-small .e-calendar .e-content td.e-focused-date.e-today span.e-day {
+    background: #eee;
+    border: 1px solid #254395;
+    color: #254395;
+}
+
+.e-calendar .e-content td.e-today.e-selected span.e-day,
+.e-bigger.e-small .e-calendar .e-content td.e-today.e-selected span.e-day {
+    background-color: #254395;
+    border: 1px solid #254395;
+    box-shadow: inset 0 0 0 2px #fff;
+    color: #fff;
+}
+
+.e-calendar .e-content td.e-today span.e-day,
+.e-calendar .e-content td.e-focused-date.e-today span.e-day,
+.e-bigger.e-small .e-calendar .e-content td.e-today span.e-day,
+.e-bigger.e-small .e-calendar .e-content td.e-focused-date.e-today span.e-day {
+    background: none;
+    border: 1px solid #254395;
+    border-radius: 50%;
+    color: #254395;
+}
+
+
+/* >>>>>>>>>>>>>>>>>>>> Users list <<<<<<<<<<<<<<<<<<<< */
+
+.total-members {
+    font-style: italic;
+    margin-bottom: 0;
+}
+
+.respo #nom {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: black;
+}
+
+.respo:hover {
+    color: underline black;
+}
+
+.respo #fonction {
+    margin-top: -10px;
+    text-align: center;
+    color: #4d4d4d;
+}
+
+
+/* ##########################   BESOIN D'AIDE   ########################## */
+
+#besoin-aide .formulaire-besoin-aide {
     padding-left: 100px;
     padding-right: 100px;
 }
@@ -773,13 +1106,13 @@ display: block;
 #besoin-aide {
     padding-top: 20px;
     padding-bottom: 100px;
-}*/
+}
 
 
-/* ##########################   Dark page   ########################## */
+/* ##########################   DARK PAGE   ########################## */
 
 
-/* Général */
+/* Main uses */
 
 .dark-page .s-title {
     background-color: white;
@@ -911,182 +1244,26 @@ display: block;
 }
 
 
-/* ##########################   Filter options   ########################## */
+/* ##########################   USER ACCOUNT   ########################## */
 
-.filter-options {
-    background-color: #E5E5E5;
-    margin-top: 20px;
-    padding-top: 5px;
-    padding-bottom: 23px;
+
+/* >>>>>>>>>>>>>>>>>>>> User page <<<<<<<<<<<<<<<<<<<< */
+
+.title-users {
+    margin-bottom: 25px;
+    padding-left: 0;
 }
 
-.filter-options .col-md-3 {
-    margin-top: 10px;
+.title-users:first-of-type {
+    margin-top: 0;
 }
 
-.col-md-3 button {
-    width: 100%;
-}
-
-.btn-search:focus {
-    outline: 0 !important;
-}
-
-
-/* ##########################   ////   ########################## */
-
-.sep-items {
+.user {
     margin-bottom: 30px;
 }
 
-.link-member {
-    color: black;
-}
 
-a.link-member:hover {
-    color: black;
-    text-decoration: underline;
-}
-
-.desc {
-    resize: none;
-}
-
-
-/* ##########################   Cours   ########################## */
-
-i#chevron-date-supports {
-    color: #254395;
-}
-
-a.link-black {
-    color: black;
-    cusor: default;
-}
-
-a.link-black:hover {
-    cursor: default;
-}
-
-.support-download-hover:hover {
-    color: #007bff;
-}
-
-.sep-chevr {
-    margin-bottom: 15px;
-    padding-right: 0px;
-}
-
-div.bordure {
-    border-bottom: 1px solid #5C6FA3;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    margin-right: 20px;
-    margin-left: 20px;
-}
-
-#cours .disp img {
-    width: 100%;
-}
-
-#cours .col-md-auto {
-    display: flex;
-    justify-content: center;
-}
-
-@media only screen and (max-width: 992px) {
-    #cours .disp img {
-        width: 300px;
-        padding-bottom: 30px;
-    }
-    #cours .col-3 {
-        display: flex;
-        justify-content: center;
-    }
-    #cours #description .row {
-        flex-direction: column;
-    }
-    #cours .disp {
-        min-width: 100%;
-    }
-}
-
-
-/* ##########################   Calendriers   ########################## */
-
-#calendar-pres #calendar-dist #calendar-comp #calendar-pres-upd #calendar-dist-upd #calendar-comp-upd {
-    visibility: hidden;
-    max-width: 250px;
-}
-
-#loader {
-    color: #008cff;
-    height: 40px;
-    width: 30%;
-    position: absolute;
-    top: 45%;
-    left: 45%;
-}
-
-#cal-pres-dates #cal-dist-dates #cal-comp-dates #cal-pres-dates-upd #cal-dist-dates-upd #cal-comp-upd {
-    display: block;
-}
-
-.e-calendar .e-content td.e-selected span.e-day,
-.e-bigger.e-small .e-calendar .e-content td.e-selected span.e-day {
-    background-color: #254395;
-    border: none;
-    border-radius: 50%;
-    color: #fff;
-}
-
-.e-calendar .e-content td.e-today.e-selected:hover span.e-day,
-.e-calendar .e-content td.e-selected:hover span.e-day,
-.e-calendar .e-content td.e-selected.e-focused-date span.e-day,
-.e-bigger.e-small .e-calendar .e-content td.e-today.e-selected:hover span.e-day,
-.e-bigger.e-small .e-calendar .e-content td.e-selected:hover span.e-day,
-.e-bigger.e-small .e-calendar .e-content td.e-selected.e-focused-date span.e-day {
-    background-color: #254395;
-    color: #fff;
-}
-
-.e-calendar .e-content td.e-today:hover span.e-day,
-.e-calendar .e-content td.e-focused-date.e-today:hover span.e-day,
-.e-calendar .e-content td.e-focused-date.e-today:focus span.e-day,
-.e-bigger.e-small .e-calendar .e-content td.e-today:hover span.e-day,
-.e-bigger.e-small .e-calendar .e-content td.e-focused-date.e-today:hover span.e-day,
-.e-bigger.e-small .e-calendar .e-content td.e-focused-date.e-today:focus span.e-day {
-    background-color: #eee;
-    border: 1px solid #254395;
-    color: #254395;
-}
-
-.e-calendar .e-content td.e-focused-date.e-today span.e-day,
-.e-bigger.e-small .e-calendar .e-content td.e-focused-date.e-today span.e-day {
-    background: #eee;
-    border: 1px solid #254395;
-    color: #254395;
-}
-
-.e-calendar .e-content td.e-today.e-selected span.e-day,
-.e-bigger.e-small .e-calendar .e-content td.e-today.e-selected span.e-day {
-    background-color: #254395;
-    border: 1px solid #254395;
-    box-shadow: inset 0 0 0 2px #fff;
-    color: #fff;
-}
-
-.e-calendar .e-content td.e-today span.e-day,
-.e-calendar .e-content td.e-focused-date.e-today span.e-day,
-.e-bigger.e-small .e-calendar .e-content td.e-today span.e-day,
-.e-bigger.e-small .e-calendar .e-content td.e-focused-date.e-today span.e-day {
-    background: none;
-    border: 1px solid #254395;
-    border-radius: 50%;
-    color: #254395;
-}
-
-/* ##########################   Login   ########################## */
+/* >>>>>>>>>>>>>>>>>>>> Login <<<<<<<<<<<<<<<<<<<< */
 
 .login-container {
     width: 100%;
@@ -1097,7 +1274,6 @@ div.bordure {
 }
 
 .login-container .container {
-    /*padding-top: 7rem;*/
     color: white;
 }
 
@@ -1201,120 +1377,9 @@ div.bordure {
 }
 
 
-/* ##########################   Confirm password   ########################## */
+/* >>>>>>>>>>>>>>>>>>>> Confirm password <<<<<<<<<<<<<<<<<<<< */
 
 #confirm .password-forget {
     background-color: transparent;
     margin-left: 16px;
-}
-
-
-/* ##########################   List users   ########################## */
-
-.total-members {
-    font-style: italic;
-    margin-bottom: 0;
-}
-
-.respo #nom {
-    margin-top: 20px;
-    text-align: center;
-    font-size: 1.2em;
-    font-weight: bold;
-    color: black;
-}
-
-.respo:hover {
-    color: underline black;
-}
-
-.respo #fonction {
-    margin-top: -10px;
-    text-align: center;
-    color: #4d4d4d;
-}
-
-
-/* ##########################   Users index page   ########################## */
-
-.title-users {
-    margin-bottom: 25px;
-    padding-left: 0;
-}
-
-.title-users:first-of-type {
-    margin-top: 0;
-}
-
-.user {
-    margin-bottom: 30px;
-}
-
-
-/* ##########################   Pagination   ########################## */
-
-.link-margin-top {
-    margin-top: 40px;
-}
-
-.page-link {
-    color: #254395;
-}
-
-.page-item.active .page-link {
-    background-color: #254395;
-    border-color: #254395;
-}
-
-
-/* ##########################   Projet show   ########################## */
-
-.user-link {
-    color: black;
-}
-
-.user-link:hover {
-    color: black;
-    text-decoration: none;
-}
-
-.chef-projet:hover {
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
-}
-
-#projet #carouselExampleIndicators {
-    height: 400px;
-    width: 600px;
-}
-
-#projet .carousel-inner {
-    height: 100%;
-    width: 100%;
-}
-
-#projet .carousel-item {
-    height: 100%;
-    width: 100%;
-}
-
-#projet #carouselExampleIndicators img {
-    height: 100%;
-    width: 100%;
-}
-
-/* ##########################   Pôle   ########################## */
-
-.respo {
-    margin-top: 20px;
-}
-
-/* ##########################   Create / edit form   ########################## */
-
-.form-title {
-    margin-top: 40px;
-}
-
-.form-title-small {
-    margin-top: 10px;
-    font-size: 1.1rem;
 }
