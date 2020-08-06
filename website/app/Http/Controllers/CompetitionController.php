@@ -3,21 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Competition;
-
 use App\Pole;
-
 use App\Date;
-
 use Illuminate\Support\Facades\Storage;
 
+/**
+ * Controller linked to the competitions.
+ */
 class CompetitionController extends Controller
 {
 	/**
 	 * List all the competitions.
 	 *
-	 * @return \Illuminate\Http\Response
+	 * @return a view with the list of all competitions.
 	 */
     public function index()
 	{
@@ -27,17 +26,18 @@ class CompetitionController extends Controller
 	/**
 	 * Show a specified competition.
 	 *
-	 * @return \Illuminate\Http\Response
+	 * @param compet: the competition that will be shown.
+	 * @return the view of the competition.
 	 */
 	public function show(Competition $compet)
 	{
-		return view('poles/competitions/show', [ 'compet' => $compet ]);
+		return view('poles.competitions.show', [ 'compet' => $compet ]);
 	}
 
 	/**
-	 * Show the form to create a competition.
+	 * Show the form to create a competition if the user is authorised to do so.
 	 *
-	 * @return \Illuminate\Http\Response
+	 * @return the view to create a competition.
 	 */
 	public function create()
 	{
@@ -48,26 +48,23 @@ class CompetitionController extends Controller
 	/**
 	 * Store a new competition.
 	 *
-	 * @return \Illuminate\Http\Response
+	 * @return redirect to the stored competition's page.
 	 */
 	public function store(Request $request)
 	{
 		$compet = Competition::create($this->validateCompetiton());
 
-		// add dates
+		/* add dates */
 		foreach ($request->dates_comp as $date)
 		{
-			// create a new date in the database
 			$newDate = Date::create([
 				'presentiel' => 1,
 				'date' => $date
 			]);
-
-			// add the date to the list of dates for this lesson
 			$compet->dates()->attach($newDate->id);
 		}
 
-		// add images
+		/* add images */
 		if ($request->has('images'))
         {
             $competImages = [];
@@ -80,8 +77,6 @@ class CompetitionController extends Controller
         else
             $compet->images = [$this->selectDefaultImage()];
 
-
-        // save competition
         $compet->save();
 
 		return redirect('/poles/competitions/' . $compet->id);
@@ -90,7 +85,8 @@ class CompetitionController extends Controller
 	/**
 	 * Show the form for editing the specified competition.
 	 *
-	 * @return \Illuminate\Http\Response
+	 * @param compet: the competition to edit.
+	 * @return the view to edit the competition
 	 */
 	public function edit(Competition $compet)
 	{
@@ -104,7 +100,7 @@ class CompetitionController extends Controller
 	 */
 	public function update(Competition $compet)
 	{
-		//TODO ce truc
+		//TODO update for competitions
 	}
 
 	/**
@@ -132,8 +128,8 @@ class CompetitionController extends Controller
 	/**
      * Save an image given by the user in the public storage folder.
      *
-     * @param $image: the image to be stored
-     * @return path to find the image
+     * @param image: the image to store.
+     * @return the path to find the image.
      */
     public function saveImage($image)
     {
@@ -144,7 +140,7 @@ class CompetitionController extends Controller
    	/**
 	 * Select a random default image.
 	 *
-	 * @return path to the image
+	 * @return the path to the image
 	 */
 	public function selectDefaultImage()
 	{

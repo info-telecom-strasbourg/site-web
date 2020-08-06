@@ -4,6 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Model for roles.
+ */
 class Role extends Model
 {
 	protected $guarded = [];

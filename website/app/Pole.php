@@ -4,6 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Model for poles.
+ */
 class Pole extends Model
 {
     protected $guarded = [];
@@ -19,7 +22,7 @@ class Pole extends Model
     }
 
 	/**
-     * Return all the projects of the pole. 
+     * Return all the projects of the pole.
      */
     public function projets()
     {

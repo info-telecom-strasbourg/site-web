@@ -4,13 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Model for competitions.
+ */
 class Competition extends Model
 {
 	protected $guarded = [];
 	public $timestamps = false;
 
 	/**
-	 * Get the competitors.
+	 * Get the competitors for a competition.
 	 */
 	public function competitors()
     {
