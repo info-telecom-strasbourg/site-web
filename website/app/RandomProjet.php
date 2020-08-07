@@ -13,6 +13,8 @@ class RandomProjet extends Model
 
     /**
      * Gets the associate project.
+	 *
+	 * @return a list of random projects.
      */
     public function projet()
     {

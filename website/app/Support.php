@@ -14,6 +14,8 @@ class Support extends Model
 
 	/**
 	 * Gets the lesson associated to the support.
+	 *
+	 * @return the lesson to witch the support belongs.
 	 */
     public function cours()
 	{

@@ -13,6 +13,8 @@ class Role extends Model
 
 	/**
      * Get the users with this role.
+	 *
+	 * @return the users that have this role.
      */
     public function users()
     {

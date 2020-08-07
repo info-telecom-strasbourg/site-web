@@ -11,6 +11,8 @@ class Collaborateur extends Model
 {
 	/**
 	 * Get the projects of a partner.
+	 *
+	 * @return the projects linked to the collaborators.
 	 */
     public function projets()
     {

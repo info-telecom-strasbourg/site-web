@@ -14,6 +14,8 @@ class Cours extends Model
 
 	/**
 	 * Get the list of creators of the lesson.
+	 *
+	 * @return the creators of the leson.
 	 */
     public function creators()
     {
@@ -22,6 +24,8 @@ class Cours extends Model
 
 	/**
 	 * Get the references of a lesson.
+	 *
+	 * @return the support of a lesson.
 	 */
     public function supports()
     {

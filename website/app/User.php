@@ -42,6 +42,8 @@ class User extends Authenticatable
 
     /**
      * Get the projects of the user.
+	 *
+	 * @return the projects to wich the user participated.
      */
     public function projets()
     {
@@ -51,6 +53,8 @@ class User extends Authenticatable
 
 	/**
 	 * Get the lessons of the user.
+	 *
+	 * @return all the lessons created by the user.
 	 */
 	public function cours()
 	{
@@ -59,6 +63,8 @@ class User extends Authenticatable
 
     /**
      * Get the role of the user.
+	 *
+	 * @return the role of the user.
      */
     public function role()
     {
@@ -70,8 +76,8 @@ class User extends Authenticatable
 	 * If a search value has been specified, search if the a title or the
 	 * description has this value otherwise return the query
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @param query: the user's query
+     * @return all users that match the scope.
      */
     public function scopeSearch($query)
     {

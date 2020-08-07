@@ -18,6 +18,8 @@ class Projet extends Model
 
     /**
      * Gets the project leader.
+	 *
+	 * @return the chief of the project.
      */
     public function chef()
     {
@@ -26,6 +28,8 @@ class Projet extends Model
 
     /**
      * Gets the pole of project.
+	 *
+	 * @return the pole to with the project belongs.
      */
     public function pole()
     {
@@ -34,6 +38,8 @@ class Projet extends Model
 
     /**
      * Gets the project partner.
+	 *
+	 * @return all the collaborators of a project.
      */
     public function collaborateur()
     {
@@ -42,6 +48,8 @@ class Projet extends Model
 
     /**
      * Gets the projects participants.
+	 *
+	 * @return all the participants of a project.
      */
     public function participants()
     {
@@ -53,8 +61,8 @@ class Projet extends Model
 	 * If a search value has been specified, search if the a title or the
 	 * description has this value otherwise return the query.
      *
-     * @param query: the query for the database search
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @param query: the query for the database search.
+     * @return the project that match the scope.
      */
     public function scopeSearch($query)
     {
@@ -64,8 +72,8 @@ class Projet extends Model
     /**
      * Scope a query to only include filtered projects.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @param query: the query for the database search.
+     * @return the project that match the filter.
      */
     public function scopeFilter($query)
     {

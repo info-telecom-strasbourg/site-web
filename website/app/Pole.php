@@ -15,6 +15,8 @@ class Pole extends Model
 
 	/**
      * Return the responsible of the pole.
+	 *
+	 * @return the user in charge of this pole.
      */
     public function respo()
     {
@@ -23,6 +25,8 @@ class Pole extends Model
 
 	/**
      * Return all the projects of the pole.
+	 *
+	 * @return all the projects of a pole.
      */
     public function projets()
     {

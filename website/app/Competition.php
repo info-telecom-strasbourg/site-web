@@ -14,6 +14,8 @@ class Competition extends Model
 
 	/**
 	 * Get the competitors for a competition.
+	 *
+	 * @return all the competitors of a competition.
 	 */
 	public function competitors()
     {
@@ -22,6 +24,8 @@ class Competition extends Model
 
 	/**
 	 * Get the list of dates for a competition.
+	 *
+	 * @return the dates of the competition.
 	 */
 	public function dates()
 	{
