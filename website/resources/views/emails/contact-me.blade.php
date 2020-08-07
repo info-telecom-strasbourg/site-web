@@ -1,3 +1,5 @@
+<!-- Send a mail for "Contact" -->
+
 @component('mail::message')
 
 # Demande de contact

@@ -1,3 +1,5 @@
+<!-- Layout of the website -->
+
 <!DOCTYPE html>
 <html lang="fr" local="fr">
 

@@ -1,3 +1,5 @@
+<!-- The darkpage -->
+<!-- WILL BE COMMENTED LATER -->
 @extends('layouts.layout')
 
 @section('title', 'Admin')
@@ -10,7 +12,7 @@
 
 <style>
     #content {
-        padding-bottom: 0;    /* Footer height */
+        padding-bottom: 0;    
     }
 </style>
 

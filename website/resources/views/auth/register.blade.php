@@ -1,3 +1,5 @@
+<!-- Creation of a member -->
+
 @extends('layouts.layout')
 
 @section('title', 'Liste des membres')
@@ -27,6 +29,8 @@
         @enderror
         <form method="POST" action="{{ route('register')}}" >
             @csrf
+
+            <!-- Give the member name -->
             <div class="form-group">
                 <label for="name" class="form-title-small">Nom</label>
 
@@ -38,6 +42,8 @@
                 </span>
                 @enderror
             </div>
+
+            <!-- Give the member email -->
             <div class="form-group">
                 <label for="email" class="form-title-small">Adresse email</label>
 
@@ -49,6 +55,8 @@
                 </span>
                 @enderror
             </div>
+
+            <!-- Give the member role -->
             <div class="form-group">
                 <label for="role" class="form-title-small">Rôle</label>
                 <select class="custom-select @error('role') is-invalid @enderror" id="role" name="role" required>
@@ -71,6 +79,8 @@
                 </span>
                 @enderror
             </div>
+
+            <!-- Give the member password -->
             <div class="form-group">
                 <label for="password" class="form-title-small">Mot de passe</label>
 
@@ -82,6 +92,8 @@
                     </span>
                     @enderror
             </div>
+
+            <!-- Confirm the member password -->
             <div class="form-group">
                 <label for="password-confirm" class="form-title-small">Confirmer le mot de passe</label>
 

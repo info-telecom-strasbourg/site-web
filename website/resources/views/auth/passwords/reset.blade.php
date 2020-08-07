@@ -1,3 +1,5 @@
+<!-- Reset the password -->
+
 @extends('layouts.layout')
 
 @section('title', 'Reset')
@@ -8,13 +10,13 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Reset Password') }}</div>
-
                 <div class="card-body">
                     <form method="POST" action="{{ route('password.update') }}">
                         @csrf
 
                         <input type="hidden" name="token" value="{{ $token }}">
 
+                        <!-- Give the email -->
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
@@ -29,6 +31,7 @@
                             </div>
                         </div>
 
+                        <!-- Give the new password -->
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
@@ -43,6 +46,7 @@
                             </div>
                         </div>
 
+                        <!-- Confirm the new password -->
                         <div class="form-group row">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
@@ -51,6 +55,7 @@
                             </div>
                         </div>
 
+                        <!-- Reset the password -->
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

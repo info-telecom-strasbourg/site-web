@@ -1,10 +1,12 @@
+<!-- Welcome page -->
+
 @extends('layouts.layout')
 
 @section('title', 'ITS')
 
 @section('content')
 
-<!-- Carousel d'actualités -->
+<!-- Carousel of the news -->
 <section class="section" id="actu">
     <div id="carousel-actualite" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
@@ -14,6 +16,7 @@
             <li data-target="#carousel-actualite" data-slide-to="3"></li>
         </ol>
         <div class="carousel-inner" height="100%">
+            <!-- First new -->
             <div class="carousel-item active actu full-screen" style="background: url('../images/actu/actu_1.jpg') top center; background-size: cover;">
                 <div class="carousel-caption">
                     <h1>Info Telecom Strasbourg</h1>
@@ -25,6 +28,8 @@
                     </form>
                 </div>
             </div>
+
+            <!-- Second new -->
             <div class="carousel-item actu full-screen" style="background: url('../images/actu/actu_2.jpg') top center; background-size: cover;">
                 <div class="carousel-caption">
                     <h1>RTS - Strategy</h1>
@@ -36,6 +41,8 @@
                     </form>
                 </div>
             </div>
+
+            <!-- Third new -->
             <div class="carousel-item actu full-screen" style="background: url('../images/actu/actu_3.jpg') top center; background-size: cover;">
                 <div class="carousel-caption">
                     <h1>Site web 2.0</h1>
@@ -47,6 +54,8 @@
                     </form>
                 </div>
             </div>
+
+            <!-- Fourth new -->
             <div class="carousel-item actu full-screen" style="background: url('../images/actu/actu_4.jpg') top center; background-size: cover;">
                 <div class="carousel-caption">
                     <h1>Collaborations</h1>
@@ -55,10 +64,14 @@
                 </div>
             </div>
         </div>
+
+        <!-- Arrow to go to the previous new -->
         <a class="carousel-control-prev" href="#carousel-actualite" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
         </a>
+
+        <!-- Arrow to go to the next new -->
         <a class="carousel-control-next" href="#carousel-actualite" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
@@ -66,7 +79,7 @@
     </div>
 </section>
 
-<!-- Pôles d'activités -->
+<!-- Poles -->
 <section class="section" id="poles-activites">
     <h1 class="title lg text-center"> Nos pôles d'activités </h1>
     <hr class="line-under-title">
@@ -83,7 +96,7 @@
     </div>
 </section>
 
-<!-- Nos projets -->
+<!-- Carousel of random projects -->
 <section class="section grise" id="nos-projets">
     <h1 class="title lg text-center"> Nos projets </h1>
     <hr class="line-under-title">
@@ -128,7 +141,7 @@
         <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=Europe%2FParis&amp;src=Mmg5MnVjcGx1Nm9pNzRpNXAzM3UybG5naGtAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;color=%23F6BF26&amp;showTitle=0&amp;showPrint=0&amp;showTabs=1&amp;showTz=0&amp;showCalendars=0" style="border:solid 1px #777" width="400px" height="600" frameborder="0" scrolling="no" id="agenda-frame"></iframe> </div>
 </section>
 
-<!-- Notre association -->
+<!-- Our association -->
 <section class="section grise" id="association">
     <h1 class="title lg text-center"> Notre association </h1>
     <hr class="line-under-title">
@@ -151,7 +164,7 @@
     </div>
 </section>
 
-<!-- Notre équipe -->
+<!-- Our team -->
 <section class="section" id="equipe">
     <h1 class="title lg text-center"> Notre équipe </h1>
     <hr class="line-under-title">
@@ -172,7 +185,7 @@
     </div>
 </section>
 
-<!-- Quelques chiffres -->
+<!-- Some figures -->
 <section class="section grise" id="quelques-chiffres">
     <h1 class="title lg text-center"> Quelques chiffres </h1>
     <hr class="line-under-title">
@@ -200,7 +213,7 @@
     </div>
 </section>
 
-<!-- Le mot du directeur -->
+<!-- A word from the director -->
 <section class="section" id="mot-du-directeur">
     <h1 class="title lg text-center"> Le mot du Directeur </h1>
     <hr class="line-under-title">
@@ -215,7 +228,7 @@
     </div>
 </section>
 
-<!-- Partenariat -->
+<!-- Collaboration -->
 <section class="section grise" id="partenariat">
     <h1 class="title lg text-center"> Nos collaborateurs </h1>
     <hr class="line-under-title">
@@ -248,7 +261,7 @@
                 </div>
             </div>
             <div id="contact_cont" class="contact-form col-md-5">
-                <!-- Confirmtion email was send -->
+                <!-- Confirmation email was sent -->
                 @if (session('message'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         {{ session('message') }}

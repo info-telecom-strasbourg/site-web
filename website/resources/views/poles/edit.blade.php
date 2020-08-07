@@ -1,3 +1,5 @@
+<!-- Edit a pole -->
+
 @extends('layouts.layout')
 
 @section('title', 'Édition d\'un pôle')
@@ -20,7 +22,7 @@
     		@csrf
     		@method('PUT')
 
-    		<!-- Titre -->
+    		<!-- Title of the pole -->
     		<div class="form-group">
     			<label class="form-title-small" for="title">Titre</label>
     			<div class="control">
@@ -33,7 +35,7 @@
     		</span>
     		@enderror
 
-    		<!-- Decription -->
+    		<!-- Description of the pole -->
     		<div class="form-group">
     			<label class="form-title-small" for="desc">Decription</label>
     			<div class="control">
@@ -46,7 +48,7 @@
     		</span>
     		@enderror
 
-    		<!-- Bouton submit -->
+    		<!-- Button to edit the pole -->
     		<div class="text-center" style="margin-top:25px; margin-bottom:25px">
     			<button type="submit" class="btn btn-primary btn-rounded">Enregistrer</button>
     		</div>

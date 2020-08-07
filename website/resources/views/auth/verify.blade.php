@@ -1,3 +1,5 @@
+<!-- Send a fresh verification link by mail -->
+
 @extends('layouts.layout')
 
 @section('content')
