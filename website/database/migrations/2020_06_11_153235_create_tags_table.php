@@ -18,9 +18,7 @@ class CreateTagsTable extends Migration
 		 * Tags for the lessons.
 		 */
 		Schema::create('tags', function (Blueprint $table) {
-			/* Tag's id */
             $table->id();
-			/* Tag's name */
 			$table->string('tag');
         });
     }

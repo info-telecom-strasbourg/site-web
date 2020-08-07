@@ -18,14 +18,10 @@ class CreateRandomProjetsTable extends Migration
 		 * Table for randomized project (displayed in home page)
 		 */
         Schema::create('random_projets', function (Blueprint $table) {
-			/* Randomized project's id */
             $table->id();
-			/* Real project's id */
             $table->BigInteger('projet_id')->unsigned();
-			/* Date of creation of the randomized project */
             $table->timestamps();
-			/* Indicate that "projet_id" is a foreign key linked to
-			project's id */
+
             $table->foreign('projet_id')
                 ->references('id')
                 ->on('projets');

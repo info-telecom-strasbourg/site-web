@@ -18,18 +18,12 @@ class CreateSupportsTable extends Migration
 		 * References for lessons.
 		 */
 		Schema::create('supports', function (Blueprint $table) {
-			/* Support's id */
             $table->id();
-			/* Support's reference */
 			$table->string('ref');
-			/* Support's visibility (to choose if only members can see it) */
 			$table->boolean('visibility')->default(false);
-			/* Support's name */
 			$table->string('name');
-			/* The lesson linked to the support id */
 			$table->BigInteger('cours_id')->unsigned();
-			/* Indicate that "cours_id" is a foreign key linked to
-			lesson's id */
+
 			$table->foreign('cours_id')
                 ->references('id')
                 ->on('cours')

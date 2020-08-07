@@ -18,15 +18,10 @@ class CreateRolesTable extends Migration
 		 * Table of roles.
 		 */
         Schema::create('roles', function (Blueprint $table) {
-			/* Role's id */
             $table->id();
-			/* Role's name */
             $table->string('role');
-			/* associated post */
             $table->string('poste');
-			/* Indicate if the role is unique */
             $table->boolean('is_unique')->default(0);
-			/* Date of creation of the role */
             $table->timestamps();
         });
     }
