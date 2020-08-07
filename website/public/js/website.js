@@ -417,13 +417,6 @@ $(document).ready(function() {
 			problem = true;
 	    }
 
-		if (parseInt(cover.get(0).files.length) === 0)
-		{
-			e.preventDefault();
-			alert("Il faut au moins une image pour présenter la compétition");
-			problem = true;
-	    }
-
 		if (calendarComp.values.length === 0)
 		{
 			e.preventDefault();
