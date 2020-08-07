@@ -1,91 +1,92 @@
-# Conventions et utilitées générales
+# ITS website
 
-## Les couleurs
+This is the ITS website! It contains all the news, projects, members and information of the association. Good reading!
 
-Header/navbar/bouton/lien breadcrump: <span style="background-color:#274494">#274494</span>
+## Description
+On this website, there are :
+- A welcome page containing the news, the different poles, some random projects, an agenda, a description of the association, the team, some figures, a word of the director, the collaborators and a contact section.
+- A page for each pole containing the linked projects
+- A page for each project giving all the information necessary for a good understanding of the project.
+- A page to find all the projects
+- A page to find all the members
+- A helpdesk (Besoin d'aide) to help members in case of problems
+- A page to login
+- A page for each user
 
-Trait en dessous du titre de la page: <span style="background-color:#4472C4">#4472C4</span>
+## Future features
+On the website, it is planned that we will soon develop:
+- The darkpage (an admin page containing a general section, a member section and a news section)
+- Comments sections
+- A timeline and an evolution for each project
+- A timeline for each pole
+- A suggestion box page
 
-Bleu foncé de navbar: <span style="background-color:#254395">#254395</span>
+If you have other ideas, do not hesitate to let us know ;)
 
-Bleu clair de navbar: <span style="background-color:#5C6FA3">#5C6FA3</span>
+## Programming languages
+This project is coded with :
+- `php` with the framework `Laravel`
+- `css` with the framework `Bootstrap`
 
-Le gris des barres à côté du bouton "voir-plus": <span style="background-color:#A4A4A4; color: black">#A4A4A4</span>
+If you want to contribute to this project, we recommend that you master the basics of these languages. You can find tutorials on Openclassroom, and to learn Laravel, we highly recommend this one: https://laracasts.com/series/laravel-6-from-scratch.
 
-## Les classes dans le CSS
 
-`class="line-under-title"` pour les lignes sous les titres de pages
+## Project installation
 
-`class="line-voir-plus"` pour les lignes à côté du bouton "voir-plus"
-`class="btn-rounded"` pour les bouton du style "voir-plus"
+If you're here, you've probably already cloned the repository. We will assume that you have already followed the Laravel tutorial and performed all the installations presented in episodes 2 and 3. In addition, a php version greater than 7.3.0 is required (`php -v` to know your version).
 
-## Conventions utilisées
+If so, follow the next instructions and everything should be fine (in theory)!
 
-Nom des variables et des méthodes (fonctions): Camel classes
-
-Exemple: respoName (et non pas respo_name)
-
-Langue: Anglais (ou du moins on essaye)
-
-Pour les noms de colonnes des bdd: repo_name
-
-## Pour installer le projet
-
-Si vous êtes ici, vous avez surement déjà clonné le repo. Nous suposerons que vous avez déjà suivit le tutoriel Laravel et procédé à toute les installations présentées dansles épisodes 2 et 3. De plus, une version de php supérieur à 7.3.0 est requise (`php -v` pour connaître votre version).
-
-Une fois que toutes ces condition sont remplies, suivez les instructions et tout devrait bien se passer (en théorie)
-
-Commencer par vous places dans le répertoire `site-web/website`, puis entrez les commandes:
+Start by going into the directory `site-web/website`, then enter the command:
 ```sh
 composer install
 ```
 
-Un fichier `.env.example` est présent dans le repertoire website, renommez le en `.env`.
-Modifiez ensuite les information concernant la connection à la base de donnée.
-Il faut avoir déjà créé un BDD pour pouvoir s'y connecter.
+A file `.env.example` a file is present in the website directory, rename it to `.env`. Then modify the information concerning the connection to the database. You must have already created a database to be able to connect to it.
 
-Les lignes à modifier sont:
+The lines to modify are:
 ```
-DB_DATABASE=nom_de_la_database
-DB_USERNAME=votre_nom_d_utilisateur_mysql
-DB_PASSWORD=votre_mdp_mysql
+DB_DATABASE=name_of_the_database
+DB_USERNAME=your_mysql_username
+DB_PASSWORD=your_mysql_password
 ```
 
-Pour ceux qui ne se souvienne pas comment créer une BDD:
+For those who don't remember how to create a database. If you don't have a password,
 ```sh
 sudo mysql -u root
 ```
-Si vous n'avez pas de mot-de-passe, et sinon
+Otherwise,
 ```sh
 sudo mysql -u root -p
 ```
-Le premier mot-de-passe est pour sudo, le second est celui de mysql. Si vous ne vous souvenez pas de votre mdp, essayez `root`, on sait jamais ^^
+The first password is for sudo, the second is for mysql. If you don't remember your password, try `root`, we never know^^
 
-Puis pour créer la BDD:
+Then, to create the database:
 ```sh
-CREATE DATABASE nom_de_la_database;
+CREATE DATABASE name_of_the_database;
 ```
-Notez qu'il y a un `;` à la fin de la commande ;)
-Vous avez votre BDD !!! :D
-Pour la gérer, je vous conseil tablePlus ou un autre logiciel permettant de gérer les BDD (on va éviter d'utiliser le terminal pour ça c'est plutôt pénible)
+Note that there is a `;` at the end of the command;)
+Now, you have your BDD !!! :D
+To manage it, I recommend tablePlus or another software to manage databases (we will avoid using the terminal for that it's rather painful)
 
-Retournons à l'installation:
+Let's go back to the installation:
 ```sh
 php artisan key:generate
 php artisan serve
 ```
-La dernière commande permet de lancer le serveur local. À présent, vous pouvez y aller :D
+The last command starts the local server. Now everything is ready :D
 
-## En cas de problèmes de connections à la BDD
+## Database
+### In case of connection problems to the database
 
-Essayez ces 3 commandes:
+Try these 3 commands:
 ```sh
 php artisan config:cache
 php artisan config:clear
 php artisan cache:clear
 ```
 
-Dans le php.ini, décommenter les lignes:
+In the php.ini, uncomment lines:
 
 ```
 extension=curl
@@ -95,13 +96,44 @@ extension=openssl
 extension=pdo_mysql
 extension=pdo_pgsql
 ```
+### Simplification of the filling of the database
+If you want to simplify the filling of the database, you can use the file `sql_web.txt` (wich contains a list of commands) in mysql. This file isn't on Github, but only given to the project members.
 
-## Quelques rappels Git
+## General conventions
 
-Essayez de créer une branch par fonctionnalitée:
-```sh
-git checkout -b nom_de_la_branche
-```
-Mettez des messages clairs pour les commits et n'oubliez pas: 1 commit=un changement, un ajout.
+### Colors
 
-## Les conseils du chef
+- Header/navbar/button/breadcrump link: <span style="background-color:#274494">#274494</span>
+
+- Line below the page title: <span style="background-color:#4472C4">#4472C4</span>
+
+- Dark blue for the navbar: <span style="background-color:#254395">#254395</span>
+
+- Light blue for the navbar: <span style="background-color:#5C6FA3">#5C6FA3</span>
+
+- Gray for the lines next to the "voir-plus" button: <span style="background-color:#A4A4A4; color: black">#A4A4A4</span>
+
+### CSS classes
+
+- `class="line-under-title"` for lines under page titles
+
+- `class="line-voir-plus"` for the lines next to the "voir-plus" button
+- `class="btn-rounded"` for the "voir-plus" button style
+
+### Conventions used
+
+- Name of variables and methods (functions): Camel classes. Example: respoName (and not respo_name)
+
+- Language: English 
+
+- For database column names: repo_name
+
+## Contributors
+- [Clara SCHILD](https://github.com/cschild)
+- [Thomas RIVES](https://github.com/ThomasRives)
+- [Hugo LAULLIER](https://github.com/HugoLaullier)
+- [Clément ROSSETTI](https://github.com/Zetsyog)
+- [Valentin COMPS](https://github.com/VComps)
+- [Lucas SCHAEFFER](https://github.com/Lucas-67)
+
+
