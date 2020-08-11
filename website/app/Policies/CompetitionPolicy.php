@@ -42,8 +42,7 @@ class CompetitionPolicy
      */
     public function create(User $user)
     {
-
-		return auth()->check() && ($user->role_id == Role::where('role', 'Responsable compétition')->pluck('id')->first());
+		return auth()->check() && ($user->role_id == Role::where('role', 'Responsable compétitions')->pluck('id')->first());
     }
 
     /**
@@ -55,7 +54,7 @@ class CompetitionPolicy
      */
     public function update(User $user)
     {
-		return auth()->check() && ($user->role_id == Role::where('role','Responsable compétition')->pluck('id')->first());
+		return auth()->check() && ($user->role_id == Role::where('role','Responsable compétitions')->pluck('id')->first());
     }
 
     /**
@@ -67,7 +66,7 @@ class CompetitionPolicy
      */
     public function delete(User $user, Competition $competition)
     {
-		return auth()->check() && ($user->role_id == Role::where('role','Responsable compétition')->pluck('id')->first());
+		return auth()->check() && ($user->role_id == Role::where('role','Responsable compétitions')->pluck('id')->first());
     }
 
     /**

@@ -54,8 +54,8 @@
 					</a>
 				</div>
 			@empty
-				<div>
-					Il n'y a aucun compétiteurs... Pour l'instant !
+				<div class="col-md-auto sep-items" style="padding-left:20px">
+					Il n'y a aucun compétiteur pour l'instant
 				</div>
 			@endforelse
 		</div>
