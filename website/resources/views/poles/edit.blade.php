@@ -14,7 +14,7 @@
         Édition pôle {{ strtolower($pole->title) }}
     </h1>
     <hr class="line-under-title">
-    
+
     <div class="container pt-3">
     	<form action="/poles/{{ $pole->id }}" method="POST">
     		@csrf
@@ -37,7 +37,7 @@
     		<div class="form-group">
     			<label class="form-title-small" for="desc">Decription</label>
     			<div class="control">
-    				<textarea class="form-control desc @error('desc') is-invalid @enderror" id="desc" name="desc" rows="3" required>{{ $pole->desc }}</textarea>
+    				<textarea class="form-control desc @error('desc') is-invalid @enderror" id="desc" name="desc" rows="10" required>{{ $pole->desc }}</textarea>
     			</div>
     		</div>
     		@error('desc')
