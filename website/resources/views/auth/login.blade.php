@@ -23,7 +23,7 @@
                         <h1 class="h1">Se connecter</h1>
                         <p>Heureux de vous revoir !</p>
                         <p>
-                            <a href="/#contact" class="respo-support">Envoyez nous un message</a> pour devenir membre et pouvoir vous connecter.
+                            <a href="/#contact" class="respo-support">Envoyez-nous un message</a> pour devenir membre <br> et pouvoir vous connecter.
                         </p>
                     </div>
 

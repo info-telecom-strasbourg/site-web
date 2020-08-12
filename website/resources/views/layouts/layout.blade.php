@@ -4,11 +4,25 @@
 <html lang="fr" local="fr">
 
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175182089-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-175182089-1');
+    </script>
+
+    <!-- Parameters -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel = "icon" href = "{{ asset('images/logo/logo.png') }}" type = "image/x-icon">
+    <link rel="icon" href="{{ asset('images/logo/logo.png') }}" type="image/x-icon">
 
-    <link rel = "icon" href = "{{ asset('images/logo/logo.png') }}" type = "image/x-icon">
+    <link rel="icon" href="{{ asset('images/logo/logo.png') }}" type="image/x-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
@@ -17,12 +31,12 @@
     <link href="{{ URL::asset('lib/fontawesome/css/all.css') }}" rel="stylesheet">
 
     <!-- CSS -->
-	<!-- ####################################"" -->
-	<link href="//cdn.syncfusion.com/ej2/ej2-base/styles/material.css" rel="stylesheet">
+    <!-- ####################################"" -->
+    <link href="//cdn.syncfusion.com/ej2/ej2-base/styles/material.css" rel="stylesheet">
     <link href="//cdn.syncfusion.com/ej2/ej2-buttons/styles/material.css" rel="stylesheet">
     <link href="//cdn.syncfusion.com/ej2/ej2-calendars/styles/material.css" rel="stylesheet">
-	<script src="https://cdn.syncfusion.com/ej2/dist/ej2.min.js" type="text/javascript"></script>
-	<!-- ####################################"" -->
+    <script src="https://cdn.syncfusion.com/ej2/dist/ej2.min.js" type="text/javascript"></script>
+    <!-- ####################################"" -->
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="{{URL::asset('css/style.css')}}">
@@ -45,28 +59,28 @@
     <!-- Navbar -->
     {{-- If the route is not page-admin we display the navbar --}}
     @if (!Request::is('page-admin') && !Request::is('login') && !Request::is('password/*'))
-        @include('partials.navbar')
+    @include('partials.navbar')
     @endif
 
     @if (Request::is('page-admin'))
-        <style>
-            body {
-                background-color: #131722;
-            }
+    <style>
+        body {
+            background-color: #131722;
+        }
 
-            .page-footer {
-                background-color: #20242e;
-            }
-        </style>
+        .page-footer {
+            background-color: #20242e;
+        }
+    </style>
     @endif
 
     {{-- If the route is not welcome we change the navbar background color --}}
     @if (!Request::is('/'))
-        <style>
-            .navbar {
-                background-color: rgb(92, 111, 163);
-            }
-        </style>
+    <style>
+        .navbar {
+            background-color: rgb(92, 111, 163);
+        }
+    </style>
     @endif
 
     <div class="page">
