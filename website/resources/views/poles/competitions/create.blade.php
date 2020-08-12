@@ -54,7 +54,12 @@ Création d'une compétition
 					Image de couverture
 				</label>
 				<br>
-				<input type="file" id="cover" name="cover" required>
+				<input type="file" id="cover" name="cover" class="@error('cover') is-invalid @enderror" required>
+				@error('desc')
+					<span class="invalid-feedback" role="alert">
+						<strong>{{ $message }}</strong>
+					</span>
+				@enderror
 			</div>
 
 			<div class="form-group">
