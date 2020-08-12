@@ -19,6 +19,7 @@ use App\Pole;
 Route::get('/', 'WelcomeController@welcome')->name('welcome');
 Route::post('/contact', 'WelcomeController@store')->name('welcome.store');
 
+/***** Route besoin d'aide *****/
 Route::get('/besoin-aide', function () {
     return view('besoin-aide');
 });
