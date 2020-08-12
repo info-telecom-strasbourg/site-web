@@ -104,7 +104,6 @@ Création d'une compétition
 	                    </div>
 	                </div>
 	                <input type="url" class="form-control @error('website') is-invalid @enderror" id="website" name="website" placeholder="Lien vers le site web" value="{{ old('website') }}">
-
                     @error('website')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -142,7 +141,3 @@ Création d'une compétition
 	}
 </script>
 @endsection
-
-<!--
-Problèmes avec dates encore
- -->

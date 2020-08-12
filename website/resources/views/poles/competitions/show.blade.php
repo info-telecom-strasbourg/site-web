@@ -139,8 +139,3 @@
 
 </div>
 @endsection
-
-<!--
-Les dates
-Les sources (links)
- -->

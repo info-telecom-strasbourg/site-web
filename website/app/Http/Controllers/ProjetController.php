@@ -30,7 +30,6 @@ class ProjetController extends Controller
         $participants = User::all();
 
         $poles = Pole::all();
-
         $partners = Collaborateur::all();
 
         $search = request()->search;

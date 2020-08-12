@@ -54,7 +54,6 @@ class CreateCompetitionsTable extends Migration
 			$table->id();
 			$table->BigInteger('date_id')->unsigned();
 			$table->BigInteger('competition_id')->unsigned();
-
 			$table->foreign('competition_id')
                 ->references('id')
                 ->on('competitions')

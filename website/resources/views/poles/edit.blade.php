@@ -16,7 +16,6 @@
         Édition pôle {{ strtolower($pole->title) }}
     </h1>
     <hr class="line-under-title">
-
     <div class="container pt-3">
     	<form action="/poles/{{ $pole->id }}" method="POST">
     		@csrf
