@@ -73,7 +73,7 @@
 				</div>
 				<div class="col-md-3">
 					<select class="form-control" name="trie" id="trie">
-						<option readonly selected hidden value="">Trié par</option>
+						<option readonly selected hidden value="">Triés par</option>
 
 						<option value="1" @if ($filters[3]==1) selected @endif>Ordre alphabétique</option>
 						<option value="2" @if ($filters[3]==2) selected @endif>Ordre alphabétique inverse</option>

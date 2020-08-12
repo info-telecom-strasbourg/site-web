@@ -19,7 +19,7 @@
             <!-- First new -->
             <div class="carousel-item active actu full-screen" style="background: url('../images/actu/actu_1.jpg') top center; background-size: cover;">
                 <div class="carousel-caption">
-                    <h1>Info Telecom Strasbourg</h1>
+                    <h1>Info Télécom Strasbourg</h1>
                     <br>
                     <p>Notre toute nouvelle association débarque à TPS en Septembre !</p>
                     <br>
@@ -208,7 +208,7 @@
             @else
                 <h1>{{ $years }}ème</h1>
             @endif
-            ANNEE
+            ANNÉE
         </div>
     </div>
 </section>
