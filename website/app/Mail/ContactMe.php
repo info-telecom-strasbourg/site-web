@@ -16,7 +16,6 @@ class ContactMe extends Mailable
     public $email;
     public $messages;
 
-
     /**
      * Create a new message instance.
      *
