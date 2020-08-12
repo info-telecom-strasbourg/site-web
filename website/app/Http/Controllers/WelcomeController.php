@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-
 use App\Mail\ContactMe;
-
 use App\Pole;
 use App\User;
 use App\Projet;
@@ -14,6 +12,9 @@ use App\Role;
 use App\Collaborateur;
 use App\RandomProjet;
 
+/**
+ * Controller linked to the welcome page.
+ */
 class WelcomeController extends Controller
 {
 	/**
@@ -21,30 +22,20 @@ class WelcomeController extends Controller
 	 */
     public function welcome()
     {
-    	/** Data **/
-    	// get all poles
     	$poles = Pole::all();
 
-    	// get roles ids for the team
         $rolesIds = Role::whereIn('poste', array('Bureau', 'Respo'))->get(['id']);
 
-    	// get the team
         $team = User::whereIn('role_id', $rolesIds)->get();
 
-        // get all partners
         $partners = Collaborateur::all();
 
-        /** Numbers **/
-        // get number of projects
         $nbProjets = Projet::count();
 
-        // get number of users
         $nbUsers = User::count();
 
-        // get number of poles
         $nbPoles = Pole::count();
 
-        // get number of years since the creation of ITS
         $years = date("Y") - 2019;
 
 
@@ -57,7 +48,6 @@ class WelcomeController extends Controller
         // every 2 weeks get new random projects
         if ($day == 0 && $hour == 0 && $min == 0 && $seconds == 0)
         {
-            // delete all projects in database
             RandomProjet::truncate();
 
             // get max random number
@@ -68,27 +58,24 @@ class WelcomeController extends Controller
             else
                 $maxProjets = 6;
 
-            // get all projects in an array
-            if ($maxProjets == 1) 
+            if ($maxProjets == 1)
             {
                 $projet = Projet::first();
                 RandomProjet::create(['projet_id' => $projet->id]);
             }
-            else 
+            else
             {
                 $projetArray = Projet::all()->toArray();
 
                 // get 6 random project ids
                 $randIds = array_rand($projetArray, $maxProjets);
 
-                // create random projects
-                foreach ($randIds as $id) 
+                foreach ($randIds as $id)
                 {
                     RandomProjet::create(['projet_id' => array_values($projetArray[$id])[0]]);
                 }
             }
         }
-
 
         $projets = RandomProjet::all();
 
@@ -97,12 +84,14 @@ class WelcomeController extends Controller
 
     /**
      * Send contact email.
+	 *
+	 * @param request: the user's request.
+	 * @return redirect to the contact part of the home page.
      */
-    public function store(Request $request) 
+    public function store(Request $request)
     {
         $request->validate(['email' => 'required|email']);
 
-        // send the email
         Mail::to($request->email)
             ->send(new ContactMe($request->name, $request->subject, $request->email, $request->messages));
 

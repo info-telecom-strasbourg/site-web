@@ -4,15 +4,19 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+/**
+ * Migration for randomized project tables.
+ */
 class CreateRandomProjetsTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
+		/**
+		 * Table for randomized project (displayed in home page)
+		 */
         Schema::create('random_projets', function (Blueprint $table) {
             $table->id();
             $table->BigInteger('projet_id')->unsigned();
@@ -26,8 +30,6 @@ class CreateRandomProjetsTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {

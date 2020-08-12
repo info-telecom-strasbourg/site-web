@@ -4,15 +4,19 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+/**
+ * Migration for tables linked to competitions.
+ */
 class CreateCompetitionsTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
+		/**
+		 * Table for competitions.
+		 */
         Schema::create('competitions', function (Blueprint $table) {
             $table->id();
             $table->string('title');
@@ -24,6 +28,9 @@ class CreateCompetitionsTable extends Migration
             $table->string('website');
         });
 
+		/**
+		 * Linking table between users and competitions.
+		 */
 		Schema::create('user_compet', function (Blueprint $table) {
             $table->id();
             $table->BigInteger('user_id')->unsigned();
@@ -40,10 +47,14 @@ class CreateCompetitionsTable extends Migration
 				->onDelete('cascade');
         });
 
+		/**
+		 * Linking table between dates and competitions.
+		 */
 		Schema::create('dates_comp', function (Blueprint $table) {
 			$table->id();
 			$table->BigInteger('date_id')->unsigned();
 			$table->BigInteger('competition_id')->unsigned();
+
 			$table->foreign('competition_id')
                 ->references('id')
                 ->on('competitions')
@@ -58,8 +69,6 @@ class CreateCompetitionsTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {

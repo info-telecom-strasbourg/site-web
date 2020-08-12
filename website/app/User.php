@@ -6,6 +6,9 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+/**
+ * Model for users.
+ */
 class User extends Authenticatable
 {
     use Notifiable;
@@ -39,6 +42,8 @@ class User extends Authenticatable
 
     /**
      * Get the projects of the user.
+	 *
+	 * @return the projects to wich the user participated.
      */
     public function projets()
     {
@@ -48,6 +53,8 @@ class User extends Authenticatable
 
 	/**
 	 * Get the lessons of the user.
+	 *
+	 * @return all the lessons created by the user.
 	 */
 	public function cours()
 	{
@@ -56,6 +63,8 @@ class User extends Authenticatable
 
     /**
      * Get the role of the user.
+	 *
+	 * @return the role of the user.
      */
     public function role()
     {
@@ -64,18 +73,17 @@ class User extends Authenticatable
 
     /**
      * Scope a query to only include researched users.
+	 * If a search value has been specified, search if the a title or the
+	 * description has this value otherwise return the query
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @param query: the user's query
+     * @return all users that match the scope.
      */
     public function scopeSearch($query)
     {
         // get the roles id that matches the search query
         $role = Role::where('role', 'like', '%'.request()->search.'%')->get(['id']);
 
-        // if a search value has been specified, search if the a title or the
-        // description has this value
-        // otherwise return the query
         return empty(request()->search) ? $query : $query->where('name', 'like', '%'.request()->search.'%')->orWhereIn('role_id', $role);
     }
 }

@@ -10,14 +10,14 @@ use App\User;
 use Illuminate\Support\Facades\Storage;
 
 /**
- * Controller for competition.
+ * Controller linked to the competitions.
  */
 class CompetitionController extends Controller
 {
 	/**
 	 * List all the competitions.
 	 *
-	 * @return a view with all the competition.
+	 * @return a view with the list of all competitions.
 	 */
     public function index()
 	{
@@ -27,9 +27,10 @@ class CompetitionController extends Controller
 	/**
 	 * Show a specified competition.
 	 *
-	 * @param compet: the competition that will be displayed.
-	 * @return the view of a specific competition.
+	 * @param compet: the competition that will be shown.
+	 * @return the view of the competition.
 	 */
+
 	public function show(Competition $compet)
 	{
 		$pole = Pole::where('slug', 'competitions')->first();
@@ -37,9 +38,9 @@ class CompetitionController extends Controller
 	}
 
 	/**
-	 * Show the form to create a competition.
+	 * Show the form to create a competition if the user is authorised to do so.
 	 *
-	 * @return a view to create a competition.
+	 * @return the view to create a competition.
 	 */
 	public function create()
 	{
@@ -51,7 +52,7 @@ class CompetitionController extends Controller
 	/**
 	 * Store a new competition.
 	 *
-	 * @return redirect to the page of the competition stored.
+	 * @return redirect to the stored competition's page.
 	 */
 	public function store(Request $request)
 	{
@@ -79,6 +80,7 @@ class CompetitionController extends Controller
             $compet->images = json_encode($competImages);
         }
 
+
 		if ($request->has('competitors'))
 			$this->addCompetitors($compet);
 
@@ -94,7 +96,7 @@ class CompetitionController extends Controller
 	 * Show the form for editing the specified competition.
 	 *
 	 * @param compet: the competition to edit.
-	 * @return a view to edit the competition.
+	 * @return the view to edit the competition
 	 */
 	public function edit(Competition $compet)
 	{
@@ -206,8 +208,8 @@ class CompetitionController extends Controller
 	/**
      * Save an image given by the user in the public storage folder.
      *
-     * @param image: the image to be stored
-     * @return path to find the image
+     * @param image: the image to store.
+     * @return the path to find the image.
      */
     public function saveImage($image)
     {

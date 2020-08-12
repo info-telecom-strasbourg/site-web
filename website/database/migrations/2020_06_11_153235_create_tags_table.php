@@ -4,17 +4,18 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+/**
+ * Migration for Tags.
+ */
 class CreateTagsTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
 		/**
-		 * Tags for the lesson
+		 * Tags for the lessons.
 		 */
 		Schema::create('tags', function (Blueprint $table) {
             $table->id();
@@ -24,8 +25,6 @@ class CreateTagsTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {
