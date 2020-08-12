@@ -97,7 +97,7 @@ extension=pdo_mysql
 extension=pdo_pgsql
 ```
 ### Simplification of the filling of the database
-If you want to simplify the filling of the database, you can use the file `sql_web.txt` (wich contains a list of commands) in mysql. This file isn't on Github, but only given to the project members.
+If you want to simplify the filling of the database, you can use the file `sql_web.sql` (wich contains a list of commands) in mysql. This file isn't on Github, but only given to the project members.
 
 ## General conventions
 
