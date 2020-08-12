@@ -3,29 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Cours;
-
 use App\User;
-
 use App\Support;
-
 use App\Pole;
-
 use App\Date;
-
 use App\DatesCours;
-
 use Illuminate\Http\UploadedFile;
-
 use Illuminate\Support\Facades\Storage;
 
+/**
+ * Controller linked to the lessons.
+ */
 class CoursController extends Controller
 {
 	/**
 	 * Display all lessons with associate pole and send them to the index view.
 	 *
-	 * @return \Illuminate\Http\Response
+	 * @return the view with all the lessons.
 	 */
 	public function index()
 	{
@@ -37,8 +32,8 @@ class CoursController extends Controller
 	/**
 	 * Show a specified lesson.
 	 *
-	 * @param App\Cours $cours: the lesson you want to display
-	 * @return \Illuminate\Http\Response
+	 * @param cours: the lesson you want to display.
+	 * @return the view corresponding to the lesson.
 	 */
 	public function show(Cours $cours)
 	{
@@ -48,7 +43,7 @@ class CoursController extends Controller
 	/**
 	 * Show the form to create a lesson.
 	 *
-	 * @return \Illuminate\Http\Response
+	 * @return the view to create the lesson.
 	 */
 	public function create()
 	{
@@ -60,14 +55,13 @@ class CoursController extends Controller
 	/**
 	 * Store a new lesson.
 	 *
-	 * @param \Illuminate\Http\Request $request: the user request
-	 * @return \Illuminate\Http\Response to the lesson's index page
+	 * @param request: the user request.
+	 * @return redirect to the lesson's index page.
 	 */
 	public function store(Request $request)
 	{
 		$cours = Cours::create($this->validateCours());
 
-		// if there are supports, save them
 		if ($request->has('link_support'))
 		{
 			foreach ($request->link_support as $file)
@@ -77,20 +71,16 @@ class CoursController extends Controller
 			}
 		}
 
-		// if there is an image, save the image, otherwise take a random one
 		if ($request->has('image_crs'))
-			$cours->image = [$this->saveImage($request, $cours)];	// cours en trop TO DO ??????
+			$cours->image = [$this->saveImage($request, $cours)];
 		else
 			$cours->image = [$this->selectDefaultImage()];
 
-		// save the lesson
 		$cours->save();
 
-		// add the creators to the database
 		foreach ($request->creators as $creator)
 			$cours->creators()->attach($creator);
 
-		// save lessons dates
 		$this->saveDates($request, $cours);
 
 		return redirect('/poles/cours');
@@ -100,8 +90,8 @@ class CoursController extends Controller
 	 * Show the form for editing the specified lesson.
 	 * Allow the creators to edit their lesson.
 	 *
-	 * @param App\Cours $cours: the lesson you want to edit
-	 * @return \Illuminate\Http\Response
+	 * @param cours: the lesson you want to edit.
+	 * @return the view to edit the lesson.
 	 */
 	public function edit(Cours $cours)
 	{
@@ -113,14 +103,13 @@ class CoursController extends Controller
 	/**
 	 * Update the specified lesson.
 	 *
-	 * @param App\Cours $cours: the lesson you want to update
-	 * @return \Illuminate\Http\Response to the lesson's specific page
+	 * @param cours: the lesson you want to update.
+	 * @return redirect to the lesson's specific page.
 	 */
 	public function update(Cours $cours)
 	{
 		$this->authorize('update', $cours);
 
-		// if there are supports, save them
 		if (request()->has('link_support'))
 		{
 			foreach(request()->link_support as $key => $file)
@@ -129,7 +118,6 @@ class CoursController extends Controller
 			}
 		}
 
-		// change the visibility of the supports if it has changed
 		if (request()->has('visibility_change'))
 		{
 			foreach (request()->visibility_change as $key => $value)
@@ -138,21 +126,16 @@ class CoursController extends Controller
 			}
 		}
 
-		// update the lesson
 		$cours->update($this->validateCours());
 
-		// change lesson's image
 		if(request()->has('image_crs'))
 			$this->changeImage($cours);
 
-		// add creators
 		if (request()->has('creators'))
 			$this->addCreators($cours);
 
-		// delete old dates
 		$cours->dates()->delete();
 
-		// save new dates
 		$this->saveDates(request(), $cours);
 
 		return redirect('/poles/cours/'.$cours->id);
@@ -161,37 +144,32 @@ class CoursController extends Controller
 	/**
 	 * Delete a lesson and everything attached to it.
 	 *
-	 * @param App\Cours $cours: the lesson you want to delete
-	 * @return \Illuminate\Http\Response to the lesson's index
+	 * @param cours: the lesson you want to delete.
+	 * @return redirect to the lesson's index.
 	 */
 	public function destroy(Cours $cours)
 	{
 		$this->authorize('update', $cours);
 
-		// delete all dates associate to the lesson in database and in storage
 		$cours->dates()->delete();
 		if (file_exists(storage_path('app/public/' . json_decode($cours->image)[0])) && substr(json_decode($cours->image)[0], 0, 15) != "images/default/")
-		{
 			unlink(storage_path('app/public/' . json_decode($cours->image)[0]));
-		}
 
-		// delete all supports in database and in storage
 		foreach ($cours->supports as $file)
 		{
 			unlink(storage_path('app/' . $file->ref));
 			$file->delete();
 		}
 
-		// delete the lesson
 		$cours->delete();
 
 		return redirect('/poles/cours');
 	}
 
 	/**
-	 * Validate the user's request to create a lesson
+	 * Validate the user's request to create a lesson.
 	 *
-	 * @return validated request
+	 * @return the validated request.
 	 */
 	public function validateCours ()
 	{
@@ -211,8 +189,8 @@ class CoursController extends Controller
 	/**
 	 * Download a file.
 	 *
-	 * @param id: the id of the file the user wants to download
-	 * @return link to download file with readable name
+	 * @param id: the id of the file the user wants to download.
+	 * @return the link to download file with readable name.
 	 */
 	public function downloadFile ($id)
 	{
@@ -223,10 +201,11 @@ class CoursController extends Controller
 	/**
 	 * Save a file in the database and in the support directory.
 	 *
-	 * @param file: the file you want to save
-	 * @param name: the name given before hatching
-	 * @param cours: the id of the lesson the file is attached to
-	 * @param visibility: the visibility of the lesson (1 = private/ 0 = public)
+	 * @param file: the file you want to save.
+	 * @param name: the name given before hatching.
+	 * @param cours: the id of the lesson the file is attached to.
+	 * @param visibility: the visibility of the lesson
+	 *                    (1 = private/ 0 = public).
 	 */
 	public function saveFile ($file, $name, $cours, bool $visibility)
 	{
@@ -244,8 +223,8 @@ class CoursController extends Controller
 	/**
 	 * Save an image given by the user in the public storage folder.
 	 *
-	 * @param \Illuminate\Http\Request  $request: the request of the user
-	 * @return path to find the image
+	 * @param request: the request of the user.
+	 * @return the path to find the image.
 	 */
 	public function saveImage (Request $request)
 	{
@@ -256,39 +235,31 @@ class CoursController extends Controller
 	/**
 	 * Save the dates that the user selected.
 	 *
-	 * @param \Illuminate\Http\Request  $request: the user's request
-	 * @param cours: the lesson to which the dates are linked to
+	 * @param request: the user's request.
+	 * @param cours: the lesson to which the dates are linked to.
 	 */
 	public function saveDates (Request $request, Cours $cours)
 	{
-		// if there are face-to-face dates
 		if (request()->has('dates_pres'))
 		{
 			foreach ($request->dates_pres as $date)
 			{
-				// create a new date in the database
 				$newDate = Date::create([
 					'presentiel' => 1,
 					'date' => $date
 				]);
-
-				// add the date to the list of dates for this lesson
 				$cours->dates()->attach($newDate->id);
 			}
 		}
 
-		// if there are remote dates
 		if (request()->has('dates_dist'))
 		{
 			foreach ($request->dates_dist as $date)
 			{
-				// create a new date in the database
 				$newDate = Date::create([
 					'presentiel' => 0,
 					'date' => $date
 				]);
-
-				// add the date to the list of dates for this lesson
 				$cours->dates()->attach($newDate->id);
 			}
 		}
@@ -297,7 +268,7 @@ class CoursController extends Controller
 	/**
 	 * Add new creators (if they are not already in the list).
 	 *
-	 * @param App\Cours $cours: the lesson you want to add creators to
+	 * @param cours: the lesson you want to add creators to.
 	 */
 	public function addCreators(Cours $cours)
 	{
@@ -311,7 +282,7 @@ class CoursController extends Controller
 	/**
 	 * Delete the first image if it's not a default image and set the new image.
 	 *
-	 * @param App\Cours $cours: the lesson we want to edit
+	 * @param cours: the lesson we want to edit.
 	 */
 	public function changeImage(Cours $cours)
 	{
@@ -327,7 +298,7 @@ class CoursController extends Controller
 	/**
 	 * Select a random default image.
 	 *
-	 * @return path to the image
+	 * @return the path to the image.
 	 */
 	public function selectDefaultImage()
 	{
@@ -340,20 +311,19 @@ class CoursController extends Controller
 	 * 1: private
 	 * 2: delete
 	 *
-	 * @param key: the id of the support we want to edit
-	 * @param value: the new visibility for the support
+	 * @param key: the id of the support we want to edit.
+	 * @param value: the new visibility for the support.
 	 */
 	public function changeVisibility($key, $value)
 	{
 		$file = Support::find($key);
 
-		// if the value is 2 delete the file
 		if ($value == 2)
 		{
 			unlink(storage_path('app/' . $file->ref));
 			$file->delete();
 		}
-		else 	// change the visibiity of the file
+		else
 		{
 			$file->visibility = $value;
 			$file->save();

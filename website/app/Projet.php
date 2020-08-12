@@ -4,10 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Model for projects.
+ */
 class Projet extends Model
 {
     /**
-     * Not mass assignable attributes. 
+     * Not mass assignable attributes.
      *
      * @var array
      */
@@ -15,6 +18,8 @@ class Projet extends Model
 
     /**
      * Gets the project leader.
+	 *
+	 * @return the chief of the project.
      */
     public function chef()
     {
@@ -23,6 +28,8 @@ class Projet extends Model
 
     /**
      * Gets the pole of project.
+	 *
+	 * @return the pole to with the project belongs.
      */
     public function pole()
     {
@@ -31,6 +38,8 @@ class Projet extends Model
 
     /**
      * Gets the project partner.
+	 *
+	 * @return all the collaborators of a project.
      */
     public function collaborateur()
     {
@@ -39,6 +48,8 @@ class Projet extends Model
 
     /**
      * Gets the projects participants.
+	 *
+	 * @return all the participants of a project.
      */
     public function participants()
     {
@@ -47,42 +58,37 @@ class Projet extends Model
 
     /**
      * Scope a query to only include researched projects.
+	 * If a search value has been specified, search if the a title or the
+	 * description has this value otherwise return the query.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @param query: the query for the database search.
+     * @return the project that match the scope.
      */
     public function scopeSearch($query)
     {
-        // if a search value has been specified, search if the a title or the
-        // description has this value
-        // otherwise return the query
         return empty(request()->search) ? $query : $query->where('title', 'like', '%'.request()->search.'%')->orWhere('desc', 'like', '%'.request()->search.'%');
     }
 
     /**
      * Scope a query to only include filtered projects.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @param query: the query for the database search.
+     * @return the project that match the filter.
      */
     public function scopeFilter($query)
     {
-        // if a pole was specified
         if (!empty(request()->pole)) {
             $query = $query->where('pole_id', request()->pole);
         }
 
-        // if a user was specified
         if (!empty(request()->membre)) {
             $query = $query->join('projets_participants', 'projets.id', '=', 'projets_participants.projet_id')->where('user_id', request()->membre);
         }
 
-        // if a partner was specified
         if (!empty(request()->partner)) {
             $query = $query->where('collaborateur_id', request()->partner);
         }
 
-        // if a sort option was specified
         if (!empty(request()->trie)) {
             if (request()->trie == 1) {
                 $query = $query->orderBy('title', 'asc');

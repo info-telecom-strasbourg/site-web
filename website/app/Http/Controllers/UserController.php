@@ -6,12 +6,15 @@ use App\User;
 use App\Role;
 use Illuminate\Http\Request;
 
+/**
+ * Controller linked to users.
+ */
 class UserController extends Controller
 {
     /**
      * Display a listing of the users.
      *
-     * @return \Illuminate\Http\Response
+     * @return the users' index view
      */
     public function index()
     {
@@ -22,9 +25,9 @@ class UserController extends Controller
     }
 
     /**
-     * Display a user.
+     * Display a user's page.
      *
-     * @return \Illuminate\Http\Response
+     * @return the user's view
      */
     public function show(User $user)
     {

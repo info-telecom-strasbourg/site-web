@@ -4,18 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-
 use App\Mail\BesoinAide;
 
-
+/**
+ * Controller linked to the section "Besion d'aide".
+ */
 class BesoinAideController extends Controller
 {
     /**
-     * Send contact email.
+     * Send an email to "info.telecom.strasbourg@gmail.com".
+	 *
+	 * @param request: the user's request
+	 * @return redirect to "/besoin-aide" and display a message
      */
-    public function store(Request $request) 
+    public function store(Request $request)
     {
-        // send the email
         Mail::to("info.telecom.strasbourg@gmail.com")
             ->send(new BesoinAide($request->type, $request->appareil, $request->os, $request->files, $request->desc));
 

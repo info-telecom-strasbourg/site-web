@@ -16,7 +16,6 @@ class ContactMe extends Mailable
     public $email;
     public $messages;
 
-    
     /**
      * Create a new message instance.
      *
@@ -24,7 +23,6 @@ class ContactMe extends Mailable
      * @param $subject: subject of the contact request
      * @param $email: email of the person
      * @param $message: contact message
-     * @return void
      */
     public function __construct($name, $subject, $email, $messages)
     {
@@ -37,7 +35,7 @@ class ContactMe extends Mailable
     /**
      * Build the message.
      *
-     * @return $this
+     * @return this
      */
     public function build()
     {

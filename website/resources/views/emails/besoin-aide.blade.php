@@ -1,3 +1,5 @@
+<!-- Send a mail for "Besoin d'aide" -->
+
 @component('mail::message')
 
 # Besoin d'aide

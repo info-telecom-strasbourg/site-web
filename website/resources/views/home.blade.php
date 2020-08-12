@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+<!-- Remove this file? -->
+=======
+>>>>>>> master
 @extends('layouts.app')
 
 @section('title', 'Home')

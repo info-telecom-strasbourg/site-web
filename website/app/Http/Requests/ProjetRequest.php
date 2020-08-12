@@ -9,7 +9,7 @@ class ProjetRequest extends FormRequest
     /**
      * Determine if the user is authorized to make this request.
      * TODO
-     * 
+     *
      * @return bool
      */
     public function authorize()
@@ -49,9 +49,9 @@ class ProjetRequest extends FormRequest
             'desc.required'  => 'Une description est nécéssaire',
             'link_github.required'  => 'Un lien GitHub est nécéssaire',
             'link_doc.required'  => 'Un lien vers la documentation est nécéssaire',
-            'complete.required'  => 'Indqué si le projet est finis ou pas',
-            'chef_projet_id.required'  => 'Indiqué le chef de projet',
-            'pole_id.required'  => 'Indiqué le pôle auquel appartient le projet',
+            'complete.required'  => 'Indquez si le projet est finis ou pas',
+            'chef_projet_id.required'  => 'Indiquez le chef de projet',
+            'pole_id.required'  => 'Indiquez le pôle auquel appartient le projet',
         ];
     }
 }
