@@ -1,3 +1,4 @@
+<!-- Edit a lesson -->
 @extends('layouts.layout')
 
 @section('title')
@@ -24,7 +25,7 @@
 			@csrf
 			@method('PUT')
 
-			<!-- Pour le titre -->
+			<!-- Edit the title of the lesson -->
 			<div class="form-group">
 				<label for="title" class="form-title-small">Titre</label>
 
@@ -38,43 +39,43 @@
 
 			</div>
 
-			<!-- Pour la description -->
+			<!-- Edit the description of the lesson -->
 			<div class="form-group">
 				<label for="desc" class="form-title-small">Description</label>
 
 				<textarea class="form-control desc @error('desc') is-invalid @enderror" id="desc" name="desc" rows="5" required>{{ $cours->desc }}</textarea>
 
 				@error('desc')
-					<span class="invalid-feedback" role="alert">
-						<strong>{{ $message }}</strong>
-					</span>
+				<span class="invalid-feedback" role="alert">
+					<strong>{{ $message }}</strong>
+				</span>
 				@enderror
 
 			</div>
 
-			<!-- Créateurs -->
+			<!-- Edit the creators of the lesson -->
 			<div class="form-group">
 				<label for="creators" class="form-title-small">Ajouter des créateurs</label>
 
 				<select class="custom-select" name="creators[]" id="creators" multiple>
-		            <option readonly selected hidden value="">Créateurs</option>
+					<option readonly selected hidden value="">Créateurs</option>
 
-		            @isset($users)
-		                @foreach ($users as $user)
-		                    <option value="{{ $user->id }}">{{ $user->name }}</option>
-		                @endforeach
-		            @endisset
-		        </select>
-		    </div>
+					@isset($users)
+					@foreach ($users as $user)
+					<option value="{{ $user->id }}">{{ $user->name }}</option>
+					@endforeach
+					@endisset
+				</select>
+			</div>
 
-			<!-- Vignette -->
+			<!-- Edit the image to illustrate lesson -->
 			<div class="form-group">
-				<label for="image_crs" class="form-title-small">				Changement de la vignette du cours</label>
+				<label for="image_crs" class="form-title-small"> Changement de la vignette du cours</label>
 				<br>
 				<input type="file" id="image_crs" name="image_crs">
 			</div>
 
-			<!-- Pour ajouter un/des fichiers -->
+			<!-- Add a file linked with the lesson -->
 			<div class="form-group">
 				<label for="link_support_mod" class="form-title-small">
 					Ajouter des fichiers
@@ -83,10 +84,10 @@
 				<input type="file" id="link_support_mod" name="link_support[]" multiple>
 			</div>
 
-			<!-- Pour modifier des fichiers -->
+			<!-- Edit a file linked with the lesson -->
 			<div class="form-group {{ !empty($cours->supports[0]) ? 'to-hide' : '' }}" id="choose-new-statut">
-			<h4 class="form-title">Choisir le status des fichiers des fichiers</h4>
-			@forelse ( $cours->supports as $support )
+				<h4 class="form-title">Choisir le status des fichiers des fichiers</h4>
+				@forelse ( $cours->supports as $support )
 
 				<div class="row justify-content-start">
 					<div class="col-auto">
@@ -102,12 +103,12 @@
 						</div>
 					</div>
 				</div>
-			@empty
+				@empty
 
-			@endforelse
+				@endforelse
 			</div>
 
-			<!-- Modifier les dates -->
+			<!-- Edit the dates of the lesson -->
 			<h4 class="form-title">Dates du cours</h4>
 			<div class="row justify-content-around dates-select">
 				<div class="col-md-auto">
@@ -116,10 +117,10 @@
 					</label>
 					<div class="dates-pres">
 						<div id="calendar-pres-upd">
-				        	<div id="cal-pres-dates-upd">
+							<div id="cal-pres-dates-upd">
 
-				        	</div>
-		    			</div>
+							</div>
+						</div>
 					</div>
 				</div>
 
@@ -129,45 +130,43 @@
 					</label>
 					<div class="dates-dist">
 						<div id="calendar-dist-upd">
-				        	<div id="cal-dist-dates-upd">
+							<div id="cal-dist-dates-upd">
 
-				        	</div>
-		    			</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-
 			<div id="dates-select">
-
 			</div>
 
+			<!-- Button to edit the lesson -->
 			<div class="text-center" style="margin-top:25px; margin-bottom:25px">
 				<button id="submit-btn-edt-crs" type="submit" class="btn btn-primary btn-rounded">Enregistrer</button>
 			</div>
 		</form>
 	</div>
 </div>
+
 <script>
 	var elePresUpd = document.getElementById('calendar-pres-upd');
-	if(elePresUpd)
-	{
+	if (elePresUpd) {
 		elePresUpd.style.visibility = "visible";
 	}
 
 	var eleDistUpd = document.getElementById('calendar-dist-upd');
-	if(eleDistUpd)
-	{
+	if (eleDistUpd) {
 		eleDistUpd.style.visibility = "visible";
 	}
 
 	var calendarPresUpd = new ej.calendars.Calendar({
 		isMultiSelection: true,
-		values:[]
+		values: []
 	});
 
 	var calendarDistUpd = new ej.calendars.Calendar({
 		isMultiSelection: true,
-		values:[]
+		values: []
 	});
 
 	// Search the dates and make them appear into the calendar
@@ -175,9 +174,9 @@
 	$.each(dateList, function(key, value) {
 		var splitedObj = value.split("&quot;");
 		if (splitedObj[4] === ":1,")
-		   calendarPresUpd.values.push(new Date(splitedObj[7]));
-	   else if (splitedObj[4] === ":0,")
-		   calendarDistUpd.values.push(new Date(splitedObj[7]));
+			calendarPresUpd.values.push(new Date(splitedObj[7]));
+		else if (splitedObj[4] === ":0,")
+			calendarDistUpd.values.push(new Date(splitedObj[7]));
 	});
 
 	calendarPresUpd.appendTo('#cal-pres-dates-upd');
@@ -187,6 +186,5 @@
 		parseDate(calendarDistUpd.values, 'dates_dist');
 		parseDate(calendarPresUpd.values, 'dates_pres');
 	});
-
 </script>
 @endsection
