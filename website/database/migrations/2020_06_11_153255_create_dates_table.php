@@ -4,17 +4,18 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+/**
+ * Migration for dates.
+ */
 class CreateDatesTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
 		/**
-		 * Dates for the lesson
+		 * Dates for the lessons.
 		 */
 		Schema::create('dates', function (Blueprint $table) {
             $table->id();
@@ -44,8 +45,6 @@ class CreateDatesTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {

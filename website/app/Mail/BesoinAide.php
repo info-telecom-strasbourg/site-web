@@ -7,6 +7,9 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
+/**
+ * Class to send an email with the section "Besoin d'aide"
+ */
 class BesoinAide extends Mailable
 {
     use Queueable, SerializesModels;
@@ -19,8 +22,6 @@ class BesoinAide extends Mailable
 
     /**
      * Create a new message instance.
-     *
-     * @return void
      */
     public function __construct($type, $appareil, $os, $files, $desc)
     {
@@ -34,7 +35,7 @@ class BesoinAide extends Mailable
     /**
      * Build the message.
      *
-     * @return $this
+     * @return this
      */
     public function build()
     {
@@ -49,8 +50,7 @@ class BesoinAide extends Mailable
             }
             break;
         }
-        
-
+		
         return $email;
     }
 }

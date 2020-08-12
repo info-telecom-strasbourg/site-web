@@ -4,17 +4,18 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+/**
+ * Migration for supports.
+ */
 class CreateSupportsTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
 		/**
-		 * references for lessons
+		 * References for lessons.
 		 */
 		Schema::create('supports', function (Blueprint $table) {
             $table->id();
@@ -32,8 +33,6 @@ class CreateSupportsTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {

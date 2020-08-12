@@ -10,17 +10,18 @@ use App\User;
 use App\Pole;
 use App\Collaborateur;
 use Illuminate\Http\Response;
-
 use Illuminate\Http\UploadedFile;
-
 use Illuminate\Support\Facades\Storage;
 
+/**
+ * Controller linked to projects.
+ */
 class ProjetController extends Controller
 {
-        /**
+	/**
      * Display the list of projects.
      *
-     * @return \Illuminate\Http\Response
+     * @return the view with all the projects.
      */
     public function index()
     {
@@ -34,7 +35,6 @@ class ProjetController extends Controller
 
         $search = request()->search;
 
-        // filters options that has been selected
         $filters = [];
         $filters[0] = request()->pole;
         $filters[1] = request()->membre;
@@ -47,8 +47,8 @@ class ProjetController extends Controller
     /**
      * Display a specific project.
      *
-     * @param App|Projet $projet
-     * @return \Illuminate\Http\Response
+     * @param projet: the page of this project will be displayed.
+     * @return the project's view.
      */
     public function show(Projet $projet)
     {
@@ -60,7 +60,7 @@ class ProjetController extends Controller
     /**
      * Show the form to create a project.
      *
-     * @return \Illuminate\Http\Response
+     * @return the view to create a project.
      */
     public function create()
     {
@@ -75,15 +75,14 @@ class ProjetController extends Controller
     /**
      * Store a new project.
      *
-     * @param  ProjetRequest $request
-     * @return \Illuminate\Http\Response
+     * @param  request: the user's request.
+     * @return redirect to the page of the stored project.
      */
     public function store(ProjetRequest $request)
     {
         $validatedData = $request->validated();
         $projet = Projet::create($validatedData);
 
-        // if there are images, save the images, otherwise take a random one
         if ($request->has('images'))
         {
             $projetImages = [];
@@ -96,15 +95,12 @@ class ProjetController extends Controller
         else
             $projet->images = [$this->selectDefaultImage($projet->pole_id)];
 
-        // the team leader is not present in the contributor list
         $teamLeaderPresent = false;
 
-        // add the contributors to the database
         if ($request->has('participants'))
         {
             foreach ($request->participants as $participant)
             {
-                // look if the team leader has been added to the contributors
                 if ($participant == $request->chef_projet_id)
                     $teamLeaderPresent = true;
 
@@ -112,7 +108,6 @@ class ProjetController extends Controller
             }
         }
 
-        // add the team leader to the contributors if he wasn't added
         if (!$teamLeaderPresent)
             $projet->participants()->attach($request->chef_projet_id);
 
@@ -123,9 +118,9 @@ class ProjetController extends Controller
 
     /**
      * Show the form for editing the specified project.
-     * 
-     * @param App\projet $projet
-     * @return \Illuminate\Http\Response
+     *
+     * @param projet: the project to edit.
+     * @return the view to edit the project.
      */
     public function edit(Projet $projet)
     {
@@ -138,32 +133,25 @@ class ProjetController extends Controller
     /**
      * Update the specified project.
      *
-     * @param ProjetRequest $request
-     * @param App\Projet $projet
-     * @return \Illuminate\Http\Response
+     * @param request: user's request.
+     * @param projet: the project to update.
+     * @return redirect to the updated project's page.
      */
     public function update(ProjetRequest $request, Projet $projet)
     {
         $this->authorize('update', $projet);
 
-        // convert the json encoded string of the images paths
-        // into an array
         $projetImages = json_decode($projet->images);
 
-        // if some images needs to be removed
         if ($request->has('removeImages'))
         {
             foreach ($request->removeImages as $index => $value)
             {
-                // delete the image
                 $this->deleteImage($projetImages[$index]);
-
-                // remove the images at given index
                 unset($projetImages[$index]);
             }
         }
 
-        // if there are images, save the images
         if ($request->has('images'))
         {
             foreach ($request->images as $image)
@@ -172,27 +160,21 @@ class ProjetController extends Controller
             }
         }
 
-        // if there are no images, take a default one
         if (empty($projetImages))
         {
             $projet->images = [$this->selectDefaultImage($projet->pole_id)];
         }
         else
         {
-            // store the images in a new array
             $idx = 0;
             $images = [];
             foreach ($projetImages as $image)
             {
                 $images[] = $image;
             }
-
-            // convert the image array into
-            // a string containing the json representation
             $projet->images = json_encode($images);
         }
 
-        // add the contributors to the database
         if ($request->has('participants'))
         {
             foreach ($request->participants as $participant)
@@ -201,10 +183,8 @@ class ProjetController extends Controller
             }
         }
 
-        // get edited data
         $validatedData = $request->validated();
 
-        // updata project
         $projet->update($validatedData);
 
         return redirect('/projets/'.$projet->id);
@@ -213,18 +193,16 @@ class ProjetController extends Controller
     /**
      * Remove the specified project.
      *
-     * @param App\Projet $projet
-     * @return \Illuminate\Http\Response
+     * @param projet: the project to delete.
+     * @return redirect to projects' index view.
      */
     public function destroy(Projet $projet)
     {
         $this->authorize('update', $projet);
 
-        // delete all images in storage
         foreach (json_decode($projet->images) as $image)
             $this->deleteImage($image);
 
-        // delete the project
         $projet->delete();
 
         return redirect("/projets");
@@ -233,7 +211,7 @@ class ProjetController extends Controller
     /**
      * Select a random default image.
      *
-     * @return path to the image
+     * @return the path to the image.
      */
     public function selectDefaultImage($poleId)
     {
@@ -260,8 +238,8 @@ class ProjetController extends Controller
     /**
      * Save an image given by the user in the public storage folder.
      *
-     * @param $image: the image to be stored
-     * @return path to find the image
+     * @param image: the image to be stored
+     * @return the path to find the image
      */
     public function saveImage($image)
     {
@@ -272,7 +250,7 @@ class ProjetController extends Controller
     /**
      * Delete an image in public storage folder.
      *
-     * @param $imagePath: the image to be deleted
+     * @param imagePath: the image to be deleted
      */
     public function deleteImage($imagePath)
     {

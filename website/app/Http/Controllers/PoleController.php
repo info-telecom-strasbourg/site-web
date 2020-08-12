@@ -3,15 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Pole;
 
+/**
+ * Controller linked to the poles.
+ */
 class PoleController extends Controller
 {
     /**
-     * Display all poles.
+     * Get all poles.
      *
-     * @return \Illuminate\Http\Response
+     * @return all the poles
      */
     public function index()
     {
@@ -21,8 +23,8 @@ class PoleController extends Controller
     /**
      * Show a specified pole.
      *
-     * @param string $pole: the pole you want to display
-     * @return \Illuminate\Http\Response
+     * @param pole: the pole's name that you want to display
+     * @return the pole's view
      */
     public function show($pole)
     {
@@ -33,28 +35,28 @@ class PoleController extends Controller
     /**
      * Show the form to create a pole.
      *
-     * @return \Illuminate\Http\Response
+     * @return the view to create a pole.
      */
     public function create()
     {
-
+		//TODO just in case
     }
 
     /**
      * Store a new pole.
      *
-     * @return \Illuminate\Http\Response
+     * @return redirect to.....
      */
     public function store()
     {
-
+		//TODO just in case
     }
 
     /**
      * Show the form for editing the specified pole.
      *
-     * @param App\Pole $pole: the pole you want to edit
-     * @return \Illuminate\Http\Response
+     * @param pole: the pole you want to edit.
+     * @return the view to edit the pole.
      */
     public function edit(Pole $pole)
     {
@@ -65,8 +67,8 @@ class PoleController extends Controller
     /**
      * Update the specified pole.
      *
-     * @param App\Pole $pole: the pole you want to update
-     * @return \Illuminate\Http\Response to the pole's specific page
+     * @param pole: the pole you want to update
+     * @return the pole's specific page
      */
     public function update(Pole $pole)
     {
@@ -82,11 +84,11 @@ class PoleController extends Controller
     /**
      * Delete a specific pole and everything attached to it.
      *
-     * @return \Illuminate\Http\Response
+     * @return redirect to.....
      */
     public function destroy()
     {
-
+		//TODO ???
     }
 
 }

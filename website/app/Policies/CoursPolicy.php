@@ -6,6 +6,9 @@ use App\Cours;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
+/**
+ * Policy to protect actions linked to lessons.
+ */
 class CoursPolicy
 {
     use HandlesAuthorization;
@@ -13,7 +16,7 @@ class CoursPolicy
     /**
      * Determine whether the user can view any models.
      *
-     * @param  \App\User  $user
+	 * @param user: the current user.
      * @return mixed
      */
     public function viewAny(User $user)
@@ -24,8 +27,8 @@ class CoursPolicy
     /**
      * Determine whether the user can view the model.
      *
-     * @param  \App\User  $user
-     * @param  \App\Cours  $cours
+	 * @param user: the current user.
+     * @param cours: the lesson he want to see.
      * @return mixed
      */
     public function view(User $user, Cours $cours)
@@ -36,7 +39,7 @@ class CoursPolicy
     /**
      * Determine whether the user can create models.
      *
-     * @param  \App\User  $user
+	 * @param user: the current user.
      * @return mixed
      */
     public function create(User $user)
@@ -47,8 +50,8 @@ class CoursPolicy
     /**
      * Determine whether the user can update the model.
      *
-     * @param  \App\User  $user
-     * @param  \App\Cours  $cours
+	 * @param user: the current user.
+     * @param cours: the lesson he want to update.
      * @return mixed
      */
     public function update(User $user, Cours $cours)
@@ -67,8 +70,8 @@ class CoursPolicy
     /**
      * Determine whether the user can delete the model.
      *
-     * @param  \App\User  $user
-     * @param  \App\Cours  $cours
+	 * @param user: the current user.
+     * @param cours: the lesson he want to delete.
      * @return mixed
      */
     public function delete(User $user, Cours $cours)
@@ -76,27 +79,4 @@ class CoursPolicy
         //
     }
 
-    /**
-     * Determine whether the user can restore the model.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Cours  $cours
-     * @return mixed
-     */
-    public function restore(User $user, Cours $cours)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Cours  $cours
-     * @return mixed
-     */
-    public function forceDelete(User $user, Cours $cours)
-    {
-        //
-    }
 }
