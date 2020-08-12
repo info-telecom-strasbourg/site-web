@@ -67,7 +67,9 @@ class ProjetController extends Controller
         $this->authorize('create', Projet::class);
         $users = User::all();
         $poles = Pole::whereNotIn('slug', ['cours', 'competitions'])->get();
-        return view('projets.create', compact('users', 'poles'));
+        $partners = Collaborateur::all();
+
+        return view('projets.create', compact('users', 'poles', 'partners'));
     }
 
     /**
@@ -102,11 +104,11 @@ class ProjetController extends Controller
         {
             foreach ($request->participants as $participant)
             {
-                $projet->participants()->attach($participant);
-
                 // look if the team leader has been added to the contributors
                 if ($participant == $request->chef_projet_id)
                     $teamLeaderPresent = true;
+
+                $projet->participants()->attach($participant);
             }
         }
 

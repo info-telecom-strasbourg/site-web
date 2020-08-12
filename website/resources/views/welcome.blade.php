@@ -18,7 +18,7 @@
                 <div class="carousel-caption">
                     <h1>Info Télécom Strasbourg</h1>
                     <br>
-                    <p>Notre toute nouvelle association débaque à TPS en Septembre !</p>
+                    <p>Notre toute nouvelle association débarque à TPS en Septembre !</p>
                     <br>
                     <form action="projets">
                         <input class="favorite styled" type="submit" value="Découvrir nos projets">
@@ -29,7 +29,7 @@
                 <div class="carousel-caption">
                     <h1>RTS - Strategy</h1>
                     <br>
-                    <p>Développement de la stratégie du robot de RTS qui participera à la Coupe de France de Robotique 2020</p>
+                    <p>Développement de la stratégie du robot de RTS pour la Coupe de France de Robotique 2020</p>
                     <br>
                     <form action="#">
                         <input class="favorite styled" type="submit" value="Voir le projet">
@@ -42,7 +42,7 @@
                     <br>
                     <p>Développement de nouvelles fonctionnalités pour notre site web</p>
                     <br>
-                    <form action="#">
+                    <form action="/projets/1">
                         <input class="favorite styled" type="submit" value="Voir le projet">
                     </form>
                 </div>
@@ -91,90 +91,21 @@
         <div class="row mx-auto my-auto">
             <div id="recipeCarousel" class="carousel slide w-100" data-ride="carousel">
                 <div class="carousel-inner w-100" role="listbox">
-                    <div class="carousel-item active">
-                        <div class="col-md-4">
-                            <div class="card text-center shadow mb-5 bg-white rounded">
-                                <img class="card-img-top" src="/images/projets/projet.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title text-center font-weight-bold">Site web ITS</h5>
-                                    <p class="card-text">Nous développons le site de notre association afin de vous permettre d'avoir un
-                                        accès à tous nos projets! (1)
-                                    </p>
-                                    <a href="#" class="btn btn-rounded btn-primary">Découvrir</a>
+                    @foreach ($projets as $projet)
+                        <div class="carousel-item @if ($loop->first) active @endif">
+                            <div class="col-md-4">
+                                <div class="card text-center shadow mb-5 bg-white rounded">
+                                    <img class="card-img-top" src="{{ asset('storage/' . json_decode($projet->projet->images)[0]) }}" alt="Card image cap">
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="card-title text-center font-weight-bold">{{ $projet->projet->title }}</h5>
+                                        <p class="card-text">{{ mb_strlen( $projet->projet->desc ) > 57 ? mb_substr($projet->projet->desc, 0, 54) . ' ...' : $projet->projet->desc }}
+                                        </p>
+                                        <a href="/projets/{{ $projet->projet_id }}" class="btn btn-rounded btn-primary">Découvrir</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="col-md-4">
-                            <div class="card text-center shadow mb-5 bg-white rounded">
-                                <img class="card-img-top" src="/images/projets/projet.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title text-center font-weight-bold">Site web ITS</h5>
-                                    <p class="card-text">Nous développons le site de notre association afin de vous permettre d'avoir un
-                                        accès à tous nos projets! (2)
-                                    </p>
-                                    <a href="#" class="btn btn-rounded btn-primary">Découvrir</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="col-md-4">
-                            <div class="card text-center shadow mb-5 bg-white rounded">
-                                <img class="card-img-top" src="/images/projets/projet.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title text-center font-weight-bold">Site web ITS</h5>
-                                    <p class="card-text">Nous développons le site de notre association afin de vous permettre d'avoir un
-                                        accès à tous nos projets! (3)
-                                    </p>
-                                    <a href="#" class="btn btn-rounded btn-primary">Découvrir</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="col-md-4">
-                            <div class="card text-center shadow mb-5 bg-white rounded">
-                                <img class="card-img-top" src="/images/projets/projet.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title text-center font-weight-bold">Site web ITS</h5>
-                                    <p class="card-text">Nous développons le site de notre association afin de vous permettre d'avoir un
-                                        accès à tous nos projets! (4)
-                                    </p>
-                                    <a href="#" class="btn btn-rounded btn-primary">Découvrir</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="col-md-4">
-                            <div class="card text-center shadow mb-5 bg-white rounded">
-                                <img class="card-img-top" src="/images/projets/projet.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title text-center font-weight-bold">Site web ITS</h5>
-                                    <p class="card-text">Nous développons le site de notre association afin de vous permettre d'avoir un
-                                        accès à tous nos projets! (5)
-                                    </p>
-                                    <a href="#" class="btn btn-rounded btn-primary">Découvrir</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="col-md-4">
-                            <div class="card text-center shadow mb-5 bg-white rounded">
-                                <img class="card-img-top" src="/images/projets/projet.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title text-center font-weight-bold">Site web ITS</h5>
-                                    <p class="card-text">Nous développons le site de notre association afin de vous permettre d'avoir un
-                                        accès à tous nos projets! (6)
-                                    </p>
-                                    <a href="#" class="btn btn-rounded btn-primary">Découvrir</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 <a class="carousel-control-prev w-auto" href="#recipeCarousel" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
@@ -194,7 +125,7 @@
     <h1 class="title lg text-center"> Agenda </h1>
     <hr class="line-under-title">
     <div class="google-agenda">
-        <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=America%2FPort_of_Spain&amp;src=Mmg5MnVjcGx1Nm9pNzRpNXAzM3UybG5naGtAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;color=%23F6BF26&amp;showTitle=0&amp;showPrint=0&amp;showTabs=1&amp;showTz=0&amp;showCalendars=0" style="border:solid 1px #777" width="100%" height="600" frameborder="0" scrolling="no"></iframe> </div>
+        <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=Europe%2FParis&amp;src=Mmg5MnVjcGx1Nm9pNzRpNXAzM3UybG5naGtAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;color=%23F6BF26&amp;showTitle=0&amp;showPrint=0&amp;showTabs=1&amp;showTz=0&amp;showCalendars=0" style="border:solid 1px #777" width="400px" height="600" frameborder="0" scrolling="no" id="agenda-frame"></iframe> </div>
 </section>
 
 <!-- Notre association -->
@@ -206,15 +137,15 @@
             <div class="col-md-7" id="asso-txt">
                 <p>
                     Cette année, une toute nouvelle association voit le jour dans ton école ! ITS te propose de découvrir le monde du numérique sous toutes ses formes.<br><br>
-                    Au travers de 5 pôles, tu pourras développer des sites web et des applications, réaliser des petits programmes utiles, créer ton propre jeu PC, participer à de grandes compétitions informatiques, ou encore bénéficier de notre structure d'entraide.<br><br>
+                    Au travers de 5 pôles, tu pourras développer des sites web et des applications, réaliser des petits programmes utiles, créer ton propre jeu vidéo, participer à de grandes compétitions informatiques, ou encore bénéficier de notre structure d'entraide.<br><br>
                     Si tu as besoin d'aide avec ton ordinateur, ou si tu souhaites obtenir de précieux conseils en programmation ou en cybersécurité, nous sommes aussi là pour toi !<br><br>
-                    ITS c'est avant tout une association qui te permettra de progresser en informatique dans un cadre chaleureux et agréable. Et ceci, quel que soient ton niveau et tes objectifs.<br><br>
+                    ITS c'est avant tout une association qui te permettra de progresser en informatique dans un cadre chaleureux et agréable. Et ceci, quels que soient ton niveau et tes objectifs.<br><br>
                     Alors n'hésite plus, ITS t'ouvre ses portes en Septembre pour ton plus grand bonheur !
                 </p>
             </div>
             <div class="col-md-5" id="asso-img">
                 <img src="/images/illustrations/tps.jpg" alt="Photo de TPS">
-                <p>Ecole d'ingénieur Télécom Physique Strasbourg</p>
+                <p>École d'ingénieur Télécom Physique Strasbourg</p>
             </div>
         </div>
     </div>
@@ -256,7 +187,7 @@
         </div>
         <div class="chiffre">
             <h1>{{ $nbPoles }}</h1>
-            POLES
+            PÔLES
         </div>
         <div class="chiffre">
             @if ($years == 1)
@@ -276,11 +207,11 @@
     <div class="directeur">
         <p style="font-style: italic;"> "L’Association d’Informatique de Télécom Physique Strasbourg a tout mon soutien et je salue ses projets particulièrement ambitieux.<br><br>
             Ce projet associatif renforcera j’en suis certain l’entraide entre élèves-ingénieurs et par là même leur sentiment d’appartenance à une grande école d'ingénieurs.<br><br>
-            Les 5 Pôles mis en place permettent aux élèves de mettre en pratique et compléter leur formation académique, que ce soit à travers le développement de programmes utiles, de jeux vidéo, d’applications mobiles ou de site Web.<br><br>
-            J’encourage particulièrement la participation à des compétitions informatiques bénéfiques à la visibilité de Télécom Physique Strasbourg et de son Département Informatique et Réseaux.<br><br>Vous pourrez compter sur le soutien de votre directeur !"</p>
+            Les 5 pôles mis en place permettent aux élèves de mettre en pratique et compléter leur formation académique, que ce soit à travers le développement de programmes utiles, de jeux vidéo, d’applications mobiles ou de site Web.<br><br>
+            J’encourage particulièrement la participation à des compétitions informatiques bénéfiques à la visibilité de Télécom Physique Strasbourg et de son département Informatique et Réseaux.<br><br>Vous pourrez compter sur le soutien de votre directeur !"</p>
         <img class="profil-rounded" src="/images/logo/collet.jpg">
         <p id="nom"> Christophe Collet </p>
-        <p id="fonction">Directeur de l’école d’ingénieurs Télécom Physique Strasbourg</p>
+        <p id="fonction">Directeur de l’école d’ingénieur Télécom Physique Strasbourg</p>
     </div>
 </section>
 
@@ -288,15 +219,19 @@
 <section class="section grise" id="partenariat">
     <h1 class="title lg text-center"> Nos collaborateurs </h1>
     <hr class="line-under-title">
-    <div class="partenaires">
-        @foreach($partners as $partner)
-        <div class="partenaire">
-            <a href="{{ $partner->link }}" class="logo">
-                <img class="logo-pres" src="{{ asset($partner->image) }}" alt="Logo de {{ $partner->name }}">
-                <p>{{ $partner->name }}</p>
-            </a>
+    <div class="container-fluid">
+        <div class="row align-items-end justify-content-around">
+            @foreach($partners as $partner)
+            <div class="col-auto">
+                <a href="{{ $partner->link }}" class="logo" target="_blank">
+                    <div style="height: 150px;" class="row align-items-center">
+                        <img class="logo-pres" src="{{ asset($partner->image) }}" alt="Logo de {{ $partner->name }}">
+                    </div>
+                    <p>{{ $partner->name }}</p>
+                </a>
+            </div>
+            @endforeach
         </div>
-        @endforeach
     </div>
     <a id="contact-anchor"></a>
 </section>

@@ -23,6 +23,9 @@ Route::get('/besoin-aide', function () {
     return view('besoin-aide');
 });
 
+Route::post('/besoin-aide', 'BesoinAideController@store')->name('aide.store');
+
+
 Route::get('/page-admin', function () {
     return view('dark-page');
 })->middleware('admin');

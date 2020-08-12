@@ -40,7 +40,7 @@
                 <img class="profil-rounded" src="images/defaut/profil.jpg">
             </button>
             <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" href="#">Profil</a>
+                <a class="dropdown-item" href="/users/{{ Auth::user()->id }}">Profil</a>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
@@ -56,11 +56,11 @@
     <div class="nav flex-column nav-pills short" id="v-pills-tab" role="tablist" aria-orientation="horizontal">
         <div class="navbar-dark-brand" href="/">
             <a href="/">
-                <img src="/images/logo/logo-dark.png" width="90" height="90" alt="Logo du site">
+                <img src="/images/logo/logo-dark.png" width="90" height="100%" alt="Logo du site">
             </a>
         </div>
         <a class="nav-link active" id="v-pills-ens-tab" data-toggle="pill" href="#v-pills-ens" role="tab" aria-controls="v-pills-ens" aria-selected="true">VUE D'ENSEMBLE</a>
-        <a class="nav-link" id="v-pills-actu-tab" data-toggle="pill" href="#v-pills-actu" role="tab" aria-controls="v-pills-actu" aria-selected="false">ACTUALITES</a>
+        <a class="nav-link" id="v-pills-actu-tab" data-toggle="pill" href="#v-pills-actu" role="tab" aria-controls="v-pills-actu" aria-selected="false">ACTUALITÉS</a>
         <a class="nav-link" id="v-pills-helpdesk-tab" data-toggle="pill" href="#v-pills-helpdesk" role="tab" aria-controls="v-pills-helpdesk" aria-selected="false">HELPDESK</a>
         <a class="nav-link" id="v-pills-membres-tab" data-toggle="pill" href="#v-pills-membres" role="tab" aria-controls="v-pills-membres" aria-selected="false">MEMBRES</a>
     </div>

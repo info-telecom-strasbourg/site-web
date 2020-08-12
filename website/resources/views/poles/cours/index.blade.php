@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', 'Pôle' . $pole->title)
+@section('title', 'Pôle ' . $pole->title)
 
 @section('breadcrumb')
 <li class="breadcrumb-item"><a href="/"><i class="fas fa-home"></i></a></li>
@@ -34,7 +34,7 @@
 										<span>{{ mb_strlen( $cour->desc ) > 57 ? mb_substr($cour->desc, 0, 54) . ' ...' : $cour->desc }}
 		                                </span>
 									</p>
-									<a href="/poles/cours/{{ $cour->id }}" class="btn btn-rounded btn-primary" type="button">DÉCOUVRIR</a>
+									<a href="/poles/cours/{{ $cour->id }}" class="btn btn-rounded btn-primary">DÉCOUVRIR</a>
 								</div>
 						  	</div>
 						</div>

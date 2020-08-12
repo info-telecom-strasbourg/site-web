@@ -19,7 +19,7 @@
 		<div class="container" id="description" style="margin-top: 50px;">
 			<div class="row">
 				<div class="col-3 disp">
-					<img src="{{ asset('storage/' . json_decode($cours->image)[0]) }}" alt="Decriptive image">
+					<img src="{{ asset('storage/' . json_decode($cours->image)[0]) }}" alt="Decriptive image" style="width: 195px; height: 100%;">
 				</div>
 				<div class="col-9 disp">
 					<p>{{ $cours->desc }}</p>
@@ -51,7 +51,7 @@
 							</a>
 						</div>
 					@empty
-						<div>
+						<div class="col-md-auto sep-items">
 							Ce cours a été créé par un anonyme
 						</div>
 					@endforelse

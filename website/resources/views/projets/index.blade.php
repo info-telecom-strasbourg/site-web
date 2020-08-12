@@ -45,7 +45,7 @@
 				</div>
 				<div class="col-md-3">
 					<select class="form-control" name="membre" id="membre">
-						<option readonly selected hidden value="">Membre</option>
+						<option readonly selected hidden value="">Participants</option>
 
 						@isset($participants)
 							@foreach ($participants as $key => $participant)
@@ -85,7 +85,7 @@
 					<button type="submit" class="btn btn-primary btn-primary btn-rounded">FILTRER</button>
 				</div>
 				<div class="col-md-3 text-center" style="opacity: .75;">
-					<a href="/projets" class="btn btn-primary btn-primary btn-rounded">RESET</a>
+					<a href="/projets" class="btn btn-primary btn-primary btn-rounded w-100">RESET</a>
 				</div>
 			</div>
 		</form>
@@ -94,7 +94,7 @@
 			<div class="row justify-content-center">
 
 				@if(isset($projets))
-
+					{{-- {{ dd($projets) }} --}}
 					@forelse ($projets as $projet)
 						<div class="col-md sep-items" id="projets-container">
 							<div class="card text-center rounded">
@@ -107,7 +107,11 @@
 										<span>{{ mb_strlen( $projet->desc ) > 57 ? mb_substr($projet->desc, 0, 54) . ' ...' : $projet->desc }}
 		                                </span>
 									</p>
-									<a href="/projets/{{ $projet->id }}" class="btn btn-rounded btn-primary" type="button">DÉCOUVRIR</a>
+									@isset ($projet->projet_id)
+										<a href="/projets/{{ $projet->projet_id }}" class="btn btn-rounded btn-primary">DÉCOUVRIR</a>
+									@else
+										<a href="/projets/{{ $projet->id }}" class="btn btn-rounded btn-primary">DÉCOUVRIR</a>
+									@endisset
 								</div>
 						  	</div>
 						</div>
@@ -115,7 +119,7 @@
 					@empty
 
 						<div class="alert alert-secondary alert-dismissible fade show col" role="alert">
-							Aucun projets n'a été trouvé
+							Aucun projet n'a été trouvé
 							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 		    					<span aria-hidden="true">&times;</span>
 		  					</button>
@@ -124,7 +128,7 @@
 
 				@else
 					<div class="alert alert-secondary alert-dismissible fade show col" role="alert">
-						Aucun projets n'a été trouvé
+						Aucun projet n'a été trouvé
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 	    					<span aria-hidden="true">&times;</span>
 	  					</button>
