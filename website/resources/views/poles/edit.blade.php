@@ -1,3 +1,5 @@
+<!-- Edit a pole -->
+
 @extends('layouts.layout')
 
 @section('title', 'Édition d\'un pôle')
@@ -14,13 +16,13 @@
         Édition pôle {{ strtolower($pole->title) }}
     </h1>
     <hr class="line-under-title">
-    
+
     <div class="container pt-3">
     	<form action="/poles/{{ $pole->id }}" method="POST">
     		@csrf
     		@method('PUT')
 
-    		<!-- Titre -->
+    		<!-- Title of the pole -->
     		<div class="form-group">
     			<label class="form-title-small" for="title">Titre</label>
     			<div class="control">
@@ -33,11 +35,11 @@
     		</span>
     		@enderror
 
-    		<!-- Decription -->
+    		<!-- Description of the pole -->
     		<div class="form-group">
     			<label class="form-title-small" for="desc">Decription</label>
     			<div class="control">
-    				<textarea class="form-control desc @error('desc') is-invalid @enderror" id="desc" name="desc" rows="3" required>{{ $pole->desc }}</textarea>
+    				<textarea class="form-control desc @error('desc') is-invalid @enderror" id="desc" name="desc" rows="10" required>{{ $pole->desc }}</textarea>
     			</div>
     		</div>
     		@error('desc')
@@ -46,7 +48,7 @@
     		</span>
     		@enderror
 
-    		<!-- Bouton submit -->
+    		<!-- Button to edit the pole -->
     		<div class="text-center" style="margin-top:25px; margin-bottom:25px">
     			<button type="submit" class="btn btn-primary btn-rounded">Enregistrer</button>
     		</div>

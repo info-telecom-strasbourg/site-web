@@ -1,3 +1,4 @@
+<!-- Remove this file? -->
 @extends('layouts.app')
 
 @section('title', 'Home')

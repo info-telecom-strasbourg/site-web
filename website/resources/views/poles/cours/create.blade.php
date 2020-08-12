@@ -1,3 +1,5 @@
+<!-- Creation of a lesson -->
+
 @extends('layouts.layout')
 
 @section('title')
@@ -22,6 +24,7 @@ Création d'un cours
 		<form id="creat-cours" action="{{ route('poles.cours.store') }}" method="post" enctype="multipart/form-data">
 			@csrf
 
+			<!-- Title of the lesson -->
 			<div class="form-group">
 				<label for="title" class="form-title-small">Titre</label>
 
@@ -34,6 +37,7 @@ Création d'un cours
 				@enderror
 			</div>
 
+			<!-- Description of the lesson -->
 			<div class="form-group">
 				<label for="desc" class="form-title-small">Description</label>
 
@@ -48,6 +52,7 @@ Création d'un cours
 				@enderror
 			</div>
 
+			<!-- Creators of the lesson -->
 			<div class="form-group">
 				<label for="creators" class="form-title-small">Ajouter des créateurs</label>
 				<select class="custom-select" name="creators[]" id="creators" size="4" required multiple>
@@ -61,6 +66,7 @@ Création d'un cours
 		        </select>
 			</div>
 
+			<!-- Image to illustrate the lesson -->
 			<div class="form-group">
 				<label for="image_crs" class="form-title-small">				
 					Image pour la vignette du cours (optionnelle)
@@ -69,7 +75,7 @@ Création d'un cours
 				<input type="file" id="image_crs" name="image_crs">
 			</div>
 
-
+			<!-- Files linked with the lesson -->
 			<div class="form-group">
 				<label for="link_support_mod" class="form-title-small">		
 					Fichiers associés
@@ -78,12 +84,14 @@ Création d'un cours
 				<input type="file" id="link_support" name="link_support[]" multiple>
 			</div>
 
+			<!-- Manage the visibility of the files for the lesson -->
 			<h4 class="form-title" id="choose-visibility">
 				Cochez les fichiers réservés aux membres
 			</h4>
 			<div class="form-group" id="choose-visibility">
 			</div>
 
+			<!-- Dates of the lesson -->
 			<h4 class="form-title">Dates du cours</h4>
 			<div class="row justify-content-around dates-select">
 				<div class="col-md-auto">
@@ -112,12 +120,10 @@ Création d'un cours
 					</div>
 				</div>
 			</div>
-
 			<div id="dates-select">
-
 			</div>
 
-
+			<!-- Button to create lesson -->
 			<div class="text-center" style="margin-top:25px; margin-bottom:25px">
 				<button id="submit-btn-crt-crs" type="submit" class="btn btn-primary btn-rounded">AJOUTER</button>
 			</div>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Competition;
 use App\Pole;
 use App\Date;
+use App\User;
 use Illuminate\Support\Facades\Storage;
 
 /**
@@ -29,9 +30,11 @@ class CompetitionController extends Controller
 	 * @param compet: the competition that will be shown.
 	 * @return the view of the competition.
 	 */
+
 	public function show(Competition $compet)
 	{
-		return view('poles.competitions.show', [ 'compet' => $compet ]);
+		$pole = Pole::where('slug', 'competitions')->first();
+		return view('poles/competitions/show', [ 'compet' => $compet, 'pole' => $pole ]);
 	}
 
 	/**
@@ -42,7 +45,8 @@ class CompetitionController extends Controller
 	public function create()
 	{
 		$this->authorize('create', Competition::class);
-		return view('poles.competitions.create');
+		$users = User::all();
+		return view('poles.competitions.create', compact('users'));
 	}
 
 	/**
@@ -54,17 +58,18 @@ class CompetitionController extends Controller
 	{
 		$compet = Competition::create($this->validateCompetiton());
 
-		/* add dates */
 		foreach ($request->dates_comp as $date)
 		{
 			$newDate = Date::create([
 				'presentiel' => 1,
 				'date' => $date
 			]);
+
 			$compet->dates()->attach($newDate->id);
 		}
 
-		/* add images */
+		$compet->cover = $this->saveImage($request->cover);
+
 		if ($request->has('images'))
         {
             $competImages = [];
@@ -74,8 +79,13 @@ class CompetitionController extends Controller
             }
             $compet->images = json_encode($competImages);
         }
-        else
-            $compet->images = [$this->selectDefaultImage()];
+
+
+		if ($request->has('competitors'))
+			$this->addCompetitors($compet);
+
+		if($request->has('place'))
+			$compet->place = $request->place;
 
         $compet->save();
 
@@ -90,31 +100,101 @@ class CompetitionController extends Controller
 	 */
 	public function edit(Competition $compet)
 	{
-		return view('poles.competitions.edit', compact('compet'));
+		$this->authorize('update', 'App\Competition');
+		$users = User::all();
+		return view('poles.competitions.edit', compact('compet', 'users'));
 	}
 
 	/**
 	 * Update the specified competition.
 	 *
-	 * @return \Illuminate\Http\Response
+	 * @param compet: the competition to update.
+	 * @return redirect to the page of the competition updated.
 	 */
 	public function update(Competition $compet)
 	{
-		//TODO update for competitions
+		$this->authorize('update', 'App\Competition');
+
+		$compet->update($this->validateCompetiton());
+
+		if(request()->has('cover'))
+		{
+			unlink(storage_path('app/public/' . $compet->cover));
+			$compet->cover = $this->saveImage(request()->cover);
+		}
+
+		if (request()->has('link_im_comp'))
+		{
+			if(isset($compet->images))
+				$images = json_decode($compet->images);
+			else
+				$images = [];
+
+
+			foreach(request()->link_im_comp as $image)
+				$images[] = $this->saveImage($image);
+
+			$compet->images = json_encode($images);
+		}
+
+		if (request()->has('remove_images'))
+		{
+			$images = [];
+			foreach (json_decode($compet->images) as $key => $value)
+			{
+				if(!in_array($value, request()->remove_images, true))
+					$images[] = $value;
+				else
+					unlink(storage_path('app/public/' . $value));
+			}
+			$compet->images = json_encode($images);
+		}
+
+		if (request()->has('competitors'))
+			$this->addCompetitors($compet);
+
+		if (request()->has('del_competitors'))
+			$this->delCompetitors($compet);
+
+		$compet->dates()->delete();
+
+		$this->saveDates($compet);
+
+		if (request()->has('place'))
+			$compet->place = request()->place;
+
+		$compet->save();
+
+		return redirect('/poles/competitions/' . $compet->id);
 	}
 
 	/**
 	 * Remove the specified lesson.
 	 *
-	 * @return \Illuminate\Http\Response
+	 * @param compet: the competition to delete.
+	 * @return redirect to the competition's index view.
 	 */
-	public function destroy()
+	public function destroy(Competition $compet)
 	{
+		$this->authorize('delete', $compet);
 
+		$compet->dates()->delete();
+
+		unlink(storage_path('app/public/' . $compet->cover));
+
+		if(isset($compet->images))
+			foreach(json_decode($compet->images) as $image)
+				unlink(storage_path('app/public/' . $image));
+
+		$compet->delete();
+
+		return redirect('/poles/competitions');
 	}
 
 	/**
 	 * Validate parameters.
+	 *
+	 * @return the validated request.
 	 */
 	public function  validateCompetiton ()
 	{
@@ -137,13 +217,51 @@ class CompetitionController extends Controller
         return substr($path, 7);
     }
 
-   	/**
-	 * Select a random default image.
+	/**
+	 * Add new competitors (if they are not already in the list).
 	 *
-	 * @return the path to the image
+	 * @param compet: the competition you want to add competitors to
 	 */
-	public function selectDefaultImage()
+	public function addCompetitors(Competition $compet)
 	{
-		return 'images/default/prog/' . strval(random_int (1, 5) . '.jpg');
+		foreach (request()->competitors as $competitor)
+		{
+			if ($compet->competitors()->where('user_id', $competitor)->count() == 0)
+				$compet->competitors()->attach($competitor);
+		}
+	}
+
+	/**
+	 * Delete competitors (if they are not already in the list).
+	 *
+	 * @param compet: the competition you want to delete competitors to
+	 */
+	public function delCompetitors(Competition $compet)
+	{
+		foreach (request()->del_competitors as $competitor)
+		{
+			if ($compet->competitors()->where('user_id', $competitor)->count() == 1)
+				$compet->competitors()->detach($competitor);
+		}
+	}
+
+	/**
+	 * Save the dates of the competition.
+	 *
+	 * @param compet: the competition that dates will be stored.
+	 */
+	public function saveDates(Competition $compet)
+	{
+		foreach (request()->dates_comp as $date)
+		{
+			// create a new date in the database
+			$newDate = Date::create([
+				'presentiel' => 1,
+				'date' => $date
+			]);
+
+			// add the date to the list of dates for this lesson
+			$compet->dates()->attach($newDate->id);
+		}
 	}
 }

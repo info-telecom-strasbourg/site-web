@@ -96,6 +96,7 @@ class ProjetController extends Controller
             $projet->images = [$this->selectDefaultImage($projet->pole_id)];
 
         $teamLeaderPresent = false;
+
         if ($request->has('participants'))
         {
             foreach ($request->participants as $participant)

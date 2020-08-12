@@ -1,3 +1,5 @@
+<!-- Display a lesson -->
+
 @extends('layouts.layout')
 
 @section('title', 'Cours ITS - ' . $cours->title)
@@ -10,6 +12,7 @@
 
 @section('content')
 <div class="container" id="cours">
+	<!--Title of the lesson -->
 	<h1 class="title lg text-center">
 		{{ $cours->title }}
 	</h1>
@@ -18,18 +21,21 @@
 	<div class="container pt-3">
 		<div class="container" id="description" style="margin-top: 50px;">
 			<div class="row">
+				<!--Image to illustrate the lesson -->
 				<div class="col-3 disp">
 					<img src="{{ asset('storage/' . json_decode($cours->image)[0]) }}" alt="Decriptive image" style="width: 195px; height: 100%;">
 				</div>
+
+				<!--Description of the lesson -->
 				<div class="col-9 disp">
 					<p>{{ $cours->desc }}</p>
 				</div>
 			</div>
 		</div>
 		<div class="bordure"></div>
+
+		<!--Creators of the lesson -->
 		<h4 class="title md text-center">Créateurs du cours</h4>
-		
-		<!-- Créateurs -->
 		<div class="container" style="padding-top: 1rem !important; margin-bottom: -35px;">
 			<div class="row align-items-center">
 				@if (isset($cours))
@@ -63,7 +69,7 @@
 			</div>
 		</div>
 
-		<!-- Dates en présentiel -->
+		<!-- Dates of the lesson in face-to-face -->
 		<div class="bordure"></div>
 		<h4 class="title md text-center">Dates en présentiel</h4>
 		<div class="container" style="margin-top: 30px;">
@@ -93,7 +99,7 @@
 			@endif
 		</div>
 
-		<!-- Dates en distanciel -->
+		<!-- Dates of the lesson on Discord -->
 		<div class="bordure"></div>
 		<h4 class="title md text-center">Dates en distanciel (sur Discord)</h4>
 		<div class="container" style="margin-top: 30px;">
@@ -123,31 +129,10 @@
 			@endif
 		</div>
 
-
-		<!-- Références -->
-		@if (isset($cours->links))
-			<div class="bordure"></div>
-			<h4 class="title md text-center">Références</h4>
-			@foreach (json_decode($cours->links, true) as $link)
-				<div class="row align-items-center">
-					<div class="col-auto sep-chevr">
-						<i id="chevron-date-supports" class="fas fa-chevron-right fa-2x">
-						</i>
-					</div>
-					<div class="col sep-chevr">
-						<a href="{{ $link }}" class="link-black" target="_blank">{{ $link }}</a>
-					</div>
-				</div>
-			@endforeach
-		@endif
-
-
-		<!-- Supports -->
+		<!-- Files linked to the lesson -->
 		@if (!empty($cours->supports[0]))
 			<div class="bordure"></div>
 			<h4 class="title md text-center">Support</h4>
-			<!-- Bouton pour DL le support -->
-			<!-- TODO dans autres pages -->
 			<div id="select-files" class="container">
 				@foreach ($cours->supports as $support)
 					<div class="row align-items-center">
@@ -179,6 +164,7 @@
 			</div>
 		@endif
 
+		<!-- Buttons to edit or remove a lesson -->
 		@can('update', $cours)
 		    <div class="d-flex flex-row justify-content-around" style="margin-top: auto;">
 				<div class="text-center" style="margin-top:25px; margin-bottom:25px;">
@@ -192,8 +178,3 @@
 	</div>
 </div>
 @endsection
-
-<!--
-Les dates
-Les sources (links)
- -->
