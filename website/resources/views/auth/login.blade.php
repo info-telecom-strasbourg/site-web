@@ -19,7 +19,7 @@
                         <h1 class="h1">Se connecter</h1>
                         <p>Heureux de vous revoir !</p>
                         <p>
-                            <a href="/#contact" class="respo-support">Envoyez nous un message</a> pour devenir membre et pouvoir vous connecter.
+                            <a href="/#contact" class="respo-support">Envoyez-nous un message</a> pour devenir membre <br> et pouvoir vous connecter.
                         </p>
                     </div>
                     <div class="row justify-content-center flex-grow-1" id="form-container">
@@ -33,11 +33,11 @@
                                             <strong>Le mail n'est pas correcte</strong>
                                         </span>
                                     @enderror
-                            </div>              
+                            </div>
 
                             <div class="form-group password-group">
                                 <label for="passowrd">MOT DE PASSE</label>
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Entrer votre mot de passe">
+                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Entrez votre mot de passe">
 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -65,7 +65,7 @@
                                 </div>
                             </div>
 
-                            
+
 
                             <button type="submit" class="favorite styled">SE CONNECTER</button>
 

@@ -961,7 +961,7 @@ i#chevron-date-supports {
 
 a.link-black {
     color: black;
-    cusor: default;
+    cursor: default;
 }
 
 a.link-black:hover {
@@ -1010,6 +1010,14 @@ div.bordure {
         min-width: 100%;
     }
 }
+
+
+/* ##########################   Compétition   ########################## */
+.photo-comp {
+	width:300px;
+	height: auto;
+}
+
 
 
 /* ##########################   Calendriers   ########################## */
