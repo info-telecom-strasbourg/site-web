@@ -37,8 +37,6 @@ Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('r
 Route::get('/home', 'HomeController@index')->name('home');
 
 /***** Route poles *****/
-Route::get('/poles', 'PoleController@index')->name('pole.index');
-
 Route::get('/poles/cours', 'CoursController@index')->name('poles.cours.index');
 
 

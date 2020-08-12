@@ -1,3 +1,5 @@
+<!-- Display all the lessons -->
+
 @extends('layouts.layout')
 
 @section('title', 'Pôle ' . $pole->title)
@@ -9,13 +11,16 @@
 
 @section('content')
 <div class="container">
+	<!-- Display the lesson pole -->
     <h1 class="title lg text-center">
         Pôle {{ $pole->title }}
     </h1>
     <hr class="line-under-title">
 
 	<div class="container pt-3">
-        <p>{{ $pole->desc }}</p>
+		<!-- Display the lesson pole description-->
+		<p>{{ $pole->desc }}</p>
+		<!-- Display all the lessons -->
         <h4 class="title md text-left">Liste des cours</h4>
 		<div class="container pt-5">
 			<div class="row justify-content-center">
