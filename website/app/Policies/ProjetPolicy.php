@@ -6,6 +6,9 @@ use App\Projet;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
+/**
+ * Policy to protect actions linked to projects.
+ */
 class ProjetPolicy
 {
     use HandlesAuthorization;
@@ -13,7 +16,7 @@ class ProjetPolicy
     /**
      * Determine whether the user can view any models.
      *
-     * @param  \App\User  $user
+     * @param user: the current user.
      * @return mixed
      */
     public function viewAny(User $user)
@@ -24,8 +27,8 @@ class ProjetPolicy
     /**
      * Determine whether the user can view the model.
      *
-     * @param  \App\User  $user
-     * @param  \App\Projet  $projet
+	 * @param user: the current user.
+     * @param projet: the project he want to see.
      * @return mixed
      */
     public function view(User $user, Projet $projet)
@@ -36,22 +39,22 @@ class ProjetPolicy
     /**
      * Determine whether the user can create models.
      *
-     * @param  \App\User  $user
+	 * @param user: the current user.
      * @return mixed
      */
     public function create(User $user)
     {
-        return auth()->check() 
-            && ($user->role_id == 8 
-                || $user->role_id == 9 
+        return auth()->check()
+            && ($user->role_id == 8
+                || $user->role_id == 9
                 || $user->role_id == 10);
     }
 
     /**
      * Determine whether the user can update the model.
      *
-     * @param  \App\User  $user
-     * @param  \App\Projet  $projet
+	 * @param user: the current user.
+     * @param projet: the project he want to see.
      * @return mixed
      */
     public function update(User $user, Projet $projet)
@@ -62,8 +65,8 @@ class ProjetPolicy
     /**
      * Determine whether the user can delete the model.
      *
-     * @param  \App\User  $user
-     * @param  \App\Projet  $projet
+	 * @param user: the current user.
+     * @param projet: the project he want to see.
      * @return mixed
      */
     public function delete(User $user, Projet $projet)
@@ -71,27 +74,4 @@ class ProjetPolicy
         //
     }
 
-    /**
-     * Determine whether the user can restore the model.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Projet  $projet
-     * @return mixed
-     */
-    public function restore(User $user, Projet $projet)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Projet  $projet
-     * @return mixed
-     */
-    public function forceDelete(User $user, Projet $projet)
-    {
-        //
-    }
 }

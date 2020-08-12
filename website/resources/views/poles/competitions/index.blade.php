@@ -25,7 +25,7 @@
 
 						<div id="proj-card" class="col-md-auto sep-items">
 							<div class="card text-center rounded">
-								<img class="card-img-top" src="{{ asset('storage/' . json_decode($compet->images)[0]) }}" alt="Card image cap">
+								<img class="card-img-top" src="{{ asset('storage/' . $compet->cover) }}" alt="Card image cap">
 								<div class="card-body d-flex flex-column">
 									<h5 class="card-title text-center font-weight-bold">
 										{{ $compet->title }}
@@ -41,7 +41,7 @@
 					@empty
 
 						<div class="alert alert-secondary alert-dismissible fade show col" role="alert">
-							Aucune compétition n'a été trouvé
+							Aucune compétition n'a été trouvée
 							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 		    					<span aria-hidden="true">&times;</span>
 		  					</button>
@@ -92,7 +92,7 @@
 			</div>
 		</div>
 
-		@can ('create', 'App\Cours')
+		@can ('create', 'App\Competition')
 			<div class="text-center" style="margin-top:25px; margin-bottom:25px;">
 				<a class="btn btn-primary btn-rounded" href="/poles/competitions/create">Créer une compétition</a>
 			</div>

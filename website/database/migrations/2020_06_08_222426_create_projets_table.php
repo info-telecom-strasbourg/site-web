@@ -4,15 +4,19 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+/**
+ * Migration for projects.
+ */
 class CreateProjetsTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
+		/**
+		 * Table for collaborators.
+		 */
         Schema::create('collaborateurs', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -21,6 +25,9 @@ class CreateProjetsTable extends Migration
             $table->timestamps();
         });
 
+		/**
+		 * Table for projects.
+		 */
         Schema::create('projets', function (Blueprint $table) {
             $table->id();
             $table->string('title');
@@ -48,20 +55,21 @@ class CreateProjetsTable extends Migration
                 ->on('collaborateurs');
         });
 
-        /* linking table between projets and users to create the association between a project and a user */
+        /**
+		 * linking table between projets and users
+		 */
         Schema::create('projets_participants', function (Blueprint $table) {
             $table->id();
             $table->BigInteger('projet_id')->unsigned();
             $table->BigInteger('user_id')->unsigned();
             $table->timestamps();
-
-            $table->unique(['projet_id', 'user_id']);
+            $table->unique(['projet_id', 'user_id']); //???? Does that work ????
 
             $table->foreign('projet_id')
                 ->references('id')
                 ->on('projets')
                 ->onDelete('cascade');
-
+				
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
@@ -71,8 +79,6 @@ class CreateProjetsTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {
