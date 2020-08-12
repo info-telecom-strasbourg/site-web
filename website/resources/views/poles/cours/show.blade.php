@@ -28,7 +28,7 @@
 		</div>
 		<div class="bordure"></div>
 		<h4 class="title md text-center">Créateurs du cours</h4>
-		
+
 		<!-- Créateurs -->
 		<div class="container" style="padding-top: 1rem !important; margin-bottom: -35px;">
 			<div class="row align-items-center">
