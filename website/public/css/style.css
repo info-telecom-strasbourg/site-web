@@ -37,6 +37,7 @@
  *      . Main uses
  *      . Navbar
  *  - USER ACCOUNT (1247)
+ *      . Profil
  *      . User page
  *      . Login
  *      . Confirm password 
@@ -1245,6 +1246,65 @@ div.bordure {
 
 
 /* ##########################   USER ACCOUNT   ########################## */
+
+
+/* >>>>>>>>>>>>>>>>>>>> Profil <<<<<<<<<<<<<<<<<<<< */
+
+.rank-label-container {
+    border-radius: 40px;
+    background-color: #254395;
+    color: white;
+    font-size: small;
+    padding: 2px 10px;
+    margin-top: -15px;
+}
+
+.profil-card {
+    background-color: rgb(245, 245, 245);
+    padding: 25px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
+}
+
+#form-profil-edit {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.custom-form-control {
+    border-radius: 0;
+    background-color: transparent;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+}
+
+.input-group>.form-control {
+    margin-bottom: 2rem;
+}
+
+.custom-form-control:focus {
+    outline: none !important;
+    box-shadow: none;
+    background-color: transparent;
+}
+
+.pwd {
+    vertical-align: top;
+    width: 100%;
+}
+
+.reveal, .reveal-confirm {
+    position: absolute;
+    z-index: 100;
+    right: -8px;
+    top: 0;
+}
+
+.reveal:focus, .reveal-confirm:focus {
+    outline: none !important;
+    box-shadow: none;
+}
 
 
 /* >>>>>>>>>>>>>>>>>>>> User page <<<<<<<<<<<<<<<<<<<< */
