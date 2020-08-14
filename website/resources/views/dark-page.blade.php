@@ -74,7 +74,7 @@
             <a class="nav-link" id="v-pills-membres-tab" data-toggle="pill" href="#v-pills-membres" role="tab" aria-controls="v-pills-membres" aria-selected="false">MEMBRES</a>
             <a class="nav-link" id="v-pills-actu-tab" data-toggle="pill" href="#v-pills-actu" role="tab" aria-controls="v-pills-actu" aria-selected="false">ACTUALITÉS</a>
         </div>
-        <div class="tab-content" id="v-pills-tabContent" style="padding-bottom: 400px">
+        <div class="tab-content" id="v-pills-tabContent" style="padding-bottom: 300px">
             <div class="tab-pane fade show active" id="v-pills-ens" role="tabpanel" aria-labelledby="v-pills-ens-tab">
                 <h1 class="title lg text-center"> Vue d'ensemble </h1>
                 <hr class="line-under-title" style="margin-bottom: 100px;">
@@ -208,33 +208,78 @@
             <div class="tab-pane fade" id="v-pills-actu" role="tabpanel" aria-labelledby="v-pills-actu-tab">
                 <h1 class="title lg text-center"> Actualités </h1>
                 <hr class="line-under-title">
-                <div class="dropdown" style="width: 90%; margin : auto; float: none;">
-                    <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Actualité 1
-                    </button>
-                    <div class="dropdown-menu">
-                        <form class="px-4 py-3">
-                            <div class="form-group">
-                                <label for="exampleDropdownFormEmail1">Email address</label>
-                                <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleDropdownFormPassword1">Password</label>
-                                <input type="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Password">
-                            </div>
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="dropdownCheck">
-                                <label class="form-check-label" for="dropdownCheck">
-                                    Remember me
-                                </label>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Sign in</button>
-                        </form>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">New around here? Sign up</a>
-                        <a class="dropdown-item" href="#">Forgot password?</a>
-                    </div>
-                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
             </div>
         </div>
     </div>
@@ -573,8 +618,7 @@ function buildChartArrayNewUsers($results)
         chart.draw(data, options);
     }
 
-    // Adapt the size of charts in the admin page
-    //create trigger to resizeEnd event
+    // Create trigger to resizeEnd event
     $(window).resize(function() {
         if (this.resizeTO) clearTimeout(this.resizeTO);
         this.resizeTO = setTimeout(function() {
@@ -582,7 +626,7 @@ function buildChartArrayNewUsers($results)
         }, 500);
     });
 
-    //redraw graph when window resize is completed
+    // Redraw graph when window resize is completed
     $(window).on('resizeEnd', function() {
         drawChartNewUsers();
         drawChartBounceRate();
