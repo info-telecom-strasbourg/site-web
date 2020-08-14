@@ -25,10 +25,7 @@ Route::get('/besoin-aide', function () {
 
 Route::post('/besoin-aide', 'BesoinAideController@store')->name('aide.store');
 
-
-Route::get('/page-admin', function () {
-    return view('dark-page');
-})->middleware('admin');
+Route::get('/page-admin', 'DarkPageController@getRessources');
 
 Auth::routes();
 

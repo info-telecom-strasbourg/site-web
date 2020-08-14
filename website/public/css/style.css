@@ -1,5 +1,5 @@
-/* 
- * CSS style page  
+/*
+ * CSS style page
  * Structure of the document :
  *  - MAIN USES (46)
  *      . Style
@@ -36,10 +36,11 @@
  *  - DARK PAGE (1112)
  *      . Main uses
  *      . Navbar
+ *      . Charts
  *  - USER ACCOUNT (1247)
  *      . User page
  *      . Login
- *      . Confirm password 
+ *      . Confirm password
  */
 
 
@@ -1240,6 +1241,51 @@ div.bordure {
 @media only screen and (max-width: 436px) {
     .dark-page .title {
         font-size: 1.8rem;
+    }
+}
+
+
+/* >>>>>>>>>>>>>>>>>>>> Charts <<<<<<<<<<<<<<<<<<<< */
+
+.dark-page #v-pills-ens h2 {
+    color: white;
+    font-size: 15pt;
+    font-weight: 300;
+}
+
+.dark-page #v-pills-ens .widget {
+    width: 600px;
+    margin-left: 70px;
+    margin-right: 70px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.dark-page #v-pills-ens .widget-content {
+    width: 100%;
+}
+
+.dark-page #v-pills-ens #widgets_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.dark-page #v-pills-ens .widget p {
+    color: white;
+    margin-top: 40px;
+    font-size: 60pt;
+}
+
+@media only screen and (max-width: 600px) {
+    .dark-page #v-pills-ens .widget {
+        width: 400px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .dark-page #v-pills-ens .widget {
+        width: 300px;
     }
 }
 

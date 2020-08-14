@@ -161,6 +161,7 @@ $("div#cours-liste:gt(5)").addClass("hid").hide();
 
 
 $(document).ready(function() {
+
     // color navbar when loading page
     if (window.location.pathname == '/') {
         var rgba = $(document).scrollTop() / 500;
@@ -268,8 +269,8 @@ $(document).ready(function() {
     }
 
     /* Add background color to nav-item Pôles if the dropdown is expanded
-       by adding a class
-     */
+    by adding a class
+    */
     $(document).mouseup(function(e) {
         var link = $("#navbarDropdownMenuLink");
 
@@ -280,6 +281,22 @@ $(document).ready(function() {
             $('#poles').addClass('dropdown-click');
         }
     });
+
+    // $('.dark-page #v-pills-ens .widget-content').css('width', '200px');
+    // $('.dark-page #v-pills-ens .widget').css('width', '200px');
+
+    // // Adapt the size of charts in the admin page
+    // $(window).resize(function() {
+    //     if (window.location.pathname == '/page-admin' && $(this).width() < 500) {
+    //         $(".dark-page #v-pills-ens .widget").css("width", "400px");
+    //         $(".dark-page #v-pills-ens .widget-content").css("background-color", "yellow");
+    //         $(".dark-page #v-pills-ens .widget-content").css("width", "400px");
+    //     } else {
+    //         $(".dark-page #v-pills-ens .widget").css("width", "500px");
+    //         $(".dark-page #v-pills-ens .widget-content").css("background-color", "blue");
+    //         $(".dark-page #v-pills-ens .widget-content").css("width", "500px");
+    //     }
+    // });
 
 
     /* ##########################   Reset Projets filter   ########################## */
