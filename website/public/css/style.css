@@ -1291,6 +1291,113 @@ div.bordure {
 }
 
 
+/* >>>>>>>>>>>>>>>>>>>> Members <<<<<<<<<<<<<<<<<<<< */
+
+.dark-page #v-pills-membres #members-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.dark-page #v-pills-membres #button-new-member {
+    background-color: #20242e;
+    width: 30%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    border-color: transparent;
+}
+
+.dark-page #v-pills-membres .row {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #20242e;
+    color: white;
+}
+
+.dark-page #v-pills-membres .row .p-2 {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.dark-page #v-pills-membres .row .d-flex {
+    width: 100%;
+}
+
+.dark-page #v-pills-membres .row .profil-rounded {
+    width: 70px;
+    height: 70px;
+}
+
+.dark-page #v-pills-membres .row #username {
+    margin-left: 30px;
+    font-size: 14pt;
+}
+
+.dark-page #v-pills-membres .row #image {
+    margin-left: 20px;
+    margin-right: 10px;
+}
+
+.dark-page #v-pills-membres .row #buttons {
+    right: 0
+}
+
+.dark-page #v-pills-membres .row .button-panel {
+    margin-left: 5px;
+    margin-right: 5px;
+    background-color: #131722;
+    color: white;
+    border-color: transparent;
+}
+
+.dark-page #v-pills-membres .modal-content {
+    background-color: rgba(32, 36, 46, 0.9);
+    color: white;
+}
+
+.dark-page #v-pills-membres .user-info {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.dark-page #v-pills-membres #form-edit {
+    padding: 1rem;
+}
+
+@media (max-width: 700px) {
+    .dark-page #v-pills-membres .row .d-flex {
+        flex-direction: column;
+    }
+    .dark-page #v-pills-membres .row #image {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .dark-page #v-pills-membres .row #username {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .dark-page #v-pills-membres .row #buttons {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (max-width: 992px) {
+    .dark-page #v-pills-membres #members-container {
+        margin-bottom: 200px;
+    }
+    .dark-page #v-pills-membres #button-new-member {
+        width: 250px;
+    }
+}
+
+
 /* >>>>>>>>>>>>>>>>>>>> News <<<<<<<<<<<<<<<<<<<< */
 
 .dark-page #v-pills-actu .actu-container {

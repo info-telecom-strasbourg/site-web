@@ -2,7 +2,7 @@
 
 <nav class="navbar navbar-expand-xl navbar-light fixed-top">
     <!-- Manage the access of the dark page with the logo -->
-    <a class="navbar-brand" href="/page-admin">
+    <a class="navbar-brand" href="/page-admin/vue-ensemble">
         <img src="/images/logo/logo.png" width="90" height="100%" alt="Logo du site">
     </a>
 

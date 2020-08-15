@@ -9,7 +9,7 @@ use App\Projet;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
-class DarkPageController extends Controller
+class AdminVueEnsembleController extends Controller
 {
     /**
     * Get the ressources required for the admin page.
@@ -23,6 +23,6 @@ class DarkPageController extends Controller
         $projets = Projet::all();
         $nbProjets = Projet::count();
         $nbUsers = User::count();
-        return view('dark-page', ['users' => $users, 'roles' => $roles, 'projets' => $projets, 'nbProjets' => $nbProjets, 'nbUsers' => $nbUsers]);
+        return view('page-admin/vue-ensemble', ['users' => $users, 'roles' => $roles, 'projets' => $projets, 'nbProjets' => $nbProjets, 'nbUsers' => $nbUsers]);
     }
 }

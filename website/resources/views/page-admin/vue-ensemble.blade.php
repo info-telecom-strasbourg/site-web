@@ -59,9 +59,9 @@
                 <img src="/images/logo/logo-dark.png" width="90" height="100%" alt="Logo du site">
             </a>
         </div>
-        <a class="nav-link active" id="v-pills-ens-tab" data-toggle="pill" href="#v-pills-ens" role="tab" aria-controls="v-pills-ens" aria-selected="true">VUE D'ENSEMBLE</a>
-        <a class="nav-link" id="v-pills-membres-tab" data-toggle="pill" href="#v-pills-membres" role="tab" aria-controls="v-pills-membres" aria-selected="false">MEMBRES</a>
-        <a class="nav-link" id="v-pills-actu-tab" data-toggle="pill" href="#v-pills-actu" role="tab" aria-controls="v-pills-actu" aria-selected="false">ACTUALITÉS</a>
+        <a class="nav-link active" href="#">VUE D'ENSEMBLE</a>
+        <a class="nav-link" href="/page-admin/membres">MEMBRES</a>
+        <a class="nav-link" href="/page-admin/actualites">ACTUALITÉS</a>
     </div>
     <div class="container">
         <div class="nav flex-column nav-pills total" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -70,9 +70,9 @@
                     <img src="/images/logo/logo-dark.png" width="90" height="90" alt="Logo du site">
                 </a>
             </div>
-            <a class="nav-link active" id="v-pills-ens-tab" data-toggle="pill" href="#v-pills-ens" role="tab" aria-controls="v-pills-ens" aria-selected="true">VUE D'ENSEMBLE</a>
-            <a class="nav-link" id="v-pills-membres-tab" data-toggle="pill" href="#v-pills-membres" role="tab" aria-controls="v-pills-membres" aria-selected="false">MEMBRES</a>
-            <a class="nav-link" id="v-pills-actu-tab" data-toggle="pill" href="#v-pills-actu" role="tab" aria-controls="v-pills-actu" aria-selected="false">ACTUALITÉS</a>
+            <a class="nav-link active" href="#">VUE D'ENSEMBLE</a>
+            <a class="nav-link" href="/page-admin/membres">MEMBRES</a>
+            <a class="nav-link" href="/page-admin/actualites">ACTUALITÉS</a>
         </div>
         <div class="tab-content" id="v-pills-tabContent" style="padding-bottom: 300px">
             <div class="tab-pane fade show active" id="v-pills-ens" role="tabpanel" aria-labelledby="v-pills-ens-tab">
@@ -119,119 +119,7 @@
                         <h2>Nombre de projets</h2>
                         <p>{{ $nbProjets }}</p>
                     </div>
-                    <div class="widget" id="bounceRate-container">
-                        <h2>Nombre d'abonnés Facebook</h2>
-                        <p>45</p>
-                    </div>
-                    <div class="widget" id="bounceRate-container">
-                        <h2>Nombre de likes Facebook</h2>
-                        <p>45</p>
-                    </div>
                 </div>
-            </div>
-            <div class="tab-pane fade" id="v-pills-membres" role="tabpanel" aria-labelledby="v-pills-membres-tab">
-                <h1 class="title lg text-center"> Membres </h1>
-                <hr class="line-under-title">
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-            </div>
-            <div class="tab-pane fade" id="v-pills-actu" role="tabpanel" aria-labelledby="v-pills-actu-tab">
-                <h1 class="title lg text-center"> Actualités </h1>
-                <hr class="line-under-title">
-
-                <div class="actu-container">
-                    <a class="title-actu" href="#" onclick="toggle('actu-1')">
-                        Actualité 1 <i id="down-actu-1" class="fa fa-angle-down" aria-hidden="true"></i> <i id="up-actu-1" class="fa fa-angle-up" aria-hidden="true" style="display: none;"></i>
-                    </a>
-                    <div id="actu-1" style="display: none;">Formulaire à créer ici</div>
-
-                    <a class="title-actu" href="#" onclick="toggle('actu-2')">
-                        Actualité 2 <i id="down-actu-2" class="fa fa-angle-down" aria-hidden="true"></i> <i id="up-actu-2" class="fa fa-angle-up" aria-hidden="true" style="display: none;"></i>
-                    </a>
-                    <div id="actu-2" style="display: none;">Formulaire à créer ici</div>
-
-                    <a class="title-actu" href="#" onclick="toggle('actu-3')">
-                        Actualité 3 <i id="down-actu-3" class="fa fa-angle-down" aria-hidden="true"></i> <i id="up-actu-3" class="fa fa-angle-up" aria-hidden="true" style="display: none;"></i>
-                    </a>
-                    <div id="actu-3" style="display: none;">Formulaire à créer ici</div>
-
-                    <a class="title-actu" href="#" onclick="toggle('actu-4')">
-                        Actualité 4 <i id="down-actu-4" class="fa fa-angle-down" aria-hidden="true"></i> <i id="up-actu-4" class="fa fa-angle-up" aria-hidden="true" style="display: none;"></i>
-                    </a>
-                    <div id="actu-4" style="display: none;">Formulaire à créer ici</div>
-                </div>
-
-
             </div>
         </div>
     </div>
