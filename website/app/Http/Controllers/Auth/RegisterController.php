@@ -146,6 +146,6 @@ class RegisterController extends Controller
 
         return $request->wantsJson()
                     ? new Response('', 201)
-                    : redirect($this->redirectPath());
+                    : redirect('/page-admin/membres');
     }
 }

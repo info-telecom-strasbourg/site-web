@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'role_id', 'password',
+        'name', 'email', 'role_id', 'password', 'profil_picture',
     ];
 
     /**
@@ -47,7 +47,7 @@ class User extends Authenticatable
      */
     public function projets()
     {
-        return $this->belongsToMany(Projet::class);
+        return $this->belongsToMany(Projet::class, 'projets_participants');
     }
 
 

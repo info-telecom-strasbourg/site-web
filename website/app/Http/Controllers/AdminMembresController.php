@@ -8,6 +8,7 @@ use App\Role;
 use App\Projet;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 class AdminMembresController extends Controller
 {
@@ -63,6 +64,7 @@ class AdminMembresController extends Controller
 
         if ($validatedRequest['password'] != null)
             $user->update(['password' => Hash::make($validatedRequest['password'])]);
+
 
         if (array_key_exists('image_profile', $validatedRequest)) {
             if (file_exists(storage_path('app/public/' . $user->profil_picture)) && substr($user->profil_picture, 0, 32) != "images/default/profil/profil.jpg")

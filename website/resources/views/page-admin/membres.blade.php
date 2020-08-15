@@ -207,6 +207,9 @@
                                                     <b>Nom : </b> {{ $user->name }}
                                                 </div>
                                                 <div class="user-info">
+                                                    <b>Rôle : </b> {{ $user->role->role }}
+                                                </div>
+                                                <div class="user-info">
                                                     <b>Adresse mail : </b> {{ $user->email }}
                                                 </div>
                                             </div>

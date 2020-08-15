@@ -28,6 +28,8 @@ Route::post('/besoin-aide', 'BesoinAideController@store')->name('aide.store');
 Route::get('/page-admin/vue-ensemble', 'AdminVueEnsembleController@getRessources');
 Route::get('/page-admin/membres', 'AdminMembresController@getRessources');
 Route::get('/page-admin/actualites', 'AdminActualitesController@getRessources');
+Route::put('/page-admin/user/{user}/edit', 'AdminMembresController@updateUser');
+Route::get('/page-admin/{user}/delete-user', 'AdminMembresController@deleteUser');
 
 Auth::routes();
 
