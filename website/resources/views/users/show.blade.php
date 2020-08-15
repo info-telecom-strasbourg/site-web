@@ -91,8 +91,7 @@
                             style="flex-flow: nowrap;">
                             <input class="custom-form-control profil-search disabled" type="text" id="search-projet"
                                 name="search" placeholder="Search..." aria-label="Search">
-                            <i class="search-button fas fa-search" aria-hidden="true"
-                                onclick="showSearchBar('search-projet')"></i>
+                            <i class="search-button fas fa-search" aria-hidden="true"></i>
                         </form>
                     </div>
 
@@ -105,14 +104,20 @@
                     <div class="profil-card-header row justify-content-between align-items-center">
                         <h6 class="text-center" style="margin-bottom: 0;">Mes cours</h6>
 
-                        <!-- Search bar -->
                         <form class="form-inline d-flex justify-content-center md-form form-sm"
                             style="flex-flow: nowrap;">
-                            <input class="custom-form-control profil-search disabled" type="text" id="search-cours"
+                            <!-- Search bar -->
+                            <input class="custom-form-control profil-search profil-search-cours disabled" type="text" id="search-cours"
                                 name="search" placeholder="Search..." aria-label="Search">
-                            <i class="search-button fas fa-search" aria-hidden="true"
-                                onclick="showSearchBar('search-cours')"></i>
+                            <i class="search-button-cours fas fa-search" aria-hidden="true"></i>
+
+                            <!-- Add new lesson button -->
+                            @can ('create', 'App\Cours')
+                                <a class="btn btn-primary btn-rounded add-cours" href="/poles/cours/create"><i class="fas fa-plus"></i></a>
+                            @endcan
                         </form>
+
+
                     </div>
 
                     <div class="profil-card-body overflow-auto">
@@ -131,8 +136,7 @@
                             style="flex-flow: nowrap;">
                             <input class="custom-form-control profil-search disabled" type="text" id="search-compet"
                                 name="search" placeholder="Search..." aria-label="Search">
-                            <i class="search-button fas fa-search" aria-hidden="true"
-                                onclick="showSearchBar('search-compet')"></i>
+                            <i class="search-button fas fa-search" aria-hidden="true"></i>
                         </form>
                     </div>
 
@@ -145,7 +149,4 @@
     </div>
 </div>
 
-<script>
-
-</script>
 @endsection
