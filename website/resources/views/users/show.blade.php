@@ -21,11 +21,11 @@
     <hr class="line-under-title">
 
     <div class="container pt-3">
-        <div class="row">
+        <div class="row justify-content-around">
             <!-- Edit profil information -->
             <div class="col-md-4">
-                <div class="row justify-content-center align-items-center flex-column profil-card">
-                    
+                <div class="row justify-content-center align-items-center flex-column profil-card profil-edit">
+
                     <!-- Profil image badge -->
                     <img class="profil-rounded" src="{{ asset('storage/' . $user->profil_picture) }}" />
                     <div class="rank-label-container">
@@ -49,8 +49,8 @@
                         <div class="input-group">
                             <input type="password"
                                 class="custom-form-control form-control pwd @error('password') is-invalid @enderror"
-                                id="password" name="password"
-                                placeholder="Nouveau mot de passe" data-toggle="tooltip" data-placement="top" title="Ne rien mettre pour garder l'ancien mot de passe.">
+                                id="password" name="password" placeholder="Nouveau mot de passe" data-toggle="tooltip"
+                                data-placement="top" title="Ne rien mettre pour garder l'ancien mot de passe.">
                             <span class="input-group-btn">
                                 <button class="btn btn-default reveal" type="button"><i
                                         class="eye-icon far fa-eye"></i></button>
@@ -81,11 +81,62 @@
                 </div>
             </div>
             <div class="col-md-8">
+                <!-- List all projects of the current user-->
+                <div class="row flex-column profil-card">
+                    <div class="profil-card-header row justify-content-between align-items-center">
+                        <h6 class="text-center" style="margin-bottom: 0;">Mes projets</h6>
 
+                        <!-- Search bar -->
+                        <form class="form-inline d-flex justify-content-center md-form form-sm"
+                            style="flex-flow: nowrap;">
+                            <input class="custom-form-control profil-search disabled" type="text" id="search-projet"
+                                name="search" placeholder="Search..." aria-label="Search">
+                            <i class="search-button fas fa-search" aria-hidden="true"
+                                onclick="showSearchBar('search-projet')"></i>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- List all lessons the current user created -->
+                <div class="row flex-column profil-card">
+                    <div class="profil-card-header row justify-content-between align-items-center">
+                        <h6 class="text-center" style="margin-bottom: 0;">Mes cours</h6>
+
+                        <!-- Search bar -->
+                        <form class="form-inline d-flex justify-content-center md-form form-sm"
+                            style="flex-flow: nowrap;">
+                            <input class="custom-form-control profil-search disabled" type="text" id="search-cours"
+                                name="search" placeholder="Search..." aria-label="Search">
+                            <i class="search-button fas fa-search" aria-hidden="true"
+                                onclick="showSearchBar('search-cours')"></i>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <!-- List all competitions the current user attends -->
+                <div class="row flex-column profil-card profil-show-cours">
+                    <div class="profil-card-header row justify-content-between align-items-center">
+                        <h6 class="text-center" style="margin-bottom: 0;">Mes compétitions</h6>
+
+                        <!-- Search bar -->
+                        <form class="form-inline d-flex justify-content-center md-form form-sm"
+                            style="flex-flow: nowrap;">
+                            <input class="custom-form-control profil-search disabled" type="text" id="search-compet"
+                                name="search" placeholder="Search..." aria-label="Search">
+                            <i class="search-button fas fa-search" aria-hidden="true"
+                                onclick="showSearchBar('search-compet')"></i>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
 
     </div>
 </div>
 
+<script>
+
+</script>
 @endsection

@@ -158,7 +158,7 @@ $("div#proj-card:gt(5)").addClass("hid").hide();
 $("div#cours-liste:gt(5)").addClass("hid").hide();
 
 
-/* ##########################   Show / hide password  ########################## */
+/* ##########################   Show / hide password on profil page ########################## */
 $(".reveal").on('click', function () {
     var $pwd = $(".pwd");
     var $icon = $(".eye-icon");
@@ -188,6 +188,21 @@ $(".reveal-confirm").on('click', function () {
         $icon.addClass('fa-eye');
     }
 });
+
+/* ##########################   Show search bar on profil page  ########################## */
+/**
+ * Shows the search bar
+ * @param {string} id id of the search input to show
+ */
+function showSearchBar(id) {
+    if ($('#' + id).hasClass('disabled')) {
+        $('#' + id).addClass('show');
+        $('#' + id).removeClass('disabled');
+    } else {
+        $('#' + id).removeClass('show');
+        $('#' + id).addClass('disabled');
+    }
+}
 
 /*** Enable tooltips ***/
 $(function () {
