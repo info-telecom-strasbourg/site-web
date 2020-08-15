@@ -95,7 +95,16 @@
                         </form>
                     </div>
 
+                    <!-- List of projects -->
                     <div class="profil-card-body overflow-auto">
+                        @isset ($projects)
+                            @foreach ($projects as $project)
+                                <a href="/projets/{{ $project->id }}" class="profil-card-item row justify-content-between align-items-center">
+                                    <span>{{ $project->title}}</span>
+                                    <button type="submit" class="btn btn-primary btn-rounded" onclick="self.location.href='/projets/{{ $projet->id }}'">Aller</button>
+                                </a>
+                            @endforeach
+                        @endisset
                     </div>
                 </div>
 
@@ -116,11 +125,18 @@
                                 <a class="btn btn-primary btn-rounded add-cours" href="/poles/cours/create"><i class="fas fa-plus"></i></a>
                             @endcan
                         </form>
-
-
                     </div>
 
+                    <!-- List of lessons -->
                     <div class="profil-card-body overflow-auto">
+                        @isset ($lessons)
+                            @foreach ($lessons as $lesson)
+                                <a href="/cours/{{ $lesson->id }}" class="profil-card-item row justify-content-between align-items-center">
+                                    <span>{{ $lesson->title}}</span>
+                                    <button type="submit" class="btn btn-primary btn-rounded" onclick="self.location.href='/cours/{{ $lesson->id }}'">Aller</button>
+                                </a>
+                            @endforeach
+                        @endisset
                     </div>
                 </div>
             </div>
@@ -140,7 +156,16 @@
                         </form>
                     </div>
 
+                    <!-- List of competitions -->
                     <div class="profil-card-body overflow-auto">
+                        @isset ($competitions)
+                            @foreach ($competitions as $competition)
+                                <a href="/pole/competitions/{{ $competition->id }}" class="profil-card-item row justify-content-between align-items-center">
+                                    <span>{{ $competition->title}}</span>
+                                    <button type="submit" class="btn btn-primary btn-rounded" onclick="self.location.href='/pole/competitions/{{ $competition->id }}'">Aller</button>
+                                </a>
+                            @endforeach
+                        @endisset
                     </div>
                 </div>
             </div>

@@ -1261,11 +1261,20 @@ div.bordure {
 
 .profil-card {
     background-color: rgb(245, 245, 245);
-    padding: 25px;
     border-radius: 30px;
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
     margin-left: 100px;
     margin-bottom: 50px;
+}
+
+@media only screen and (max-width: 768px) {
+    .profil-card {
+        margin-left: 0;
+    }
+}
+
+.profil-edit {
+    padding: 25px;
 }
 
 .profil-edit,
@@ -1274,19 +1283,36 @@ div.bordure {
 }
 
 .profil-card-header {
+    padding-top: 25px;
     padding-left: 25px;
     padding-right: 25px;
     padding-bottom: 20px;
     border-bottom: 1px solid rgb(206, 212, 218);
-    margin-left: -25px;
-    margin-right: -25px;
+    margin-left: 0;
+    margin-right: 0;
 }
 
 .profil-card-body {
     max-height: 200px;
-    margin-top: 25px;
+    margin: 0;
+    margin-top: 15px;
     padding-left: 10px;
-    margin-right: 10px;
+    padding-right: 10px;
+}
+
+.profil-card-item {
+    padding-top: 10px;
+    padding-left: 30px;
+    padding-right: 55px;
+    padding-bottom: 10px;
+    margin-bottom: 12px;
+    color: inherit;
+}
+
+.profil-card-item:hover {
+    box-shadow: 0px 4px 14px -2px rgba(0, 0, 0, 0.25);
+    color: inherit;
+    text-decoration: none;
 }
 
 #form-profil-edit {
