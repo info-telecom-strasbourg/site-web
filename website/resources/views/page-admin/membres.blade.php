@@ -317,4 +317,72 @@
         </div>
     </div>
 </section>
+<script>
+    $(document).ready(function() {
+        var usersAll = {!!$users!!};
+        var usersEmail = [];
+        usersAll.forEach(function(user) {
+            usersEmail.push(user.email);
+        });
+
+        function emailIsUnique(emailToCheck) {
+            var isUnique = true;
+            try {
+                usersEmail.forEach(function(email) {
+                    if (email.localeCompare(emailToCheck) == 0) {
+                        isUnique = false;
+                        throw Break;
+                    }
+                });
+            } catch (exception) {
+                if (exception != Break)
+                    throw exception;
+            } finally {
+                return isUnique;
+            }
+        }
+
+        /**
+         * Check if all the values are acceptable to edit a member profil.
+         */
+        $('button#submit-btn-edt-mb').click(function(e) {
+            var userId = $(this).attr('class').split(' ')[0];
+            var currentUserEmail;
+            usersAll.forEach(function(user) {
+                if (user.id == userId)
+                    currentUserEmail = String(user.email);
+            });
+
+            var userName = $('input#name' + userId).val(); // OK
+            var userEmail = $('input#email' + userId).val();
+            var userRole = $('#role' + userId + ' option:selected').text(); // OK
+            var userPw = $('input#password' + userId).val(); //OK
+            var userPwc = $('input#password-confirm' + userId).val(); //OK
+            var error = false;
+
+
+            if (userName.length < 3) {
+                error = true;
+                $('input#name' + userId).addClass('is-invalid');
+                $('span#name-error' + userId).removeAttr('hidden');
+            }
+
+            if ((userPw.length < 8 || userPw != userPwc) && userPw != "") {
+                error = true;
+                $('input#password' + userId).addClass('is-invalid');
+                $('input#password' + userId).val('');
+                $('input#password-confirm' + userId).val('');
+                $('span#password-error' + userId).removeAttr('hidden');
+            }
+
+            if (!emailIsUnique(userEmail) && userEmail.localeCompare(currentUserEmail) != 0) {
+                error = true;
+                $('input#email' + userId).addClass('is-invalid');
+                $('input#email-error' + userId).removeAttr('hidden');
+            }
+
+            if (error) e.preventDefault();
+        });
+    });
+</script>
 @endsection
