@@ -158,7 +158,22 @@ $("div#proj-card:gt(5)").addClass("hid").hide();
 $("div#cours-liste:gt(5)").addClass("hid").hide();
 
 
+//Hide a section (with a toogle) and arrows
+function toggle(id) {
+    node = document.getElementById(id);
+    down = document.getElementById("down-" + id);
+    up = document.getElementById("up-" + id);
+    if (node.style.display == "none") {
+        node.style.display = "block";
+        down.style.display = "none";
+        up.style.display = "inline";
 
+    } else {
+        node.style.display = "none";
+        down.style.display = "inline";
+        up.style.display = "none";
+    }
+}
 
 $(document).ready(function() {
 
@@ -282,21 +297,6 @@ $(document).ready(function() {
         }
     });
 
-    // $('.dark-page #v-pills-ens .widget-content').css('width', '200px');
-    // $('.dark-page #v-pills-ens .widget').css('width', '200px');
-
-    // // Adapt the size of charts in the admin page
-    // $(window).resize(function() {
-    //     if (window.location.pathname == '/page-admin' && $(this).width() < 500) {
-    //         $(".dark-page #v-pills-ens .widget").css("width", "400px");
-    //         $(".dark-page #v-pills-ens .widget-content").css("background-color", "yellow");
-    //         $(".dark-page #v-pills-ens .widget-content").css("width", "400px");
-    //     } else {
-    //         $(".dark-page #v-pills-ens .widget").css("width", "500px");
-    //         $(".dark-page #v-pills-ens .widget-content").css("background-color", "blue");
-    //         $(".dark-page #v-pills-ens .widget-content").css("width", "500px");
-    //     }
-    // });
 
 
     /* ##########################   Reset Projets filter   ########################## */

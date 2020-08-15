@@ -37,6 +37,7 @@
  *      . Main uses
  *      . Navbar
  *      . Charts
+ *      . News
  *  - USER ACCOUNT (1247)
  *      . User page
  *      . Login
@@ -1287,6 +1288,25 @@ div.bordure {
     .dark-page #v-pills-ens .widget {
         width: 300px;
     }
+}
+
+
+/* >>>>>>>>>>>>>>>>>>>> News <<<<<<<<<<<<<<<<<<<< */
+
+.dark-page #v-pills-actu .actu-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.dark-page #v-pills-actu .title-actu {
+    color: white;
+    font-size: 20pt;
+}
+
+.dark-page #v-pills-actu .title-actu:hover {
+    text-decoration: none;
 }
 
 
