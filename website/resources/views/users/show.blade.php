@@ -95,6 +95,9 @@
                                 onclick="showSearchBar('search-projet')"></i>
                         </form>
                     </div>
+
+                    <div class="profil-card-body overflow-auto">
+                    </div>
                 </div>
 
                 <!-- List all lessons the current user created -->
@@ -110,6 +113,9 @@
                             <i class="search-button fas fa-search" aria-hidden="true"
                                 onclick="showSearchBar('search-cours')"></i>
                         </form>
+                    </div>
+
+                    <div class="profil-card-body overflow-auto">
                     </div>
                 </div>
             </div>
@@ -128,6 +134,9 @@
                             <i class="search-button fas fa-search" aria-hidden="true"
                                 onclick="showSearchBar('search-compet')"></i>
                         </form>
+                    </div>
+
+                    <div class="profil-card-body overflow-auto">
                     </div>
                 </div>
             </div>
