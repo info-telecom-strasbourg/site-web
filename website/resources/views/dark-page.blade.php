@@ -208,78 +208,30 @@
             <div class="tab-pane fade" id="v-pills-actu" role="tabpanel" aria-labelledby="v-pills-actu-tab">
                 <h1 class="title lg text-center"> Actualités </h1>
                 <hr class="line-under-title">
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
+
+                <div class="actu-container">
+                    <a class="title-actu" href="#" onclick="toggle('actu-1')">
+                        Actualité 1 <i id="down-actu-1" class="fa fa-angle-down" aria-hidden="true"></i> <i id="up-actu-1" class="fa fa-angle-up" aria-hidden="true" style="display: none;"></i>
+                    </a>
+                    <div id="actu-1" style="display: none;">Formulaire à créer ici</div>
+
+                    <a class="title-actu" href="#" onclick="toggle('actu-2')">
+                        Actualité 2 <i id="down-actu-2" class="fa fa-angle-down" aria-hidden="true"></i> <i id="up-actu-2" class="fa fa-angle-up" aria-hidden="true" style="display: none;"></i>
+                    </a>
+                    <div id="actu-2" style="display: none;">Formulaire à créer ici</div>
+
+                    <a class="title-actu" href="#" onclick="toggle('actu-3')">
+                        Actualité 3 <i id="down-actu-3" class="fa fa-angle-down" aria-hidden="true"></i> <i id="up-actu-3" class="fa fa-angle-up" aria-hidden="true" style="display: none;"></i>
+                    </a>
+                    <div id="actu-3" style="display: none;">Formulaire à créer ici</div>
+
+                    <a class="title-actu" href="#" onclick="toggle('actu-4')">
+                        Actualité 4 <i id="down-actu-4" class="fa fa-angle-down" aria-hidden="true"></i> <i id="up-actu-4" class="fa fa-angle-up" aria-hidden="true" style="display: none;"></i>
+                    </a>
+                    <div id="actu-4" style="display: none;">Formulaire à créer ici</div>
+                </div>
+
+
             </div>
         </div>
     </div>
