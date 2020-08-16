@@ -30,6 +30,11 @@ Route::get('/page-admin/membres', 'AdminMembresController@getRessources');
 Route::get('/page-admin/actualites', 'AdminActualitesController@getRessources');
 Route::put('/page-admin/user/{user}/edit', 'AdminMembresController@updateUser');
 Route::get('/page-admin/{user}/delete-user', 'AdminMembresController@deleteUser');
+Route::get('/page-admin/delete-news/{news}', 'AdminActualitesController@destroy');
+Route::post('/page-admin/news/create', 'AdminActualitesController@store');
+
+
+Route::put('/page-admin/news/{news}/edit', 'AdminActualitesController@update');
 
 Auth::routes();
 

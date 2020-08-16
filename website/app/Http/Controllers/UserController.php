@@ -27,7 +27,7 @@ class UserController extends Controller
     /**
      * Display a user's page.
      *
-     * @return the user's view
+     * @return the user's view.
      */
     public function show(User $user)
     {

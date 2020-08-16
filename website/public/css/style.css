@@ -90,7 +90,7 @@ a {
 @media only screen and (max-width: 992px) {
     #content {
         padding-bottom: 423.33px;
-        /* Footer height */
+        margin-top: 423.33px;
     }
 }
 
@@ -1407,13 +1407,63 @@ div.bordure {
     margin-right: 100px;
 }
 
+.dark-page #v-pills-actu .modal-content {
+    background-color: rgba(32, 36, 46, 0.9);
+    color: white;
+}
+
+.dark-page #v-pills-actu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.dark-page #v-pills-actu #button-new-news {
+    background-color: #20242e;
+    width: 30%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    border-color: transparent;
+}
+
 .dark-page #v-pills-actu .title-actu {
     color: white;
     font-size: 20pt;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 .dark-page #v-pills-actu .title-actu:hover {
     text-decoration: none;
+}
+
+.dark-page #v-pills-actu {
+    color: white;
+}
+
+.dark-page #v-pills-actu .button-panel {
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 30px;
+    background-color: #20242e;
+    color: white;
+    border-color: transparent;
+    width: 230px;
+}
+
+.dark-page #form-edit img {
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 500px) {
+    .dark-page #form-edit img {
+        width: 100%;
+    }
 }
 
 

@@ -108,63 +108,51 @@
                                         <div class="form-group">
                                             <label for="name" class="form-title-small">Nom</label>
 
-                                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                            <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
-                                            @error('name')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
+                                            <span id="name-error" class="invalid-feedback" role="alert" style="display: none;">
+                                                <strong>Vous devez entrer un nom de plus de 3 caractères</strong>
                                             </span>
-                                            @enderror
                                         </div>
 
                                         <!-- Give the member email -->
                                         <div class="form-group">
                                             <label for="email" class="form-title-small">Adresse email</label>
 
-                                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                            <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autocomplete="email">
 
-                                            @error('email')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
+	                                        <span id="email-error" class="invalid-feedback" role="alert" style="display: none;">
+	                                            <strong>Vous devez entrer un email unique</strong>
+	                                        </span>
                                         </div>
 
                                         <!-- Give the member role -->
                                         <div class="form-group">
                                             <label for="role" class="form-title-small">Rôle</label>
-                                            <select class="custom-select @error('role') is-invalid @enderror" id="role" name="role" required>
+                                            <select class="custom-select" id="role" name="role" required>
                                                 @if(isset($roles))
 
                                                 @foreach ($roles as $role)
-                                                @if($role->isAvailable())
-                                                <option value="{{ $role->id }}" @if (old('role')==$role->id) selected @endif>{{ $role->role }}
-                                                </option>
-                                                @endif
+	                                                @if($role->isAvailable())
+		                                                <option value="{{ $role->id }}" @if (old('role')==$role->id) selected @endif>{{ $role->role }}
+		                                                </option>
+	                                                @endif
                                                 @endforeach
 
                                                 @endif
 
                                             </select>
-
-                                            @error('role')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>Choisissez un rôle</strong>
-                                            </span>
-                                            @enderror
                                         </div>
 
                                         <!-- Give the member password -->
                                         <div class="form-group">
                                             <label for="password" class="form-title-small">Mot de passe</label>
 
-                                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                            <input id="password" type="password" class="form-control" name="password" required autocomplete="new-password">
 
-                                            @error('password')
-                                            <span class="invalid-feedback" role="alert">
+                                            <span id="password-error" class="invalid-feedback" role="alert" style="display: none;">
                                                 <strong>Le mot de passe ne coïncide pas ou est trop court (8 caractères min)</strong>
                                             </span>
-                                            @enderror
                                         </div>
 
                                         <!-- Confirm the member password -->
@@ -174,7 +162,7 @@
                                             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                                         </div>
 
-                                        <button type="submit" class="btn btn-primary btn-rounded" style="margin-top:25px; margin-bottom:25px; width:100%;">Ajouter</button>
+                                        <button id="create-member-btn" type="submit" class="btn btn-primary btn-rounded" style="margin-top:25px; margin-bottom:25px; width:100%;">Ajouter</button>
                                     </form>
                                 </div>
                             </div>
@@ -243,7 +231,7 @@
                                                     <input id="name{{ $user->id }}" type="text" class="form-control" name="name" value="{{ $user->name }}" required autofocus>
                                                 </div>
 
-                                                <span id="name-error{{ $user->id }}" class="invalid-feedback" role="alert" hidden>
+                                                <span id="name-error{{ $user->id }}" class="invalid-feedback" role="alert" style="display: none;">
                                                     <strong>Le nom choisi est trop court</strong>
                                                 </span>
 
@@ -253,7 +241,7 @@
 
                                                     <input id="email{{ $user->id }}" type="email" class="form-control" name="email" value="{{ $user->email }}" required autocomplete="email">
 
-                                                    <span id="email-error{{ $user->id }}" class="invalid-feedback" role="alert" hidden>
+                                                    <span id="email-error{{ $user->id }}" class="invalid-feedback" role="alert" style="display: none;">
                                                         <strong>L'email choisi n'est pas valide (il doit être unique)</strong>
                                                     </span>
                                                 </div>
@@ -275,10 +263,6 @@
                                                         @endif
 
                                                     </select>
-
-                                                    <span id="role-error{{ $user->id }}" class="invalid-feedback" role="alert" hidden>
-                                                        <strong>Choisissez un rôle</strong>
-                                                    </span>
                                                 </div>
 
                                                 <!-- Password -->
@@ -287,7 +271,7 @@
 
                                                     <input id="password{{ $user->id }}" type="password" class="form-control @error('password{{ $user->id }}') is-invalid @enderror" name="password">
 
-                                                    <span id="password-error{{ $user->id }}" class="invalid-feedback" role="alert" hidden>
+                                                    <span id="password-error{{ $user->id }}" class="invalid-feedback" role="alert" style="display: none;">
                                                         <strong>Le mot de passe ne coïncide pas ou est trop court (8 caractères min)</strong>
                                                     </span>
                                                 </div>
@@ -319,12 +303,19 @@
 </section>
 <script>
     $(document).ready(function() {
-        var usersAll = {!!$users!!};
+        var usersAll = {!! $users !!};
         var usersEmail = [];
         usersAll.forEach(function(user) {
             usersEmail.push(user.email);
         });
 
+		/**
+		 * Check if the email given is unique (compare with the emails in the
+	 	 * table 'users').
+		 *
+		 * @param emailToCheck: the email that will be checked.
+		 * @return a boolean that indicate if the email is unique.
+		 */
         function emailIsUnique(emailToCheck) {
             var isUnique = true;
             try {
@@ -342,6 +333,34 @@
             }
         }
 
+		/**
+		 * Display the error message in the span given and linked to the input
+		 * given.
+		 *
+		 * @param input: the input that contains the error.
+		 * @param errorSpan: the span that have to be displayed.
+		 */
+		function displayError(input, errorSpan)
+		{
+			if(!input.hasClass('is-invalid'))
+				input.addClass('is-invalid');
+			$(errorSpan).css('display', 'block');
+		}
+
+		/**
+		 * Hide the error message in the span given and linked to the input
+		 * given.
+		 *
+		 * @param input: the input that do not contains error.
+		 * @param errorSpan: the span that have to be hid.
+		 */
+		function eraseError(input, errorSpan)
+		{
+			if(input.hasClass('is-invalid'))
+				input.removeClass('is-invalid');
+			$(errorSpan).css('display', 'none');
+		}
+
         /**
          * Check if all the values are acceptable to edit a member profil.
          */
@@ -353,36 +372,86 @@
                     currentUserEmail = String(user.email);
             });
 
-            var userName = $('input#name' + userId).val(); // OK
-            var userEmail = $('input#email' + userId).val();
-            var userRole = $('#role' + userId + ' option:selected').text(); // OK
-            var userPw = $('input#password' + userId).val(); //OK
-            var userPwc = $('input#password-confirm' + userId).val(); //OK
+			var inputName = $('input#name' + userId);
+			var inputMail = $('input#email' + userId);
+			var inputPassword = $('input#password' + userId);
+
+            var userName = inputName.val();
+            var userEmail = inputMail.val();
+            var userRole = $('#role' + userId + ' option:selected').text();
+            var userPw = inputPassword.val();
+            var userPwc = $('input#password-confirm' + userId).val();
             var error = false;
 
 
-            if (userName.length < 3) {
-                error = true;
-                $('input#name' + userId).addClass('is-invalid');
-                $('span#name-error' + userId).removeAttr('hidden');
-            }
+			if (userName.length < 3)
+			{
+				error = true;
+				displayError(inputName, 'span#name-error' + userId);
+			}
+			else
+				eraseError(inputName, 'span#name-error' + userId);
 
-            if ((userPw.length < 8 || userPw != userPwc) && userPw != "") {
-                error = true;
-                $('input#password' + userId).addClass('is-invalid');
-                $('input#password' + userId).val('');
-                $('input#password-confirm' + userId).val('');
-                $('span#password-error' + userId).removeAttr('hidden');
-            }
+			if ((userPw.length < 8 || userPw != userPwc) && userPw != "")
+			{
+				error = true;
+				displayError(inputPassword, 'span#password-error' + userId);
+				inputPassword.val('');
+				$('input#password-confirm' + userId).val('');
+			}
+			else
+				eraseError(inputPassword, 'span#password-error' + userId);
 
-            if (!emailIsUnique(userEmail) && userEmail.localeCompare(currentUserEmail) != 0) {
-                error = true;
-                $('input#email' + userId).addClass('is-invalid');
-                $('input#email-error' + userId).removeAttr('hidden');
-            }
+			if (!emailIsUnique(userEmail) && userEmail.localeCompare(currentUserEmail) != 0)
+			{
+				error = true;
+				displayError(inputMail, 'span#email-error' + userId);
+			}
+			else
+				eraseError(inputMail, 'span#email-error' + userId);
 
             if (error) e.preventDefault();
         });
+
+		/**
+		 * Check if all the values are acceptable to create a member.
+		 */
+		$('button#create-member-btn').click(function(e) {
+			var inputName = $('input#name');
+			var inputMail = $('input#email');
+			var inputPassword = $('input#password');
+			var inputPasswordConfirm = $('input#password-confirm');
+			var password = inputPassword.val();
+			var error = false;
+
+			if(inputName.val().length < 3)
+			{
+				error = true;
+				displayError(inputName, 'span#name-error');
+			}
+			else
+				eraseError(inputName, 'span#name-error');
+
+			if(!emailIsUnique(inputMail.val()))
+			{
+				error = true;
+				displayError(inputMail, 'span#email-error');
+			}
+			else
+				eraseError(inputMail, 'span#email-error');
+
+			if((password.length < 8 || (password != inputPasswordConfirm.val())) && password != "")
+			{
+				error = true;
+				displayError(inputPassword, 'span#password-error');
+				inputPassword.val('');
+				$('input#password-confirm').val('');
+			}
+			else
+				eraseError(inputPassword, 'span#password-error');
+
+			if(error) e.preventDefault();
+		});
     });
 </script>
 @endsection

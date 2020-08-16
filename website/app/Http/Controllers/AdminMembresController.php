@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 
+/**
+ * Controller linked to the member section of the admin page.
+ */
 class AdminMembresController extends Controller
 {
     /**
@@ -22,7 +25,7 @@ class AdminMembresController extends Controller
         $users = User::all();
         $roles = Role::all();
         $projets = Projet::all();
-        return view('page-admin/membres', ['users' => $users, 'roles' => $roles, 'projets' => $projets]);
+        return view('page-admin/membres', compact('users', 'roles', 'projets'));
     }
 
     /**
@@ -40,7 +43,7 @@ class AdminMembresController extends Controller
             if ($value->chef_projet_id == $user->id)
                 return back()->with('erreur', 'Vous ne pouvez pas supprimer un utilisateur qui est chef d\'un projet');
         }
-        if (substr($user->profil_picture, 0, 32) != "images/default/profil/profil.jpg")
+        if (substr($user->profil_picture, 0, 24) != "images/profil/profil.jpg")
             unlink(storage_path('app/public/' . $user->profil_picture));
         if ($user->cours() != null)
             $user->cours()->detach();
@@ -58,7 +61,7 @@ class AdminMembresController extends Controller
      */
     public function updateUser(User $user, Request $request)
     {
-        $validatedRequest = $this->validator($request->all(), $user)->validate();
+        $validatedRequest = $this->validator($request->all())->validate();
 
         $user->update(['name' => $validatedRequest['name'], 'email' => $validatedRequest['email'], 'role_id' => $validatedRequest['role']]);
 
@@ -67,7 +70,7 @@ class AdminMembresController extends Controller
 
 
         if (array_key_exists('image_profile', $validatedRequest)) {
-            if (file_exists(storage_path('app/public/' . $user->profil_picture)) && substr($user->profil_picture, 0, 32) != "images/default/profil/profil.jpg")
+            if (file_exists(storage_path('app/public/' . $user->profil_picture)) && substr($user->profil_picture, 0, 24) != "images/profil/profil.jpg")
                 unlink(storage_path('app/public/' . $user->profil_picture));
             $user->update(['profil_picture' => $this->saveImage($validatedRequest)]);
         }
@@ -78,22 +81,18 @@ class AdminMembresController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
-     * @param user: the user that will be modified
-     * @return \Illuminate\Contracts\Validation\Validator
+     * @param data: the data that will be checked.
+     * @return an array corresponding to the validated datas.
      */
-    protected function validator(array $data, User $user)
+    protected function validator(array $data)
     {
-        // create validator
-        $validator = Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+        return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255', 'min:3'],
             'email' => ['required', 'string', 'email', 'max:255'],
             'role' => ['required', 'integer'],
             'password' => ['nullable', 'string', 'min:8', 'confirmed'],
             'image_profile' => ['nullable'],
         ]);
-
-        return $validator;
     }
 
     /**
@@ -104,7 +103,7 @@ class AdminMembresController extends Controller
      */
     public function saveImage(array $validatedRequest)
     {
-        $path = Storage::putFile('public/images', $validatedRequest['image_profile'], 'private');
+        $path = Storage::putFile('public/images/profil', $validatedRequest['image_profile'], 'private');
         return substr($path, 7);
     }
 }
