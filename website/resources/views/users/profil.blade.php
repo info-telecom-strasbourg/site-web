@@ -23,6 +23,19 @@
                             placeholder="Adresse e-mail" value="{{ $user->email }}">
                     </div>
 
+                    <!-- User's class -->
+                    <div class="input-group">
+                        <input type="text" class="custom-form-control form-control" id="class" name="class"
+                            placeholder="Filière" value="{{ $user->class }}">
+                    </div>
+
+                    <!-- User's year -->
+                    <div class="input-group">
+                        <input type="text" class="custom-form-control form-control" id="year" name="year"
+                            placeholder="Promotion" value="{{ $user->year }}">
+                    </div>
+
+
                     <!-- Password -->
                     <div class="input-group">
                         <input type="password"
