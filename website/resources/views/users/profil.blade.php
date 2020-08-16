@@ -110,11 +110,11 @@
                 <div class="profil-card-body">
                     @isset ($lessons)
                     @foreach ($lessons as $lesson)
-                    <a href="/cours/{{ $lesson->id }}"
+                    <a href="/poles/cours/{{ $lesson->id }}"
                         class="profil-card-item row justify-content-between align-items-center">
                         <span>{{ $lesson->title}}</span>
                         <button type="submit" class="btn btn-primary btn-rounded"
-                            onclick="self.location.href='/cours/{{ $lesson->id }}'">Aller</button>
+                            onclick="self.location.href='/poles/cours/{{ $lesson->id }}'">Aller</button>
                     </a>
                     @endforeach
                     @endisset
