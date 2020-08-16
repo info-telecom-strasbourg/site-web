@@ -243,7 +243,7 @@
                                                     <input id="name{{ $user->id }}" type="text" class="form-control" name="name" value="{{ $user->name }}" required autofocus>
                                                 </div>
 
-                                                <span id="name-error{{ $user->id }}" class="invalid-feedback" role="alert" hidden>
+                                                <span id="name-error{{ $user->id }}" class="invalid-feedback" role="alert" style="display: none;">
                                                     <strong>Le nom choisi est trop court</strong>
                                                 </span>
 
@@ -253,7 +253,7 @@
 
                                                     <input id="email{{ $user->id }}" type="email" class="form-control" name="email" value="{{ $user->email }}" required autocomplete="email">
 
-                                                    <span id="email-error{{ $user->id }}" class="invalid-feedback" role="alert" hidden>
+                                                    <span id="email-error{{ $user->id }}" class="invalid-feedback" role="alert" style="display: none;">
                                                         <strong>L'email choisi n'est pas valide (il doit être unique)</strong>
                                                     </span>
                                                 </div>
@@ -276,7 +276,7 @@
 
                                                     </select>
 
-                                                    <span id="role-error{{ $user->id }}" class="invalid-feedback" role="alert" hidden>
+                                                    <span id="role-error{{ $user->id }}" class="invalid-feedback" role="alert" style="display: none;">
                                                         <strong>Choisissez un rôle</strong>
                                                     </span>
                                                 </div>
@@ -287,7 +287,7 @@
 
                                                     <input id="password{{ $user->id }}" type="password" class="form-control @error('password{{ $user->id }}') is-invalid @enderror" name="password">
 
-                                                    <span id="password-error{{ $user->id }}" class="invalid-feedback" role="alert" hidden>
+                                                    <span id="password-error{{ $user->id }}" class="invalid-feedback" role="alert" style="display: none;">
                                                         <strong>Le mot de passe ne coïncide pas ou est trop court (8 caractères min)</strong>
                                                     </span>
                                                 </div>
@@ -319,7 +319,7 @@
 </section>
 <script>
     $(document).ready(function() {
-        var usersAll = {!!$users!!};
+        var usersAll = {!! $users !!};
         var usersEmail = [];
         usersAll.forEach(function(user) {
             usersEmail.push(user.email);
@@ -353,33 +353,58 @@
                     currentUserEmail = String(user.email);
             });
 
-            var userName = $('input#name' + userId).val(); // OK
-            var userEmail = $('input#email' + userId).val();
+			var inputName = $('input#name' + userId);
+			var inputMail = $('input#email' + userId);
+			var passwordInput = $('input#password' + userId);
+
+            var userName = inputName.val(); // OK
+            var userEmail = inputMail.val();
             var userRole = $('#role' + userId + ' option:selected').text(); // OK
-            var userPw = $('input#password' + userId).val(); //OK
+            var userPw = passwordInput.val(); //OK
             var userPwc = $('input#password-confirm' + userId).val(); //OK
             var error = false;
 
 
-            if (userName.length < 3) {
-                error = true;
-                $('input#name' + userId).addClass('is-invalid');
-                $('span#name-error' + userId).removeAttr('hidden');
-            }
+			if (userName.length < 3) {
+				error = true;
+				if(!inputName.hasClass('is-invalid'))
+					inputName.addClass('is-invalid');
+				$('span#name-error' + userId).css('display', 'block');
+			}
+			else
+			{
+				if(inputName.hasClass('is-invalid'))
+					inputName.removeClass('is-invalid');
+				$('span#name-error' + userId).css('display', 'none');
+			}
 
-            if ((userPw.length < 8 || userPw != userPwc) && userPw != "") {
-                error = true;
-                $('input#password' + userId).addClass('is-invalid');
-                $('input#password' + userId).val('');
-                $('input#password-confirm' + userId).val('');
-                $('span#password-error' + userId).removeAttr('hidden');
-            }
+			if ((userPw.length < 8 || userPw != userPwc) && userPw != "") {
+				error = true;
+				if(!inputPassword.hasClass('is-invalid'))
+					passwordInput.addClass('is-invalid');
+				passwordInput.val('');
+				$('input#password-confirm' + userId).val('');
+				$('span#password-error' + userId).css('display', 'block');
+			}
+			else
+			{
+				if(inputPassword.hasClass('is-invalid'))
+					inputPassword.removeClass('is-invalid');
+				$('span#password-error' + userId).css('display', 'none');
+			}
 
-            if (!emailIsUnique(userEmail) && userEmail.localeCompare(currentUserEmail) != 0) {
-                error = true;
-                $('input#email' + userId).addClass('is-invalid');
-                $('input#email-error' + userId).removeAttr('hidden');
-            }
+			if (!emailIsUnique(userEmail) && userEmail.localeCompare(currentUserEmail) != 0) {
+				error = true;
+				if(!inputMail.hasClass('is-invalid'))
+					inputMail.addClass('is-invalid');
+				$('input#email-error' + userId).css('display', 'block');
+			}
+			else
+			{
+				if(inputMail.hasClass('is-invalid'))
+					inputMail.removeClass('is-invalid');
+				$('input#email-error' + userId).css('display', 'none');
+			}
 
             if (error) e.preventDefault();
         });

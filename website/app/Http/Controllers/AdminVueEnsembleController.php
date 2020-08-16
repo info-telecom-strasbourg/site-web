@@ -23,6 +23,6 @@ class AdminVueEnsembleController extends Controller
         $projets = Projet::all();
         $nbProjets = Projet::count();
         $nbUsers = User::count();
-        return view('page-admin/vue-ensemble', ['users' => $users, 'roles' => $roles, 'projets' => $projets, 'nbProjets' => $nbProjets, 'nbUsers' => $nbUsers]);
+        return view('page-admin/vue-ensemble', compact('users', 'roles', 'projets', 'nbProjets', 'nbUsers'));
     }
 }

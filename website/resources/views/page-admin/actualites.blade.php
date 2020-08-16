@@ -78,30 +78,196 @@
             <div class="tab-pane fade show active" id="v-pills-actu" role="tabpanel" aria-labelledby="v-pills-actu-tab">
                 <h1 class="title lg text-center"> Actualités </h1>
                 <hr class="line-under-title">
+				@php
+					$nbNews = $allNews->count();
+				@endphp
 
                 <div class="actu-container">
-                    <a class="title-actu" href="#" onclick="toggle('actu-1')">
-                        Actualité 1 <i id="down-actu-1" class="fa fa-angle-down" aria-hidden="true"></i> <i id="up-actu-1" class="fa fa-angle-up" aria-hidden="true" style="display: none;"></i>
-                    </a>
-                    <div id="actu-1" style="display: none;">Formulaire à créer ici</div>
+					@foreach($allNews as $news)
+	                    <a class="title-actu" href="#" onclick="toggle('actu-{{ $news->id }}')">
+	                        Actualité {{ $news->position }} <i id="down-actu-{{ $news->id }}" class="fa fa-angle-down" aria-hidden="true"></i> <i id="up-actu-{{ $news->id }}" class="fa fa-angle-up" aria-hidden="true" style="display: none;"></i>
+	                    </a>
+	                    <div id="actu-{{ $news->id }}" style="display: none;">
+							<form id="form-edit" action="/page-admin/news/{{ $news->id }}/edit" method="POST" enctype="multipart/form-data">
+								@csrf
+								@method('PUT')
+								<!-- Image -->
+								<div style="display:flex;">
+									<input id="file{{ $news->id }}" type="file" name="image" accept="image/x-png,image/gif,image/jpeg" style="margin-left: auto; margin-right:auto;"/>
+								</div>
 
-                    <a class="title-actu" href="#" onclick="toggle('actu-2')">
-                        Actualité 2 <i id="down-actu-2" class="fa fa-angle-down" aria-hidden="true"></i> <i id="up-actu-2" class="fa fa-angle-up" aria-hidden="true" style="display: none;"></i>
-                    </a>
-                    <div id="actu-2" style="display: none;">Formulaire à créer ici</div>
+								<!-- Title -->
+								<div class="form-group">
+									<label for="title{{ $news->id }}" class="form-title-small">Titre</label>
 
-                    <a class="title-actu" href="#" onclick="toggle('actu-3')">
-                        Actualité 3 <i id="down-actu-3" class="fa fa-angle-down" aria-hidden="true"></i> <i id="up-actu-3" class="fa fa-angle-up" aria-hidden="true" style="display: none;"></i>
-                    </a>
-                    <div id="actu-3" style="display: none;">Formulaire à créer ici</div>
+									<input id="title{{ $news->id }}" type="text" class="form-control" name="title" value="{{ $news->title }}" required autofocus>
+								</div>
 
-                    <a class="title-actu" href="#" onclick="toggle('actu-4')">
-                        Actualité 4 <i id="down-actu-4" class="fa fa-angle-down" aria-hidden="true"></i> <i id="up-actu-4" class="fa fa-angle-up" aria-hidden="true" style="display: none;"></i>
-                    </a>
-                    <div id="actu-4" style="display: none;">Formulaire à créer ici</div>
+								<span id="title-error{{ $news->id }}" class="invalid-feedback" role="alert" style="display: none;">
+									<strong>Il faut choisir un titre</strong>
+								</span>
+
+								<!-- Description -->
+								<div class="form-group">
+									<label for="desc{{ $news->id }}" class="form-title-small">Description</label>
+
+									<div class="control">
+										<textarea class="desc form-control" id="desc{{ $news->id }}" name="desc" rows="5" required>{{ $news->desc }}</textarea>
+									</div>
+								</div>
+
+								<span id="desc-error{{ $news->id }}" class="invalid-feedback" role="alert" style="display: none;">
+									<strong>Il faut une description</strong>
+								</span>
+
+
+								<!-- Link -->
+								<input type="checkbox" id="links-nullable" class="{{ $news->id }}" name="links-nullable">
+
+								<div id="website{{ $news->id }}" class="form-group" style="margin-top: 40px; display: none"> <!-- block -->
+					                <label class="sr-only form-title-small" for="website">Lien vers le site web</label>
+					                <div class="input-group mb-2">
+						                <div class="input-group-prepend">
+						                    <div class="input-group-text">
+						                        <i class="fas fa-globe" style="font-size: 1rem;"></i>
+						                    </div>
+						                </div>
+						                <input type="url" class="form-control @error('website') is-invalid @enderror" id="website{{ $news->id }}" name="link" placeholder="Lien vers le site web" value="@isset($news->link) {{ $news->link }} @endisset">
+					                </div>
+					            </div>
+								<span id="link-error{{ $news->id }}" class="invalid-feedback" role="alert" style="display: none;">
+									<strong>Il faut un message pour le bouton</strong>
+								</span>
+
+								<div id="button{{ $news->id }}" class="form-group" style="display: none;">
+									<label for="button{{ $news->id }}" class="form-title-small">Titre</label>
+
+									<input id="button{{ $news->id }}" type="text" class="form-control" name="button" value="@isset($news->button) {{ $news->button }} @endisset">
+								</div>
+								<span id="button-error{{ $news->id }}" class="invalid-feedback" role="alert" style="display: none;">
+									<strong>Il faut un message pour le bouton</strong>
+								</span>
+
+								<div class="form-group">
+									<label for="position{{ $news->id }}" class="form-title-small">Position</label>
+									<select class="custom-select" id="position{{ $news->id }}" name="position" required>
+
+										@for($i = 1; $i <= $nbNews; $i++)
+											<option value="{{ $i }}" @if($news->position == $i) selected @endif>{{ $i }}
+											</option>
+										@endfor
+
+									</select>
+								</div>
+
+								<div class="text-center" style="margin-top:25px; margin-bottom:25px">
+									<button id="submit-btn-edt-news" type="submit" class="{{ $news->id }} btn btn-primary btn-rounded" style="width: 100%;;">Enregistrer</button>
+								</div>
+							</form>
+							<a class="btn btn-rounded button-panel" href="/page-admin/delete-news/{{ $news->id }}">Supprimer</a>
+						</div>
+					@endforeach
                 </div>
             </div>
         </div>
     </div>
 </section>
+<script>
+$(document).ready(function() {
+	var newsAll = {!! $allNews !!};
+	$('input#links-nullable').click(function(e) {
+		var newsId = $(this).attr('class').split(' ')[0];
+		if($(this).is(":checked"))
+		{
+			$('div#website' + newsId).css('display', 'block');
+			$('div#button' + newsId).css('display', 'block');
+		}
+		else
+		{
+			$('div#website' + newsId).css('display', 'none');
+			$('div#button' + newsId).css('display', 'none');
+		}
+	});
+
+	/**
+	 * Check if all the values are acceptable to edit a member profil.
+	 */
+	$('button#submit-btn-edt-news').click(function(e) {
+		var newsId = $(this).attr('class').split(' ')[0];
+
+		var inputTitle = $('input#title' + newsId);
+		var inputDesc = $('textarea#decs' + newsId);
+		var inputLink = $('input#website' + newsId);
+		var inputButton = $('input#button' + newsId);
+
+		var newsTitle = inputTitle.val();
+		var newsDesc = inputDesc.val();
+		var newsImage = $('input#file' + newsId)[0].files[0].name;
+		var newsLinkNullable = $('input#links-nullable' + newsId).prop("checked", true);
+		var newsLink = inputLink.val();
+		var newsButton = inputButton.val();
+		var error = false;
+
+		//////////////////////////////////////////////////////////////////////////////
+		//TODO
+		if (newsTitle.length < 3) {
+			error = true;
+			inputTitle.addClass('is-invalid');
+			$('span#title-error' + newsId).css('display', 'block');
+		}
+		else
+		{
+			if(inputTitle.hasClass('is-invalid'))
+				inputTitle.removeClass('is-invalid');
+			$('span#name-error' + newsId).css('display', 'none');
+		}
+
+		if(newsDesc.length < 3)
+		{
+			error = true;
+			inputDesc.addClass('is-invalid');
+			$('span#desc-error' + newsId).css('display', 'block');
+		}
+		else
+		{
+			if(inputDesc.hasClass('is-invalid'))
+				inputDesc.removeClass('is-invalid');
+			$('span#desc-error' + newsId).css('display', 'none');
+		}
+
+		if(!newsLinkNullable)
+		{
+			if(newsLink.length < 1)
+			{
+				error = true;
+				if(!inputLink.hasClass('is-invalid'))
+					inputLink.addClass('is-invalid');
+				$('span#link-error' + newsId).css('display', 'block');
+			}
+			else
+			{
+				if(inputLink.hasClass('is-invalid'))
+					inputLink.removeClass('is-invalid');
+				$('span#link-error' + newsId).css('display', 'none');
+			}
+
+			if(newsButton.length < 1)
+			{
+				error = true;link
+				if(!inputButton.hasClass('is-invalid'))
+					inputButton.addClass('is-invalid');
+				$('span#button-error' + newsId).css('display', 'block');
+			}
+			else
+			{
+				if(inputButton.hasClass('is-invalid'))
+					inputButton.removeClass('is-invalid');
+				$('span#button-error' + newsId).css('display', 'none');
+			}
+		}
+
+		if (error) e.preventDefault();
+	});
+});
+</script>
 @endsection

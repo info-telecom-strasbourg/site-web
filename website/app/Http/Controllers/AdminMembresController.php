@@ -22,7 +22,7 @@ class AdminMembresController extends Controller
         $users = User::all();
         $roles = Role::all();
         $projets = Projet::all();
-        return view('page-admin/membres', ['users' => $users, 'roles' => $roles, 'projets' => $projets]);
+        return view('page-admin/membres', compact('users', 'roles', 'projets'));
     }
 
     /**
