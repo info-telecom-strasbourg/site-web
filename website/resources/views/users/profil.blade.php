@@ -1,4 +1,14 @@
 <div class="container pt-3">
+    <!-- Message after successful edit -->
+    @if ($message = Session::get('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>{{ $message }}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @endif
+
     <div class="row justify-content-around">
         <!-- Edit profil information -->
         <div class="col-md-4">
@@ -6,9 +16,19 @@
 
                 <!-- Profil image badge -->
                 <img class="profil-rounded" src="{{ asset('storage/' . $user->profil_picture) }}" />
-                <div class="rank-label-container">
-                    Modifier
-                </div>
+                <!-- Change profil picture -->
+                <form action="/users/{{ $user->id }}/avatar" id="avatar" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <input type="file" class="inputfile @error('profil_picture') is-invalid @enderror"
+                        name="profil_picture" id="profil_picture" accept="image/x-png,image/gif,image/jpeg">
+                    <label for="profil_picture">Modifier</label>
+
+                    @error('profil_picture')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </form>
 
                 <form action="/users/{{ $user->id }}" method="POST" id="form-profil-edit">
                     @csrf
@@ -51,16 +71,16 @@
                         </span>
 
                         @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
                         @enderror
                     </div>
 
                     <!-- Confirm password -->
                     <div class="input-group">
-                        <input type="password" class="custom-form-control form-control pwd-confirm" id="password_confirmation"
-                            name="password_confirmation" placeholder="Nouveau mot de passe">
+                        <input type="password" class="custom-form-control form-control pwd-confirm"
+                            id="password_confirmation" name="password_confirmation" placeholder="Nouveau mot de passe">
                         <span class="input-group-btn">
                             <button class="btn reveal-confirm" type="button"><i
                                     class="eye-icon-confirm far fa-eye"></i></button>
@@ -90,14 +110,14 @@
 
                 <!-- List of projects -->
                 <div class="profil-card-body">
-                        @foreach ($user->projets as $project)
-                            <a href="/projets/{{ $project->id }}"
-                                class="profil-card-item row justify-content-between align-items-center">
-                                <span>{{ $project->title}}</span>
-                                <button type="submit" class="btn btn-primary btn-rounded"
-                                    onclick="self.location.href='/projets/{{ $project->id }}'">Aller</button>
-                            </a>
-                        @endforeach
+                    @foreach ($user->projets as $project)
+                    <a href="/projets/{{ $project->id }}"
+                        class="profil-card-item row justify-content-between align-items-center">
+                        <span>{{ $project->title}}</span>
+                        <button type="submit" class="btn btn-primary btn-rounded"
+                            onclick="self.location.href='/projets/{{ $project->id }}'">Aller</button>
+                    </a>
+                    @endforeach
                 </div>
             </div>
 
@@ -163,3 +183,13 @@
         </div>
     </div>
 </div>
+
+<script>
+$(".alert").delay(4000).slideUp(200, function() {
+    $(this).alert('close');
+});
+
+document.getElementById("profil_picture").onchange = function() {
+    document.getElementById("avatar").submit();
+};
+</script>

@@ -9,6 +9,8 @@ use App\Cours;
 use App\Competition;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+
 
 
 /**
@@ -45,7 +47,7 @@ class UserController extends Controller
      * Update a user profil.
      *
      * @param user: the user that will be updated.
-     * @return the view of the admin page.
+     * @return the view of the profil page.
      */
     public function update(User $user)
     {
@@ -67,9 +69,29 @@ class UserController extends Controller
             $user->update(['profil_picture' => $this->saveImage($validatedRequest)]);
         }
 
-        return back();
+        return back()->with('success','Vous avez bien mis à jour vos informations de profil.');;
     }
 
+    /**
+     * Update the profil picutre of the user.
+     * 
+     * @param user: the user for which the profil picture will be updated.
+     * @return the view of the profil page.
+     */
+    public function update_avatar(User $user) {
+
+        request()->validate([
+            'profil_picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        if (file_exists(storage_path('app/public/' . $user->profil_picture)) && substr($user->profil_picture, 0, 32) != "images/default/profil/profil.jpg")
+            unlink(storage_path('app/public/' . $user->profil_picture));
+        $user->update(['profil_picture' => $this->saveImage(request())]);
+
+        return back()
+            ->with('success','Vous avez bien mis à jour votre image de profil.');
+
+    }
 
     /**
      * Get a validator for an incoming registration request.
@@ -86,5 +108,17 @@ class UserController extends Controller
             'year' => ['required', 'string', 'max:4'],
             'password' => ['nullable', 'string', 'min:8', 'confirmed'],
         ]);
+    }
+
+    /**
+     * Save an image given by the user in the public storage folder.
+     *
+     * @param request: the request of the user.
+     * @return the path to find the image.
+     */
+    public function saveImage(Request $request)
+    {
+        $path = Storage::putFile('public/images/profil', $request->profil_picture, 'private');
+        return substr($path, 7);
     }
 }
