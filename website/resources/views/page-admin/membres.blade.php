@@ -110,11 +110,9 @@
 
                                             <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
-                                            @error('name')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
+                                            <span id="name-error" class="invalid-feedback" role="alert" style="display: none;">
+                                                <strong>Vous devez entrer un nom de plus de 3 caractère</strong>
                                             </span>
-                                            @enderror
                                         </div>
 
                                         <!-- Give the member email -->
@@ -123,11 +121,9 @@
 
                                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
-                                            @error('email')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
+	                                        <span id="error-email" class="invalid-feedback" role="alert" style="display: none;">
+	                                            <strong>Vous devez entrer un email unique</strong>
+	                                        </span>
                                         </div>
 
                                         <!-- Give the member role -->
@@ -137,21 +133,15 @@
                                                 @if(isset($roles))
 
                                                 @foreach ($roles as $role)
-                                                @if($role->isAvailable())
-                                                <option value="{{ $role->id }}" @if (old('role')==$role->id) selected @endif>{{ $role->role }}
-                                                </option>
-                                                @endif
+	                                                @if($role->isAvailable())
+		                                                <option value="{{ $role->id }}" @if (old('role')==$role->id) selected @endif>{{ $role->role }}
+		                                                </option>
+	                                                @endif
                                                 @endforeach
 
                                                 @endif
 
                                             </select>
-
-                                            @error('role')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>Choisissez un rôle</strong>
-                                            </span>
-                                            @enderror
                                         </div>
 
                                         <!-- Give the member password -->
@@ -160,11 +150,9 @@
 
                                             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
-                                            @error('password')
-                                            <span class="invalid-feedback" role="alert">
+                                            <span id="error-password" class="invalid-feedback" role="alert" style="display: none;">
                                                 <strong>Le mot de passe ne coïncide pas ou est trop court (8 caractères min)</strong>
                                             </span>
-                                            @enderror
                                         </div>
 
                                         <!-- Confirm the member password -->
@@ -174,7 +162,7 @@
                                             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                                         </div>
 
-                                        <button type="submit" class="btn btn-primary btn-rounded" style="margin-top:25px; margin-bottom:25px; width:100%;">Ajouter</button>
+                                        <button id="create-member-btn" type="submit" class="btn btn-primary btn-rounded" style="margin-top:25px; margin-bottom:25px; width:100%;">Ajouter</button>
                                     </form>
                                 </div>
                             </div>
@@ -355,12 +343,12 @@
 
 			var inputName = $('input#name' + userId);
 			var inputMail = $('input#email' + userId);
-			var passwordInput = $('input#password' + userId);
+			var inputPassword = $('input#password' + userId);
 
             var userName = inputName.val(); // OK
             var userEmail = inputMail.val();
             var userRole = $('#role' + userId + ' option:selected').text(); // OK
-            var userPw = passwordInput.val(); //OK
+            var userPw = inputPassword.val(); //OK
             var userPwc = $('input#password-confirm' + userId).val(); //OK
             var error = false;
 
@@ -381,8 +369,8 @@
 			if ((userPw.length < 8 || userPw != userPwc) && userPw != "") {
 				error = true;
 				if(!inputPassword.hasClass('is-invalid'))
-					passwordInput.addClass('is-invalid');
-				passwordInput.val('');
+					inputPassword.addClass('is-invalid');
+				inputPassword.val('');
 				$('input#password-confirm' + userId).val('');
 				$('span#password-error' + userId).css('display', 'block');
 			}
@@ -397,17 +385,73 @@
 				error = true;
 				if(!inputMail.hasClass('is-invalid'))
 					inputMail.addClass('is-invalid');
-				$('input#email-error' + userId).css('display', 'block');
+				$('span#email-error' + userId).css('display', 'block');
 			}
 			else
 			{
 				if(inputMail.hasClass('is-invalid'))
 					inputMail.removeClass('is-invalid');
-				$('input#email-error' + userId).css('display', 'none');
+				$('span#email-error' + userId).css('display', 'none');
 			}
 
             if (error) e.preventDefault();
         });
+
+		$('button#create-member-btn').click(function(e) {
+			var inputName = $('input#name');
+			var inputMail = $('input#email');
+			var inputPassword = $('input#password');
+			var inputPasswordConfirm = $('input#password-confirm');
+			var password = inputPassword.val();
+			var error = false;
+
+			if(inputName.val().length < 3)
+			{
+				error = true;
+				if(!inputName.hasClass('is-invalid'))
+					inputName.addClass('is-invalid');
+				$('span#name-error').css('display', 'block');
+			}
+			else
+			{
+				if(inputName.hasClass('is-invalid'))
+					inputName.removeClass('is-invalid');
+				$('span#name-error').css('display', 'none');
+			}
+
+			if(!emailIsUnique(inputMail.val()))
+			{
+				error = true;
+				if(!inputMail.hasClass('is-invalid'))
+					inputMail.addClass('is-invalid');
+				$('span#email-error').css('display', 'block');
+			}
+			else
+			{
+				if(inputMail.hasClass('is-invalid'))
+					inputMail.removeClass('is-invalid');
+				$('span#email-error').css('display', 'none');
+			}
+
+			if(password.length < 8 || (password != inputPasswordConfirm.val()))
+			{
+				error = true;
+				if(!inputPassword.hasClass('is-invalid'))
+					inputPassword.addClass('is-invalid');
+				inputPassword.val('');
+				$('input#password-confirm').val('');
+				$('span#password-error').css('display', 'block');
+			}
+			else
+			{
+				if(inputPassword.hasClass('is-invalid'))
+					inputPassword.removeClass('is-invalid');
+				$('span#password-error' + userId).css('display', 'none');
+			}
+
+			if(error) e.preventDefault();
+		});
+
     });
 </script>
 @endsection
