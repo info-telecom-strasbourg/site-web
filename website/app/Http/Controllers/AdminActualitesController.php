@@ -124,6 +124,7 @@ class AdminActualitesController extends Controller
 	public function destroy(News $news)
 	{
 		unlink(storage_path('app/public/' . $news->image));
+		$this->sortNews($news, News::all()->count());
 		$news->delete();
 		return redirect('/page-admin/actualites');
 	}
