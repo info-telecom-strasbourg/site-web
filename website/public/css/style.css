@@ -1400,6 +1400,8 @@ div.bordure {
 
 /* >>>>>>>>>>>>>>>>>>>> News <<<<<<<<<<<<<<<<<<<< */
 
+/* >>>>>>>>>>>>>>>>>>>> News <<<<<<<<<<<<<<<<<<<< */
+
 .dark-page #v-pills-actu .actu-container {
     display: flex;
     flex-direction: column;
@@ -1410,10 +1412,39 @@ div.bordure {
 .dark-page #v-pills-actu .title-actu {
     color: white;
     font-size: 20pt;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 .dark-page #v-pills-actu .title-actu:hover {
     text-decoration: none;
+}
+
+.dark-page #v-pills-actu {
+    color: white;
+}
+
+.dark-page #v-pills-actu .button-panel {
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 30px;
+    background-color: #20242e;
+    color: white;
+    border-color: transparent;
+    width: 230px;
+}
+
+.dark-page #form-edit img {
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 500px) {
+    .dark-page #form-edit img {
+        width: 100%;
+    }
 }
 
 

@@ -77,113 +77,117 @@
 		@php
 			$nbNews = $allNews->count();
 		@endphp
-
-		<button id="button-new-news" type="button" data-toggle="modal" data-target="#new-news" class="btn btn-primary">Ajouter une news</button>
-		<div class="modal" id="new-news">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h4 class="modal-title">Nouveau membre</h4>
-						<button type="button" class="close" data-dismiss="modal" style="color: white;">
-							<span>&times;</span> <!-- Cross button -->
-						</button>
-					</div>
-					<div class="modal-body">
-						<form method="POST" action="/page-admin/news/create">
-							@csrf
-
-							<!-- Give the news a title -->
-							<div class="form-group">
-								<label for="title" class="form-title-small">Nom</label>
-
-								<input id="title" type="text" class="form-control " name="title" value="{{ old('title') }}" required autocomplete="title" autofocus>
-
-								<span id="title-error" class="invalid-feedback" role="alert" style="display: none;">
-									<strong>Vous devez entrer un titre de plus de 3 caractères et moins de 255</strong>
-								</span>
+		<div class="tab-content" id="v-pills-tabContent" style="padding-bottom: 300px">
+            <div class="tab-pane fade show active" id="v-pills-actu" role="tabpanel" aria-labelledby="v-pills-actu-tab">
+				<h1 class="title lg text-center"> Actualités </h1>
+                <hr class="line-under-title">
+				<button id="button-new-news" type="button" data-toggle="modal" data-target="#new-news" class="btn btn-primary">Ajouter une news</button>
+				<hr class="line-under-title">
+				<div class="modal" id="new-news">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title">Nouvelle news</h4>
+								<button type="button" class="close" data-dismiss="modal" style="color: white;">
+									<span>&times;</span> <!-- Cross button -->
+								</button>
 							</div>
-							<!-- Give the news a decription -->
-							<div class="form-group">
-								<label for="desc" class="form-title-small">Description</label>
+							<div class="modal-body">
+								<form method="POST" action="/page-admin/news/create">
+									@csrf
 
-								<div class="control">
-									<textarea class="desc form-control" id="desc" name="desc" rows="5" required>{{ old('desc') }}</textarea>
-								</div>
-							</div>
+									<!-- Give the news a title -->
+									<div class="form-group">
+										<label for="title" class="form-title-small">Nom</label>
 
-							<span id="desc-error" class="invalid-feedback" role="alert" style="display: none;">
-								<strong>Il faut une description pour la news</strong>
-							</span>
-							<!-- Give the news a image -->
-							<div style="display:flex;">
-								<input id="image" type="file" name="image" accept="image/x-png,image/gif,image/jpeg" style="margin-left: auto; margin-right:auto;" required/>
-							</div>
-							<span id="image-error" class="invalid-feedback" role="alert" style="display: none;">
-								<strong>Il faut une image pour la news</strong>
-							</span>
+										<input id="title" type="text" class="form-control " name="title" value="{{ old('title') }}" required autocomplete="title" autofocus>
 
-							<!-- Give the news a position -->
-							<div class="form-group">
-								<label for="position" class="form-title-small">Position</label>
-								<select class="custom-select" id="position" name="position" required>
+										<span id="title-error" class="invalid-feedback" role="alert" style="display: none;">
+											<strong>Vous devez entrer un titre de plus de 3 caractères et moins de 255</strong>
+										</span>
+									</div>
+									<!-- Give the news a decription -->
+									<div class="form-group">
+										<label for="desc" class="form-title-small">Description</label>
 
-									@for($i = 1; $i <= $nbNews+1; $i++)
-										<option value="{{ $i }}" @if($i == $nbNews+1) selected @endif>{{ $i }}
-										</option>
-									@endfor
-
-								</select>
-							</div>
-
-							<!-- Give a link for the news -->
-							<input type="checkbox" id="links-nullable-create" name="links-nullable">
-
-							<div id="website-crt" class="form-group" style="margin-top: 40px; display: none">
-								<label class="sr-only form-title-small" for="website">Lien vers le site web</label>
-								<div class="input-group mb-2">
-									<div class="input-group-prepend">
-										<div class="input-group-text">
-											<i class="fas fa-globe" style="font-size: 1rem;"></i>
+										<div class="control">
+											<textarea class="desc form-control" id="desc" name="desc" rows="5" required>{{ old('desc') }}</textarea>
 										</div>
 									</div>
-									<input type="url" class="form-control" id="website" name="link" placeholder="Lien vers le site web" value="{{ old('website') }}">
-								</div>
-							</div>
-							<span id="website-error" class="invalid-feedback" role="alert" style="display: none;">
-								<strong>Il faut un lien pour le bouton</strong>
-							</span>
-							<!-- Give the button a text -->
-							<div id="button-crt" class="form-group" style="display: none;">
-								<label for="button" class="form-title-small">Titre</label>
 
-								<input id="button" type="text" class="form-control" name="button" value="{{ old('button') }}">
-							</div>
-							<span id="button-error" class="invalid-feedback" role="alert" style="display: none;">
-								<strong>Il faut un message pour le bouton (moins de 255 caractères)</strong>
-							</span>
+									<span id="desc-error" class="invalid-feedback" role="alert" style="display: none;">
+										<strong>Il faut une description pour la news</strong>
+									</span>
+									<!-- Give the news a image -->
+									<div style="display:flex;">
+										<input id="image" type="file" name="image" accept="image/x-png,image/gif,image/jpeg" style="margin-left: auto; margin-right:auto;" required/>
+									</div>
+									<span id="image-error" class="invalid-feedback" role="alert" style="display: none;">
+										<strong>Il faut une image pour la news</strong>
+									</span>
 
-							<button id="create-news-btn" type="submit" class="btn btn-primary btn-rounded" style="margin-top:25px; margin-bottom:25px; width:100%;">Ajouter</button>
-						</form>
+									<!-- Give the news a position -->
+									<div class="form-group">
+										<label for="position" class="form-title-small">Position</label>
+										<select class="custom-select" id="position" name="position" required>
+
+											@for($i = 1; $i <= $nbNews+1; $i++)
+												<option value="{{ $i }}" @if($i == $nbNews+1) selected @endif>{{ $i }}
+												</option>
+											@endfor
+
+										</select>
+									</div>
+
+									<!-- Give a link for the news -->
+									<input type="checkbox" class="checkbox" id="links-nullable-create" name="links-nullable">
+
+									<div id="website-crt" class="form-group" style="margin-top: 40px; display: none">
+										<label class="sr-only form-title-small" for="website">Lien vers le site web</label>
+										<div class="input-group mb-2">
+											<div class="input-group-prepend">
+												<div class="input-group-text">
+													<i class="fas fa-globe" style="font-size: 1rem;"></i>
+												</div>
+											</div>
+											<input type="url" class="form-control" id="website" name="link" placeholder="Lien vers le site web" value="{{ old('website') }}">
+										</div>
+									</div>
+									<span id="website-error" class="invalid-feedback" role="alert" style="display: none;">
+										<strong>Il faut un lien pour le bouton</strong>
+									</span>
+									<!-- Give the button a text -->
+									<div id="button-crt" class="form-group" style="display: none;">
+										<label for="button" class="form-title-small">Titre</label>
+
+										<input id="button" type="text" class="form-control" name="button" value="{{ old('button') }}">
+									</div>
+									<span id="button-error" class="invalid-feedback" role="alert" style="display: none;">
+										<strong>Il faut un message pour le bouton (moins de 255 caractères)</strong>
+									</span>
+
+									<button id="create-news-btn" type="submit" class="btn btn-primary btn-rounded" style="margin-top:25px; margin-bottom:25px; width:100%;">Ajouter</button>
+								</form>
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-        <div class="tab-content" id="v-pills-tabContent" style="padding-bottom: 300px">
-            <div class="tab-pane fade show active" id="v-pills-actu" role="tabpanel" aria-labelledby="v-pills-actu-tab">
-                <h1 class="title lg text-center"> Actualités </h1>
-                <hr class="line-under-title">
 
                 <div class="actu-container">
 					@foreach($allNews as $news)
-	                    <a class="title-actu" href="#" onclick="toggle('actu-{{ $news->id }}')">
-	                        Actualité {{ $news->position }} <i id="down-actu-{{ $news->id }}" class="fa fa-angle-down" aria-hidden="true"></i> <i id="up-actu-{{ $news->id }}" class="fa fa-angle-up" aria-hidden="true" style="display: none;"></i>
-	                    </a>
-	                    <div id="actu-{{ $news->id }}" style="display: none;">
+						@if($news->position != 1)
+						<hr style="width: 100%; height: 1px; color: #b9b9b9; background-color: #b9b9b9; border: none; margin-top: 20px;">
+						@endif
+						<div class="title-actu">
+							Actualité {{ $news->position }}
+						</div>
+	                    <div id="actu-{{ $news->id }}">
 							<form id="form-edit" action="/page-admin/news/{{ $news->id }}/edit" method="POST" enctype="multipart/form-data">
 								@csrf
 								@method('PUT')
 								<!-- Image -->
-								<div style="display:flex;">
+								<div style="display:flex; flex-direction:column;">
+									<img src="{{ asset('storage/' . $news->image) }}" alt="news picture">
 									<input id="file{{ $news->id }}" type="file" name="image" accept="image/x-png,image/gif,image/jpeg" style="margin-left: auto; margin-right:auto;"/>
 								</div>
 
@@ -211,34 +215,7 @@
 									<strong>Il faut une description</strong>
 								</span>
 
-
-								<!-- Link -->
-								<input type="checkbox" id="links-nullable" class="{{ $news->id }}" name="links-nullable">
-
-								<div id="website{{ $news->id }}" class="form-group" style="margin-top: 40px; display: none"> <!-- block -->
-					                <label class="sr-only form-title-small" for="website">Lien du bouton</label>
-					                <div class="input-group mb-2">
-						                <div class="input-group-prepend">
-						                    <div class="input-group-text">
-						                        <i class="fas fa-globe" style="font-size: 1rem;"></i>
-						                    </div>
-						                </div>
-						                <input type="url" class="form-control" id="website{{ $news->id }}" name="link" placeholder="Lien vers le site web" value="@isset($news->link) {{ $news->link }} @endisset">
-					                </div>
-					            </div>
-								<span id="link-error{{ $news->id }}" class="invalid-feedback" role="alert" style="display: none;">
-									<strong>Il faut un lien pour le bouton</strong>
-								</span>
-
-								<div class="form-group" style="display: none;">
-									<label for="button{{ $news->id }}" class="form-title-small">Titre</label>
-
-									<input id="button{{ $news->id }}" type="text" class="form-control" name="button" value="@isset($news->button) {{ $news->button }} @endisset">
-								</div>
-								<span id="button-error{{ $news->id }}" class="invalid-feedback" role="alert" style="display: none;">
-									<strong>Il faut un message pour le bouton</strong>
-								</span>
-
+								<!-- Position -->
 								<div class="form-group">
 									<label for="position{{ $news->id }}" class="form-title-small">Position</label>
 									<select class="custom-select" id="position{{ $news->id }}" name="position" required>
@@ -251,11 +228,38 @@
 									</select>
 								</div>
 
-								<div class="text-center" style="margin-top:25px; margin-bottom:25px">
-									<button id="submit-btn-edt-news" type="submit" class="{{ $news->id }} btn btn-primary btn-rounded" style="width: 100%;;">Enregistrer</button>
+								<!-- Link -->
+								<input type="checkbox" id="links-nullable" class="{{ $news->id }} checkbox" name="links-nullable" style="margin-top:20px;">
+
+								<div id="website{{ $news->id }}" class="form-group" style="margin-top: 40px; display: none"> <!-- block -->
+					                <label class="sr-only form-title-small" for="website">Lien du bouton</label>
+					                <div class="input-group mb-2">
+						                <div class="input-group-prepend">
+						                    <div class="input-group-text">
+						                        <i class="fas fa-globe" style="font-size: 1rem;"></i>
+						                    </div>
+						                </div>
+						                <input type="url" class="form-control" id="website{{ $news->id }}" name="link" placeholder="Lien du boutton" value="@isset($news->link) {{ $news->link }} @endisset">
+					                </div>
+					            </div>
+								<span id="link-error{{ $news->id }}" class="invalid-feedback" role="alert" style="display: none;">
+									<strong>Il faut un lien pour le bouton</strong>
+								</span>
+
+								<div id="button{{ $news->id }}" class="form-group" style="display: none;">
+									<label for="button{{ $news->id }}" class="form-title-small">Titre</label>
+
+									<input id="button{{ $news->id }}" type="text" class="form-control" name="button" value="@isset($news->button) {{ $news->button }} @endisset">
+								</div>
+								<span id="button-error{{ $news->id }}" class="invalid-feedback" role="alert" style="display: none;">
+									<strong>Il faut un message pour le bouton</strong>
+								</span>
+
+								<div class="text-center" style="margin-top:25px; margin-bottom:25px; display:flex; flex-wrap: wrap; justify-content: center;">
+									<button id="submit-btn-edt-news" type="submit" class="{{ $news->id }} btn btn-rounded button-panel">Enregistrer</button>
+									<a class="btn btn-rounded button-panel" href="/page-admin/delete-news/{{ $news->id }}">Supprimer</a>
 								</div>
 							</form>
-							<a class="btn btn-rounded button-panel" href="/page-admin/delete-news/{{ $news->id }}">Supprimer</a>
 						</div>
 					@endforeach
                 </div>
@@ -266,6 +270,8 @@
 <script>
 $(document).ready(function() {
 	var newsAll = {!! $allNews !!};
+	$('input.checkbox').prop( "checked", false );
+	$('input.checkbox').prop( "checked", false );
 
 	/**
 	 * Display or hide the sections corresponding to the button and the link
