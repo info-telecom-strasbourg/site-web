@@ -43,7 +43,7 @@ class AdminMembresController extends Controller
             if ($value->chef_projet_id == $user->id)
                 return back()->with('erreur', 'Vous ne pouvez pas supprimer un utilisateur qui est chef d\'un projet');
         }
-        if (substr($user->profil_picture, 0, 32) != "images/default/profil/profil.jpg")
+        if (substr($user->profil_picture, 0, 24) != "images/profil/profil.jpg")
             unlink(storage_path('app/public/' . $user->profil_picture));
         if ($user->cours() != null)
             $user->cours()->detach();
@@ -70,7 +70,7 @@ class AdminMembresController extends Controller
 
 
         if (array_key_exists('image_profile', $validatedRequest)) {
-            if (file_exists(storage_path('app/public/' . $user->profil_picture)) && substr($user->profil_picture, 0, 32) != "images/default/profil/profil.jpg")
+            if (file_exists(storage_path('app/public/' . $user->profil_picture)) && substr($user->profil_picture, 0, 24) != "images/profil/profil.jpg")
                 unlink(storage_path('app/public/' . $user->profil_picture));
             $user->update(['profil_picture' => $this->saveImage($validatedRequest)]);
         }

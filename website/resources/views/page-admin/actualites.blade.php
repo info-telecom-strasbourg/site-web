@@ -266,6 +266,11 @@
 <script>
 $(document).ready(function() {
 	var newsAll = {!! $allNews !!};
+
+	/**
+	 * Display or hide the sections corresponding to the button and the link
+	 * of the news.
+	 */
 	$('input#links-nullable').click(function(e) {
 		var newsId = $(this).attr('class').split(' ')[0];
 		if($(this).is(":checked"))
@@ -280,6 +285,13 @@ $(document).ready(function() {
 		}
 	});
 
+	/**
+	 * Display the error message in the span given and linked to the input
+	 * given.
+	 *
+	 * @param input: the input that contains the error.
+	 * @param errorSpan: the span that have to be displayed.
+	 */
 	function displayError(input, errorSpan)
 	{
 		if(!input.hasClass('is-invalid'))
@@ -287,6 +299,13 @@ $(document).ready(function() {
 		$(errorSpan).css('display', 'block');
 	}
 
+	/**
+	 * Hide the error message in the span given and linked to the input
+	 * given.
+	 *
+	 * @param input: the input that do not contains error.
+	 * @param errorSpan: the span that have to be hid.
+	 */
 	function eraseError(input, errorSpan)
 	{
 		if(input.hasClass('is-invalid'))
@@ -295,7 +314,7 @@ $(document).ready(function() {
 	}
 
 	/**
-	 * Check if all the values are acceptable to edit a member profil.
+	 * Check if all the values are acceptable to edit a news.
 	 */
 	$('button#submit-btn-edt-news').click(function(e) {
 		var newsId = $(this).attr('class').split(' ')[0];
@@ -351,6 +370,9 @@ $(document).ready(function() {
 		if (error) e.preventDefault();
 	});
 
+	/**
+	 * Check if all the values are acceptable to create a news.
+	 */
 	$('button#create-news-btn').click(function(e) {
 		var inputTitle = $('input#title');
 		var inputDesc = $('textarea#desc');
