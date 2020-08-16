@@ -10,7 +10,10 @@
                     Modifier
                 </div>
 
-                <form action="" id="form-profil-edit">
+                <form action="/users/{{ $user->id }}" method="POST" id="form-profil-edit">
+                    @csrf
+                    @method('PUT')
+
                     <!-- User's name -->
                     <div class="input-group">
                         <input type="text" class="custom-form-control form-control" id="name" name="name"
@@ -56,8 +59,8 @@
 
                     <!-- Confirm password -->
                     <div class="input-group">
-                        <input type="password" class="custom-form-control form-control pwd-confirm" id="confirmPassword"
-                            name="confirmPassword" placeholder="Nouveau mot de passe">
+                        <input type="password" class="custom-form-control form-control pwd-confirm" id="password_confirmation"
+                            name="password_confirmation" placeholder="Nouveau mot de passe">
                         <span class="input-group-btn">
                             <button class="btn reveal-confirm" type="button"><i
                                     class="eye-icon-confirm far fa-eye"></i></button>
@@ -87,8 +90,7 @@
 
                 <!-- List of projects -->
                 <div class="profil-card-body">
-                    @isset ($projects)
-                        @foreach ($projects as $project)
+                        @foreach ($user->projets as $project)
                             <a href="/projets/{{ $project->id }}"
                                 class="profil-card-item row justify-content-between align-items-center">
                                 <span>{{ $project->title}}</span>
@@ -96,7 +98,6 @@
                                     onclick="self.location.href='/projets/{{ $project->id }}'">Aller</button>
                             </a>
                         @endforeach
-                    @endisset
                 </div>
             </div>
 
@@ -121,8 +122,7 @@
 
                 <!-- List of lessons -->
                 <div class="profil-card-body">
-                    @isset ($lessons)
-                    @foreach ($lessons as $lesson)
+                    @foreach ($user->cours as $lesson)
                     <a href="/poles/cours/{{ $lesson->id }}"
                         class="profil-card-item row justify-content-between align-items-center">
                         <span>{{ $lesson->title}}</span>
@@ -130,7 +130,6 @@
                             onclick="self.location.href='/poles/cours/{{ $lesson->id }}'">Aller</button>
                     </a>
                     @endforeach
-                    @endisset
                 </div>
             </div>
         </div>
@@ -151,16 +150,14 @@
 
                 <!-- List of competitions -->
                 <div class="profil-card-body">
-                    @isset ($competitions)
-                    @foreach ($competitions as $competition)
-                    <a href="/pole/competitions/{{ $competition->id }}"
+                    @foreach ($user->competitions as $competition)
+                    <a href="/poles/competitions/{{ $competition->id }}"
                         class="profil-card-item row justify-content-between align-items-center">
                         <span>{{ $competition->title}}</span>
                         <button type="submit" class="btn btn-primary btn-rounded"
-                            onclick="self.location.href='/pole/competitions/{{ $competition->id }}'">Aller</button>
+                            onclick="self.location.href='/poles/competitions/{{ $competition->id }}'">Aller</button>
                     </a>
                     @endforeach
-                    @endisset
                 </div>
             </div>
         </div>
