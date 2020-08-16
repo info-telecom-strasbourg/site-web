@@ -99,7 +99,10 @@ class AdminActualitesController extends Controller
 	{
 		$validatedRequest = $this->validateCreate($request);
 		$validatedRequest['image'] = saveImage($validatedRequest);
-		News::create($validatedRredirectequest);
+		$news = News::create($validatedRredirectequest);
+		$news->update(['position' => News::all()->count()]);
+		$this->sortNews($news, $validatedRequest['position']);
+		$news->update(['position' => $validatedRequest['position']]);
 		return redirect('/page-admin/actualites');
 	}
 
@@ -110,12 +113,14 @@ class AdminActualitesController extends Controller
 				'title' => ['requires', 'string', 'max:255', 'min:1'],
 				'desc' => ['required', 'min:1'],
 				'image' => ['required', 'mimes:jpeg,jpg,png,gif'],
+				'position' => ['required'],
 			]);
 		else
 			return $request->validate([
 				'title' => ['requires', 'string', 'max:255', 'min:1'],
 				'desc' => ['required', 'min:1'],
 				'image' => ['mimes:jpeg,jpg,png,gif'],
+				'position' => ['required'],
 				'link' => ['required', 'string', 'max:255', 'min:1'],
 				'button' => ['required', 'string', 'max:255', 'min:1'],
 			]);

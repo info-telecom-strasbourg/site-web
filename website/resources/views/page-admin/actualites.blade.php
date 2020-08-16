@@ -98,7 +98,7 @@
 
 								<input id="title" type="text" class="form-control " name="title" value="{{ old('title') }}" required autocomplete="title" autofocus>
 
-								<span id="error-title" class="invalid-feedback" role="alert" style="display: none;">
+								<span id="title-error" class="invalid-feedback" role="alert" style="display: none;">
 									<strong>Vous devez entrer un titre de plus de 3 caractères et moins de 255</strong>
 								</span>
 							</div>
@@ -111,16 +111,29 @@
 								</div>
 							</div>
 
-							<span id="error-desc" class="invalid-feedback" role="alert" style="display: none;">
+							<span id="desc-error" class="invalid-feedback" role="alert" style="display: none;">
 								<strong>Il faut une description pour la news</strong>
 							</span>
 							<!-- Give the news a image -->
 							<div style="display:flex;">
 								<input id="image" type="file" name="image" accept="image/x-png,image/gif,image/jpeg" style="margin-left: auto; margin-right:auto;" required/>
 							</div>
-							<span id="error-image" class="invalid-feedback" role="alert" style="display: none;">
+							<span id="image-error" class="invalid-feedback" role="alert" style="display: none;">
 								<strong>Il faut une image pour la news</strong>
 							</span>
+
+							<!-- Give the news a position -->
+							<div class="form-group">
+								<label for="position" class="form-title-small">Position</label>
+								<select class="custom-select" id="position" name="position" required>
+
+									@for($i = 1; $i <= $nbNews+1; $i++)
+										<option value="{{ $i }}" @if($i == $nbNews+1) selected @endif>{{ $i }}
+										</option>
+									@endfor
+
+								</select>
+							</div>
 
 							<!-- Give a link for the news -->
 							<input type="checkbox" id="links-nullable" name="links-nullable">
@@ -136,7 +149,7 @@
 									<input type="url" class="form-control" id="website" name="link" placeholder="Lien vers le site web" value="{{ old('website') }}">
 								</div>
 							</div>
-							<span id="error-website" class="invalid-feedback" role="alert" style="display: none;">
+							<span id="website-error" class="invalid-feedback" role="alert" style="display: none;">
 								<strong>Il faut un lien pour le bouton</strong>
 							</span>
 							<!-- Give the button a text -->
@@ -145,10 +158,9 @@
 
 								<input id="button" type="text" class="form-control" name="button" value="{{ old('button') }}">
 							</div>
-							<span id="error-button" class="invalid-feedback" role="alert" style="display: none;">
+							<span id="button-error" class="invalid-feedback" role="alert" style="display: none;">
 								<strong>Il faut un message pour le bouton (moins de 255 caractères)</strong>
 							</span>
-
 
 							<button id="create-news-btn" type="submit" class="btn btn-primary btn-rounded" style="margin-top:25px; margin-bottom:25px; width:100%;">Ajouter</button>
 						</form>
@@ -268,6 +280,20 @@ $(document).ready(function() {
 		}
 	});
 
+	function displayError(input, errorSpan)
+	{
+		if(!input.hasClass('is-invalid'))
+			input.addClass('is-invalid');
+		$(errorSpan).css('display', 'block');
+	}
+
+	function eraseError(input, errorSpan)
+	{
+		if(input.hasClass('is-invalid'))
+			input.removeClass('is-invalid');
+		$(errorSpan).css('display', 'none');
+	}
+
 	/**
 	 * Check if all the values are acceptable to edit a member profil.
 	 */
@@ -287,60 +313,39 @@ $(document).ready(function() {
 		var newsButton = inputButton.val();
 		var error = false;
 
-		if (newsTitle.length < 3) {
-			error = true;
-			inputTitle.addClass('is-invalid');
-			$('span#title-error' + newsId).css('display', 'block');
+		if (newsTitle.length < 3)
+		{
+			error = true
+			displayError(inputTitle, 'span#title-error' + newsId);
 		}
 		else
-		{
-			if(inputTitle.hasClass('is-invalid'))
-				inputTitle.removeClass('is-invalid');
-			$('span#name-error' + newsId).css('display', 'none');
-		}
+			eraseError(inputTitle, 'span#name-error' + newsId);
 
 		if(newsDesc.length < 3)
 		{
 			error = true;
-			inputDesc.addClass('is-invalid');
-			$('span#desc-error' + newsId).css('display', 'block');
+			displayError(inputDesc, 'span#desc-error' + newsId);
 		}
 		else
-		{
-			if(inputDesc.hasClass('is-invalid'))
-				inputDesc.removeClass('is-invalid');
-			$('span#desc-error' + newsId).css('display', 'none');
-		}
+			eraseError(inputDesc, 'span#desc-error' + newsId);
 
 		if(!newsLinkNullable)
 		{
 			if(newsLink.length < 1)
 			{
 				error = true;
-				if(!inputLink.hasClass('is-invalid'))
-					inputLink.addClass('is-invalid');
-				$('span#link-error' + newsId).css('display', 'block');
+				displayError(inputLink, 'span#link-error' + newsId);
 			}
 			else
-			{
-				if(inputLink.hasClass('is-invalid'))
-					inputLink.removeClass('is-invalid');
-				$('span#link-error' + newsId).css('display', 'none');
-			}
+				eraseError(inputLink, 'span#link-error' + newsId);
 
 			if(newsButton.length < 1)
 			{
 				error = true;link
-				if(!inputButton.hasClass('is-invalid'))
-					inputButton.addClass('is-invalid');
-				$('span#button-error' + newsId).css('display', 'block');
+				displayError(inputButton, 'span#button-error' + newsId);
 			}
 			else
-			{
-				if(inputButton.hasClass('is-invalid'))
-					inputButton.removeClass('is-invalid');
-				$('span#button-error' + newsId).css('display', 'none');
-			}
+				eraseError(inputButton, 'span#button-error' + newsId);
 		}
 
 		if (error) e.preventDefault();
@@ -358,74 +363,44 @@ $(document).ready(function() {
 		if(title.lenth < 3 || title.length > 255)
 		{
 			error = true;
-			if(!inputTitle.hasClass('is-invalid'))
-				inputTitle.addClass('is-invalid');
-			$('span#error-title').css('display', 'block');
+			displayError(inputTitle, 'span#title-error');
 		}
 		else
-		{
-			if(inputTitle.hasClass('is-invalid'))
-				inputTitle.removeClass('is-invalid');
-			$('span#error-title').css('display', 'none');
-		}
+			eraseError(inputTitle, 'span#title-error');
 
 		if(inputDesc.val() < 1)
 		{
 			error = true;
-			if(!inputDesc.hasClass('is-invalid'))
-				inputDesc.addClass('is-invalid');
-			$('span#error-desc').css('display', 'block');
+			displayError(inputDesc, 'span#desc-error');
 		}
 		else
-		{
-			if(inputDesc.hasClass('is-invalid'))
-				inputDesc.removeClass('is-invalid');
-			$('span#error-desc').css('display', 'none');
-		}
+			eraseError(inputDesc, 'span#desc-error');
 
 		if(!inputImage.val())
 		{
 			error = true;
-			if(!inputImage.hasClass('is-invalid'))
-				inputImage.addClass('is-invalid');
-			$('span#error-image').css('display', 'block');
+			displayError(inputImage, 'span#image-error');
 		}
 		else
-		{
-			if(inputImage.hasClass('is-invalid'))
-				inputImage.removeClass('is-invalid');
-			$('span#error-image').css('display', 'none');
-		}
+			eraseError(inputImage, 'span#image-error');
 
 		if(withLink)
 		{
 			if(inputWebsite.val() == null)
 			{
 				error = true;
-				if(!inputWebsite.hasClass('is-invalid'))
-					inputWebsite.addClass('is-invalid');
-				$('span#error-website').css('display', 'block');
+				displayError(inputWebsite, 'span#website-error');
 			}
 			else
-			{
-				if(inputWebsite.hasClass('is-invalid'))
-					inputWebsite.removeClass('is-invalid');
-				$('span#error-website').css('display', 'none');
-			}
+				eraseError(inputWebsite, 'span#website-error');
 
 			if(inputButton.val() == null)
 			{
 				error = true;
-				if(!inputButton.hasClass('is-invalid'))
-					inputButton.addClass('is-invalid');
-				$('span#error-button').css('display', 'block');
+				displayError(inputButton, 'span#button-error');
 			}
 			else
-			{
-				if(inputButton.hasClass('is-invalid'))
-					inputButton.removeClass('is-invalid');
-				$('span#error-button').css('display', 'none');
-			}
+				eraseError(inputButton, 'span#button-error');
 		}
 
 		if(error) e.preventDefault();

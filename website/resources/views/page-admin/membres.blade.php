@@ -121,7 +121,7 @@
 
                                             <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autocomplete="email">
 
-	                                        <span id="error-email" class="invalid-feedback" role="alert" style="display: none;">
+	                                        <span id="email-error" class="invalid-feedback" role="alert" style="display: none;">
 	                                            <strong>Vous devez entrer un email unique</strong>
 	                                        </span>
                                         </div>
@@ -150,7 +150,7 @@
 
                                             <input id="password" type="password" class="form-control" name="password" required autocomplete="new-password">
 
-                                            <span id="error-password" class="invalid-feedback" role="alert" style="display: none;">
+                                            <span id="password-error" class="invalid-feedback" role="alert" style="display: none;">
                                                 <strong>Le mot de passe ne coïncide pas ou est trop court (8 caractères min)</strong>
                                             </span>
                                         </div>
@@ -263,10 +263,6 @@
                                                         @endif
 
                                                     </select>
-
-                                                    <span id="role-error{{ $user->id }}" class="invalid-feedback" role="alert" style="display: none;">
-                                                        <strong>Choisissez un rôle</strong>
-                                                    </span>
                                                 </div>
 
                                                 <!-- Password -->
@@ -330,6 +326,20 @@
             }
         }
 
+		function displayError(input, errorSpan)
+		{
+			if(!input.hasClass('is-invalid'))
+				input.addClass('is-invalid');
+			$(errorSpan).css('display', 'block');
+		}
+
+		function eraseError(input, errorSpan)
+		{
+			if(input.hasClass('is-invalid'))
+				input.removeClass('is-invalid');
+			$(errorSpan).css('display', 'none');
+		}
+
         /**
          * Check if all the values are acceptable to edit a member profil.
          */
@@ -345,54 +355,39 @@
 			var inputMail = $('input#email' + userId);
 			var inputPassword = $('input#password' + userId);
 
-            var userName = inputName.val(); // OK
+            var userName = inputName.val();
             var userEmail = inputMail.val();
-            var userRole = $('#role' + userId + ' option:selected').text(); // OK
-            var userPw = inputPassword.val(); //OK
-            var userPwc = $('input#password-confirm' + userId).val(); //OK
+            var userRole = $('#role' + userId + ' option:selected').text();
+            var userPw = inputPassword.val();
+            var userPwc = $('input#password-confirm' + userId).val();
             var error = false;
 
 
-			if (userName.length < 3) {
+			if (userName.length < 3)
+			{
 				error = true;
-				if(!inputName.hasClass('is-invalid'))
-					inputName.addClass('is-invalid');
-				$('span#name-error' + userId).css('display', 'block');
+				displayError(inputName, 'span#name-error' + userId);
 			}
 			else
-			{
-				if(inputName.hasClass('is-invalid'))
-					inputName.removeClass('is-invalid');
-				$('span#name-error' + userId).css('display', 'none');
-			}
+				eraseError(inputName, 'span#name-error' + userId);
 
-			if ((userPw.length < 8 || userPw != userPwc) && userPw != "") {
+			if ((userPw.length < 8 || userPw != userPwc) && userPw != null)
+			{
 				error = true;
-				if(!inputPassword.hasClass('is-invalid'))
-					inputPassword.addClass('is-invalid');
+				displayError(inputPassword, 'span#password-error' + userId);
 				inputPassword.val('');
 				$('input#password-confirm' + userId).val('');
-				$('span#password-error' + userId).css('display', 'block');
 			}
 			else
-			{
-				if(inputPassword.hasClass('is-invalid'))
-					inputPassword.removeClass('is-invalid');
-				$('span#password-error' + userId).css('display', 'none');
-			}
+				eraseError(inputPassword, 'span#password-error' + userId);
 
-			if (!emailIsUnique(userEmail) && userEmail.localeCompare(currentUserEmail) != 0) {
+			if (!emailIsUnique(userEmail) && userEmail.localeCompare(currentUserEmail) != 0)
+			{
 				error = true;
-				if(!inputMail.hasClass('is-invalid'))
-					inputMail.addClass('is-invalid');
-				$('span#email-error' + userId).css('display', 'block');
+				displayError(inputMail, 'span#email-error' + userId);
 			}
 			else
-			{
-				if(inputMail.hasClass('is-invalid'))
-					inputMail.removeClass('is-invalid');
-				$('span#email-error' + userId).css('display', 'none');
-			}
+				eraseError(inputMail, 'span#email-error' + userId);
 
             if (error) e.preventDefault();
         });
@@ -408,47 +403,29 @@
 			if(inputName.val().length < 3)
 			{
 				error = true;
-				if(!inputName.hasClass('is-invalid'))
-					inputName.addClass('is-invalid');
-				$('span#name-error').css('display', 'block');
+				displayError(inputName, 'span#name-error');
 			}
 			else
-			{
-				if(inputName.hasClass('is-invalid'))
-					inputName.removeClass('is-invalid');
-				$('span#name-error').css('display', 'none');
-			}
+				eraseError(inputName, 'span#name-error');
 
 			if(!emailIsUnique(inputMail.val()))
 			{
 				error = true;
-				if(!inputMail.hasClass('is-invalid'))
-					inputMail.addClass('is-invalid');
-				$('span#email-error').css('display', 'block');
+				displayError(inputMail, 'span#email-error');
 			}
 			else
-			{
-				if(inputMail.hasClass('is-invalid'))
-					inputMail.removeClass('is-invalid');
-				$('span#email-error').css('display', 'none');
-			}
+				eraseError(inputMail, 'span#email-error');
 
 			if(password.length < 8 || (password != inputPasswordConfirm.val()))
 			{
 				error = true;
-				if(!inputPassword.hasClass('is-invalid'))
-					inputPassword.addClass('is-invalid');
+				displayError(inputPassword, 'span#password-error');
 				inputPassword.val('');
 				$('input#password-confirm').val('');
-				$('span#password-error').css('display', 'block');
 			}
 			else
-			{
-				if(inputPassword.hasClass('is-invalid'))
-					inputPassword.removeClass('is-invalid');
-				$('span#password-error' + userId).css('display', 'none');
-			}
-			
+				eraseError(inputPassword, 'span#password-error');
+
 			if(error) e.preventDefault();
 		});
 
