@@ -1,5 +1,4 @@
 <!-- Display a user -->
-
 @extends('layouts.layout')
 
 @section('title', 'Membres ITS - '. $user->name)
@@ -13,7 +12,6 @@
 @section('content')
 
 <div class="container">
-
     <!-- Name of the user -->
     <h1 class="title lg text-center">
         {{ $user->name }}
@@ -25,7 +23,7 @@
             <!-- Edit profil information -->
             <div class="col-md-4">
                 <div class="row justify-content-center align-items-center flex-column profil-card">
-                    
+
                     <!-- Profil image badge -->
                     <img class="profil-rounded" src="{{ asset('storage/' . $user->profil_picture) }}" />
                     <div class="rank-label-container">
@@ -81,7 +79,6 @@
                 </div>
             </div>
             <div class="col-md-8">
-
             </div>
         </div>
 

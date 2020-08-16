@@ -1,5 +1,4 @@
 <!-- Welcome page -->
-
 @extends('layouts.layout')
 
 @section('title', 'ITS')
