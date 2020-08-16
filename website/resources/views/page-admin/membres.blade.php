@@ -309,6 +309,13 @@
             usersEmail.push(user.email);
         });
 
+		/**
+		 * Check if the email given is unique (compare with the emails in the
+	 	 * table 'users').
+		 *
+		 * @param emailToCheck: the email that will be checked.
+		 * @return a boolean that indicate if the email is unique.
+		 */
         function emailIsUnique(emailToCheck) {
             var isUnique = true;
             try {
@@ -326,6 +333,13 @@
             }
         }
 
+		/**
+		 * Display the error message in the span given and linked to the input
+		 * given.
+		 *
+		 * @param input: the input that contains the error.
+		 * @param errorSpan: the span that have to be displayed.
+		 */
 		function displayError(input, errorSpan)
 		{
 			if(!input.hasClass('is-invalid'))
@@ -333,6 +347,13 @@
 			$(errorSpan).css('display', 'block');
 		}
 
+		/**
+		 * Hide the error message in the span given and linked to the input
+		 * given.
+		 *
+		 * @param input: the input that do not contains error.
+		 * @param errorSpan: the span that have to be hid.
+		 */
 		function eraseError(input, errorSpan)
 		{
 			if(input.hasClass('is-invalid'))
@@ -392,6 +413,9 @@
             if (error) e.preventDefault();
         });
 
+		/**
+		 * Check if all the values are acceptable to create a member.
+		 */
 		$('button#create-member-btn').click(function(e) {
 			var inputName = $('input#name');
 			var inputMail = $('input#email');
@@ -428,7 +452,6 @@
 
 			if(error) e.preventDefault();
 		});
-
     });
 </script>
 @endsection

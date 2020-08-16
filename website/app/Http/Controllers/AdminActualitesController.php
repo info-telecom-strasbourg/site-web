@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\News;
 use Illuminate\Support\Facades\Storage;
 
-
+/**
+ * Controller linked to the actualities in the admin page.
+ */
 class AdminActualitesController extends Controller
 {
     /**
@@ -20,7 +22,13 @@ class AdminActualitesController extends Controller
         return view('page-admin/actualites', compact('allNews'));
     }
 
-	//   Title/desc/image/link/button
+	/**
+	 * Update a news.
+	 *
+	 * @param news: the news that will be updated.
+	 * @param request: the user's request.
+	 * @return redirect to the actualites in the admin page. 
+	 */
 	public function update(News $news, Request $request)
 	{
 		$validatedNews = $this->validateUpdate($request);
@@ -41,15 +49,23 @@ class AdminActualitesController extends Controller
 		return redirect('/page-admin/actualites');
 	}
 
+	/**
+	 * Reorganize the news to keep coherent positions for the news.
+	 * It does not modificate the position of the given news, but it does for
+	 * the rest of the news.
+	 *
+	 * @param initNews: the news that will be given a new position.
+	 * @param finalPos: the futur position of the given news.
+	 */
 	public function sortNews(News $initNews, int $finalPos)
 	{
 		$allNews = News::all();
 		foreach($allNews as $news)
 		{
-			if($news->id == $initNews->id) continue;
-
-			if($news->position < $initNews->position && $news->position < $finalPos) continue;
-			if($news->position > $initNews->position && $news->position > $finalPos) continue;
+			if($news->id == $initNews->id ||
+			   $news->position < $initNews->position && $news->position < $finalPos ||
+			   $news->position > $initNews->position && $news->position > $finalPos)
+			    continue;
 
 			if($news->position > $initNews->position && $news->position <= $finalPos)
 				$news->update(['position' => ($news->position - 1)]);
@@ -58,6 +74,14 @@ class AdminActualitesController extends Controller
 		}
 	}
 
+	/**
+	 * Validate the request given by the user. The rquest must correspond to an
+	 * update. It have 2 cases:
+	 * with a new image and without it.
+	 *
+	 * @param request: the user's request.
+	 * @return an array corresponding to the validated request.
+	 */
 	public function validateUpdate(Request $request)
 	{
 		if(!$request->has('image'))
@@ -75,6 +99,13 @@ class AdminActualitesController extends Controller
 			]);
 	}
 
+	/**
+	 * Validate the part corresponding to the news' link (the link and the
+	 * message on the button).
+	 *
+	 * @param request: the user's request.
+	 * @return an array corresponding to the validated request.
+	 */
 	public function validateLinks(Request $request)
 	{
 		return $request->validate([
@@ -95,6 +126,12 @@ class AdminActualitesController extends Controller
         return substr($path, 7);
     }
 
+	/**
+	 * Create a new row in the table 'news'.
+	 *
+	 * @param request: the user's request.
+	 * @return redirect to the actualites in the admin page.
+	 */
 	public function store(Request $request)
 	{
 		$validatedRequest = $this->validateCreate($request);
@@ -106,6 +143,12 @@ class AdminActualitesController extends Controller
 		return redirect('/page-admin/actualites');
 	}
 
+	/**
+	 * Validate a request (corresponding to a creation) given by the user.
+	 *
+	 * @param request: the request given by the user.
+	 * @return an array corresponding to the validated request.
+	 */
 	public function validateCreate(Request $request)
 	{
 		if($request->has('links-nullable'))
@@ -126,6 +169,13 @@ class AdminActualitesController extends Controller
 			]);
 	}
 
+	/**
+	 * Delete a row in the table 'news'. It also delete the image linked to the
+	 * news.
+	 *
+	 * @param news: the news that will be deleted.
+	 * @return redirect to the actualites in the admin page.
+	 */
 	public function destroy(News $news)
 	{
 		unlink(storage_path('app/public/' . $news->image));
