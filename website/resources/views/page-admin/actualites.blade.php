@@ -74,13 +74,92 @@
             <a class="nav-link" href="/page-admin/membres">MEMBRES</a>
             <a class="nav-link active" href="#">ACTUALITÉS</a>
         </div>
+		@php
+			$nbNews = $allNews->count();
+		@endphp
+
+		<button id="button-new-news" type="button" data-toggle="modal" data-target="#new-news" class="btn btn-primary">Ajouter une news</button>
+		<div class="modal" id="new-news">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Nouveau membre</h4>
+						<button type="button" class="close" data-dismiss="modal" style="color: white;">
+							<span>&times;</span> <!-- Cross button -->
+						</button>
+					</div>
+					<div class="modal-body">
+						<form method="POST" action="/page-admin/news/create">
+							@csrf
+
+							<!-- Give the news a title -->
+							<div class="form-group">
+								<label for="title" class="form-title-small">Nom</label>
+
+								<input id="title" type="text" class="form-control " name="title" value="{{ old('title') }}" required autocomplete="title" autofocus>
+
+								<span id="error-title" class="invalid-feedback" role="alert" style="display: none;">
+									<strong>Vous devez entrer un titre de plus de 3 caractères et moins de 255</strong>
+								</span>
+							</div>
+							<!-- Give the news a decription -->
+							<div class="form-group">
+								<label for="desc" class="form-title-small">Description</label>
+
+								<div class="control">
+									<textarea class="desc form-control" id="desc" name="desc" rows="5" required>{{ old('desc') }}</textarea>
+								</div>
+							</div>
+
+							<span id="error-desc" class="invalid-feedback" role="alert" style="display: none;">
+								<strong>Il faut une description pour la news</strong>
+							</span>
+							<!-- Give the news a image -->
+							<div style="display:flex;">
+								<input id="image" type="file" name="image" accept="image/x-png,image/gif,image/jpeg" style="margin-left: auto; margin-right:auto;" required/>
+							</div>
+							<span id="error-image" class="invalid-feedback" role="alert" style="display: none;">
+								<strong>Il faut une image pour la news</strong>
+							</span>
+
+							<!-- Give a link for the news -->
+							<input type="checkbox" id="links-nullable" name="links-nullable">
+
+							<div class="form-group" style="margin-top: 40px; display: none">
+								<label class="sr-only form-title-small" for="website">Lien vers le site web</label>
+								<div class="input-group mb-2">
+									<div class="input-group-prepend">
+										<div class="input-group-text">
+											<i class="fas fa-globe" style="font-size: 1rem;"></i>
+										</div>
+									</div>
+									<input type="url" class="form-control" id="website" name="link" placeholder="Lien vers le site web" value="{{ old('website') }}">
+								</div>
+							</div>
+							<span id="error-website" class="invalid-feedback" role="alert" style="display: none;">
+								<strong>Il faut un lien pour le bouton</strong>
+							</span>
+							<!-- Give the button a text -->
+							<div class="form-group" style="display: none;">
+								<label for="button" class="form-title-small">Titre</label>
+
+								<input id="button" type="text" class="form-control" name="button" value="{{ old('button') }}">
+							</div>
+							<span id="error-button" class="invalid-feedback" role="alert" style="display: none;">
+								<strong>Il faut un message pour le bouton (moins de 255 caractères)</strong>
+							</span>
+
+
+							<button id="create-news-btn" type="submit" class="btn btn-primary btn-rounded" style="margin-top:25px; margin-bottom:25px; width:100%;">Ajouter</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
         <div class="tab-content" id="v-pills-tabContent" style="padding-bottom: 300px">
             <div class="tab-pane fade show active" id="v-pills-actu" role="tabpanel" aria-labelledby="v-pills-actu-tab">
                 <h1 class="title lg text-center"> Actualités </h1>
                 <hr class="line-under-title">
-				@php
-					$nbNews = $allNews->count();
-				@endphp
 
                 <div class="actu-container">
 					@foreach($allNews as $news)
@@ -125,21 +204,21 @@
 								<input type="checkbox" id="links-nullable" class="{{ $news->id }}" name="links-nullable">
 
 								<div id="website{{ $news->id }}" class="form-group" style="margin-top: 40px; display: none"> <!-- block -->
-					                <label class="sr-only form-title-small" for="website">Lien vers le site web</label>
+					                <label class="sr-only form-title-small" for="website">Lien du bouton</label>
 					                <div class="input-group mb-2">
 						                <div class="input-group-prepend">
 						                    <div class="input-group-text">
 						                        <i class="fas fa-globe" style="font-size: 1rem;"></i>
 						                    </div>
 						                </div>
-						                <input type="url" class="form-control @error('website') is-invalid @enderror" id="website{{ $news->id }}" name="link" placeholder="Lien vers le site web" value="@isset($news->link) {{ $news->link }} @endisset">
+						                <input type="url" class="form-control" id="website{{ $news->id }}" name="link" placeholder="Lien vers le site web" value="@isset($news->link) {{ $news->link }} @endisset">
 					                </div>
 					            </div>
 								<span id="link-error{{ $news->id }}" class="invalid-feedback" role="alert" style="display: none;">
-									<strong>Il faut un message pour le bouton</strong>
+									<strong>Il faut un lien pour le bouton</strong>
 								</span>
 
-								<div id="button{{ $news->id }}" class="form-group" style="display: none;">
+								<div class="form-group" style="display: none;">
 									<label for="button{{ $news->id }}" class="form-title-small">Titre</label>
 
 									<input id="button{{ $news->id }}" type="text" class="form-control" name="button" value="@isset($news->button) {{ $news->button }} @endisset">
@@ -208,8 +287,6 @@ $(document).ready(function() {
 		var newsButton = inputButton.val();
 		var error = false;
 
-		//////////////////////////////////////////////////////////////////////////////
-		//TODO
 		if (newsTitle.length < 3) {
 			error = true;
 			inputTitle.addClass('is-invalid');
@@ -267,6 +344,91 @@ $(document).ready(function() {
 		}
 
 		if (error) e.preventDefault();
+	});
+
+	$('button#create-news-btn').click(function(e) {
+		var inputTitle = $('input#title');
+		var inputDesc = $('textarea#desc');
+		var inputImage = $('input#image');
+		var title = inputFile.val();
+		var withLink = $('input#links-nullable').prop("checked", true);
+		var inputWebsite = $('input#website');
+		var inputButton = $('input#button');
+
+		if(title.lenth < 3 || title.length > 255)
+		{
+			error = true;
+			if(!inputTitle.hasClass('is-invalid'))
+				inputTitle.addClass('is-invalid');
+			$('span#error-title').css('display', 'block');
+		}
+		else
+		{
+			if(inputTitle.hasClass('is-invalid'))
+				inputTitle.removeClass('is-invalid');
+			$('span#error-title').css('display', 'none');
+		}
+
+		if(inputDesc.val() < 1)
+		{
+			error = true;
+			if(!inputDesc.hasClass('is-invalid'))
+				inputDesc.addClass('is-invalid');
+			$('span#error-desc').css('display', 'block');
+		}
+		else
+		{
+			if(inputDesc.hasClass('is-invalid'))
+				inputDesc.removeClass('is-invalid');
+			$('span#error-desc').css('display', 'none');
+		}
+
+		if(!inputImage.val())
+		{
+			error = true;
+			if(!inputImage.hasClass('is-invalid'))
+				inputImage.addClass('is-invalid');
+			$('span#error-image').css('display', 'block');
+		}
+		else
+		{
+			if(inputImage.hasClass('is-invalid'))
+				inputImage.removeClass('is-invalid');
+			$('span#error-image').css('display', 'none');
+		}
+
+		if(withLink)
+		{
+			if(inputWebsite.val() == null)
+			{
+				error = true;
+				if(!inputWebsite.hasClass('is-invalid'))
+					inputWebsite.addClass('is-invalid');
+				$('span#error-website').css('display', 'block');
+			}
+			else
+			{
+				if(inputWebsite.hasClass('is-invalid'))
+					inputWebsite.removeClass('is-invalid');
+				$('span#error-website').css('display', 'none');
+			}
+
+			if(inputButton.val() == null)
+			{
+				error = true;
+				if(!inputButton.hasClass('is-invalid'))
+					inputButton.addClass('is-invalid');
+				$('span#error-button').css('display', 'block');
+			}
+			else
+			{
+				if(inputButton.hasClass('is-invalid'))
+					inputButton.removeClass('is-invalid');
+				$('span#error-button').css('display', 'none');
+			}
+		}
+
+		if(error) e.preventDefault();
 	});
 });
 </script>

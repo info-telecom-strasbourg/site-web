@@ -108,10 +108,10 @@
                                         <div class="form-group">
                                             <label for="name" class="form-title-small">Nom</label>
 
-                                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                            <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                             <span id="name-error" class="invalid-feedback" role="alert" style="display: none;">
-                                                <strong>Vous devez entrer un nom de plus de 3 caractère</strong>
+                                                <strong>Vous devez entrer un nom de plus de 3 caractères</strong>
                                             </span>
                                         </div>
 
@@ -119,7 +119,7 @@
                                         <div class="form-group">
                                             <label for="email" class="form-title-small">Adresse email</label>
 
-                                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                            <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autocomplete="email">
 
 	                                        <span id="error-email" class="invalid-feedback" role="alert" style="display: none;">
 	                                            <strong>Vous devez entrer un email unique</strong>
@@ -129,7 +129,7 @@
                                         <!-- Give the member role -->
                                         <div class="form-group">
                                             <label for="role" class="form-title-small">Rôle</label>
-                                            <select class="custom-select @error('role') is-invalid @enderror" id="role" name="role" required>
+                                            <select class="custom-select" id="role" name="role" required>
                                                 @if(isset($roles))
 
                                                 @foreach ($roles as $role)
@@ -148,7 +148,7 @@
                                         <div class="form-group">
                                             <label for="password" class="form-title-small">Mot de passe</label>
 
-                                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                            <input id="password" type="password" class="form-control" name="password" required autocomplete="new-password">
 
                                             <span id="error-password" class="invalid-feedback" role="alert" style="display: none;">
                                                 <strong>Le mot de passe ne coïncide pas ou est trop court (8 caractères min)</strong>
@@ -448,7 +448,7 @@
 					inputPassword.removeClass('is-invalid');
 				$('span#password-error' + userId).css('display', 'none');
 			}
-
+			
 			if(error) e.preventDefault();
 		});
 
