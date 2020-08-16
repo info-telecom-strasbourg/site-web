@@ -135,8 +135,8 @@ class AdminActualitesController extends Controller
 	public function store(Request $request)
 	{
 		$validatedRequest = $this->validateCreate($request);
-		$validatedRequest['image'] = saveImage($validatedRequest);
-		$news = News::create($validatedRredirectequest);
+		$validatedRequest['image'] = $this->saveImage($validatedRequest);
+		$news = News::create($validatedRequest);
 		$news->update(['position' => News::all()->count()]);
 		$this->sortNews($news, $validatedRequest['position']);
 		$news->update(['position' => $validatedRequest['position']]);
@@ -151,18 +151,18 @@ class AdminActualitesController extends Controller
 	 */
 	public function validateCreate(Request $request)
 	{
-		if($request->has('links-nullable'))
+		if(!$request->has('links-nullable'))
 			return $request->validate([
-				'title' => ['requires', 'string', 'max:255', 'min:1'],
+				'title' => ['required', 'string', 'max:255', 'min:1'],
 				'desc' => ['required', 'min:1'],
 				'image' => ['required', 'mimes:jpeg,jpg,png,gif'],
 				'position' => ['required'],
 			]);
 		else
 			return $request->validate([
-				'title' => ['requires', 'string', 'max:255', 'min:1'],
+				'title' => ['required', 'string', 'max:255', 'min:1'],
 				'desc' => ['required', 'min:1'],
-				'image' => ['mimes:jpeg,jpg,png,gif'],
+				'image' => ['required', 'mimes:jpeg,jpg,png,gif'],
 				'position' => ['required'],
 				'link' => ['required', 'string', 'max:255', 'min:1'],
 				'button' => ['required', 'string', 'max:255', 'min:1'],

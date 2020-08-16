@@ -81,8 +81,7 @@
             <div class="tab-pane fade show active" id="v-pills-actu" role="tabpanel" aria-labelledby="v-pills-actu-tab">
 				<h1 class="title lg text-center"> Actualités </h1>
                 <hr class="line-under-title">
-				<button id="button-new-news" type="button" data-toggle="modal" data-target="#new-news" class="btn btn-primary">Ajouter une news</button>
-				<hr class="line-under-title">
+				<button id="button-new-news" type="button" data-toggle="modal" data-target="#new-news" class="btn btn-primary">Ajouter une actualité</button>
 				<div class="modal" id="new-news">
 					<div class="modal-dialog">
 						<div class="modal-content">
@@ -93,7 +92,7 @@
 								</button>
 							</div>
 							<div class="modal-body">
-								<form method="POST" action="/page-admin/news/create">
+								<form method="POST" action="/page-admin/news/create" enctype="multipart/form-data">
 									@csrf
 
 									<!-- Give the news a title -->
@@ -141,16 +140,17 @@
 
 									<!-- Give a link for the news -->
 									<input type="checkbox" class="checkbox" id="links-nullable-create" name="links-nullable">
+									<label for="links-links-nullable-create" style="margin-left: 10px;">Ajouter un lien</label>
 
 									<div id="website-crt" class="form-group" style="margin-top: 40px; display: none">
-										<label class="sr-only form-title-small" for="website">Lien vers le site web</label>
+										<label class="sr-only form-title-small" for="website">Lien du bouton</label>
 										<div class="input-group mb-2">
 											<div class="input-group-prepend">
 												<div class="input-group-text">
 													<i class="fas fa-globe" style="font-size: 1rem;"></i>
 												</div>
 											</div>
-											<input type="url" class="form-control" id="website" name="link" placeholder="Lien vers le site web" value="{{ old('website') }}">
+											<input type="url" class="form-control" id="website" name="link" placeholder="Lien du bouton" value="{{ old('website') }}">
 										</div>
 									</div>
 									<span id="website-error" class="invalid-feedback" role="alert" style="display: none;">
@@ -230,6 +230,7 @@
 
 								<!-- Link -->
 								<input type="checkbox" id="links-nullable" class="{{ $news->id }} checkbox" name="links-nullable" style="margin-top:20px;">
+								<label for="links-nullable" style="margin-left: 10px;">Ajouter un lien</label>
 
 								<div id="website{{ $news->id }}" class="form-group" style="margin-top: 40px; display: none"> <!-- block -->
 					                <label class="sr-only form-title-small" for="website">Lien du bouton</label>
@@ -239,7 +240,7 @@
 						                        <i class="fas fa-globe" style="font-size: 1rem;"></i>
 						                    </div>
 						                </div>
-						                <input type="url" class="form-control" id="website{{ $news->id }}" name="link" placeholder="Lien du boutton" value="@isset($news->link) {{ $news->link }} @endisset">
+						                <input type="url" class="form-control" id="website{{ $news->id }}" name="link" placeholder="Lien du bouton" value="@isset($news->link) {{ $news->link }} @endisset">
 					                </div>
 					            </div>
 								<span id="link-error{{ $news->id }}" class="invalid-feedback" role="alert" style="display: none;">

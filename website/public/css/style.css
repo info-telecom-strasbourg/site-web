@@ -1400,13 +1400,32 @@ div.bordure {
 
 /* >>>>>>>>>>>>>>>>>>>> News <<<<<<<<<<<<<<<<<<<< */
 
-/* >>>>>>>>>>>>>>>>>>>> News <<<<<<<<<<<<<<<<<<<< */
-
 .dark-page #v-pills-actu .actu-container {
     display: flex;
     flex-direction: column;
     margin-left: 100px;
     margin-right: 100px;
+}
+
+.dark-page #v-pills-actu .modal-content {
+    background-color: rgba(32, 36, 46, 0.9);
+    color: white;
+}
+
+.dark-page #v-pills-actu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.dark-page #v-pills-actu #button-new-news {
+    background-color: #20242e;
+    width: 30%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    border-color: transparent;
 }
 
 .dark-page #v-pills-actu .title-actu {
