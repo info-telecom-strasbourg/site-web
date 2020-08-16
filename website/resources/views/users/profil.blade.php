@@ -80,7 +80,7 @@
                                 class="profil-card-item row justify-content-between align-items-center">
                                 <span>{{ $project->title}}</span>
                                 <button type="submit" class="btn btn-primary btn-rounded"
-                                    onclick="self.location.href='/projets/{{ $projet->id }}'">Aller</button>
+                                    onclick="self.location.href='/projets/{{ $project->id }}'">Aller</button>
                             </a>
                         @endforeach
                     @endisset
