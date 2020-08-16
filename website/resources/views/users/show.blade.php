@@ -18,7 +18,7 @@
     </h1>
     <hr class="line-under-title">
 
-    @if ($user->id == Auth::User()->id)
+    @if (Auth::check() && $user->id == Auth::User()->id)
         @include('users.profil')
     @else
         @include('users.public-profil')
