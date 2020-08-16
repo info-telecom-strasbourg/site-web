@@ -1261,13 +1261,62 @@ div.bordure {
 
 .profil-card {
     background-color: rgb(245, 245, 245);
-    padding: 25px;
     border-radius: 30px;
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
+    margin-left: 100px;
+    margin-bottom: 50px;
+}
+
+@media only screen and (max-width: 768px) {
+    .profil-card {
+        margin-left: 0;
+    }
+}
+
+.profil-edit {
+    padding: 25px;
+}
+
+.profil-edit,
+.profil-show-cours {
+    margin-left: 0;
+}
+
+.profil-card-header {
+    padding-top: 25px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgb(206, 212, 218);
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.profil-card-body {
+    max-height: 200px;
+    margin: 0;
+    margin-top: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.profil-card-item {
+    padding-top: 10px;
+    padding-left: 30px;
+    padding-right: 55px;
+    padding-bottom: 10px;
+    margin-bottom: 12px;
+    color: inherit;
+}
+
+.profil-card-item:hover {
+    box-shadow: 0px 4px 14px -2px rgba(0, 0, 0, 0.25);
+    color: inherit;
+    text-decoration: none;
 }
 
 #form-profil-edit {
-    margin-top: 20px;
+    margin-top: 40px;
     width: 100%;
 }
 
@@ -1304,6 +1353,44 @@ div.bordure {
 .reveal:focus, .reveal-confirm:focus {
     outline: none !important;
     box-shadow: none;
+}
+
+.profil-search {
+    width: 0;
+    padding-right: 40px;
+    border-color: transparent;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+    z-index: 100;
+}
+
+.profil-search-cours {
+    margin-right: 60px;
+}
+
+/* When the input field gets focus, change its width to 100% */
+.profil-search:focus {
+    border-color: rgb(128, 189, 255);
+    width: 100%;
+}
+
+.search-button {
+    position: absolute;
+    right: 30px;
+    z-index: 1;
+}  
+
+.search-button-cours {
+    position: absolute;
+    right: 90px;
+    z-index: 1;
+}
+
+.add-cours {
+    position: absolute;
+    right: 30px;
+    margin-left: 20px;
+    z-index: 1;
 }
 
 
