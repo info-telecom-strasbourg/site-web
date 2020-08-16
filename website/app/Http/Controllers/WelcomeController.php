@@ -11,6 +11,7 @@ use App\Projet;
 use App\Role;
 use App\Collaborateur;
 use App\RandomProjet;
+use App\News;
 
 /**
  * Controller linked to the welcome page.
@@ -35,6 +36,8 @@ class WelcomeController extends Controller
         $nbUsers = User::count();
 
         $nbPoles = Pole::count();
+
+		$allNews = News::orderBy('position')->get();
 
         $years = date("Y") - 2019;
 
@@ -79,7 +82,7 @@ class WelcomeController extends Controller
 
         $projets = RandomProjet::all();
 
-        return view('welcome', compact('poles', 'team', 'partners', 'projets', 'nbProjets', 'nbUsers', 'nbPoles', 'years'));
+        return view('welcome', compact('poles', 'team', 'partners', 'projets', 'nbProjets', 'nbUsers', 'nbPoles', 'years', 'allNews'));
     }
 
     /**
