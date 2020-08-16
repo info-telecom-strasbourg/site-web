@@ -73,7 +73,7 @@
                 </div>
 
                 <!-- List of projects -->
-                <div class="profil-card-body overflow-auto">
+                <div class="profil-card-body">
                     @isset ($projects)
                         @foreach ($projects as $project)
                             <a href="/projets/{{ $project->id }}"
@@ -107,7 +107,7 @@
                 </div>
 
                 <!-- List of lessons -->
-                <div class="profil-card-body overflow-auto">
+                <div class="profil-card-body">
                     @isset ($lessons)
                     @foreach ($lessons as $lesson)
                     <a href="/cours/{{ $lesson->id }}"
@@ -137,7 +137,7 @@
                 </div>
 
                 <!-- List of competitions -->
-                <div class="profil-card-body overflow-auto">
+                <div class="profil-card-body">
                     @isset ($competitions)
                     @foreach ($competitions as $competition)
                     <a href="/pole/competitions/{{ $competition->id }}"
