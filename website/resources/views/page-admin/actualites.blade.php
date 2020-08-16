@@ -136,9 +136,9 @@
 							</div>
 
 							<!-- Give a link for the news -->
-							<input type="checkbox" id="links-nullable" name="links-nullable">
+							<input type="checkbox" id="links-nullable-create" name="links-nullable">
 
-							<div class="form-group" style="margin-top: 40px; display: none">
+							<div id="website-crt" class="form-group" style="margin-top: 40px; display: none">
 								<label class="sr-only form-title-small" for="website">Lien vers le site web</label>
 								<div class="input-group mb-2">
 									<div class="input-group-prepend">
@@ -153,7 +153,7 @@
 								<strong>Il faut un lien pour le bouton</strong>
 							</span>
 							<!-- Give the button a text -->
-							<div class="form-group" style="display: none;">
+							<div id="button-crt" class="form-group" style="display: none;">
 								<label for="button" class="form-title-small">Titre</label>
 
 								<input id="button" type="text" class="form-control" name="button" value="{{ old('button') }}">
@@ -282,6 +282,19 @@ $(document).ready(function() {
 		{
 			$('div#website' + newsId).css('display', 'none');
 			$('div#button' + newsId).css('display', 'none');
+		}
+	});
+
+	$('input#links-nullable-create').click(function (e) {
+		if($(this).is(":checked"))
+		{
+			$('div#website-crt').css('display', 'block');
+			$('div#button-crt').css('display', 'block');
+		}
+		else
+		{
+			$('div#website-crt').css('display', 'none');
+			$('div#button-crt').css('display', 'none');
 		}
 	});
 

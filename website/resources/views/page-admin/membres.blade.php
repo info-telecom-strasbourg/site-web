@@ -392,7 +392,7 @@
 			else
 				eraseError(inputName, 'span#name-error' + userId);
 
-			if ((userPw.length < 8 || userPw != userPwc) && userPw != null)
+			if ((userPw.length < 8 || userPw != userPwc) && userPw != "")
 			{
 				error = true;
 				displayError(inputPassword, 'span#password-error' + userId);
@@ -440,7 +440,7 @@
 			else
 				eraseError(inputMail, 'span#email-error');
 
-			if(password.length < 8 || (password != inputPasswordConfirm.val()))
+			if((password.length < 8 || (password != inputPasswordConfirm.val())) && password != "")
 			{
 				error = true;
 				displayError(inputPassword, 'span#password-error');
