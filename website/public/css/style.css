@@ -90,7 +90,7 @@ a {
 @media only screen and (max-width: 992px) {
     #content {
         padding-bottom: 423.33px;
-        /* Footer height */
+        margin-top: 423.33px;
     }
 }
 

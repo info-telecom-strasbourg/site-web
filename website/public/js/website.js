@@ -158,23 +158,6 @@ $("div#proj-card:gt(5)").addClass("hid").hide();
 $("div#cours-liste:gt(5)").addClass("hid").hide();
 
 
-//Hide a section (with a toogle) and arrows
-function toggle(id) {
-    node = document.getElementById(id);
-    down = document.getElementById("down-" + id);
-    up = document.getElementById("up-" + id);
-    if (node.style.display == "none") {
-        node.style.display = "block";
-        down.style.display = "none";
-        up.style.display = "inline";
-
-    } else {
-        node.style.display = "none";
-        down.style.display = "inline";
-        up.style.display = "none";
-    }
-}
-
 $(document).ready(function() {
 
     // color navbar when loading page
