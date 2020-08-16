@@ -90,7 +90,7 @@ a {
 @media only screen and (max-width: 992px) {
     #content {
         padding-bottom: 423.33px;
-        /* Footer height */
+        margin-top: 423.33px;
     }
 }
 
@@ -1410,10 +1410,39 @@ div.bordure {
 .dark-page #v-pills-actu .title-actu {
     color: white;
     font-size: 20pt;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 .dark-page #v-pills-actu .title-actu:hover {
     text-decoration: none;
+}
+
+.dark-page #v-pills-actu {
+    color: white;
+}
+
+.dark-page #v-pills-actu .button-panel {
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 30px;
+    background-color: #20242e;
+    color: white;
+    border-color: transparent;
+    width: 230px;
+}
+
+.dark-page #form-edit img {
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 500px) {
+    .dark-page #form-edit img {
+        width: 100%;
+    }
 }
 
 
