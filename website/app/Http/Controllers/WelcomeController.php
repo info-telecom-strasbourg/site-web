@@ -6,12 +6,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactMe;
 use App\Pole;
+use App\News;
 use App\User;
 use App\Projet;
 use App\Role;
 use App\Collaborateur;
 use App\RandomProjet;
-use App\News;
 
 /**
  * Controller linked to the welcome page.
@@ -40,6 +40,9 @@ class WelcomeController extends Controller
 		$allNews = News::orderBy('position')->get();
 
         $years = date("Y") - 2019;
+
+        $allNews = News::orderBy('position')->get();
+
 
 
         // get the date and time to know if the projects needs to be updated
