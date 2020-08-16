@@ -37,7 +37,7 @@ class UserController extends Controller
     public function show(User $user)
     {
         $projects = Projet::where('chef_projet_id', $user->id)->get();
-        $courses = Cours::join('cours_createurs', 'cours_createurs.cours_id', 'cours.id')
+        $lessons = Cours::join('cours_createurs', 'cours_createurs.cours_id', 'cours.id')
               ->join('users', 'role_id', 'cours_createurs.user_id')
               ->where('role_id', $user->id)
               ->get();
@@ -45,7 +45,7 @@ class UserController extends Controller
                       ->join('users', 'role_id', 'user_compet.user_id')
                       ->where('role_id', $user->id)
                       ->get();
-        return view('users.show', compact('user', 'projects', 'courses', 'competitions'));
+        return view('users.show', compact('user', 'projects', 'lessons', 'competitions'));
     }
 
 }
