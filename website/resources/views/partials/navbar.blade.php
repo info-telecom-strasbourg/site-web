@@ -91,6 +91,7 @@
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" style="margin-right: 27px">
+                        <a class="dropdown-item" href="{{ route('topics.create') }}">Ajouter une idée</a>
                         <a class="dropdown-item" href="/users/{{ Auth::user()->id }}">Profil</a>
                         <a class="dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
