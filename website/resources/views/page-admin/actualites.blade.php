@@ -358,7 +358,7 @@ $(document).ready(function() {
 			displayError(inputTitle, 'span#title-error' + newsId);
 		}
 		else
-			eraseError(inputTitle, 'span#name-error' + newsId);
+			eraseError(inputTitle, 'span#title-error' + newsId);
 
 		if(newsDesc.length < 3)
 		{
