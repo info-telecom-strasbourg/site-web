@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', 'Boîte à idées - {{ $topic->title }}')
+@section('title', 'Boîte à idées - ' . $topic->title)
 
 @section('content')
     <div class="container">

@@ -1,6 +1,16 @@
 @extends('layouts.layout')
 
-@section('title', 'Boîte à idées - {{ $topic->title }}')
+@section('extra-js')
+    <script>
+        function toggleReplyComment(id) {
+            let element = document.getElementById('replyComment-' + id);
+            element.classList.toggle('d-none');
+        }
+    
+    </script>
+@endsection
+
+@section('title', 'Boîte à idées - ' . $topic->title)
 
 @section('content')
 <div class="container">
@@ -19,7 +29,7 @@
                     <span class="badge badge-primary">{{ $topic->user->name }}</span>
 
                 </div>
-                <div class="d-flex justify-content-between align-items-center mt-5">
+                <div class="d-flex justify-content-between align-items-center mt-3">
                     <!-- Button to update the topic-->
                     @can('update', $topic)
                         <a href="{{ route('topics.edit', $topic) }}" class="btn btn-warning">Editer cette idée</a>
@@ -36,6 +46,10 @@
                 </div>
             </div>
         </div>
+
+        <hr>
+
+        @include('partials.comments')
     </div>
 
 </div>
