@@ -1100,7 +1100,7 @@ div.bordure {
 
 #projet ul.timeline:before {
     content: ' ';
-    background: #d4d9df;
+    background: #5C6FA3;
     display: inline-block;
     position: absolute;
     left: 29px;
@@ -1120,11 +1120,15 @@ div.bordure {
     display: inline-block;
     position: absolute;
     border-radius: 50%;
-    border: 3px solid #22c0e8;
+    border: 3px solid #2d64ba;
     left: 20px;
     width: 20px;
     height: 20px;
     z-index: 400;
+}
+
+#projet ul.timeline>li#today:before {
+    border: 3px solid #de4242;
 }
 
 

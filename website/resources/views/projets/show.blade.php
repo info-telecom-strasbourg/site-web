@@ -97,11 +97,14 @@
             <div class="row">
                 <ul class="timeline">
                     <li>
-                        <a href="#">15 Août 2020</a>
+                        <div style="color: #007bff">15 Août 2020</div>
                         <p>Thomas commence un dab.</p>
                     </li>
+                    <li id="today">
+                        <div style="color: #007bff">Aujourd'hui</div>
+                    </li>
                     <li>
-                        <a href="#">16 Août 2020</a>
+                        <div style="color: #007bff">16 Août 2020</div>
                         <p>Thomas finit un dab.</p>
                     </li>
                 </ul>
