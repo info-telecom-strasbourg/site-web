@@ -96,16 +96,14 @@
         <div class="container mt-5 mb-5">
             <div class="row">
                 <ul class="timeline">
-                    <li>
-                        <div style="color: #007bff">15 Août 2020</div>
-                        <p>Thomas commence un dab.</p>
-                    </li>
+					@foreach($projet->timeline as $event)
+					<li>
+						<div style="color: #007bff">{{ \Carbon\Carbon::parse($event->date)->translatedFormat('j F Y') }}</div>
+						<p>{{$event->desc}}</p>
+					</li>
+					@endforeach
                     <li id="today">
                         <div style="color: #007bff">Aujourd'hui</div>
-                    </li>
-                    <li>
-                        <div style="color: #007bff">16 Août 2020</div>
-                        <p>Thomas finit un dab.</p>
                     </li>
                 </ul>
             </div>
