@@ -101,16 +101,20 @@
                     <h6 class="text-center" style="margin-bottom: 0;">Mes projets</h6>
 
                     <!-- Search bar -->
-                    <form class="form-inline d-flex justify-content-center md-form form-sm" style="flex-flow: nowrap;">
+                    <form action="/users/{{ $user->id }}/search" method="post" class="form-inline d-flex justify-content-center md-form form-sm" style="flex-flow: nowrap;">
+                        @csrf
                         <input class="custom-form-control profil-search disabled" type="text" id="search-projet"
-                            name="search" placeholder="Search..." aria-label="Search">
+                            name="search-projet" placeholder="Search..." aria-label="Search" value="{{ $search[0] }}">
                         <i class="search-button fas fa-search" aria-hidden="true"></i>
+                        <input type="text" id="search-cours" hidden value="{{ $search[1] }}">
+                        <input type="text" id="search-compet" hidden value="{{ $search[2] }}">
+                        <button type="submit" hidden></button>
                     </form>
                 </div>
 
                 <!-- List of projects -->
                 <div class="profil-card-body">
-                    @foreach ($user->projets as $project)
+                    @foreach ($projects as $project)
                     <a href="/projets/{{ $project->id }}"
                         class="profil-card-item row justify-content-between align-items-center">
                         <span>{{ $project->title}}</span>
@@ -126,23 +130,28 @@
                 <div class="profil-card-header row justify-content-between align-items-center">
                     <h6 class="text-center" style="margin-bottom: 0;">Mes cours</h6>
 
-                    <form class="form-inline d-flex justify-content-center md-form form-sm" style="flex-flow: nowrap;">
+                    <form action="/users/{{ $user->id }}/search" method="post" class="form-inline d-flex justify-content-center md-form form-sm" style="flex-flow: nowrap;">
+                        @csrf
                         <!-- Search bar -->
                         <input class="custom-form-control profil-search profil-search-cours disabled" type="text"
-                            id="search-cours" name="search" placeholder="Search..." aria-label="Search">
+                            id="search-cours" name="search-cours" placeholder="Search..." aria-label="Search" value="{{ $search[1] }}">
                         <i class="search-button-cours fas fa-search" aria-hidden="true"></i>
+                        <input type="text" id="search-projet" hidden value="{{ $search[0] }}">
+                        <input type="text" id="search-compet" hidden value="{{ $search[2] }}">
 
                         <!-- Add new lesson button -->
                         @can ('create', 'App\Cours')
                         <a class="btn btn-primary btn-rounded add-cours" href="/poles/cours/create"><i
                                 class="fas fa-plus"></i></a>
                         @endcan
+
+                        <button type="submit" hidden></button>
                     </form>
                 </div>
 
                 <!-- List of lessons -->
                 <div class="profil-card-body">
-                    @foreach ($user->cours as $lesson)
+                    @foreach ($lessons as $lesson)
                     <a href="/poles/cours/{{ $lesson->id }}"
                         class="profil-card-item row justify-content-between align-items-center">
                         <span>{{ $lesson->title}}</span>
@@ -161,16 +170,20 @@
                     <h6 class="text-center" style="margin-bottom: 0;">Mes compétitions</h6>
 
                     <!-- Search bar -->
-                    <form class="form-inline d-flex justify-content-center md-form form-sm" style="flex-flow: nowrap;">
+                    <form action="/users/{{ $user->id }}/search" method="post" class="form-inline d-flex justify-content-center md-form form-sm" style="flex-flow: nowrap;">
+                        @csrf
                         <input class="custom-form-control profil-search disabled" type="text" id="search-compet"
-                            name="search" placeholder="Search..." aria-label="Search">
+                            name="search-compet" placeholder="Search..." aria-label="Search" value="{{ $search[2] }}">
                         <i class="search-button fas fa-search" aria-hidden="true"></i>
+                        <input type="text" id="search-cours" hidden value="{{ $search[1] }}">
+                        <input type="text" id="search-projet" hidden value="{{ $search[0] }}">
+                        <button type="submit" hidden></button>
                     </form>
                 </div>
 
                 <!-- List of competitions -->
                 <div class="profil-card-body">
-                    @foreach ($user->competitions as $competition)
+                    @foreach ($competitions as $competition)
                     <a href="/poles/competitions/{{ $competition->id }}"
                         class="profil-card-item row justify-content-between align-items-center">
                         <span>{{ $competition->title}}</span>

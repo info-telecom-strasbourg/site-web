@@ -40,8 +40,35 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('users.show', compact('user'));
+        $projects = $user->projets;
+        $lessons = $user->cours;
+        $competitions = $user->competitions;
+        $search = ['', '', ''];
+
+        return view('users.show', compact('user', 'projects', 'lessons', 'competitions', 'search'));
     }
+
+    /**
+     * Search projet
+     *
+     * @return the user's view
+     */
+    public function search(User $user)
+    {
+        $projects = $user->projets()->where('title', 'like', '%'.request('search-projet').'%')->get();
+
+        $lessons = $user->cours()->where('title', 'like', '%'.request('search-cours').'%')->get();
+
+        $competitions = $user->competitions()->where('title', 'like', '%'.request('search-compet').'%')->get();
+
+        $search = [
+            request('search-projet'), 
+            request('search-cours'), 
+            request('search-compet')];
+
+        return view('users.show', compact('user', 'projects', 'lessons', 'competitions', 'search'));
+    }
+
 
     /**
      * Update a user profil.
