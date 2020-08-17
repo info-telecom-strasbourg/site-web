@@ -108,6 +108,11 @@
                 </ul>
             </div>
         </div>
+
+		<!-- The buttons to the timeline -->
+		@can ('update', $projet)
+			@include('poles.timeline', ['object' => $projet ])
+		@endcan
         <!-- Images of the project -->
         <div class="bordure"></div>
         <h4 class="title md text-center">Le projet en images</h4>
