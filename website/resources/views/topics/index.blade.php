@@ -10,6 +10,7 @@
         <hr class="line-under-title">
 
         <div class="container pt-3">
+            <!-- List all the topics -->
             <div class=".list-group">
                 @foreach ($topics as $topic)
                 <div class="list-group-item">

@@ -42,7 +42,7 @@
                     @enderror
                 </div>
 
-                <!-- Button to create the project -->
+                <!-- Button to edit the project -->
                 <div class="text-center" style="margin-top:25px; margin-bottom:25px">
                     <button type="submit" class="btn btn-primary btn-rounded">Enregistrer</button>
                 </div>

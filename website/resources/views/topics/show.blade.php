@@ -20,12 +20,19 @@
 
                 </div>
                 <div class="d-flex justify-content-between align-items-center mt-5">
-                    <a href="{{ route('topics.edit', $topic) }}" class="btn btn-warning">Editer cette idée</a>
-                    <form action="{{ route('topics.destroy', $topic) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Surppimer</button>
-                    </form>
+                    <!-- Button to update the topic-->
+                    @can('update', $topic)
+                        <a href="{{ route('topics.edit', $topic) }}" class="btn btn-warning">Editer cette idée</a>
+                    @endcan
+
+                    <!-- Button to delete the topic -->
+                    @can('delete', $topic)
+                        <form action="{{ route('topics.destroy', $topic) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Surppimer</button>
+                        </form>
+                    @endcan
                 </div>
             </div>
         </div>
