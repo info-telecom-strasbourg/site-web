@@ -16,17 +16,17 @@
         Pôle {{ $pole->title }}
     </h1>
 	<hr class="line-under-title">
-	
+
 	<!-- Description of the pole -->
 	<div class="container pt-3">
         <p>{{ $pole->desc }}</p>
-        
+
         @if ($pole->slug == 'programmation_utilitaire')
         	<h4 class="title md text-left">Nos programmes utilitaires</h4>
         @else
         	<h4 class="title md text-left">Nos {{ strtolower($pole->title) }}</h4>
         @endif
-		
+
 		<!-- Display all the projects of the pole -->
 		<div class="container pt-5">
 			<div class="row justify-content-center">
@@ -50,7 +50,7 @@
 								</div>
 						  	</div>
 						</div>
-					
+
 					@empty
 
 						<div class="alert alert-secondary alert-dismissible fade show col" role="alert">
@@ -104,7 +104,12 @@
 				</div>
 			</div>
 		</div>
-		
+
+		<!-- The buttons to the timeline -->
+		@can ('update', $pole)
+			@include('poles.timeline', ['object' => $pole ])
+		@endcan
+
 		<!-- Button to edit the pole -->
 		@can ('update', $pole)
 			<div class="text-center" style="margin-top:25px; margin-bottom:25px;">

@@ -1,52 +1,65 @@
 /*** Parse the datas from the calendar
 	 From "sun jan 03 2020" to "2020-01-03"
 ***/
-function parseDate(dateTable, inputName) {
-    $.each(dateTable, function(index, value) {
-        var str = value.toString();
-        var day = str.substring(8, 10);
-        var monthName = str.substring(4, 7);
-        var year = str.substring(11, 15);
-        var month;
-        switch (monthName) {
-            case 'Jan':
-                month = '01';
-                break;
-            case 'Feb':
-                month = '02';
-                break;
-            case 'Mar':
-                month = '03';
-                break;
-            case 'Apr':
-                month = '04';
-                break;
-            case 'May':
-                month = '05';
-                break;
-            case 'Jun':
-                month = '06';
-                break;
-            case 'Jul':
-                month = '07';
-                break;
-            case 'Aug':
-                month = '08';
-                break;
-            case 'Sep':
-                month = '09';
-                break;
-            case 'Oct':
-                month = '10';
-                break;
-            case 'Nov':
-                month = '11';
-                break;
-            case 'Dec':
-                month = '12';
-        }
-        $('div#dates-select').append('<input type="text" name="' + inputName + '[]" value="' + year + '-' + month + '-' + day + '" hidden>');
-    });
+function convertMonth (value) {
+	var str = value.toString();
+	var day = str.substring(8, 10);
+	var monthName = str.substring(4, 7);
+	var year = str.substring(11, 15);
+	var month;
+	switch (monthName) {
+		case 'Jan':
+			month = '01';
+			break;
+		case 'Feb':
+			month = '02';
+			break;
+		case 'Mar':
+			month = '03';
+			break;
+		case 'Apr':
+			month = '04';
+			break;
+		case 'May':
+			month = '05';
+			break;
+		case 'Jun':
+			month = '06';
+			break;
+		case 'Jul':
+			month = '07';
+			break;
+		case 'Aug':
+			month = '08';
+			break;
+		case 'Sep':
+			month = '09';
+			break;
+		case 'Oct':
+			month = '10';
+			break;
+		case 'Nov':
+			month = '11';
+			break;
+		case 'Dec':
+			month = '12';
+	}
+
+	return [year, month, day];
+}
+
+function parseDate(dateTable, inputName, divSelect) {
+	if(Array.isArray(dateTable))
+		$.each(dateTable,function(index, value) {
+			var datesComposed = convertMonth (value);
+			alert(datesComposed);
+			$(divSelect).append('<input type="text" name="' + inputName + '[]" value="' + datesComposed[0] + '-' + datesComposed[1] + '-' + datesComposed[2] + '" hidden>');
+		});
+	else
+	{
+		var datesComposed = convertMonth (dateTable);
+		$(divSelect).append('<input type="text" name="' + inputName + '" value="' + datesComposed[0] + '-' + datesComposed[1] + '-' + datesComposed[2] + '" hidden>');
+	}
 }
 
 /*** Translate the calendars ***/
@@ -396,8 +409,8 @@ $(document).ready(function() {
 
     /*** Convert the dates given by the calendar in date for the database ***/
     $('button#submit-btn-crt-crs').click(function() {
-        parseDate(calendarDist.values, 'dates_dist');
-        parseDate(calendarPres.values, 'dates_pres');
+        parseDate(calendarDist.values, 'dates_dist', 'div#dates-select');
+        parseDate(calendarPres.values, 'dates_pres', 'div#dates-select');
     });
 
     /* ########## Compétitions ##########*/
@@ -420,7 +433,7 @@ $(document).ready(function() {
             problem = true;
         }
         if (!problem) {
-            parseDate(calendarComp.values, 'dates_comp');
+            parseDate(calendarComp.values, 'dates_comp', 'div#dates-select');
         }
     });
 

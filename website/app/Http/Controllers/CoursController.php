@@ -9,6 +9,7 @@ use App\Support;
 use App\Pole;
 use App\Date;
 use App\DatesCours;
+use App\TimelineEvent;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
@@ -26,6 +27,7 @@ class CoursController extends Controller
 	{
 		$pole = Pole::where('slug', 'cours')->first();
 		$cours = Cours::orderBy('id', 'DESC')->get();
+
 		return view('poles.cours.index', ['cours' => $cours, 'pole' => $pole]);
 	}
 

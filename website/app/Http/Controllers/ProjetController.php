@@ -9,6 +9,7 @@ use App\Projet;
 use App\User;
 use App\Pole;
 use App\Collaborateur;
+use App\TimelineEvent;
 use Illuminate\Http\Response;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -53,7 +54,7 @@ class ProjetController extends Controller
     {
         $projet->load('chef');
         $projet->load('participants');
-        return view('projets.show', ['projet' => $projet]);
+        return view('projets.show', compact('projet'));
     }
 
     /**
@@ -111,6 +112,22 @@ class ProjetController extends Controller
             $projet->participants()->attach($request->chef_projet_id);
 
         $projet->save();
+
+		$today = Carbon\Carbon::now();
+
+		TimelineEvent::create([
+			'desc' => 'Début du projet',
+			'date' => $today,
+			'reference_id' => $projet->id,
+			'timeline_type' => 'App\Projet',
+		]);
+
+		TimelineEvent::create([
+			'desc' => 'Début du projet ' . $projet->title,
+			'date' => $today,
+			'reference_id' => $projet->pole_id,
+			'timeline_type' => 'App\Pole',
+		]);
 
         return redirect('/projets/' . $projet->id);
     }

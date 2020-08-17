@@ -32,4 +32,15 @@ class Pole extends Model
     {
         return $this->hasMany(Projet::class)->orderBy('id', 'DESC');
     }
+
+	/**
+	 * Get the timeline of the pole.
+	 *
+	 * @return the pole's timeline.
+	 */
+	 public function timeline()
+	 {
+		 return $this->morphMany(TimelineEvent::class, 'reference', 'timeline_type')->latest('date');
+	 }
+
 }

@@ -1,5 +1,5 @@
-/* 
- * CSS style page  
+/*
+ * CSS style page
  * Structure of the document :
  *  - MAIN USES (46)
  *      . Style
@@ -39,7 +39,7 @@
  *  - USER ACCOUNT (1247)
  *      . User page
  *      . Login
- *      . Confirm password 
+ *      . Confirm password
  */
 
 
@@ -992,7 +992,7 @@ div.bordure {
 
 /* >>>>>>>>>>>>>>>>>>>> Calendars <<<<<<<<<<<<<<<<<<<< */
 
-#calendar-pres #calendar-dist #calendar-comp #calendar-pres-upd #calendar-dist-upd #calendar-comp-upd {
+.calendar-step-edt #calendar-pres #calendar-dist #calendar-comp #calendar-pres-upd #calendar-step #calendar-dist-upd #calendar-comp-upd {
     visibility: hidden;
     max-width: 250px;
 }
@@ -1006,7 +1006,7 @@ div.bordure {
     left: 45%;
 }
 
-#cal-pres-dates #cal-dist-dates #cal-comp-dates #cal-pres-dates-upd #cal-dist-dates-upd #cal-comp-upd {
+.cal-step-dates-edt #cal-step-dates #cal-pres-dates #cal-dist-dates #cal-comp-dates #cal-pres-dates-upd #cal-dist-dates-upd #cal-comp-upd {
     display: block;
 }
 

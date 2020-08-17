@@ -73,16 +73,17 @@ Route::get('/download/{path}', 'CoursController@downloadFile');
 
 
 
-Route::get('/test', function (){
-	return view('test');
-});
+Route::get('/test', function (){ return view('test'); });
 
 /***** Route projets *****/
-Route::resources([
-    'projets' => "ProjetController"
-]);
+Route::resources(['projets' => "ProjetController"]);
 Route::get('/projets/create','ProjetController@create')->name('projets.create')->middleware('can:create, App\Projet');
 
 /***** Route users *****/
 Route::get('/users', 'UserController@index')->name('users.index');
 Route::get('/users/{user}', 'UserController@show')->name('users.show');
+
+/***** Route timeline ****/
+Route::put('/timeline/{step}/edit', 'TimelineEventController@update');
+Route::post('/timeline/create/{id}', 'TimelineEventController@store');
+Route::get('/timeline/{step}/destroy', 'TimelineEventController@destroy');
