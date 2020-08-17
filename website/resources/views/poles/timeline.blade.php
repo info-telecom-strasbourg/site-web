@@ -112,6 +112,34 @@
 	<a class="btn btn-rounded button-panel" href="/timeline/{{ $step->id }}/destroy">Supprimer</a>
 @endforeach
 <script>
+/**
+ * Display the error message in the span given and linked to the input
+ * given.
+ *
+ * @param input: the input that contains the error.
+ * @param errorSpan: the span that have to be displayed.
+ */
+function displayError(input, errorSpan)
+{
+	if(!input.hasClass('is-invalid'))
+		input.addClass('is-invalid');
+	$(errorSpan).css('display', 'block');
+}
+/**
+ * Hide the error message in the span given and linked to the input
+ * given.
+ *
+ * @param input: the input that do not contains error.
+ * @param errorSpan: the span that have to be hid.
+ */
+function eraseError(input, errorSpan)
+{
+	if(input.hasClass('is-invalid'))
+		input.removeClass('is-invalid');
+	$(errorSpan).css('display', 'none');
+}
+
+
 var dateStep = document.getElementById('calendar-step');
 if (dateStep) dateStep.style.visibility = "visible";
 
@@ -119,8 +147,31 @@ var calendarStep = new ej.calendars.Calendar({});
 calendarStep.appendTo('#cal-step-dates');
 
 
-$('button#create-news-step').click(function() {
-	parseDate(calendarStep.value, 'date', '#dates-select');
+$('button#create-news-step').click(function(e) {
+	var error = false;
+	var inputDesc = $('textarea#desc');
+	var inputDate = $('div#calendar-step');
+
+	if(intputDesc.val().length < 1)
+	{
+		error = true;
+		displayError(intputDesc, 'span#desc-error');
+	}
+	else
+		eraseError(intputDesc, 'span#desc-error');
+
+	if(calendarStep.value == [])
+	{
+		error = true;
+		displayError(inputDate, 'span#date-error');
+	}
+	else
+	{
+		eraseError(inputDate, 'span#date-error');
+		parseDate(calendarStep.value, 'date', '#dates-select');
+	}
+
+	if(error) e.preventDefault();
 });
 
 // Search the dates and make them appear into the calendar
@@ -135,8 +186,32 @@ var calendars = [];
 	calendars[calendars.length -1].value = new Date('{{ $step->date }}');
 	calendars[calendars.length -1].appendTo('#cal-step-dates-edt{{ $step->id }}');
 
-	$('button#upd-step{{ $step->id }}').click(function() {
-		parseDate(calendars[calendars.length -1].value, 'date', '#dates-select{{ $step->id }}');
+	$('button#upd-step{{ $step->id }}').click(function(e) {
+		error = false;
+		var eventId = '{{ $step->id }}';
+		var inputDesc = $('textarea#desc' + eventId);
+		var inputDate = $('div#calendar-step-edt' + eventId);
+
+		if(intputDesc.val().length < 1)
+		{
+			error = true;
+			displayError(intputDesc, 'span#desc-error' + eventId);
+		}
+		else
+			eraseError(intputDesc, 'span#desc-error' + eventId);
+
+		if(calendarStep.value == [])
+		{
+			error = true;
+			displayError(inputDate, 'span#date-error' + eventId);
+		}
+		else
+		{
+			eraseError(inputDate, 'span#date-error' + eventId);
+			parseDate(calendars[calendars.length -1].value, 'date', '#dates-select{{ $step->id }}');
+		}
+
+		if(error) e.preventDefault();
 	});
 @endforeach
 </script>
