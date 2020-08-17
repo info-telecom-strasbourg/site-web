@@ -52,7 +52,7 @@ class User extends Authenticatable
 
 
 	/**
-	 * Get the lessons of the user.
+	 * Get the lessons the user created.
 	 *
 	 * @return all the lessons created by the user.
 	 */
@@ -69,6 +69,16 @@ class User extends Authenticatable
     public function role()
     {
         return $this->belongsTo(Role::class);
+    }
+    
+    /**
+     * Get the topics the user created.
+	 *
+	 * @return the the topics created by the user.
+     */
+    public function topics()
+    {
+        return $this->hasMany(Topic::class);
     }
 
     /**

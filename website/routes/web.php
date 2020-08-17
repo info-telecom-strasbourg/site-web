@@ -86,3 +86,7 @@ Route::get('/projets/create','ProjetController@create')->name('projets.create')-
 /***** Route users *****/
 Route::get('/users', 'UserController@index')->name('users.index');
 Route::get('/users/{user}', 'UserController@show')->name('users.show');
+ 
+/***** Route topics *****/
+Route::resource('topics', 'TopicController');
+
