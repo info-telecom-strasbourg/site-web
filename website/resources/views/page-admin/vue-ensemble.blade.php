@@ -1,5 +1,3 @@
-<!-- The darkpage -->
-<!-- WILL BE COMMENTED LATER -->
 @extends('layouts.layout')
 
 @section('title', 'Admin')
@@ -18,6 +16,7 @@
 
 
 <section class="dark-page" id="vue-ens">
+    <!-- Navbar dark version -->
     <div class="bandeau-dark">
         <div class="dropdown">
             <a class="btn btn-secondary dropdown-toggle total" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -78,6 +77,7 @@
             <div class="tab-pane fade show active" id="v-pills-ens" role="tabpanel" aria-labelledby="v-pills-ens-tab">
                 <h1 class="title lg text-center"> Vue d'ensemble </h1>
                 <hr class="line-under-title" style="margin-bottom: 100px;">
+                <!-- Show statistics -->
                 <div id="widgets_container">
                     <div class="widget" id="views-container">
                         <h2>Pages vues</h2>
@@ -126,7 +126,7 @@
 </section>
 
 
-<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!! Code for Google Analytics !!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+<!-- Google Analytics -->
 <?php
 // Autoloader integration
 require_once __DIR__ . '/../../../vendor/autoload.php';
