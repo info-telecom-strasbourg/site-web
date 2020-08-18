@@ -2,9 +2,15 @@
 
 <nav class="navbar navbar-expand-xl navbar-light fixed-top">
     <!-- Manage the access of the dark page with the logo -->
+    @if (Auth::check() && (Auth::user()->role_id == 1 || Auth::user()->role_id == 2 || Auth::user()->role_id == 4))
     <a class="navbar-brand" href="/page-admin/vue-ensemble">
         <img src="/images/logo/logo.png" width="90" height="100%" alt="Logo du site">
     </a>
+    @else
+    <a class="navbar-brand">
+        <img src="/images/logo/logo.png" width="90" height="100%" alt="Logo du site">
+    </a>
+    @endif
 
 
     <!-- Toggle -->

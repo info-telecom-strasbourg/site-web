@@ -17,52 +17,7 @@
 </style>
 
 
-<section class="dark-page" id="vue-ens">
-    <div class="bandeau-dark">
-        <div class="dropdown">
-            <a class="btn btn-secondary dropdown-toggle total" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                {{ Auth::user()->name }}
-            </a>
-            <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" href="#">Profil</a>
-                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">
-                    Déconnexion
-                </a>
-
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-            </div>
-        </div>
-
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle short" type="button" data-toggle="dropdown">
-                <img class="profil-rounded" src="images/defaut/profil.jpg">
-            </button>
-            <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" href="/users/{{ Auth::user()->id }}">Profil</a>
-                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">
-                    Déconnexion
-                </a>
-
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="nav flex-column nav-pills short" id="v-pills-tab" role="tablist" aria-orientation="horizontal">
-        <div class="navbar-dark-brand" href="/">
-            <a href="/">
-                <img src="/images/logo/logo-dark.png" width="90" height="100%" alt="Logo du site">
-            </a>
-        </div>
-        <a class="nav-link" href="/page-admin/vue-ensemble">VUE D'ENSEMBLE</a>
-        <a class="nav-link active" href="#">MEMBRES</a>
-        <a class="nav-link" href="/page-admin/actualites">ACTUALITÉS</a>
-    </div>
+<section class="dark-page" id="membres">
     <div class="container">
         <div class="nav flex-column nav-pills total" id="v-pills-tab" role="tablist" aria-orientation="vertical">
             <div class="navbar-dark-brand" href="/">
@@ -76,7 +31,7 @@
         </div>
         <div class="tab-content" id="v-pills-tabContent" style="padding-bottom: 300px">
             <div class="tab-pane fade show active" id="v-pills-membres" role="tabpanel" aria-labelledby="v-pills-membres-tab">
-            <h1 class="title lg text-center"> Membres </h1>
+                <h1 class="title lg text-center"> Membres </h1>
                 <hr class="line-under-title">
                 <div id="members-container">
                     <!-- Error message if try to delete a member who is the chief of a project -->
@@ -121,9 +76,9 @@
 
                                             <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autocomplete="email">
 
-	                                        <span id="email-error" class="invalid-feedback" role="alert" style="display: none;">
-	                                            <strong>Vous devez entrer un email unique</strong>
-	                                        </span>
+                                            <span id="email-error" class="invalid-feedback" role="alert" style="display: none;">
+                                                <strong>Vous devez entrer un email unique</strong>
+                                            </span>
                                         </div>
 
                                         <!-- Give the member role -->
@@ -133,10 +88,10 @@
                                                 @if(isset($roles))
 
                                                 @foreach ($roles as $role)
-	                                                @if($role->isAvailable())
-		                                                <option value="{{ $role->id }}" @if (old('role')==$role->id) selected @endif>{{ $role->role }}
-		                                                </option>
-	                                                @endif
+                                                @if($role->isAvailable())
+                                                <option value="{{ $role->id }}" @if (old('role')==$role->id) selected @endif>{{ $role->role }}
+                                                </option>
+                                                @endif
                                                 @endforeach
 
                                                 @endif
@@ -221,7 +176,7 @@
                                                 @method('PUT')
                                                 <!-- Image -->
                                                 <div style="display:flex;">
-                                                    <input id="file{{ $user->id }}" type="file" name="image_profile" accept="image/x-png,image/gif,image/jpeg" style="margin-left: auto; margin-right:auto;"/>
+                                                    <input id="file{{ $user->id }}" type="file" name="image_profile" accept="image/x-png,image/gif,image/jpeg" style="margin-left: auto; margin-right:auto;" />
                                                 </div>
 
                                                 <!-- Name -->
@@ -303,19 +258,21 @@
 </section>
 <script>
     $(document).ready(function() {
-        var usersAll = {!! $users !!};
+        var usersAll = {
+            !!$users!!
+        };
         var usersEmail = [];
         usersAll.forEach(function(user) {
             usersEmail.push(user.email);
         });
 
-		/**
-		 * Check if the email given is unique (compare with the emails in the
-	 	 * table 'users').
-		 *
-		 * @param emailToCheck: the email that will be checked.
-		 * @return a boolean that indicate if the email is unique.
-		 */
+        /**
+         * Check if the email given is unique (compare with the emails in the
+         * table 'users').
+         *
+         * @param emailToCheck: the email that will be checked.
+         * @return a boolean that indicate if the email is unique.
+         */
         function emailIsUnique(emailToCheck) {
             var isUnique = true;
             try {
@@ -333,33 +290,31 @@
             }
         }
 
-		/**
-		 * Display the error message in the span given and linked to the input
-		 * given.
-		 *
-		 * @param input: the input that contains the error.
-		 * @param errorSpan: the span that have to be displayed.
-		 */
-		function displayError(input, errorSpan)
-		{
-			if(!input.hasClass('is-invalid'))
-				input.addClass('is-invalid');
-			$(errorSpan).css('display', 'block');
-		}
+        /**
+         * Display the error message in the span given and linked to the input
+         * given.
+         *
+         * @param input: the input that contains the error.
+         * @param errorSpan: the span that have to be displayed.
+         */
+        function displayError(input, errorSpan) {
+            if (!input.hasClass('is-invalid'))
+                input.addClass('is-invalid');
+            $(errorSpan).css('display', 'block');
+        }
 
-		/**
-		 * Hide the error message in the span given and linked to the input
-		 * given.
-		 *
-		 * @param input: the input that do not contains error.
-		 * @param errorSpan: the span that have to be hid.
-		 */
-		function eraseError(input, errorSpan)
-		{
-			if(input.hasClass('is-invalid'))
-				input.removeClass('is-invalid');
-			$(errorSpan).css('display', 'none');
-		}
+        /**
+         * Hide the error message in the span given and linked to the input
+         * given.
+         *
+         * @param input: the input that do not contains error.
+         * @param errorSpan: the span that have to be hid.
+         */
+        function eraseError(input, errorSpan) {
+            if (input.hasClass('is-invalid'))
+                input.removeClass('is-invalid');
+            $(errorSpan).css('display', 'none');
+        }
 
         /**
          * Check if all the values are acceptable to edit a member profil.
@@ -372,9 +327,9 @@
                     currentUserEmail = String(user.email);
             });
 
-			var inputName = $('input#name' + userId);
-			var inputMail = $('input#email' + userId);
-			var inputPassword = $('input#password' + userId);
+            var inputName = $('input#name' + userId);
+            var inputMail = $('input#email' + userId);
+            var inputPassword = $('input#password' + userId);
 
             var userName = inputName.val();
             var userEmail = inputMail.val();
@@ -384,74 +339,62 @@
             var error = false;
 
 
-			if (userName.length < 3)
-			{
-				error = true;
-				displayError(inputName, 'span#name-error' + userId);
-			}
-			else
-				eraseError(inputName, 'span#name-error' + userId);
+            if (userName.length < 3) {
+                error = true;
+                displayError(inputName, 'span#name-error' + userId);
+            } else
+                eraseError(inputName, 'span#name-error' + userId);
 
-			if ((userPw.length < 8 || userPw != userPwc) && userPw != "")
-			{
-				error = true;
-				displayError(inputPassword, 'span#password-error' + userId);
-				inputPassword.val('');
-				$('input#password-confirm' + userId).val('');
-			}
-			else
-				eraseError(inputPassword, 'span#password-error' + userId);
+            if ((userPw.length < 8 || userPw != userPwc) && userPw != "") {
+                error = true;
+                displayError(inputPassword, 'span#password-error' + userId);
+                inputPassword.val('');
+                $('input#password-confirm' + userId).val('');
+            } else
+                eraseError(inputPassword, 'span#password-error' + userId);
 
-			if (!emailIsUnique(userEmail) && userEmail.localeCompare(currentUserEmail) != 0)
-			{
-				error = true;
-				displayError(inputMail, 'span#email-error' + userId);
-			}
-			else
-				eraseError(inputMail, 'span#email-error' + userId);
+            if (!emailIsUnique(userEmail) && userEmail.localeCompare(currentUserEmail) != 0) {
+                error = true;
+                displayError(inputMail, 'span#email-error' + userId);
+            } else
+                eraseError(inputMail, 'span#email-error' + userId);
 
             if (error) e.preventDefault();
         });
 
-		/**
-		 * Check if all the values are acceptable to create a member.
-		 */
-		$('button#create-member-btn').click(function(e) {
-			var inputName = $('input#name');
-			var inputMail = $('input#email');
-			var inputPassword = $('input#password');
-			var inputPasswordConfirm = $('input#password-confirm');
-			var password = inputPassword.val();
-			var error = false;
+        /**
+         * Check if all the values are acceptable to create a member.
+         */
+        $('button#create-member-btn').click(function(e) {
+            var inputName = $('input#name');
+            var inputMail = $('input#email');
+            var inputPassword = $('input#password');
+            var inputPasswordConfirm = $('input#password-confirm');
+            var password = inputPassword.val();
+            var error = false;
 
-			if(inputName.val().length < 3)
-			{
-				error = true;
-				displayError(inputName, 'span#name-error');
-			}
-			else
-				eraseError(inputName, 'span#name-error');
+            if (inputName.val().length < 3) {
+                error = true;
+                displayError(inputName, 'span#name-error');
+            } else
+                eraseError(inputName, 'span#name-error');
 
-			if(!emailIsUnique(inputMail.val()))
-			{
-				error = true;
-				displayError(inputMail, 'span#email-error');
-			}
-			else
-				eraseError(inputMail, 'span#email-error');
+            if (!emailIsUnique(inputMail.val())) {
+                error = true;
+                displayError(inputMail, 'span#email-error');
+            } else
+                eraseError(inputMail, 'span#email-error');
 
-			if((password.length < 8 || (password != inputPasswordConfirm.val())) && password != "")
-			{
-				error = true;
-				displayError(inputPassword, 'span#password-error');
-				inputPassword.val('');
-				$('input#password-confirm').val('');
-			}
-			else
-				eraseError(inputPassword, 'span#password-error');
+            if ((password.length < 8 || (password != inputPasswordConfirm.val())) && password != "") {
+                error = true;
+                displayError(inputPassword, 'span#password-error');
+                inputPassword.val('');
+                $('input#password-confirm').val('');
+            } else
+                eraseError(inputPassword, 'span#password-error');
 
-			if(error) e.preventDefault();
-		});
+            if (error) e.preventDefault();
+        });
     });
 </script>
 @endsection

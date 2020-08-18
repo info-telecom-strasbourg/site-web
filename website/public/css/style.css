@@ -90,7 +90,6 @@ a {
 @media only screen and (max-width: 992px) {
     #content {
         padding-bottom: 423.33px;
-        margin-top: 423.33px;
     }
 }
 
@@ -1370,7 +1369,7 @@ div.bordure {
     padding: 1rem;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 950px) {
     .dark-page #v-pills-membres .row .d-flex {
         flex-direction: column;
     }
@@ -1460,7 +1459,7 @@ div.bordure {
     margin-bottom: 20px;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
     .dark-page #form-edit img {
         width: 100%;
     }

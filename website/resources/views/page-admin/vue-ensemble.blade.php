@@ -38,7 +38,7 @@
 
         <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle short" type="button" data-toggle="dropdown">
-                <img class="profil-rounded" src="images/defaut/profil.jpg">
+                <img class="profil-rounded" src="{{ asset('storage/' . Auth::user()->profil_picture) }}">
             </button>
             <div class="dropdown-menu dropdown-menu-right">
                 <a class="dropdown-item" href="/users/{{ Auth::user()->id }}">Profil</a>
