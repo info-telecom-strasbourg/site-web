@@ -9,6 +9,7 @@
 .env.backup
 ../.idea/
 composer.lock
+site_ITS_db.sql
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml

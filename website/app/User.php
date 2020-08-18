@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'role_id', 'password', 'profil_picture',
+        'name', 'email', 'class', 'year', 'role_id', 'password', 'profil_picture'
     ];
 
     /**
@@ -58,7 +58,17 @@ class User extends Authenticatable
 	 */
 	public function cours()
 	{
-		$this->belongsToMany(Cours::class);
+		return $this->belongsToMany(Cours::class, 'cours_createurs');
+    }
+    
+    /**
+	 * Get the competitions of the user.
+	 *
+	 * @return all the competitions that the user attends.
+	 */
+	public function competitions()
+	{
+		return $this->belongsToMany(Competition::class, 'user_compet');
 	}
 
     /**
