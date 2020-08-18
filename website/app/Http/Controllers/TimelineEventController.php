@@ -11,7 +11,6 @@ class TimelineEventController extends Controller
 {
 	public function store($id)
 	{
-		// dd(request());
 		$event = TimelineEvent::create($this->validateRequest());
 		if($event->timeline_type == 'App\Pole')
 		{
@@ -22,17 +21,16 @@ class TimelineEventController extends Controller
 			return redirect('/projets/' . $event->reference_id);
 	}
 
-	public function update(TimelineEvent $projectEvent)
+	public function update(TimelineEvent $step)
 	{
-		// dd($projectEvent);
-		$event = $this->validateRequest();
-		if($event->timeline_type == 'App\Pole')
+		$step->update($this->validateRequest());
+		if($step->timeline_type == 'App\Pole')
 		{
-			$pole = Pole::where('id', $projectEvent->reference_id)->first();
+			$pole = Pole::where('id', $step->reference_id)->first();
 			return redirect('/poles/' . $pole->slug);
 		}
 		else
-			return redirect('/projets/' . $event->reference_id);
+			return redirect('/projets/' . $step->reference_id);
 	}
 
 	public function destroy(TimelineEvent $step)

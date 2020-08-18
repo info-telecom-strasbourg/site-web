@@ -54,8 +54,8 @@
 	</div>
 </div>
 @foreach($object->timeline as $step)
-	<button id="button-upd-step" type="button" data-toggle="modal" data-target="#upd-step" class="btn btn-primary">Édition de l'étape {{ $step->date }}</button>
-	<div class="modal" id="upd-step">
+	<button id="button-upd-step" type="button" data-toggle="modal" data-target="#upd-step{{ $step->id }}" class="btn btn-primary">Édition de l'étape {{ $step->date }}</button>
+	<div class="modal" id="upd-step{{ $step->id }}">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -74,7 +74,7 @@
 							<label for="desc{{ $step->id }}" class="form-title-small">Description</label>
 
 							<div class="control">
-								<textarea class="desc form-control" id="desc{{ $step->id }}" name="desc{{ $step->id }}" rows="5" required>{{ $step->desc }}</textarea>
+								<textarea class="desc form-control" id="desc{{ $step->id }}" name="desc" rows="5" required>{{ $step->desc }}</textarea>
 							</div>
 						</div>
 						<span id="desc-error{{ $step->id }}" class="invalid-feedback" role="alert" style="display: none;">
@@ -152,15 +152,15 @@ $('button#create-news-step').click(function(e) {
 	var inputDesc = $('textarea#desc');
 	var inputDate = $('div#calendar-step');
 
-	if(intputDesc.val().length < 1)
+	if(inputDesc.val().length < 1)
 	{
 		error = true;
 		displayError(intputDesc, 'span#desc-error');
 	}
 	else
-		eraseError(intputDesc, 'span#desc-error');
+		eraseError(inputDesc, 'span#desc-error');
 
-	if(calendarStep.value == [])
+	if(calendarStep.value == null)
 	{
 		error = true;
 		displayError(inputDate, 'span#date-error');
@@ -179,36 +179,35 @@ var datesSteps = [];
 var calendars = [];
 @foreach($object->timeline as $step)
 	datesSteps.push(document.getElementById('calendar-step-edt{{ $step->id }}'));
-	if(datesSteps[datesSteps.length - 1])
-		datesSteps[datesSteps.length - 1].style.visibility = "visible";
-	calendars.push(new ej.calendars.Calendar({}));
+	if(datesSteps['{{ $step->id }}'])
+		datesSteps['{{ $step->id }}'].style.visibility = "visible";
+	calendars['{{ $step->id }}'] = new ej.calendars.Calendar({});
 
-	calendars[calendars.length -1].value = new Date('{{ $step->date }}');
-	calendars[calendars.length -1].appendTo('#cal-step-dates-edt{{ $step->id }}');
+	calendars['{{ $step->id }}'].value = new Date('{{ $step->date }}');
+	calendars['{{ $step->id }}'].appendTo('#cal-step-dates-edt{{ $step->id }}');
 
 	$('button#upd-step{{ $step->id }}').click(function(e) {
 		error = false;
-		var eventId = '{{ $step->id }}';
-		var inputDesc = $('textarea#desc' + eventId);
-		var inputDate = $('div#calendar-step-edt' + eventId);
+		var inputDesc = $('textarea#desc{{ $step->id }}');
+		var inputDate = $('div#calendar-step-edt{{ $step->id }}');
 
-		if(intputDesc.val().length < 1)
+		if(inputDesc.val().length < 1)
 		{
 			error = true;
-			displayError(intputDesc, 'span#desc-error' + eventId);
+			displayError(inputDesc, 'span#desc-error{{ $step->id }}');
 		}
 		else
-			eraseError(intputDesc, 'span#desc-error' + eventId);
+			eraseError(inputDesc, 'span#desc-error{{ $step->id }}');
 
-		if(calendarStep.value == [])
+		if(calendars[calendars.length -1].value == null)
 		{
 			error = true;
-			displayError(inputDate, 'span#date-error' + eventId);
+			displayError(inputDate, 'span#date-error{{ $step->id }}');
 		}
 		else
 		{
-			eraseError(inputDate, 'span#date-error' + eventId);
-			parseDate(calendars[calendars.length -1].value, 'date', '#dates-select{{ $step->id }}');
+			eraseError(inputDate, 'span#date-error{{ $step->id }}');
+			parseDate(calendars['{{ $step->id }}'].value, 'date', '#dates-select{{ $step->id }}');
 		}
 
 		if(error) e.preventDefault();
