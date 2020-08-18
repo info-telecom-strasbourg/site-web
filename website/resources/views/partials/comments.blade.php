@@ -13,12 +13,12 @@
 <!-- Add a comment -->
 @if (isset($topic))
     <form action="{{ route('comments.store', $topic) }}" method="POST" class="mb-3">
+@elseif (isset($pole))
+    <form action="{{ route('comments.poles.pole.store', $pole) }}" method="POST" class="mb-3">
 @elseif (isset($cours))
     <form action="{{ route('comments.poles.cours.store', $cours) }}" method="POST" class="mb-3">
 @elseif (isset($compet))
     <form action="{{ route('comments.poles.competition.store', $compet) }}" method="POST" class="mb-3">
-@elseif (isset($pole))
-    <form action="{{ route('comments.poles.pole.store', $pole) }}" method="POST" class="mb-3">
 @elseif (isset($projet))
     <form action="{{ route('comments.projets.store', $projet) }}" method="POST" class="mb-3">
 @endif
@@ -44,6 +44,10 @@
     @php 
         $comments = $topic->comments;
     @endphp
+@elseif (isset($pole))
+    @php 
+        $comments = $pole->comments;
+    @endphp
 @elseif (isset($cours))
     @php 
         $comments = $cours->comments;
@@ -52,10 +56,7 @@
     @php 
         $comments = $compet->comments;
     @endphp
-@elseif (isset($pole))
-    @php 
-        $comments = $pole->comments;
-    @endphp
+
 @elseif (isset($projet))
     @php 
         $comments = $projet->comments;
