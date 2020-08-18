@@ -12,11 +12,35 @@
 	<form action="/pole/create" method="post" enctype="multipart/form-data">
 	@csrf
 
-	<label for="title"> Titre</label>
-	<input id="title" type="text" name="title" value="{{ old('title') }}">
+		<!-- Title of the pole -->
+		<div class="form-group">
+			<label class="form-title-small" for="title">Titre</label>
+			<div class="control">
+				<input class="form-control @error('title') is-invalid @enderror" type="text" value="{{ old('title') }}" id="title" name="title" required>
+			</div>
+		</div>
+		@error('title')
+		<span class="invalid-feedback" role="alert">
+			<strong>{{ $message }}</strong>
+		</span>
+		@enderror
 
-	<div class="text-center" style="margin-top:25px; margin-bottom:25px">
-		<button type="submit" class="btn btn-primary btn-rounded">AJOUTER</button>
-	</div>
+		<!-- Description of the pole -->
+		<div class="form-group">
+			<label class="form-title-small" for="desc">Decription</label>
+			<div class="control">
+				<textarea class="form-control desc @error('desc') is-invalid @enderror" id="desc" name="desc" rows="10" required>{{ old('desc') }}</textarea>
+			</div>
+		</div>
+		@error('desc')
+		<span class="invalid-feedback" role="alert">
+			<strong>{{ $message }}</strong>
+		</span>
+		@enderror
+
+		<!-- Button to edit the pole -->
+		<div class="text-center" style="margin-top:25px; margin-bottom:25px">
+			<button type="submit" class="btn btn-primary btn-rounded">Enregistrer</button>
+		</div>
 	</form>
 @endsection
