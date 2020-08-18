@@ -39,7 +39,7 @@
 
         <hr>
 
-        @include('partials.comments')
+        @include('partials.comments', ['routeName' => 'comments.store', 'object' => $topic])
     </div>
 
 </div>

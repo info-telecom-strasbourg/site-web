@@ -178,7 +178,7 @@
 
 		<hr>
 
-        @include('partials.comments')
+		@include('partials.comments', ['routeName' => 'comments.poles.cours.store', 'object' => $cours])
 	</div>
 </div>
 @endsection

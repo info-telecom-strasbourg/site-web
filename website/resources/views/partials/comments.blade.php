@@ -11,18 +11,7 @@
 <h5>Commentaires</h5>
 
 <!-- Add a comment -->
-@if (isset($topic))
-    <form action="{{ route('comments.store', $topic) }}" method="POST" class="mb-3">
-@elseif (isset($pole))
-    <form action="{{ route('comments.poles.pole.store', $pole) }}" method="POST" class="mb-3">
-@elseif (isset($cours))
-    <form action="{{ route('comments.poles.cours.store', $cours) }}" method="POST" class="mb-3">
-@elseif (isset($compet))
-    <form action="{{ route('comments.poles.competition.store', $compet) }}" method="POST" class="mb-3">
-@elseif (isset($projet))
-    <form action="{{ route('comments.projets.store', $projet) }}" method="POST" class="mb-3">
-@endif
-
+<form action="{{ route($routeName, $object) }}" method="POST" class="mb-3">
     @csrf
     <div class="form-group">
         <label for="content">Votre commentaire</label>
@@ -39,32 +28,8 @@
     <button type="submit" class="btn btn-primary">Commenter</button>
 </form>
 
-<!-- Get the comments to list -->
-@if (isset($topic))
-    @php 
-        $comments = $topic->comments;
-    @endphp
-@elseif (isset($pole))
-    @php 
-        $comments = $pole->comments;
-    @endphp
-@elseif (isset($cours))
-    @php 
-        $comments = $cours->comments;
-    @endphp
-@elseif (isset($compet))
-    @php 
-        $comments = $compet->comments;
-    @endphp
-
-@elseif (isset($projet))
-    @php 
-        $comments = $projet->comments;
-    @endphp
-@endif
-
 <!-- List all comments -->
-@forelse ($comments as $comment)
+@forelse ($object->comments as $comment)
     <div class="comment">
         <div class="card mb-2">
             <div class="card-body">
@@ -112,9 +77,9 @@
             </div>
         @endforeach
 
-        <!-- Button to see more -->
+        <!-- Button to see more replies -->
         @if(isset($comment->comments) && $comment->comments->count() > 6)
-            @include('partials.voirplus')
+            @include('partials.voirplus', ['id' => $comment->id, 'element' => 'comment-reply'])
         @endif
     </div>
 @empty
@@ -122,6 +87,6 @@
 
 
 <!-- Button to see more -->
-@if(isset($comments) && $comments->count() > 6)
-	@include('partials.voirplus')
+@if(isset($object->comments) && $object->comments->count() > 6)
+	@include('partials.voirplus', ['id' => 'comment', 'element' => 'comment'])
 @endif

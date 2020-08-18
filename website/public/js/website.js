@@ -151,12 +151,21 @@ $('button.e-today').remove();
 ***/
 $('#choose-visibility').hide();
 
-/* ##########################   Hide elements   ########################## */
+/* ##########################   Hide elements and button see more  ########################## */
 
 /*** Hide the elements if there is more than 6***/
 $(".element:gt(5)").addClass("hid").hide();
 $(".comment:gt(5)").addClass("hid").hide();
 $(".comment-reply:gt(5)").addClass("hid").hide();
+
+/*** If there is more than 6 elements, some are hidden.
+         This function will display 6 more elements ***/
+function seeMore(id, element) {
+    $("." + element + ".hid:lt(6)").fadeIn("slow").removeClass("hid");
+    if ($("." + element + ".hid").length === 0) {
+        $("div#line-btn-vp-" + id).remove();
+    }
+}
 
 
 $(document).ready(function() {
@@ -332,19 +341,6 @@ $(document).ready(function() {
         if (trie.is('[name="reset"]')) {
             $('#trie option[name="reset"]').text('Trié par');
             $('.filter-options').submit();
-        }
-    });
-
-
-    /*** If there is more than 6 elements, some are hidden.
-    	 This function will display 6 more elements ***/
-    $("input#voir-plus").click(function(e) {
-        e.preventDefault();
-        $(".element.hid:lt(6)").fadeIn("slow").removeClass("hid");
-        $(".comment.hid:lt(6)").fadeIn("slow").removeClass("hid");
-        $(".comment-reply.hid:lt(6)").fadeIn("slow").removeClass("hid");
-        if ($(".hid").length === 0) {
-            $("div#line-btn-vp").remove();
         }
     });
 

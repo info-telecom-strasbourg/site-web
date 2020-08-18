@@ -144,7 +144,7 @@
 
 			<hr>
 
-			@include('partials.comments')
+			@include('partials.comments', ['routeName' => 'comments.poles.competition.store', 'object' => $compet])
 		</div>
 
 	</div>

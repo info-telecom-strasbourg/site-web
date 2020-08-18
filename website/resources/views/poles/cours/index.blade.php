@@ -28,7 +28,7 @@
 				@if(isset($lessons))
 					@forelse ($lessons as $cour)
 
-						<div id="proj-card" class="col-md-auto sep-items">
+						<div id="proj-card" class="col-md-auto sep-items element">
 							<div class="card text-center rounded">
 								<img class="card-img-top" src="{{ asset('storage/' . json_decode($cour->image)[0]) }}" alt="Card image cap">
 								<div class="card-body d-flex flex-column">
@@ -67,11 +67,7 @@
 
 		<!-- Button to see more -->
 		@if(isset($lessons) && $lessons->count() > 6)
-	        <div id="line-btn-vp" class="d-flex justify-content-center">
-	          <div class="p-2 bd-highlight flex-grow-1"><hr class="line-voir-plus"></div>
-	          <div class="p-2 bd-highlight"><input id="voir-plus" class="btn btn-rounded btn-primary" type="button" value="Voir-plus"></div>
-	          <div class="p-2 bd-highlight flex-grow-1"><hr class="line-voir-plus"></div>
-	        </div>
+	        @include('partials.voirplus', ['id' => 'cours', 'element' => 'element'])
 		@endif
 
 		<!-- Responsable -->
@@ -110,7 +106,7 @@
 
 		<hr>
 
-		@include('partials.comments')
+        @include('partials.comments', ['routeName' => 'comments.poles.pole.store', 'object' => $pole])
     </div>
 </div>
 @endsection

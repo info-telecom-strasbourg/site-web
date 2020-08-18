@@ -114,7 +114,7 @@
 
 		<hr>
 
-        @include('partials.comments')
+        @include('partials.comments', ['routeName' => 'comments.poles.pole.store', 'object' => $pole])
     </div>
 
 </div>
