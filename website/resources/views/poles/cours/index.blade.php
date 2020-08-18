@@ -20,10 +20,12 @@
 	<div class="container pt-3">
 		<!-- Display the lesson pole description-->
 		<p>{{ $pole->desc }}</p>
-		<!-- Display all the lessons -->
         <h4 class="title md text-left">Liste des cours</h4>
 
-		@include('partials.list-cards', ['items' => $lessons, 'errorMessage' => "Aucun cours n'a été trouvée", 'routeName' => 'poles.cours.show'])
+		<!-- Display all the lessons -->
+		<div class="container pt-5">
+			@include('partials.list-cards', ['items' => $lessons, 'errorMessage' => "Aucun cours n'a été trouvée", 'routeName' => 'poles.cours.show', 'isCover' => 'true'])
+		</div>
 
 		<!-- Button to see more -->
 		@if(isset($lessons) && $lessons->count() > 6)

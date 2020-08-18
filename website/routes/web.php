@@ -63,9 +63,9 @@ Route::put('/poles/competitions/{compet}', 'CompetitionController@update')->name
 Route::get('/poles/competitions/{compet}', 'CompetitionController@show')->name('poles.competitions.show');
 
 
-Route::get('/poles/{pole}', 'PoleController@show')->name('pole.show');
-Route::put('/poles/{pole}', 'PoleController@update')->name('pole.update');
-Route::get('/poles/{pole}/edit', 'PoleController@edit')->name('pole.edit');
+Route::get('/poles/{pole}', 'PoleController@show')->name('poles.show');
+Route::put('/poles/{pole}', 'PoleController@update')->name('poles.update');
+Route::get('/poles/{pole}/edit', 'PoleController@edit')->name('poles.edit');
 
 /*########## Download ########## */
 Route::get('/download/{path}', 'CoursController@downloadFile');

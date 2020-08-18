@@ -22,7 +22,7 @@ class CreateCoursTable extends Migration
 			$table->string('title');
 			$table->text('desc');
 			$table->json('links')->nullable();
-			$table->json('images')->nullable();
+			$table->string('cover')->nullable();
         });
 
 		/**

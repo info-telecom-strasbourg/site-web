@@ -30,10 +30,10 @@ class ProjetRequest extends FormRequest
             'link_github' => 'nullable|url',
             'link_download' => 'nullable|url',
             'link_doc' => 'nullable|url',
-            'collaborateur_id' => 'nullable|integer',
             'complete' => 'boolean',
             'chef_projet_id' => 'required|integer',
-            'pole_id' => 'required|integer'
+            'pole_id' => 'required|integer',
+            'collaborateur_id' => 'nullable',
         ];
     }
 

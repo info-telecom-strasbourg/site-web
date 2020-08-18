@@ -70,9 +70,9 @@
 
 			<!-- Edit the image to illustrate lesson -->
 			<div class="form-group">
-				<label for="image_crs" class="form-title-small"> Changement de la vignette du cours</label>
+				<label for="cover" class="form-title-small"> Changement de la vignette du cours</label>
 				<br>
-				<input type="file" id="image_crs" name="image_crs">
+				<input type="file" id="cover" name="cover">
 			</div>
 
 			<!-- Add a file linked with the lesson -->

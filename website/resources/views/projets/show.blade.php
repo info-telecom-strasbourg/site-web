@@ -157,7 +157,7 @@
 
         <hr>
 
-        @include('partials.comments')
+        @include('partials.comments', ['routeName' => 'comments.projets.store', 'object' => $projet])
     </div>
 </div>
 

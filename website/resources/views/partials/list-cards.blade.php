@@ -7,7 +7,6 @@
 
  -->
 
-<div class="container pt-5">
 	<div class="row justify-content-center">
         @if(isset($items))
             @forelse ($items as $item)
@@ -16,7 +15,7 @@
             @else
                 @php $cover = json_decode($item->images)[0]; @endphp
             @endif
-            <div id="proj-card" class="col-md-auto sep-items element">
+            <div id="proj-card" class="col-md sep-items element">
                 <div class="card text-center rounded">
                     <img class="card-img-top" src="{{ asset('storage/' . $cover) }}" alt="Card image cap">
                     <div class="card-body d-flex flex-column">
@@ -51,4 +50,3 @@
 
         @endif
     </div>
-</div>

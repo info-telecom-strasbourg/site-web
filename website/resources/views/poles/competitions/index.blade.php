@@ -17,47 +17,10 @@
 	<div class="container pt-3">
         <p>{{ $pole->desc }}</p>
         <h4 class="title md text-left">Liste des compétitions</h4>
+
+		<!-- Display all the competitions -->
 		<div class="container pt-5">
-			<div class="row justify-content-center">
-
-				@if(isset($competitons))
-					@forelse ($competitons as $compet)
-
-						<div id="proj-card" class="col-md-auto sep-items element">
-							<div class="card text-center rounded">
-								<img class="card-img-top" src="{{ asset('storage/' . $compet->cover) }}" alt="Card image cap">
-								<div class="card-body d-flex flex-column">
-									<h5 class="card-title text-center font-weight-bold">
-										{{ $compet->title }}
-									</h5>
-									<p class="card-text">
-										<span>{{ mb_strlen( $compet->desc ) > 57 ? mb_substr($compet->desc, 0, 54) . ' ...' : $compet->desc }}
-		                                </span>
-									</p>
-									<a href="/poles/competitions/{{ $compet->id }}" class="btn btn-rounded btn-primary">DÉCOUVRIR</a>
-								</div>
-						  	</div>
-						</div>
-					@empty
-
-						<div class="alert alert-secondary alert-dismissible fade show col" role="alert">
-							Aucune compétition n'a été trouvée
-							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-		    					<span aria-hidden="true">&times;</span>
-		  					</button>
-						</div>
-					@endforelse
-
-				@else
-					<div class="alert alert-secondary alert-dismissible fade show col" role="alert">
-						Aucun compétition n'a été trouvé
-						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-	    					<span aria-hidden="true">&times;</span>
-	  					</button>
-					</div>
-
-				@endif
-			</div>
+			@include('partials.list-cards', ['items' => $competitons, 'errorMessage' => "Aucune compétition n'a été trouvée", 'routeName' => 'poles.competitions.show', 'isCover' => true])
 		</div>
 
 		<!-- Button to see more -->

@@ -23,7 +23,7 @@
 			<div class="row">
 				<!--Image to illustrate the lesson -->
 				<div class="col-3 disp">
-					<img src="{{ asset('storage/' . json_decode($cours->images)[0]) }}" alt="Decriptive image" style="width: 195px; height: 100%;">
+					<img src="{{ asset('storage/' . $cours->cover) }}" alt="Decriptive image" style="width: 195px; height: 100%;">
 				</div>
 
 				<!--Description of the lesson -->

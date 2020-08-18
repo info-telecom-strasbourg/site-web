@@ -71,10 +71,10 @@ class CoursController extends Controller
 			}
 		}
 
-		if ($request->has('image_crs'))
-			$cours->images = [$this->saveImage($request, $cours)];
+		if ($request->has('cover'))
+			$cours->cover = $this->saveImage($request->cover);
 		else
-			$cours->images = [$this->selectDefaultImage()];
+			$cours->cover = $this->selectDefaultImage();
 
 		$cours->save();
 
@@ -128,7 +128,7 @@ class CoursController extends Controller
 
 		$cours->update($this->validateCours());
 
-		if(request()->has('image_crs'))
+		if(request()->has('cover'))
 			$this->changeImage($cours);
 
 		if (request()->has('creators'))
@@ -152,8 +152,8 @@ class CoursController extends Controller
 		$this->authorize('update', $cours);
 
 		$cours->dates()->delete();
-		if (file_exists(storage_path('app/public/' . json_decode($cours->image)[0])) && substr(json_decode($cours->images)[0], 0, 15) != "images/default/")
-			unlink(storage_path('app/public/' . json_decode($cours->images)[0]));
+		if (file_exists(storage_path('app/public/' . $cours->cover)) && substr($cours->icover, 0, 15) != "images/default/")
+			unlink(storage_path('app/public/' . $cours->cover));
 
 		foreach ($cours->supports as $file)
 		{
@@ -173,11 +173,10 @@ class CoursController extends Controller
 	 */
 	public function validateCours ()
 	{
-		if (request()->has('image_crs'))
+		if (request()->has('cover'))
 			return request()->validate([
 				'title' => 'required',
 				'desc' => 'required',
-				// 'image_crs' => 'mimes:application/png,jpeg'
 			]);
 		else
 			return request()->validate([
@@ -223,12 +222,12 @@ class CoursController extends Controller
 	/**
 	 * Save an image given by the user in the public storage folder.
 	 *
-	 * @param request: the request of the user.
+     * @param image: the image to store.
 	 * @return the path to find the image.
 	 */
-	public function saveImage (Request $request)
+	public function saveImage ($image)
 	{
-		$path = Storage::putFile('public/images', $request->image_crs, 'private');
+		$path = Storage::putFile('public/images', $image, 'private');
         return substr($path, 7);
 	}
 
@@ -286,12 +285,12 @@ class CoursController extends Controller
 	 */
 	public function changeImage(Cours $cours)
 	{
-		if (file_exists(storage_path('app/public/' . json_decode($cours->images)[0])) && substr(json_decode($cours->images)[0], 0, 15) != "images/default/")
+		if (file_exists(storage_path('app/public/' . $cours->cover)) && substr($cours->cover, 0, 15) != "images/default/")
 		{
-			unlink(storage_path('app/public/' . json_decode($cours->images)[0]));
+			unlink(storage_path('app/public/' . $cours->cover));
 		}
 
-		$cours->images = [$this->saveImage(request(), $cours)];
+		$cours->cover = $this->saveImage(request()->cover);
 		$cours->save();
 	}
 

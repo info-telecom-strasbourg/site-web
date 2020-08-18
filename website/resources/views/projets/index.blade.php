@@ -94,52 +94,13 @@
 
 		<!-- Display projects -->
 		<div class="container pt-5">
-			<div class="row justify-content-center">
-				@if(isset($projets))
-				@forelse ($projets as $projet)
-				<div class="col-md sep-items" id="projets-container">
-					<div class="card text-center rounded">
-						<img class="card-img-top" src="{{ asset('storage/' . json_decode($projet->images)[0]) }}" alt="Card image cap">
-						<div class="card-body d-flex flex-column">
-							<h5 class="card-title text-center font-weight-bold">
-								{{ $projet->title }}
-							</h5>
-							<p class="card-text">
-								<span>{{ mb_strlen( $projet->desc ) > 57 ? mb_substr($projet->desc, 0, 54) . ' ...' : $projet->desc }}
-								</span>
-							</p>
-							@isset ($projet->projet_id)
-							<a href="/projets/{{ $projet->projet_id }}" class="btn btn-rounded btn-primary">DÉCOUVRIR</a>
-							@else
-							<a href="/projets/{{ $projet->id }}" class="btn btn-rounded btn-primary">DÉCOUVRIR</a>
-							@endisset
-						</div>
-					</div>
-				</div>
+			@include('partials.list-cards', ['items' => $projets, 'errorMessage' => "Aucun projet n'a été trouvée", 'routeName' => 'projets.show'])
 
-				@empty
-
-				<div class="alert alert-secondary alert-dismissible fade show col" role="alert">
-					Aucun projet n'a été trouvé
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				@endforelse
-
-				@else
-				<div class="alert alert-secondary alert-dismissible fade show col" role="alert">
-					Aucun projet n'a été trouvé
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				@endif
-			</div>
 			<div class="row justify-content-center link-margin-top">
 				<!-- Pagination links -->
 				{{ $projets->links() }}
 			</div>
+			
 			@can ('create', 'App\Projet')
 			<div class="text-center" style="margin-top:25px; margin-bottom:25px;">
 				<button type="submit" class="btn btn-primary btn-rounded" onclick="self.location.href='/projets/create'">Créer un projet</button>
