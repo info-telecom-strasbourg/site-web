@@ -15,8 +15,8 @@
             @else
                 @php $cover = json_decode($item->images)[0]; @endphp
             @endif
-            <div id="proj-card" class="col-md sep-items element">
-                <div class="card text-center rounded">
+            <div class="col-md sep-items element">
+                <div class="card custom-card text-center rounded">
                     <img class="card-img-top" src="{{ asset('storage/' . $cover) }}" alt="Card image cap">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title text-center font-weight-bold">

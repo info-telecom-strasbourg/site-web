@@ -107,7 +107,7 @@
                     @foreach ($projets as $projet)
                         <div class="carousel-item @if ($loop->first) active @endif">
                             <div class="col-md-4">
-                                <div class="card text-center shadow mb-5 bg-white rounded">
+                                <div class="card custom-card text-center shadow mb-5 bg-white rounded">
                                     <img class="card-img-top" src="{{ asset('storage/' . json_decode($projet->projet->images)[0]) }}" alt="Card image cap">
                                     <div class="card-body d-flex flex-column">
                                         <h5 class="card-title text-center font-weight-bold">{{ $projet->projet->title }}</h5>
