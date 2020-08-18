@@ -61,7 +61,7 @@ class CoursController extends Controller
 	public function store(Request $request)
 	{
 		$cours = Cours::create($this->validateCours());
-
+		
 		if ($request->has('link_support'))
 		{
 			foreach ($request->link_support as $file)

@@ -6,6 +6,7 @@
 .env
 .env.backup
 ../.idea/
+site_ITS_db.sql
 
 .phpunit.result.cache
 Homestead.json
