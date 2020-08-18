@@ -151,13 +151,12 @@ $('button.e-today').remove();
 ***/
 $('#choose-visibility').hide();
 
-/* ##########################   Hide projects/lessons   ########################## */
+/* ##########################   Hide elements   ########################## */
 
-/*** Hide the projects/lessons if there is more than 6***/
-$("div#proj-card:gt(5)").addClass("hid").hide();
-$("div#cours-liste:gt(5)").addClass("hid").hide();
-
-
+/*** Hide the elements if there is more than 6***/
+$(".element:gt(5)").addClass("hid").hide();
+$(".comment:gt(5)").addClass("hid").hide();
+$(".comment-reply:gt(5)").addClass("hid").hide();
 
 
 $(document).ready(function() {
@@ -337,17 +336,17 @@ $(document).ready(function() {
     });
 
 
-    /*** If there is more than 6 lessons/projects, some are hidden.
-    	 This function will display 6 more lessons ***/
+    /*** If there is more than 6 elements, some are hidden.
+    	 This function will display 6 more elements ***/
     $("input#voir-plus").click(function(e) {
         e.preventDefault();
-        $("div#proj-card.hid:lt(6)").fadeIn("slow").removeClass("hid");
-        $("div#cours-liste.hid:lt(6)").fadeIn("slow").removeClass("hid");
+        $(".element.hid:lt(6)").fadeIn("slow").removeClass("hid");
+        $(".comment.hid:lt(6)").fadeIn("slow").removeClass("hid");
+        $(".comment-reply.hid:lt(6)").fadeIn("slow").removeClass("hid");
         if ($(".hid").length === 0) {
             $("div#line-btn-vp").remove();
         }
     });
-
 
     /*** Remove the files selected if you refresh the page ***/
     $('input[type="file"]#link_support').val('');

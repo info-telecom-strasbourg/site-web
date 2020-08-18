@@ -20,15 +20,6 @@ class CommentController extends Controller
     }
 
     /**
-     * Gets the comments of the comment.
-	 *
-	 * @return the comments of the comment.
-     */
-    public function comments() {
-        return $this->morphMany('App\Comment', 'commentable')->latest();
-    }
-
-    /**
      * Store a comment to a topic.
      *
      * @param  topic: the topic.
@@ -147,6 +138,4 @@ class CommentController extends Controller
 
         return redirect()->route('projets.show', $projet);
     }
-
-
 }

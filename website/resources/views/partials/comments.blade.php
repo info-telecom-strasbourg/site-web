@@ -65,51 +65,63 @@
 
 <!-- List all comments -->
 @forelse ($comments as $comment)
-    <div class="card mb-2">
-        <div class="card-body">
-            {{ $comment->content }}
-            <div class="d-flex justify-content-between align-items-center">
-                <small>Posté le {{ $comment->created_at->format('d/m/Y') }}</small>
-                <span class="badge badge-primary">{{ $comment->user->name }}</span>
-            </div>
-        </div>
-    </div>
-
-    @auth
-        <!-- Button reply to comment -->
-        <button class="btn btn-info mb-3" onclick="toggleReplyComment({{ $comment->id }})">Répondre</button>
-
-        <!-- Reply to the current comment form -->
-        <form action="{{ route('comments.storeReply', $comment) }}" method="POST" class="mb-3 ml-5 d-none"
-            id="replyComment-{{ $comment->id }}">
-            @csrf
-            <div class="form-group">
-                <label for="replyComment">Ma réponse</label>
-                <textarea class="form-control @error('replyComment') is-invalid @enderror" name="replyComment" rows="5"
-                    required>{{ old('replyComment') }}</textarea>
-
-                @error('replyComment')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-            <button type="submit" class="btn btn-primary">Répondre</button>
-        </form>
-    @endauth
-
-    <!-- List all replies to the current comment -->
-    @foreach ($comment->comments as $replyComment)
-        <div class="card mb-2 ml-5">
+    <div class="comment">
+        <div class="card mb-2">
             <div class="card-body">
-                {{ $replyComment->content }}
+                {{ $comment->content }}
                 <div class="d-flex justify-content-between align-items-center">
-                    <small>Posté le {{ $replyComment->created_at->format('d/m/Y') }}</small>
-                    <span class="badge badge-primary">{{ $replyComment->user->name }}</span>
+                    <small>Posté le {{ $comment->created_at->format('d/m/Y') }}</small>
+                    <span class="badge badge-primary">{{ $comment->user->name }}</span>
                 </div>
             </div>
         </div>
-    @endforeach
 
-    @empty
-    @endforelse
+        @auth
+            <!-- Button reply to comment -->
+            <button class="btn btn-info mb-3" onclick="toggleReplyComment({{ $comment->id }})">Répondre</button>
+
+            <!-- Reply to the current comment form -->
+            <form action="{{ route('comments.storeReply', $comment) }}" method="POST" class="mb-3 ml-5 d-none"
+                id="replyComment-{{ $comment->id }}">
+                @csrf
+                <div class="form-group">
+                    <label for="replyComment">Ma réponse</label>
+                    <textarea class="form-control @error('replyComment') is-invalid @enderror" name="replyComment" rows="5"
+                        required>{{ old('replyComment') }}</textarea>
+
+                    @error('replyComment')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+                <button type="submit" class="btn btn-primary">Répondre</button>
+            </form>
+        @endauth
+
+        <!-- List all replies to the current comment -->
+        @foreach ($comment->comments as $replyComment)
+            <div class="card mb-2 ml-5 comment-reply">
+                <div class="card-body">
+                    {{ $replyComment->content }}
+                    <div class="d-flex justify-content-between align-items-center">
+                        <small>Posté le {{ $replyComment->created_at->format('d/m/Y') }}</small>
+                        <span class="badge badge-primary">{{ $replyComment->user->name }}</span>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+
+        <!-- Button to see more -->
+        @if(isset($comment->comments) && $comment->comments->count() > 6)
+            @include('partials.voirplus')
+        @endif
+    </div>
+@empty
+@endforelse
+
+
+<!-- Button to see more -->
+@if(isset($comments) && $comments->count() > 6)
+	@include('partials.voirplus')
+@endif
