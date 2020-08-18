@@ -19,6 +19,7 @@ use App\Pole;
 Route::get('/', 'WelcomeController@welcome')->name('welcome');
 Route::post('/contact', 'WelcomeController@store')->name('welcome.store');
 
+/***** Route besoin d'aide *****/
 Route::get('/besoin-aide', function () {
     return view('besoin-aide');
 });
@@ -90,4 +91,7 @@ Route::get('/projets/create','ProjetController@create')->name('projets.create')-
 
 /***** Route users *****/
 Route::get('/users', 'UserController@index')->name('users.index');
+Route::put('/users/{user}', 'UserController@update')->name('users.update');
 Route::get('/users/{user}', 'UserController@show')->name('users.show');
+Route::post('/users/{user}/avatar', 'UserController@update_avatar');
+Route::post('/users/{user}/search', 'UserController@search');
