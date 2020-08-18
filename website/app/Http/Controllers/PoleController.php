@@ -39,7 +39,7 @@ class PoleController extends Controller
      */
     public function create()
     {
-		//TODO just in case
+		return View('poles.create');
     }
 
     /**
@@ -49,8 +49,17 @@ class PoleController extends Controller
      */
     public function store()
     {
+		dd(request());
+		Pole::create($this->validateCreate());
 		//TODO just in case
     }
+
+	public function validateCreate()
+	{
+		return request()->validate([
+			'title' => 'required|min:3|max:255',
+		]);
+	}
 
     /**
      * Show the form for editing the specified pole.

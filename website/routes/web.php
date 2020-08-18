@@ -41,6 +41,16 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/poles/cours', 'CoursController@index')->name('poles.cours.index');
 
 
+
+
+Route::get('/poles/create', 'PoleController@create')->name('poles.create');
+Route::post('/pole/create', 'PoleController@store')->name('pole.create');
+
+
+
+
+
+
 /*########## Cours ########## */
 Route::post('/poles/cours', 'CoursController@store')->name('poles.cours.store');
 
