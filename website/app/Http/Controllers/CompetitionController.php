@@ -21,7 +21,7 @@ class CompetitionController extends Controller
 	 */
     public function index()
 	{
-		return view('poles.competitions.index', [ 'compets' => Competition::all(), 'pole' => Pole::where('slug', 'competitions')->first() ]);
+		return view('poles.competitions.index', [ 'competitons' => Competition::all(), 'pole' => Pole::where('slug', 'competitions')->first() ]);
 	}
 
 	/**
@@ -33,8 +33,7 @@ class CompetitionController extends Controller
 
 	public function show(Competition $compet)
 	{
-		$pole = Pole::where('slug', 'competitions')->first();
-		return view('poles/competitions/show', [ 'compet' => $compet, 'pole' => $pole ]);
+		return view('poles/competitions/show', [ 'compet' => $compet ]);
 	}
 
 	/**

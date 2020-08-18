@@ -175,6 +175,10 @@
 				</div>
 			</div>
 		@endcan
+
+		<hr>
+
+        @include('partials.comments')
 	</div>
 </div>
 @endsection

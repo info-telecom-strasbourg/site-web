@@ -1,15 +1,5 @@
 @extends('layouts.layout')
 
-@section('extra-js')
-    <script>
-        function toggleReplyComment(id) {
-            let element = document.getElementById('replyComment-' + id);
-            element.classList.toggle('d-none');
-        }
-    
-    </script>
-@endsection
-
 @section('title', 'Boîte à idées - ' . $topic->title)
 
 @section('content')

@@ -1,6 +1,69 @@
+@section('extra-js')
+    <script>
+        function toggleReplyComment(id) {
+            let element = document.getElementById('replyComment-' + id);
+            element.classList.toggle('d-none');
+        }
+    
+    </script>
+@endsection
+
 <h5>Commentaires</h5>
+
+<!-- Add a comment -->
+@if (isset($topic))
+    <form action="{{ route('comments.store', $topic) }}" method="POST" class="mb-3">
+@elseif (isset($cours))
+    <form action="{{ route('comments.poles.cours.store', $cours) }}" method="POST" class="mb-3">
+@elseif (isset($compet))
+    <form action="{{ route('comments.poles.competition.store', $compet) }}" method="POST" class="mb-3">
+@elseif (isset($pole))
+    <form action="{{ route('comments.poles.pole.store', $pole) }}" method="POST" class="mb-3">
+@elseif (isset($projet))
+    <form action="{{ route('comments.projets.store', $projet) }}" method="POST" class="mb-3">
+@endif
+
+    @csrf
+    <div class="form-group">
+        <label for="content">Votre commentaire</label>
+        <textarea class="form-control @error('content') is-invalid @enderror" name="content" rows="5"
+            required>{{ old('content') }}</textarea>
+
+        @error('content')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+    </div>
+
+    <button type="submit" class="btn btn-primary">Commenter</button>
+</form>
+
+<!-- Get the comments to list -->
+@if (isset($topic))
+    @php 
+        $comments = $topic->comments;
+    @endphp
+@elseif (isset($cours))
+    @php 
+        $comments = $cours->comments;
+    @endphp
+@elseif (isset($compet))
+    @php 
+        $comments = $compet->comments;
+    @endphp
+@elseif (isset($pole))
+    @php 
+        $comments = $pole->comments;
+    @endphp
+@elseif (isset($projet))
+    @php 
+        $comments = $projet->comments;
+    @endphp
+@endif
+
 <!-- List all comments -->
-@forelse ($topic->comments as $comment)
+@forelse ($comments as $comment)
     <div class="card mb-2">
         <div class="card-body">
             {{ $comment->content }}
@@ -48,23 +111,4 @@
     @endforeach
 
     @empty
-        <div class="alert-info">Aucun commentaire pour cette idée</div>
     @endforelse
-
-<!-- Add a comment -->
-<form action="{{ route('comments.store', $topic) }}" method="POST" class="mt-3">
-    @csrf
-    <div class="form-group">
-        <label for="content">Votre commentaire</label>
-        <textarea class="form-control @error('content') is-invalid @enderror" name="content" rows="5"
-            required>{{ old('content') }}</textarea>
-
-        @error('content')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
-    </div>
-
-    <button type="submit" class="btn btn-primary">Commenter</button>
-</form>

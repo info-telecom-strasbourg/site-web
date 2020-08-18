@@ -111,6 +111,10 @@
 				<button type="submit" class="btn btn-primary btn-rounded" onclick="self.location.href='/poles/{{ $pole->id }}/edit'">Éditer</button>
 			</div>
 		@endcan
+
+		<hr>
+
+        @include('partials.comments')
     </div>
 
 </div>

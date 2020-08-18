@@ -57,6 +57,15 @@ class Projet extends Model
     }
 
     /**
+     * Gets the comments of the project.
+	 *
+	 * @return the comments of the project.
+     */
+    public function comments() {
+        return $this->morphMany('App\Comment', 'commentable')->latest();
+    }
+
+    /**
      * Scope a query to only include researched projects.
 	 * If a search value has been specified, search if the a title or the
 	 * description has this value otherwise return the query.

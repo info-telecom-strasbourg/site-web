@@ -90,3 +90,12 @@ Route::get('/users/{user}', 'UserController@show')->name('users.show');
 /***** Route topics *****/
 Route::resource('topics', 'TopicController');
 
+/***** Route comments *****/
+Route::post('/comments/{topic}', 'CommentController@store')->name('comments.store');
+Route::post('/comments/poles/cours/{cours}', 'CommentController@storeCours')->name('comments.poles.cours.store');
+Route::post('/comments/poles/competition/{compet}', 'CommentController@storeCompetition')->name('comments.poles.competition.store');
+Route::post('/comments/poles/pole/{pole}', 'CommentController@storePole')->name('comments.poles.pole.store');
+Route::post('/comments/projets/{projet}', 'CommentController@storeProject')->name('comments.projets.store');
+Route::post('/commentsReply/{comment}', 'CommentController@storeCommentReply')->name('comments.storeReply');
+
+

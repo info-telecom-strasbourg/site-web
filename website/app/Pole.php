@@ -32,4 +32,13 @@ class Pole extends Model
     {
         return $this->hasMany(Projet::class)->orderBy('id', 'DESC');
     }
+
+    /**
+     * Gets the comments of the pole.
+	 *
+	 * @return the comments of the pole.
+     */
+    public function comments() {
+        return $this->morphMany('App\Comment', 'commentable')->latest();
+    }
 }

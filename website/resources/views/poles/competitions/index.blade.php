@@ -20,8 +20,8 @@
 		<div class="container pt-5">
 			<div class="row justify-content-center">
 
-				@if(isset($compets))
-					@forelse ($compets as $compet)
+				@if(isset($competitons))
+					@forelse ($competitons as $compet)
 
 						<div id="proj-card" class="col-md-auto sep-items">
 							<div class="card text-center rounded">
@@ -61,7 +61,7 @@
 		</div>
 
 		<!-- Button to see more -->
-		@if(isset($compets) && $compets->count() > 6)
+		@if(isset($competitons) && $competitons->count() > 6)
 	        <div id="line-btn-vp" class="d-flex justify-content-center">
 	          <div class="p-2 bd-highlight flex-grow-1"><hr class="line-voir-plus"></div>
 	          <div class="p-2 bd-highlight"><input id="voir-plus" class="btn btn-rounded btn-primary" type="button" value="Voir-plus"></div>
@@ -103,6 +103,9 @@
 			</div>
 		@endcan
 
+		<hr>
+
+		@include('partials.comments')
     </div>
 </div>
 @endsection
