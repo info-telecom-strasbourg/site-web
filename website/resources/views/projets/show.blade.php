@@ -90,13 +90,36 @@
         @endforeach
         @endif
 
+		<!-- Sort dates -->
+		@php
+		    use Carbon\Carbon;
+		    $today_date = Carbon::now();
+			$pastEvents = array();
+			$futurEvents = array();
+			$todayEvent = "today";
+
+		    foreach ($projet->timeline as $event) {
+		        $expire_date = Carbon::createFromFormat('Y-m-d', $event->date);
+		        $data_difference = $today_date->diffInDays($event->date, false);
+
+				if($expire_date->isToday())
+					$todayEvent = $event;
+		        elseif($today_date->lt($event->date, false))
+		            $futurEvents[] = $event;
+		        else
+		            $pastEvents[] = $event;
+			}
+		@endphp
+
         <!-- Timeline of the project -->
+		@if(!$projet->timeline->isEmpty())
+
         <div class="bordure"></div>
         <h4 class="title md text-center">Timeline du projet</h4>
         <div class="container mt-5 mb-5">
             <div class="row">
                 <ul class="timeline">
-                    @foreach($projet->timeline as $event)
+					@forelse($futurEvents as $event)
                     <li>
                         <div style="color: #007bff">
                             {{ \Carbon\Carbon::parse($event->date)->translatedFormat('j F Y') }}
@@ -107,13 +130,42 @@
                         </div>
                         <p>{{$event->desc}}</p>
                     </li>
-                    @endforeach
-                    <li id="today">
-                        <div style="color: #007bff">Aujourd'hui</div>
+					@empty
+                    @endforelse
+					@if($todayEvent != "today")
+						<li id="today">
+							<div style="color: #007bff">Aujourd'hui
+								@can ('update', $projet)
+	                            <button id="button-upd-step" type="button" data-toggle="modal" data-target="#upd-step{{ $event->id }}"><i class="buttons-timeline-edit fas fa-pen"></i><span style="margin-left: 10px; color:#2d64ba;">Modifier</span></button>
+	                            <a id="button-trash" href="/timeline/{{ $event->id }}/destroy"><i class="buttons-timeline-trash fas fa-trash"></i><span style="margin-left: 10px; color:#de4242;">Supprimer</span></a>
+	                            @endcan
+	                        </div>
+	                        <p>{{$todayEvent->desc}}</p>
+						</li>
+					@else
+	                    <li id="today">
+	                        <div style="color: #007bff">Aujourd'hui</div>
+	                    </li>
+					@endif
+
+					@forelse($pastEvents as $event)
+                    <li>
+                        <div style="color: #007bff">
+                            {{ \Carbon\Carbon::parse($event->date)->translatedFormat('j F Y') }}
+                            @can ('update', $projet)
+                            <button id="button-upd-step" type="button" data-toggle="modal" data-target="#upd-step{{ $event->id }}"><i class="buttons-timeline-edit fas fa-pen"></i><span style="margin-left: 10px; color:#2d64ba;">Modifier</span></button>
+                            <a id="button-trash" href="/timeline/{{ $event->id }}/destroy"><i class="buttons-timeline-trash fas fa-trash"></i><span style="margin-left: 10px; color:#de4242;">Supprimer</span></a>
+                            @endcan
+                        </div>
+                        <p>{{$event->desc}}</p>
                     </li>
+					@empty
+                    @endforelse
                 </ul>
             </div>
         </div>
+		
+		@endif
 
         <!-- The buttons to the timeline -->
         @can ('update', $projet)
