@@ -22,48 +22,8 @@
 		<p>{{ $pole->desc }}</p>
 		<!-- Display all the lessons -->
         <h4 class="title md text-left">Liste des cours</h4>
-		<div class="container pt-5">
-			<div class="row justify-content-center">
 
-				@if(isset($lessons))
-					@forelse ($lessons as $cour)
-
-						<div id="proj-card" class="col-md-auto sep-items element">
-							<div class="card text-center rounded">
-								<img class="card-img-top" src="{{ asset('storage/' . json_decode($cour->image)[0]) }}" alt="Card image cap">
-								<div class="card-body d-flex flex-column">
-									<h5 class="card-title text-center font-weight-bold">
-										{{ $cour->title }}
-									</h5>
-									<p class="card-text">
-										<span>{{ mb_strlen( $cour->desc ) > 57 ? mb_substr($cour->desc, 0, 54) . ' ...' : $cour->desc }}
-		                                </span>
-									</p>
-									<a href="/poles/cours/{{ $cour->id }}" class="btn btn-rounded btn-primary">DÉCOUVRIR</a>
-								</div>
-						  	</div>
-						</div>
-					@empty
-
-						<div class="alert alert-secondary alert-dismissible fade show col" role="alert">
-							Aucun cours n'a été trouvé
-							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-		    					<span aria-hidden="true">&times;</span>
-		  					</button>
-						</div>
-					@endforelse
-
-				@else
-					<div class="alert alert-secondary alert-dismissible fade show col" role="alert">
-						Aucun cours n'a été trouvé
-						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-	    					<span aria-hidden="true">&times;</span>
-	  					</button>
-					</div>
-
-				@endif
-			</div>
-		</div>
+		@include('partials.list-cards', ['items' => $lessons, 'errorMessage' => "Aucun cours n'a été trouvée", 'routeName' => 'poles.cours.show'])
 
 		<!-- Button to see more -->
 		@if(isset($lessons) && $lessons->count() > 6)

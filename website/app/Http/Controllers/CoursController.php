@@ -72,9 +72,9 @@ class CoursController extends Controller
 		}
 
 		if ($request->has('image_crs'))
-			$cours->image = [$this->saveImage($request, $cours)];
+			$cours->images = [$this->saveImage($request, $cours)];
 		else
-			$cours->image = [$this->selectDefaultImage()];
+			$cours->images = [$this->selectDefaultImage()];
 
 		$cours->save();
 
@@ -152,8 +152,8 @@ class CoursController extends Controller
 		$this->authorize('update', $cours);
 
 		$cours->dates()->delete();
-		if (file_exists(storage_path('app/public/' . json_decode($cours->image)[0])) && substr(json_decode($cours->image)[0], 0, 15) != "images/default/")
-			unlink(storage_path('app/public/' . json_decode($cours->image)[0]));
+		if (file_exists(storage_path('app/public/' . json_decode($cours->image)[0])) && substr(json_decode($cours->images)[0], 0, 15) != "images/default/")
+			unlink(storage_path('app/public/' . json_decode($cours->images)[0]));
 
 		foreach ($cours->supports as $file)
 		{
@@ -177,7 +177,7 @@ class CoursController extends Controller
 			return request()->validate([
 				'title' => 'required',
 				'desc' => 'required',
-				'image_crs' => 'mimes:application/png,jpeg'
+				// 'image_crs' => 'mimes:application/png,jpeg'
 			]);
 		else
 			return request()->validate([
@@ -286,12 +286,12 @@ class CoursController extends Controller
 	 */
 	public function changeImage(Cours $cours)
 	{
-		if (file_exists(storage_path('app/public/' . json_decode($cours->image)[0])) && substr(json_decode($cours->image)[0], 0, 15) != "images/default/")
+		if (file_exists(storage_path('app/public/' . json_decode($cours->images)[0])) && substr(json_decode($cours->images)[0], 0, 15) != "images/default/")
 		{
-			unlink(storage_path('app/public/' . json_decode($cours->image)[0]));
+			unlink(storage_path('app/public/' . json_decode($cours->images)[0]));
 		}
 
-		$cours->image = [$this->saveImage(request(), $cours)];
+		$cours->images = [$this->saveImage(request(), $cours)];
 		$cours->save();
 	}
 
