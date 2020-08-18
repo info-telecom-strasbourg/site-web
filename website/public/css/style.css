@@ -1131,6 +1131,32 @@ div.bordure {
     border: 3px solid #de4242;
 }
 
+#projet #button-upd-step {
+    background: none;
+    border: none;
+    margin-left: 15px;
+    margin-right: 10px;
+}
+
+#projet .buttons-timeline-edit {
+    background-color: transparent;
+    color: #2d64ba;
+}
+
+#projet .buttons-timeline-trash {
+    background-color: transparent;
+    color: #de4242;
+}
+
+#projet #button-new-step {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#projet #button-trash:hover {
+    text-decoration: none;
+}
+
 
 /* ##########################   BESOIN D'AIDE   ########################## */
 

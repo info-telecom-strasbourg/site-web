@@ -96,12 +96,18 @@
         <div class="container mt-5 mb-5">
             <div class="row">
                 <ul class="timeline">
-					@foreach($projet->timeline as $event)
-					<li>
-						<div style="color: #007bff">{{ \Carbon\Carbon::parse($event->date)->translatedFormat('j F Y') }}</div>
-						<p>{{$event->desc}}</p>
-					</li>
-					@endforeach
+                    @foreach($projet->timeline as $event)
+                    <li>
+                        <div style="color: #007bff">
+                            {{ \Carbon\Carbon::parse($event->date)->translatedFormat('j F Y') }}
+                            @can ('update', $projet)
+                            <button id="button-upd-step" type="button" data-toggle="modal" data-target="#upd-step{{ $event->id }}"><i class="buttons-timeline-edit fas fa-pen"></i><span style="margin-left: 10px; color:#2d64ba;">Modifier</span></button>
+                            <a id="button-trash" href="/timeline/{{ $event->id }}/destroy"><i class="buttons-timeline-trash fas fa-trash"></i><span style="margin-left: 10px; color:#de4242;">Supprimer</span></a>
+                            @endcan
+                        </div>
+                        <p>{{$event->desc}}</p>
+                    </li>
+                    @endforeach
                     <li id="today">
                         <div style="color: #007bff">Aujourd'hui</div>
                     </li>
@@ -109,10 +115,11 @@
             </div>
         </div>
 
-		<!-- The buttons to the timeline -->
-		@can ('update', $projet)
-			@include('poles.timeline', ['object' => $projet ])
-		@endcan
+        <!-- The buttons to the timeline -->
+        @can ('update', $projet)
+        @include('poles.timeline', ['object' => $projet ])
+        @endcan
+
         <!-- Images of the project -->
         <div class="bordure"></div>
         <h4 class="title md text-center">Le projet en images</h4>

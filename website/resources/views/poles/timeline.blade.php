@@ -1,9 +1,9 @@
-<button id="button-new-step" type="button" data-toggle="modal" data-target="#new-step" class="btn btn-primary">Ajouter une étape</button>
+<div style="display: flex; justify-content: center;"><button id="button-new-step" type="button" data-toggle="modal" data-target="#new-step" class="btn btn-primary btn-rounded">Ajouter un évènement</button></div>
 <div class="modal" id="new-step">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title">Nouvelle étape</h4>
+				<h4 class="modal-title">Nouvel évènement</h4>
 				<button type="button" class="close" data-dismiss="modal" style="color: white;">
 					<span>&times;</span> <!-- Cross button -->
 				</button>
@@ -21,13 +21,13 @@
 						</div>
 					</div>
 					<span id="desc-error" class="invalid-feedback" role="alert" style="display: none;">
-						<strong>Il faut une description pour l'étape</strong>
+						<strong>Il faut une description pour l'évènement</strong>
 					</span>
 
 					<!-- Give a date to the step -->
 					<div class="col-md-auto">
 						<label class="form-title-small">
-							Dates en pour l'étape
+							Dates pour l'évènement
 						</label>
 						<div class="dates-step text-center">
 							<div id="calendar-step">
@@ -40,7 +40,7 @@
 					<div id="dates-select">
 					</div>
 					<span id="date-error" class="invalid-feedback" role="alert" style="display: none;">
-						<strong>Il faut une date pour l'étape</strong>
+						<strong>Il faut une date pour l'évènement</strong>
 					</span>
 
 
@@ -54,12 +54,11 @@
 	</div>
 </div>
 @foreach($object->timeline as $step)
-	<button id="button-upd-step" type="button" data-toggle="modal" data-target="#upd-step{{ $step->id }}" class="btn btn-primary">Édition de l'étape {{ $step->date }}</button>
 	<div class="modal" id="upd-step{{ $step->id }}">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title">Édition de l'étape {{ $step->date }}</h4>
+					<h4 class="modal-title">Édition de l'évènement</h4>
 					<button type="button" class="close" data-dismiss="modal" style="color: white;">
 						<span>&times;</span> <!-- Cross button -->
 					</button>
@@ -78,13 +77,13 @@
 							</div>
 						</div>
 						<span id="desc-error{{ $step->id }}" class="invalid-feedback" role="alert" style="display: none;">
-							<strong>Il faut une description pour l'étape</strong>
+							<strong>Il faut une description pour l'évènement</strong>
 						</span>
 
 						<!-- Give a date to the step -->
 						<div class="col-md-auto">
 							<label class="form-title-small">
-								Dates en pour l'étape
+								Dates pour l'évènement
 							</label>
 							<div class="dates-step text-center">
 								<div id="calendar-step-edt{{ $step->id }}" class="calendar-step-edt">
@@ -97,7 +96,7 @@
 						<div id="dates-select{{ $step->id }}">
 						</div>
 						<span id="date-error{{ $step->id }}" class="invalid-feedback" role="alert" style="display: none;">
-							<strong>Il faut une date pour l'étape</strong>
+							<strong>Il faut une date pour l'évènement</strong>
 						</span>
 
 						<input type="text" name="reference_id" value="{{ $object->id }}" hidden>
@@ -109,7 +108,6 @@
 			</div>
 		</div>
 	</div>
-	<a class="btn btn-rounded button-panel" href="/timeline/{{ $step->id }}/destroy">Supprimer</a>
 @endforeach
 <script>
 /**
