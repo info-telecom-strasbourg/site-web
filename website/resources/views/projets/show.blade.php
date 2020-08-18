@@ -112,8 +112,7 @@
 		@endphp
 
         <!-- Timeline of the project -->
-		@if(!$projet->timeline->isEmpty())
-
+		@if(!$projet->timeline->isEmpty() || (Auth::check() && Auth::user()->id == $projet->chef->id ))
         <div class="bordure"></div>
         <h4 class="title md text-center">Timeline du projet</h4>
         <div class="container mt-5 mb-5">
@@ -225,7 +224,7 @@
         @can ('update', $projet)
         <div class="d-flex flex-row justify-content-around" style="margin-top: auto;">
             <div class="text-center" style="margin-top:25px; margin-bottom:25px;">
-                <button type="submit" class="btn btn-primary btn-rounded" onclick="self.location.href='/projets/{{ $projet->id }}/edit'">Éditer</button>
+                <button type="submit" class="btn btn-primary btn-rounded" onclick="self.location.href='/projets/{{ $projet->id }}/edit'">Modifier</button>
             </div>
             <div class="text-center" style="margin-top:25px; margin-bottom:25px;">
                 <form action="/projets/{{ $projet->id }}" method="POST">

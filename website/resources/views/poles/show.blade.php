@@ -82,28 +82,6 @@
 	        </div>
 		@endif
 
-		<!-- Responsable -->
-		<h4 class="title md text-left respo">Responsable {{ strtolower($pole->title) }}</h4>
-		<div class="container pt-5" style="padding-top: 1rem !important; margin-bottom: -35px;">
-			<div class="row align-items-center">
-				<div class="col-md-auto sep-items">
-					<a href="/users/{{ $pole->respo->id }}" class="user-link">
-						<div class="card p-2 rounded chef-projet" style="min-width: 220px !important; height: 100px !important; cursor: pointer;">
-							<div class="row no-gutters align-items-center" style="flex-wrap: unset; height: 100% !important;">
-								<div class="col-md-4" style="width: 60px !important;">
-									<img src="{{ asset('storage/' . $pole->respo->profil_picture) }}" class="card-img profil-rounded" style="width: 60px !important; height: 60px !important;">
-								</div>
-								<div class="col-md-8">
-									<div class="card-body">
-										<h5 class="card-title" style="margin-bottom: 0;"> {{ $pole->respo->name }}</h5>
-									</div>
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
-			</div>
-		</div>
 		<!-- Sort dates -->
 		@php
 		    use Carbon\Carbon;
@@ -126,7 +104,7 @@
 		@endphp
 
 		<!-- Timeline of the pole -->
-		@if(!$pole->timeline->isEmpty())
+		@if(!$pole->timeline->isEmpty() || (Auth::check() && Auth::user()->id == $pole->respo->id ))
 
 		<div class="bordure"></div>
         <h4 class="title md text-center">Timeline du pôle</h4>
@@ -186,10 +164,34 @@
 			@include('poles.timeline', ['object' => $pole ])
 		@endcan
 
+		<!-- Responsable -->
+		<div style="margin-bottom: 100px;"></div>
+		<h4 class="title md text-left respo">Responsable {{ strtolower($pole->title) }}</h4>
+		<div class="container pt-5" style="padding-top: 1rem !important; margin-bottom: -35px;">
+			<div class="row align-items-center">
+				<div class="col-md-auto sep-items">
+					<a href="/users/{{ $pole->respo->id }}" class="user-link">
+						<div class="card p-2 rounded chef-projet" style="min-width: 220px !important; height: 100px !important; cursor: pointer;">
+							<div class="row no-gutters align-items-center" style="flex-wrap: unset; height: 100% !important;">
+								<div class="col-md-4" style="width: 60px !important;">
+									<img src="{{ asset('storage/' . $pole->respo->profil_picture) }}" class="card-img profil-rounded" style="width: 60px !important; height: 60px !important;">
+								</div>
+								<div class="col-md-8">
+									<div class="card-body">
+										<h5 class="card-title" style="margin-bottom: 0;"> {{ $pole->respo->name }}</h5>
+									</div>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+
 		<!-- Button to edit the pole -->
 		@can ('update', $pole)
 			<div class="text-center" style="margin-top:25px; margin-bottom:25px;">
-				<button type="submit" class="btn btn-primary btn-rounded" onclick="self.location.href='/poles/{{ $pole->id }}/edit'">Éditer</button>
+				<button type="submit" class="btn btn-primary btn-rounded" onclick="self.location.href='/poles/{{ $pole->id }}/edit'">Modifier</button>
 			</div>
 		@endcan
     </div>
