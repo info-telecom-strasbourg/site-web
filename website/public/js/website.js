@@ -2,7 +2,7 @@
 	 From "sun jan 03 2020" to "2020-01-03"
 ***/
 function parseDate(dateTable, inputName) {
-    $.each(dateTable, function (index, value) {
+    $.each(dateTable, function(index, value) {
         var str = value.toString();
         var day = str.substring(8, 10);
         var monthName = str.substring(4, 7);
@@ -95,7 +95,7 @@ function translateCalendar(that) {
         default:
             that.append(month + year);
     }
-    $('thead.e-week-header').each(function () {
+    $('thead.e-week-header').each(function() {
         $(this).empty();
         $(this).append('<tr>');
         $(this).append('<th>Di</th>');
@@ -130,14 +130,14 @@ var calendarComp = new ej.calendars.Calendar({
 calendarComp.appendTo('#cal-comp-dates');
 
 /*** Translate the calendar after the user changed the month ***/
-$('div.e-day.e-title').each(function () {
+$('div.e-day.e-title').each(function() {
     translateCalendar($(this));
 });
 
 /*** Translate the calendar after the user changed the month ***/
-$('div.e-control.e-calendar.e-lib.e-keyboard').each(function () {
-    $(this).click(function () {
-        $('div.e-day.e-title').each(function () {
+$('div.e-control.e-calendar.e-lib.e-keyboard').each(function() {
+    $(this).click(function() {
+        $('div.e-day.e-title').each(function() {
             translateCalendar($(this));
         });
     });
@@ -159,7 +159,7 @@ $("div#cours-liste:gt(5)").addClass("hid").hide();
 
 
 /* ##########################   Show / hide password on profil page ########################## */
-$(".reveal").on('click', function () {
+$(".reveal").on('click', function() {
     var $pwd = $(".pwd");
     var $icon = $(".eye-icon");
 
@@ -174,7 +174,7 @@ $(".reveal").on('click', function () {
     }
 });
 
-$(".reveal-confirm").on('click', function () {
+$(".reveal-confirm").on('click', function() {
     var $pwd = $(".pwd-confirm");
     var $icon = $(".eye-icon-confirm");
 
@@ -205,12 +205,12 @@ function showSearchBar(id) {
 }
 
 /*** Enable tooltips ***/
-$(function () {
+$(function() {
     $('[data-toggle="tooltip"]').tooltip()
 });
 
 
-$(document).ready(function () {
+$(document).ready(function() {
     // color navbar when loading page
     if (window.location.pathname == '/') {
         var rgba = $(document).scrollTop() / 500;
@@ -230,7 +230,7 @@ $(document).ready(function () {
     /* Scroll */
 
     // function when user scrolls
-    $(document).on('scroll', function (e) {
+    $(document).on('scroll', function(e) {
         if (window.location.pathname != '/')
             return;
         var rgba = $(document).scrollTop() / 500;
@@ -264,7 +264,7 @@ $(document).ready(function () {
     }
 
     // Update on window resize
-    $(window).resize(function () {
+    $(window).resize(function() {
         $(".hidden").remove(); // remove it
         if ($("body").hasClass("xl")) {
             // Remove hide button that is used to center links
@@ -289,7 +289,7 @@ $(document).ready(function () {
 
 
     // Allows to correctly animate the multiple carousel (for projects)
-    $('#nos-projets .carousel .carousel-item').each(function () {
+    $('#nos-projets .carousel .carousel-item').each(function() {
         var minPerSlide = 3;
         var next = $(this).next();
         if (!next.length) {
@@ -308,7 +308,7 @@ $(document).ready(function () {
 
     //Allows to progressively descend the page to move to the contact section
     if (window.location.pathname == '/') {
-        $('.js-scrollTo').on('click', function () {
+        $('.js-scrollTo').on('click', function() {
             var page = $('.js-scrollTo').attr('href');
             var anchor = page.substring(1, page.length);
             var speed = 750;
@@ -318,9 +318,9 @@ $(document).ready(function () {
     }
 
     /* Add background color to nav-item Pôles if the dropdown is expanded
-       by adding a class
+     * by adding a class
      */
-    $(document).mouseup(function (e) {
+    $(document).mouseup(function(e) {
         var link = $("#navbarDropdownMenuLink");
 
         // Remove the class
@@ -331,6 +331,17 @@ $(document).ready(function () {
         }
     });
 
+    /* Toggle the pointless button
+     */
+    document.getElementById("pointless-button-click").addEventListener("click", () => {
+        let button = document.getElementById("pointless-button");
+        if (button.style.display != "block")
+            button.style.display = "block";
+        else
+            button.style.display = "none";
+    })
+
+
 
     /* ##########################   Reset Projets filter   ########################## */
     /*
@@ -339,7 +350,7 @@ $(document).ready(function () {
      */
 
     /*** Reset pole filter ***/
-    $('#pole').change(function () {
+    $('#pole').change(function() {
         // get the selected option
         var pole = $("#pole option:selected");
 
@@ -351,7 +362,7 @@ $(document).ready(function () {
     });
 
     /*** Reset membre filter ***/
-    $('#membre').change(function () {
+    $('#membre').change(function() {
         // get the selected option
         var membre = $("#membre option:selected");
 
@@ -363,7 +374,7 @@ $(document).ready(function () {
     });
 
     /*** Reset partner filter ***/
-    $('#partner').change(function () {
+    $('#partner').change(function() {
         // get the selected option
         var partner = $("#partner option:selected");
 
@@ -375,7 +386,7 @@ $(document).ready(function () {
     });
 
     /*** Reset trie filter ***/
-    $('#trie').change(function () {
+    $('#trie').change(function() {
         // get the selected option
         var trie = $("#trie option:selected");
 
@@ -389,7 +400,7 @@ $(document).ready(function () {
 
     /*** If there is more than 6 lessons/projects, some are hidden.
     	 This function will display 6 more lessons ***/
-    $("input#voir-plus").click(function (e) {
+    $("input#voir-plus").click(function(e) {
         e.preventDefault();
         $("div#proj-card.hid:lt(6)").fadeIn("slow").removeClass("hid");
         $("div#cours-liste.hid:lt(6)").fadeIn("slow").removeClass("hid");
@@ -398,21 +409,20 @@ $(document).ready(function () {
         }
     });
 
-
     /*** Remove the files selected if you refresh the page ***/
     $('input[type="file"]#link_support').val('');
     $('input[type="file"]#link_support_mod').val('');
 
 
     /*** Create checkbox for each file to choose wich one will be private  ***/
-    $('input[type="file"]#link_support').change(function (e) {
+    $('input[type="file"]#link_support').change(function(e) {
         if (e.target.files.length === 0)
             $('#choose-visibility').hide();
         else
             $('#choose-visibility').fadeIn("slow");
 
         $('div#choose-visibility').empty();
-        $(e.target.files).each(function () {
+        $(e.target.files).each(function() {
             $('div#choose-visibility').append('<div>\
 				<input type="checkbox" id="' + this.name + '" name="visibility[' + this.name + ']" >\
 				<label for="' + this.name + '">' + this.name + '</label>\
@@ -421,7 +431,7 @@ $(document).ready(function () {
     });
 
     /*** Add the select list to choose the visibility for the new file ***/
-    $('input[type="file"]#link_support_mod').change(function (e) {
+    $('input[type="file"]#link_support_mod').change(function(e) {
         if (e.target.files.length === 0)
             $('div.to-hide').hide();
         else
@@ -429,7 +439,7 @@ $(document).ready(function () {
 
         $('div#new-files').remove();
 
-        $(e.target.files).each(function () {
+        $(e.target.files).each(function() {
             $('div#choose-new-statut').append('<div id="new-files" class="row justify-content-start">\
 				<div class="col-auto">' + this.name + '</div>\
 				<div class="col-auto">\
@@ -445,7 +455,7 @@ $(document).ready(function () {
     });
 
     /*** Convert the dates given by the calendar in date for the database ***/
-    $('button#submit-btn-crt-crs').click(function () {
+    $('button#submit-btn-crt-crs').click(function() {
         parseDate(calendarDist.values, 'dates_dist');
         parseDate(calendarPres.values, 'dates_pres');
     });
@@ -453,7 +463,7 @@ $(document).ready(function () {
     /* ########## Compétitions ##########*/
 
     /*** Prevent the user to put more than 3 images for a compétition ***/
-    $('button#create-cpt.compet').click(function (e) {
+    $('button#create-cpt.compet').click(function(e) {
         var fileUpload = $('input#images');
         var cover = $('input#cover');
         var problem = false;
@@ -483,7 +493,7 @@ $(document).ready(function () {
         daysOfWeekHighlighted: "5,6",
         datesDisabled: ['31/08/2017'],
         language: 'en'
-    }).on('changeDate', function (e) {
+    }).on('changeDate', function(e) {
         // `e` here contains the extra attributes
         $(this).find('.input-group-addon .count').text(' ' + e.dates.length);
     });

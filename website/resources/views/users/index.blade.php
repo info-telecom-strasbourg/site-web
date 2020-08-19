@@ -15,7 +15,13 @@
 	<h1 class="title lg text-center">
 		Membres
 	</h1>
-	<hr class="line-under-title">
+	<hr id="pointless-button-click" class="line-under-title">
+	<div id="pointless-button">
+		<div style="justify-content: center; display:flex;">
+			<button style="	width:85px;	height:85px; background:#cc0000; font:bold 13px Arial; border-radius:50%; border:none; color:#fff; margin: auto;">Pointless button</button>
+		</div>
+		<hr class="line-under-title">
+	</div>
 
 	<div class="container pt-3">
 		<!-- Search bar -->
@@ -27,6 +33,12 @@
 				</button>
 			</div>
 		</form>
+
+		@if(strtolower($search) == "chuck norris")
+		<div style="margin: 30px auto; color: red; text-align:center;">
+			Personne ne peut trouver Chuck Norris, c'est lui qui vous trouvera!
+		</div>
+		@else
 
 		<!-- Number of members -->
 		<p class="total-members">Membres : {{ $nbUsers }}</p>
@@ -114,6 +126,7 @@
 
 			</div>
 		</div>
+		@endif
 
 	</div>
 </div>
