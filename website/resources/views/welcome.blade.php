@@ -32,8 +32,8 @@
                         <br>
                         @isset($news->button)
                         @isset($news->link)
-                        <form action="projets">
-                            <input class="favorite styled" type="submit" value="Découvrir nos projets">
+                        <form action="{{ $news->link }}">
+                            <input class="favorite styled" type="submit" value="{{ $news->button }}">
                         </form>
                         @endisset
                         @endisset
