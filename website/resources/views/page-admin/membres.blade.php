@@ -198,7 +198,7 @@
                             </button>
                         </div>
                     </form>
-
+                    
                     <!-- Number of members -->
                     <div style="color:white; margin-left: 20px; margin-bottom: 20px; font-style: italic;">Membres : {{ $users->count() }}</div>
 

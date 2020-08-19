@@ -15,7 +15,11 @@
 	<h1 class="title lg text-center">
 		Membres
 	</h1>
-	<hr class="line-under-title">
+	<hr id="pointless-button-click" class="line-under-title">
+	<div id="pointless-button">
+        <p>Ce texte appartient au premier div de ma page</p>
+        <p>Ce deuxième paragraphe également</p>
+    </div>
 
 	<div class="container pt-3">
 		<!-- Search bar -->
@@ -27,6 +31,12 @@
 				</button>
 			</div>
 		</form>
+
+		@if(strtolower($search) == "chuck norris")
+		<div style="margin: 30px auto; color: red; text-align:center;">
+			Personne ne peut trouver Chuck Norris, c'est lui qui vous trouvera!
+		</div>
+		@else
 
 		<!-- Number of members -->
 		<p class="total-members">Membres : {{ $nbUsers }}</p>
@@ -114,6 +124,7 @@
 
 			</div>
 		</div>
+		@endif
 
 	</div>
 </div>
