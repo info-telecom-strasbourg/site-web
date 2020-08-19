@@ -36,7 +36,10 @@
  *  - DARK PAGE (1112)
  *      . Main uses
  *      . Navbar
+ *      . Charts
+ *      . News
  *  - USER ACCOUNT (1247)
+ *      . Profil
  *      . User page
  *      . Login
  *      . Confirm password
@@ -88,7 +91,6 @@ a {
 @media only screen and (max-width: 992px) {
     #content {
         padding-bottom: 423.33px;
-        /* Footer height */
     }
 }
 
@@ -192,6 +194,7 @@ a.link-member:hover {
 
 .btn-search:focus {
     outline: 0 !important;
+    box-shadow: none;
 }
 
 
@@ -1311,7 +1314,419 @@ div.bordure {
 }
 
 
+/* >>>>>>>>>>>>>>>>>>>> Charts <<<<<<<<<<<<<<<<<<<< */
+
+.dark-page #v-pills-ens h2 {
+    color: white;
+    font-size: 15pt;
+    font-weight: 300;
+}
+
+.dark-page #v-pills-ens .widget {
+    width: 600px;
+    margin-left: 70px;
+    margin-right: 70px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.dark-page #v-pills-ens .widget-content {
+    width: 100%;
+}
+
+.dark-page #v-pills-ens #widgets_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.dark-page #v-pills-ens .widget p {
+    color: white;
+    margin-top: 40px;
+    font-size: 60pt;
+}
+
+@media only screen and (max-width: 600px) {
+    .dark-page #v-pills-ens .widget {
+        width: 400px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .dark-page #v-pills-ens .widget {
+        width: 300px;
+    }
+}
+
+
+/* >>>>>>>>>>>>>>>>>>>> Members <<<<<<<<<<<<<<<<<<<< */
+
+.dark-page #v-pills-membres #members-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.dark-page #v-pills-membres #button-new-member {
+    background-color: #20242e;
+    width: 30%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    border-color: transparent;
+}
+
+.dark-page #v-pills-membres .row {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #20242e;
+    color: white;
+}
+
+.dark-page #v-pills-membres .row .p-2 {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.dark-page #v-pills-membres .row .d-flex {
+    width: 100%;
+}
+
+.dark-page #v-pills-membres .row .profil-rounded {
+    width: 70px;
+    height: 70px;
+}
+
+.dark-page #v-pills-membres .row #username {
+    margin-left: 30px;
+    font-size: 14pt;
+}
+
+.dark-page #v-pills-membres .row #image {
+    margin-left: 20px;
+    margin-right: 10px;
+}
+
+.dark-page #v-pills-membres .row #buttons {
+    right: 0
+}
+
+.dark-page #v-pills-membres .row .button-panel {
+    margin-left: 5px;
+    margin-right: 5px;
+    background-color: #131722;
+    color: white;
+    border-color: transparent;
+}
+
+.dark-page #v-pills-membres .modal-content {
+    background-color: rgba(32, 36, 46, 0.9);
+    color: white;
+}
+
+.dark-page #v-pills-membres .user-info {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.dark-page #v-pills-membres #form-edit {
+    padding: 1rem;
+}
+
+.dark-page #v-pills-membres #search:focus {
+    border-color: inherit;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+@media (max-width: 950px) {
+    .dark-page #v-pills-membres .row .d-flex {
+        flex-direction: column;
+    }
+    .dark-page #v-pills-membres .row #image {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .dark-page #v-pills-membres .row #username {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .dark-page #v-pills-membres .row #buttons {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (max-width: 992px) {
+    .dark-page #v-pills-membres #members-container {
+        margin-bottom: 200px;
+    }
+    .dark-page #v-pills-membres #button-new-member {
+        width: 250px;
+    }
+}
+
+
+/* >>>>>>>>>>>>>>>>>>>> News <<<<<<<<<<<<<<<<<<<< */
+
+.dark-page #v-pills-actu .actu-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.dark-page #v-pills-actu .modal-content {
+    background-color: rgba(32, 36, 46, 0.9);
+    color: white;
+}
+
+.dark-page #v-pills-actu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.dark-page #v-pills-actu #button-new-news {
+    background-color: #20242e;
+    width: 30%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    border-color: transparent;
+}
+
+.dark-page #v-pills-actu .title-actu {
+    color: white;
+    font-size: 20pt;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.dark-page #v-pills-actu .title-actu:hover {
+    text-decoration: none;
+}
+
+.dark-page #v-pills-actu {
+    color: white;
+}
+
+.dark-page #v-pills-actu .button-panel {
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 30px;
+    background-color: #20242e;
+    color: white;
+    border-color: transparent;
+    width: 230px;
+}
+
+.dark-page #form-edit img {
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+.dark-page .input-group>.form-control {
+    margin-bottom: 0;
+}
+
+@media (max-width: 600px) {
+    .dark-page #form-edit img {
+        width: 100%;
+    }
+}
+
+
 /* ##########################   USER ACCOUNT   ########################## */
+
+
+/* >>>>>>>>>>>>>>>>>>>> Profil <<<<<<<<<<<<<<<<<<<< */
+
+.rank-label-container {
+    border-radius: 40px;
+    background-color: #254395;
+    color: white;
+    font-size: small;
+    padding: 2px 10px;
+    margin-top: -15px;
+}
+
+#avatar {
+    margin-top: -15px;
+}
+
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile+label {
+    border-radius: 40px;
+    background-color: #254395;
+    color: white;
+    font-size: small;
+    padding: 2px 10px;
+}
+
+.inputfile:focus+label,
+.inputfile+label:hover {
+    background-color: rgb(0, 105, 217);
+}
+
+.profil-card {
+    background-color: rgb(245, 245, 245);
+    border-radius: 30px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
+    margin-left: 100px;
+    margin-bottom: 50px;
+}
+
+@media only screen and (max-width: 768px) {
+    .profil-card {
+        margin-left: 0;
+    }
+}
+
+.profil-edit {
+    padding: 25px;
+}
+
+.profil-edit,
+.profil-show-cours {
+    margin-left: 0;
+}
+
+.profil-card-header {
+    padding-top: 25px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgb(206, 212, 218);
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.profil-card-body {
+    max-height: 200px;
+    margin: 0;
+    margin-top: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+.profil-card-item {
+    padding-top: 10px;
+    padding-left: 30px;
+    padding-right: 55px;
+    padding-bottom: 10px;
+    margin-bottom: 12px;
+    color: inherit;
+    overflow: hidden;
+}
+
+.profil-card-item:hover {
+    box-shadow: 15px 4px 14px -2px rgba(0, 0, 0, 0.25);
+    color: inherit;
+    text-decoration: none;
+}
+
+#form-profil-edit {
+    margin-top: 40px;
+    width: 100%;
+}
+
+.custom-form-control {
+    border-radius: 0;
+    background-color: transparent;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+}
+
+.input-group>.form-control {
+    margin-bottom: 2rem;
+}
+
+.custom-form-control:focus {
+    outline: none !important;
+    box-shadow: none;
+    background-color: transparent;
+}
+
+.pwd {
+    vertical-align: top;
+    width: 100%;
+}
+
+.reveal,
+.reveal-confirm {
+    position: absolute;
+    z-index: 100;
+    right: -8px;
+    top: 0;
+}
+
+.reveal:focus,
+.reveal-confirm:focus {
+    outline: none !important;
+    box-shadow: none;
+}
+
+.profil-search {
+    width: 0;
+    padding-right: 40px;
+    border-color: transparent;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+    z-index: 100;
+}
+
+.profil-search-cours {
+    margin-right: 60px;
+}
+
+
+/* When the input field gets focus, change its width to 100% */
+
+.profil-search:focus {
+    border-color: rgb(128, 189, 255);
+    width: 100%;
+}
+
+.search-button {
+    position: absolute;
+    right: 30px;
+    z-index: 1;
+}
+
+.search-button-cours {
+    position: absolute;
+    right: 90px;
+    z-index: 1;
+}
+
+.add-cours {
+    position: absolute;
+    right: 30px;
+    margin-left: 20px;
+    z-index: 1;
+}
 
 
 /* >>>>>>>>>>>>>>>>>>>> User page <<<<<<<<<<<<<<<<<<<< */
@@ -1449,4 +1864,11 @@ div.bordure {
 #confirm .password-forget {
     background-color: transparent;
     margin-left: 16px;
+}
+
+
+/* >>>>>>>>>>>>>>>>>>>> Users index <<<<<<<<<<<<<<<<<<<< */
+
+#pointless-button {
+    display: none;
 }

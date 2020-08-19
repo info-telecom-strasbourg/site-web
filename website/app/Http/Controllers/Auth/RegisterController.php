@@ -59,6 +59,8 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'role' => ['required', 'integer'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+			'class' => 'required|min:1',
+			'year' => 'required|min:4|max:4',
         ]);
 
         /*
@@ -108,9 +110,9 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'role_id' => $data['role'],
             'password' => Hash::make($data['password']),
+			'class' => $data['class'],
+			'year' => $data['year'],
         ]);
-
-        $user->profil_picture = "images/default/profil/profil.jpg";
 
         $user->save();
 
@@ -146,6 +148,6 @@ class RegisterController extends Controller
 
         return $request->wantsJson()
                     ? new Response('', 201)
-                    : redirect($this->redirectPath());
+                    : redirect('/page-admin/membres');
     }
 }

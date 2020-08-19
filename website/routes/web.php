@@ -26,10 +26,16 @@ Route::get('/besoin-aide', function () {
 
 Route::post('/besoin-aide', 'BesoinAideController@store')->name('aide.store');
 
+Route::get('/page-admin/vue-ensemble', 'AdminVueEnsembleController@getRessources')->middleware('admin');
+Route::get('/page-admin/membres', 'AdminMembresController@getRessources')->middleware('admin');
+Route::get('/page-admin/actualites', 'AdminActualitesController@getRessources')->middleware('admin');
+Route::put('/page-admin/user/{user}/edit', 'AdminMembresController@updateUser')->middleware('admin');
+Route::get('/page-admin/{user}/delete-user', 'AdminMembresController@deleteUser')->middleware('admin');
+Route::get('/page-admin/delete-news/{news}', 'AdminActualitesController@destroy')->middleware('admin');
+Route::post('/page-admin/news/create', 'AdminActualitesController@store')->middleware('admin');
 
-Route::get('/page-admin', function () {
-    return view('dark-page');
-})->middleware('admin');
+
+Route::put('/page-admin/news/{news}/edit', 'AdminActualitesController@update')->middleware('admin');
 
 Auth::routes();
 
@@ -81,9 +87,14 @@ Route::get('/projets/create','ProjetController@create')->name('projets.create')-
 
 /***** Route users *****/
 Route::get('/users', 'UserController@index')->name('users.index');
+Route::put('/users/{user}', 'UserController@update')->name('users.update');
 Route::get('/users/{user}', 'UserController@show')->name('users.show');
 
 /***** Route timeline ****/
 Route::put('/timeline/{step}/edit', 'TimelineEventController@update');
 Route::post('/timeline/create/{id}', 'TimelineEventController@store');
 Route::get('/timeline/{step}/destroy', 'TimelineEventController@destroy');
+
+Route::post('/users/{user}/avatar', 'UserController@update_avatar');
+Route::post('/users/{user}/search', 'UserController@search');
+

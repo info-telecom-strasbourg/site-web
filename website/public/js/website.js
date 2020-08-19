@@ -171,6 +171,56 @@ $("div#proj-card:gt(5)").addClass("hid").hide();
 $("div#cours-liste:gt(5)").addClass("hid").hide();
 
 
+/* ##########################   Show / hide password on profil page ########################## */
+$(".reveal").on('click', function() {
+    var $pwd = $(".pwd");
+    var $icon = $(".eye-icon");
+
+    if ($pwd.attr('type') === 'password') {
+        $pwd.attr('type', 'text');
+        $icon.removeClass('fa-eye');
+        $icon.addClass('fa-eye-slash');
+    } else {
+        $pwd.attr('type', 'password');
+        $icon.removeClass('fa-eye-slash');
+        $icon.addClass('fa-eye');
+    }
+});
+
+$(".reveal-confirm").on('click', function() {
+    var $pwd = $(".pwd-confirm");
+    var $icon = $(".eye-icon-confirm");
+
+    if ($pwd.attr('type') === 'password') {
+        $pwd.attr('type', 'text');
+        $icon.removeClass('fa-eye');
+        $icon.addClass('fa-eye-slash');
+    } else {
+        $pwd.attr('type', 'password');
+        $icon.removeClass('fa-eye-slash');
+        $icon.addClass('fa-eye');
+    }
+});
+
+/* ##########################   Show search bar on profil page  ########################## */
+/**
+ * Shows the search bar
+ * @param {string} id id of the search input to show
+ */
+function showSearchBar(id) {
+    if ($('#' + id).hasClass('disabled')) {
+        $('#' + id).addClass('show');
+        $('#' + id).removeClass('disabled');
+    } else {
+        $('#' + id).removeClass('show');
+        $('#' + id).addClass('disabled');
+    }
+}
+
+/*** Enable tooltips ***/
+$(function() {
+    $('[data-toggle="tooltip"]').tooltip()
+});
 
 
 $(document).ready(function() {
@@ -281,7 +331,7 @@ $(document).ready(function() {
     }
 
     /* Add background color to nav-item Pôles if the dropdown is expanded
-       by adding a class
+     * by adding a class
      */
     $(document).mouseup(function(e) {
         var link = $("#navbarDropdownMenuLink");
@@ -293,6 +343,17 @@ $(document).ready(function() {
             $('#poles').addClass('dropdown-click');
         }
     });
+
+    /* Toggle the pointless button
+     */
+    document.getElementById("pointless-button-click").addEventListener("click", () => {
+        let button = document.getElementById("pointless-button");
+        if (button.style.display != "block")
+            button.style.display = "block";
+        else
+            button.style.display = "none";
+    })
+
 
 
     /* ##########################   Reset Projets filter   ########################## */
@@ -360,7 +421,6 @@ $(document).ready(function() {
             $("div#line-btn-vp").remove();
         }
     });
-
 
     /*** Remove the files selected if you refresh the page ***/
     $('input[type="file"]#link_support').val('');
@@ -450,5 +510,4 @@ $(document).ready(function() {
         // `e` here contains the extra attributes
         $(this).find('.input-group-addon .count').text(' ' + e.dates.length);
     });
-
 });
