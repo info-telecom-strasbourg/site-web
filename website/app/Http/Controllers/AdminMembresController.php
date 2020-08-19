@@ -22,10 +22,11 @@ class AdminMembresController extends Controller
      */
     public function getRessources()
     {
-        $users = User::all();
+        $users = User::search()->orderBy('role_id')->orderBy('name')->get();
         $roles = Role::all();
         $projets = Projet::all();
-        return view('page-admin/membres', compact('users', 'roles', 'projets'));
+        $search = request()->search;
+        return view('page-admin/membres', compact('users', 'roles', 'projets', 'search'));
     }
 
     /**

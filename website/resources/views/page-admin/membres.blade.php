@@ -190,6 +190,15 @@
                         </div>
                     </div>
 
+                    <form>
+                        <div class="input-group md-form form-sm form-2 pl-0">
+                            <input class="form-control my-0 py-1 lime-border" type="search" name="search" id="search" placeholder="Rechercher" aria-label="Rechercher" value="{{ $search }}">
+                            <button class="input-group-append input-group-text lime lighten-2 btn btn-search" type="submit">
+                                <i class="fas fa-search text-grey" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </form>
+
                     <!-- Number of members -->
                     <div style="color:white; margin-left: 20px; margin-bottom: 20px; font-style: italic;">Membres : {{ $users->count() }}</div>
 
