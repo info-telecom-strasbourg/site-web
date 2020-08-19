@@ -27,7 +27,7 @@ class AdminActualitesController extends Controller
 	 *
 	 * @param news: the news that will be updated.
 	 * @param request: the user's request.
-	 * @return redirect to the actualites in the admin page. 
+	 * @return redirect to the actualites in the admin page.
 	 */
 	public function update(News $news, Request $request)
 	{

@@ -226,7 +226,7 @@
 							</div>
 
 							<!-- Link -->
-							<input type="checkbox" id="links-nullable" class="{{ $news->id }} checkbox" name="links-nullable" style="margin-top:20px;">
+							<input type="checkbox" id="links-nullable" class="{{ $news->id }} checkbox{{ $news->id }}" name="links-nullable" style="margin-top:20px;">
 							<label for="links-nullable" style="margin-left: 10px;">Ajouter un lien</label>
 
 							<div id="website{{ $news->id }}" class="form-group" style="margin-top: 40px; display: none">
@@ -286,8 +286,16 @@
 <script>
 	$(document).ready(function() {
 			var newsAll = {!! $allNews !!};
-			$('input.checkbox').prop("checked", false);
-			$('input.checkbox').prop("checked", false);
+			@foreach($allNews as $news)
+				@if(isset($news->link))
+					$('input.checkbox{{ $news->id }}').prop("checked", true);
+					$('div#website{{ $news->id }}').css('display', 'block');
+					$('div#button{{ $news->id }}').css('display', 'block');
+				@else
+					$('input.checkbox{{ $news->id }}').prop("checked", false);
+				@endif
+			@endforeach
+
 
 			/**
 			 * Display or hide the sections corresponding to the button and the link
@@ -349,14 +357,13 @@
 				var newsId = $(this).attr('class').split(' ')[0];
 
 				var inputTitle = $('input#title' + newsId);
-				var inputDesc = $('textarea#decs' + newsId);
+				var inputDesc = $('textarea#desc' + newsId);
 				var inputLink = $('input#website' + newsId);
 				var inputButton = $('input#button' + newsId);
 
 				var newsTitle = inputTitle.val();
 				var newsDesc = inputDesc.val();
-				var newsImage = $('input#file' + newsId)[0].files[0].name;
-				var newsLinkNullable = $('input#links-nullable' + newsId).prop("checked", true);
+				var withLinks = $('input#links-nullable' + newsId).is(":checked");
 				var newsLink = inputLink.val();
 				var newsButton = inputButton.val();
 				var error = false;
@@ -373,7 +380,7 @@
 				} else
 					eraseError(inputDesc, 'span#desc-error' + newsId);
 
-				if (!newsLinkNullable) {
+				if (withLinks) {
 					if (newsLink.length < 1) {
 						error = true;
 						displayError(inputLink, 'span#link-error' + newsId);
@@ -382,10 +389,14 @@
 
 					if (newsButton.length < 1) {
 						error = true;
-						link
 						displayError(inputButton, 'span#button-error' + newsId);
 					} else
 						eraseError(inputButton, 'span#button-error' + newsId);
+				}
+				else
+				{
+					inputLink.val('');
+					inputButton.val('');
 				}
 
 				if (error) e.preventDefault();
@@ -399,7 +410,7 @@
 				var inputDesc = $('textarea#desc');
 				var inputImage = $('input#image');
 				var title = inputFile.val();
-				var withLink = $('input#links-nullable').prop("checked", true);
+				var withLink = $('input#links-nullable').is(":checked");
 				var inputWebsite = $('input#website');
 				var inputButton = $('input#button');
 
@@ -434,6 +445,12 @@
 					} else
 						eraseError(inputButton, 'span#button-error');
 				}
+				else
+				{
+					inputLink.val('');
+					inputButton.val('');
+				}
+				
 				if (error) e.preventDefault();
 			});
 	});
