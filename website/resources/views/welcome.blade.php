@@ -9,30 +9,28 @@
 <section class="section" id="actu">
     <div id="carousel-actualite" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
+			@if($allNews->count() > 1)
             @foreach($allNews as $news)
-            @if($news->position == 1)
-            <li data-target="#carousel-actualite" data-slide-to="{{ $news->position - 1 }}" class="active"></li>
-            @else
-            <li data-target="#carousel-actualite" data-slide-to="{{ $news->position - 1 }}"></li>
-            @endif
+            	<li data-target="#carousel-actualite" data-slide-to="{{ $news->position - 1 }}"  @if($news->position == 1) class="active" @endif></li>
             @endforeach
+			@endif
         </ol>
         <div class="carousel-inner" height="100%">
             @forelse($allNews as $news)
 	            <div class="carousel-item actu @if($news->position == 1) active @endif full-screen" style="background: url({{ asset('storage/' . $news->image) }}) top center; background-size: cover;">
-                <div class="carousel-caption">
-                    <h1>{{ $news->title }}</h1>
-                    <br>
-                    <p>{{ $news->desc }}</p>
-                    <br>
-                    @isset($news->button)
-                    @isset($news->link)
-                    <form action="{{ $news->link }}">
-                        <input class="favorite styled" type="submit" value="{{ $news->button }}">
-                    </form>
-                    @endisset
-                    @endisset
-                </div>
+	                <div class="carousel-caption">
+	                    <h1>{{ $news->title }}</h1>
+	                    <br>
+	                    <p>{{ $news->desc }}</p>
+	                    <br>
+	                    @isset($news->button)
+	                    @isset($news->link)
+	                    <form action="{{ $news->link }}">
+	                        <input class="favorite styled" type="submit" value="{{ $news->button }}">
+	                    </form>
+	                    @endisset
+	                    @endisset
+	                </div>
                 </div>
 			@empty
 				<div class="carousel-item actu active full-screen" style="background: url({{ asset('storage/' . $defaultNews->image) }}) top center; background-size: cover;">

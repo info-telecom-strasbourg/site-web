@@ -140,8 +140,8 @@
 									<input type="checkbox" class="checkbox" id="links-nullable-create" name="links-nullable">
 									<label for="links-links-nullable-create" style="margin-left: 10px;">Ajouter un lien</label>
 
-									<div id="website-crt" class="form-group" style="margin-top: 40px; display: none">
-										<label class="sr-only form-title-small" for="website">Lien du bouton</label>
+									<div id="website-crt" class="form-group" style="margin-top: 20px; display: none">
+										<label class="form-title-small" for="website">Lien du bouton</label>
 										<div class="input-group mb-2">
 											<div class="input-group-prepend">
 												<div class="input-group-text">
@@ -156,7 +156,7 @@
 									</span>
 									<!-- Give the button a text -->
 									<div id="button-crt" class="form-group" style="display: none;">
-										<label for="button" class="form-title-small">Titre</label>
+										<label for="button" class="form-title-small">Texte du boutton</label>
 
 										<input id="button" type="text" class="form-control" name="button" value="{{ old('button') }}">
 									</div>
@@ -229,9 +229,9 @@
 							<input type="checkbox" id="links-nullable" class="{{ $news->id }} checkbox{{ $news->id }}" name="links-nullable" style="margin-top:20px;">
 							<label for="links-nullable" style="margin-left: 10px;">Ajouter un lien</label>
 
-							<div id="website{{ $news->id }}" class="form-group" style="margin-top: 40px; display: none">
+							<div id="website{{ $news->id }}" class="form-group" style="margin-top: 20px; display: none">
 								<!-- block -->
-								<label class="sr-only form-title-small" for="website">Lien du bouton</label>
+								<label class="form-title-small" for="website{{ $news->id }}">Lien du bouton</label>
 								<div class="input-group mb-2">
 									<div class="input-group-prepend">
 										<div class="input-group-text">
@@ -246,7 +246,7 @@
 							</span>
 
 							<div id="button{{ $news->id }}" class="form-group" style="display: none;">
-								<label for="button{{ $news->id }}" class="form-title-small">Titre</label>
+								<label for="button{{ $news->id }}" class="form-title-small">Texte du boutton</label>
 
 								<input id="button{{ $news->id }}" type="text" class="form-control" name="button" value="@isset($news->button) {{ $news->button }} @endisset">
 							</div>
@@ -293,6 +293,8 @@
 					$('div#button{{ $news->id }}').css('display', 'block');
 				@else
 					$('input.checkbox{{ $news->id }}').prop("checked", false);
+					$('div#website{{ $news->id }}').css('display', 'none');
+					$('div#button{{ $news->id }}').css('display', 'none');
 				@endif
 			@endforeach
 
