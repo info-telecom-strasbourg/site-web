@@ -87,11 +87,13 @@ class AdminMembresController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255', 'min:3'],
-            'email' => ['required', 'string', 'email', 'max:255'],
-            'role' => ['required', 'integer'],
-            'password' => ['nullable', 'string', 'min:8', 'confirmed'],
-            'image_profile' => ['nullable'],
+            'name' => 'required|string|max:255|min:3',
+            'email' => 'required|string|email|max:255',
+            'role' => 'required|integer',
+            'password' => 'nullable|string|min:8|confirmed',
+            'image_profile' => 'nullable',
+			'class' => 'required|min:1',
+			'year' => 'required|min:4|max:4',
         ]);
     }
 
