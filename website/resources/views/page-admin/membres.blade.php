@@ -190,10 +190,10 @@
                         </div>
                     </div>
 
-                    <form>
+                    <form style="margin : 0px 50px 30px 50px;">
                         <div class="input-group md-form form-sm form-2 pl-0">
-                            <input class="form-control my-0 py-1 lime-border" type="search" name="search" id="search" placeholder="Rechercher" aria-label="Rechercher" value="{{ $search }}">
-                            <button class="input-group-append input-group-text lime lighten-2 btn btn-search" type="submit">
+                            <input class="form-control my-0 py-1 lime-border" type="search" name="search" id="search" placeholder="Rechercher" style="background-color: transparent; border-top: none; border-right: none; border-left: none; border-radius:0; color:white; transition: none;" aria-label="Rechercher" value="{{ $search }}">
+                            <button class="input-group-append input-group-text lime lighten-2 btn btn-search" type="submit" style="color: white; background-color: transparent; border:none;">
                                 <i class="fas fa-search text-grey" aria-hidden="true"></i>
                             </button>
                         </div>

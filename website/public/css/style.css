@@ -1370,6 +1370,12 @@ div.bordure {
     padding: 1rem;
 }
 
+.dark-page #v-pills-membres #search:focus {
+    border-color: inherit;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
 @media (max-width: 950px) {
     .dark-page #v-pills-membres .row .d-flex {
         flex-direction: column;
