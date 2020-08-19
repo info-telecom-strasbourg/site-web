@@ -18,28 +18,32 @@
             @endforeach
         </ol>
         <div class="carousel-inner" height="100%">
-            @foreach($allNews as $news)
-            @if($news->position == 1)
-            <!-- First new -->
-            <div class="carousel-item actu active full-screen" style="background: url({{ asset('storage/' . $news->image) }}) top center; background-size: cover;">
-                @else
-                <div class="carousel-item actu full-screen" style="background: url({{ asset('storage/' . $news->image) }}) top center; background-size: cover;">
-                    @endif
-                    <div class="carousel-caption">
-                        <h1>{{ $news->title }}</h1>
-                        <br>
-                        <p>{{ $news->desc }}</p>
-                        <br>
-                        @isset($news->button)
-                        @isset($news->link)
-                        <form action="{{ $news->link }}">
-                            <input class="favorite styled" type="submit" value="{{ $news->button }}">
-                        </form>
-                        @endisset
-                        @endisset
-                    </div>
+            @forelse($allNews as $news)
+	            <div class="carousel-item actu @if($news->position == 1) active @endif full-screen" style="background: url({{ asset('storage/' . $news->image) }}) top center; background-size: cover;">
+                <div class="carousel-caption">
+                    <h1>{{ $news->title }}</h1>
+                    <br>
+                    <p>{{ $news->desc }}</p>
+                    <br>
+                    @isset($news->button)
+                    @isset($news->link)
+                    <form action="{{ $news->link }}">
+                        <input class="favorite styled" type="submit" value="{{ $news->button }}">
+                    </form>
+                    @endisset
+                    @endisset
                 </div>
-                @endforeach
+                </div>
+			@empty
+				<div class="carousel-item actu active full-screen" style="background: url({{ asset('storage/' . $defaultNews->image) }}) top center; background-size: cover;">
+				<div class="carousel-caption">
+					<h1>{{ $defaultNews->title }}</h1>
+					<br>
+					<p>{{ $defaultNews->desc }}</p>
+					<br>
+				</div>
+				</div>
+            @endforelse
             </div>
 
             @if($allNews->count() > 1)

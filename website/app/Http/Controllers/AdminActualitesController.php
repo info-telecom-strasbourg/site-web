@@ -18,7 +18,7 @@ class AdminActualitesController extends Controller
     */
     public function getRessources()
     {
-		$allNews = News::orderBy('position')->get();
+		$allNews = News::where('position', '!=', '0')->orderBy('position')->get();
         return view('page-admin/actualites', compact('allNews'));
     }
 

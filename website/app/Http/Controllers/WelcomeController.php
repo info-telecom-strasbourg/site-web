@@ -37,11 +37,10 @@ class WelcomeController extends Controller
 
         $nbPoles = Pole::count();
 
-		$allNews = News::orderBy('position')->get();
+		$allNews = News::where('position', '!=', '0')->orderBy('position')->get();
+		$defaultNews = News::where('position', '==', '0')->first();
 
         $years = date("Y") - 2019;
-
-        $allNews = News::orderBy('position')->get();
 
 
 
@@ -85,7 +84,8 @@ class WelcomeController extends Controller
 
         $projets = RandomProjet::all();
 
-        return view('welcome', compact('poles', 'team', 'partners', 'projets', 'nbProjets', 'nbUsers', 'nbPoles', 'years', 'allNews'));
+        return view('welcome', compact('poles', 'team', 'partners', 'projets',
+		'nbProjets', 'nbUsers', 'nbPoles', 'years', 'allNews', 'defaultNews'));
     }
 
     /**

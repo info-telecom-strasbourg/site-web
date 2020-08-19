@@ -268,7 +268,7 @@
                                                 </button>
                                             </div>
 											<div style="display: flex; flex-direction: row; justify-content: center;">
-												<a class="btn btn-primary btn-rounded" style="margin: 20px 20px 10px 20px; width: 100px;" href="/page-admin/{{ $news->id }}/delete-user">Oui</a>
+												<a class="btn btn-primary btn-rounded" style="margin: 20px 20px 10px 20px; width: 100px;" href="/page-admin/delete-news/{{ $news->id }}">Oui</a>
 												<button type="button" data-toggle="modal" data-target="#delete{{ $news->id }}" class="btn btn-primary btn-rounded" style="margin: 20px 20px 10px 20px; width: 100px;">Non</button>
 											</div>
                                         </div>
@@ -450,7 +450,7 @@
 					inputLink.val('');
 					inputButton.val('');
 				}
-				
+
 				if (error) e.preventDefault();
 			});
 	});
