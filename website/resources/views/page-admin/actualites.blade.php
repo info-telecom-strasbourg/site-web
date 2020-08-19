@@ -256,7 +256,24 @@
 
 							<div class="text-center" style="margin-top:25px; margin-bottom:25px; display:flex; flex-wrap: wrap; justify-content: center;">
 								<button id="submit-btn-edt-news" type="submit" class="{{ $news->id }} btn btn-rounded button-panel">Enregistrer</button>
-								<a class="btn btn-rounded button-panel" href="/page-admin/delete-news/{{ $news->id }}">Supprimer</a>
+
+								<button id="delete{{ $news->id }}-button" type="button" data-toggle="modal" data-target="#delete{{ $news->id }}" class="btn btn-rounded button-panel">Supprimer</button>
+                                <div class="modal" id="delete{{ $news->id }}">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title text-center">Voulez-vous vraiment supprimer {{ $news->title }}?</h4>
+                                                <button type="button" class="close" data-dismiss="modal" style="color: white;">
+                                                    <span>&times;</span> <!-- Cross button -->
+                                                </button>
+                                            </div>
+											<div style="display: flex; flex-direction: row; justify-content: center;">
+												<a class="btn btn-primary btn-rounded" style="margin: 20px 20px 10px 20px; width: 100px;" href="/page-admin/{{ $news->id }}/delete-user">Oui</a>
+												<button type="button" data-toggle="modal" data-target="#delete{{ $news->id }}" class="btn btn-primary btn-rounded" style="margin: 20px 20px 10px 20px; width: 100px;">Non</button>
+											</div>
+                                        </div>
+                                    </div>
+                                </div>
 							</div>
 						</form>
 					</div>

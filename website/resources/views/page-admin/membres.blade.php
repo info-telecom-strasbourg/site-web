@@ -340,7 +340,7 @@
                                         </div>
                                     </div>
                                 </div>
-								<button type="button" data-toggle="modal" data-target="#delete{{ $user->id }}" class="btn btn-rounded button-panel">Supprimer</button>
+								<button id="delete{{ $user->id }}-button" type="button" data-toggle="modal" data-target="#delete{{ $user->id }}" class="btn btn-rounded button-panel">Supprimer</button>
                                 <div class="modal" id="delete{{ $user->id }}">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
