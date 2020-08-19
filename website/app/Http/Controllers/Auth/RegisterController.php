@@ -114,7 +114,6 @@ class RegisterController extends Controller
 			'year' => $data['year'],
         ]);
 
-        $user->profil_picture = "images/default/profil/profil.jpg";
 
         $user->save();
 

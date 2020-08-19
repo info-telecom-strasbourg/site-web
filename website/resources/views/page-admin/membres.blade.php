@@ -107,7 +107,7 @@
                                         <div class="form-group">
                                             <label for="name" class="form-title-small">Nom</label>
 
-                                            <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Prénom Nom">
+                                            <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Nom">
 
                                             <span id="name-error" class="invalid-feedback" role="alert" style="display: none;">
                                                 <strong>Vous devez entrer un nom de plus de 3 caractères</strong>
@@ -129,7 +129,7 @@
                                         <div class="form-group">
                                             <label for="class" class="form-title-small">Classe</label>
 
-                                            <input id="class" type="text" class="form-control" name="class" value="{{ old('class') }}" required autocomplete="classe" placeholder="classe">
+                                            <input id="class" type="text" class="form-control" name="class" value="{{ old('class') }}" required autocomplete="classe" placeholder="Classe">
 
                                             <span id="class-error" class="invalid-feedback" role="alert" style="display: none;">
                                                 <strong>Vous devez entrer une classe</strong>
@@ -219,6 +219,12 @@
                                                     <b>Rôle : </b> {{ $user->role->role }}
                                                 </div>
                                                 <div class="user-info">
+                                                    <b>Classe : </b> {{ $user->class }}
+                                                </div>
+                                                <div class="user-info">
+                                                    <b>Promo : </b> {{ $user->year }}
+                                                </div>
+                                                <div class="user-info">
                                                     <b>Adresse mail : </b> {{ $user->email }}
                                                 </div>
                                             </div>
@@ -267,27 +273,27 @@
                                                     </span>
                                                 </div>
 
-												<!-- Give the member a class -->
-		                                        <div class="form-group">
-		                                            <label for="class{{ $user->id }}" class="form-title-small">Classe</label>
+                                                <!-- Give the member a class -->
+                                                <div class="form-group">
+                                                    <label for="class{{ $user->id }}" class="form-title-small">Classe</label>
 
-		                                            <input id="class{{ $user->id }}" type="text" class="form-control" name="class" value="{{ $user->class }}" required>
+                                                    <input id="class{{ $user->id }}" type="text" class="form-control" name="class" value="{{ $user->class }}" required>
 
-		                                            <span id="class-error{{ $user->id }}" class="invalid-feedback" role="alert" style="display: none;">
-		                                                <strong>Vous devez entrer une classe</strong>
-		                                            </span>
-		                                        </div>
+                                                    <span id="class-error{{ $user->id }}" class="invalid-feedback" role="alert" style="display: none;">
+                                                        <strong>Vous devez entrer une classe</strong>
+                                                    </span>
+                                                </div>
 
-		                                        <!-- Give the member a promo -->
-		                                        <div class="form-group">
-		                                            <label for="promo{{ $user->id }}" class="form-title-small">Promo</label>
+                                                <!-- Give the member a promo -->
+                                                <div class="form-group">
+                                                    <label for="promo{{ $user->id }}" class="form-title-small">Promo</label>
 
-		                                            <input id="promo{{ $user->id }}" type="text" class="form-control" name="year" value="{{ $user->promo }}" required autocomplete="promo" placeholder="YYYY">
+                                                    <input id="promo{{ $user->id }}" type="text" class="form-control" name="year" value="{{ $user->year }}" required>
 
-		                                            <span id="promo-error{{ $user->id }}" class="invalid-feedback" role="alert" style="display: none;">
-		                                                <strong>Vous devez entrer une promo</strong>
-		                                            </span>
-		                                        </div>
+                                                    <span id="promo-error{{ $user->id }}" class="invalid-feedback" role="alert" style="display: none;">
+                                                        <strong>Vous devez entrer une promo</strong>
+                                                    </span>
+                                                </div>
 
                                                 <!-- Roles -->
                                                 <div class="form-group">
@@ -346,9 +352,7 @@
 </section>
 <script>
     $(document).ready(function() {
-        var usersAll = {
-            !!$users!!
-        };
+        var usersAll = {!! $users !!};
         var usersEmail = [];
         usersAll.forEach(function(user) {
             usersEmail.push(user.email);
@@ -418,9 +422,9 @@
             var inputName = $('input#name' + userId);
             var inputMail = $('input#email' + userId);
             var inputPassword = $('input#password' + userId);
-			var inputClass = $('input#class' + userId);
-			var inputPromo = $('input#promo' + userId);
-			var promo = inputPromo.val();
+            var inputClass = $('input#class' + userId);
+            var inputPromo = $('input#promo' + userId);
+            var promo = inputPromo.val();
 
             var userName = inputName.val();
             var userEmail = inputMail.val();
@@ -436,19 +440,17 @@
             } else
                 eraseError(inputName, 'span#name-error' + userId);
 
-			if(inputClass.val().length < 1)
-			{
-				error = true;
+            if (inputClass.val().length < 1) {
+                error = true;
                 displayError(inputClass, 'span#class-error' + userId);
-			} else
-				eraseError(inputClass, 'span#class-error' + userId);
+            } else
+                eraseError(inputClass, 'span#class-error' + userId);
 
-			if(promo.length != 4)
-			{
-				error = true;
+            if (promo.length != 4 || isNaN(promo)) {
+                error = true;
                 displayError(inputPromo, 'span#promo-error' + userId);
-			} else
-				eraseError(inputPromo, 'span#promo-error' + userId);
+            } else
+                eraseError(inputPromo, 'span#promo-error' + userId);
 
             if ((userPw.length < 8 || userPw != userPwc) && userPw != "") {
                 error = true;
@@ -471,15 +473,15 @@
          * Check if all the values are acceptable to create a member.
          */
         $('button#create-member-btn').click(function(e) {
-			var error = false;
+            var error = false;
             var inputName = $('input#name');
             var inputMail = $('input#email');
             var inputPassword = $('input#password');
             var inputPasswordConfirm = $('input#password-confirm');
             var password = inputPassword.val();
-			var inputClass = $('input#class');
-			var inputPromo = $('input#promo');
-			var promo = inputPromo.val();
+            var inputClass = $('input#class');
+            var inputPromo = $('input#promo');
+            var promo = inputPromo.val();
 
             if (inputName.val().length < 3) {
                 error = true;
@@ -493,19 +495,16 @@
             } else
                 eraseError(inputMail, 'span#email-error');
 
-			if(inputClass.val().length < 1)
-			{
-				error = true;
+            if (inputClass.val().length < 1) {
+                error = true;
                 displayError(inputClass, 'span#class-error');
-			} else
-				eraseError(inputClass, 'span#class-error');
-
-			if(promo.length != 4)
-			{
-				error = true;
+            } else
+                eraseError(inputClass, 'span#class-error');
+            if (promo.length != 4 || isNaN(promo)) {
+                error = true;
                 displayError(inputPromo, 'span#promo-error');
-			} else
-				eraseError(inputPromo, 'span#promo-error');
+            } else
+                eraseError(inputPromo, 'span#promo-error');
 
             if (password.length < 8 || (password != inputPasswordConfirm.val())) {
                 error = true;

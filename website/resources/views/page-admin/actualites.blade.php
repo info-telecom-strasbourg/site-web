@@ -268,9 +268,7 @@
 </section>
 <script>
 	$(document).ready(function() {
-				var newsAll = {
-					!!$allNews!!
-				};
+				var newsAll = {!! $allNews !!};
 				$('input.checkbox').prop("checked", false);
 				$('input.checkbox').prop("checked", false);
 

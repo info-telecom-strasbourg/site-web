@@ -63,7 +63,9 @@ class AdminMembresController extends Controller
     {
         $validatedRequest = $this->validator($request->all())->validate();
 
-        $user->update(['name' => $validatedRequest['name'], 'email' => $validatedRequest['email'], 'role_id' => $validatedRequest['role']]);
+        $user->update(['name' => $validatedRequest['name'], 'email' => $validatedRequest['email'], 
+        'role_id' => $validatedRequest['role'], 'class' => $validatedRequest['class'], 
+        'year' => $validatedRequest['year']]);
 
         if ($validatedRequest['password'] != null)
             $user->update(['password' => Hash::make($validatedRequest['password'])]);
