@@ -114,7 +114,10 @@ class RegisterController extends Controller
 			'year' => $data['year'],
         ]);
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5b1494e9b461fdb0d0bfe121e4b9e4bb5e71658a
         $user->save();
 
         return $user;

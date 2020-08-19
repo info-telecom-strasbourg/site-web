@@ -85,7 +85,7 @@
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h4 class="modal-title">Nouvelle news</h4>
+								<h4 class="modal-title">Nouvelle actualité</h4>
 								<button type="button" class="close" data-dismiss="modal" style="color: white;">
 									<span>&times;</span> <!-- Cross button -->
 								</button>
@@ -268,230 +268,157 @@
 </section>
 <script>
 	$(document).ready(function() {
-				var newsAll = {!! $allNews !!};
-				$('input.checkbox').prop("checked", false);
-				$('input.checkbox').prop("checked", false);
+			var newsAll = {!! $allNews !!};
+			$('input.checkbox').prop("checked", false);
+			$('input.checkbox').prop("checked", false);
 
-				/**
-				 * Display or hide the sections corresponding to the button and the link
-				 * of the news.
-				 */
-				$('input#links-nullable').click(function(e) {
-					var newsId = $(this).attr('class').split(' ')[0];
-					if ($(this).is(":checked")) {
-						$('div#website' + newsId).css('display', 'block');
-						$('div#button' + newsId).css('display', 'block');
-					} else {
-						$('div#website' + newsId).css('display', 'none');
-						$('div#button' + newsId).css('display', 'none');
-					}
-				});
+			/**
+			 * Display or hide the sections corresponding to the button and the link
+			 * of the news.
+			 */
+			$('input#links-nullable').click(function(e) {
+				var newsId = $(this).attr('class').split(' ')[0];
+				if ($(this).is(":checked")) {
+					$('div#website' + newsId).css('display', 'block');
+					$('div#button' + newsId).css('display', 'block');
+				} else {
+					$('div#website' + newsId).css('display', 'none');
+					$('div#button' + newsId).css('display', 'none');
+				}
+			});
 
-				$('input#links-nullable-create').click(function(e) {
-					if ($(this).is(":checked")) {
-						$('div#website-crt').css('display', 'block');
-						$('div#button-crt').css('display', 'block');
-					} else {
-						$('div#website-crt').css('display', 'none');
-						$('div#button-crt').css('display', 'none');
-					}
-				});
+			$('input#links-nullable-create').click(function(e) {
+				if ($(this).is(":checked")) {
+					$('div#website-crt').css('display', 'block');
+					$('div#button-crt').css('display', 'block');
+				} else {
+					$('div#website-crt').css('display', 'none');
+					$('div#button-crt').css('display', 'none');
+				}
+			});
 
-				/**
-				 * Display the error message in the span given and linked to the input
-				 * given.
-				 *
-				 * @param input: the input that contains the error.
-				 * @param errorSpan: the span that have to be displayed.
-				 */
-				function displayError(input, errorSpan) {
-					if (!input.hasClass('is-invalid'))
-						input.addClass('is-invalid');
-					$(errorSpan).css('display', 'block');
+			/**
+			 * Display the error message in the span given and linked to the input
+			 * given.
+			 *
+			 * @param input: the input that contains the error.
+			 * @param errorSpan: the span that have to be displayed.
+			 */
+			function displayError(input, errorSpan) {
+				if (!input.hasClass('is-invalid'))
+					input.addClass('is-invalid');
+				$(errorSpan).css('display', 'block');
+			}
+
+			/**
+			 * Hide the error message in the span given and linked to the input
+			 * given.
+			 *
+			 * @param input: the input that do not contains error.
+			 * @param errorSpan: the span that have to be hid.
+			 */
+			function eraseError(input, errorSpan) {
+				if (input.hasClass('is-invalid'))
+					input.removeClass('is-invalid');
+				$(errorSpan).css('display', 'none');
+			}
+
+
+
+			/**
+			 * Check if all the values are acceptable to edit a news.
+			 */
+			$('button#submit-btn-edt-news').click(function(e) {
+				var newsId = $(this).attr('class').split(' ')[0];
+
+				var inputTitle = $('input#title' + newsId);
+				var inputDesc = $('textarea#decs' + newsId);
+				var inputLink = $('input#website' + newsId);
+				var inputButton = $('input#button' + newsId);
+
+				var newsTitle = inputTitle.val();
+				var newsDesc = inputDesc.val();
+				var newsImage = $('input#file' + newsId)[0].files[0].name;
+				var newsLinkNullable = $('input#links-nullable' + newsId).prop("checked", true);
+				var newsLink = inputLink.val();
+				var newsButton = inputButton.val();
+				var error = false;
+
+				if (newsTitle.length < 3) {
+					error = true
+					displayError(inputTitle, 'span#title-error' + newsId);
+				} else
+					eraseError(inputTitle, 'span#name-error' + newsId);
+
+				if (newsDesc.length < 3) {
+					error = true;
+					displayError(inputDesc, 'span#desc-error' + newsId);
+				} else
+					eraseError(inputDesc, 'span#desc-error' + newsId);
+
+				if (!newsLinkNullable) {
+					if (newsLink.length < 1) {
+						error = true;
+						displayError(inputLink, 'span#link-error' + newsId);
+					} else
+						eraseError(inputLink, 'span#link-error' + newsId);
+
+					if (newsButton.length < 1) {
+						error = true;
+						link
+						displayError(inputButton, 'span#button-error' + newsId);
+					} else
+						eraseError(inputButton, 'span#button-error' + newsId);
 				}
 
-				/**
-				 * Hide the error message in the span given and linked to the input
-				 * given.
-				 *
-				 * @param input: the input that do not contains error.
-				 * @param errorSpan: the span that have to be hid.
-				 */
-				function eraseError(input, errorSpan) {
-					if (input.hasClass('is-invalid'))
-						input.removeClass('is-invalid');
-					$(errorSpan).css('display', 'none');
+				if (error) e.preventDefault();
+			});
+
+			/**
+			 * Check if all the values are acceptable to create a news.
+			 */
+			$('button#create-news-btn').click(function(e) {
+				var inputTitle = $('input#title');
+				var inputDesc = $('textarea#desc');
+				var inputImage = $('input#image');
+				var title = inputFile.val();
+				var withLink = $('input#links-nullable').prop("checked", true);
+				var inputWebsite = $('input#website');
+				var inputButton = $('input#button');
+
+				if (title.lenth < 3 || title.length > 255) {
+					error = true;
+					displayError(inputTitle, 'span#title-error');
+				} else
+					eraseError(inputTitle, 'span#title-error');
+
+				if (inputDesc.val() < 1) {
+					error = true;
+					displayError(inputDesc, 'span#desc-error');
+				} else
+					eraseError(inputDesc, 'span#desc-error');
+
+				if (!inputImage.val()) {
+					error = true;
+					displayError(inputImage, 'span#image-error');
+				} else
+					eraseError(inputImage, 'span#image-error');
+
+				if (withLink) {
+					if (inputWebsite.val() == null) {
+						error = true;
+						displayError(inputWebsite, 'span#website-error');
+					} else
+						eraseError(inputWebsite, 'span#website-error');
+
+					if (inputButton.val() == null) {
+						error = true;
+						displayError(inputButton, 'span#button-error');
+					} else
+						eraseError(inputButton, 'span#button-error');
 				}
-
-				/**
-				 * Check if all the values are acceptable to edit a news.
-				 */
-				$('button#submit-btn-edt-news').click(function(e) {
-						var newsId = $(this).attr('class').split(' ')[0];
-
-						var inputTitle = $('input#title' + newsId);
-						var inputDesc = $('textarea#decs' + newsId);
-						var inputLink = $('input#website' + newsId);
-						var inputButton = $('input#button' + newsId);
-
-						var newsTitle = inputTitle.val();
-						var newsDesc = inputDesc.val();
-						var newsImage = $('input#file' + newsId)[0].files[0].name;
-						var newsLinkNullable = $('input#links-nullable' + newsId).prop("checked", true);
-						var newsLink = inputLink.val();
-						var newsButton = inputButton.val();
-						var error = false;
-
-						if (newsTitle.length < 3) {
-							error = true
-							displayError(inputTitle, 'span#title-error' + newsId);
-						} else
-							eraseError(inputTitle, 'span#title-error' + newsId);
-
-						if (newsDesc.length < 3) {
-							error = true;
-							displayError(inputDesc, 'span#desc-error' + newsId);
-						} else
-							eraseError(inputDesc, 'span#desc-error' + newsId);
-
-						if (!newsLinkNullable) {
-							if (newsLink.length < 1) {
-								error = true;
-								displayError(inputLink, 'span#link-error' + newsId);
-							}
-						});
-
-					$('input#links-nullable-create').click(function(e) {
-						if ($(this).is(":checked")) {
-							$('div#website-crt').css('display', 'block');
-							$('div#button-crt').css('display', 'block');
-						} else {
-							$('div#website-crt').css('display', 'none');
-							$('div#button-crt').css('display', 'none');
-						}
-					});
-
-					/**
-					 * Display the error message in the span given and linked to the input
-					 * given.
-					 *
-					 * @param input: the input that contains the error.
-					 * @param errorSpan: the span that have to be displayed.
-					 */
-					function displayError(input, errorSpan) {
-						if (!input.hasClass('is-invalid'))
-							input.addClass('is-invalid');
-						$(errorSpan).css('display', 'block');
-					}
-
-					/**
-					 * Hide the error message in the span given and linked to the input
-					 * given.
-					 *
-					 * @param input: the input that do not contains error.
-					 * @param errorSpan: the span that have to be hid.
-					 */
-					function eraseError(input, errorSpan) {
-						if (input.hasClass('is-invalid'))
-							input.removeClass('is-invalid');
-						$(errorSpan).css('display', 'none');
-					}
-
-					/**
-					 * Check if all the values are acceptable to edit a news.
-					 */
-					$('button#submit-btn-edt-news').click(function(e) {
-						var newsId = $(this).attr('class').split(' ')[0];
-
-						var inputTitle = $('input#title' + newsId);
-						var inputDesc = $('textarea#decs' + newsId);
-						var inputLink = $('input#website' + newsId);
-						var inputButton = $('input#button' + newsId);
-
-						var newsTitle = inputTitle.val();
-						var newsDesc = inputDesc.val();
-						var newsImage = $('input#file' + newsId)[0].files[0].name;
-						var newsLinkNullable = $('input#links-nullable' + newsId).prop("checked", true);
-						var newsLink = inputLink.val();
-						var newsButton = inputButton.val();
-						var error = false;
-
-						if (newsTitle.length < 3) {
-							error = true
-							displayError(inputTitle, 'span#title-error' + newsId);
-						} else
-							eraseError(inputTitle, 'span#name-error' + newsId);
-
-						if (newsDesc.length < 3) {
-							error = true;
-							displayError(inputDesc, 'span#desc-error' + newsId);
-						} else
-							eraseError(inputDesc, 'span#desc-error' + newsId);
-
-						if (!newsLinkNullable) {
-							if (newsLink.length < 1) {
-								error = true;
-								displayError(inputLink, 'span#link-error' + newsId);
-							} else
-								eraseError(inputLink, 'span#link-error' + newsId);
-
-							if (newsButton.length < 1) {
-								error = true;
-								link
-								displayError(inputButton, 'span#button-error' + newsId);
-							} else
-								eraseError(inputButton, 'span#button-error' + newsId);
-						}
-
-						if (error) e.preventDefault();
-					});
-
-					/**
-					 * Check if all the values are acceptable to create a news.
-					 */
-					$('button#create-news-btn').click(function(e) {
-						var inputTitle = $('input#title');
-						var inputDesc = $('textarea#desc');
-						var inputImage = $('input#image');
-						var title = inputFile.val();
-						var withLink = $('input#links-nullable').prop("checked", true);
-						var inputWebsite = $('input#website');
-						var inputButton = $('input#button');
-
-						if (title.lenth < 3 || title.length > 255) {
-							error = true;
-							displayError(inputTitle, 'span#title-error');
-						} else
-							eraseError(inputTitle, 'span#title-error');
-
-						if (inputDesc.val() < 1) {
-							error = true;
-							displayError(inputDesc, 'span#desc-error');
-						} else
-							eraseError(inputDesc, 'span#desc-error');
-
-						if (!inputImage.val()) {
-							error = true;
-							displayError(inputImage, 'span#image-error');
-						} else
-							eraseError(inputImage, 'span#image-error');
-
-						if (withLink) {
-							if (inputWebsite.val() == null) {
-								error = true;
-								displayError(inputWebsite, 'span#website-error');
-							} else
-								eraseError(inputWebsite, 'span#website-error');
-
-							if (inputButton.val() == null) {
-								error = true;
-								displayError(inputButton, 'span#button-error');
-							} else
-								eraseError(inputButton, 'span#button-error');
-						}
-
-						if (error) e.preventDefault();
-					});
-				});
+				if (error) e.preventDefault();
+			});
+	});
 </script>
 @endsection

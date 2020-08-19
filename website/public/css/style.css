@@ -1460,6 +1460,10 @@ div.bordure {
     margin-bottom: 20px;
 }
 
+.dark-page .input-group>.form-control {
+    margin-bottom: 0;
+}
+
 @media (max-width: 600px) {
     .dark-page #form-edit img {
         width: 100%;
@@ -1486,15 +1490,15 @@ div.bordure {
 }
 
 .inputfile {
-	width: 0.1px;
-	height: 0.1px;
-	opacity: 0;
-	overflow: hidden;
-	position: absolute;
-	z-index: -1;
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
 }
 
-.inputfile + label {
+.inputfile+label {
     border-radius: 40px;
     background-color: #254395;
     color: white;
@@ -1502,8 +1506,8 @@ div.bordure {
     padding: 2px 10px;
 }
 
-.inputfile:focus + label,
-.inputfile + label:hover {
+.inputfile:focus+label,
+.inputfile+label:hover {
     background-color: rgb(0, 105, 217);
 }
 
@@ -1559,7 +1563,7 @@ div.bordure {
     padding-bottom: 10px;
     margin-bottom: 12px;
     color: inherit;
-    overflow:hidden;
+    overflow: hidden;
 }
 
 .profil-card-item:hover {
@@ -1596,14 +1600,16 @@ div.bordure {
     width: 100%;
 }
 
-.reveal, .reveal-confirm {
+.reveal,
+.reveal-confirm {
     position: absolute;
     z-index: 100;
     right: -8px;
     top: 0;
 }
 
-.reveal:focus, .reveal-confirm:focus {
+.reveal:focus,
+.reveal-confirm:focus {
     outline: none !important;
     box-shadow: none;
 }
@@ -1621,7 +1627,9 @@ div.bordure {
     margin-right: 60px;
 }
 
+
 /* When the input field gets focus, change its width to 100% */
+
 .profil-search:focus {
     border-color: rgb(128, 189, 255);
     width: 100%;
@@ -1631,7 +1639,7 @@ div.bordure {
     position: absolute;
     right: 30px;
     z-index: 1;
-}  
+}
 
 .search-button-cours {
     position: absolute;
