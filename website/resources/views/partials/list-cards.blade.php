@@ -1,16 +1,16 @@
 <!-- Expected parameters when including
 
 - items : collection of items you want to display as cards
-- isCover : true if the cover is to be retrieve with $item->cover, otherwise false
+- isCover : true if the cover (the image of the card) is to be retrieve with $item->cover, otherwise false
 - errorMessage : error Message to display if there are no items
-- routeName : name of the route to show item
+- routeNameShow : name of the route to show an item
 
  -->
 
 	<div class="row justify-content-center">
         @if(isset($items))
             @forelse ($items as $item)
-            @if (isset($isCover))
+            @if (isset($isCover) && $isCover == 'true')
                 @php $cover = $item->cover; @endphp
             @else
                 @php $cover = json_decode($item->images)[0]; @endphp
@@ -26,7 +26,7 @@
                             <span>{{ mb_strlen( $item->desc ) > 57 ? mb_substr($item->desc, 0, 54) . ' ...' : $item->desc }}
                             </span>
                         </p>
-                        <a href="{{ route($routeName, $item) }}" class="btn btn-rounded btn-primary">DÉCOUVRIR</a>
+                        <a href="{{ route($routeNameShow, $item) }}" class="btn btn-rounded btn-primary">DÉCOUVRIR</a>
                     </div>
                 </div>
             </div>
