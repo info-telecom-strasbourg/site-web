@@ -333,14 +333,30 @@
                                                 </div>
 
                                                 <div class="text-center" style="margin-top:25px; margin-bottom:25px">
-                                                    <button id="submit-btn-edt-mb" type="submit" class="{{ $user->id }} btn btn-primary btn-rounded" style="width: 100%;;">Enregistrer</button>
+                                                    <button id="submit-btn-edt-mb" type="submit" class="{{ $user->id }} btn btn-primary btn-rounded" style="width: 100%;">Enregistrer</button>
                                                 </div>
                                             </form>
 
                                         </div>
                                     </div>
                                 </div>
-                                <a class="btn btn-rounded button-panel" href="/page-admin/{{ $user->id }}/delete-user">Supprimer</a>
+								<button type="button" data-toggle="modal" data-target="#delete{{ $user->id }}" class="btn btn-rounded button-panel">Supprimer</button>
+                                <div class="modal" id="delete{{ $user->id }}">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title text-center">Voulez-vous vraiment supprimer {{ $user->name }}?</h4>
+                                                <button type="button" class="close" data-dismiss="modal" style="color: white;">
+                                                    <span>&times;</span> <!-- Cross button -->
+                                                </button>
+                                            </div>
+											<div style="display: flex; flex-direction: row; justify-content: center;">
+												<a class="btn btn-primary btn-rounded" style="margin: 20px 20px 10px 20px; width: 100px;" href="/page-admin/{{ $user->id }}/delete-user">Oui</a>
+												<button class="btn btn-primary btn-rounded" style="margin: 20px 20px 10px 20px; width: 100px;" data-toggle="modal" data-target="#delete{{ $user->id }}">Non</button>
+											</div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -351,171 +367,171 @@
     </div>
 </section>
 <script>
-    $(document).ready(function() {
-        var usersAll = {!! $users !!};
-        var usersEmail = [];
-        usersAll.forEach(function(user) {
-            usersEmail.push(user.email);
-        });
-
-        /**
-         * Check if the email given is unique (compare with the emails in the
-         * table 'users').
-         *
-         * @param emailToCheck: the email that will be checked.
-         * @return a boolean that indicate if the email is unique.
-         */
-        function emailIsUnique(emailToCheck) {
-            var isUnique = true;
-            try {
-                usersEmail.forEach(function(email) {
-                    if (email.localeCompare(emailToCheck) == 0) {
-                        isUnique = false;
-                        throw Break;
-                    }
-                });
-            } catch (exception) {
-                if (exception != Break)
-                    throw exception;
-            } finally {
-                return isUnique;
-            }
-        }
-
-        /**
-         * Display the error message in the span given and linked to the input
-         * given.
-         *
-         * @param input: the input that contains the error.
-         * @param errorSpan: the span that have to be displayed.
-         */
-        function displayError(input, errorSpan) {
-            if (!input.hasClass('is-invalid'))
-                input.addClass('is-invalid');
-            $(errorSpan).css('display', 'block');
-        }
-
-        /**
-         * Hide the error message in the span given and linked to the input
-         * given.
-         *
-         * @param input: the input that do not contains error.
-         * @param errorSpan: the span that have to be hid.
-         */
-        function eraseError(input, errorSpan) {
-            if (input.hasClass('is-invalid'))
-                input.removeClass('is-invalid');
-            $(errorSpan).css('display', 'none');
-        }
-
-        /**
-         * Check if all the values are acceptable to edit a member profil.
-         */
-        $('button#submit-btn-edt-mb').click(function(e) {
-            var userId = $(this).attr('class').split(' ')[0];
-            var currentUserEmail;
-            usersAll.forEach(function(user) {
-                if (user.id == userId)
-                    currentUserEmail = String(user.email);
-            });
-
-            var inputName = $('input#name' + userId);
-            var inputMail = $('input#email' + userId);
-            var inputPassword = $('input#password' + userId);
-            var inputClass = $('input#class' + userId);
-            var inputPromo = $('input#promo' + userId);
-            var promo = inputPromo.val();
-
-            var userName = inputName.val();
-            var userEmail = inputMail.val();
-            var userRole = $('#role' + userId + ' option:selected').text();
-            var userPw = inputPassword.val();
-            var userPwc = $('input#password-confirm' + userId).val();
-            var error = false;
-
-
-            if (userName.length < 3) {
-                error = true;
-                displayError(inputName, 'span#name-error' + userId);
-            } else
-                eraseError(inputName, 'span#name-error' + userId);
-
-            if (inputClass.val().length < 1) {
-                error = true;
-                displayError(inputClass, 'span#class-error' + userId);
-            } else
-                eraseError(inputClass, 'span#class-error' + userId);
-
-            if (promo.length != 4 || isNaN(promo)) {
-                error = true;
-                displayError(inputPromo, 'span#promo-error' + userId);
-            } else
-                eraseError(inputPromo, 'span#promo-error' + userId);
-
-            if ((userPw.length < 8 || userPw != userPwc) && userPw != "") {
-                error = true;
-                displayError(inputPassword, 'span#password-error' + userId);
-                inputPassword.val('');
-                $('input#password-confirm' + userId).val('');
-            } else
-                eraseError(inputPassword, 'span#password-error' + userId);
-
-            if (!emailIsUnique(userEmail) && userEmail.localeCompare(currentUserEmail) != 0) {
-                error = true;
-                displayError(inputMail, 'span#email-error' + userId);
-            } else
-                eraseError(inputMail, 'span#email-error' + userId);
-
-            if (error) e.preventDefault();
-        });
-
-        /**
-         * Check if all the values are acceptable to create a member.
-         */
-        $('button#create-member-btn').click(function(e) {
-            var error = false;
-            var inputName = $('input#name');
-            var inputMail = $('input#email');
-            var inputPassword = $('input#password');
-            var inputPasswordConfirm = $('input#password-confirm');
-            var password = inputPassword.val();
-            var inputClass = $('input#class');
-            var inputPromo = $('input#promo');
-            var promo = inputPromo.val();
-
-            if (inputName.val().length < 3) {
-                error = true;
-                displayError(inputName, 'span#name-error');
-            } else
-                eraseError(inputName, 'span#name-error');
-
-            if (!emailIsUnique(inputMail.val())) {
-                error = true;
-                displayError(inputMail, 'span#email-error');
-            } else
-                eraseError(inputMail, 'span#email-error');
-
-            if (inputClass.val().length < 1) {
-                error = true;
-                displayError(inputClass, 'span#class-error');
-            } else
-                eraseError(inputClass, 'span#class-error');
-            if (promo.length != 4 || isNaN(promo)) {
-                error = true;
-                displayError(inputPromo, 'span#promo-error');
-            } else
-                eraseError(inputPromo, 'span#promo-error');
-
-            if (password.length < 8 || (password != inputPasswordConfirm.val())) {
-                error = true;
-                displayError(inputPassword, 'span#password-error');
-                inputPassword.val('');
-                $('input#password-confirm').val('');
-            } else
-                eraseError(inputPassword, 'span#password-error');
-
-            if (error) e.preventDefault();
-        });
+$(document).ready(function() {
+    var usersAll = {!! $users !!};
+    var usersEmail = [];
+    usersAll.forEach(function(user) {
+        usersEmail.push(user.email);
     });
+
+    /**
+     * Check if the email given is unique (compare with the emails in the
+     * table 'users').
+     *
+     * @param emailToCheck: the email that will be checked.
+     * @return a boolean that indicate if the email is unique.
+     */
+    function emailIsUnique(emailToCheck) {
+        var isUnique = true;
+        try {
+            usersEmail.forEach(function(email) {
+                if (email.localeCompare(emailToCheck) == 0) {
+                    isUnique = false;
+                    throw Break;
+                }
+            });
+        } catch (exception) {
+            if (exception != Break)
+                throw exception;
+        } finally {
+            return isUnique;
+        }
+    }
+
+    /**
+     * Display the error message in the span given and linked to the input
+     * given.
+     *
+     * @param input: the input that contains the error.
+     * @param errorSpan: the span that have to be displayed.
+     */
+    function displayError(input, errorSpan) {
+        if (!input.hasClass('is-invalid'))
+            input.addClass('is-invalid');
+        $(errorSpan).css('display', 'block');
+    }
+
+    /**
+     * Hide the error message in the span given and linked to the input
+     * given.
+     *
+     * @param input: the input that do not contains error.
+     * @param errorSpan: the span that have to be hid.
+     */
+    function eraseError(input, errorSpan) {
+        if (input.hasClass('is-invalid'))
+            input.removeClass('is-invalid');
+        $(errorSpan).css('display', 'none');
+    }
+
+    /**
+     * Check if all the values are acceptable to edit a member profil.
+     */
+    $('button#submit-btn-edt-mb').click(function(e) {
+        var userId = $(this).attr('class').split(' ')[0];
+        var currentUserEmail;
+        usersAll.forEach(function(user) {
+            if (user.id == userId)
+                currentUserEmail = String(user.email);
+        });
+
+        var inputName = $('input#name' + userId);
+        var inputMail = $('input#email' + userId);
+        var inputPassword = $('input#password' + userId);
+        var inputClass = $('input#class' + userId);
+        var inputPromo = $('input#promo' + userId);
+        var promo = inputPromo.val();
+
+        var userName = inputName.val();
+        var userEmail = inputMail.val();
+        var userRole = $('#role' + userId + ' option:selected').text();
+        var userPw = inputPassword.val();
+        var userPwc = $('input#password-confirm' + userId).val();
+        var error = false;
+
+
+        if (userName.length < 3) {
+            error = true;
+            displayError(inputName, 'span#name-error' + userId);
+        } else
+            eraseError(inputName, 'span#name-error' + userId);
+
+        if (inputClass.val().length < 1) {
+            error = true;
+            displayError(inputClass, 'span#class-error' + userId);
+        } else
+            eraseError(inputClass, 'span#class-error' + userId);
+
+        if (promo.length != 4 || isNaN(promo)) {
+            error = true;
+            displayError(inputPromo, 'span#promo-error' + userId);
+        } else
+            eraseError(inputPromo, 'span#promo-error' + userId);
+
+        if ((userPw.length < 8 || userPw != userPwc) && userPw != "") {
+            error = true;
+            displayError(inputPassword, 'span#password-error' + userId);
+            inputPassword.val('');
+            $('input#password-confirm' + userId).val('');
+        } else
+            eraseError(inputPassword, 'span#password-error' + userId);
+
+        if (!emailIsUnique(userEmail) && userEmail.localeCompare(currentUserEmail) != 0) {
+            error = true;
+            displayError(inputMail, 'span#email-error' + userId);
+        } else
+            eraseError(inputMail, 'span#email-error' + userId);
+
+        if (error) e.preventDefault();
+    });
+
+    /**
+     * Check if all the values are acceptable to create a member.
+     */
+    $('button#create-member-btn').click(function(e) {
+        var error = false;
+        var inputName = $('input#name');
+        var inputMail = $('input#email');
+        var inputPassword = $('input#password');
+        var inputPasswordConfirm = $('input#password-confirm');
+        var password = inputPassword.val();
+        var inputClass = $('input#class');
+        var inputPromo = $('input#promo');
+        var promo = inputPromo.val();
+
+        if (inputName.val().length < 3) {
+            error = true;
+            displayError(inputName, 'span#name-error');
+        } else
+            eraseError(inputName, 'span#name-error');
+
+        if (!emailIsUnique(inputMail.val())) {
+            error = true;
+            displayError(inputMail, 'span#email-error');
+        } else
+            eraseError(inputMail, 'span#email-error');
+
+        if (inputClass.val().length < 1) {
+            error = true;
+            displayError(inputClass, 'span#class-error');
+        } else
+            eraseError(inputClass, 'span#class-error');
+        if (promo.length != 4 || isNaN(promo)) {
+            error = true;
+            displayError(inputPromo, 'span#promo-error');
+        } else
+            eraseError(inputPromo, 'span#promo-error');
+
+        if (password.length < 8 || (password != inputPasswordConfirm.val())) {
+            error = true;
+            displayError(inputPassword, 'span#password-error');
+            inputPassword.val('');
+            $('input#password-confirm').val('');
+        } else
+            eraseError(inputPassword, 'span#password-error');
+
+        if (error) e.preventDefault();
+    });
+});
 </script>
 @endsection
