@@ -9,73 +9,55 @@
 <section class="section" id="actu">
     <div id="carousel-actualite" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
-            <li data-target="#carousel-actualite" data-slide-to="0" class="active"></li>
-            <li data-target="#carousel-actualite" data-slide-to="1"></li>
-            <li data-target="#carousel-actualite" data-slide-to="2"></li>
-            <li data-target="#carousel-actualite" data-slide-to="3"></li>
+			@if($allNews->count() > 1)
+            @foreach($allNews as $news)
+            	<li data-target="#carousel-actualite" data-slide-to="{{ $news->position - 1 }}"  @if($news->position == 1) class="active" @endif></li>
+            @endforeach
+			@endif
         </ol>
         <div class="carousel-inner" height="100%">
-            <!-- First new -->
-            <div class="carousel-item active actu full-screen" style="background: url('../images/actu/actu_1.jpg') top center; background-size: cover;">
-                <div class="carousel-caption">
-                    <h1>Info Télécom Strasbourg</h1>
-                    <br>
-                    <p>Notre toute nouvelle association débarque à TPS en Septembre !</p>
-                    <br>
-                    <form action="projets">
-                        <input class="favorite styled" type="submit" value="Découvrir nos projets">
-                    </form>
+            @forelse($allNews as $news)
+	            <div class="carousel-item actu @if($news->position == 1) active @endif full-screen" style="background: url({{ asset('storage/' . $news->image) }}) top center; background-size: cover;">
+	                <div class="carousel-caption">
+	                    <h1>{{ $news->title }}</h1>
+	                    <br>
+	                    <p>{{ $news->desc }}</p>
+	                    <br>
+	                    @isset($news->button)
+	                    @isset($news->link)
+	                    <form action="{{ $news->link }}">
+	                        <input class="favorite styled" type="submit" value="{{ $news->button }}">
+	                    </form>
+	                    @endisset
+	                    @endisset
+	                </div>
                 </div>
+			@empty
+				<div class="carousel-item actu active full-screen" style="background: url({{ asset('storage/' . $defaultNews->image) }}) top center; background-size: cover;">
+				<div class="carousel-caption">
+					<h1>{{ $defaultNews->title }}</h1>
+					<br>
+					<p>{{ $defaultNews->desc }}</p>
+					<br>
+				</div>
+				</div>
+            @endforelse
             </div>
 
-            <!-- Second new -->
-            <div class="carousel-item actu full-screen" style="background: url('../images/actu/actu_2.jpg') top center; background-size: cover;">
-                <div class="carousel-caption">
-                    <h1>RTS - Strategy</h1>
-                    <br>
-                    <p>Développement de la stratégie du robot de RTS pour la Coupe de France de Robotique 2020</p>
-                    <br>
-                    <form action="#">
-                        <input class="favorite styled" type="submit" value="Voir le projet">
-                    </form>
-                </div>
-            </div>
+            @if($allNews->count() > 1)
+            <!-- Arrow to go to the previous new -->
+            <a class="carousel-control-prev" href="#carousel-actualite" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
 
-            <!-- Third new -->
-            <div class="carousel-item actu full-screen" style="background: url('../images/actu/actu_3.jpg') top center; background-size: cover;">
-                <div class="carousel-caption">
-                    <h1>Site web 2.0</h1>
-                    <br>
-                    <p>Développement de nouvelles fonctionnalités pour notre site web</p>
-                    <br>
-                    <form action="/projets/1">
-                        <input class="favorite styled" type="submit" value="Voir le projet">
-                    </form>
-                </div>
-            </div>
-
-            <!-- Fourth new -->
-            <div class="carousel-item actu full-screen" style="background: url('../images/actu/actu_4.jpg') top center; background-size: cover;">
-                <div class="carousel-caption">
-                    <h1>Collaborations</h1>
-                    <br>
-                    <p>Nous remercions RTS et PSI de nous accorder leur confiance pour travailler ensemble l'année prochaine</p>
-                </div>
-            </div>
+            <!-- Arrow to go to the next new -->
+            <a class="carousel-control-next" href="#carousel-actualite" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+            @endif
         </div>
-
-        <!-- Arrow to go to the previous new -->
-        <a class="carousel-control-prev" href="#carousel-actualite" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-
-        <!-- Arrow to go to the next new -->
-        <a class="carousel-control-next" href="#carousel-actualite" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
 </section>
 
 <!-- Poles -->
@@ -104,19 +86,19 @@
             <div id="recipeCarousel" class="carousel slide w-100" data-ride="carousel">
                 <div class="carousel-inner w-100" role="listbox">
                     @foreach ($projets as $projet)
-                        <div class="carousel-item @if ($loop->first) active @endif">
-                            <div class="col-md-4">
-                                <div class="card text-center shadow mb-5 bg-white rounded">
-                                    <img class="card-img-top" src="{{ asset('storage/' . json_decode($projet->projet->images)[0]) }}" alt="Card image cap">
-                                    <div class="card-body d-flex flex-column">
-                                        <h5 class="card-title text-center font-weight-bold">{{ $projet->projet->title }}</h5>
-                                        <p class="card-text">{{ mb_strlen( $projet->projet->desc ) > 57 ? mb_substr($projet->projet->desc, 0, 54) . ' ...' : $projet->projet->desc }}
-                                        </p>
-                                        <a href="/projets/{{ $projet->projet_id }}" class="btn btn-rounded btn-primary">Découvrir</a>
-                                    </div>
+                    <div class="carousel-item @if ($loop->first) active @endif">
+                        <div class="col-md-4">
+                            <div class="card text-center shadow mb-5 bg-white rounded">
+                                <img class="card-img-top" src="{{ asset('storage/' . json_decode($projet->projet->images)[0]) }}" alt="Card image cap">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title text-center font-weight-bold">{{ $projet->projet->title }}</h5>
+                                    <p class="card-text">{{ mb_strlen( $projet->projet->desc ) > 57 ? mb_substr($projet->projet->desc, 0, 54) . ' ...' : $projet->projet->desc }}
+                                    </p>
+                                    <a href="/projets/{{ $projet->projet_id }}" class="btn btn-rounded btn-primary">Découvrir</a>
                                 </div>
                             </div>
                         </div>
+                    </div>
                     @endforeach
                 </div>
                 <a class="carousel-control-prev w-auto" href="#recipeCarousel" role="button" data-slide="prev">
@@ -171,13 +153,13 @@
         <div class="container-fluid">
             <div class="row">
                 @foreach ($team as $user)
-                    <div class="col-md-3 text-center">
-                        <a href="/users/{{ $user->id }}" class="respo">
-                            <img class="profil-rounded" src="{{ asset('storage/' . $user->profil_picture) }}">
-                            <p id="nom">{{ $user->name }}</p>
-                            <p id="fonction">{{ $user->role->role }}</p>
-                        </a>
-                    </div>
+                <div class="col-md-3 text-center">
+                    <a href="/users/{{ $user->id }}" class="respo">
+                        <img class="profil-rounded" src="{{ asset('storage/' . $user->profil_picture) }}">
+                        <p id="nom">{{ $user->name }}</p>
+                        <p id="fonction">{{ $user->role->role }}</p>
+                    </a>
+                </div>
                 @endforeach
             </div>
         </div>
@@ -203,9 +185,9 @@
         </div>
         <div class="chiffre">
             @if ($years == 1)
-                <h1>{{ $years }}ère</h1>
+            <h1>{{ $years }}ère</h1>
             @else
-                <h1>{{ $years }}ème</h1>
+            <h1>{{ $years }}ème</h1>
             @endif
             ANNÉE
         </div>
@@ -262,12 +244,12 @@
             <div id="contact_cont" class="contact-form col-md-5">
                 <!-- Confirmation email was sent -->
                 @if (session('message'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {{ session('message') }}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('message') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
                 @endif
 
                 <form class="contact-form d-flex flex-column align-items-center" action="/contact" method="POST">

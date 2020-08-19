@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactMe;
 use App\Pole;
+use App\News;
 use App\User;
 use App\Projet;
 use App\Role;
@@ -36,7 +37,11 @@ class WelcomeController extends Controller
 
         $nbPoles = Pole::count();
 
+		$allNews = News::where('position', '!=', '0')->orderBy('position')->get();
+		$defaultNews = News::where('position', '==', '0')->first();
+
         $years = date("Y") - 2019;
+
 
 
         // get the date and time to know if the projects needs to be updated
@@ -79,7 +84,8 @@ class WelcomeController extends Controller
 
         $projets = RandomProjet::all();
 
-        return view('welcome', compact('poles', 'team', 'partners', 'projets', 'nbProjets', 'nbUsers', 'nbPoles', 'years'));
+        return view('welcome', compact('poles', 'team', 'partners', 'projets',
+		'nbProjets', 'nbUsers', 'nbPoles', 'years', 'allNews', 'defaultNews'));
     }
 
     /**
