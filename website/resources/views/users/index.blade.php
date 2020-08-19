@@ -17,9 +17,11 @@
 	</h1>
 	<hr id="pointless-button-click" class="line-under-title">
 	<div id="pointless-button">
-        <p>Ce texte appartient au premier div de ma page</p>
-        <p>Ce deuxième paragraphe également</p>
-    </div>
+		<div style="justify-content: center; display:flex;">
+			<button style="	width:85px;	height:85px; background:#cc0000; font:bold 13px Arial; border-radius:50%; border:none; color:#fff; margin: auto;">Pointless button</button>
+		</div>
+		<hr class="line-under-title">
+	</div>
 
 	<div class="container pt-3">
 		<!-- Search bar -->

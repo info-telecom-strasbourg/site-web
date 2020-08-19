@@ -331,14 +331,15 @@ $(document).ready(function() {
         }
     });
 
-    function display_button() {
-        if (getComputedStyle(d2).display != "none") {
-            d2.style.display = "none";
-        } else {
-            d2.style.display = "block";
-        }
-    };
-    togg2.onclick = display_button;
+    /* Toggle the pointless button
+     */
+    document.getElementById("pointless-button-click").addEventListener("click", () => {
+        let button = document.getElementById("pointless-button");
+        if (button.style.display != "block")
+            button.style.display = "block";
+        else
+            button.style.display = "none";
+    })
 
 
 

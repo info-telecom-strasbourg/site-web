@@ -1798,3 +1798,10 @@ div.bordure {
     background-color: transparent;
     margin-left: 16px;
 }
+
+
+/* >>>>>>>>>>>>>>>>>>>> Users index <<<<<<<<<<<<<<<<<<<< */
+
+#pointless-button {
+    display: none;
+}
