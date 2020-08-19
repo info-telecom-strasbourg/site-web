@@ -1,13 +1,15 @@
 /node_modules
 /public/hot
+/public/images
 /public/storage
 /storage/*.key
 /vendor
+.gitignore
 .env
 .env.backup
 ../.idea/
+composer.lock
 site_ITS_db.sql
-
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml

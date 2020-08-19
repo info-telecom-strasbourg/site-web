@@ -36,7 +36,7 @@ class UserController extends Controller
     /**
      * Display a user's page.
      *
-     * @return the user's view
+     * @return the user's view.
      */
     public function show(User $user)
     {
@@ -55,16 +55,17 @@ class UserController extends Controller
      */
     public function search(User $user)
     {
-        $projects = $user->projets()->where('title', 'like', '%'.request('search-projet').'%')->get();
+        $projects = $user->projets()->where('title', 'like', '%' . request('search-projet') . '%')->get();
 
-        $lessons = $user->cours()->where('title', 'like', '%'.request('search-cours').'%')->get();
+        $lessons = $user->cours()->where('title', 'like', '%' . request('search-cours') . '%')->get();
 
-        $competitions = $user->competitions()->where('title', 'like', '%'.request('search-compet').'%')->get();
+        $competitions = $user->competitions()->where('title', 'like', '%' . request('search-compet') . '%')->get();
 
         $search = [
-            request('search-projet'), 
-            request('search-cours'), 
-            request('search-compet')];
+            request('search-projet'),
+            request('search-cours'),
+            request('search-compet')
+        ];
 
         return view('users.show', compact('user', 'projects', 'lessons', 'competitions', 'search'));
     }
@@ -81,10 +82,11 @@ class UserController extends Controller
         $validatedRequest = $this->validateUser();
 
         $user->update([
-            'name' => $validatedRequest['name'], 
-            'email' => $validatedRequest['email'], 
-            'class' => $validatedRequest['class'], 
-            'year' => $validatedRequest['year']]);
+            'name' => $validatedRequest['name'],
+            'email' => $validatedRequest['email'],
+            'class' => $validatedRequest['class'],
+            'year' => $validatedRequest['year']
+        ]);
 
         if ($validatedRequest['password'] != null)
             $user->update(['password' => Hash::make($validatedRequest['password'])]);
@@ -96,7 +98,7 @@ class UserController extends Controller
             $user->update(['profil_picture' => $this->saveImage($validatedRequest)]);
         }
 
-        return back()->with('success','Vous avez bien mis à jour vos informations de profil.');;
+        return back()->with('success', 'Vous avez bien mis à jour vos informations de profil.');;
     }
 
     /**
@@ -105,7 +107,8 @@ class UserController extends Controller
      * @param user: the user for which the profil picture will be updated.
      * @return the view of the profil page.
      */
-    public function update_avatar(User $user) {
+    public function update_avatar(User $user)
+    {
 
         request()->validate([
             'profil_picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -116,8 +119,7 @@ class UserController extends Controller
         $user->update(['profil_picture' => $this->saveImage(request())]);
 
         return back()
-            ->with('success','Vous avez bien mis à jour votre image de profil.');
-
+            ->with('success', 'Vous avez bien mis à jour votre image de profil.');
     }
 
     /**
