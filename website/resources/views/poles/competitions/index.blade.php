@@ -75,23 +75,27 @@
 
 		<!-- Sort dates -->
 		@php
-		use Carbon\Carbon;
-		$today_date = Carbon::now();
-		$pastEvents = array();
-		$futurEvents = array();
-		$todayEvent = "today";
+			use Carbon\Carbon;
+			function isInPast($date, $today_date) {
+				return (intval(substr($date, 0, 4)) > intval(substr($today_date, 0, 4)) ||
+				 	intval(substr($date, 5, 2)) > intval(substr($today_date, 5, 2)) ||
+					intval(substr($date, 8, 2)) > intval(substr($today_date, 8, 2)));
+			}
 
-		foreach ($pole->timeline as $event) {
-		$expire_date = Carbon::createFromFormat('Y-m-d', $event->date);
-		$data_difference = $today_date->diffInDays($event->date, false);
+			$today_date =  Carbon::now('Europe/Paris')->format('Y-m-d');
+			$pastEvents = array();
+			$futurEvents = array();
+			$todayEvent = "today";
 
-		if($expire_date->isToday())
-		$todayEvent = $event;
-		else if($today_date->lt($event->date, false))
-		$futurEvents[] = $event;
-		else
-		$pastEvents[] = $event;
-		}
+		    foreach ($pole->timeline as $event) {
+
+				if($event->date == $today_date)
+					$todayEvent = $event;
+		        else if(isInPast($event->date, $today_date))
+					$futurEvents[] = $event;
+		        else
+		            $pastEvents[] = $event;
+			}
 		@endphp
 
 		<!-- Timeline of the pole -->

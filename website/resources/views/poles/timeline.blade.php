@@ -40,7 +40,7 @@
 					<div id="dates-select">
 					</div>
 					<span id="date-error" class="invalid-feedback" role="alert" style="display: none;">
-						<strong>Il faut une date pour l'évènement</strong>
+						<strong>Il faut une date pour l'évènement (une même date ne doit pas apparaître 2 fois)</strong>
 					</span>
 
 
@@ -96,7 +96,7 @@
 						<div id="dates-select{{ $step->id }}">
 						</div>
 						<span id="date-error{{ $step->id }}" class="invalid-feedback" role="alert" style="display: none;">
-							<strong>Il faut une date pour l'évènement</strong>
+							<strong>Il faut une date pour l'évènement (une même date ne doit pas apparaître 2 fois)</strong>
 						</span>
 
 						<input type="text" name="reference_id" value="{{ $object->id }}" hidden>
@@ -137,6 +137,31 @@ function eraseError(input, errorSpan)
 	$(errorSpan).css('display', 'none');
 }
 
+/**
+ * Check if the given date is unique. The date must come from a calendar like
+ * the one in the modal for create an event.
+ */
+ function dateIsUnique(date, baseDate)
+ {
+	 var arrayDate = convertMonth(date);
+	 var parsedDate = arrayDate[0] + '-' + arrayDate[1] + '-' + arrayDate[2];
+	 var arrayBaseDate;
+	 var parsedBaseDate;
+	 if (!(baseDate === null))
+	 {
+		 arrayBaseDate = convertMonth(baseDate);
+		 parsedBaseDate = arrayBaseDate[0] + '-' + arrayBaseDate[1] + '-' + arrayBaseDate[2];
+	 }
+
+	 @foreach($object->timeline as $step)
+	 	if ('{{ $step->date }}' == parsedDate && !(baseDate === null) && parsedBaseDate != parsedDate)
+			return false;
+		else if(('{{ $step->date }}' == parsedDate) && baseDate === null)
+			return false;
+	 @endforeach
+	 return true;
+ }
+
 
 var dateStep = document.getElementById('calendar-step');
 if (dateStep) dateStep.style.visibility = "visible";
@@ -158,7 +183,7 @@ $('button#create-news-step').click(function(e) {
 	else
 		eraseError(inputDesc, 'span#desc-error');
 
-	if(calendarStep.value == null)
+	if(calendarStep.value == null || !dateIsUnique(calendarStep.value, null))
 	{
 		error = true;
 		displayError(inputDate, 'span#date-error');
@@ -175,6 +200,7 @@ $('button#create-news-step').click(function(e) {
 // Search the dates and make them appear into the calendar
 var datesSteps = [];
 var calendars = [];
+var baseValues = [];
 @foreach($object->timeline as $step)
 	datesSteps.push(document.getElementById('calendar-step-edt{{ $step->id }}'));
 	if(datesSteps['{{ $step->id }}'])
@@ -182,6 +208,7 @@ var calendars = [];
 	calendars['{{ $step->id }}'] = new ej.calendars.Calendar({});
 
 	calendars['{{ $step->id }}'].value = new Date('{{ $step->date }}');
+	baseValues['{{ $step->id }}'] = calendars['{{ $step->id }}'].value;
 	calendars['{{ $step->id }}'].appendTo('#cal-step-dates-edt{{ $step->id }}');
 
 	$('button#upd-step{{ $step->id }}').click(function(e) {
@@ -197,7 +224,7 @@ var calendars = [];
 		else
 			eraseError(inputDesc, 'span#desc-error{{ $step->id }}');
 
-		if(calendars[calendars.length -1].value == null)
+		if(calendars[calendars.length -1].value == null || !dateIsUnique(calendars[calendars.length -1].value, baseValues['{{ $step->id }}']))
 		{
 			error = true;
 			displayError(inputDate, 'span#date-error{{ $step->id }}');
