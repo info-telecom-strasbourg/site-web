@@ -429,7 +429,7 @@
             } else
                 eraseError(inputMail, 'span#email-error');
 
-            if ((password.length < 8 || (password != inputPasswordConfirm.val())) && password != "") {
+            if (password.length < 8 || (password != inputPasswordConfirm.val())) {
                 error = true;
                 displayError(inputPassword, 'span#password-error');
                 inputPassword.val('');

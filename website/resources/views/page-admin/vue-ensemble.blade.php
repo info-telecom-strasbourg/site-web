@@ -16,52 +16,52 @@
 
 
 <section class="dark-page" id="vue-ens">
-    <!-- Navbar dark version -->
-    <div class="bandeau-dark">
-        <div class="dropdown">
-            <a class="btn btn-secondary dropdown-toggle total" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                {{ Auth::user()->name }}
-            </a>
-            <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" href="#">Profil</a>
-                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">
-                    Déconnexion
-                </a>
+	<!-- Navbar dark version -->
+	<div class="bandeau-dark">
+		<div class="dropdown">
+			<a class="btn btn-secondary dropdown-toggle total" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+				{{ Auth::user()->name }}
+			</a>
+			<div class="dropdown-menu dropdown-menu-right">
+				<a class="dropdown-item" href="#">Profil</a>
+				<a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+				document.getElementById('logout-form').submit();">
+				Déconnexion
+			</a>
 
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-            </div>
-        </div>
+			<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+				@csrf
+			</form>
+		</div>
+	</div>
 
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle short" type="button" data-toggle="dropdown">
-                <img class="profil-rounded" src="{{ asset('storage/' . Auth::user()->profil_picture) }}">
-            </button>
-            <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" href="/users/{{ Auth::user()->id }}">Profil</a>
-                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">
-                    Déconnexion
-                </a>
+	<div class="dropdown">
+		<button class="btn btn-secondary dropdown-toggle short" type="button" data-toggle="dropdown">
+			<img class="profil-rounded" src="{{ asset('storage/' . Auth::user()->profil_picture) }}">
+		</button>
+		<div class="dropdown-menu dropdown-menu-right">
+			<a class="dropdown-item" href="/users/{{ Auth::user()->id }}">Profil</a>
+			<a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+			document.getElementById('logout-form').submit();">
+			Déconnexion
+		</a>
 
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="nav flex-column nav-pills short" id="v-pills-tab" role="tablist" aria-orientation="horizontal">
-        <div class="navbar-dark-brand" href="/">
-            <a href="/">
-                <img src="/images/logo/logo-dark.png" width="90" height="100%" alt="Logo du site">
-            </a>
-        </div>
-        <a class="nav-link active" href="#">VUE D'ENSEMBLE</a>
-        <a class="nav-link" href="/page-admin/membres">MEMBRES</a>
-        <a class="nav-link" href="/page-admin/actualites">ACTUALITÉS</a>
-    </div>
+		<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+			@csrf
+		</form>
+	</div>
+</div>
+</div>
+<div class="nav flex-column nav-pills short" id="v-pills-tab" role="tablist" aria-orientation="horizontal">
+	<div class="navbar-dark-brand" href="/">
+		<a href="/">
+			<img src="/images/logo/logo-dark.png" width="90" height="100%" alt="Logo du site">
+		</a>
+	</div>
+	<a class="nav-link active" href="#">VUE D'ENSEMBLE</a>
+	<a class="nav-link" href="/page-admin/membres">MEMBRES</a>
+	<a class="nav-link" href="/page-admin/actualites">ACTUALITÉS</a>
+</div>
     <div class="container">
         <div class="nav flex-column nav-pills total" id="v-pills-tab" role="tablist" aria-orientation="vertical">
             <div class="navbar-dark-brand" href="/">
