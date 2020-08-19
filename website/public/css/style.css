@@ -194,6 +194,7 @@ a.link-member:hover {
 
 .btn-search:focus {
     outline: 0 !important;
+    box-shadow: none;
 }
 
 
