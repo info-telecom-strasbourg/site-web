@@ -107,7 +107,7 @@
                                         <div class="form-group">
                                             <label for="name" class="form-title-small">Nom</label>
 
-                                            <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                            <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Prénom Nom">
 
                                             <span id="name-error" class="invalid-feedback" role="alert" style="display: none;">
                                                 <strong>Vous devez entrer un nom de plus de 3 caractères</strong>
@@ -118,10 +118,32 @@
                                         <div class="form-group">
                                             <label for="email" class="form-title-small">Adresse email</label>
 
-                                            <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                            <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="email@example.com">
 
                                             <span id="email-error" class="invalid-feedback" role="alert" style="display: none;">
                                                 <strong>Vous devez entrer un email unique</strong>
+                                            </span>
+                                        </div>
+
+                                        <!-- Give the member a class -->
+                                        <div class="form-group">
+                                            <label for="class" class="form-title-small">Classe</label>
+
+                                            <input id="class" type="text" class="form-control" name="class" value="{{ old('class') }}" required autocomplete="classe" placeholder="classe">
+
+                                            <span id="class-error" class="invalid-feedback" role="alert" style="display: none;">
+                                                <strong>Vous devez entrer une classe</strong>
+                                            </span>
+                                        </div>
+
+                                        <!-- Give the member a promo -->
+                                        <div class="form-group">
+                                            <label for="promo" class="form-title-small">Promo</label>
+
+                                            <input id="promo" type="text" class="form-control" name="year" value="{{ old('promo') }}" required autocomplete="promo" placeholder="YYYY">
+
+                                            <span id="promo-error" class="invalid-feedback" role="alert" style="display: none;">
+                                                <strong>Vous devez entrer une promo</strong>
                                             </span>
                                         </div>
 
@@ -238,12 +260,34 @@
                                                 <div class="form-group">
                                                     <label for="email{{ $user->id }}" class="form-title-small">Adresse email</label>
 
-                                                    <input id="email{{ $user->id }}" type="email" class="form-control" name="email" value="{{ $user->email }}" required autocomplete="email">
+                                                    <input id="email{{ $user->id }}" type="email" class="form-control" name="email" value="{{ $user->email }}" required>
 
                                                     <span id="email-error{{ $user->id }}" class="invalid-feedback" role="alert" style="display: none;">
                                                         <strong>L'email choisi n'est pas valide (il doit être unique)</strong>
                                                     </span>
                                                 </div>
+
+												<!-- Give the member a class -->
+		                                        <div class="form-group">
+		                                            <label for="class{{ $user->id }}" class="form-title-small">Classe</label>
+
+		                                            <input id="class{{ $user->id }}" type="text" class="form-control" name="class" value="{{ $user->class }}" required>
+
+		                                            <span id="class-error{{ $user->id }}" class="invalid-feedback" role="alert" style="display: none;">
+		                                                <strong>Vous devez entrer une classe</strong>
+		                                            </span>
+		                                        </div>
+
+		                                        <!-- Give the member a promo -->
+		                                        <div class="form-group">
+		                                            <label for="promo{{ $user->id }}" class="form-title-small">Promo</label>
+
+		                                            <input id="promo{{ $user->id }}" type="text" class="form-control" name="year" value="{{ $user->promo }}" required autocomplete="promo" placeholder="YYYY">
+
+		                                            <span id="promo-error{{ $user->id }}" class="invalid-feedback" role="alert" style="display: none;">
+		                                                <strong>Vous devez entrer une promo</strong>
+		                                            </span>
+		                                        </div>
 
                                                 <!-- Roles -->
                                                 <div class="form-group">
@@ -374,6 +418,9 @@
             var inputName = $('input#name' + userId);
             var inputMail = $('input#email' + userId);
             var inputPassword = $('input#password' + userId);
+			var inputClass = $('input#class' + userId);
+			var inputPromo = $('input#promo' + userId);
+			var promo = inputPromo.val();
 
             var userName = inputName.val();
             var userEmail = inputMail.val();
@@ -388,6 +435,20 @@
                 displayError(inputName, 'span#name-error' + userId);
             } else
                 eraseError(inputName, 'span#name-error' + userId);
+
+			if(inputClass.val().length < 1)
+			{
+				error = true;
+                displayError(inputClass, 'span#class-error' + userId);
+			} else
+				eraseError(inputClass, 'span#class-error' + userId);
+
+			if(promo.length != 4)
+			{
+				error = true;
+                displayError(inputPromo, 'span#promo-error' + userId);
+			} else
+				eraseError(inputPromo, 'span#promo-error' + userId);
 
             if ((userPw.length < 8 || userPw != userPwc) && userPw != "") {
                 error = true;
@@ -410,12 +471,15 @@
          * Check if all the values are acceptable to create a member.
          */
         $('button#create-member-btn').click(function(e) {
+			var error = false;
             var inputName = $('input#name');
             var inputMail = $('input#email');
             var inputPassword = $('input#password');
             var inputPasswordConfirm = $('input#password-confirm');
             var password = inputPassword.val();
-            var error = false;
+			var inputClass = $('input#class');
+			var inputPromo = $('input#promo');
+			var promo = inputPromo.val();
 
             if (inputName.val().length < 3) {
                 error = true;
@@ -428,6 +492,20 @@
                 displayError(inputMail, 'span#email-error');
             } else
                 eraseError(inputMail, 'span#email-error');
+
+			if(inputClass.val().length < 1)
+			{
+				error = true;
+                displayError(inputClass, 'span#class-error');
+			} else
+				eraseError(inputClass, 'span#class-error');
+
+			if(promo.length != 4)
+			{
+				error = true;
+                displayError(inputPromo, 'span#promo-error');
+			} else
+				eraseError(inputPromo, 'span#promo-error');
 
             if (password.length < 8 || (password != inputPasswordConfirm.val())) {
                 error = true;
