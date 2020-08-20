@@ -16,30 +16,7 @@
     </h1>
     <hr class="line-under-title">
 
-    <audio id="asterix" src="audio/asterix.mp3" style="display: none;"></audio>
-
-    <div id="asterix_1">
-        <div style="display: flex; justify-content:center; flex-direction:column;">
-            <div style="margin: 5px auto 10px auto;">
-                Avez-vous vraiment besoin d'aide?
-            </div>
-            <div style="margin: auto;">
-                <button onclick="play()" type="button" style="margin: 0 20px">Oui</button>
-                <button onclick="hide()" type="button" style="margin: 0 20px">Non</button>
-            </div>
-        </div>
-    </div>
-    <div id="asterix_2">
-        <div style="display: flex; justify-content:center; flex-direction:column;">
-            <div style="margin: 5px auto 10px auto;">
-                Allez-vous mieux?
-            </div style="margin: auto;">
-            <div style="margin: auto;">
-                <button onclick="stop()" type="button">Oui</button>
-            </div>
-        </div>
-    </div>
-
+    
     <div class="container pt-3">
         <!-- Check if the user is connected -->
         @guest
@@ -50,7 +27,7 @@
             </button>
         </div>
         @else
-
+        
         <!-- Confirmation email was sent -->
         @if (session('message'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -60,7 +37,31 @@
             </button>
         </div>
         @endif
-
+        
+        <audio id="asterix" src="audio/asterix.mp3" style="display: none;"></audio>
+    
+        <div id="asterix_1">
+            <div style="display: flex; justify-content:center; flex-direction:column;">
+                <div style="margin: 5px auto 10px auto;">
+                    Avez-vous vraiment besoin d'aide?
+                </div>
+                <div style="margin: auto;">
+                    <button onclick="play()" type="button" style="margin: 0 20px">Oui</button>
+                    <button onclick="hide()" type="button" style="margin: 0 20px">Non</button>
+                </div>
+            </div>
+        </div>
+        <div id="asterix_2">
+            <div style="display: flex; justify-content:center; flex-direction:column;">
+                <div style="margin: 5px auto 10px auto;">
+                    Allez-vous mieux?
+                </div style="margin: auto;">
+                <div style="margin: auto;">
+                    <button onclick="stop()" type="button">Oui</button>
+                </div>
+            </div>
+        </div>
+        
         <!-- Form for the request -->
         <form action="/besoin-aide" method="POST" enctype="multipart/form-data">
             @csrf
