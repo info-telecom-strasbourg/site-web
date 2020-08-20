@@ -1,11 +1,13 @@
-<!-- Expected parameters when including
+@php
+/** Expected parameters when including
 
 - items : collection of items you want to display as cards
 - isCover : true if the cover (the image of the card) is to be retrieve with $item->cover, otherwise false
 - errorMessage : error Message to display if there are no items
 - routeNameShow : name of the route to show an item
 
- -->
+*/
+@endphp
 
 	<div class="row justify-content-center">
         @if(isset($items))

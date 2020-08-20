@@ -1,4 +1,5 @@
-<!-- Expected parameters when including
+@php
+/** Expected parameters when including
 
 - listTitle : title to display before the cards
 - items : collection of items you want to display as cards
@@ -8,7 +9,8 @@
 - routeNameComments : name of the route to show the comments
 - seeMoreId : id of the see more
 
--->
+*/
+@endphp
 
 @extends('layouts.layout')
 

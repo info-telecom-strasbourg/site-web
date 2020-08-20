@@ -155,18 +155,31 @@ $('#choose-visibility').hide();
 
 /*** Hide the elements if there is more than 6***/
 $(".element:gt(5)").addClass("hid").hide();
-$(".comment:gt(5)").addClass("hid").hide();
-$(".comment-reply:gt(5)").addClass("hid").hide();
+$(".comment-thread:gt(5)").addClass("hid").hide();
+$(".comment-reply:gt(6)").addClass("hid").hide();
 
 /*** If there is more than 6 elements, some are hidden.
-         This function will display 6 more elements ***/
-function seeMore(id, element) {
+ * This function will display 6 more elements ***/
+function seeMore(element, btnToHide) {
     $("." + element + ".hid:lt(6)").fadeIn("slow").removeClass("hid");
     if ($("." + element + ".hid").length === 0) {
-        $("div#line-btn-vp-" + id).remove();
+        $(btnToHide).remove();
     }
 }
 
+/**
+ * Show more comments replies.
+ * @param {*} element element to show
+ * @param {*} btnToHide button to hide when all elements are shown
+ */
+function seeMoreComments(element, btnToHide) {
+    $("." + element + ".hid:lt(6)").fadeIn("slow").removeClass("hid");
+    $("." + element).addClass("d-flex");
+    $("." + element).addClass("align-items-start");
+    if ($("." + element + ".hid").length === 0) {
+        $(btnToHide).remove();
+    }
+}
 
 $(document).ready(function() {
     // color navbar when loading page
