@@ -52,7 +52,6 @@ function parseDate(dateTable, inputName, divSelect) {
 	if(Array.isArray(dateTable))
 		$.each(dateTable,function(index, value) {
 			var datesComposed = convertMonth (value);
-			alert(datesComposed);
 			$(divSelect).append('<input type="text" name="' + inputName + '[]" value="' + datesComposed[0] + '-' + datesComposed[1] + '-' + datesComposed[2] + '" hidden>');
 		});
 	else
