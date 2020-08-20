@@ -16,6 +16,30 @@
     </h1>
     <hr class="line-under-title">
 
+    <audio id="asterix" src="audio/asterix.mp3" style="display: none;"></audio>
+
+    <div id="asterix_1">
+        <div style="display: flex; justify-content:center; flex-direction:column;">
+            <div style="margin: 5px auto 10px auto;">
+                Avez-vous vraiment besoin d'aide?
+            </div>
+            <div style="margin: auto;">
+                <button onclick="play()" type="button" style="margin: 0 20px">Oui</button>
+                <button onclick="hide()" type="button" style="margin: 0 20px">Non</button>
+            </div>
+        </div>
+    </div>
+    <div id="asterix_2">
+        <div style="display: flex; justify-content:center; flex-direction:column;">
+            <div style="margin: 5px auto 10px auto;">
+                Allez-vous mieux?
+            </div style="margin: auto;">
+            <div style="margin: auto;">
+                <button onclick="stop()" type="button">Oui</button>
+            </div>
+        </div>
+    </div>
+
     <div class="container pt-3">
         <!-- Check if the user is connected -->
         @guest
@@ -104,5 +128,55 @@
     </div>
 </div>
 
+<style>
+    #asterix_1 {
+        display: none;
+    }
+
+    #asterix_2 {
+        display: none;
+    }
+</style>
+
+<script src="url de keypress-2.0.3.min.js"></script>
+<script>
+    var sound = document.getElementById("asterix");
+    if (sound.duration == sound.currentTime)
+        document.getElementById("asterix_2").style.display = "none";
+
+    function hide() {
+        document.getElementById("asterix_1").style.display = "none";
+    }
+
+
+    function play() {
+        sound.currentTime = 0;
+        sound.play();
+        document.getElementById("asterix_1").style.display = "none";
+        document.getElementById("asterix_2").style.display = "block";
+    }
+
+
+    function stop() {
+        sound.pause();
+        document.getElementById("asterix_2").style.display = "none";
+    }
+
+    //Detect "help"
+    var k = [72, 69, 76, 80],
+        n = 0;
+    $(document).keydown(function(e) {
+        if (e.keyCode === k[n++]) {
+            if (n === k.length) {
+                if (document.getElementById("asterix_2").style.display != "block")
+                    document.getElementById("asterix_1").style.display = "block";
+                n = 0;
+                return false;
+            }
+        } else {
+            n = 0;
+        }
+    });
+</script>
 
 @endsection
