@@ -16,7 +16,7 @@
     </h1>
     <hr class="line-under-title">
 
-    
+
     <div class="container pt-3">
         <!-- Check if the user is connected -->
         @guest
@@ -27,7 +27,7 @@
             </button>
         </div>
         @else
-        
+
         <!-- Confirmation email was sent -->
         @if (session('message'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -37,9 +37,9 @@
             </button>
         </div>
         @endif
-        
+
         <audio id="asterix" src="audio/asterix.mp3" style="display: none;"></audio>
-    
+
         <div id="asterix_1">
             <div style="display: flex; justify-content:center; flex-direction:column;">
                 <div style="margin: 5px auto 10px auto;">
@@ -61,7 +61,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Form for the request -->
         <form action="/besoin-aide" method="POST" enctype="multipart/form-data">
             @csrf
@@ -142,8 +142,11 @@
 <script src="url de keypress-2.0.3.min.js"></script>
 <script>
     var sound = document.getElementById("asterix");
-    if (sound.duration == sound.currentTime)
+
+    sound.onended = function() {
         document.getElementById("asterix_2").style.display = "none";
+    };
+
 
     function hide() {
         document.getElementById("asterix_1").style.display = "none";
