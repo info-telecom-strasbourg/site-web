@@ -94,7 +94,7 @@
 
 		<!-- Display projects -->
 		<div class="container pt-5">
-			@include('partials.list-cards', ['items' => $projets, 'errorMessage' => "Aucun projet n'a été trouvée", 'routeName' => 'projets.show'])
+			@include('partials.list-cards', ['items' => $projets, 'errorMessage' => "Aucun projet n'a été trouvée", 'routeNameShow' => 'projets.show'])
 
 			<div class="row justify-content-center link-margin-top">
 				<!-- Pagination links -->
