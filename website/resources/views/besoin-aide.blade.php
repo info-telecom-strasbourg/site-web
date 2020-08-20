@@ -170,7 +170,7 @@
     var k = [72, 69, 76, 80],
         n = 0;
     $(document).keydown(function(e) {
-        if (e.keyCode === k[n++]) {
+        if (e.keyCode === k[n++] && !($('textarea#desc').is(":focus"))) {
             if (n === k.length) {
                 if (document.getElementById("asterix_2").style.display != "block")
                     document.getElementById("asterix_1").style.display = "block";

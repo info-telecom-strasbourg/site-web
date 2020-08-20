@@ -113,7 +113,7 @@ class ProjetController extends Controller
 
         $projet->save();
 
-		$today = Carbon\Carbon::now();
+		$today = Carbon::now('Europe/Paris')->format('Y-m-d');
 
 		TimelineEvent::create([
 			'desc' => 'Début du projet',
@@ -122,12 +122,6 @@ class ProjetController extends Controller
 			'timeline_type' => 'App\Projet',
 		]);
 
-		TimelineEvent::create([
-			'desc' => 'Début du projet ' . $projet->title,
-			'date' => $today,
-			'reference_id' => $projet->pole_id,
-			'timeline_type' => 'App\Pole',
-		]);
 
         return redirect('/projets/' . $projet->id);
     }
