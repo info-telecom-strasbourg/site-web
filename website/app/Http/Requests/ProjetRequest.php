@@ -33,7 +33,6 @@ class ProjetRequest extends FormRequest
             'complete' => 'boolean',
             'chef_projet_id' => 'required|integer',
             'pole_id' => 'required|integer',
-            'collaborateur_id' => 'nullable',
         ];
     }
 

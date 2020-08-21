@@ -73,12 +73,12 @@ class PoleController extends Controller
     public function update(Pole $pole)
     {
         $this->authorize('update', $pole);
-		$pole->update(request()->validate([
-			'title' => 'required',
-			'desc' => 'required'
-		]));
+        $pole->update(request()->validate([
+          'title' => 'required',
+          'desc' => 'required'
+        ]));
 
-		return view('poles.show', compact('pole'));
+        return view('poles.show', compact('pole'));
     }
 
     /**
@@ -86,9 +86,16 @@ class PoleController extends Controller
      *
      * @return redirect to.....
      */
-    public function destroy()
+    public function destroy(Pole $pole)
     {
-		//TODO ???
+      //TODO ???
+      
+      // delete the associate comments
+      foreach ($pole->comments as $comment) {
+        foreach ($comment->comments as $replyComment)
+            $replyComment->delete();
+        $comment->delete();
+      }
     }
 
 }

@@ -161,6 +161,13 @@ class CoursController extends Controller
 			$file->delete();
 		}
 
+		// delete the associate comments
+		foreach ($cours->comments as $comment) {
+            foreach ($comment->comments as $replyComment)
+                $replyComment->delete();
+            $comment->delete();
+        }
+
 		$cours->delete();
 
 		return redirect('/poles/cours');

@@ -110,6 +110,13 @@ class TopicController extends Controller
     {
         $this->authorize('delete', $topic); 
 
+        // delete the associate comments
+        foreach ($topic->comments as $comment) {
+            foreach ($comment->comments as $replyComment)
+                $replyComment->delete();
+            $comment->delete();
+        }
+
         Topic::destroy($topic->id);
 
         return redirect('/topics');

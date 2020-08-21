@@ -22,6 +22,7 @@ class CommentController extends Controller
     /**
      * Get the time difference with the current day.
      * @param myDate the timestamps
+     * @return name the displayed text of the time that has pasted since the comment has been added
      */
     public function diffTime($myDate) {
         $days = $myDate->diffInDays();
@@ -51,7 +52,7 @@ class CommentController extends Controller
             $name="il y a $days jours"; 
         } 
         else { 
-            $name="aujourd'hui"; 
+            $name="aujourd'hui à " . $myDate->format('H:i'); 
         }
 
         return $name;
@@ -181,12 +182,6 @@ class CommentController extends Controller
 
         $projet->comments()->save($comment);
 
-        // path to user profil picture
-        // $pathProfilPicture = asset('storage/' . $comment->user->profil_picture);
-
-        // $dateDiff = $this->diffTime($comment->created_at);
-
         return redirect()->route('projets.show', $projet);
-        // return response()->json(['comment'=> $comment, 'user' => $comment->user, 'path' => $pathProfilPicture, 'dateDiff' => $dateDiff]);
     }
 }

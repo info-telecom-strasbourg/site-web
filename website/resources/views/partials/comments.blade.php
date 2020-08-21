@@ -180,7 +180,7 @@ function addComment(urlPath, textAreaId, nb) {
 
         },
         error: function(data, textStatus, errorThrown) {
-            console.log(data);
+            window.location.replace('/login');
         },
     });
 }
@@ -254,7 +254,7 @@ function addComment(urlPath, textAreaId, nb) {
                     else if ($days == 1) {
                     $name = "il y a $days jour";
                     }
-                    else if ($days > 1 && $days < 7) { $name="il y a $days jours" ; } else { $name="aujourd'hui" ; }
+                    else if ($days > 1 && $days < 7) { $name="il y a $days jours" ; } else { $name="aujourd'hui à " . $comment->created_at->format('H:i'); }
                         @endphp 
                         <span class="published-time-text">{{ $name }}</span>
                 </div>
@@ -352,7 +352,7 @@ function addComment(urlPath, textAreaId, nb) {
                         else if ($days == 1) {
                         $name = "il y a $days jour";
                         }
-                        else if ($days > 1 && $days < 7) { $name="il y a $days jours" ; } else { $name="aujourd'hui" ; }
+                        else if ($days > 1 && $days < 7) { $name="il y a $days jours" ; } else { $name="aujourd'hui à " . $comment->created_at->format('H:i');  }
                             @endphp <span class="published-time-text">{{ $name }}</span>
                     </div>
                     <div class="comment-content">

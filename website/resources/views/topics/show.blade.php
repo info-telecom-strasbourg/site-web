@@ -12,10 +12,10 @@
     <div class="container pt-3">
         <div class="card mb-5">
             <div class="card-body">
-                <h5 class="card-title">{{ $topic->title }}</h5>
+                <h4 class="card-title">{{ $topic->title }}</h4>
                 <p>{{ $topic->content }}</p>
                 <div class="d-flex justify-content-between align-items-center">
-                    <small>Posté le {{ $topic->created_at->format('d/m/Y à H:m') }}</small>
+                    <small>Posté le {{ $topic->created_at->format('d/m/Y à H:i') }}</small>
                     <span class="badge badge-primary">{{ $topic->user->name }}</span>
 
                 </div>
@@ -27,11 +27,34 @@
 
                     <!-- Button to delete the topic -->
                     @can('delete', $topic)
-                        <form action="{{ route('topics.destroy', $topic) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Surppimer</button>
-                        </form>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#removeTopic">Surppimer</button>
+
+                        <!-- Modal to confirm removal -->
+                        <div class="modal fade" id="removeTopic" tabindex="-1" role="dialog"
+                            aria-labelledby="removeTopicLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="removeTopicLabel">Modal title</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Voulez vous vraiment supprimer cette idée ?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                                        <form action="{{ route('topics.destroy', $topic) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#removeTopic">Surppimer</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     @endcan
                 </div>
             </div>

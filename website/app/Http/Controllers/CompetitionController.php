@@ -185,6 +185,13 @@ class CompetitionController extends Controller
 			foreach(json_decode($compet->images) as $image)
 				unlink(storage_path('app/public/' . $image));
 
+	    // delete the associate comments
+		foreach ($projet->comments as $comment) {
+            foreach ($comment->comments as $replyComment)
+                $replyComment->delete();
+            $comment->delete();
+        }
+
 		$compet->delete();
 
 		return redirect('/poles/competitions');
