@@ -20,6 +20,44 @@ class CommentController extends Controller
     }
 
     /**
+     * Get the time difference with the current day.
+     * @param myDate the timestamps
+     */
+    public function diffTime($myDate) {
+        $days = $myDate->diffInDays();
+        $weeks = $myDate->diffInWeeks();
+        $months = $myDate->diffInMonths();
+        $years = $myDate->diffInYears();
+
+        if ($years == 1) {
+            $name = "il y $years an";
+        }
+        else if ($years > 1) {
+            $name = "il y a $years ans";
+        }
+        else if ($months >= 1) {
+            $name = "il y a $months mois";
+        }
+        else if ($weeks == 1) {
+            $name = "il y a $weeks semaine";
+        }
+        else if ($weeks >= 1) {
+            $name = "il y a $weeks semaines";
+        }
+        else if ($days == 1) {
+            $name = "il y a $days jour";
+        }
+        else if ($days > 1 && $days < 7) { 
+            $name="il y a $days jours"; 
+        } 
+        else { 
+            $name="aujourd'hui"; 
+        }
+
+        return $name;
+    }
+
+    /**
      * Store a comment to a topic.
      *
      * @param  topic: the topic.
@@ -56,7 +94,14 @@ class CommentController extends Controller
 
         $comment->comments()->save($commentReply);
 
-        return back();
+        // Path to user profil picture
+        $pathProfilPicture = asset('storage/' . $commentReply->user->profil_picture);
+
+        // Get the time difference with the current day
+        $dateDiff = $this->diffTime($commentReply->created_at);
+
+        // return back();
+        return response()->json(['comment'=> $commentReply, 'user' => $commentReply->user, 'path' => $pathProfilPicture, 'dateDiff' => $dateDiff]);
     }
 
     /**
@@ -136,6 +181,12 @@ class CommentController extends Controller
 
         $projet->comments()->save($comment);
 
+        // path to user profil picture
+        // $pathProfilPicture = asset('storage/' . $comment->user->profil_picture);
+
+        // $dateDiff = $this->diffTime($comment->created_at);
+
         return redirect()->route('projets.show', $projet);
+        // return response()->json(['comment'=> $comment, 'user' => $comment->user, 'path' => $pathProfilPicture, 'dateDiff' => $dateDiff]);
     }
 }

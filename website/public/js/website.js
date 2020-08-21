@@ -156,7 +156,7 @@ $('#choose-visibility').hide();
 /*** Hide the elements if there is more than 6***/
 $(".element:gt(5)").addClass("hid").hide();
 $(".comment-thread:gt(5)").addClass("hid").hide();
-$(".comment-reply:gt(6)").addClass("hid").hide();
+$(".comment-reply:gt(5)").addClass("hid").hide();
 
 /*** If there is more than 6 elements, some are hidden.
  * This function will display 6 more elements ***/
@@ -173,9 +173,9 @@ function seeMore(element, btnToHide) {
  * @param {*} btnToHide button to hide when all elements are shown
  */
 function seeMoreComments(element, btnToHide) {
+    $("." + element + ".hid:lt(6)").addClass("d-flex");
+    $("." + element + ".hid:lt(6)").addClass("align-items-start");
     $("." + element + ".hid:lt(6)").fadeIn("slow").removeClass("hid");
-    $("." + element).addClass("d-flex");
-    $("." + element).addClass("align-items-start");
     if ($("." + element + ".hid").length === 0) {
         $(btnToHide).remove();
     }
