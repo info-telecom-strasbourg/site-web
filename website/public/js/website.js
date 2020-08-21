@@ -1,3 +1,8 @@
+// Activate tooltip
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+});
+
 /*** Parse the datas from the calendar
 	 From "sun jan 03 2020" to "2020-01-03"
 ***/

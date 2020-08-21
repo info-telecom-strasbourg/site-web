@@ -1,6 +1,12 @@
 @extends('layouts.layout')
 
-@section('title', 'Boîte à idées - ' . $topic->title)
+@section('title', 'Boîte à idées édition - ' . $topic->title)
+
+@section('breadcrumb')
+    <li class="breadcrumb-item"><a href="/"><i class="fas fa-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="/topics">Boîte à idées</a></li>
+    <li class="breadcrumb-item active">Édition</li>
+@endsection
 
 @section('content')
     <div class="container">

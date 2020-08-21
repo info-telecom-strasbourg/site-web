@@ -45,7 +45,7 @@ class TopicController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'title' => 'required|min:5',
+            'title' => 'required|min:5|max:255',
             'content' => 'required|min:10'
         ]);
 
@@ -91,7 +91,7 @@ class TopicController extends Controller
         $this->authorize('update', $topic); 
 
         $data = $request->validate([
-            'title' => 'required|min:5',
+            'title' => 'required|min:5|max:255',
             'content' => 'required|min:10'
         ]);
 

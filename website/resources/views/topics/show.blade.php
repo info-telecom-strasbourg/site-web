@@ -2,6 +2,12 @@
 
 @section('title', 'Boîte à idées - ' . $topic->title)
 
+@section('breadcrumb')
+    <li class="breadcrumb-item"><a href="/"><i class="fas fa-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="/topics">Boîte à idées</a></li>
+    <li class="breadcrumb-item active">{{ $topic->title }}</li>
+@endsection
+
 @section('content')
 <div class="container">
     <h1 class="title lg text-center">
@@ -16,7 +22,7 @@
                 <p>{{ $topic->content }}</p>
                 <div class="d-flex justify-content-between align-items-center">
                     <small>Posté le {{ $topic->created_at->format('d/m/Y à H:i') }}</small>
-                    <span class="badge badge-primary">{{ $topic->user->name }}</span>
+                    <span class="badge badge-light" data-toggle="tooltip" data-placement="top" title="Auteur">{{ $topic->user->name }}</span>
 
                 </div>
                 <div class="d-flex justify-content-between align-items-center mt-3">

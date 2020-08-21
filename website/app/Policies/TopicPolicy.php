@@ -41,7 +41,7 @@ class TopicPolicy
      */
     public function create(User $user)
     {
-        //
+        return \Auth::check();
     }
 
     /**
