@@ -63,13 +63,18 @@
                 </li>
             </a>
 
-            <!-- "Besoin d'aide" page -->
-            <a href="/besoin-aide">
-                <li class="nav-item onglet {{ Request::is('besoin-aide') ? 'active' : ''  }}">
-                    <div class="nav-link">BESOIN D'AIDE</div>
-                </li>
-            </a>
+            <!-- Outils de l'association -->
+            <li class="nav-item onglet dropdown {{ (Request::is('besoin-aide') || Request::is('topic')) ? 'active' : ''  }}" id="poles">
+                <a id="outilsAssoDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    OUTILS
+                </a>
 
+                <div class="dropdown-menu" aria-labelledby="outilsAssoDropdown">
+                    <a class="dropdown-item" href="/besoin-aide">Besoin d'aide</a>
+                    <a class="dropdown-item" href="/topics">Boîte à idées</a>
+                </div>
+            </li>
+            
             <!-- Contact -->
             <a class="js-scrollTo" href="/#contact-anchor">
                 <li class="nav-item onglet">
