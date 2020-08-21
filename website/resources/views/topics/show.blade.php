@@ -10,7 +10,7 @@
     <hr class="line-under-title">
 
     <div class="container pt-3">
-        <div class="card">
+        <div class="card mb-5">
             <div class="card-body">
                 <h5 class="card-title">{{ $topic->title }}</h5>
                 <p>{{ $topic->content }}</p>

@@ -1,53 +1,92 @@
 @section('extra-js')
 <script>
-function toggleReplyComment(id, textAreaId) {
+/**
+ * Toggle the reply comment textarea.
+ * 
+ * @param id the id of the comment
+ */
+function toggleReplyComment(id) {
     let element = document.getElementById('replyComment-' + id);
-    let textArea = document.getElementById(textAreaId);
+    let textArea = document.getElementById('text-comment-reply-' + id);
     element.classList.toggle('d-none');
     textArea.focus();
 }
 
-function countChar(val, btnId) {
+/**
+ * Verify the number of characters for a new comment.
+ * If the number of characters is greater than 5, the comment can be submited.
+ * Otherwise the button to submit the comment is disabled.
+ * 
+ * @param val the current element - the textarea
+ * @param btnId the id of the button to enable/disable
+ */
+function verifyNumberOfCharacterForComment(val, btnId) {
     var len = val.value.length;
     var btn = $(btnId);
     if (len >= 5) {
         btn.css('background-color', '#254395');
         btn.css('cursor', 'pointer');
         btn.prop("disabled", false);
-    } else {
+    } 
+    else {
         btn.css('background-color', 'rgb(204, 204, 204)');
         btn.css('cursor', 'default');
         btn.prop("disabled", true);
     }
 };
 
-function removePlaceholder(val, btn) {
-    var btnBox = document.querySelector(btn);
+/**
+ * Remove focus to the textarea to add comment.
+ * 
+ * @param val the current element - the textarea
+ * @param btnBoxId the id of the button box containing the cancel and add button
+ */
+function removeFocus(val, btnBoxId) {
+    var btnBox = document.querySelector(btnBoxId);
 
     val.style.borderColor = '#333';
     btnBox.style.display = 'flex';
 };
 
-function addPlaceholder(val) {
+/**
+ * Add focus to the textarea to add comment.
+ * 
+ * @param val the current element - the textarea
+ */
+function addFocus(val) {
     val.style.borderColor = '#aaa';
 };
 
-function clearComment(val, btn, textAreaId) {
-    var btnBox = document.querySelector(btn);
+/**
+ * Add focus to the textarea to add comment.
+ * 
+ * @param val the current element - the cancel button
+ * @param btnBoxId the id of the button box containing the cancel and add button
+ * @param textAreaId the id of the textarea to add comment
+ */
+function clearComment(val, btnBoxId, textAreaId) {
+    var btnBox = document.querySelector(btnBoxId);
     var textArea = document.querySelector(textAreaId);
 
     btnBox.style.display = 'none';
     textArea.value = '';
 };
 
+/**
+ * Toggle replies container.
+ * 
+ * @param id the id of the comment for which the replies should be toggled
+ */
 function toggleReplies(id) {
     let repliesContainer = document.getElementById('replies-' + id);
     let caret = document.getElementById('caret-' + id);
 
     repliesContainer.classList.toggle('d-none');
 
+    // get the number of replies for the current comment
     let nb = $('.comment-reply-' + id).length;
 
+    // if the replies are hidden
     if (repliesContainer.classList.contains('d-none')) {
         caret.classList.remove('fa-caret-up');
         caret.classList.add('fa-caret-down');
@@ -57,7 +96,7 @@ function toggleReplies(id) {
             $('#text-' + id).text('Afficher la réponse');
         }
     } 
-    else {
+    else {  // if the replies are shown
         caret.classList.remove('fa-caret-down');
         caret.classList.add('fa-caret-up');
         if (nb > 1)
@@ -67,23 +106,34 @@ function toggleReplies(id) {
     }
 }
 
+/**
+ * Inserts HTML line breaks before all newlines in a string.
+ * 
+ * @param str the string to convert
+ */
 function nl2br(str, is_xhtml) {
     var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />'   : '<br>';
     return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag   + '$2');
 }
 
-function addComment(urlPath, textArea, commentReplyBox, repliesCounter, nb) {
+/**
+ * Add a reply to a comment.
+ * 
+ * @param urlPath the path to the route to store the comment
+ * @param textAreaId the id of the textarea to reply to the comment
+ * @param nb the number of replies to the comment
+ */
+function addComment(urlPath, textAreaId, nb) {
     $.ajax({
         type: 'POST',
         url: urlPath,
         data: {
             _token: '{!! csrf_token() !!}',
-            replyComment: jQuery(textArea).val(),
-
+            replyComment: jQuery(textAreaId).val(),
         },
         success: function(result) {
 
-            // Display comment
+            // Reply comment html
             var commentData = '<div class="comment-reply comment-reply-' + result.comment.commentable_id + '">';
             commentData += '<div class="comment d-flex align-items-start">';
             commentData += '<div class="comment-author-thumbnail">';
@@ -101,23 +151,26 @@ function addComment(urlPath, textArea, commentReplyBox, repliesCounter, nb) {
             commentData += "</div>";
             commentData += "</div>";
 
+            // Prepend the comment reply to the other replies
+            $('#replies-' + result.comment.commentable_id).prepend(commentData);
+
+            // Increment the number of replies for the comment
             nb = nb + 1;
 
-            $(commentReplyBox).prepend(commentData);
-
+            // If the number of replies is 1 show the replies container
             if (nb == 1) {
-                $(repliesCounter).text('Masquer la réponse');
+                $('#text-' + result.comment.commentable_id).text('Masquer la réponse');
                 $('#link-see-replies-box-' + result.comment.commentable_id).removeClass('d-none');
             }
             else {
-                if ($(repliesCounter).text().includes('Afficher'))
-                    $(repliesCounter).text('Afficher les ' + nb + ' réponses');
+                if ($('#text-' + result.comment.commentable_id).text().includes('Afficher'))
+                    $('#text-' + result.comment.commentable_id).text('Afficher les ' + nb + ' réponses');
                 else 
-                    $(repliesCounter).text('Masquer les ' + nb + ' réponses');
+                    $('#text-' + result.comment.commentable_id).text('Masquer les ' + nb + ' réponses');
             }
 
             // Empty the input fields
-            $(textArea).val('');
+            $(textAreaId).val('');
             $('#replyComment-' + result.comment.commentable_id).addClass('d-none');
 
             // show the replies
@@ -140,8 +193,8 @@ function addComment(urlPath, textArea, commentReplyBox, repliesCounter, nb) {
 <form action="{{ route($routeName, $object) }}" method="POST" class="mb-3">
     @csrf
     <textarea id="text-comment" name="content" class="add-comment @error('content') is-invalid @enderror"
-        placeholder="Ajouter un commentaire..." onkeyup="countChar(this, '#submit-comment')"
-        onfocus="removePlaceholder(this, '#add-comment')" onblur="addPlaceholder(this)">{{ old('content') }}</textarea>
+        placeholder="Ajouter un commentaire..." onkeyup="verifyNumberOfCharacterForComment(this, '#submit-comment')"
+        onfocus="removeFocus(this, '#add-comment')" onblur="addFocus(this)">{{ old('content') }}</textarea>
     @error('content')
     <span class="invalid-feedback" role="alert" style="margin-bottom: 10px;">
         <strong>{{ $message }}</strong>
@@ -211,7 +264,7 @@ function addComment(urlPath, textArea, commentReplyBox, repliesCounter, nb) {
 
                 <!-- Button reply to comment -->
                 <div class="reply-button">
-                    <a onclick="toggleReplyComment({{ $comment->id }}, 'text-comment-reply-{{ $comment->id }}')">RÉPONDRE</a>
+                    <a onclick="toggleReplyComment({{ $comment->id }})">RÉPONDRE</a>
                 </div>
 
                 <!-- Reply to the current comment form -->
@@ -222,9 +275,9 @@ function addComment(urlPath, textArea, commentReplyBox, repliesCounter, nb) {
 
                     <textarea id="text-comment-reply-{{ $comment->id }}" name="replyComment"
                         class="add-comment @error('content') is-invalid @enderror" placeholder="Ajouter une réponse..."
-                        onkeyup="countChar(this, '#submit-reply-{{ $comment->id }}')"
-                        onfocus="removePlaceholder(this, '#add-reply-{{ $comment->id }}')"
-                        onblur="addPlaceholder(this)">{{ old('replyComment') }}</textarea>
+                        onkeyup="verifyNumberOfCharacterForComment(this, '#submit-reply-{{ $comment->id }}')"
+                        onfocus="removeFocus(this, '#add-reply-{{ $comment->id }}')"
+                        onblur="addFocus(this)">{{ old('replyComment') }}</textarea>
                     @error('replyComment')
                     <span class="invalid-feedback" role="alert" style="margin-bottom: 10px;">
                         <strong>{{ $message }}</strong>
@@ -235,12 +288,12 @@ function addComment(urlPath, textArea, commentReplyBox, repliesCounter, nb) {
                         <button class="add-comment-btn add-comment-cancel" type="button"
                             onclick="clearComment(this, '#add-reply-{{ $comment->id }}', '#text-comment-reply-{{ $comment->id }}'); toggleReplyComment({{ $comment->id }});">ANNULER</button>
                         <input id="submit-reply-{{ $comment->id }}" class="add-comment-btn add-comment-btn-submit"
-                            type="button" disabled value="RÉPONDRE" onclick="addComment('/commentsReply/{{ $comment->id }}', '#text-comment-reply-{{ $comment->id }}', '#replies-{{ $comment->id }}', '#text-{{ $comment->id }}', {{ $comment->comments->count() }})">
+                            type="button" disabled value="RÉPONDRE" onclick="addComment('/commentsReply/{{ $comment->id }}', '#text-comment-reply-{{ $comment->id }}', {{ $comment->comments->count() }})">
                     </div>
                 </form>
 
                 
-                <div onclick="toggleReplies('{{ $comment->id }}', {{ $comment->comments->count() }})" id="link-see-replies-box-{{ $comment->id }}"
+                <div onclick="toggleReplies('{{ $comment->id }}')" id="link-see-replies-box-{{ $comment->id }}"
                     class="link-see-replies-box @if ($comment->comments->count() < 1) d-none @endif">
                     <i id="caret-{{ $comment->id }}" class="fas fa-caret-down"></i>
                     @if ($comment->comments->count() < 1)
