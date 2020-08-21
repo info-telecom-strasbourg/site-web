@@ -224,7 +224,7 @@ var baseValues = [];
 		else
 			eraseError(inputDesc, 'span#desc-error{{ $step->id }}');
 
-		if(calendars[calendars.length -1].value == null || !dateIsUnique(calendars[calendars.length -1].value, baseValues['{{ $step->id }}']))
+		if(calendars['{{ $step->id }}'].value == null || !dateIsUnique(calendars['{{ $step->id }}'].value, baseValues['{{ $step->id }}']))
 		{
 			error = true;
 			displayError(inputDate, 'span#date-error{{ $step->id }}');

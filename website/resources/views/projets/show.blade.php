@@ -135,8 +135,8 @@
 						<li id="today">
 							<div style="color: #007bff">Aujourd'hui
 								@can ('update', $projet)
-	                            <button id="button-upd-step" type="button" data-toggle="modal" data-target="#upd-step{{ $event->id }}"><i class="buttons-timeline-edit fas fa-pen"></i><span style="margin-left: 10px; color:#2d64ba;">Modifier</span></button>
-	                            <a id="button-trash" href="/timeline/{{ $event->id }}/destroy"><i class="buttons-timeline-trash fas fa-trash"></i><span style="margin-left: 10px; color:#de4242;">Supprimer</span></a>
+	                            <button id="button-upd-step" type="button" data-toggle="modal" data-target="#upd-step{{ $todayEvent->id }}"><i class="buttons-timeline-edit fas fa-pen"></i><span style="margin-left: 10px; color:#2d64ba;">Modifier</span></button>
+	                            <a id="button-trash" href="/timeline/{{ $todayEvent->id }}/destroy"><i class="buttons-timeline-trash fas fa-trash"></i><span style="margin-left: 10px; color:#de4242;">Supprimer</span></a>
 	                            @endcan
 	                        </div>
 	                        <p>{{$todayEvent->desc}}</p>
@@ -163,7 +163,7 @@
                 </ul>
             </div>
         </div>
-		
+
 		@endif
 
         <!-- The buttons to the timeline -->
