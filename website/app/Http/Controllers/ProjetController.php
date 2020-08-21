@@ -74,7 +74,8 @@ class ProjetController extends Controller
     }
 
     /**
-     * Store a new project.
+     * Store a new project. It also create a defaultevent in the timeline of the
+	 * project.
      *
      * @param  request: the user's request.
      * @return redirect to the page of the stored project.

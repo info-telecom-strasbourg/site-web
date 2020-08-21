@@ -7,8 +7,17 @@ use App\TimelineEvent;
 use App\Pole;
 use App\Projet;
 
+/**
+ * Controller linked to timeline events.
+ */
 class TimelineEventController extends Controller
 {
+	/**
+	 * Store the event. It's called when an event is created.
+	 *
+	 * @param id: the id of the pole/project the events belongs to.
+	 * @return the view of the pole/project the events belongs to.
+	 */
 	public function store($id)
 	{
 		$event = TimelineEvent::create($this->validateRequest());
@@ -21,6 +30,12 @@ class TimelineEventController extends Controller
 			return redirect('/projets/' . $event->reference_id);
 	}
 
+	/**
+	 * Update an event.
+	 *
+	 * @param step: the event to update.
+	 * @return the view of the pole/project the events belongs to.
+	 */
 	public function update(TimelineEvent $step)
 	{
 		$step->update($this->validateRequest());
@@ -33,6 +48,12 @@ class TimelineEventController extends Controller
 			return redirect('/projets/' . $step->reference_id);
 	}
 
+	/**
+	 * Delete an event.
+	 *
+	 * @param step: the event to delete.
+	 * @return the view of the pole/project the events belongs to.
+	 */
 	public function destroy(TimelineEvent $step)
 	{
 		$refId = $step->reference_id;
@@ -47,6 +68,12 @@ class TimelineEventController extends Controller
 			return redirect('/projets/' . $refId);
 	}
 
+	/**
+	 * Validate a request (a description, a date, a reference id and a type:
+	 * pole/project).
+	 *
+	 * @return an array corresponding to the validated request.
+	 */
 	public function validateRequest()
 	{
 		return request()->validate([

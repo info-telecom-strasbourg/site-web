@@ -169,7 +169,9 @@ if (dateStep) dateStep.style.visibility = "visible";
 var calendarStep = new ej.calendars.Calendar({});
 calendarStep.appendTo('#cal-step-dates');
 
-
+/**
+ * Validate the creation of timeline and display errors there is.
+ */
 $('button#create-news-step').click(function(e) {
 	var error = false;
 	var inputDesc = $('textarea#desc');
@@ -211,6 +213,9 @@ var baseValues = [];
 	baseValues['{{ $step->id }}'] = calendars['{{ $step->id }}'].value;
 	calendars['{{ $step->id }}'].appendTo('#cal-step-dates-edt{{ $step->id }}');
 
+	/**
+	 * Validate the modification of timeline and display errors there is.
+	 */
 	$('button#upd-step{{ $step->id }}').click(function(e) {
 		error = false;
 		var inputDesc = $('textarea#desc{{ $step->id }}');
