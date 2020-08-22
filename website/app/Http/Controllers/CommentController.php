@@ -184,4 +184,23 @@ class CommentController extends Controller
 
         return redirect()->route('projets.show', $projet);
     }
+
+    /**
+     * Remove the specified comment.
+     *
+     * @param comment: the comment to delete.
+     * @return redirect to comments' index view.
+     */
+    public function destroy(Comment $comment)
+    {
+        $this->authorize('delete', $comment);
+
+        // delete the associate comments
+        foreach ($comment->comments as $replyComment)
+            $replyComment->delete();
+
+        $comment->delete();
+
+        return back();
+    }
 }

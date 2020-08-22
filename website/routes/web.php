@@ -97,5 +97,6 @@ Route::post('/comments/poles/competition/{compet}', 'CommentController@storeComp
 Route::post('/comments/poles/pole/{pole}', 'CommentController@storePole')->name('comments.poles.pole.store');
 Route::post('/comments/projets/{projet}', 'CommentController@storeProject')->name('comments.projets.store');
 Route::post('/commentsReply/{comment}', 'CommentController@storeCommentReply')->name('comments.storeReply');
+Route::get('/comments/{comment}/destroy', 'CommentController@destroy')->name('comments.delete');
 
 

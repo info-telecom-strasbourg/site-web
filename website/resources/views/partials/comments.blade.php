@@ -116,6 +116,18 @@ function nl2br(str, is_xhtml) {
     return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag   + '$2');
 }
 
+function escapeHtml(text) {
+  var map = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  };
+  
+  return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+}
+
 /**
  * Add a reply to a comment.
  * 
@@ -146,7 +158,7 @@ function addComment(urlPath, textAreaId, nb) {
             commentData += '<span class="author-text">' + result.user.name + '</span>';
             commentData += '<span class="published-time-text">' + result.dateDiff + '</span>';
             commentData += '</div>';
-            commentData += '<div class="comment-content">' + nl2br(result.comment.content);  
+            commentData += '<div class="comment-content">' + nl2br(escapeHtml(result.comment.content));  
             commentData += '</div>';
             commentData += "</div>";
             commentData += "</div>";
@@ -259,12 +271,21 @@ function addComment(urlPath, textAreaId, nb) {
                         <span class="published-time-text">{{ $name }}</span>
                 </div>
                 <div class="comment-content">
-                    {!! nl2br($comment->content) !!}
+                    {!! nl2br(htmlspecialchars($comment->content)) !!}
                 </div>
 
-                <!-- Button reply to comment -->
-                <div class="reply-button">
-                    <a onclick="toggleReplyComment({{ $comment->id }})">RÉPONDRE</a>
+                <div class="d-flex">
+                    <!-- Button reply to comment -->
+                    <div class="reply-button">
+                        <a onclick="toggleReplyComment({{ $comment->id }})">RÉPONDRE</a>
+                    </div>
+
+                    <!-- Button remove comment -->
+                    @can ('delete', $comment)
+                    <div class="delete-button">
+                        <a onclick="if(confirm('Voulez vous vraiment supprimer votre commentaire ?')) window.location = '/comments/{{ $comment->id }}/destroy'">SUPPRIMER</a>
+                    </div>
+                    @endcan
                 </div>
 
                 <!-- Reply to the current comment form -->
@@ -356,7 +377,7 @@ function addComment(urlPath, textAreaId, nb) {
                             @endphp <span class="published-time-text">{{ $name }}</span>
                     </div>
                     <div class="comment-content">
-                        {!! nl2br($replyComment->content) !!}
+                        {!! nl2br(htmlspecialchars($replyComment->content)) !!}
                     </div>
                 </div>
             </div>

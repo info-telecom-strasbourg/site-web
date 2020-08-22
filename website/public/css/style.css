@@ -1496,7 +1496,8 @@ div.bordure {
     color: rgb(3, 3, 3)
 }
 
-.reply-button {
+.reply-button,
+.delete-button {
     margin-top: 4px;
     padding-top: 8px;
     padding-bottom: 8px;
@@ -1505,8 +1506,19 @@ div.bordure {
     font-weight: 500;
 }
 
-.reply-button a {
+.reply-button a,
+.delete-button a {
     cursor: pointer;
+}
+
+.delete-button a {
+    margin-left: 15px;
+    color: red;
+    text-decoration: none;
+}
+
+.delete-button a:hover {
+    color: red;
 }
 
 .link-see-replies-box {
