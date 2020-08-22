@@ -215,6 +215,9 @@ class ProjetController extends Controller
         foreach (json_decode($projet->images) as $image)
             $this->deleteImage($image);
 
+		foreach ($projet->timeline as $key => $event)
+			$event->delete();
+
         $projet->delete();
 
         return redirect("/projets");
