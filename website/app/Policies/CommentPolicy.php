@@ -22,7 +22,7 @@ class CommentPolicy
     }
 
     /**
-     * Determine whether the user can view the model.
+     * Determine whether the user can view the comment.
      *
      * @param  \App\User  $user
      * @param  \App\Comment  $comment
@@ -34,7 +34,7 @@ class CommentPolicy
     }
 
     /**
-     * Determine whether the user can create models.
+     * Determine whether the user can create comments.
      *
      * @param  \App\User  $user
      * @return mixed
@@ -45,7 +45,7 @@ class CommentPolicy
     }
 
     /**
-     * Determine whether the user can update the model.
+     * Determine whether the user can update the comment.
      *
      * @param  \App\User  $user
      * @param  \App\Comment  $comment
@@ -53,7 +53,7 @@ class CommentPolicy
      */
     public function update(User $user, Comment $comment)
     {
-        //
+        return auth()->check() && $user->id == $comment->user->id;
     }
 
     /**
@@ -69,7 +69,7 @@ class CommentPolicy
     }
 
     /**
-     * Determine whether the user can restore the model.
+     * Determine whether the user can restore the comment.
      *
      * @param  \App\User  $user
      * @param  \App\Comment  $comment
@@ -81,7 +81,7 @@ class CommentPolicy
     }
 
     /**
-     * Determine whether the user can permanently delete the model.
+     * Determine whether the user can permanently delete the comment.
      *
      * @param  \App\User  $user
      * @param  \App\Comment  $comment

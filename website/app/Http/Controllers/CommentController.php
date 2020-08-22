@@ -101,7 +101,6 @@ class CommentController extends Controller
         // Get the time difference with the current day
         $dateDiff = $this->diffTime($commentReply->created_at);
 
-        // return back();
         return response()->json(['comment'=> $commentReply, 'user' => $commentReply->user, 'path' => $pathProfilPicture, 'dateDiff' => $dateDiff]);
     }
 
@@ -183,6 +182,26 @@ class CommentController extends Controller
         $projet->comments()->save($comment);
 
         return redirect()->route('projets.show', $projet);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Comment  $comment
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Comment $comment)
+    {
+        $this->authorize('update', $comment); 
+
+        $data = request()->validate([
+            'content' => 'required|min:5'
+        ]);
+
+        $comment->update($data);
+
+        return response()->json(['content'=> $comment->content]);
     }
 
     /**

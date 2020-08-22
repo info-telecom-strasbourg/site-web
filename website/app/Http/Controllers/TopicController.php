@@ -15,7 +15,7 @@ class TopicController extends Controller
     }
 
     /**
-     * Display a listing of the topic.
+     * Display a listing of the topics.
      *
      * @return \Illuminate\Http\Response
      */
@@ -67,7 +67,7 @@ class TopicController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified topic.
      *
      * @param  \App\Topic  $topic
      * @return \Illuminate\Http\Response
@@ -80,7 +80,7 @@ class TopicController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified topic in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Topic  $topic
@@ -101,7 +101,7 @@ class TopicController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified topic from storage.
      *
      * @param  \App\Topic  $topic
      * @return \Illuminate\Http\Response

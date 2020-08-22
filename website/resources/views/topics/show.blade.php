@@ -28,12 +28,12 @@
                 <div class="d-flex justify-content-between align-items-center mt-3">
                     <!-- Button to update the topic-->
                     @can('update', $topic)
-                        <a href="{{ route('topics.edit', $topic) }}" class="btn btn-warning">Editer cette idée</a>
+                        <a href="{{ route('topics.edit', $topic) }}" class="btn btn-warning">Éditer cette idée</a>
                     @endcan
 
                     <!-- Button to delete the topic -->
                     @can('delete', $topic)
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#removeTopic">Surppimer</button>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#removeTopic">Supprimer</button>
 
                         <!-- Modal to confirm removal -->
                         <div class="modal fade" id="removeTopic" tabindex="-1" role="dialog"
@@ -55,7 +55,7 @@
                                         <form action="{{ route('topics.destroy', $topic) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#removeTopic">Surppimer</button>
+                                            <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#removeTopic">Supprimer</button>
                                         </form>
                                     </div>
                                 </div>

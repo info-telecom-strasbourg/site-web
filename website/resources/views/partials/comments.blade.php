@@ -146,21 +146,53 @@ function addComment(urlPath, textAreaId, nb) {
         success: function(result) {
 
             // Reply comment html
-            var commentData = '<div class="comment-reply comment-reply-' + result.comment.commentable_id + '">';
-            commentData += '<div class="comment d-flex align-items-start">';
-            commentData += '<div class="comment-author-thumbnail">';
-            commentData += "<a href='/users/" + result.user.id + "'>";
-            commentData += '<img class="profil-rounded-xsmall" src="' + result.path + '">';
-            commentData += "</a>";
-            commentData += "</div>";
-            commentData += '<div class="comment-body d-flex flex-column w-100">';
-            commentData += '<div class="comment-author d-flex">';
-            commentData += '<span class="author-text">' + result.user.name + '</span>';
-            commentData += '<span class="published-time-text">' + result.dateDiff + '</span>';
-            commentData += '</div>';
-            commentData += '<div class="comment-content">' + nl2br(escapeHtml(result.comment.content));  
-            commentData += '</div>';
-            commentData += "</div>";
+            var commentData = '';
+            commentData += '<div class="comment-reply comment-reply-' + result.comment.commentable_id + '">';
+            commentData += '    <div class="comment d-flex align-items-start">';
+            commentData += '        <div class="comment-author-thumbnail">';
+            commentData += "            <a href='/users/" + result.user.id + "'>";
+            commentData += '                <img class="profil-rounded-xsmall" src="' + result.path + '">';
+            commentData += "            </a>";
+            commentData += "        </div>";
+            commentData += '        <div class="comment-body d-flex flex-column w-100">';
+            commentData += '            <div class="comment-author d-flex">';
+            commentData += '                <span class="author-text">' + result.user.name + '</span>';
+            commentData += '                <span class="published-time-text">' + result.dateDiff + '</span>';
+            commentData += '            </div>';
+            commentData += '            <div class="comment-content" id="comment-content-' + result.comment.id + '">' + nl2br(escapeHtml(result.comment.content));  
+            commentData += '            </div>';
+            commentData += '            <div class="d-flex">';
+            commentData += '                <div class="edit-button">';
+            commentData += '                    <a data-toggle="modal" data-target="#editCommentModal-' + result.comment.id + '">Modifier</a>';
+            commentData += "                </div>";
+
+            commentData += '                <div class="modal fade" id="editCommentModal-' + result.comment.id + '" tabindex="-1" role="dialog" aria-labelledby="editCommentModal-' + result.comment.id + 'Title" aria-hidden="true">';
+            commentData += '                    <div class="modal-dialog modal-dialog-centered" role="document">';
+            commentData += '                        <div class="modal-content">';
+            commentData += '                            <div class="modal-header">';
+            commentData += '                                <h5 class="modal-title" id="editCommentModalTitle">Modifier votre commentaire</h5>';
+            commentData += '                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">';
+            commentData += '                                    <span aria-hidden="true">&times;</span>';
+            commentData += '                                </button>';
+            commentData += '                            </div>';
+            commentData += '                            <div class="modal-body">';
+            commentData += '                                <textarea class="w-100" name="content" id="edit-comment-' + result.comment.id + '"rows="10">' + result.comment.content + '</textarea>';
+            commentData += '                            </div>';
+            commentData += '                            <div class="modal-footer">';
+            commentData += '                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>';
+            commentData += '                                <button type="button" class="btn btn-primary" onclick="saveChanges(\'/comments/' + result.comment.id + "', " + result.comment.id + ')">Enregistrer</button>';
+            commentData += '                            </div>';
+            commentData += '                        </div>';
+            commentData += '                    </div>';
+            commentData += '                </div>';
+
+            commentData += '                <div class="delete-button">';
+            commentData += '                    <a onclick="if(confirm(' + "'Voulez vous vraiment supprimer votre commentaire ?')) window.location = '/comments/" + result.comment.id + "/destroy'" + '">SUPPRIMER</a>';
+            commentData += "                </div>";
+
+            commentData += "            </div>";
+            commentData += "        </div>";
+            commentData += "    </div>";
             commentData += "</div>";
 
             // Prepend the comment reply to the other replies
@@ -192,10 +224,40 @@ function addComment(urlPath, textAreaId, nb) {
 
         },
         error: function(data, textStatus, errorThrown) {
+            // if the user is not logged in - error 401
             window.location.replace('/login');
         },
     });
 }
+
+/**
+ * Edit a comment.
+ * 
+ * @param urlPath the path to the route to update the comment
+ * @param id the id of the comment
+ */
+function saveChanges(urlPath, id) {
+    $.ajax({
+        type: 'POST',
+        url: urlPath,
+        data: {
+            _token: '{!! csrf_token() !!}',
+            _method: 'PUT',
+            content: jQuery('#edit-comment-' + id).val(),
+        },
+        success: function(result) {
+            $('#comment-content-' + id).text(result.content);
+            $('#editCommentModal-' + id).modal('hide');
+
+        },
+        error: function(data, textStatus, errorThrown) {
+            // if the user is not logged in - error 401
+            // window.location.replace('/login');
+            console.log(data);
+        },
+    });
+}
+
 </script>
 @endsection
 
@@ -270,7 +332,7 @@ function addComment(urlPath, textAreaId, nb) {
                         @endphp 
                         <span class="published-time-text">{{ $name }}</span>
                 </div>
-                <div class="comment-content">
+                <div class="comment-content" id="comment-content-{{$comment->id}}">
                     {!! nl2br(htmlspecialchars($comment->content)) !!}
                 </div>
 
@@ -279,6 +341,18 @@ function addComment(urlPath, textAreaId, nb) {
                     <div class="reply-button">
                         <a onclick="toggleReplyComment({{ $comment->id }})">RÉPONDRE</a>
                     </div>
+                    
+                    <!-- Button edit comment -->
+                    @can ('update', $comment)
+                    <div class="edit-button">
+                        <a data-toggle="modal" data-target="#editCommentModal-{{ $comment->id }}">
+                            Modifier
+                        </a>
+                    </div>
+                    @endcan
+
+                    <!-- Modal to edit comment -->
+                    @include('partials.modal-edit-comment', ['comment' => $comment])
 
                     <!-- Button remove comment -->
                     @can ('delete', $comment)
@@ -289,8 +363,6 @@ function addComment(urlPath, textAreaId, nb) {
                 </div>
 
                 <!-- Reply to the current comment form -->
-                <!-- <form action="{{ route('comments.storeReply', $comment) }}" method="POST" class="mb-3 d-none"
-                    id="replyComment-{{ $comment->id }}"> -->
                 <form class="mb-3 d-none" id="replyComment-{{ $comment->id }}">
                     @csrf
 
@@ -376,8 +448,29 @@ function addComment(urlPath, textAreaId, nb) {
                         else if ($days > 1 && $days < 7) { $name="il y a $days jours" ; } else { $name="aujourd'hui à " . $comment->created_at->format('H:i');  }
                             @endphp <span class="published-time-text">{{ $name }}</span>
                     </div>
-                    <div class="comment-content">
+                    <div class="comment-content" id="comment-content-{{ $replyComment->id }}">
                         {!! nl2br(htmlspecialchars($replyComment->content)) !!}
+                    </div>
+
+                    <div class="d-flex">
+                        <!-- Button edit comment -->
+                        @can ('update', $replyComment)
+                        <div class="edit-button">
+                            <a data-toggle="modal" data-target="#editCommentModal-{{ $replyComment->id }}">
+                                Modifier
+                            </a>
+                        </div>
+                        @endcan
+
+                        <!-- Modal to edit comment -->
+                        @include('partials.modal-edit-comment', ['comment' => $replyComment])
+
+                        <!-- Button remove comment -->
+                        @can ('delete', $replyComment)
+                        <div class="delete-button">
+                            <a onclick="if(confirm('Voulez vous vraiment supprimer votre commentaire ?')) window.location = '/comments/{{ $replyComment->id }}/destroy'">SUPPRIMER</a>
+                        </div>
+                        @endcan
                     </div>
                 </div>
             </div>
