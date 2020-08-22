@@ -53,7 +53,7 @@ class TopicPolicy
      */
     public function update(User $user, Topic $topic)
     {
-        return $user->id == $topic->user->id;
+        return auth()->check() && $user->id == $topic->user->id;
     }
 
     /**
@@ -65,7 +65,7 @@ class TopicPolicy
      */
     public function delete(User $user, Topic $topic)
     {
-        return $user->id == $topic->user->id;
+        return auth()->check() && ($user->id == $topic->user->id || $user->role_id == 4);
     }
 
     /**
