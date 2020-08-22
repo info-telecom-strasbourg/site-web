@@ -91,7 +91,8 @@ class Projet extends Model
         }
 
         if (!empty(request()->membre)) {
-            $query = $query->join('projets_participants', 'projets.id', '=', 'projets_participants.projet_id')->where('user_id', request()->membre);
+            // select('projets.*') => gets only the columns of the projets table
+            $query = $query->join('projets_participants', 'projets.id', '=', 'projets_participants.projet_id')->where('user_id', request()->membre)->select('projets.*');
         }
 
         if (!empty(request()->partner)) {

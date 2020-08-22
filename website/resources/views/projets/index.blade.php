@@ -37,8 +37,8 @@
 						<option readonly selected hidden value="">Pôle</option>
 
 						@isset($poles)
-						@foreach ($poles as $key => $pole)
-						<option value="{{ $key + 1 }}" @if ($filters[0]==($key + 1)) selected @endif>{{ $pole->title }} </option>
+						@foreach ($poles as $pole)
+						<option value="{{ $pole->id }}" @if ($filters[0]==($pole->id)) selected @endif>{{ $pole->title }} </option>
 						@endforeach
 
 						<option value="" name="reset">Reset</option>
@@ -50,8 +50,8 @@
 						<option readonly selected hidden value="">Participants</option>
 
 						@isset($participants)
-						@foreach ($participants as $key => $participant)
-						<option value="{{ $key + 1 }}" @if ($filters[1]==($key + 1)) selected @endif>{{ $participant->name }}</option>
+						@foreach ($participants as $participant)
+						<option value="{{ $participant->id }}" @if ($filters[1]==($participant->id)) selected @endif>{{ $participant->name }}</option>
 						@endforeach
 
 						<option value="" name="reset">Reset</option>
@@ -63,8 +63,8 @@
 						<option readonly selected hidden value="">Collaborateurs</option>
 
 						@isset($partners)
-						@foreach ($partners as $key => $partner)
-						<option value="{{ $key + 1 }}" @if ($filters[2]==($key + 1)) selected @endif>{{ $partner->name }}</option>
+						@foreach ($partners as $partner)
+						<option value="{{ $partner->id }}" @if ($filters[2]==($partner->id)) selected @endif>{{ $partner->name }}</option>
 						@endforeach
 
 						<option value="" name="reset">Reset</option>
