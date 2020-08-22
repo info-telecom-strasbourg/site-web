@@ -82,7 +82,7 @@
 	        </div>
 		@endif
 
-		<!-- Sort dates -->
+		<!-- Sort dates: past/present/futur -->
 		@php
 			use Carbon\Carbon;
 			function isInPast($date, $today_date) {

@@ -203,7 +203,8 @@ class ProjetController extends Controller
     }
 
     /**
-     * Remove the specified project.
+     * Remove the specified project. It also delete all the events atached to
+	 * it.
      *
      * @param projet: the project to delete.
      * @return redirect to projects' index view.
