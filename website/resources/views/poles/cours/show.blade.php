@@ -83,7 +83,7 @@
 								</i>
 							</div>
 							<div class="col sep-chevr">
-								{{ \Carbon\Carbon::parse($date->date)->translatedFormat('l d F Y') }}
+								{{ \Carbon\Carbon::parse($date->date)->translatedFormat('l j F Y') }}
 							</div>
 						</div>
 						@php $datesPresentiel += 1; @endphp
