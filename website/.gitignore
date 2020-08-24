@@ -8,6 +8,7 @@
 .env
 .env.backup
 ../.idea/
+public/
 composer.lock
 site_ITS_db.sql
 .phpunit.result.cache

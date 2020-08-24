@@ -36,25 +36,25 @@
 
                     <!-- User's name -->
                     <div class="input-group">
-                        <input type="text" class="custom-form-control form-control" id="name" name="name"
+                        <input type="text" class="custom-form-control form-control margin-bottom" id="name" name="name"
                             placeholder="Nom" value="{{ $user->name }}">
                     </div>
 
                     <!-- User's Email address -->
                     <div class="input-group">
-                        <input type="email" class="custom-form-control form-control" id="email" name="email"
+                        <input type="email" class="custom-form-control form-control margin-bottom" id="email" name="email"
                             placeholder="Adresse e-mail" value="{{ $user->email }}">
                     </div>
 
                     <!-- User's class -->
                     <div class="input-group">
-                        <input type="text" class="custom-form-control form-control" id="class" name="class"
+                        <input type="text" class="custom-form-control form-control margin-bottom" id="class" name="class"
                             placeholder="Filière" value="{{ $user->class }}">
                     </div>
 
                     <!-- User's year -->
                     <div class="input-group">
-                        <input type="text" class="custom-form-control form-control" id="year" name="year"
+                        <input type="text" class="custom-form-control form-control margin-bottom" id="year" name="year"
                             placeholder="Promotion" value="{{ $user->year }}">
                     </div>
 
@@ -62,7 +62,7 @@
                     <!-- Password -->
                     <div class="input-group">
                         <input type="password"
-                            class="custom-form-control form-control pwd @error('password') is-invalid @enderror"
+                            class="custom-form-control form-control margin-bottom pwd @error('password') is-invalid @enderror"
                             id="password" name="password" placeholder="Nouveau mot de passe" data-toggle="tooltip"
                             data-placement="top" title="Ne rien mettre pour garder l'ancien mot de passe.">
                         <span class="input-group-btn">
@@ -79,7 +79,7 @@
 
                     <!-- Confirm password -->
                     <div class="input-group">
-                        <input type="password" class="custom-form-control form-control pwd-confirm"
+                        <input type="password" class="custom-form-control form-control margin-bottom pwd-confirm"
                             id="password_confirmation" name="password_confirmation" placeholder="Nouveau mot de passe">
                         <span class="input-group-btn">
                             <button class="btn reveal-confirm" type="button"><i

@@ -30,6 +30,7 @@ class CreateDatesTable extends Migration
             $table->id();
 			$table->BigInteger('cours_id')->unsigned();
 			$table->BigInteger('date_id')->unsigned();
+			$table->unique(['cours_id', 'date_id']);
 
 			$table->foreign('cours_id')
                 ->references('id')
