@@ -42,8 +42,7 @@
     <link rel="stylesheet" href="{{URL::asset('css/fonts.css')}}">
 
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
-
-
+    
     <!-- JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src='https://cdn.rawgit.com/JacobLett/IfBreakpoint/e9fcd4fd/if-b4-breakpoint.min.js'></script>
