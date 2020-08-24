@@ -106,4 +106,14 @@ class Projet extends Model
 
         return $query;
     }
+
+	/**
+	 * Get the timeline of the project.
+	 *
+	 * @return the project's timeline.
+	 */
+	 public function timeline()
+	 {
+		 return $this->morphMany(TimelineEvent::class, 'reference', 'timeline_type')->latest('date');
+	 }
 }
