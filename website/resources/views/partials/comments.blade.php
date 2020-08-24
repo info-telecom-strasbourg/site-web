@@ -116,6 +116,9 @@ function nl2br(str, is_xhtml) {
     return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag   + '$2');
 }
 
+/**
+ * 
+ */
 function escapeHtml(text) {
   var map = {
     '&': '&amp;',
@@ -144,19 +147,20 @@ function addComment(urlPath, textAreaId, nb) {
             replyComment: jQuery(textAreaId).val(),
         },
         success: function(result) {
+            console.log(result);
 
             // Reply comment html
             var commentData = '';
             commentData += '<div class="comment-reply comment-reply-' + result.comment.commentable_id + '">';
             commentData += '    <div class="comment d-flex align-items-start">';
             commentData += '        <div class="comment-author-thumbnail">';
-            commentData += "            <a href='/users/" + result.user.id + "'>";
+            commentData += "            <a href='/users/" + result.comment.user.id + "'>";
             commentData += '                <img class="profil-rounded-xsmall" src="' + result.path + '">';
             commentData += "            </a>";
             commentData += "        </div>";
             commentData += '        <div class="comment-body d-flex flex-column w-100">';
             commentData += '            <div class="comment-author d-flex">';
-            commentData += '                <span class="author-text">' + result.user.name + '</span>';
+            commentData += '                <span class="author-text">' + result.comment.user.name + '</span>';
             commentData += '                <span class="published-time-text">' + result.dateDiff + '</span>';
             commentData += '            </div>';
             commentData += '            <div class="comment-content" id="comment-content-' + result.comment.id + '">' + nl2br(escapeHtml(result.comment.content));  
@@ -215,6 +219,7 @@ function addComment(urlPath, textAreaId, nb) {
 
             // Empty the input fields
             $(textAreaId).val('');
+            // hide textarea to add comment
             $('#replyComment-' + result.comment.commentable_id).addClass('d-none');
 
             // show the replies
@@ -225,7 +230,8 @@ function addComment(urlPath, textAreaId, nb) {
         },
         error: function(data, textStatus, errorThrown) {
             // if the user is not logged in - error 401
-            window.location.replace('/login');
+            if (errorThrown == 'Unauthorized')
+                window.location.replace('/login');
         },
     });
 }
@@ -252,8 +258,8 @@ function saveChanges(urlPath, id) {
         },
         error: function(data, textStatus, errorThrown) {
             // if the user is not logged in - error 401
-            // window.location.replace('/login');
-            console.log(data);
+            if (errorThrown == 'Unauthorized')
+                window.location.replace('/login');
         },
     });
 }

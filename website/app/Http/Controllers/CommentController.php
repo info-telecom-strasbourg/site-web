@@ -101,7 +101,7 @@ class CommentController extends Controller
         // Get the time difference with the current day
         $dateDiff = $this->diffTime($commentReply->created_at);
 
-        return response()->json(['comment'=> $commentReply, 'user' => $commentReply->user, 'path' => $pathProfilPicture, 'dateDiff' => $dateDiff]);
+        return response()->json(['comment'=> $commentReply, 'path' => $pathProfilPicture, 'dateDiff' => $dateDiff]);
     }
 
     /**
