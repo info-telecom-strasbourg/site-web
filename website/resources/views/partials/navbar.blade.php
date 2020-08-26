@@ -64,7 +64,7 @@
             </a>
 
             <!-- Outils de l'association -->
-            <li class="nav-item onglet dropdown {{ (Request::is('besoin-aide') || Request::is('topic')) ? 'active' : ''  }}" id="poles">
+            <li class="nav-item onglet dropdown {{ (Request::is('besoin-aide') || Request::is('topics')) ? 'active' : ''  }}" id="poles">
                 <a id="outilsAssoDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                     OUTILS
                 </a>
