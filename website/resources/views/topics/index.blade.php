@@ -15,6 +15,9 @@
     <hr class="line-under-title">
 
     <div class="container pt-3">
+        <div class="text-center mb-4">
+            Vous pouvez poster ici vos idées de projets, d'amélioration.
+        </div>
         <div class="d-flex justify-content-center mb-5">
             @can('create', 'App\Topic')
             <a href="{{ route('topics.create') }}" class="btn btn-warning">Ajouter une idée</a>

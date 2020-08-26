@@ -15,7 +15,8 @@ class CommentController extends Controller
     /**
      * Constructor.
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('auth');
     }
 
@@ -24,7 +25,8 @@ class CommentController extends Controller
      * @param myDate the timestamps
      * @return name the displayed text of the time that has pasted since the comment has been added
      */
-    public function diffTime($myDate) {
+    public function diffTime($myDate)
+    {
         $days = $myDate->diffInDays();
         $weeks = $myDate->diffInWeeks();
         $months = $myDate->diffInMonths();
@@ -32,27 +34,20 @@ class CommentController extends Controller
 
         if ($years == 1) {
             $name = "il y $years an";
-        }
-        else if ($years > 1) {
+        } else if ($years > 1) {
             $name = "il y a $years ans";
-        }
-        else if ($months >= 1) {
+        } else if ($months >= 1) {
             $name = "il y a $months mois";
-        }
-        else if ($weeks == 1) {
+        } else if ($weeks == 1) {
             $name = "il y a $weeks semaine";
-        }
-        else if ($weeks >= 1) {
+        } else if ($weeks >= 1) {
             $name = "il y a $weeks semaines";
-        }
-        else if ($days == 1) {
+        } else if ($days == 1) {
             $name = "il y a $days jour";
-        }
-        else if ($days > 1 && $days < 7) { 
-            $name="il y a $days jours"; 
-        } 
-        else { 
-            $name="aujourd'hui à " . $myDate->format('H:i'); 
+        } else if ($days > 1 && $days < 7) {
+            $name = "il y a $days jours";
+        } else {
+            $name = "aujourd'hui à " . $myDate->format('H:i');
         }
 
         return $name;
@@ -64,7 +59,8 @@ class CommentController extends Controller
      * @param  topic: the topic.
      * @return redirect to the page of the topic.
      */
-    public function store(Topic $topic) {
+    public function store(Topic $topic)
+    {
         request()->validate([
             'content' => 'required|min:5'
         ]);
@@ -84,7 +80,8 @@ class CommentController extends Controller
      * @param  topic: the comment.
      * @return redirect to the page of the comment.
      */
-    public function storeCommentReply(Comment $comment) {
+    public function storeCommentReply(Comment $comment)
+    {
         request()->validate([
             'replyComment' => 'required|min:2'
         ]);
@@ -101,7 +98,7 @@ class CommentController extends Controller
         // Get the time difference with the current day
         $dateDiff = $this->diffTime($commentReply->created_at);
 
-        return response()->json(['comment'=> $commentReply, 'path' => $pathProfilPicture, 'dateDiff' => $dateDiff]);
+        return response()->json(['comment' => $commentReply, 'path' => $pathProfilPicture, 'dateDiff' => $dateDiff]);
     }
 
     /**
@@ -110,7 +107,8 @@ class CommentController extends Controller
      * @param  pole: the pole.
      * @return redirect to the page of the pole.
      */
-    public function storePole(Pole $pole) {
+    public function storePole(Pole $pole)
+    {
         request()->validate([
             'content' => 'required|min:5'
         ]);
@@ -130,7 +128,8 @@ class CommentController extends Controller
      * @param  cours: the lesson.
      * @return redirect to the page of the lesson.
      */
-    public function storeCours(Cours $cours) {
+    public function storeCours(Cours $cours)
+    {
         request()->validate([
             'content' => 'required|min:5'
         ]);
@@ -150,7 +149,8 @@ class CommentController extends Controller
      * @param  compet: the competition.
      * @return redirect to the page of the competition.
      */
-    public function storeCompetition(Competition $compet) {
+    public function storeCompetition(Competition $compet)
+    {
         request()->validate([
             'content' => 'required|min:5'
         ]);
@@ -163,14 +163,15 @@ class CommentController extends Controller
 
         return back();
     }
-    
+
     /**
      * Store a comment to a project.
      *
      * @param  projet: the project.
      * @return redirect to the page of the project.
      */
-    public function storeProject(Projet $projet) {
+    public function storeProject(Projet $projet)
+    {
         request()->validate([
             'content' => 'required|min:5'
         ]);
@@ -193,7 +194,7 @@ class CommentController extends Controller
      */
     public function update(Comment $comment)
     {
-        $this->authorize('update', $comment); 
+        $this->authorize('update', $comment);
 
         $data = request()->validate([
             'content' => 'required|min:5'
@@ -201,7 +202,7 @@ class CommentController extends Controller
 
         $comment->update($data);
 
-        return response()->json(['content'=> $comment->content]);
+        return response()->json(['content' => $comment->content]);
     }
 
     /**
