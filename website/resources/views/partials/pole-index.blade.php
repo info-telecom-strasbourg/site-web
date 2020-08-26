@@ -79,6 +79,8 @@
         </div>
 
         @yield('extra-button')
+		
+		@yield('timeline')
         		
 		<!-- Button to edit the pole -->
 		@can ('update', $pole)
