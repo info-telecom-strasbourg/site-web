@@ -273,6 +273,9 @@
                 },
                 success: function(result) {
                     $('#comment-content-' + id).text(result.content);
+                    if (result.comment.created_at != result.comment.updated_at) {
+                        $('#update-' + id).removeClass('d-none');
+                    }
                     $('#editCommentModal-' + id).modal('hide');
 
                 },
@@ -358,6 +361,11 @@
                             $comment->created_at->format('H:i'); }
                             @endphp
                             <span class="published-time-text">{{ $name }}</span>
+                            @if ($comment->updated_at != $comment->created_at)
+                                <span id="update-{{ $comment->id }}" class="published-time-text ml-2">(modifié)</span>
+                            @else
+                                <span id="update-{{ $comment->id }}" class="published-time-text ml-2 d-none">(modifié)</span>
+                            @endif
                     </div>
                     <div class="comment-content" id="comment-content-{{ $comment->id }}">
                         {!! nl2br(htmlspecialchars($comment->content)) !!}
@@ -473,6 +481,10 @@
                             }
                             else if ($days > 1 && $days < 7) { $name="il y a $days jours" ; } else { $name="aujourd'hui à " . $comment->created_at->format('H:i');  }
                                 @endphp <span class="published-time-text">{{ $name }}</span>
+                                @if ($comment->updated_at != $comment->created_at)
+                                    <span id="update-{{ $replyComment->id }}" class="published-time-text ml-2">(modifié)</span>
+                                @endif
+                            
                         </div>
                         <div class="comment-content" id="comment-content-{{ $replyComment->id }}">
                             {!! nl2br(htmlspecialchars($replyComment->content)) !!}

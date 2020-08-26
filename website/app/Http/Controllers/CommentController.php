@@ -202,7 +202,7 @@ class CommentController extends Controller
 
         $comment->update($data);
 
-        return response()->json(['content' => $comment->content]);
+        return response()->json(['comment' => $comment, 'content' => $comment->content]);
     }
 
     /**

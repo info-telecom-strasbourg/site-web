@@ -10,7 +10,7 @@
             </div>
             <div class="modal-body">
                 <textarea class="w-100" name="content" id="edit-comment-{{ $comment->id }}"
-                    rows="10">{{ $comment->content }}</textarea>
+                    rows="10" style="resize: none;">{{ $comment->content }}</textarea>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
