@@ -8,7 +8,9 @@ use App\Http\Requests\ProjetRequest;
 use App\Projet;
 use App\User;
 use App\Pole;
+use Carbon\Carbon;
 use App\Collaborateur;
+use App\TimelineEvent;
 use Illuminate\Http\Response;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -53,7 +55,7 @@ class ProjetController extends Controller
     {
         $projet->load('chef');
         $projet->load('participants');
-        return view('projets.show', ['projet' => $projet]);
+        return view('projets.show', compact('projet'));
     }
 
     /**
@@ -72,7 +74,8 @@ class ProjetController extends Controller
     }
 
     /**
-     * Store a new project.
+     * Store a new project. It also create a defaultevent in the timeline of the
+	 * project.
      *
      * @param  request: the user's request.
      * @return redirect to the page of the stored project.
@@ -111,6 +114,16 @@ class ProjetController extends Controller
             $projet->participants()->attach($request->chef_projet_id);
 
         $projet->save();
+
+		$today = Carbon::now('Europe/Paris')->format('Y-m-d');
+
+		TimelineEvent::create([
+			'desc' => 'Début du projet',
+			'date' => $today,
+			'reference_id' => $projet->id,
+			'timeline_type' => 'App\Projet',
+		]);
+
 
         return redirect('/projets/' . $projet->id);
     }
@@ -190,7 +203,8 @@ class ProjetController extends Controller
     }
 
     /**
-     * Remove the specified project.
+     * Remove the specified project. It also delete all the events atached to
+	 * it.
      *
      * @param projet: the project to delete.
      * @return redirect to projects' index view.
@@ -208,6 +222,10 @@ class ProjetController extends Controller
                 $replyComment->delete();
             $comment->delete();
         }
+
+        // delete the events of the timeline
+        foreach ($projet->timeline as $key => $event)
+			     $event->delete();
 
         $projet->delete();
 

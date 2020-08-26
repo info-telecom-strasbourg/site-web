@@ -1,5 +1,4 @@
 <!-- Layout of the website -->
-
 <!DOCTYPE html>
 <html lang="fr" local="fr">
 
@@ -43,8 +42,7 @@
     <link rel="stylesheet" href="{{URL::asset('css/fonts.css')}}">
 
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
-
-
+    
     <!-- JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src='https://cdn.rawgit.com/JacobLett/IfBreakpoint/e9fcd4fd/if-b4-breakpoint.min.js'></script>
@@ -59,12 +57,12 @@
 
 <body>
     <!-- Navbar -->
-    {{-- If the route is not page-admin we display the navbar --}}
-    @if (!Request::is('page-admin') && !Request::is('login') && !Request::is('password/*'))
+    {{-- If the route is not an admin page we display the navbar --}}
+    @if (!Request::is('page-admin/vue-ensemble') && !Request::is('page-admin/membres') && !Request::is('page-admin/actualites') && !Request::is('login') && !Request::is('password/*'))
     @include('partials.navbar')
     @endif
 
-    @if (Request::is('page-admin'))
+    @if (Request::is('page-admin/vue-ensemble') || Request::is('page-admin/membres') || Request::is('page-admin/actualites'))
     <style>
         body {
             background-color: #131722;
@@ -90,7 +88,7 @@
         <!-- Main content -->
         <div id="content">
             <!-- Breadcrumbs -->
-            @if (!Request::is('/') && !Request::is('page-admin') && !Request::is('login') && !Request::is('password/*'))
+            @if (!Request::is('/') && !Request::is('page-admin/vue-ensemble') && !Request::is('page-admin/membres') && !Request::is('page-admin/actualites') && !Request::is('login') && !Request::is('password/*'))
             <div class="breadcrumb-container" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     @yield('breadcrumb')

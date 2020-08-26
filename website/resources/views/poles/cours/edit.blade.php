@@ -183,8 +183,8 @@
 	calendarDistUpd.appendTo('#cal-dist-dates-upd');
 
 	$('#submit-btn-edt-crs').click(function() {
-		parseDate(calendarDistUpd.values, 'dates_dist');
-		parseDate(calendarPresUpd.values, 'dates_pres');
+		parseDate(calendarDistUpd.values, 'dates_dist', 'div#dates-select');
+		parseDate(calendarPresUpd.values, 'dates_pres', 'div#dates-select');
 	});
 </script>
 @endsection

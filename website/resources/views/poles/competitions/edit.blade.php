@@ -208,7 +208,7 @@
 		}
 		else
 		{
-			parseDate(calendarCompUpd.values, 'dates_comp');
+			parseDate(calendarCompUpd.values, 'dates_comp', 'div#dates-select');
 		}
 	});
 

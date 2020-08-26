@@ -90,6 +90,91 @@
         @endforeach
         @endif
 
+		<!-- Sort dates: past/present/futur -->
+		@php
+			use Carbon\Carbon;
+			function isInPast($date, $today_date) {
+				return (intval(substr($date, 0, 4)) > intval(substr($today_date, 0, 4)) ||
+				 	intval(substr($date, 5, 2)) > intval(substr($today_date, 5, 2)) ||
+					intval(substr($date, 8, 2)) > intval(substr($today_date, 8, 2)));
+			}
+
+			$today_date =  Carbon::now('Europe/Paris')->format('Y-m-d');
+			$pastEvents = array();
+			$futurEvents = array();
+			$todayEvent = "today";
+
+		    foreach ($projet->timeline as $event) {
+
+				if($event->date == $today_date)
+					$todayEvent = $event;
+		        else if(isInPast($event->date, $today_date))
+					$futurEvents[] = $event;
+		        else
+		            $pastEvents[] = $event;
+			}
+		@endphp
+
+        <!-- Timeline of the project -->
+		@if(!$projet->timeline->isEmpty() || (Auth::check() && Auth::user()->id == $projet->chef->id ))
+        <div class="bordure"></div>
+        <h4 class="title md text-center">Timeline du projet</h4>
+        <div class="container mt-5 mb-5">
+            <div class="row">
+                <ul class="timeline">
+					@forelse($futurEvents as $event)
+                    <li>
+                        <div style="color: #007bff">
+                            {{ \Carbon\Carbon::parse($event->date)->translatedFormat('j F Y') }}
+                            @can ('update', $projet)
+                            <button id="button-upd-step" type="button" data-toggle="modal" data-target="#upd-step{{ $event->id }}"><i class="buttons-timeline-edit fas fa-pen"></i><span style="margin-left: 10px; color:#2d64ba;">Modifier</span></button>
+                            <a id="button-trash" href="/timeline/{{ $event->id }}/destroy"><i class="buttons-timeline-trash fas fa-trash"></i><span style="margin-left: 10px; color:#de4242;">Supprimer</span></a>
+                            @endcan
+                        </div>
+                        <p>{{$event->desc}}</p>
+                    </li>
+					@empty
+                    @endforelse
+					@if($todayEvent != "today")
+						<li id="today">
+							<div style="color: #007bff">Aujourd'hui
+								@can ('update', $projet)
+	                            <button id="button-upd-step" type="button" data-toggle="modal" data-target="#upd-step{{ $todayEvent->id }}"><i class="buttons-timeline-edit fas fa-pen"></i><span style="margin-left: 10px; color:#2d64ba;">Modifier</span></button>
+	                            <a id="button-trash" href="/timeline/{{ $todayEvent->id }}/destroy"><i class="buttons-timeline-trash fas fa-trash"></i><span style="margin-left: 10px; color:#de4242;">Supprimer</span></a>
+	                            @endcan
+	                        </div>
+	                        <p>{{$todayEvent->desc}}</p>
+						</li>
+					@else
+	                    <li id="today">
+	                        <div style="color: #007bff">Aujourd'hui</div>
+	                    </li>
+					@endif
+
+					@forelse($pastEvents as $event)
+                    <li>
+                        <div style="color: #007bff">
+                            {{ \Carbon\Carbon::parse($event->date)->translatedFormat('j F Y') }}
+                            @can ('update', $projet)
+                            <button id="button-upd-step" type="button" data-toggle="modal" data-target="#upd-step{{ $event->id }}"><i class="buttons-timeline-edit fas fa-pen"></i><span style="margin-left: 10px; color:#2d64ba;">Modifier</span></button>
+                            <a id="button-trash" href="/timeline/{{ $event->id }}/destroy"><i class="buttons-timeline-trash fas fa-trash"></i><span style="margin-left: 10px; color:#de4242;">Supprimer</span></a>
+                            @endcan
+                        </div>
+                        <p>{{$event->desc}}</p>
+                    </li>
+					@empty
+                    @endforelse
+                </ul>
+            </div>
+        </div>
+
+		@endif
+
+        <!-- The buttons to the timeline -->
+        @can ('update', $projet)
+        @include('poles.timeline', ['object' => $projet ])
+        @endcan
+
         <!-- Images of the project -->
         <div class="bordure"></div>
         <h4 class="title md text-center">Le projet en images</h4>
@@ -143,7 +228,7 @@
         @can ('update', $projet)
         <div class="d-flex flex-row justify-content-around" style="margin-top: auto;">
             <div class="text-center" style="margin-top:25px; margin-bottom:25px;">
-                <button type="submit" class="btn btn-primary btn-rounded" onclick="self.location.href='/projets/{{ $projet->id }}/edit'">Éditer</button>
+                <button type="submit" class="btn btn-primary btn-rounded" onclick="self.location.href='/projets/{{ $projet->id }}/edit'">Modifier</button>
             </div>
             <div class="text-center" style="margin-top:25px; margin-bottom:25px;">
                 <form action="/projets/{{ $projet->id }}" method="POST">
