@@ -6,6 +6,11 @@
 
 @section('content')
 
+<!-- Button to get to the previous page -->
+<a class="btn btn-primary btn-rounded" style="font-size: 20px; position: absolute; top: 10px; left: 10px; padding: 5px 15px; text-decoration: none; z-index: 10000; color: white;" data-toggle="tooltip" data-placement="right" title="Retour vers la page de connexion." onclick="window.history.back()">
+    <i class="fas fa-angle-left" ></i>
+</a>
+
 <style>
     #content {
         padding-bottom: 0;
