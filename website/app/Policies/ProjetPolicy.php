@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Policies\GeneralPolicy;
 use App\Projet;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -59,7 +60,7 @@ class ProjetPolicy
      */
     public function update(User $user, Projet $projet)
     {
-        return auth()->check() && ($user->id == $projet->chef->id || $user->role_id == 4);
+        return auth()->check() && ($user->id == $projet->chef->id || GeneralPolicy::checkAdmin());
     }
 
     /**

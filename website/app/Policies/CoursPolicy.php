@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Policies\GeneralPolicy;
 use App\Cours;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -65,8 +66,8 @@ class CoursPolicy
 				return true;
         }
 
-        // if the loged in user is the respo support
-        if ($user->role_id == 4)
+        // if the loged in user is one of the admins
+        if (GeneralPolicy::checkAdmin())
             return true;
 
 		return false;
