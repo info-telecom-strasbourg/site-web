@@ -239,6 +239,10 @@
             </div>
         </div>
         @endcan
+
+        <hr>
+
+        @include('partials.comments', ['routeName' => 'comments.projets.store', 'object' => $projet])
     </div>
 </div>
 

@@ -47,4 +47,13 @@ class Cours extends Model
 	{
 		return $this->belongsToMany(Tag::class, 'tags_cours');
 	}
+
+	/**
+     * Gets the comments of the cours.
+	 *
+	 * @return the comments of the cours.
+     */
+    public function comments() {
+        return $this->morphMany('App\Comment', 'commentable')->latest();
+    }
 }
