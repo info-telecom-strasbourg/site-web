@@ -10,6 +10,13 @@
 	'routeNameComments' => 'comments.poles.pole.store'
 ])
 
+@section('see-more-button')
+	<!-- Button to see more -->
+	@if(isset($pole->projets) && $pole->projets->count() > 6)
+		@include('partials.voirplus', ['id' => 'projet', 'element' => 'element'])
+	@endif
+@endsection
+
 @section('timeline')
 		<!-- Sort dates: past/present/futur -->
 		@php
