@@ -40,7 +40,7 @@
                 <div class="col-md-auto sep-items">
                     <h4 class="title md text-center">Chef de projet</h4>
                     <a href="/users/{{ $projet->chef->id }}" class="user-link">
-                        <div class="card p-2 rounded chef-projet mt-5" style="min-width: 220px !important; height: 100px !important; cursor: pointer;">
+                        <div class="card p-2 rounded chef-projet mt-5" style="height: 100px !important; cursor: pointer;">
                             <div class="row no-gutters align-items-center" style="flex-wrap: unset; height: 100% !important;">
                                 <div class="col-md-4" style="width: 60px !important;">
                                     <img src="{{ asset('storage/' . $projet->chef->profil_picture) }}" class="card-img profil-rounded" style="width: 60px !important; height: 60px !important;">
@@ -60,7 +60,7 @@
                 <div class="col-md-auto sep-items">
                     <h4 class="title md text-center">Collaborateur</h4>
                     <a href="{{ $projet->collaborateur->link }}" class="user-link" target="_blank">
-                        <div class="card p-2 rounded chef-projet mt-5" style="min-width: 220px !important; height: 100px !important; cursor: pointer;">
+                        <div class="card p-2 rounded chef-projet mt-5" style="height: 100px !important; cursor: pointer;">
                             <div class="row no-gutters align-items-center" style="flex-wrap: unset; height: 100% !important;">
                                 <div class="col-md-4" style="width: 60px !important;">
                                     <img src="{{ asset($projet->collaborateur->image) }}" class="card-img profil-rounded" style="height: 80% !important; height: 80%;">
@@ -83,11 +83,30 @@
         @if ($projet->participants->count() > 1)
         <div class="bordure"></div>
         <h4 class="title md text-center">Participants</h4>
-        @foreach ($projet->participants as $participant)
-        @if ($participant->id != $projet->chef->id)
-        <p><a href="/users/{{ $participant->id }}" class="user-link">{{ $participant->name }}</a></p>
-        @endif
-        @endforeach
+        <div class="container" style="padding-top: 1rem !important; margin-bottom: -35px;">
+            <div class="row align-items-center">
+                @foreach ($projet->participants as $participant)
+                @if ($participant->id != $projet->chef->id)
+                <div class="col-md-auto sep-items">
+                    <a href="/users/{{ $participant->id }}" class="user-link">
+                        <div class="card p-2 rounded chef-projet" style="height: 100px !important; cursor: pointer;">
+                            <div class="row no-gutters align-items-center" style="flex-wrap: unset; height: 100% !important;">
+                                <div class="col-md-4" style="width: 60px !important;">
+                                    <img src="{{ asset('storage/' . $participant->profil_picture) }}" class="card-img profil-rounded" style="width: 60px !important; height: 60px !important;">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <p class="card-title" style="margin-bottom: 0;"> {{ $participant->name }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                @endif
+                @endforeach
+            </div>
+        </div>
         @endif
 
 		<!-- Sort dates: past/present/futur -->
@@ -116,7 +135,7 @@
 		@endphp
 
         <!-- Timeline of the project -->
-		@if(!$projet->timeline->isEmpty() || (Auth::check() && Auth::user()->id == $projet->chef->id ))
+		@if(!$projet->timeline->isEmpty() || Auth::user()->can('update', $projet))
         <div class="bordure"></div>
         <h4 class="title md text-center">Timeline du projet</h4>
         <div class="container mt-5 mb-5">
