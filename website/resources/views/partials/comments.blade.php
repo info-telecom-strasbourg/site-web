@@ -272,7 +272,7 @@
                     content: jQuery('#edit-comment-' + id).val(),
                 },
                 success: function(result) {
-                    $('#comment-content-' + id).text(result.content);
+                    $('#comment-content-' + id).text(result.content).css('white-space', 'pre-line');
                     if (result.comment.created_at != result.comment.updated_at) {
                         $('#update-' + id).removeClass('d-none');
                     }
