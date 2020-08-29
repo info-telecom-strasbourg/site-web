@@ -135,7 +135,7 @@
 		@endphp
 
         <!-- Timeline of the project -->
-		@if(!$projet->timeline->isEmpty() || Auth::user()->can('update', $projet))
+		@if(!$projet->timeline->isEmpty() || (Auth::check() && Auth::user()->can('update', $projet)))
         <div class="bordure"></div>
         <h4 class="title md text-center">Timeline du projet</h4>
         <div class="container mt-5 mb-5">
