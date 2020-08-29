@@ -99,7 +99,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
                     @endforeach
                 </div>
                 <a class="carousel-control-prev w-auto" href="#recipeCarousel" role="button" data-slide="prev">
