@@ -33,7 +33,16 @@ class Pole extends Model
         return $this->hasMany(Projet::class)->orderBy('id', 'DESC');
     }
 
-	/**
+    /**
+     * Gets the comments of the pole.
+	 *
+	 * @return the comments of the pole.
+     */
+    public function comments() {
+        return $this->morphMany('App\Comment', 'commentable')->latest();
+    }
+
+  /**
 	 * Get the timeline of the pole.
 	 *
 	 * @return the pole's timeline.
@@ -42,5 +51,4 @@ class Pole extends Model
 	 {
 		 return $this->morphMany(TimelineEvent::class, 'reference', 'timeline_type')->latest('date');
 	 }
-
 }

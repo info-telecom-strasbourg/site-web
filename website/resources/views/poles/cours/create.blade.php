@@ -68,11 +68,11 @@ Création d'un cours
 
 			<!-- Image to illustrate the lesson -->
 			<div class="form-group">
-				<label for="image_crs" class="form-title-small">				
+				<label for="cover" class="form-title-small">				
 					Image pour la vignette du cours (optionnelle)
 				</label>
 				<br>
-				<input type="file" id="image_crs" name="image_crs">
+				<input type="file" id="cover" name="cover">
 			</div>
 
 			<!-- Files linked with the lesson -->

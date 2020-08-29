@@ -23,7 +23,7 @@
 			<div class="row">
 				<!--Image to illustrate the lesson -->
 				<div class="col-3 disp">
-					<img src="{{ asset('storage/' . json_decode($cours->image)[0]) }}" alt="Decriptive image" style="width: 195px; height: 100%;">
+					<img src="{{ asset('storage/' . $cours->cover) }}" alt="Decriptive image" style="width: 195px; height: 100%;">
 				</div>
 
 				<!--Description of the lesson -->
@@ -175,6 +175,10 @@
 				</div>
 			</div>
 		@endcan
+
+		<hr>
+
+		@include('partials.comments', ['routeName' => 'comments.poles.cours.store', 'object' => $cours])
 	</div>
 </div>
 @endsection
