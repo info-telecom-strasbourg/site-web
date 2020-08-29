@@ -22,7 +22,7 @@
 @endsection
 
 @section('content')
-<div class="container">
+<div class="container" id="pole">
 	<!-- Title of the pole -->
     <h1 class="title lg text-center">
         Pôle {{ $pole->title }}
