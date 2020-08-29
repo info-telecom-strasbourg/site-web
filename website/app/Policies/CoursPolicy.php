@@ -64,6 +64,11 @@ class CoursPolicy
         	if ($creator->id == $user->id)
 				return true;
         }
+
+        // if the loged in user is the respo support
+        if ($user->role_id == 4)
+            return true;
+
 		return false;
     }
 

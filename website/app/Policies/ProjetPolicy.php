@@ -59,7 +59,7 @@ class ProjetPolicy
      */
     public function update(User $user, Projet $projet)
     {
-        return auth()->check() && $user->id == $projet->chef->id;
+        return auth()->check() && ($user->id == $projet->chef->id || $user->role_id == 4);
     }
 
     /**
