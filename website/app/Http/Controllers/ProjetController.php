@@ -216,8 +216,16 @@ class ProjetController extends Controller
         foreach (json_decode($projet->images) as $image)
             $this->deleteImage($image);
 
-		foreach ($projet->timeline as $key => $event)
-			$event->delete();
+        // delete the associate comments
+        foreach ($projet->comments as $comment) {
+            foreach ($comment->comments as $replyComment)
+                $replyComment->delete();
+            $comment->delete();
+        }
+
+        // delete the events of the timeline
+        foreach ($projet->timeline as $key => $event)
+			     $event->delete();
 
         $projet->delete();
 

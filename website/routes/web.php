@@ -69,9 +69,9 @@ Route::put('/poles/competitions/{compet}', 'CompetitionController@update')->name
 Route::get('/poles/competitions/{compet}', 'CompetitionController@show')->name('poles.competitions.show');
 
 
-Route::get('/poles/{pole}', 'PoleController@show')->name('pole.show');
-Route::put('/poles/{pole}', 'PoleController@update')->name('pole.update');
-Route::get('/poles/{pole}/edit', 'PoleController@edit')->name('pole.edit');
+Route::get('/poles/{pole}', 'PoleController@show')->name('poles.show');
+Route::put('/poles/{pole}', 'PoleController@update')->name('poles.update');
+Route::get('/poles/{pole}/edit', 'PoleController@edit')->name('poles.edit');
 
 /*########## Download ########## */
 Route::get('/download/{path}', 'CoursController@downloadFile');
@@ -89,6 +89,19 @@ Route::get('/projets/create','ProjetController@create')->name('projets.create')-
 Route::get('/users', 'UserController@index')->name('users.index');
 Route::put('/users/{user}', 'UserController@update')->name('users.update');
 Route::get('/users/{user}', 'UserController@show')->name('users.show');
+ 
+/***** Route topics *****/
+Route::resource('topics', 'TopicController');
+
+/***** Route comments *****/
+Route::post('/comments/{topic}', 'CommentController@store')->name('comments.store');
+Route::post('/comments/poles/cours/{cours}', 'CommentController@storeCours')->name('comments.poles.cours.store');
+Route::post('/comments/poles/competition/{compet}', 'CommentController@storeCompetition')->name('comments.poles.competition.store');
+Route::post('/comments/poles/pole/{pole}', 'CommentController@storePole')->name('comments.poles.pole.store');
+Route::post('/comments/projets/{projet}', 'CommentController@storeProject')->name('comments.projets.store');
+Route::post('/commentsReply/{comment}', 'CommentController@storeCommentReply')->name('comments.storeReply');
+Route::put('/comments/{comment}', 'CommentController@update')->name('comments.update');
+Route::get('/comments/{comment}/destroy', 'CommentController@destroy')->name('comments.delete');
 
 /***** Route timeline ****/
 Route::put('/timeline/{step}/edit', 'TimelineEventController@update');

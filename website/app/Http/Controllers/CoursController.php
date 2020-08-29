@@ -26,9 +26,8 @@ class CoursController extends Controller
 	public function index()
 	{
 		$pole = Pole::where('slug', 'cours')->first();
-		$cours = Cours::orderBy('id', 'DESC')->get();
-
-		return view('poles.cours.index', ['cours' => $cours, 'pole' => $pole]);
+		$lessons = Cours::orderBy('id', 'DESC')->get();
+		return view('poles.cours.index', ['lessons' => $lessons, 'pole' => $pole]);
 	}
 
 	/**
@@ -73,10 +72,10 @@ class CoursController extends Controller
 			}
 		}
 
-		if ($request->has('image_crs'))
-			$cours->image = [$this->saveImage($request, $cours)];
+		if ($request->has('cover'))
+			$cours->cover = $this->saveImage($request->cover);
 		else
-			$cours->image = [$this->selectDefaultImage()];
+			$cours->cover = $this->selectDefaultImage();
 
 		$cours->save();
 
@@ -130,7 +129,7 @@ class CoursController extends Controller
 
 		$cours->update($this->validateCours());
 
-		if(request()->has('image_crs'))
+		if(request()->has('cover'))
 			$this->changeImage($cours);
 
 		if (request()->has('creators'))
@@ -154,14 +153,21 @@ class CoursController extends Controller
 		$this->authorize('update', $cours);
 
 		$cours->dates()->delete();
-		if (file_exists(storage_path('app/public/' . json_decode($cours->image)[0])) && substr(json_decode($cours->image)[0], 0, 15) != "images/default/")
-			unlink(storage_path('app/public/' . json_decode($cours->image)[0]));
+		if (file_exists(storage_path('app/public/' . $cours->cover)) && substr($cours->icover, 0, 15) != "images/default/")
+			unlink(storage_path('app/public/' . $cours->cover));
 
 		foreach ($cours->supports as $file)
 		{
 			unlink(storage_path('app/' . $file->ref));
 			$file->delete();
 		}
+
+		// delete the associate comments
+		foreach ($cours->comments as $comment) {
+            foreach ($comment->comments as $replyComment)
+                $replyComment->delete();
+            $comment->delete();
+        }
 
 		$cours->delete();
 
@@ -175,11 +181,10 @@ class CoursController extends Controller
 	 */
 	public function validateCours ()
 	{
-		if (request()->has('image_crs'))
+		if (request()->has('cover'))
 			return request()->validate([
 				'title' => 'required',
 				'desc' => 'required',
-				'image_crs' => 'mimes:application/png,jpeg'
 			]);
 		else
 			return request()->validate([
@@ -225,12 +230,12 @@ class CoursController extends Controller
 	/**
 	 * Save an image given by the user in the public storage folder.
 	 *
-	 * @param request: the request of the user.
+     * @param image: the image to store.
 	 * @return the path to find the image.
 	 */
-	public function saveImage (Request $request)
+	public function saveImage ($image)
 	{
-		$path = Storage::putFile('public/images', $request->image_crs, 'private');
+		$path = Storage::putFile('public/images', $image, 'private');
         return substr($path, 7);
 	}
 
@@ -288,12 +293,12 @@ class CoursController extends Controller
 	 */
 	public function changeImage(Cours $cours)
 	{
-		if (file_exists(storage_path('app/public/' . json_decode($cours->image)[0])) && substr(json_decode($cours->image)[0], 0, 15) != "images/default/")
+		if (file_exists(storage_path('app/public/' . $cours->cover)) && substr($cours->cover, 0, 15) != "images/default/")
 		{
-			unlink(storage_path('app/public/' . json_decode($cours->image)[0]));
+			unlink(storage_path('app/public/' . $cours->cover));
 		}
 
-		$cours->image = [$this->saveImage(request(), $cours)];
+		$cours->cover = $this->saveImage(request()->cover);
 		$cours->save();
 	}
 
