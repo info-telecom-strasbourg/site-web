@@ -50,7 +50,7 @@
 		@endphp
 
 		<!-- Timeline of the pole -->
-		@if(!$pole->timeline->isEmpty() || (Auth::check() && Auth::user()->id == $pole->respo->id ))
+		@if(!$pole->timeline->isEmpty() || (Auth::check() && Auth::user()->can('update', $pole)))
 
 		<div class="bordure"></div>
 		<h4 class="title md text-center">Timeline du pôle</h4>
