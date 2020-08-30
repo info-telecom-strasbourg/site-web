@@ -223,29 +223,32 @@
     @endcan
 
     <!-- Images of the project -->
-    <div class="bordure"></div>
-    <h4 class="title md text-center">Le projet en images</h4>
-    <div class="row justify-content-center" style="margin-top: 40px; margin-bottom: 40px;">
-        <div id="carouselProjetImage" class="carousel slide row w-100 justify-content-center" data-interval="false">
-            <ol class="carousel-indicators">
-                @foreach (json_decode($projet->images) as $image)
-                    <li data-target="#carouselProjetImage" data-slide-to="0" class=" @if (json_decode($projet->images) as $key => $image)
-                    <div class="carousel-item text-center  @if (!empty($projet->link_github))
-            <a class="social-icons d-flex align-items-center" href="{{ $projet->link_github }}" target="_blank">
-                <i class="fab fa-github fa-3x fa-lg mr-3"></i>Github
-            </a>
-        @endif
-        @if (!empty($projet->link_download))
-            <a class="social-icons d-flex align-items-center" href="{{ $projet->link_download }}" target="_blank">
-                <i class="fas fa-download fa-3x fa-lg mr-3"></i>Téléchargement
-            </a>
-        @endif
-        @if (!empty($projet->link_doc))
-            <a class="social-icons d-flex align-items-center" href="{{ $projet->link_doc }}" target="_blank">
-                <i class="far fa-file-alt fa-3x fa-lg mr-3"></i>Documentation
-            </a>
-        @endif
-    </div>
+        <div class="bordure"></div>
+        <h4 class="title md text-center">Le projet en images</h4>
+        <div class="row justify-content-center" style="margin-top: 40px; margin-bottom: 40px;">
+            <div id="carouselProjetImage" class="carousel slide row w-100 justify-content-center" data-interval="false">
+                <ol class="carousel-indicators">
+                    @foreach (json_decode($projet->images) as $image)
+                    <li data-target="#carouselProjetImage" data-slide-to="0" class="@if ($loop->first) active @endif"></li>
+                    @endforeach
+                </ol>
+                <div class="carousel-inner col-md-6" style="background-color: transparent;">
+                    @foreach (json_decode($projet->images) as $key => $image)
+                    <div class="carousel-item text-center @if ($loop->first) active @endif" style="background-color: transparent;">
+                        <img src="{{ asset('storage/' . $image) }}" alt=" {{ $key }} slide" style="height: 300px !important;">
+                    </div>
+                    @endforeach
+                </div>
+                <a class="carousel-control-prev col-md-3" href="#carouselProjetImage" role="button" data-slide="prev" style="background-color: #1b1b1b; width: 40px; height: 40px; border-radius: 50%; top: 50%; margin-left: 10px;">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next col-md-3" href="#carouselProjetImage" role="button" data-slide="next" style="background-color: #1b1b1b; width: 40px; height: 40px; border-radius: 50%; top: 50%; margin-right: 10px;">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
 
     <!-- Buttons to edit or remove the project -->
     <div class="d-flex flex-row justify-content-around" style="margin-top: auto;">

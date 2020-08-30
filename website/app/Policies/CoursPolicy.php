@@ -78,6 +78,15 @@ class CoursPolicy
      */
     public function delete(User $user, Cours $cours)
     {
+        if (!auth()->check())
+            return false;
+
+		foreach ($cours->creators as $creator)
+		{
+        	if ($creator->id == $user->id)
+				return true;
+        }
+        
         return GeneralPolicy::checkAdmin();
     }
 

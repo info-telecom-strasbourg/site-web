@@ -235,7 +235,7 @@ class CoursController extends Controller
 	 */
 	public function saveImage ($image)
 	{
-		$path = Storage::putFile('public/images', $image, 'private');
+		$path = Storage::putFile('public/images/cours', $image, 'private');
         return substr($path, 7);
 	}
 
