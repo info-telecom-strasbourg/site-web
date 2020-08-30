@@ -84,7 +84,7 @@ class CoursController extends Controller
 
 		$this->saveDates($request, $cours);
 
-		return redirect('/poles/cours');
+		return redirect('/poles/cours/' . $cours->id);
 	}
 
 	/**

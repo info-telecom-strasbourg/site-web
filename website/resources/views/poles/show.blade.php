@@ -10,6 +10,13 @@
 	'routeNameComments' => 'comments.poles.pole.store'
 ])
 
+@section('see-more-button')
+	<!-- Button to see more -->
+	@if(isset($pole->projets) && $pole->projets->count() > 6)
+		@include('partials.voirplus', ['id' => 'projet', 'element' => 'element'])
+	@endif
+@endsection
+
 @section('timeline')
 		<!-- Sort dates: past/present/futur -->
 		@php
@@ -37,7 +44,7 @@
 		@endphp
 
 		<!-- Timeline of the pole -->
-		@if(!$pole->timeline->isEmpty() || (Auth::check() && Auth::user()->id == $pole->respo->id ))
+		@if(!$pole->timeline->isEmpty() || (Auth::check() && Auth::user()->can('update', $pole)))
 
 		<div class="bordure"></div>
         <h4 class="title md text-center">Timeline du pôle</h4>
