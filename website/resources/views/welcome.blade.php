@@ -36,9 +36,16 @@
 				<div class="carousel-item actu active full-screen" style="background: url({{ asset('storage/' . $defaultNews->image) }}) top center; background-size: cover;">
 				<div class="carousel-caption">
 					<h1>{{ $defaultNews->title }}</h1>
-					<br>
-					<p>{{ $defaultNews->desc }}</p>
-					<br>
+	                    <br>
+	                    <p>{{ $defaultNews->desc }}</p>
+	                    <br>
+	                    @isset($defaultNews->button)
+	                    @isset($defaultNews->link)
+	                    <form action="{{ $defaultNews->link }}">
+	                        <input class="favorite styled" type="submit" value="{{ $defaultNews->button }}">
+	                    </form>
+	                    @endisset
+	                    @endisset
 				</div>
 				</div>
             @endforelse
@@ -203,7 +210,7 @@
             Ce projet associatif renforcera j’en suis certain l’entraide entre élèves-ingénieurs et par là même leur sentiment d’appartenance à une grande école d'ingénieurs.<br><br>
             Les 5 pôles mis en place permettent aux élèves de mettre en pratique et compléter leur formation académique, que ce soit à travers le développement de programmes utiles, de jeux vidéo, d’applications mobiles ou de site Web.<br><br>
             J’encourage particulièrement la participation à des compétitions informatiques bénéfiques à la visibilité de Télécom Physique Strasbourg et de son département Informatique et Réseaux.<br><br>Vous pourrez compter sur le soutien de votre directeur !"</p>
-        <img class="profil-rounded" src="/images/logo/collet.jpg">
+        <img class="profil-rounded" src="/images/illustrations/collet.jpg">
         <p id="nom"> Christophe Collet </p>
         <p id="fonction">Directeur de l’école d’ingénieur Télécom Physique Strasbourg</p>
     </div>

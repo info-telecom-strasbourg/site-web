@@ -12,6 +12,11 @@
     #content {
         padding-bottom: 0;
     }
+    @media only screen and (max-width: 992px) {
+        #content {
+            padding-bottom: 150px;
+        }
+    }
 </style>
 
 

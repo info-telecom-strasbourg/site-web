@@ -45,7 +45,7 @@ class PolePolicy
      */
     public function create(User $user)
     {
-		//
+        return auth()->check() && GeneralPolicy::checkAdmin();
     }
 
     /**
@@ -57,7 +57,7 @@ class PolePolicy
      */
     public function update(User $user, Pole $pole)
     {
-		return auth()->check() && ($user->id == $pole->respo->id || GeneralPolicy::checkAdmin());
+		return auth()->check() && ($user->id == $pole->respo_id || GeneralPolicy::checkAdmin());
     }
 
     /**
@@ -69,7 +69,7 @@ class PolePolicy
      */
     public function delete(User $user, Pole $pole)
     {
-        //
+        return auth()->check() && GeneralPolicy::checkAdmin();
     }
 
 }
