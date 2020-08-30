@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'role_id', 'password',
+        'name', 'email', 'class', 'year', 'role_id', 'password', 'profil_picture'
     ];
 
     /**
@@ -47,18 +47,28 @@ class User extends Authenticatable
      */
     public function projets()
     {
-        return $this->belongsToMany(Projet::class);
+        return $this->belongsToMany(Projet::class, 'projets_participants');
     }
 
 
 	/**
-	 * Get the lessons of the user.
+	 * Get the lessons the user created.
 	 *
 	 * @return all the lessons created by the user.
 	 */
 	public function cours()
 	{
-		$this->belongsToMany(Cours::class);
+		return $this->belongsToMany(Cours::class, 'cours_createurs');
+    }
+    
+    /**
+	 * Get the competitions of the user.
+	 *
+	 * @return all the competitions that the user attends.
+	 */
+	public function competitions()
+	{
+		return $this->belongsToMany(Competition::class, 'user_compet');
 	}
 
     /**
@@ -69,6 +79,16 @@ class User extends Authenticatable
     public function role()
     {
         return $this->belongsTo(Role::class);
+    }
+    
+    /**
+     * Get the topics the user created.
+	 *
+	 * @return the the topics created by the user.
+     */
+    public function topics()
+    {
+        return $this->hasMany(Topic::class);
     }
 
     /**
