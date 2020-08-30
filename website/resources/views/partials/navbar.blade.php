@@ -44,7 +44,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="/poles/cours">Cours & Accompagnements</a>
                     <a class="dropdown-item" href="/poles/applications_et_sites_web">Applications & Sites Web</a>
-                    <a class="dropdown-item" href="/poles/programmation_utilitaire">Programmation utilitaire</a>
+                    <a class="dropdown-item" href="/poles/programmation_utilitaire">Programmation Utilitaire</a>
                     <a class="dropdown-item" href="/poles/competitions">Compétitions</a>
                     <a class="dropdown-item" href="/poles/jeux_vidéos">Jeux Vidéos</a>
                 </div>
@@ -59,13 +59,13 @@
 
             <!-- Users page -->
             <a href="/users">
-                <li class="nav-item onglet {{ Request::is('users') ? 'active' : ''  }}">
+                <li class="nav-item onglet {{ Request::is('users*') ? 'active' : ''  }}">
                     <div class="nav-link">MEMBRES</div>
                 </li>
             </a>
 
             <!-- Outils de l'association -->
-            <li class="nav-item onglet dropdown {{ (Request::is('besoin-aide') || Request::is('topics')) ? 'active' : ''  }}" id="poles">
+            <li class="nav-item onglet dropdown {{ (Request::is('besoin-aide') || Request::is('topics*')) ? 'active' : ''  }}" id="poles">
                 <a id="outilsAssoDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                     OUTILS
                 </a>
