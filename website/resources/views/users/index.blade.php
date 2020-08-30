@@ -16,7 +16,6 @@
 		Membres
 	</h1>
 	<hr class="line-under-title">
-
 	<div class="container pt-3">
 		<!-- Search bar -->
 		<form>
@@ -27,6 +26,12 @@
 				</button>
 			</div>
 		</form>
+
+		@if(strtolower($search) == "chuck norris")
+		<div style="margin: 30px auto; color: red; text-align:center;">
+			Personne ne peut trouver Chuck Norris, c'est lui qui vous trouvera!
+		</div>
+		@else
 
 		<!-- Number of members -->
 		<p class="total-members">Membres : {{ $nbUsers }}</p>
@@ -111,8 +116,10 @@
 					</button>
 				</div>
 				@endif
+
 			</div>
 		</div>
+		@endif
 
 	</div>
 </div>

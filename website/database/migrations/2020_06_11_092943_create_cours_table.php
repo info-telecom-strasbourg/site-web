@@ -22,7 +22,7 @@ class CreateCoursTable extends Migration
 			$table->string('title');
 			$table->text('desc');
 			$table->json('links')->nullable();
-			$table->json('image')->nullable();
+			$table->string('cover')->nullable();
         });
 
 		/**
@@ -32,12 +32,13 @@ class CreateCoursTable extends Migration
             $table->id();
 			$table->BigInteger('user_id')->unsigned();
 			$table->BigInteger('cours_id')->unsigned();
+			$table->unique(['user_id', 'cours_id']);
 
 			$table->foreign('user_id')
                 ->references('id')
                 ->on('users')
 				->onDelete('cascade');
-				
+
 			$table->foreign('cours_id')
                 ->references('id')
                 ->on('cours')

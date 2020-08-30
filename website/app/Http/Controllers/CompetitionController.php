@@ -21,7 +21,7 @@ class CompetitionController extends Controller
 	 */
     public function index()
 	{
-		return view('poles.competitions.index', [ 'compets' => Competition::all(), 'pole' => Pole::where('slug', 'competitions')->first() ]);
+		return view('poles.competitions.index', [ 'competitions' => Competition::all(), 'pole' => Pole::where('slug', 'competitions')->first() ]);
 	}
 
 	/**
@@ -33,8 +33,7 @@ class CompetitionController extends Controller
 
 	public function show(Competition $compet)
 	{
-		$pole = Pole::where('slug', 'competitions')->first();
-		return view('poles/competitions/show', [ 'compet' => $compet, 'pole' => $pole ]);
+		return view('poles/competitions/show', [ 'compet' => $compet ]);
 	}
 
 	/**
@@ -186,6 +185,13 @@ class CompetitionController extends Controller
 			foreach(json_decode($compet->images) as $image)
 				unlink(storage_path('app/public/' . $image));
 
+	    // delete the associate comments
+		foreach ($projet->comments as $comment) {
+            foreach ($comment->comments as $replyComment)
+                $replyComment->delete();
+            $comment->delete();
+        }
+
 		$compet->delete();
 
 		return redirect('/poles/competitions');
@@ -213,7 +219,7 @@ class CompetitionController extends Controller
      */
     public function saveImage($image)
     {
-        $path = Storage::putFile('public/images', $image, 'private');
+        $path = Storage::putFile('public/images/compet', $image, 'private');
         return substr($path, 7);
     }
 
