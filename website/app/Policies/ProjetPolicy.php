@@ -60,7 +60,7 @@ class ProjetPolicy
      */
     public function update(User $user, Projet $projet)
     {
-        return auth()->check() && ($user->id == $projet->chef->id || GeneralPolicy::checkAdmin());
+        return auth()->check() && ($user->id == $projet->chef->id || $projet->respo_id == $user->id);
     }
 
     /**
@@ -72,7 +72,7 @@ class ProjetPolicy
      */
     public function delete(User $user, Projet $projet)
     {
-        //
+        return auth()->check() && ($user->id == $projet->chef->id || GeneralPolicy::checkAdmin());
     }
 
 }

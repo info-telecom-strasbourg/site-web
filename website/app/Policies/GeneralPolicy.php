@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Auth;
 
 class GeneralPolicy
 {
-    static function checkAdmin() {
+    static function checkAdmin()
+    {
         return Auth::user()->role_id == 1 || Auth::user()->role_id == 2 || Auth::user()->role_id == 4;
     }
 }

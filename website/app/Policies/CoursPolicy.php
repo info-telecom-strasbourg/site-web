@@ -66,10 +66,6 @@ class CoursPolicy
 				return true;
         }
 
-        // if the loged in user is one of the admins
-        if (GeneralPolicy::checkAdmin())
-            return true;
-
 		return false;
     }
 
@@ -82,7 +78,16 @@ class CoursPolicy
      */
     public function delete(User $user, Cours $cours)
     {
-        //
+        if (!auth()->check())
+            return false;
+
+		foreach ($cours->creators as $creator)
+		{
+        	if ($creator->id == $user->id)
+				return true;
+        }
+        
+        return GeneralPolicy::checkAdmin();
     }
 
 }

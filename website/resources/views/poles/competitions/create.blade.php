@@ -112,9 +112,9 @@ Création d'une compétition
                 </div>
             </div>
 
-			<!-- Competiteurs -->
+			<!-- Competitors -->
 			<div class="form-group">
-				<label for="competitors" class="form-title-small">Ajouter des competitors</label>
+				<label for="competitors" class="form-title-small">Ajouter des participants</label>
 				<select class="custom-select" name="competitors[]" id="competitors" size="4" required multiple>
 		            <option readonly selected hidden value="">participants</option>
 
