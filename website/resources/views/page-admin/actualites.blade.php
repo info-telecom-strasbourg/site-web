@@ -153,7 +153,7 @@
 													<i class="fas fa-globe" style="font-size: 1rem;"></i>
 												</div>
 											</div>
-											<input type="url" class="form-control" id="website" name="link" placeholder="Lien du bouton" value="{{ old('website') }}">
+											<input type="text" class="form-control" id="website" name="link" placeholder="Lien du bouton" value="{{ old('website') }}">
 										</div>
 									</div>
 									<span id="website-error" class="invalid-feedback" role="alert" style="display: none;">
@@ -231,7 +231,7 @@
 							</div>
 
 							<!-- Link -->
-							<input type="checkbox" id="links-nullable" class="{{ $news->id }} checkbox{{ $news->id }}" name="links-nullable" style="margin-top:20px;">
+							<input type="checkbox" id="links-nullable{{ $news->id }}" class="checkbox{{ $news->id }}" name="links-nullable" style="margin-top:20px;" onclick="toggleLinks({{ $news->id }}, this)">
 							<label for="links-nullable" style="margin-left: 10px;">Ajouter un lien</label>
 
 							<div id="website{{ $news->id }}" class="form-group" style="margin-top: 20px; display: none">
@@ -243,7 +243,7 @@
 											<i class="fas fa-globe" style="font-size: 1rem;"></i>
 										</div>
 									</div>
-									<input type="url" class="form-control" id="website{{ $news->id }}" name="link" placeholder="Lien du bouton" value="@isset($news->link) {{ $news->link }} @endisset">
+									<input type="text" class="form-control" id="website{{ $news->id }}" name="link" placeholder="Lien du bouton" value="@isset($news->link) {{ $news->link }} @endisset">
 								</div>
 							</div>
 							<span id="link-error{{ $news->id }}" class="invalid-feedback" role="alert" style="display: none;">
@@ -303,24 +303,8 @@
 				@endif
 			@endforeach
 
-
-			/**
-			 * Display or hide the sections corresponding to the button and the link
-			 * of the news.
-			 */
-			$('input#links-nullable').click(function(e) {
-				var newsId = $(this).attr('class').split(' ')[0];
-				if ($(this).is(":checked")) {
-					$('div#website' + newsId).css('display', 'block');
-					$('div#button' + newsId).css('display', 'block');
-				} else {
-					$('div#website' + newsId).css('display', 'none');
-					$('div#button' + newsId).css('display', 'none');
-				}
-			});
-
 			$('input#links-nullable-create').click(function(e) {
-				if ($(this).is(":checked")) {
+				if ($(this).prop("checked")) {
 					$('div#website-crt').css('display', 'block');
 					$('div#button-crt').css('display', 'block');
 				} else {
@@ -362,7 +346,7 @@
 			 */
 			$('button#submit-btn-edt-news').click(function(e) {
 				var newsId = $(this).attr('class').split(' ')[0];
-
+				console.log(newsId)
 				var inputTitle = $('input#title' + newsId);
 				var inputDesc = $('textarea#desc' + newsId);
 				var inputLink = $('input#website' + newsId);
@@ -370,7 +354,7 @@
 
 				var newsTitle = inputTitle.val();
 				var newsDesc = inputDesc.val();
-				var withLinks = $('input#links-nullable' + newsId).is(":checked");
+				var withLinks = $('input#links-nullable' + newsId).prop("checked");
 				var newsLink = inputLink.val();
 				var newsButton = inputButton.val();
 				var error = false;
@@ -417,7 +401,7 @@
 				var inputDesc = $('textarea#desc');
 				var inputImage = $('input#image');
 				var title = inputFile.val();
-				var withLink = $('input#links-nullable').is(":checked");
+				var withLinks = $('input#links-nullable-create').prop("checked");
 				var inputWebsite = $('input#website');
 				var inputButton = $('input#button');
 
@@ -439,7 +423,7 @@
 				} else
 					eraseError(inputImage, 'span#image-error');
 
-				if (withLink) {
+				if (withLinks) {
 					if (inputWebsite.val() == null) {
 						error = true;
 						displayError(inputWebsite, 'span#website-error');
@@ -461,5 +445,20 @@
 				if (error) e.preventDefault();
 			});
 	});
+
+	/**
+	 * Display or hide the sections corresponding to the button and the link
+	 * of the news.
+	 */
+	function toggleLinks(newsId, val) {
+		console.log(newsId);
+				if (val.checked) {
+					$('div#website' + newsId).css('display', 'block');
+					$('div#button' + newsId).css('display', 'block');
+				} else {
+					$('div#website' + newsId).css('display', 'none');
+					$('div#button' + newsId).css('display', 'none');
+				}
+	}
 </script>
 @endsection

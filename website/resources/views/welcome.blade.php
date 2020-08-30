@@ -36,9 +36,16 @@
 				<div class="carousel-item actu active full-screen" style="background: url({{ asset('storage/' . $defaultNews->image) }}) top center; background-size: cover;">
 				<div class="carousel-caption">
 					<h1>{{ $defaultNews->title }}</h1>
-					<br>
-					<p>{{ $defaultNews->desc }}</p>
-					<br>
+	                    <br>
+	                    <p>{{ $defaultNews->desc }}</p>
+	                    <br>
+	                    @isset($defaultNews->button)
+	                    @isset($defaultNews->link)
+	                    <form action="{{ $defaultNews->link }}">
+	                        <input class="favorite styled" type="submit" value="{{ $defaultNews->button }}">
+	                    </form>
+	                    @endisset
+	                    @endisset
 				</div>
 				</div>
             @endforelse
