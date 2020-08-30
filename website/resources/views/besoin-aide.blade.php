@@ -21,7 +21,7 @@
         <!-- Check if the user is connected -->
         @guest
         <div class="alert alert-warning alert-dismissible fade show" role="alert" style="margin-top: 50px">
-            Veuillez-vous <strong><a href="/login">connecter</a></strong> pour accéder à ce service.
+            Veuillez vous <strong><a href="/login">connecter</a></strong> pour accéder à ce service.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>

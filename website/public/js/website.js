@@ -1,5 +1,5 @@
 // Activate tooltip
-$(function () {
+$(function() {
     $('[data-toggle="tooltip"]').tooltip()
 });
 
@@ -295,6 +295,7 @@ $(document).ready(function() {
     $item.height($wHeight); // set height of carousel item to window height
 
 
+
     // Remove hide button that is used to center links
     // in the navbar when the navbar is collapsed
     if (!$("body").hasClass("xl")) {
@@ -318,6 +319,10 @@ $(document).ready(function() {
                 $('.navbar-collapse').css('background-color', 'transparent');
             }
         }
+        var $item = $('#carousel-actualite .carousel-item'); // get carousel item
+        var $wHeight = $(window).height(); // get window height
+
+        $item.height($wHeight); // set height of carousel item to window height
     });
 
     // The amount of time to delay between automatically cycling an item.
