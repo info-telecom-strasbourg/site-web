@@ -165,17 +165,18 @@
 		@endif
 
 		<!-- Buttons to edit or remove a lesson -->
-		@can('update', $cours)
-		    <div class="d-flex flex-row justify-content-around" style="margin-top: auto;">
+		<div class="d-flex flex-row justify-content-around" style="margin-top: auto;">
+			@can('update', $cours)
 				<div class="text-center" style="margin-top:25px; margin-bottom:25px;">
 					<a class="btn btn-primary btn-rounded" href="/poles/cours/{{ $cours->id }}/edit">Éditer</a>
 				</div>
+			@endcan
+			@can('delete', $cours)
 				<div class="text-center" style="margin-top:25px; margin-bottom:25px;">
 					<a class="btn btn-primary btn-rounded" href="/poles/cours/{{ $cours->id }}/destroy">Supprimer</a>
 				</div>
+			@endcan
 			</div>
-		@endcan
-
 		<hr>
 
 		@include('partials.comments', ['routeName' => 'comments.poles.cours.store', 'object' => $cours])

@@ -244,11 +244,13 @@
         </div>
 
         <!-- Buttons to edit or remove the project -->
-        @can ('update', $projet)
         <div class="d-flex flex-row justify-content-around" style="margin-top: auto;">
+            @can ('update', $projet)
             <div class="text-center" style="margin-top:25px; margin-bottom:25px;">
                 <button type="submit" class="btn btn-primary btn-rounded" onclick="self.location.href='/projets/{{ $projet->id }}/edit'">Modifier</button>
             </div>
+            @endcan
+            @can ('delete', $projet)
             <div class="text-center" style="margin-top:25px; margin-bottom:25px;">
                 <form action="/projets/{{ $projet->id }}" method="POST">
                     @method('DELETE')
@@ -256,8 +258,8 @@
                     <button type="submit" class="btn btn-primary btn-rounded" onclick="return confirm('Voulez-vous vraiment supprimer ce projet ?')">Supprimer</button>
                 </form>
             </div>
+            @endcan
         </div>
-        @endcan
 
         <hr>
 

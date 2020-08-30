@@ -90,12 +90,6 @@ a {
     border-color: #254395;
 }
 
-@media only screen and (max-width: 992px) {
-    #content {
-        padding-bottom: 423.33px;
-    }
-}
-
 
 /* >>>>>>>>>>>>>>>>>>>> Button <<<<<<<<<<<<<<<<<<<< */
 
@@ -402,6 +396,12 @@ li.dropdown:hover>.dropdown-menu {
     padding-bottom: 250px;
 }
 
+@media only screen and (max-width: 992px) {
+    #content {
+        padding-bottom: 423.33px;
+    }
+}
+
 .page-footer {
     background-color: #5C6FA3;
     color: white;
@@ -443,19 +443,19 @@ li.dropdown:hover>.dropdown-menu {
     margin-left: 0;
 }
 
-@media (max-width: 393px) {
+@media only screen and (max-width: 393px) {
     .social-icons {
         margin-left: 30px;
     }
 }
 
-@media (max-width: 347px) {
+@media only screen and (max-width: 347px) {
     .fab {
         font-size: 3em;
     }
 }
 
-@media (max-width: 314px) {
+@media only screen and (max-width: 314px) {
     .social-icons {
         margin-left: 20px;
     }
@@ -488,7 +488,7 @@ li.dropdown:hover>.dropdown-menu {
     margin-bottom: 40px;
 }
 
-@media (max-width: 486px) {
+@media only screen and (max-width: 486px) {
     .section .title {
         font-size: 2.0rem;
     }
@@ -600,7 +600,7 @@ li.dropdown:hover>.dropdown-menu {
 
 /* >>>>>>>>>>>>>>>>>>>> Nos projets <<<<<<<<<<<<<<<<<<<< */
 
-@media (max-width: 767px) {
+@media only screen and (max-width: 767px) {
     #nos-projets .carousel-inner .carousel-item>div {
         display: none;
     }
@@ -612,19 +612,19 @@ li.dropdown:hover>.dropdown-menu {
     }
 }
 
-@media (min-width: 767px) {
+@media only screen and (min-width: 767px) {
     #nos-projets .rounded-circle {
         margin: -30px;
     }
 }
 
-@media (max-width: 510px) {
+@media only screen and (max-width: 510px) {
     #nos-projets .rounded-circle {
         margin: 20px;
     }
 }
 
-@media (max-width: 446px) {
+@media only screen and (max-width: 446px) {
     #nos-projets .rounded-circle {
         margin: 0;
     }
@@ -637,7 +637,7 @@ li.dropdown:hover>.dropdown-menu {
     background-color: transparent;
 }
 
-@media (min-width: 768px) {
+@media only screen and (min-width: 768px) {
     #nos-projets .carousel-inner .carousel-item-right.active,
     #nos-projets .carousel-inner .carousel-item-next {
         transform: translateX(33.333%);
@@ -648,7 +648,7 @@ li.dropdown:hover>.dropdown-menu {
     }
 }
 
-@media (min-width: 1300px) {
+@media only screen and (min-width: 1300px) {
     #nos-projets .container-fluid {
         padding-left: 200px;
         padding-right: 200px;
@@ -668,7 +668,7 @@ li.dropdown:hover>.dropdown-menu {
     margin: auto;
 }
 
-@media (max-width: 1000px) and (min-width: 768px) {
+@media only screen and (max-width: 1000px) and (min-width: 768px) {
     #nos-projets .card {
         width: 100%;
     }
@@ -921,12 +921,11 @@ li.dropdown:hover>.dropdown-menu {
     width: 250px;
 }
 
-@media (max-width: 767px) {
+@media only screen and (max-width: 767px) {
     .chef-projet {
         width: 100%;
     }
 }
-
 
 .chef-projet:hover {
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
@@ -1127,12 +1126,14 @@ div.bordure {
 
 /* >>>>>>>>>>>>>>>>>>>> Timeline <<<<<<<<<<<<<<<<<<<< */
 
-#projet ul.timeline, #pole ul.timeline {
+#projet ul.timeline,
+#pole ul.timeline {
     list-style-type: none;
     position: relative;
 }
 
-#projet ul.timeline:before, #pole ul.timeline:before {
+#projet ul.timeline:before,
+#pole ul.timeline:before {
     content: ' ';
     background: #5C6FA3;
     display: inline-block;
@@ -1143,12 +1144,14 @@ div.bordure {
     z-index: 400;
 }
 
-#projet ul.timeline>li, #pole ul.timeline>li {
+#projet ul.timeline>li,
+#pole ul.timeline>li {
     margin: 20px 0;
     padding-left: 20px;
 }
 
-#projet ul.timeline>li:before, #pole ul.timeline>li:before {
+#projet ul.timeline>li:before,
+#pole ul.timeline>li:before {
     content: ' ';
     background: white;
     display: inline-block;
@@ -1161,33 +1164,39 @@ div.bordure {
     z-index: 400;
 }
 
-#projet ul.timeline>li#today:before, #pole ul.timeline>li#today:before {
+#projet ul.timeline>li#today:before,
+#pole ul.timeline>li#today:before {
     border: 3px solid #de4242;
 }
 
-#projet #button-upd-step, #pole #button-upd-step {
+#projet #button-upd-step,
+#pole #button-upd-step {
     background: none;
     border: none;
     margin-left: 15px;
     margin-right: 10px;
 }
 
-#projet .buttons-timeline-edit, #pole .buttons-timeline-edit {
+#projet .buttons-timeline-edit,
+#pole .buttons-timeline-edit {
     background-color: transparent;
     color: #2d64ba;
 }
 
-#projet .buttons-timeline-trash, #pole .buttons-timeline-trash {
+#projet .buttons-timeline-trash,
+#pole .buttons-timeline-trash {
     background-color: transparent;
     color: #de4242;
 }
 
-#projet #button-new-step, #pole #button-new-step {
+#projet #button-new-step,
+#pole #button-new-step {
     margin-left: auto;
     margin-right: auto;
 }
 
-#projet #button-trash:hover, #pole #button-trash:hover {
+#projet #button-trash:hover,
+#pole #button-trash:hover {
     text-decoration: none;
 }
 
@@ -1475,7 +1484,7 @@ div.bordure {
     box-shadow: none;
 }
 
-@media (max-width: 950px) {
+@media only screen and (max-width: 950px) {
     .dark-page #v-pills-membres .row .d-flex {
         flex-direction: column;
     }
@@ -1493,7 +1502,7 @@ div.bordure {
     }
 }
 
-@media (max-width: 992px) {
+@media only screen and (max-width: 992px) {
     .dark-page #v-pills-membres #members-container {
         margin-bottom: 200px;
     }
@@ -1569,7 +1578,7 @@ div.bordure {
     margin-bottom: 0;
 }
 
-@media (max-width: 600px) {
+@media only screen and (max-width: 600px) {
     .dark-page #form-edit img {
         width: 100%;
     }
@@ -1904,7 +1913,9 @@ div.bordure {
     display: none;
 }
 
+
 /* ##########################   COMMENTS   ########################## */
+
 
 /* >>>>>>>>>>>>>>>>>>>> Cards <<<<<<<<<<<<<<<<<<<< */
 
@@ -1949,10 +1960,6 @@ div.bordure {
 .comment-thread,
 .comment-reply {
     margin-bottom: 16px;
-}
-
-.comment {
-    /* margin-bottom: 10px; */
 }
 
 .comment-reply {
