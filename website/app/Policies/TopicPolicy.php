@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Policies\GeneralPolicy;
 use App\Topic;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -65,7 +66,7 @@ class TopicPolicy
      */
     public function delete(User $user, Topic $topic)
     {
-        return auth()->check() && ($user->id == $topic->user->id || $user->role_id == 4);
+        return auth()->check() && ($user->id == $topic->user->id || GeneralPolicy::checkAdmin());
     }
 
     /**

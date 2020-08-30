@@ -183,6 +183,20 @@ function seeMore(element, btnToHide) {
     }
 }
 
+/**
+ * Show more comments replies.
+ * @param {*} element element to show
+ * @param {*} btnToHide button to hide when all elements are shown
+ */
+function seeMoreComments(element, btnToHide) {
+    $("." + element + ".hid:lt(6)").addClass("d-flex");
+    $("." + element + ".hid:lt(6)").addClass("align-items-start");
+    $("." + element + ".hid:lt(6)").fadeIn("slow").removeClass("hid");
+    if ($("." + element + ".hid").length === 0) {
+        $(btnToHide).remove();
+    }
+}
+
 /* ##########################   Show / hide password on profil page ########################## */
 $(".reveal").on('click', function() {
     var $pwd = $(".pwd");
@@ -233,20 +247,6 @@ function showSearchBar(id) {
 $(function() {
     $('[data-toggle="tooltip"]').tooltip()
 });
-
-/**
- * Show more comments replies.
- * @param {*} element element to show
- * @param {*} btnToHide button to hide when all elements are shown
- */
-function seeMoreComments(element, btnToHide) {
-    $("." + element + ".hid:lt(6)").addClass("d-flex");
-    $("." + element + ".hid:lt(6)").addClass("align-items-start");
-    $("." + element + ".hid:lt(6)").fadeIn("slow").removeClass("hid");
-    if ($("." + element + ".hid").length === 0) {
-        $(btnToHide).remove();
-    }
-}
 
 $(document).ready(function() {
     // color navbar when loading page
