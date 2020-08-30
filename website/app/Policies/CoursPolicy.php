@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Policies\GeneralPolicy;
 use App\Cours;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -64,6 +65,7 @@ class CoursPolicy
         	if ($creator->id == $user->id)
 				return true;
         }
+
 		return false;
     }
 
@@ -76,7 +78,16 @@ class CoursPolicy
      */
     public function delete(User $user, Cours $cours)
     {
-        //
+        if (!auth()->check())
+            return false;
+
+		foreach ($cours->creators as $creator)
+		{
+        	if ($creator->id == $user->id)
+				return true;
+        }
+        
+        return GeneralPolicy::checkAdmin();
     }
 
 }

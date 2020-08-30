@@ -34,11 +34,11 @@
 			<div class="row">
 				<div class="col-md-3">
 					<select class="form-control" name="pole" id="pole">
-						<option readonly selected hidden value="">Pôle</option>
+						<option readonly selected hidden value="">Pôles</option>
 
 						@isset($poles)
-						@foreach ($poles as $key => $pole)
-						<option value="{{ $key + 1 }}" @if ($filters[0]==($key + 1)) selected @endif>{{ $pole->title }} </option>
+						@foreach ($poles as $pole)
+						<option value="{{ $pole->id }}" @if ($filters[0]==($pole->id)) selected @endif>{{ $pole->title }} </option>
 						@endforeach
 
 						<option value="" name="reset">Reset</option>
@@ -50,8 +50,8 @@
 						<option readonly selected hidden value="">Participants</option>
 
 						@isset($participants)
-						@foreach ($participants as $key => $participant)
-						<option value="{{ $key + 1 }}" @if ($filters[1]==($key + 1)) selected @endif>{{ $participant->name }}</option>
+						@foreach ($participants as $participant)
+						<option value="{{ $participant->id }}" @if ($filters[1]==($participant->id)) selected @endif>{{ $participant->name }}</option>
 						@endforeach
 
 						<option value="" name="reset">Reset</option>
@@ -63,8 +63,8 @@
 						<option readonly selected hidden value="">Collaborateurs</option>
 
 						@isset($partners)
-						@foreach ($partners as $key => $partner)
-						<option value="{{ $key + 1 }}" @if ($filters[2]==($key + 1)) selected @endif>{{ $partner->name }}</option>
+						@foreach ($partners as $partner)
+						<option value="{{ $partner->id }}" @if ($filters[2]==($partner->id)) selected @endif>{{ $partner->name }}</option>
 						@endforeach
 
 						<option value="" name="reset">Reset</option>
@@ -73,7 +73,7 @@
 				</div>
 				<div class="col-md-3">
 					<select class="form-control" name="trie" id="trie">
-						<option readonly selected hidden value="">Triés par</option>
+						<option readonly selected hidden value="">Trier par</option>
 
 						<option value="1" @if ($filters[3]==1) selected @endif>Ordre alphabétique</option>
 						<option value="2" @if ($filters[3]==2) selected @endif>Ordre alphabétique inverse</option>
@@ -94,52 +94,13 @@
 
 		<!-- Display projects -->
 		<div class="container pt-5">
-			<div class="row justify-content-center">
-				@if(isset($projets))
-				@forelse ($projets as $projet)
-				<div class="col-md sep-items" id="projets-container">
-					<div class="card text-center rounded">
-						<img class="card-img-top" src="{{ asset('storage/' . json_decode($projet->images)[0]) }}" alt="Card image cap">
-						<div class="card-body d-flex flex-column">
-							<h5 class="card-title text-center font-weight-bold">
-								{{ $projet->title }}
-							</h5>
-							<p class="card-text">
-								<span>{{ mb_strlen( $projet->desc ) > 57 ? mb_substr($projet->desc, 0, 54) . ' ...' : $projet->desc }}
-								</span>
-							</p>
-							@isset ($projet->projet_id)
-							<a href="/projets/{{ $projet->projet_id }}" class="btn btn-rounded btn-primary">DÉCOUVRIR</a>
-							@else
-							<a href="/projets/{{ $projet->id }}" class="btn btn-rounded btn-primary">DÉCOUVRIR</a>
-							@endisset
-						</div>
-					</div>
-				</div>
+			@include('partials.list-cards', ['items' => $projets, 'errorMessage' => "Aucun projet n'a été trouvée", 'routeNameShow' => 'projets.show'])
 
-				@empty
-
-				<div class="alert alert-secondary alert-dismissible fade show col" role="alert">
-					Aucun projet n'a été trouvé
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				@endforelse
-
-				@else
-				<div class="alert alert-secondary alert-dismissible fade show col" role="alert">
-					Aucun projet n'a été trouvé
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				@endif
-			</div>
 			<div class="row justify-content-center link-margin-top">
 				<!-- Pagination links -->
 				{{ $projets->links() }}
 			</div>
+			
 			@can ('create', 'App\Projet')
 			<div class="text-center" style="margin-top:25px; margin-bottom:25px;">
 				<button type="submit" class="btn btn-primary btn-rounded" onclick="self.location.href='/projets/create'">Créer un projet</button>
