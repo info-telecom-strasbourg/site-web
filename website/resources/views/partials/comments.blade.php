@@ -19,11 +19,12 @@
          * 
          * @param val the current element - the textarea
          * @param btnId the id of the button to enable/disable
+         * @param nbOfCharacters the number of characters for the comment to be valid
          */
-        function verifyNumberOfCharacterForComment(val, btnId) {
+        function verifyNumberOfCharacterForComment(val, btnId, nbOfCharacters = 5) {
             var len = val.value.length;
             var btn = $(btnId);
-            if (len >= 5) {
+            if (len >= nbOfCharacters) {
                 btn.css('background-color', '#254395');
                 btn.css('cursor', 'pointer');
                 btn.prop("disabled", false);
@@ -272,7 +273,7 @@
                     content: jQuery('#edit-comment-' + id).val(),
                 },
                 success: function(result) {
-                    $('#comment-content-' + id).text(result.content);
+                    $('#comment-content-' + id).text(result.content).css('white-space', 'pre-line');
                     if (result.comment.created_at != result.comment.updated_at) {
                         $('#update-' + id).removeClass('d-none');
                     }
@@ -404,7 +405,7 @@
 
                         <textarea id="text-comment-reply-{{ $comment->id }}" name="replyComment"
                             class="add-comment @error('content') is-invalid @enderror" placeholder="Ajouter une réponse..."
-                            onkeyup="verifyNumberOfCharacterForComment(this, '#submit-reply-{{ $comment->id }}')"
+                            onkeyup="verifyNumberOfCharacterForComment(this, '#submit-reply-{{ $comment->id }}', 2)"
                             onfocus="removeFocus(this, '#add-reply-{{ $comment->id }}')"
                             onblur="addFocus(this)">{{ old('replyComment') }}</textarea>
                         @error('replyComment')

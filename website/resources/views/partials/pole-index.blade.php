@@ -22,7 +22,7 @@
 @endsection
 
 @section('content')
-<div class="container">
+<div class="container" id="pole">
 	<!-- Title of the pole -->
     <h1 class="title lg text-center">
         Pôle {{ $pole->title }}
@@ -45,15 +45,6 @@
         </div>
         
         @yield('see-more-button')
-		
-		<!-- Button to see more -->
-		@if(isset($items) && $items->count() > 8)
-	        <div id="line-btn-vp" class="d-flex justify-content-center">
-	          <div class="p-2 bd-highlight flex-grow-1"><hr class="line-voir-plus"></div>
-	          <div class="p-2 bd-highlight"><input id="voir-plus" class="btn btn-rounded btn-primary" type="button" value="Voir-plus"></div>
-	          <div class="p-2 bd-highlight flex-grow-1"><hr class="line-voir-plus"></div>
-	        </div>
-		@endif
 
 		<!-- Responsable -->
 		<h4 class="title md text-left respo">Responsable {{ strtolower($pole->title) }}</h4>

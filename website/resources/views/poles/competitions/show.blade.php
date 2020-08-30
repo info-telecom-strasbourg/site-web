@@ -40,7 +40,7 @@
 						<div class="col-md-auto sep-items">
 							<a href="/users/{{ $competitor->id }}" class="user-link">
 								<div class="card p-2 rounded chef-projet"
-									style="min-width: 220px !important; height: 100px !important; cursor: pointer;">
+									style="height: 100px !important; cursor: pointer;">
 									<div class="row no-gutters align-items-center"
 										style="flex-wrap: unset; height: 100% !important;">
 										<div class="col-md-4" style="width: 60px !important;">

@@ -42,7 +42,7 @@
 					@forelse ($cours->creators as $creator)
 						<div class="col-md-auto sep-items">
 							<a href="/users/{{ $creator->id }}" class="user-link">
-								<div class="card p-2 rounded chef-projet" style="min-width: 220px !important; height: 100px !important; cursor: pointer;">
+								<div class="card p-2 rounded chef-projet" style="height: 100px !important; cursor: pointer;">
 									<div class="row no-gutters align-items-center" style="flex-wrap: unset; height: 100% !important;">
 										<div class="col-md-4" style="width: 60px !important;">
 											<img src="{{ asset('storage/' . $creator->profil_picture) }}" class="card-img profil-rounded" style="width: 60px !important; height: 60px !important;">
