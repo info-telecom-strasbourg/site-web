@@ -108,7 +108,7 @@ class AdminMembresController extends Controller
      */
     public function saveImage(array $validatedRequest)
     {
-        $path = Storage::putFile('public/images/profil', $validatedRequest['image_profile'], 'private');
+        $path = Storage::putFile('public/images/default/profil', $validatedRequest['image_profile'], 'private');
         return substr($path, 7);
     }
 }
