@@ -6,6 +6,11 @@
 
 @section('content')
 
+<!-- Button to get to the previous page -->
+<a class="btn btn-primary btn-rounded" style="font-size: 20px; position: absolute; top: 10px; left: 10px; padding: 5px 15px; text-decoration: none; z-index: 10000; color: white;" data-toggle="tooltip" data-placement="right" title="Retour vers la page de connexion." href="/">
+    <i class="fas fa-angle-left" ></i>
+</a>
+
 <style>
     #content {
         padding-bottom: 0;
@@ -35,10 +40,10 @@
                             <!-- Check the mail -->
                             <div class="form-group email-group">
                                 <label for="email">E-MAIL</label>
-                                <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Entrer l'email">
+                                <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Entrer votre adresse mail">
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>Le mail n'est pas correcte</strong>
+                                    <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror
                             </div>
@@ -50,7 +55,7 @@
 
                                 @error('password')
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>Le mot de passe n'est pas correcte</strong>
+                                    <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror
                             </div>

@@ -63,13 +63,13 @@ class CreateProjetsTable extends Migration
             $table->BigInteger('projet_id')->unsigned();
             $table->BigInteger('user_id')->unsigned();
             $table->timestamps();
-            $table->unique(['projet_id', 'user_id']); //???? Does that work ????
+            $table->unique(['projet_id', 'user_id']);
 
             $table->foreign('projet_id')
                 ->references('id')
                 ->on('projets')
                 ->onDelete('cascade');
-				
+
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')

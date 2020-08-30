@@ -124,11 +124,17 @@
 
                     @isset($partners)
 
-                    @foreach ($partners as $parner)
-                    <option value="{{ $parner->id }}">{{ $parner->name }}</option>
+                    @foreach ($partners as $partner)
+                    <option value="{{ $partner->id }}">{{ $partner->name }}</option>
                     @endforeach
 
                     @endisset
+
+                    @error('collaborateur_id')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
 
                 </select>
             </div>

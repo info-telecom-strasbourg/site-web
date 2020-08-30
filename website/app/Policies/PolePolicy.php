@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Policies\GeneralPolicy;
 use App\Pole;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -44,7 +45,7 @@ class PolePolicy
      */
     public function create(User $user)
     {
-		//
+        return auth()->check() && GeneralPolicy::checkAdmin();
     }
 
     /**
@@ -56,7 +57,7 @@ class PolePolicy
      */
     public function update(User $user, Pole $pole)
     {
-		return auth()->check() && $user->id == $pole->respo->id;
+		return auth()->check() && ($user->id == $pole->respo_id || GeneralPolicy::checkAdmin());
     }
 
     /**
@@ -68,7 +69,7 @@ class PolePolicy
      */
     public function delete(User $user, Pole $pole)
     {
-        //
+        return auth()->check() && GeneralPolicy::checkAdmin();
     }
 
 }

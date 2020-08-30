@@ -31,4 +31,13 @@ class Competition extends Model
 	{
 		return $this->belongsToMany(Date::class, 'dates_comp');
 	}
+
+	/**
+     * Gets the comments of the competition.
+	 *
+	 * @return the comments of the competition.
+     */
+    public function comments() {
+        return $this->morphMany('App\Comment', 'commentable')->latest();
+    }
 }

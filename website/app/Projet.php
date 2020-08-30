@@ -57,6 +57,15 @@ class Projet extends Model
     }
 
     /**
+     * Gets the comments of the project.
+	 *
+	 * @return the comments of the project.
+     */
+    public function comments() {
+        return $this->morphMany('App\Comment', 'commentable')->latest();
+    }
+
+    /**
      * Scope a query to only include researched projects.
 	 * If a search value has been specified, search if the a title or the
 	 * description has this value otherwise return the query.
@@ -82,7 +91,8 @@ class Projet extends Model
         }
 
         if (!empty(request()->membre)) {
-            $query = $query->join('projets_participants', 'projets.id', '=', 'projets_participants.projet_id')->where('user_id', request()->membre);
+            // select('projets.*') => gets only the columns of the projets table
+            $query = $query->join('projets_participants', 'projets.id', '=', 'projets_participants.projet_id')->where('user_id', request()->membre)->select('projets.*');
         }
 
         if (!empty(request()->partner)) {
@@ -106,4 +116,14 @@ class Projet extends Model
 
         return $query;
     }
+
+	/**
+	 * Get the timeline of the project.
+	 *
+	 * @return the project's timeline.
+	 */
+	 public function timeline()
+	 {
+		 return $this->morphMany(TimelineEvent::class, 'reference', 'timeline_type')->latest('date');
+	 }
 }
