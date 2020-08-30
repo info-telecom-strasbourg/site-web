@@ -917,6 +917,17 @@ li.dropdown:hover>.dropdown-menu {
     text-decoration: none;
 }
 
+.chef-projet {
+    width: 250px;
+}
+
+@media (max-width: 767px) {
+    .chef-projet {
+        width: 100%;
+    }
+}
+
+
 .chef-projet:hover {
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
 }
@@ -1981,7 +1992,7 @@ div.bordure {
 
 .comment-content {
     font-size: 14px;
-    color: rgb(3, 3, 3)
+    color: rgb(3, 3, 3);
 }
 
 .reply-button,

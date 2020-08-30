@@ -2,7 +2,14 @@
 
 @extends('layouts.layout')
 
+@section('title', 'Réinitialiser votre mot de passe')
+
 @section('content')
+
+<!-- Button to get to the login page -->
+<a class="btn btn-primary btn-rounded" href="/login" style="font-size: 20px; position: absolute; top: 10px; left: 10px; padding: 5px 15px; text-decoration: none; color: white;" data-toggle="tooltip" data-placement="right" title="Retour vers la page précédente.">
+    <i class="fas fa-angle-left"></i>
+</a>
 
 <style>
     #content {

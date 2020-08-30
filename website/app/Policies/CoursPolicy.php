@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Policies\GeneralPolicy;
 use App\Cours;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -64,6 +65,11 @@ class CoursPolicy
         	if ($creator->id == $user->id)
 				return true;
         }
+
+        // if the loged in user is one of the admins
+        if (GeneralPolicy::checkAdmin())
+            return true;
+
 		return false;
     }
 
