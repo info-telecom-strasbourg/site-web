@@ -249,6 +249,19 @@ $(function() {
 });
 
 $(document).ready(function() {
+    /** Allow to multiple select without Ctrl key */
+    $("select[multiple]").mousedown(function(e){
+        e.preventDefault();
+
+        var select = this;
+        var scroll = select .scrollTop;
+
+        e.target.selected = !e.target.selected;
+
+        setTimeout(function(){select.scrollTop = scroll;}, 0);
+
+        $(select ).focus();
+    }).mousemove(function(e){e.preventDefault()});
     // color navbar when loading page
     if (window.location.pathname == '/') {
         var rgba = $(document).scrollTop() / 500;
