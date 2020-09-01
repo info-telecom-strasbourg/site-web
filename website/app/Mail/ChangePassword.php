@@ -31,8 +31,6 @@ class ChangePassword extends Mailable
      */
     public function build()
     {
-        $email =  $this->markdown('emails.change-password')->subject('Bienvenue à ITS !');
-		
-        return $email;
+        return $this->markdown('emails.change-password')->subject('Bienvenue à ITS !');
     }
 }
