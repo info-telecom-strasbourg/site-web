@@ -169,7 +169,7 @@
                                                     style="margin-left: 10px; color:#de4242;">Supprimer</span></a>
                                         @endcan
                                     </div>
-                                    <p>{{ $event->desc }}</p>
+                                    <p style="white-space: pre-wrap">{{ $event->desc }}</p>
                                 </li>
                             @empty
             @endforelse
@@ -186,7 +186,7 @@
                                     style="margin-left: 10px; color:#de4242;">Supprimer</span></a>
                         @endcan
                     </div>
-                    <p>{{ $todayEvent->desc }}</p>
+                    <p style="white-space: pre-wrap">{{ $todayEvent->desc }}</p>
                 </li>
             @else
                 <li id="today">
@@ -207,7 +207,7 @@
                                     style="margin-left: 10px; color:#de4242;">Supprimer</span></a>
                         @endcan
                     </div>
-                    <p>{{ $event->desc }}</p>
+                    <p style="white-space: pre-wrap">{{ $event->desc }}</p>
                 </li>
             @empty
             @endforelse
@@ -227,11 +227,13 @@
         <h4 class="title md text-center">Le projet en images</h4>
         <div class="row justify-content-center" style="margin-top: 40px; margin-bottom: 40px;">
             <div id="carouselProjetImage" class="carousel slide row w-100 justify-content-center" data-interval="false">
-                <ol class="carousel-indicators">
-                    @foreach (json_decode($projet->images) as $image)
-                    <li data-target="#carouselProjetImage" data-slide-to="0" class="@if ($loop->first) active @endif"></li>
-                    @endforeach
-                </ol>
+                @if (count(json_decode($projet->images, true)) > 1)
+                    <ol class="carousel-indicators">
+                        @foreach (json_decode($projet->images) as $image)
+                        <li data-target="#carouselProjetImage" data-slide-to="0" class="@if ($loop->first) active @endif"></li>
+                        @endforeach
+                    </ol>
+                @endif
                 <div class="carousel-inner col-md-6" style="background-color: transparent;">
                     @foreach (json_decode($projet->images) as $key => $image)
                     <div class="carousel-item text-center @if ($loop->first) active @endif" style="background-color: transparent;">
@@ -239,14 +241,16 @@
                     </div>
                     @endforeach
                 </div>
-                <a class="carousel-control-prev col-md-3" href="#carouselProjetImage" role="button" data-slide="prev" style="background-color: #1b1b1b; width: 40px; height: 40px; border-radius: 50%; top: 50%; margin-left: 10px;">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next col-md-3" href="#carouselProjetImage" role="button" data-slide="next" style="background-color: #1b1b1b; width: 40px; height: 40px; border-radius: 50%; top: 50%; margin-right: 10px;">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
+                @if (count(json_decode($projet->images, true)) > 1)
+                    <a class="carousel-control-prev col-md-3" href="#carouselProjetImage" role="button" data-slide="prev" style="background-color: #1b1b1b; width: 40px; height: 40px; border-radius: 50%; top: 50%; margin-left: 10px;">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next col-md-3" href="#carouselProjetImage" role="button" data-slide="next" style="background-color: #1b1b1b; width: 40px; height: 40px; border-radius: 50%; top: 50%; margin-right: 10px;">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                @endif
             </div>
         </div>
 
