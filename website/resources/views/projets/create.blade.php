@@ -50,11 +50,8 @@
             </div>
 
             <!-- Pole of the project -->
-            @foreach ($poles as $pole)
-            @if(Auth::user()->id == $pole->respo->id)
-                <input name="pole_id" type="hidden" value="{{ $pole->id }}" hidden>
-            @endif
-            @endforeach
+
+            <input name="pole_id" type="hidden" value="{{ $pole->id }}" hidden>
 
             <!-- Leader of the project -->
             <div class="form-group">
