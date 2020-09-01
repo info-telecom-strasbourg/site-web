@@ -12,6 +12,8 @@ use App\Role;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ChangePassword;
 
 class RegisterController extends Controller
 {
@@ -141,6 +143,9 @@ class RegisterController extends Controller
         $this->validator($request->all())->validate();
 
         event(new Registered($user = $this->create($request->all())));
+        
+        Mail::to($user->email)
+            ->send(new ChangePassword($user->name, $request->password));
 
         if ($response = $this->registered($request, $user)) {
             return $response;

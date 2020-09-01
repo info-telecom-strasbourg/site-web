@@ -64,7 +64,7 @@
                                             style="margin-left: 10px; color:#de4242;">Supprimer</span></a>
                                 @endcan
                             </div>
-                            <p>{{ $event->desc }}</p>
+                            <p style="white-space: pre-wrap">{{ $event->desc }}</p>
                         </li>
                     @empty
 					@endforelse
@@ -80,7 +80,7 @@
 											style="margin-left: 10px; color:#de4242;">Supprimer</span></a>
 								@endcan
 							</div>
-							<p>{{ $todayEvent->desc }}</p>
+							<p style="white-space: pre-wrap">{{ $todayEvent->desc }}</p>
 						</li>
 					@else
 						<li id="today">
@@ -101,7 +101,7 @@
 											style="margin-left: 10px; color:#de4242;">Supprimer</span></a>
 								@endcan
 							</div>
-							<p>{{ $event->desc }}</p>
+							<p style="white-space: pre-wrap">{{ $event->desc }}</p>
 						</li>
 					@empty
 					@endforelse
