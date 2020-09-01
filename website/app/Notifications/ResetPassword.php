@@ -6,10 +6,10 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use Illuminate\Auth\Notifications\ResetPassword as ResetPasswordNotification;
+use Illuminate\Auth\Notifications\ResetPassword;
 
 
-class ResetPassword extends ResetPasswordNotification
+class ResetPasswordNotification extends ResetPassword
 {
     use Queueable;
 
@@ -46,20 +46,14 @@ class ResetPassword extends ResetPasswordNotification
             return call_user_func(static::$toMailCallback, $notifiable, $this->token);
         }
 
-        if (static::$createUrlCallback) {
-            $url = call_user_func(static::$createUrlCallback, $notifiable, $this->token);
-        } else {
-            $url = url(route('password.reset', [
-                'token' => $this->token,
-                'email' => $notifiable->getEmailForPasswordReset(),
-            ], false));
-        }
+        $link = url(route('password.reset', [
+            'token' => $this->token]));
 
         
         return (new MailMessage)
             ->subject('Reset Password Notification')
             ->line('Vous recevez cet email car nous avons reçu une demande de réinitialisation de mot de passe pour votre compte.')
-            ->action('Réinitialiser le mot de passe', $url)
+            ->action('Réinitialiser le mot de passe', $link)
             ->line('Ce lien de réinitialisation expirera dans :count minutes.
             ', ['count' => config('auth.passwords.'.config('auth.defaults.passwords').'.expire')])
             ->line('Si vous n\'avez pas demandé la réinitialisation de votre mot de passe, aucune autre action n\'est requise.
