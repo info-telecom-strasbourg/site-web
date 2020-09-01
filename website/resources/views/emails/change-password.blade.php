@@ -8,7 +8,7 @@
 Nous t'avons assigner le mot de passe suivant: {{ $password }}.
 Nous te recommandons vivement de le changer pour ne pas l'oublier ;).
 
-@component('mail::button', 'url' => '/users/' . $id)
+@component('mail::button', ['url' => '/users/' . $id])
 Changer mon mot de passe
 @endcomponent
 
