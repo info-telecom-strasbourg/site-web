@@ -42,23 +42,12 @@ class ResetPasswordNotification extends ResetPassword
      */
     public function toMail($notifiable)
     {   
-        if (static::$toMailCallback) {
-            return call_user_func(static::$toMailCallback, $notifiable, $this->token);
-        }
-
-        if (static::$createUrlCallback) {
-            $url = call_user_func(static::$createUrlCallback, $notifiable, $this->token);
-        } else {
-            $url = url(route('password.reset', [
-                'token' => $this->token,
-                'email' => $notifiable->getEmailForPasswordReset(),
-            ], false));
-        }
+       $link = url('password/reset', $this->token);
 
         return (new MailMessage)
-            ->subject('Reset Password Notification')
+            ->subject('Réinitialisser votre mot de passe')
             ->line('Vous recevez cet email car nous avons reçu une demande de réinitialisation de mot de passe pour votre compte.')
-            ->action('Réinitialiser le mot de passe', $url)
+            ->action('Réinitialiser le mot de passe', $link)
             ->line('Ce lien de réinitialisation expirera dans 60 minutes.
             ')
             ->line('Si vous n\'avez pas demandé la réinitialisation de votre mot de passe, aucune autre action n\'est requise.
