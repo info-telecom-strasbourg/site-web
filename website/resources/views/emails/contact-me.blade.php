@@ -7,6 +7,7 @@
 
 ### De : {{ $name }}
 ### Object : {{ $subject }}
+### Email : {{ $email }}
 
 <br>
 
