@@ -42,7 +42,7 @@ class ResetPasswordNotification extends ResetPassword
      */
     public function toMail($notifiable)
     {   
-       $link = url('password/reset', $this->token);
+        $link = url( "/password/reset/?token=" . $this->token );
 
         return (new MailMessage)
             ->subject('Réinitialisser votre mot de passe')
