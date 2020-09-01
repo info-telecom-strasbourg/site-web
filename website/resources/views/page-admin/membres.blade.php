@@ -129,9 +129,9 @@
 
                                         <!-- Give the member a class -->
                                         <div class="form-group">
-                                            <label for="class" class="form-title-small">Classe</label>
+                                            <label for="class" class="form-title-small">Fillière</label>
 
-                                            <input id="class" type="text" class="form-control" name="class" value="{{ old('class') }}" required autocomplete="classe" placeholder="Classe">
+                                            <input id="class" type="text" class="form-control" name="class" value="{{ old('class') }}" required autocomplete="classe" placeholder="Fillière">
 
                                             <span id="class-error" class="invalid-feedback" role="alert" style="display: none;">
                                                 <strong>Vous devez entrer une classe</strong>
@@ -230,7 +230,7 @@
                                                     <b>Rôle : </b> {{ $user->role->role }}
                                                 </div>
                                                 <div class="user-info">
-                                                    <b>Classe : </b> {{ $user->class }}
+                                                    <b>Fillière : </b> {{ $user->class }}
                                                 </div>
                                                 <div class="user-info">
                                                     <b>Promo : </b> {{ $user->year }}
@@ -286,7 +286,7 @@
 
                                                 <!-- Give the member a class -->
                                                 <div class="form-group">
-                                                    <label for="class{{ $user->id }}" class="form-title-small">Classe</label>
+                                                    <label for="class{{ $user->id }}" class="form-title-small">Fillière</label>
 
                                                     <input id="class{{ $user->id }}" type="text" class="form-control" name="class" value="{{ $user->class }}" required>
 
