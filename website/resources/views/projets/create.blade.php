@@ -50,27 +50,8 @@
             </div>
 
             <!-- Pole of the project -->
-            <div class="form-group">
-                <label for="pole_id" class="form-title-small">Pôle</label>
-                <select class="custom-select @error('pole_id') is-invalid @enderror" id="pole_id" name="pole_id" required>
-                    <option selected readonly>Choisir un pôle ...</option>
 
-                    @isset($poles)
-
-                    @foreach ($poles as $pole)
-                    <option value="{{ $pole->id }}" @if (old('pole_id')==$pole->id) selected @endif>{{ $pole->title }}</option>
-                    @endforeach
-
-                    @endisset
-
-                </select>
-
-                @error('pole_id')
-                <span class="invalid-feedback" role="alert">
-                    <strong>Choisissez un pôle</strong>
-                </span>
-                @enderror
-            </div>
+            <input name="pole_id" type="hidden" value="{{ $pole->id }}" hidden>
 
             <!-- Leader of the project -->
             <div class="form-group">

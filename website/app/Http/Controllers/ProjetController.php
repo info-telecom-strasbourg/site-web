@@ -14,6 +14,7 @@ use App\TimelineEvent;
 use Illuminate\Http\Response;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Controller linked to projects.
@@ -67,10 +68,10 @@ class ProjetController extends Controller
     {
         $this->authorize('create', Projet::class);
         $users = User::all();
-        $poles = Pole::whereNotIn('slug', ['cours', 'competitions'])->get();
+        $pole = Pole::where('respo_id', '=', Auth::user()->id)->first();
         $partners = Collaborateur::all();
 
-        return view('projets.create', compact('users', 'poles', 'partners'));
+        return view('projets.create', compact('users', 'pole', 'partners'));
     }
 
     /**

@@ -98,7 +98,8 @@ class WelcomeController extends Controller
     {
         $request->validate(['email' => 'required|email']);
 
-        Mail::to($request->email)
+
+        Mail::to("info.telecom.strasbourg@gmail.com")
             ->send(new ContactMe($request->name, $request->subject, $request->email, $request->messages));
 
         return redirect('/#contact-anchor')
