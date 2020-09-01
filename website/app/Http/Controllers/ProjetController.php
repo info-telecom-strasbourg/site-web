@@ -267,7 +267,7 @@ class ProjetController extends Controller
      */
     public function saveImage($image)
     {
-        $path = Storage::putFile('public/images/projets/', $image, 'private');
+        $path = Storage::putFile('public/images/projets/', $image, 'public');
         return substr($path, 7);
     }
 
