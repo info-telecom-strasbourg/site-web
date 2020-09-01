@@ -93,7 +93,7 @@ class UserController extends Controller
 
 
         if (array_key_exists('image_profile', $validatedRequest)) {
-            if (file_exists(storage_path('app/public/' . $user->profil_picture)) && substr($user->profil_picture, 0, 32) != "images/default/profil/profil.jpg")
+            if (file_exists(storage_path('app/public/' . $user->profil_picture)) && substr($user->profil_picture, 0, 24) != "images/profil/profil.jpg")
                 unlink(storage_path('app/public/' . $user->profil_picture));
             $user->update(['profil_picture' => $this->saveImage($validatedRequest)]);
         }
@@ -147,7 +147,11 @@ class UserController extends Controller
      */
     public function saveImage(Request $request)
     {
+<<<<<<< HEAD
         $path = Storage::putFile('public/images/default/profil', $request->profil_picture, 'private');
+=======
+        $path = Storage::putFile('public/images/profil', $request->profil_picture, 'private');
+>>>>>>> ec8382682ddacf7be6cf89102821cb29c07309e9
         return substr($path, 7);
     }
 }
