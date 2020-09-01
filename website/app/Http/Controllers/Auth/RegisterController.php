@@ -145,7 +145,7 @@ class RegisterController extends Controller
         event(new Registered($user = $this->create($request->all())));
         
         Mail::to($user->email)
-            ->send(new ChangePassword($request->password));
+            ->send(new ChangePassword($request->password, $user->id));
 
         if ($response = $this->registered($request, $user)) {
             return $response;
