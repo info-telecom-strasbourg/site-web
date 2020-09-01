@@ -19,7 +19,7 @@
 
                     <!-- User's class -->
                     <div class="form-group row justify-content-center col-md-12">
-                        <label for="class" class="col-sm-4 col-form-label"><strong>Filière</strong></label>
+                        <label for="class" class="col-sm-4 col-form-label"><strong>Fillière</strong></label>
                         <div class="col-sm-8">
                             <input type="text" id="class" name="class" readonly
                                 class="form-control-plaintext custom-form-control" value="{{ $user->class }}">
