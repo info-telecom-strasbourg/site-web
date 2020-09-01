@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'failed' => 'Votre adresse e-mail ou votre mot de passe ne sont pas correcte.',
+    'failed' => 'Votre adresse e-mail ou votre mot de passe ne correspondent pas.',
     'throttle' => 'Trop de tentatives de connexion. Veuillez réessayer dans: secondes.',
 
 ];
