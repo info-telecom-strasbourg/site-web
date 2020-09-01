@@ -14,15 +14,13 @@ class ChangePassword extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $name;
     public $password;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($name, $password)
+    public function __construct($password)
     {
-        $this->name = $name;
         $this->password = $password;
     }
 
