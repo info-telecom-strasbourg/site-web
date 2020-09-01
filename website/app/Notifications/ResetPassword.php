@@ -41,21 +41,13 @@ class ResetPasswordNotification extends ResetPassword
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
-    {
-        if (static::$toMailCallback) {
-            return call_user_func(static::$toMailCallback, $notifiable, $this->token);
-        }
-
-        $link = url(route('password.reset', [
-            'token' => $this->token]));
-
-        
+    {   
         return (new MailMessage)
             ->subject('Reset Password Notification')
             ->line('Vous recevez cet email car nous avons reçu une demande de réinitialisation de mot de passe pour votre compte.')
-            ->action('Réinitialiser le mot de passe', $link)
-            ->line('Ce lien de réinitialisation expirera dans :count minutes.
-            ', ['count' => config('auth.passwords.'.config('auth.defaults.passwords').'.expire')])
+            ->action('Réinitialiser le mot de passe', $this->token)
+            ->line('Ce lien de réinitialisation expirera dans 60 minutes.
+            ')
             ->line('Si vous n\'avez pas demandé la réinitialisation de votre mot de passe, aucune autre action n\'est requise.
             ');
     }
