@@ -5,7 +5,7 @@
 	'items' => $pole->projets,
 	'pole' => $pole,
 	'isCover' => 'false',
-	'errorMessage' => "Aucun projet n'a été trouvée",
+	'errorMessage' => "Aucun projet n'a été trouvé",
 	'routeNameShow' => 'projets.show',
 	'routeNameComments' => 'comments.poles.pole.store'
 ])
