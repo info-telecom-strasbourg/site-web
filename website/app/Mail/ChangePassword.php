@@ -15,13 +15,15 @@ class ChangePassword extends Mailable
     use Queueable, SerializesModels;
 
     public $password;
+    public $id;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($password)
+    public function __construct($password, $id)
     {
         $this->password = $password;
+        $this->id = $id;
     }
 
     /**
@@ -31,8 +33,6 @@ class ChangePassword extends Mailable
      */
     public function build()
     {
-        $email =  $this->markdown('emails.change-password')->subject('Bienvenue à ITS !');
-		
-        return $email;
+        return $this->markdown('emails.change-password')->subject('Bienvenue à ITS !');
     }
 }
