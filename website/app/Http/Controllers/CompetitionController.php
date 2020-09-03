@@ -219,7 +219,7 @@ class CompetitionController extends Controller
      */
     public function saveImage($image)
     {
-        $path = Storage::putFile('public/images/compet', $image, 'private');
+        $path = Storage::putFile('public/images/compet', $image, 'public');
         return substr($path, 7);
     }
 
