@@ -5,7 +5,7 @@
 	'items' => $lessons,
 	'pole' => $pole,
 	'isCover' => 'true',
-	'errorMessage' => "Aucun cours n'a été trouvée",
+	'errorMessage' => "Aucun cours n'a été trouvé",
 	'routeNameShow' => 'poles.cours.show',
 	'routeNameComments' => 'comments.poles.pole.store'
 ])
