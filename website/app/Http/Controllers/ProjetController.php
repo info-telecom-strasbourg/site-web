@@ -212,7 +212,7 @@ class ProjetController extends Controller
      */
     public function destroy(Projet $projet)
     {
-        $this->authorize('update', $projet);
+        $this->authorize('delete', $projet);
 
         foreach (json_decode($projet->images) as $image)
             $this->deleteImage($image);
