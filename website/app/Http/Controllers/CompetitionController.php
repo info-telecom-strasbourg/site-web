@@ -186,7 +186,7 @@ class CompetitionController extends Controller
 				unlink(storage_path('app/public/' . $image));
 
 	    // delete the associate comments
-		foreach ($projet->comments as $comment) {
+		foreach ($compet->comments as $comment) {
             foreach ($comment->comments as $replyComment)
                 $replyComment->delete();
             $comment->delete();
