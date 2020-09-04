@@ -141,6 +141,7 @@
 
                 <input type="file" id="images" name="images[]" accept="image/x-png,image/gif,image/jpeg" multiple>
             </div>
+            @if(substr(json_decode($projet->images)[0], 0, 15) != "images/default/")
             <h4 class="form-title">Cochez les images à supprimer</h4>
             <div class="form-group row align-items-center">
                 @foreach (json_decode($projet->images) as $key => $image)
@@ -155,6 +156,7 @@
                     </div>
                 @endforeach
             </div>
+            @endif
             <h4 class="form-title">Liens</h4>
             <div class="form-group">
                 <label class="sr-only" for="link_github">Lien du repository GitHub</label>
