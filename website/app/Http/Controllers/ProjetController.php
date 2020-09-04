@@ -84,6 +84,10 @@ class ProjetController extends Controller
     public function store(ProjetRequest $request)
     {
         $validatedData = $request->validated();
+        $request->validate([
+            'images' => 'array',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
         $projet = Projet::create($validatedData);
 
         if ($request->has('images'))
@@ -154,7 +158,13 @@ class ProjetController extends Controller
     {
         $this->authorize('update', $projet);
 
+        $request->validate([
+            'images' => 'array',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
         $projetImages = json_decode($projet->images);
+
 
         if ($request->has('removeImages'))
         {
@@ -169,7 +179,10 @@ class ProjetController extends Controller
         {
             foreach ($request->images as $image)
             {
-                $projetImages[] = $this->saveImage($image, $projet);
+                if(substr($projetImages[0], 0, 15) == "images/default/")
+                    $projetImages[0] = $this->saveImage($image, $projet);
+                else
+                    $projetImages[] = $this->saveImage($image, $projet);
             }
         }
 
@@ -179,7 +192,6 @@ class ProjetController extends Controller
         }
         else
         {
-            $idx = 0;
             $images = [];
             foreach ($projetImages as $image)
             {
@@ -195,6 +207,19 @@ class ProjetController extends Controller
                 $projet->participants()->attach($participant);
             }
         }
+
+        if ($request->has('del_participants'))
+        {
+            foreach ($request->del_participants as $participant)
+            {
+                $projet->participants()->detach($participant);
+            }
+        }
+
+        if (!$request->has('complete'))
+            $projet->complete = 0;
+        
+        $projet->save();
 
         $validatedData = $request->validated();
 

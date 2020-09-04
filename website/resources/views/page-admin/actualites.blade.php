@@ -142,8 +142,10 @@
 									</div>
 
 									<!-- Give a link for the news -->
-									<input type="checkbox" class="checkbox" id="links-nullable-create" name="links-nullable">
-									<label for="links-links-nullable-create" style="margin-left: 10px;">Ajouter un lien</label>
+									<div class="custom-control custom-checkbox" style="margin-bottom: 1rem;">
+										<input type="checkbox" class="checkbox custom-control-input" id="links-nullable-create" name="links-nullable">
+										<label class="custom-control-label form-title-small" for="links-nullable-create" style="margin-left: 10px;">Ajouter un lien</label>
+									</div>
 
 									<div id="website-crt" class="form-group" style="margin-top: 20px; display: none">
 										<label class="form-title-small" for="website">Lien du bouton</label>
@@ -231,8 +233,10 @@
 							</div>
 
 							<!-- Link -->
-							<input type="checkbox" id="links-nullable{{ $news->id }}" class="checkbox{{ $news->id }}" name="links-nullable" style="margin-top:20px;" onclick="toggleLinks({{ $news->id }}, this)">
-							<label for="links-nullable" style="margin-left: 10px;">Ajouter un lien</label>
+							<div class="custom-control custom-checkbox" style="margin-bottom: 1rem;">
+								<input id="links-nullable{{ $news->id }}" type="checkbox" class="checkbox{{ $news->id }} custom-control-input" name="links-nullable" onclick="toggleLinks({{ $news->id }}, this)">
+								<label class="custom-control-label form-title-small" for="links-nullable{{ $news->id }}">Ajouter un lien</label>
+							</div>
 
 							<div id="website{{ $news->id }}" class="form-group" style="margin-top: 20px; display: none">
 								<!-- block -->
