@@ -3,7 +3,6 @@
 /public/images
 /public/storage
 /storage/*.key
-/vendor
 .gitignore
 .env
 .env.backup
