@@ -74,7 +74,12 @@
                 <div class="form-group">
                     <label for="cover" class="form-title-small"> Changement de la vignette du cours</label>
                     <br>
-                    <input type="file" id="cover" name="cover">
+                    <input type="file" id="cover" name="cover" class="@error('cover') is-invalid @enderror" accept="image/x-png,image/gif,image/jpeg">
+                    @error('cover')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>Le fichier déposé doit être une image.</strong>
+                    </span>
+                    @enderror
                 </div>
 
                 <!-- Add a file linked with the lesson -->
@@ -83,7 +88,7 @@
                         Ajouter des fichiers
                     </label>
                     <br>
-                    <input type="file" id="link_support_mod" name="link_support[]" multiple>
+                    <input type="file" id="link_support_mod" name="link_support[]" accept="image/x-png,image/gif,image/jpeg" multiple>
                 </div>
 
                 <!-- Edit a file linked with the lesson -->
