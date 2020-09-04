@@ -147,7 +147,7 @@ class UserController extends Controller
      */
     public function saveImage(Request $request)
     {
-        $path = Storage::putFile('public/images/profil', $request->profil_picture, 'private');
+        $path = Storage::putFile('public/images/profil', $request->profil_picture, 'public');
         return substr($path, 7);
     }
 }
