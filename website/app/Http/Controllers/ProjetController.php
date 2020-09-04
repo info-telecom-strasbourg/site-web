@@ -157,7 +157,7 @@ class ProjetController extends Controller
     public function update(ProjetRequest $request, Projet $projet)
     {
         $this->authorize('update', $projet);
-        
+
         $request->validate([
             'images' => 'array',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
