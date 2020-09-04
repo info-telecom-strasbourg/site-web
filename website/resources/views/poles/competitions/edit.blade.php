@@ -101,10 +101,15 @@
 					<h4 class="form-title">Cochez les images à supprimer</h4>
 		            <div class="form-group row align-items-center justify-content-around">
 		                @foreach (json_decode($compet->images) as $key => $image)
-		                    <div class="col-md-auto">
-		                            <img src="{{ asset('storage/' . $image) }}" alt=" {{ $key }} slide" style="height: 100px !important;">
-		                            <input id="im-cmpt-del" type="checkbox" name="remove_images[{{ $key }}]" value="{{ $image }}">
-		                    </div>
+							<div class="col-md-auto" style="display: flex; flex-direction:column; justify-content:center;">
+								<div style="margin: 0 auto;">
+									<img src="{{ asset('storage/' . $image) }}" alt=" {{ $key }} slide" style="height: 100px !important;">
+								</div>
+								<div class="custom-control custom-checkbox" style="margin: 0 auto; margin-bottom: 1rem;">
+		                            <input id="im-cmpt-del" type="checkbox" name="remove_images[{{ $key }}]" class="custom-control-input" value="{{ $image }}">
+									<label class="custom-control-label form-title-small" for="im-cmpt-del"></label>
+								</div>
+							</div> 
 		                @endforeach
 		            </div>
 				</div>
