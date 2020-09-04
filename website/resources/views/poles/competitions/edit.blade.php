@@ -116,8 +116,8 @@
 									<img src="{{ asset('storage/' . $image) }}" alt=" {{ $key }} slide" style="height: 100px !important;">
 								</div>
 								<div class="custom-control custom-checkbox" style="margin: 0 auto; margin-bottom: 1rem;">
-		                            <input id="im-cmpt-del" type="checkbox" name="remove_images[{{ $key }}]" class="custom-control-input" value="{{ $image }}">
-									<label class="custom-control-label form-title-small" for="im-cmpt-del"></label>
+		                            <input id="im-cmpt-del-{{ $key }}" type="checkbox" name="remove_images[{{ $key }}]" class="custom-control-input" value="{{ $image }}">
+									<label class="custom-control-label form-title-small" for="im-cmpt-del-{{ $key }}"></label>
 								</div>
 							</div> 
 		                @endforeach
