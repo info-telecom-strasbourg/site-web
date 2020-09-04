@@ -23,7 +23,7 @@
         <div class="container pt-3">
             @if ($projet->complete == 1)
                 <div class="alert alert-success" role="alert">
-                    Projet finis
+                    Projet fini
                 </div>
             @else
                 <div class="alert alert-info" role="alert">
