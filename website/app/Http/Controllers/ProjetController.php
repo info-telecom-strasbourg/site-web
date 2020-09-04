@@ -207,6 +207,11 @@ class ProjetController extends Controller
             }
         }
 
+        if (!$request->has('complete'))
+            $projet->complete = 0;
+        
+        $projet->save();
+
         $validatedData = $request->validated();
 
         $projet->update($validatedData);
