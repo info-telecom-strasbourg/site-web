@@ -32,7 +32,7 @@ class ProjetRequest extends FormRequest
             'link_doc' => 'nullable|url',
             'complete' => 'boolean',
             'chef_projet_id' => 'required|integer',
-            'pole_id' => 'required|integer',
+            'pole_id' => 'integer',
         ];
     }
 
