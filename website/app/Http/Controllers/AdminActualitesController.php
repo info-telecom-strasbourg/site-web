@@ -122,7 +122,7 @@ class AdminActualitesController extends Controller
      */
     public function saveImage(array $validatedRequest)
     {
-        $path = Storage::putFile('public/images/news', $validatedRequest['image'], 'private');
+        $path = Storage::putFile('public/images/news', $validatedRequest['image'], 'public');
         return substr($path, 7);
     }
 
