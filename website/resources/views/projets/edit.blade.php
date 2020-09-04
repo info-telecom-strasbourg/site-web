@@ -49,7 +49,7 @@
                 <label for="pole_id" class="form-title-small @error('pole_id') is-invalid @enderror">Pôle</label>
                 <select class="custom-select" id="pole_id" name="pole_id" required>
                     <option selected readonly>Choisir un pôle ...</option>
-                    
+
                     @isset($poles)
 
                         @foreach ($poles as $pole)
@@ -70,7 +70,7 @@
                 <label for="chef_projet_id" class="form-title-small">Chef de projet</label>
                 <select class="custom-select @error('chef_projet_id') is-invalid @enderror" id="chef_projet_id" name="chef_projet_id" required>
                     <option selected readonly>Choisir un chef de projet ...</option>
-                    
+
                     @isset($users)
 
                         @foreach ($users as $user)
@@ -87,30 +87,51 @@
                     </span>
                 @enderror
             </div>
-            <div class="form-group">
-                <label for="participants" class="form-title-small">Ajouter des participants</label>
-                <select class="custom-select @error('participants') is-invalid @enderror" id="participants" name="participants[]" multiple>                    
-                    @isset($users)
-                        @foreach ($users as $user)
-                            @if (!$projet->participants->contains($user->id))
-                                <option value="{{ $user->id }}">{{ $user->name }}</option>
-                            @endif
-                        @endforeach
 
-                    @endisset
+			@if(count($projet->participants) < count($users))
+	            <div class="form-group">
+	                <label for="participants" class="form-title-small">Ajouter des participants</label>
+	                <select class="custom-select @error('participants') is-invalid @enderror" id="participants" name="participants[]" multiple>
+	                    @isset($users)
+	                        @foreach ($users as $user)
+	                            @if (!$projet->participants->contains($user->id))
+	                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+	                            @endif
+	                        @endforeach
 
-                </select>
+	                    @endisset
 
-                @error('participants')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>Choisissez des participans</strong>
-                    </span>
-                @enderror
-            </div>
+	                </select>
+
+	                @error('participants')
+	                    <span class="invalid-feedback" role="alert">
+	                        <strong>Choisissez des participans</strong>
+	                    </span>
+	                @enderror
+	            </div>
+			@endif
+
+			@if(count($projet->participants) > 1)
+	            <div class="form-group">
+	                <label for="del_participants" class="form-title-small">Supprimer des participants</label>
+	                <select class="custom-select @error('del_participants') is-invalid @enderror" id="del_participants" name="del_participants[]" multiple>
+	                    @isset($users)
+	                        @foreach ($users as $user)
+	                            @if ($projet->participants->contains($user->id) && $user->id != $projet->chef_projet_id)
+	                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+	                            @endif
+	                        @endforeach
+
+	                    @endisset
+
+	                </select>
+	            </div>
+			@endif
+
             <div class="custom-control custom-checkbox" style="margin-bottom: 1rem;">
-                <input id="complete-status" type="checkbox" class="custom-control-input" name="complete" @if ($projet->complete == 1) checked="checked" @endif value="1">
+				<input id="complete-status" type="checkbox" name="complete" @if ($projet->complete == 1) checked="checked" @endif value="1">
 
-                <label class="custom-control-label form-title-small" for="complete">Projet compléter</label>
+				<label class="form-title-small" for="complete">Projet compléter</label>
             </div>
             <div class="form-group">
                 <label class="title lg text-left form-title-small">
@@ -134,12 +155,12 @@
                 <label class="sr-only" for="link_github">Lien du repository GitHub</label>
                 <div class="input-group mb-2">
                 <div class="input-group-prepend">
-                    <div class="input-group-text">                
+                    <div class="input-group-text">
                         <i class="fab fa-github" style="font-size: 1rem;"></i>
                     </div>
                 </div>
                     <input type="url" class="form-control @error('link_github') is-invalid @enderror" id="link_github" name="link_github" placeholder="Lien du repository GitHub" value="{{ $projet->link_github }}">
-                    
+
                     @error('link_github')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -156,7 +177,7 @@
                     </div>
                 </div>
                     <input type="url" class="form-control @error('link_doc') is-invalid @enderror" id="link_doc" name="link_doc" placeholder="Lien vers la documentation"value="{{ $projet->link_doc }}">
-                    
+
                     @error('link_doc')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>

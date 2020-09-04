@@ -196,6 +196,14 @@ class ProjetController extends Controller
             }
         }
 
+        if ($request->has('del_participants'))
+        {
+            foreach ($request->del_participants as $participant)
+            {
+                $projet->participants()->detach($participant);
+            }
+        }
+
         $validatedData = $request->validated();
 
         $projet->update($validatedData);
