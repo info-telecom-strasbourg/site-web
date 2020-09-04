@@ -156,6 +156,7 @@ class ProjetController extends Controller
 
         $projetImages = json_decode($projet->images);
 
+
         if ($request->has('removeImages'))
         {
             foreach ($request->removeImages as $index => $value)

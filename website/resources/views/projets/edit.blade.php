@@ -45,27 +45,8 @@
                     </span>
                 @enderror
             </div>
-            <div class="form-group">
-                <label for="pole_id" class="form-title-small @error('pole_id') is-invalid @enderror">Pôle</label>
-                <select class="custom-select" id="pole_id" name="pole_id" required>
-                    <option selected readonly>Choisir un pôle ...</option>
 
-                    @isset($poles)
 
-                        @foreach ($poles as $pole)
-                            <option value="{{ $pole->id }}" @if ($projet->pole_id == $pole->id) selected @endif>{{ $pole->title }}</option>
-                        @endforeach
-
-                    @endisset
-
-                </select>
-
-                @error('pole_id')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>Choisissez un pôle</strong>
-                    </span>
-                @enderror
-            </div>
             <div class="form-group">
                 <label for="chef_projet_id" class="form-title-small">Chef de projet</label>
                 <select class="custom-select @error('chef_projet_id') is-invalid @enderror" id="chef_projet_id" name="chef_projet_id" required>
