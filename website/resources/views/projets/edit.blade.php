@@ -129,9 +129,9 @@
 			@endif
 
             <div class="custom-control custom-checkbox" style="margin-bottom: 1rem;">
-				<input id="complete-status" type="checkbox" name="complete" @if ($projet->complete == 1) checked="checked" @endif value="1">
+				<input id="complete" type="checkbox" class="custom-control-input" name="complete" @if ($projet->complete == 1) checked="checked" @endif value="1">
 
-				<label class="form-title-small" for="complete">Projet compléter</label>
+				<label class="custom-control-label form-title-small" for="complete">Projet complété</label>
             </div>
             <div class="form-group">
                 <label class="title lg text-left form-title-small">
@@ -144,9 +144,14 @@
             <h4 class="form-title">Cochez les images à supprimer</h4>
             <div class="form-group row align-items-center">
                 @foreach (json_decode($projet->images) as $key => $image)
-                    <div class="col-md-3">
-                            <img src="{{ asset('storage/' . $image) }}" alt=" {{ $key }} slide" style="height: 100px !important;">
-                            <input type="checkbox" name="removeImages[{{ $key }}]" value="1">
+                    <div class="col-md-3" style="display: flex; flex-direction:column; justify-content:center;">
+                            <div style="margin: 0 auto;">
+                                <img src="{{ asset('storage/' . $image) }}" alt=" {{ $key }} slide" style="height: 100px !important;">
+                            </div>
+                            <div class="custom-control custom-checkbox" style="margin: 0 auto; margin-bottom: 1rem;">
+                                <input id="delete-image-button" type="checkbox" name="removeImages[{{ $key }}]" class="custom-control-input" value="1">
+                                <label class="custom-control-label form-title-small" for="delete-image-button"></label>
+                            </div>
                     </div>
                 @endforeach
             </div>
