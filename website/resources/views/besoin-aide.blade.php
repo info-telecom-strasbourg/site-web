@@ -65,7 +65,6 @@
         <!-- Form for the request -->
         <form action="/besoin-aide" method="POST" enctype="multipart/form-data">
             @csrf
-
             <!-- The type of the request -->
             <div class="form-group">
                 <label for="type" class="form-title-small">

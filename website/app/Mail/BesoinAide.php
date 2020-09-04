@@ -23,8 +23,9 @@ class BesoinAide extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct($type, $appareil, $os, $files, $desc)
+    public function __construct($email, $type, $appareil, $os, $files, $desc)
     {
+        $this->email = $email;
         $this->type = $type;
         $this->appareil = $appareil;
         $this->os = $os;
@@ -39,7 +40,7 @@ class BesoinAide extends Mailable
      */
     public function build()
     {
-        $email =  $this->markdown('emails.besoin-aide')->subject('[Besoin d\'aide] ' . $this->type);;
+        $email =  $this->markdown('emails.besoin-aide')->replyTo($this->email)->subject('[Besoin d\'aide] ' . $this->type);;
 
         // add attachments to the mail
         foreach ($this->files as $files) {
@@ -50,7 +51,7 @@ class BesoinAide extends Mailable
             }
             break;
         }
-		
+
         return $email;
     }
 }
