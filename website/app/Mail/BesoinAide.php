@@ -40,7 +40,8 @@ class BesoinAide extends Mailable
      */
     public function build()
     {
-        $email =  $this->markdown('emails.besoin-aide')->replyTo($this->email)->subject('[Besoin d\'aide] ' . $this->type);;
+        $email =  $this->markdown('emails.besoin-aide')->replyTo($this->email)->subject('[Besoin d\'aide] ' . $this->type);
+
 
         // add attachments to the mail
         foreach ($this->files as $files) {
