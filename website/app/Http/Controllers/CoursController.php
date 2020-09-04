@@ -153,7 +153,7 @@ class CoursController extends Controller
 		$this->authorize('update', $cours);
 
 		$cours->dates()->delete();
-		if (file_exists(storage_path('app/public/' . $cours->cover)) && substr($cours->icover, 0, 15) != "images/default/")
+		if (file_exists(storage_path('app/public/' . $cours->cover)) && substr($cours->cover, 0, 15) != "images/default/")
 			unlink(storage_path('app/public/' . $cours->cover));
 
 		foreach ($cours->supports as $file)
@@ -185,6 +185,7 @@ class CoursController extends Controller
 			return request()->validate([
 				'title' => 'required',
 				'desc' => 'required',
+				'cover' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 			]);
 		else
 			return request()->validate([

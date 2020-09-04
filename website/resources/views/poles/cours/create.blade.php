@@ -62,9 +62,7 @@
 
                         @isset($users)
                             @foreach ($users as $user)
-                                <option value="{{ $user->id }}" {{ auth()->user()->is($user)
-            ? 'selected'
-            : '' }}>{{ $user->name }}</option>
+                                <option value="{{ $user->id }}" {{ auth()->user()->is($user) ? 'selected' : '' }}>{{ $user->name }}</option>
                             @endforeach
                         @endisset
                     </select>
@@ -76,7 +74,12 @@
                         Image pour la vignette du cours (optionnelle)
                     </label>
                     <br>
-                    <input type="file" id="cover" name="cover">
+                    <input type="file" class="@error('cover') is-invalid @enderror" id="cover" name="cover" accept="image/x-png,image/gif,image/jpeg">
+                    @error('cover')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>Le fichier déposé doit être une image.</strong>
+                    </span>
+                    @enderror
                 </div>
 
                 <!-- Files linked with the lesson -->
