@@ -76,7 +76,7 @@
                         Image pour la vignette du cours (optionnelle)
                     </label>
                     <br>
-                    <input type="file" id="cover" name="cover">
+                    <input type="file" id="cover" name="cover" accept="image/x-png,image/gif,image/jpeg">
                 </div>
 
                 <!-- Files linked with the lesson -->
@@ -85,7 +85,7 @@
                         Fichiers associés
                     </label>
                     <br>
-                    <input type="file" id="link_support" name="link_support[]" multiple>
+                    <input type="file" id="link_support" name="link_support[]" accept="image/x-png,image/gif,image/jpeg" multiple>
                 </div>
 
                 <!-- Manage the visibility of the files for the lesson -->

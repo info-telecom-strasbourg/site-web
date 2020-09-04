@@ -58,7 +58,7 @@
 					Changer l'image de couverture
 				</label>
 				<br>
-				<input type="file" id="cover" name="cover">
+				<input type="file" id="cover" name="cover" accept="image/x-png,image/gif,image/jpeg">
 			</div>
 
 			<!-- Modifier les dates -->
@@ -92,7 +92,7 @@
 					Ajouter des images
 				</label>
 				<br>
-				<input type="file" id="link_im_comp" name="link_im_comp[]" multiple>
+				<input type="file" id="link_im_comp" name="link_im_comp[]" accept="image/x-png,image/gif,image/jpeg" multiple>
 			</div>
 
 			<!-- Pour enlever des images -->

@@ -139,7 +139,7 @@
                 </label>
                 <br>
 
-                <input type="file" id="images" name="images[]" multiple>
+                <input type="file" id="images" name="images[]" accept="image/x-png,image/gif,image/jpeg" multiple>
             </div>
             <h4 class="form-title">Cochez les images à supprimer</h4>
             <div class="form-group row align-items-center">

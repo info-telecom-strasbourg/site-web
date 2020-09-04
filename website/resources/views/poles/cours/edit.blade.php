@@ -74,7 +74,7 @@
                 <div class="form-group">
                     <label for="cover" class="form-title-small"> Changement de la vignette du cours</label>
                     <br>
-                    <input type="file" id="cover" name="cover">
+                    <input type="file" id="cover" name="cover" accept="image/x-png,image/gif,image/jpeg">
                 </div>
 
                 <!-- Add a file linked with the lesson -->
@@ -83,7 +83,7 @@
                         Ajouter des fichiers
                     </label>
                     <br>
-                    <input type="file" id="link_support_mod" name="link_support[]" multiple>
+                    <input type="file" id="link_support_mod" name="link_support[]" accept="image/x-png,image/gif,image/jpeg" multiple>
                 </div>
 
                 <!-- Edit a file linked with the lesson -->

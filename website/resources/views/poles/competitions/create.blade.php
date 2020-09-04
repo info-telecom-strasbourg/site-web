@@ -54,7 +54,7 @@ Création d'une compétition
 					Image de couverture
 				</label>
 				<br>
-				<input type="file" id="cover" name="cover" class="@error('cover') is-invalid @enderror" required>
+				<input type="file" id="cover" name="cover" class="@error('cover') is-invalid @enderror" accept="image/x-png,image/gif,image/jpeg" required>
 				@error('desc')
 					<span class="invalid-feedback" role="alert">
 						<strong>{{ $message }}</strong>
@@ -92,7 +92,7 @@ Création d'une compétition
 					Images (3 maximum)
 				</label>
 				<br>
-				<input type="file" id="images" name="images[]" multiple>
+				<input type="file" id="images" name="images[]" accept="image/x-png,image/gif,image/jpeg" multiple>
 			</div>
 
 			<div class="form-group" style="margin-top: 40px;">
