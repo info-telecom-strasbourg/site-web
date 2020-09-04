@@ -133,9 +133,9 @@
                     Images
                 </label>
                 <br>
-                <input class="@error('images') is-invalid @enderror" type="file" id="images" name="images[]" accept="image/x-png,image/gif,image/jpeg" multiple>
+                <input class="@error('images.*') is-invalid @enderror" type="file" id="images" name="images[]" accept="image/x-png,image/gif,image/jpeg" multiple>
 
-                @error('images')
+                @error('images.*')
                 <span class="invalid-feedback" role="alert">
                     <strong>Il faut ajouter une image</strong>
                 </span>

@@ -84,6 +84,10 @@ class ProjetController extends Controller
     public function store(ProjetRequest $request)
     {
         $validatedData = $request->validated();
+        $request->validate([
+            'images' => 'array',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
         $projet = Projet::create($validatedData);
 
         if ($request->has('images'))
@@ -153,6 +157,11 @@ class ProjetController extends Controller
     public function update(ProjetRequest $request, Projet $projet)
     {
         $this->authorize('update', $projet);
+        
+        $request->validate([
+            'images' => 'array',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
 
         $projetImages = json_decode($projet->images);
 

@@ -33,8 +33,6 @@ class ProjetRequest extends FormRequest
             'complete' => 'boolean',
             'chef_projet_id' => 'required|integer',
             'pole_id' => 'integer',
-            'images' => 'array',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ];
     }
 
@@ -53,7 +51,7 @@ class ProjetRequest extends FormRequest
             'complete.required'  => 'Indquez si le projet est finis ou pas',
             'chef_projet_id.required'  => 'Indiquez le chef de projet',
             'pole_id.required'  => 'Indiquez le pôle auquel appartient le projet',
-            'images.*' => 'Les fichiers déposés doivent être des images.'
+            'images.*' => 'Les fichiers déposés doivent être des images.',
         ];
     }
 }
