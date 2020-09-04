@@ -3,7 +3,6 @@
 /public/images
 /public/storage
 /storage/*.key
-/vendor
 .gitignore
 .env
 .env.backup
@@ -18,3 +17,4 @@ npm-debug.log
 yarn-error.log
 site-web-its-7c23329334b3.json
 public/.htaccess
+/vendor
