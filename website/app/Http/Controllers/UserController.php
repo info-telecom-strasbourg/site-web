@@ -114,7 +114,7 @@ class UserController extends Controller
             'profil_picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        if (file_exists(storage_path('app/public/' . $user->profil_picture)) && substr($user->profil_picture, 0, 32) != "images/default/profil/profil.jpg")
+        if (file_exists(storage_path('app/public/' . $user->profil_picture)) && substr($user->profil_picture, 0, 24) != "images/profil/profil.jpg")
             unlink(storage_path('app/public/' . $user->profil_picture));
         $user->update(['profil_picture' => $this->saveImage(request())]);
 
@@ -147,7 +147,7 @@ class UserController extends Controller
      */
     public function saveImage(Request $request)
     {
-        $path = Storage::putFile('public/images/profil', $request->profil_picture, 'private');
+        $path = Storage::putFile('public/images/profil', $request->profil_picture, 'public');
         return substr($path, 7);
     }
 }

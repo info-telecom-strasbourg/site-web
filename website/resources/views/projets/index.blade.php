@@ -41,7 +41,7 @@
 						<option value="{{ $pole->id }}" @if ($filters[0]==($pole->id)) selected @endif>{{ $pole->title }} </option>
 						@endforeach
 
-						<option value="" name="reset">Reset</option>
+						<option value="" name="reset">Réinitialiser</option>
 						@endisset
 					</select>
 				</div>
@@ -54,7 +54,7 @@
 						<option value="{{ $participant->id }}" @if ($filters[1]==($participant->id)) selected @endif>{{ $participant->name }}</option>
 						@endforeach
 
-						<option value="" name="reset">Reset</option>
+						<option value="" name="reset">Réinitialiser</option>
 						@endisset
 					</select>
 				</div>
@@ -67,7 +67,7 @@
 						<option value="{{ $partner->id }}" @if ($filters[2]==($partner->id)) selected @endif>{{ $partner->name }}</option>
 						@endforeach
 
-						<option value="" name="reset">Reset</option>
+						<option value="" name="reset">Réinitialiser</option>
 						@endisset
 					</select>
 				</div>
@@ -80,14 +80,14 @@
 						<option value="3" @if ($filters[3]==3) selected @endif>Date de création</option>
 						<option value="4" @if ($filters[3]==3) selected @endif>Date de création inverse</option>
 
-						<option value="" name="reset">Reset</option>
+						<option value="" name="reset">Réinitialiser</option>
 					</select>
 				</div>
 				<div class="col-md-3 text-center">
 					<button type="submit" class="btn btn-primary btn-primary btn-rounded">FILTRER</button>
 				</div>
 				<div class="col-md-3 text-center" style="opacity: .75;">
-					<a href="/projets" class="btn btn-primary btn-primary btn-rounded w-100">RESET</a>
+					<a href="/projets" class="btn btn-primary btn-primary btn-rounded w-100">RÉINITIALISER</a>
 				</div>
 			</div>
 		</form>
