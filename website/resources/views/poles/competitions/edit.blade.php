@@ -58,7 +58,12 @@
 					Changer l'image de couverture
 				</label>
 				<br>
-				<input type="file" id="cover" name="cover">
+				<input type="file" id="cover" class="@error('cover') is-invalid @enderror" name="cover" accept="image/x-png,image/gif,image/jpeg">
+				@error('cover')
+					<span class="invalid-feedback" role="alert">
+						<strong>Le fichier déposé doit être une image.</strong>
+					</span>
+				@enderror
 			</div>
 
 			<!-- Modifier les dates -->
@@ -92,7 +97,12 @@
 					Ajouter des images
 				</label>
 				<br>
-				<input type="file" id="link_im_comp" name="link_im_comp[]" multiple>
+				<input type="file" class="@error('link_im_comp') is-invalid @enderror" id="link_im_comp" name="link_im_comp[]" accept="image/x-png,image/gif,image/jpeg" multiple>
+				@error('link_im_comp')
+					<span class="invalid-feedback" role="alert">
+						<strong>Les fichiers déposés doivent être des images.</strong>
+					</span>
+				@enderror
 			</div>
 
 			<!-- Pour enlever des images -->
@@ -101,10 +111,15 @@
 					<h4 class="form-title">Cochez les images à supprimer</h4>
 		            <div class="form-group row align-items-center justify-content-around">
 		                @foreach (json_decode($compet->images) as $key => $image)
-		                    <div class="col-md-auto">
-		                            <img src="{{ asset('storage/' . $image) }}" alt=" {{ $key }} slide" style="height: 100px !important;">
-		                            <input id="im-cmpt-del" type="checkbox" name="remove_images[{{ $key }}]" value="{{ $image }}">
-		                    </div>
+							<div class="col-md-auto" style="display: flex; flex-direction:column; justify-content:center;">
+								<div style="margin: 0 auto;">
+									<img src="{{ asset('storage/' . $image) }}" alt=" {{ $key }} slide" style="height: 100px !important;">
+								</div>
+								<div class="custom-control custom-checkbox" style="margin: 0 auto; margin-bottom: 1rem;">
+		                            <input id="im-cmpt-del-{{ $key }}" type="checkbox" name="remove_images[{{ $key }}]" class="custom-control-input" value="{{ $image }}">
+									<label class="custom-control-label form-title-small" for="im-cmpt-del-{{ $key }}"></label>
+								</div>
+							</div> 
 		                @endforeach
 		            </div>
 				</div>
