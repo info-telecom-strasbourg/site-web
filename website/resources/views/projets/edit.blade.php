@@ -119,9 +119,15 @@
                     Images
                 </label>
                 <br>
-
-                <input type="file" id="images" name="images[]" accept="image/x-png,image/gif,image/jpeg" multiple>
+                <input type="file" id="images" name="images[]" class="@error('images.*') is-invalid @enderror" accept="image/x-png,image/gif,image/jpeg" multiple>
+                
+                @error('images.*')
+                <span class="invalid-feedback" role="alert">
+                    <strong>Les fichiers déposés doivent être des images.</strong>
+                </span>
+                @enderror
             </div>
+            
             @if(substr(json_decode($projet->images)[0], 0, 15) != "images/default/")
             <h4 class="form-title">Cochez les images à supprimer</h4>
             <div class="form-group row align-items-center">
