@@ -169,7 +169,10 @@ class ProjetController extends Controller
         {
             foreach ($request->images as $image)
             {
-                $projetImages[] = $this->saveImage($image, $projet);
+                if(substr($projetImages[0], 0, 15) == "images/default/")
+                    $projetImages[0] = $this->saveImage($image, $projet);
+                else
+                    $projetImages[] = $this->saveImage($image, $projet);
             }
         }
 
@@ -179,7 +182,6 @@ class ProjetController extends Controller
         }
         else
         {
-            $idx = 0;
             $images = [];
             foreach ($projetImages as $image)
             {
