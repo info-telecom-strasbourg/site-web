@@ -65,7 +65,9 @@
         <!-- Form for the request -->
         <form action="/besoin-aide" method="POST" enctype="multipart/form-data">
             @csrf
-
+            <!-- email to answer -->
+            <label for="email_besoin_aide"  class="form-title-small">Votre addresse mail</label>
+            <input class="form-control" type="email" id="email_besoin_aide" name="email_besoin_aide" placeholder="votre@mail.fr" required>
             <!-- The type of the request -->
             <div class="form-group">
                 <label for="type" class="form-title-small">

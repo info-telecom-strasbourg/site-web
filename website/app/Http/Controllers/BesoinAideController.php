@@ -20,7 +20,7 @@ class BesoinAideController extends Controller
     public function store(Request $request)
     {
         Mail::to("info.telecom.strasbourg@gmail.com")
-            ->send(new BesoinAide($request->type, $request->appareil, $request->os, $request->files, $request->desc));
+            ->send(new BesoinAide($request->email_besoin_aide, $request->type, $request->appareil, $request->os, $request->files, $request->desc));
 
         return redirect('/besoin-aide')
             ->with('message', 'Votre demande d\'aide a été envoyé.');
