@@ -3,7 +3,6 @@
 /public/images
 /public/storage
 /storage/*.key
-/vendor
 .gitignore
 .env
 .env.backup
@@ -19,3 +18,4 @@ yarn-error.log
 site-web-its-7c23329334b3.json
 public/.htaccess
 composer.lock
+/vendor
