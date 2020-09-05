@@ -73,19 +73,29 @@ class AdminMembresController extends Controller
         'year' => $validatedRequest['year']]);
 
 
-        if ($user->role_id >= 8 && $user->role_id <= 11 || $user->role_id == 5)
+        if (($user->role_id >= 7 && $user->role_id <= 10) || $user->role_id == 5)
         {
-            if ($user->role_id == 8)
+            if ($user->role_id == 7)
+            {
                 $pole = Pole::where('slug', '=', 'competitions')->first();
-            elseif ($user->role_id == 9)
+            }
+            elseif ($user->role_id == 8)
+            {
                 $pole = Pole::where('slug', '=', 'programmation_utilitaire')->first();
-            elseif ($user->role_id == 10)
+            }
+            elseif ($user->role_id == 9)
+            {
                 $pole = Pole::where('slug', '=', 'applications_et_sites_web')->first();
-            elseif ($user->role_id == 11)
+            }
+            elseif ($user->role_id == 10)
+            {
                 $pole = Pole::where('slug', '=', 'jeux_videos')->first();
-            elseif ($user->role_id == 5)
+            }
+            elseif ($user->role_id == 4)
+            {
                 $pole = Pole::where('slug', '=', 'cours')->first();
-            
+            }
+
             $pole->update(['respo_id' => $user->id]);
         }
 
