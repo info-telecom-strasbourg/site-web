@@ -5,7 +5,7 @@
 - isCover : true if the cover (the image of the card) is to be retrieve with $item->cover, otherwise false
 - errorMessage : error Message to display if there are no items
 - routeNameShow : name of the route to show an item
-
+- className : name of the class, element if only 6 items should be displayed, else nothing
 */
 @endphp
 
@@ -17,7 +17,7 @@
             @else
                 @php $cover = json_decode($item->images)[0]; @endphp
             @endif
-            <div class="col-md sep-items element">
+            <div class="col-md sep-items @if (!isset($className)) element @endif">
                 <div class="card custom-card text-center rounded">
                     <img class="card-img-top" src="{{ asset('storage/' . $cover) }}" alt="Card image cap">
                     <div class="card-body d-flex flex-column">
