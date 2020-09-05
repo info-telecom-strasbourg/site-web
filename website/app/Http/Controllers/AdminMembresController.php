@@ -76,15 +76,15 @@ class AdminMembresController extends Controller
         if ($user->role_id >= 8 && $user->role_id <= 11 || $user->role_id == 5)
         {
             if ($user->role_id == 8)
-                $pole = Pole::where('slug', '=', 'competitions');
+                $pole = Pole::where('slug', '=', 'competitions')->first();
             elseif ($user->role_id == 9)
-                $pole = Pole::where('slug', '=', 'programmation_utilitaire');
+                $pole = Pole::where('slug', '=', 'programmation_utilitaire')->first();
             elseif ($user->role_id == 10)
-                $pole = Pole::where('slug', '=', 'applications_et_sites_web');
+                $pole = Pole::where('slug', '=', 'applications_et_sites_web')->first();
             elseif ($user->role_id == 11)
-                $pole = Pole::where('slug', '=', 'jeux_videos');
+                $pole = Pole::where('slug', '=', 'jeux_videos')->first();
             elseif ($user->role_id == 5)
-                $pole = Pole::where('slug', '=', 'cours');
+                $pole = Pole::where('slug', '=', 'cours')->first();
             
             $pole->update(['respo_id' => $user->id]);
         }
