@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Role;
 use App\Projet;
+use App\Pole;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
@@ -44,6 +45,9 @@ class AdminMembresController extends Controller
             if ($value->chef_projet_id == $user->id)
                 return back()->with('erreur', 'Vous ne pouvez pas supprimer un utilisateur qui est chef d\'un projet');
         }
+        if ($user->role_id != 12)
+            return back()->with('erreur', 'Vous ne pouvez pas supprimer un membre du CA');
+
         if (substr($user->profil_picture, 0, 24) != "images/profil/profil.jpg")
             unlink(storage_path('app/public/' . $user->profil_picture));
         if ($user->cours() != null)
@@ -67,6 +71,23 @@ class AdminMembresController extends Controller
         $user->update(['name' => $validatedRequest['name'], 'email' => $validatedRequest['email'], 
         'role_id' => $validatedRequest['role'], 'class' => $validatedRequest['class'], 
         'year' => $validatedRequest['year']]);
+
+
+        if ($user->role_id >= 8 && $user->role_id <= 11 || $user->role_id == 5)
+        {
+            if ($user->role_id == 8)
+                $pole = Pole::where('slug', '=', 'competitions')->first();
+            elseif ($user->role_id == 9)
+                $pole = Pole::where('slug', '=', 'programmation_utilitaire')->first();
+            elseif ($user->role_id == 10)
+                $pole = Pole::where('slug', '=', 'applications_et_sites_web')->first();
+            elseif ($user->role_id == 11)
+                $pole = Pole::where('slug', '=', 'jeux_videos')->first();
+            elseif ($user->role_id == 5)
+                $pole = Pole::where('slug', '=', 'cours')->first();
+            
+            $pole->update(['respo_id' => $user->id]);
+        }
 
         if ($validatedRequest['password'] != null)
             $user->update(['password' => Hash::make($validatedRequest['password'])]);
