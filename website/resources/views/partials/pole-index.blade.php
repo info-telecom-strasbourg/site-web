@@ -46,6 +46,8 @@
         
         @yield('see-more-button')
 
+		@yield('timeline')
+		
 		<!-- Responsable -->
 		<h4 class="title md text-left respo">Responsable {{ strtolower($pole->title) }}</h4>
 		<div class="container pt-5" style="padding-top: 1rem !important; margin-bottom: -35px;">
@@ -71,7 +73,6 @@
 
         @yield('extra-button')
 		
-		@yield('timeline')
         		
 		<!-- Button to edit the pole -->
 		@can ('update', $pole)
