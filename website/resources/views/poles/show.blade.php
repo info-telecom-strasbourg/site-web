@@ -22,9 +22,9 @@
     @php
 		use Carbon\Carbon;
 		function isInPast($date, $today_date) {
-			return (intval(substr($date, 0, 4)) > intval(substr($today_date, 0, 4)) ||
-			intval(substr($date, 5, 2)) > intval(substr($today_date, 5, 2)) ||
-			intval(substr($date, 8, 2)) > intval(substr($today_date, 8, 2)));
+			return (intval(substr($date, 0, 4)) < intval(substr($today_date, 0, 4)) ||
+			intval(substr($date, 5, 2)) < intval(substr($today_date, 5, 2)) ||
+			intval(substr($date, 8, 2)) < intval(substr($today_date, 8, 2)));
 		}
 
 		$today_date = Carbon::now('Europe/Paris')->format('Y-m-d');
@@ -36,9 +36,9 @@
 			if($event->date == $today_date)
 				$todayEvent = $event;
 			else if(isInPast($event->date, $today_date))
-				$futurEvents[] = $event;
-			else
 				$pastEvents[] = $event;
+			else
+				$futurEvents[] = $event;
 		}
     @endphp
 
