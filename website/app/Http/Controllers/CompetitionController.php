@@ -208,7 +208,6 @@ class CompetitionController extends Controller
 			'title' => 'required',
 			'desc' => 'required',
 			'website' => 'required',
-			'cover' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 			'link_im_comp' => 'array',
 			'link_im_comp.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 		]);
