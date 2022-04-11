@@ -5,7 +5,7 @@
 # Bienvenue à ITS !
 
 
-Nous t'avons assigner le mot de passe suivant: {{ $password }}.<br>
+Nous t'avons assigné le mot de passe suivant: {{ $password }}.<br>
 Nous te recommandons vivement de le changer pour ne pas l'oublier ;).<br>
 
 
