@@ -141,7 +141,7 @@
                     Au travers de 5 pôles, tu pourras développer des sites web et des applications, réaliser des petits programmes utiles, créer ton propre jeu vidéo, participer à de grandes compétitions informatiques, ou encore bénéficier de notre structure d'entraide.<br><br>
                     Si tu as besoin d'aide avec ton ordinateur, ou si tu souhaites obtenir de précieux conseils en programmation ou en cybersécurité, nous sommes aussi là pour toi !<br><br>
                     ITS c'est avant tout une association qui te permettra de progresser en informatique dans un cadre chaleureux et agréable. Et ceci, quels que soient ton niveau et tes objectifs.<br><br>
-                    Alors n'hésite plus, ITS t'ouvre ses portes en Septembre pour ton plus grand bonheur !
+                    Alors n'hésite plus, ITS t'ouvre ses portes en Septembre pour ton plus grand bonheur ! 
                 </p>
             </div>
             <div class="col-md-5" id="asso-img">
