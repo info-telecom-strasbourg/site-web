@@ -1,4 +1,13 @@
 <!-- Welcome page -->
+@push('scripts')
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+    function onSubmit(token) {
+            document.getElementById("demo-form").submit();
+            }
+    </script>
+@endpush
+
 @extends('layouts.layout')
 
 @section('title', 'ITS')
@@ -137,7 +146,7 @@
         <div class="row justify-content-around">
             <div class="col-md-7" id="asso-txt">
                 <p>
-                    Cette année, une toute nouvelle association voit le jour dans ton école ! ITS te propose de découvrir le monde du numérique sous toutes ses formes.<br><br>
+                    ITS te propose de découvrir le monde du numérique sous toutes ses formes.<br><br>
                     Au travers de 5 pôles, tu pourras développer des sites web et des applications, réaliser des petits programmes utiles, créer ton propre jeu vidéo, participer à de grandes compétitions informatiques, ou encore bénéficier de notre structure d'entraide.<br><br>
                     Si tu as besoin d'aide avec ton ordinateur, ou si tu souhaites obtenir de précieux conseils en programmation ou en cybersécurité, nous sommes aussi là pour toi !<br><br>
                     ITS c'est avant tout une association qui te permettra de progresser en informatique dans un cadre chaleureux et agréable. Et ceci, quels que soient ton niveau et tes objectifs.<br><br>
