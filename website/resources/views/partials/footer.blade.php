@@ -20,6 +20,9 @@
                     <a class="social-icons" href="https://www.facebook.com/Info.Telecom.Strasbourg/" target="_blank">
                         <i class="fab fa-facebook fa-4x fa-lg mr-3"></i>
                     </a>
+                    <a class="social-icons" href="https://www.instagram.com/info.telecom.strasbourg/" target="_blank">
+                        <i class="fab fa-instagram fa-4x fa-lg mr-3"></i>
+                    </a>
                 </div>
             </div>
         </div>
