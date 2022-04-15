@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactMe;
 use App\Pole;
@@ -96,8 +98,20 @@ class WelcomeController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(['email' => 'required|email']);
+        $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+            'secret' => "6LdGAWofAAAAAK5whTalKKdTIKS-N0MwgZBIo01z",
+            'response' => $request['g-recaptcha-response'],
+        ]);
 
+        Log::channel('stderr')->info('ok!', [$response]);
+
+
+        $request->validate([
+            'email' => 'required|email',
+            'g-recaptcha-response' => 'required|captcha'
+        ]);
+
+        Log::channel('stderr')->info('Something happened!', [$response]);
 
         Mail::to("info.telecom.strasbourg@gmail.com")
             ->send(new ContactMe($request->name, $request->subject, $request->email, $request->messages));

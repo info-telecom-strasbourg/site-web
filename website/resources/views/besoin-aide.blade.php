@@ -99,9 +99,9 @@
                     Système d'exploitation
                 </label>
                 <select class="form-control" id="os" name="os">
-                    <option>MacOS</option>
                     <option>Linux</option>
                     <option>Windows</option>
+                    <option>MacOS</option>
                     <option>Android</option>
                     <option>iOS</option>
                 </select>
