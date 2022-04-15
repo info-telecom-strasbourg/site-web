@@ -3,7 +3,7 @@
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script>
     function onSubmit(token) {
-            document.getElementById("demo-form").submit();
+            document.getElementById("contact-form").submit();
             }
     </script>
 @endpush
@@ -268,7 +268,7 @@
                 </div>
                 @endif
 
-                <form class="contact-form d-flex flex-column align-items-center" action="/contact" method="POST">
+                <form class="contact-form d-flex flex-column align-items-center" action="/contact" method="POST" id="contact-form" name="contact-form">
                     @csrf
                     <div class="form-group" style="width: 100%;">
                         <input type="name" class="form-control" placeholder="Nom" name="name" required />
@@ -282,8 +282,17 @@
                     <div class="form-group" style="width: 100%;">
                         <textarea class="form-control" type="text" placeholder="Message" rows="9" name="messages" style="resize: none;" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-rounded btn-primary" style="width: 200px;">Envoyer</button>
+                    <button class="btn btn-rounded btn-primary" style="width: 200px;" 
+                        data-sitekey="6LdGAWofAAAAAJzsRiErizbkxXV1UDP2w0VcqKz1" 
+                        data-callback='onSubmit'>Envoyer</button>
+                    <!-- <button type="submit" class="btn btn-rounded btn-primary" style="width: 200px;">Envoyer</button> -->
                 </form>
+                @if(Session::has('payload'))
+                    <div class="mt-3 alert alert-primary" role="alert">
+                        <h5>{{ Session::get('payload')}}</h5>
+                    </div>
+                    {{ Session::forget('payload') }}
+                  @endif
             </div>
         </div>
     </div>
