@@ -41,6 +41,7 @@ Start by going into the directory `site-web/website`, then enter the command:
 ```sh
 composer install
 ```
+(To install Composer, folow the instructions on https://getcomposer.org/download/)
 
 A file `.env.example` a file is present in the website directory, rename it to `.env`. Then modify the information concerning the connection to the database. You must have already created a database to be able to connect to it.
 
@@ -69,12 +70,27 @@ Note that there is a `;` at the end of the command;)
 Now, you have your BDD !!! :D
 To manage it, I recommend tablePlus or another software to manage databases (we will avoid using the terminal for that it's rather painful)
 
+Or, when connected to mysql, type  ```source site_ITS_db.sql;```  to import the database downloaded online.
+
 Let's go back to the installation:
 ```sh
 php artisan key:generate
 php artisan serve
 ```
 The last command starts the local server. Now everything is ready :D
+
+The development has to be done on the Dev branch of the git then merged to the master one designed for production with : 
+```sh
+git checkout dev
+```
+Then when pushed on the dev branch
+```sh
+git checkout master
+git merge dev
+git push origin master
+```
+Then, a worklow will automatically update the website on Ionos. Your work is now visible at  `https://info-telecom-strasbourg.fr` !
+
 
 ## Database
 ### In case of connection problems to the database
