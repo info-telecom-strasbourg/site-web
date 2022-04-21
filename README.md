@@ -79,7 +79,7 @@ php artisan serve
 ```
 The last command starts the local server. Now everything is ready :D
 
-The development has to be done on the Dev branch of the git then merged to the master one designed for production with : 
+The development has to be done on the Dev branch of the git then merged to the master one designed for production : 
 ```sh
 git checkout dev
 ```
