@@ -78,6 +78,7 @@
                     <option>Fichiers supprimés par erreur</option>
                     <option>Problème avec le terminal</option>
                     <option>Utilisation git</option>
+                    <option>Projet PSI</option>
                     <option>Autre</option>
                 </select>
             </div>
