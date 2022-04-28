@@ -8,7 +8,7 @@
 ### Type de demande : {{ $type }}
 ### Appareil : {{ $appareil }} 
 ### Système d'exploitation : {{ $os }}
-### Messages :
+### Message :
 {{ $desc }}
 
 @endcomponent
