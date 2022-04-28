@@ -29,6 +29,6 @@
     </div>
 
     <!-- Copyright -->
-    <div class="footer-copyright text-right py-3">© 2020 ITS
+    <div class="footer-copyright text-right py-3">© {{ date('Y') }} ITS
     </div>
 </footer>
