@@ -35,6 +35,9 @@
                         </div>
                     </div>
 
+                    @guest
+
+                    @else
                     <!-- User's Email address -->
                     <div class="form-group row justify-content-center col-md-12">
                         <label for="email" class="col-sm-4 col-form-label"><strong>Mail</strong></label>
@@ -43,6 +46,7 @@
                                 class="form-control-plaintext custom-form-control" value="{{ $user->email }}">
                         </div>
                     </div>
+                    @endguest
                 </div>
             </div>
         </div>
