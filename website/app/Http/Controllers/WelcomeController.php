@@ -104,6 +104,6 @@ class WelcomeController extends Controller
             ->send(new ContactMe($request->name, $request->subject, $request->email, $request->messages));
 
         return redirect('/#contact-anchor')
-            ->with('message', 'Votre demande de contact a été envoyé.');
+            ->with('message', 'Votre demande de contact a été envoyée.');
     }
 }
