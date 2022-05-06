@@ -43,6 +43,9 @@ composer install
 ```
 (To install Composer, folow the instructions on https://getcomposer.org/download/)
 
+To add a package to the site and on Ionos, follow : <br>
+https://www.ionos.com/digitalguide/websites/web-development/using-php-composer-in-ionos-webhosting-packages/
+
 A file `.env.example` a file is present in the website directory, rename it to `.env`. Then modify the information concerning the connection to the database. You must have already created a database to be able to connect to it.
 
 The lines to modify are:
