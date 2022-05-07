@@ -273,7 +273,7 @@
                     <div class="form-group" style="width: 100%;">
                         <textarea class="form-control" type="text" placeholder="Message" rows="9" name="messages" style="resize: none;" required></textarea>
                     </div>
-                    <x-honey/>
+                    <x-honey recaptcha/>
                     <button type="submit" class="btn btn-rounded btn-primary" style="width: 200px;">Envoyer</button>
                 </form>
             </div>
