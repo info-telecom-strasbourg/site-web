@@ -17,7 +17,7 @@ use App\Pole;
 */
 
 Route::get('/', 'WelcomeController@welcome')->name('welcome');
-Route::post('/contact', 'WelcomeController@store')->middleware(['honey'])->name('welcome.store');
+Route::post('/contact', 'WelcomeController@store')->middleware(['honey', 'honey-recaptcha'])->name('welcome.store');
 
 /***** Route besoin d'aide *****/
 Route::get('/besoin-aide', function () {
