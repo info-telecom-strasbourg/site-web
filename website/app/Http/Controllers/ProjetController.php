@@ -68,10 +68,10 @@ class ProjetController extends Controller
     {
         $this->authorize('create', Projet::class);
         $users = User::all();
-        $pole = Pole::where('respo_id', '=', Auth::user()->id)->first();
+        $poles = Pole::whereNotIn('slug', ['cours', 'competitions'])->get();
         $partners = Collaborateur::all();
 
-        return view('projets.create', compact('users', 'pole', 'partners'));
+        return view('projets.create', compact('users', 'poles', 'partners'));
     }
 
     /**
