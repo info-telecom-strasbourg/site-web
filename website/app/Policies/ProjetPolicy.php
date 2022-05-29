@@ -46,9 +46,13 @@ class ProjetPolicy
     public function create(User $user)
     {
         return auth()->check()
-            && ($user->role_id == 8
+            && ($user->role_id == 8 // respos
                 || $user->role_id == 9
-                || $user->role_id == 10);
+                || $user->role_id == 10
+                || $user->role_id == 1 // président
+                || $user->role_id == 2 // secrétaire
+                || $user->role_id == 5 // respo comm
+            );
     }
 
     /**
@@ -60,7 +64,7 @@ class ProjetPolicy
      */
     public function update(User $user, Projet $projet)
     {
-        return auth()->check() && ($user->id == $projet->chef->id);
+        return auth()->check() && ($user->id == $projet->chef->id || $user->role_id == 5);
     }
 
     /**
