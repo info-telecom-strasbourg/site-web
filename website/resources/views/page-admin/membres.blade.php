@@ -129,12 +129,16 @@
 
                                         <!-- Give the member a class -->
                                         <div class="form-group">
-                                            <label for="class" class="form-title-small">Fillière</label>
+                                            <label for="class" class="form-title-small">Filière</label>
 
-                                            <input id="class" type="text" class="form-control" name="class" value="{{ old('class') }}" required autocomplete="classe" placeholder="Fillière">
+                                            <select class="form-control" id="class" name="class" required>
+                                                <option>IR</option>
+                                                <option>TI Santé</option>
+                                                <option>Généraliste</option>
+                                            </select>
 
                                             <span id="class-error" class="invalid-feedback" role="alert" style="display: none;">
-                                                <strong>Vous devez entrer une classe</strong>
+                                                <strong>Vous devez entrer une filière</strong>
                                             </span>
                                         </div>
 
