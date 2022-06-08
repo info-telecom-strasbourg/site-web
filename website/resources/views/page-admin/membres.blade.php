@@ -263,7 +263,7 @@
                                                 @method('PUT')
                                                 <!-- Image -->
                                                 <div style="display:flex;">
-                                                    <input id="file{{ $user->id }}" type="file" name="image_profile" accept="image/x-png,image/gif,image/jpeg" style="margin-left: auto; margin-right:auto;" />
+                                                    <input id="file{{ $user->id }}" type="file" name="image_profile" accept="image/png,image/gif,image/jpeg" style="margin-left: auto; margin-right:auto;" />
                                                 </div>
 
                                                 <!-- Name -->
