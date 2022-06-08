@@ -54,7 +54,7 @@ Création d'une compétition
 					Image de couverture
 				</label>
 				<br>
-				<input type="file" id="cover" name="cover" class="@error('cover') is-invalid @enderror" accept="image/x-png,image/gif,image/jpeg" required>
+				<input type="file" id="cover" name="cover" class="@error('cover') is-invalid @enderror" accept="image/png,image/gif,image/jpeg" required>
 				@error('cover')
 					<span class="invalid-feedback" role="alert">
 						<strong>Le fichier déposé doit être une image.</strong>
@@ -92,7 +92,7 @@ Création d'une compétition
 					Images (3 maximum)
 				</label>
 				<br>
-				<input type="file" id="images" class="@error('images') is-invalid @enderror" name="images[]" accept="image/x-png,image/gif,image/jpeg" multiple>
+				<input type="file" id="images" class="@error('images') is-invalid @enderror" name="images[]" accept="image/png,image/gif,image/jpeg" multiple>
 				@error('images')
 					<span class="invalid-feedback" role="alert">
 						<strong>Les fichiers déposés doivent être des images.</strong>

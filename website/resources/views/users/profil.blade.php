@@ -20,7 +20,7 @@
                 <form action="/users/{{ $user->id }}/avatar" id="avatar" method="post" enctype="multipart/form-data">
                     @csrf
                     <input type="file" class="inputfile @error('profil_picture') is-invalid @enderror"
-                        name="profil_picture" id="profil_picture" accept="image/x-png,image/gif,image/jpeg">
+                        name="profil_picture" id="profil_picture" accept="image/png,image/gif,image/jpeg">
                     <label for="profil_picture">Modifier</label>
 
                     @error('profil_picture')
