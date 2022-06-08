@@ -123,7 +123,7 @@
                 
                 @error('images.*')
                 <span class="invalid-feedback" role="alert">
-                    <strong>Les fichiers déposés doivent être des images.</strong>
+                    <strong>Les fichiers déposés doivent être des images de moins de 2 Mo.</strong>
                 </span>
                 @enderror
             </div>

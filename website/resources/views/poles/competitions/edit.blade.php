@@ -100,7 +100,7 @@
 				<input type="file" class="@error('link_im_comp') is-invalid @enderror" id="link_im_comp" name="link_im_comp[]" accept="image/png,image/gif,image/jpeg" multiple>
 				@error('link_im_comp')
 					<span class="invalid-feedback" role="alert">
-						<strong>Les fichiers déposés doivent être des images.</strong>
+						<strong>Les fichiers déposés doivent être des images de moins de 2 Mo.</strong>
 					</span>
 				@enderror
 			</div>
