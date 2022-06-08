@@ -123,7 +123,7 @@
 									</span>
 									<!-- Give the news a image -->
 									<div style="display:flex;">
-										<input id="image" type="file" name="image" accept="image/x-png,image/gif,image/jpeg" style="margin-left: auto; margin-right:auto;" required />
+										<input id="image" type="file" name="image" accept="image/png,image/gif,image/jpeg" style="margin-left: auto; margin-right:auto;" required />
 									</div>
 									<span id="image-error" class="invalid-feedback" role="alert" style="display: none;">
 										<strong>Il faut une image pour la news</strong>
@@ -193,7 +193,7 @@
 							<!-- Image -->
 							<div style="display:flex; flex-direction:column;">
 								<img src="{{ asset('storage/' . $news->image) }}" alt="news picture">
-								<input id="file{{ $news->id }}" type="file" name="image" accept="image/x-png,image/gif,image/jpeg" style="margin-left: auto; margin-right:auto;" />
+								<input id="file{{ $news->id }}" type="file" name="image" accept="image/png,image/gif,image/jpeg" style="margin-left: auto; margin-right:auto;" />
 							</div>
 
 							<!-- Title -->

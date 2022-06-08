@@ -58,7 +58,7 @@
 					Changer l'image de couverture
 				</label>
 				<br>
-				<input type="file" id="cover" class="@error('cover') is-invalid @enderror" name="cover" accept="image/x-png,image/gif,image/jpeg">
+				<input type="file" id="cover" class="@error('cover') is-invalid @enderror" name="cover" accept="image/png,image/gif,image/jpeg">
 				@error('cover')
 					<span class="invalid-feedback" role="alert">
 						<strong>Le fichier déposé doit être une image.</strong>
@@ -97,7 +97,7 @@
 					Ajouter des images
 				</label>
 				<br>
-				<input type="file" class="@error('link_im_comp') is-invalid @enderror" id="link_im_comp" name="link_im_comp[]" accept="image/x-png,image/gif,image/jpeg" multiple>
+				<input type="file" class="@error('link_im_comp') is-invalid @enderror" id="link_im_comp" name="link_im_comp[]" accept="image/png,image/gif,image/jpeg" multiple>
 				@error('link_im_comp')
 					<span class="invalid-feedback" role="alert">
 						<strong>Les fichiers déposés doivent être des images.</strong>
