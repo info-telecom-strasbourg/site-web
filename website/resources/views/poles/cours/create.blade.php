@@ -74,7 +74,7 @@
                         Image pour la vignette du cours (optionnelle)
                     </label>
                     <br>
-                    <input type="file" class="@error('cover') is-invalid @enderror" id="cover" name="cover" accept="image/x-png,image/gif,image/jpeg">
+                    <input type="file" class="@error('cover') is-invalid @enderror" id="cover" name="cover" accept="image/png,image/gif,image/jpeg">
                     @error('cover')
                     <span class="invalid-feedback" role="alert">
                         <strong>Le fichier déposé doit être une image.</strong>

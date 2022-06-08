@@ -119,7 +119,7 @@
                     Images
                 </label>
                 <br>
-                <input type="file" id="images" name="images[]" class="@error('images.*') is-invalid @enderror" accept="image/x-png,image/gif,image/jpeg" multiple>
+                <input type="file" id="images" name="images[]" class="@error('images.*') is-invalid @enderror" accept="image/png,image/gif,image/jpeg" multiple>
                 
                 @error('images.*')
                 <span class="invalid-feedback" role="alert">
