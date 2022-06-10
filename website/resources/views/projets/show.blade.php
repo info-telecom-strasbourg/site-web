@@ -31,8 +31,12 @@
                 </div>
             @endif
             <!-- Description of the project -->
-            <p>{{ $projet->desc }}</p>
+            @php
+                echo nl2br($projet->desc);
+            @endphp
+
             @if ($projet->id==7)
+                <br><br>
                 @php
                     exec("python3 ../serverping.py", $output, $retval);
                 @endphp
