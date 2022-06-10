@@ -12,14 +12,15 @@ On this website, there are :
 - A helpdesk (Besoin d'aide) to help members in case of problems
 - A page to login
 - A page for each user
+- The darkpage (an admin page containing a general section, a member section and a news section)
+- A timeline and an evolution for each project
+- Comments sections
+- A timeline for each pole
+- A suggestion box page
 
 ## Future features
 On the website, it is planned that we will soon develop:
-- The darkpage (an admin page containing a general section, a member section and a news section)
-- Comments sections
-- A timeline and an evolution for each project
-- A timeline for each pole
-- A suggestion box page
+- suprises
 
 If you have other ideas, do not hesitate to let us know ;)
 
@@ -46,7 +47,7 @@ composer install
 To add a package to the site and on Ionos, follow : <br>
 https://www.ionos.com/digitalguide/websites/web-development/using-php-composer-in-ionos-webhosting-packages/
 
-A file `.env.example` a file is present in the website directory, rename it to `.env`. Then modify the information concerning the connection to the database. You must have already created a database to be able to connect to it.
+A file `.env.example` is present in the website directory, rename it to `.env`. Then modify the information concerning the connection to the database. You must have already created a database to be able to connect to it.
 
 The lines to modify are:
 ```
