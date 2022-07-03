@@ -61,7 +61,8 @@ class WelcomeController extends Controller
             else if ($nbProjets < 6)
                 $maxProjets = $nbProjets;
             else
-                $maxProjets = 6;
+                // $maxProjets = 6;
+                $maxProjets = $nbProjets; // All the projects
 
             if ($maxProjets == 1)
             {
