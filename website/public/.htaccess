@@ -23,4 +23,8 @@
     RewriteRule ^ /index.php [L]
 </IfModule>
 
+<Limit GET POST>
+order allow,deny
+allow from all
 deny from 46.161.11.0
+</Limit>
