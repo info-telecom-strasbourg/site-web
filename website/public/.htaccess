@@ -26,5 +26,5 @@
 <Limit GET POST>
 order allow,deny
 allow from all
-deny from 46.161.11.0
+deny from 46.161.11.0/24
 </Limit>
