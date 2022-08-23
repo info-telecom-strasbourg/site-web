@@ -36,8 +36,8 @@ def read_varint(sock):
 
 
 if __name__ == '__main__':
-    host = "its-tps.fr"
-    port = 10001
+    host = "minecraft.its-tps.fr"
+    port = 25565
 
     host_encoded = host.encode('utf8')
 
