@@ -21,20 +21,6 @@
 
         <!-- Stage of the project -->
         <div class="container pt-3">
-            @if ($projet->complete == 1)
-                <div class="alert alert-success" role="alert">
-                    Projet fini
-                </div>
-            @else
-                <div class="alert alert-info" role="alert">
-                    Projet en cours
-                </div>
-            @endif
-            <!-- Description of the project -->
-            @php
-                echo nl2br($projet->desc);
-            @endphp
-
             @if ($projet->id==7)
                 <br><br>
                 @php
@@ -53,6 +39,21 @@
                 @endif
 
             @endif
+            
+            @if ($projet->complete == 1)
+                <div class="alert alert-success" role="alert">
+                    Projet fini
+                </div>
+            @else
+                <div class="alert alert-info" role="alert">
+                    Projet en cours
+                </div>
+            @endif
+            <!-- Description of the project -->
+            @php
+                echo nl2br($projet->desc);
+            @endphp
+
             <div class="bordure"></div>
             <div class="container" style="margin-bottom: -35px;">
                 <div class="row align-items-center justify-content-between">
