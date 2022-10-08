@@ -22,7 +22,6 @@
         <!-- Stage of the project -->
         <div class="container pt-3">
             @if ($projet->id==7)
-                <br><br>
                 @php
                     exec("python3 ../serverping.py", $output, $retval);
                 @endphp
@@ -37,7 +36,7 @@
                         Serveur Hors-Ligne !
                     </b></p>
                 @endif
-
+                <br>
             @endif
             
             @if ($projet->complete == 1)
