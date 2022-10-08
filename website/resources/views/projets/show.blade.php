@@ -41,13 +41,13 @@
                     exec("python3 ../serverping.py", $output, $retval);
                 @endphp
                 @if ($retval==0)
-                    <p style="background-color: #52e308; color: #ffffff; border-radius: 14px; font-size: 16px; padding: 20px; margin: 5px; margin-right: 50%;" align="center"><b>
+                    <p style="background-color: #52e308; color: #ffffff; border-radius: 14px; font-size: 16px; padding: 20px; margin: auto; width: 50%;" align="center"><b>
                         @foreach ($output as $value)
                             {{ $value }} <br>
                         @endforeach
                     </b></p>
                     @else
-                    <p style="background-color: #ff0000; color: #ffffff; border-radius: 14px; font-size: 16px; padding: 20px; margin: 5px; margin-right: 50%;" align="center"><b>
+                    <p style="background-color: #ff0000; color: #ffffff; border-radius: 14px; font-size: 16px; padding: 20px; margin: auto; width: 50%;" align="center"><b>
                         Serveur Hors-Ligne !
                     </b></p>
                 @endif
