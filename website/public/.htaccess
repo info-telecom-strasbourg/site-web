@@ -27,4 +27,7 @@
 order allow,deny
 allow from all
 deny from 46.161.11.0/24
+deny from 178.141.10.0/24
+deny from 176.31.115.0/24
+deny from 149.34.244.0/2
 </Limit>
