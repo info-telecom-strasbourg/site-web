@@ -181,7 +181,7 @@ a.link-member:hover {
 }
 
 .card-img-top {
-    /* height: 11rem; */
+    height: 11rem;
     object-fit: contain;
     background-color: #EDECEC;
 }
