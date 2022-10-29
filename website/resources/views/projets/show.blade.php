@@ -255,7 +255,7 @@
                         @endforeach
                     </ol>
                 @endif
-                <div class="carousel-inner col-md-6" style="background-color: transparent;">
+                <div class="carousel-inner col-md-9" style="background-color: transparent;">
                     @foreach (json_decode($projet->images) as $key => $image)
                     <div class="carousel-item text-center @if ($loop->first) active @endif" style="background-color: transparent;">
                         <img src="{{ asset('storage/' . $image) }}" alt=" {{ $key }} slide" style="height: 300px !important;">
