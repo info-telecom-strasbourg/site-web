@@ -181,7 +181,9 @@ a.link-member:hover {
 }
 
 .card-img-top {
-    height: 11rem;
+    /* height: 11rem; */
+    object-fit: contain;
+    background-color: #EDECEC;
 }
 
 .card-title {
@@ -368,10 +370,12 @@ li.dropdown:hover>.dropdown-menu {
         padding-top: .2rem;
         padding-bottom: .2rem;
     }
+
     .navbar-collapse {
         margin-top: 50px;
         background-color: rgba(0, 0, 0, 0.7);
     }
+
     .connexion {
         margin-right: auto;
         margin-bottom: 10px;
@@ -540,6 +544,7 @@ li.dropdown:hover>.dropdown-menu {
         font-size: 3em;
         font-weight: bold;
     }
+
     #carousel-actualite .carousel-caption p {
         font-size: 1.3em;
     }
@@ -604,9 +609,11 @@ li.dropdown:hover>.dropdown-menu {
     #nos-projets .carousel-inner .carousel-item>div {
         display: none;
     }
+
     #nos-projets .carousel-inner .carousel-item>div:first-child {
         display: block;
     }
+
     #nos-projets .rounded-circle {
         margin: 50px;
     }
@@ -638,10 +645,12 @@ li.dropdown:hover>.dropdown-menu {
 }
 
 @media only screen and (min-width: 768px) {
+
     #nos-projets .carousel-inner .carousel-item-right.active,
     #nos-projets .carousel-inner .carousel-item-next {
         transform: translateX(33.333%);
     }
+
     #nos-projets .carousel-inner .carousel-item-left.active,
     #nos-projets .carousel-inner .carousel-item-prev {
         transform: translateX(-33.333%);
@@ -868,13 +877,16 @@ li.dropdown:hover>.dropdown-menu {
         flex-direction: row-reverse;
         flex-wrap: wrap-reverse;
     }
+
     #contact iframe {
         width: 527px;
         margin-top: 60px;
     }
+
     #contact #contact_cont {
         min-width: 660px;
     }
+
     #contact .form-control {
         width: 100%;
     }
@@ -884,6 +896,7 @@ li.dropdown:hover>.dropdown-menu {
     #contact #contact_cont {
         min-width: 100%;
     }
+
     #contact .form-control {
         width: 100%;
     }
@@ -998,13 +1011,16 @@ div.bordure {
         width: 300px;
         padding-bottom: 30px;
     }
+
     #cours .col-3 {
         display: flex;
         justify-content: center;
     }
+
     #cours #description .row {
         flex-direction: column;
     }
+
     #cours .disp {
         min-width: 100%;
     }
@@ -1324,6 +1340,7 @@ div.bordure {
     .dark-page .nav {
         width: 200px;
     }
+
     .dark-page .nav-link {
         font-size: 0.95rem;
     }
@@ -1333,9 +1350,11 @@ div.bordure {
     .dark-page .total {
         display: none;
     }
+
     .dark-page .dropdown {
         margin-right: 10px;
     }
+
     .dark-page .nav {
         width: 100%;
     }
@@ -1488,14 +1507,17 @@ div.bordure {
     .dark-page #v-pills-membres .row .d-flex {
         flex-direction: column;
     }
+
     .dark-page #v-pills-membres .row #image {
         margin-left: auto;
         margin-right: auto;
     }
+
     .dark-page #v-pills-membres .row #username {
         margin-left: auto;
         margin-right: auto;
     }
+
     .dark-page #v-pills-membres .row #buttons {
         margin-left: auto;
         margin-right: auto;
@@ -1506,6 +1528,7 @@ div.bordure {
     .dark-page #v-pills-membres #members-container {
         margin-bottom: 200px;
     }
+
     .dark-page #v-pills-membres #button-new-member {
         width: 250px;
     }
@@ -1871,6 +1894,7 @@ div.bordure {
     #form-container {
         align-items: center;
     }
+
     .login-container form {
         width: 90%;
         margin-top: 0;
@@ -1893,6 +1917,7 @@ div.bordure {
     .login-container .container h1 {
         font-size: 48px;
     }
+
     .login-container .container p {
         font-size: 18px;
     }
