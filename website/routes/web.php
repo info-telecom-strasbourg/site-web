@@ -111,3 +111,8 @@ Route::get('/timeline/{step}/destroy', 'TimelineEventController@destroy');
 Route::post('/users/{user}/avatar', 'UserController@update_avatar');
 Route::post('/users/{user}/search', 'UserController@search');
 
+
+/***** Route stats serveurs *****/
+Route::get('/servers-stats', function () {
+    return view('servers-stats');
+});
