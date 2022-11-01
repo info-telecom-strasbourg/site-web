@@ -13,6 +13,7 @@ class ServersStatsController extends Controller
      */
     public function stats()
     {
+        // Return data
         $servers = DB::select('select * from servers_stats where type = "server" order by value asc');
         $servers = json_decode(json_encode($servers), true);
         $servers_count = count($servers);
@@ -49,27 +50,27 @@ class ServersStatsController extends Controller
         $dns_zones = json_decode(json_encode($dns_zones), true);
         $dns_zones_count = count($dns_zones);
 
+        // Return counters
         $cpus = DB::table('servers_stats')->where('type', 'cpu')->first()->value;
         $threads = DB::table('servers_stats')->where('type', 'threads')->first()->value;
         $ram = DB::table('servers_stats')->where('type', 'ram')->first()->value;
         $storage = DB::table('servers_stats')->where('type', 'storage')->first()->value;
+        $pcs = DB::table('servers_stats')->where('type', 'pc')->first()->value;
+        $switches = DB::table('servers_stats')->where('type', 'switches')->first()->value;
 
         $ipv4s = DB::table('servers_stats')->where('type', 'ipv4')->first()->value;
         $ipv6s = DB::table('servers_stats')->where('type', 'ipv6')->first()->value;
         $vlans = DB::table('servers_stats')->where('type', 'vlan')->first()->value;
         $networks = DB::table('servers_stats')->where('type', 'network')->first()->value;
         $vpns = DB::table('servers_stats')->where('type', 'vpn')->first()->value;
-        $pcs = DB::table('servers_stats')->where('type', 'pc')->first()->value;
         $dns_servers = DB::table('servers_stats')->where('type', 'dns-server')->first()->value;
         $dockers = DB::table('servers_stats')->where('type', 'docker')->first()->value;
         $subdomains = DB::table('servers_stats')->where('type', 'subdomains')->first()->value;
 
-        //return $ipv4s;
 
         $last_update = DB::table('servers_stats')->max('created_at');
         //return $last_update;
 
-        //return gettype($servers_count);
         return view('servers-stats', compact(
             'last_update', 'servers', 'servers_count', 
             'websites', 'websites_count', 'domains', 'domains_count', 
@@ -78,7 +79,7 @@ class ServersStatsController extends Controller
             'nfs_users', 'nfs_users_count', 'video_games', 'video_games_count',
             'dns_zones', 'dns_zones_count', 'pcs', 'dns_servers',
             'cpus', 'threads', 'ram', 'storage', 'dockers', 'subdomains',
-            'services', 'services_count'
+            'services', 'services_count', 'switches'
             ));
     }
 }
