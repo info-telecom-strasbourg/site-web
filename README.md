@@ -155,5 +155,6 @@ If you want to simplify the filling of the database, you can use the file `sql_w
 - [Clément ROSSETTI](https://github.com/Zetsyog)
 - [Valentin COMPS](https://github.com/VComps)
 - [Lucas SCHAEFFER](https://github.com/Lucas-67)
+- [Félix LUSSEAU](https://github.com/FelixLusseau)
 
 
