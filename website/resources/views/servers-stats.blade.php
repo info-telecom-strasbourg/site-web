@@ -20,6 +20,18 @@
         table-layout: fixed;
     }
 
+    @media screen and (orientation: portrait) {
+        .counter-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: start;
+        }
+
+        #mobile-br {
+            display: none;
+        }
+    }
+
     .counter {
         text-align: center;
         margin-top: 1.5em;
@@ -113,8 +125,9 @@
         Page du projet : <a href="https://info-telecom-strasbourg.fr/projets/11" target="_blank">https://info-telecom-strasbourg.fr/projets/11</a>. <br>
         N'hésitez pas à placer votre souris sur les catégories afin d'obtenir une définition. <br>
     </p>
-    <p>ITS c'est donc :<p>
-    <br>
+    <p>ITS c'est donc :
+    <p>
+        <br>
     <div class="container pt-3">
         <h1 class="section-title">Infrastructure</h1>
         <div class="counter-container">
@@ -146,7 +159,7 @@
                 <h3><span data-target=<?php echo $storage ?> class="count" style="font-size: 2em">0</span><span class="gbits"> To</span></h3>
             </div>
         </div>
-        <br><br>
+        <br id="mobile-br"><br id="mobile-br">
         <div class="counter-container">
             <div class="counter">
                 <h3 class="mytooltip">VM
@@ -241,7 +254,7 @@
                 </div>
             </div>
         </div>
-        <br><br>
+        <br id="mobile-br"><br id="mobile-br">
         <div class="counter-container">
             <div class="counter">
                 <h3 class="mytooltip">Serveurs DNS
@@ -250,7 +263,7 @@
                 <h3 data-target=<?php echo $dns_servers ?> class="count">0</h3>
             </div>
             <div class="counter">
-            <h3 class="mytooltip">Zones DNS
+                <h3 class="mytooltip">Zones DNS
                     <span class="tooltiptext">La gestion d'une zone DNS correspond à l'autorité sur les enregistrements d'un nom de domaine (adresses IP correspondantes, adresses des serveurs de mails...). <br>Ici ce sont nos serveurs qui gèrent et réalisent cette traduction.</span>
                 </h3>
                 <h3 data-target=<?php echo $dns_zones_count ?> class="count">0</h3>
@@ -299,7 +312,7 @@
                 <h3 data-target=<?php echo $networks ?> class="count">0</h3>
             </div>
             <div class="counter">
-            <h3 class="mytooltip">VLAN
+                <h3 class="mytooltip">VLAN
                     <span class="tooltiptext">Un VLAN (Virtual Local Area Network) est un réseau local logique permettant de segmenter un unique réseau physique.</span>
                 </h3>
                 <h3 data-target=<?php echo $vlans ?> class="count">0</h3>
@@ -313,14 +326,14 @@
                 <h3><span data-target=<?php echo $ipv6s ?> class="count" style="font-size: 2em">0</span><span class="gbits"> /2<sup>64</sup></span></h3>
             </div>
             <div class="counter">
-            <h3 class="mytooltip">VPN
+                <h3 class="mytooltip">VPN
                     <span class="tooltiptext">Un VPN (Virtual Private Network) permet de se connecter à un réseau distant de manière sécurisée et chiffrée. <br>
-                                                ITS en utilise 2 pour l'administration et l'accès au serveur de sauvegardes.</span>
+                        ITS en utilise 2 pour l'administration et l'accès au serveur de sauvegardes.</span>
                 </h3>
                 <h3 data-target=<?php echo $vpns ?> class="count">0</h3>
             </div>
         </div>
-        <br><br>
+        <br id="mobile-br"><br id="mobile-br">
         <div class="counter-container">
             <div class="counter">
                 <h3>Débit externe</h3>
