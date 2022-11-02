@@ -92,35 +92,34 @@
         </div>
     </div>
 </div>
-    <script>
-        const counters = document.querySelectorAll(".count");
+<script>
+    const counters = document.querySelectorAll(".count");
 
-        function getRandomInt(max) {
-            return Math.floor(Math.random() * max);
-        }
+    function getRandomInt(max) {
+        return Math.floor(Math.random() * max);
+    }
 
-        var loop = true;
+    var loop = true;
 
         setTimeout(function () {
             loop = false;
         }, 500);
 
-        counters.forEach((counter) => {
-            const updateCount = () => {
-                const target = parseInt(+counter.getAttribute("data-target"));
-                const count = parseInt(+counter.innerText);
-                const increment = 1;
+    counters.forEach((counter) => {
+        const updateCount = () => {
+            const target = parseInt(+counter.getAttribute("data-target"));
+            const count = parseInt(+counter.innerText);
+            const increment = 1;
 
-                if (loop) {
-                    counter.innerText = getRandomInt(200);
-                    setTimeout(updateCount, 50);
-                } else {
-                    counter.innerText = target;
-                }
-            };
-            updateCount();
-        });
-
-    </script>
+            if (loop) {
+                counter.innerText = getRandomInt(200);
+                setTimeout(updateCount, 50);
+            } else {
+                counter.innerText = target;
+            }
+        };
+        updateCount();
+    });
+</script>
 
 @endsection
