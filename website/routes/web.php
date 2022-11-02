@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Cours;
 use App\Pole;
+use App\Http\Controllers\ServersStatsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -113,6 +114,4 @@ Route::post('/users/{user}/search', 'UserController@search');
 
 
 /***** Route stats serveurs *****/
-Route::get('/servers-stats', function () {
-    return view('servers-stats');
-});
+Route::get('/servers-stats', 'ServersStatsController@stats');
