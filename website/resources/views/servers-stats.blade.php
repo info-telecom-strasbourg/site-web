@@ -111,8 +111,9 @@
     <p>Sur cette page, vous trouverez les principales statistiques sur nos serveurs, hébergés en salle des serveurs à TPS,
         qui forment un <u>cluster redondant</u> faisant tourner tous les services que nous proposons.<br>
         Page du projet : <a href="https://info-telecom-strasbourg.fr/projets/11" target="_blank">https://info-telecom-strasbourg.fr/projets/11</a>. <br>
-        N'hésitez pas à placer votre souris sur les catégories afin d'obtenir une définition.
+        N'hésitez pas à placer votre souris sur les catégories afin d'obtenir une définition. <br>
     </p>
+    <p>ITS c'est donc :<p>
     <br>
     <div class="container pt-3">
         <h1 class="section-title">Infrastructure</h1>
