@@ -115,3 +115,6 @@ Route::post('/users/{user}/search', 'UserController@search');
 
 /***** Route stats serveurs *****/
 Route::get('/servers-stats', 'ServersStatsController@stats');
+Route::get('/servers-status', function () {
+    return view('servers-status');
+});
