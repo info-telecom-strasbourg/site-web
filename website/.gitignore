@@ -1,13 +1,11 @@
+!public/css/*.css
 /node_modules
-/public/hot
 /public/images
-/public/storage
+public/audio
 /storage/*.key
-.gitignore
 .env
 .env.backup
 ../.idea/
-public/
 composer.lock
 site_ITS_db.sql
 .phpunit.result.cache
