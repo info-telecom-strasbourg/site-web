@@ -75,6 +75,18 @@
                     <a class="dropdown-item" href="/topics">Boîte à idées</a>
                 </div>
             </li>
+
+            <!-- "Servers" sections -->
+            <li class="nav-item onglet dropdown {{ Request::is('servers*') ? 'active' : ''  }}" id="servers">
+                <a id="navbarDropdownMenuLink" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    SERVEURS
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="servers-stats">Chiffres serveurs</a>
+                    <a class="dropdown-item" href="servers-status">Statut des serveurs</a>
+                </div>
+            </li>
             
             <!-- Contact -->
             <a class="js-scrollTo" href="/#contact-anchor">
