@@ -1,11 +1,11 @@
 <!-- Servers stats page -->
 @extends('layouts.layout')
 
-@section('title', 'Statistiques des serveurs ITS')
+@section('title', 'Les serveurs ITS en chiffres')
 
 @section('breadcrumb')
 <li class="breadcrumb-item"><a href="/"><i class="fas fa-home"></i></a></li>
-<li class="breadcrumb-item active">Statistiques des serveurs ITS</li>
+<li class="breadcrumb-item active">Les serveurs ITS en chiffres</li>
 @endsection
 
 @section('content')
@@ -116,12 +116,14 @@
 
 <div class="container">
     <h1 class="title lg text-center">
-        Statistiques des serveurs ITS
+        Les serveurs ITS en chiffres
     </h1>
     <hr class="line-under-title">
     <br><br>
-    <p>Sur cette page, vous trouverez les principales statistiques sur nos serveurs, hébergés en salle des serveurs à TPS,
-        qui forment un <u>cluster redondant</u> faisant tourner tous les services que nous proposons.<br>
+    <p>Sur cette page, vous trouverez les principaux chiffres sur nos serveurs, hébergés en salle des serveurs à TPS,
+        qui forment un <a class="mytooltip">cluster redondant
+            <span class="tooltiptext" style="font-size: 0.75em">Les serveurs sont associés en cluster ce qui les lie très fortement et permet une redondance des données qui sont répliquées et une reprise automatique rapide sur l'un des autres membres en cas de panne.</span>
+            </a> faisant tourner tous les services que nous proposons.<br>
         Page du projet : <a href="https://info-telecom-strasbourg.fr/projets/11" target="_blank">https://info-telecom-strasbourg.fr/projets/11</a>. <br>
         N'hésitez pas à placer votre souris sur les catégories afin d'obtenir une définition. <br>
     </p>
