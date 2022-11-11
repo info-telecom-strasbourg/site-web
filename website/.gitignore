@@ -15,5 +15,6 @@ npm-debug.log
 yarn-error.log
 site-web-its-7c23329334b3.json
 public/.htaccess
+public/lib/.DS_Store
 composer.lock
 /vendor
