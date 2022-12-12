@@ -12,7 +12,6 @@
 <link href='css/calendar/fullcalendar.print.css' rel='stylesheet' media='print' />
 
 <script src='js/calendar/moment.min.js' type="application/javascript" ></script>
-<script src='js/calendar/jquery.min.js' type="application/javascript"></script>
 <script src='js/calendar/fullcalendar.min.js' type="application/javascript"></script>
 <script src='js/calendar/locale-all.js' type="application/javascript"></script>
 <script src="js/calendar/ical.min.js" type="application/javascript"></script>
