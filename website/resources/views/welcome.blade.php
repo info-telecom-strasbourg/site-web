@@ -5,6 +5,23 @@
 
 @section('content')
 
+<!-- Calendar imports -->
+<head>
+<link href='css/calendar/fullcalendar.css' rel='stylesheet' />
+<link href='css/calendar/jquery.qtip.min.css' rel='stylesheet' />
+<link href='css/calendar/fullcalendar.print.css' rel='stylesheet' media='print' />
+
+<script src='js/calendar/moment.min.js' type="application/javascript" ></script>
+<script src='js/calendar/jquery.min.js' type="application/javascript"></script>
+<script src='js/calendar/fullcalendar.min.js' type="application/javascript"></script>
+<script src='js/calendar/locale-all.js' type="application/javascript"></script>
+<script src="js/calendar/ical.min.js" type="application/javascript"></script>
+<script src="js/calendar/ical_events.js" type="application/javascript"></script>
+<script src="js/calendar/ical_fullcalendar.js" type="application/javascript"></script>
+<script src="js/calendar/jquery.qtip.min.js" type="application/javascript"></script>
+<script src="js/calendar/custom_display.js" type="application/javascript"></script>
+</head>
+
 <!-- Carousel of the news -->
 <section class="section" id="actu">
     <div id="carousel-actualite" class="carousel slide" data-ride="carousel">
@@ -124,10 +141,9 @@
 <!-- Agenda -->
 <section class="section" id="agenda">
     <h1 class="title lg text-center"> Agenda </h1>
-    <hr class="line-under-title">
-    <div class="google-agenda">
-        <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=Europe%2FParis&amp;src=Mmg5MnVjcGx1Nm9pNzRpNXAzM3UybG5naGtAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;color=%23F6BF26&amp;showTitle=0&amp;showPrint=0&amp;showTabs=1&amp;showTz=0&amp;showCalendars=0" style="border:solid 1px #777" width="400px" height="600" frameborder="0" scrolling="no" id="agenda-frame"></iframe> </div>
-</section>
+    <hr class="line-under-title">    
+    <div id='calendar'></div>
+    </section>
 
 <!-- Our association -->
 <section class="section grise" id="association">
