@@ -123,7 +123,7 @@
     <p>Sur cette page, vous trouverez les principaux chiffres sur nos serveurs, hébergés en salle des serveurs à TPS,
         qui forment un <a class="mytooltip">cluster redondant
             <span class="tooltiptext" style="font-size: 0.75em">Les serveurs sont associés en cluster ce qui les lie très fortement et permet une redondance des données qui sont répliquées et une reprise automatique rapide sur l'un des autres membres en cas de panne.</span>
-            </a> faisant tourner tous les services que nous proposons.<br>
+        </a> faisant tourner tous les services que nous proposons.<br>
         Page du projet : <a href="https://info-telecom-strasbourg.fr/projets/11" target="_blank">https://info-telecom-strasbourg.fr/projets/11</a>. <br>
         N'hésitez pas à placer votre souris sur les catégories afin d'obtenir une définition. <br>
     </p>
@@ -321,7 +321,7 @@
             </div>
             <div class="counter">
                 <h3>IPv4 publiques</h3>
-                <h3><span data-target=<?php echo $ipv4s ?> class="count" style="font-size: 2em">0</span><span class="gbits"> /3</span></h3>
+                <h3><span data-target=<?php echo $ipv4s ?> class="count" style="font-size: 2em">0</span><span class="gbits"> /35</span></h3>
             </div>
             <div class="counter">
                 <h3>IPv6 publiques</h3>
@@ -330,7 +330,7 @@
             <div class="counter">
                 <h3 class="mytooltip">VPN
                     <span class="tooltiptext">Un VPN (Virtual Private Network) permet de se connecter à un réseau distant de manière sécurisée et chiffrée. <br>
-                        ITS en utilise 2 pour l'administration et l'accès au serveur de sauvegardes.</span>
+                        ITS en utilise 3 pour l'administration et l'accès au serveur de sauvegardes.</span>
                 </h3>
                 <h3 data-target=<?php echo $vpns ?> class="count">0</h3>
             </div>
