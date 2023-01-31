@@ -6,81 +6,82 @@
 @section('content')
 
 <!-- Calendar imports -->
-<head>
-<link href='css/calendar/fullcalendar.css' rel='stylesheet' />
-<link href='css/calendar/jquery.qtip.min.css' rel='stylesheet' />
-<link href='css/calendar/fullcalendar.print.css' rel='stylesheet' media='print' />
 
-<script src='js/calendar/moment.min.js' type="application/javascript" ></script>
-<script src='js/calendar/fullcalendar.min.js' type="application/javascript"></script>
-<script src='js/calendar/locale-all.js' type="application/javascript"></script>
-<script src="js/calendar/ical.min.js" type="application/javascript"></script>
-<script src="js/calendar/ical_events.js" type="application/javascript"></script>
-<script src="js/calendar/ical_fullcalendar.js" type="application/javascript"></script>
-<script src="js/calendar/jquery.qtip.min.js" type="application/javascript"></script>
-<script src="js/calendar/custom_display.js" type="application/javascript"></script>
+<head>
+    <link href='css/calendar/fullcalendar.css' rel='stylesheet' />
+    <link href='css/calendar/jquery.qtip.min.css' rel='stylesheet' />
+    <link href='css/calendar/fullcalendar.print.css' rel='stylesheet' media='print' />
+
+    <script src='js/calendar/moment.min.js' type="application/javascript"></script>
+    <script src='js/calendar/fullcalendar.min.js' type="application/javascript"></script>
+    <script src='js/calendar/locale-all.js' type="application/javascript"></script>
+    <script src="js/calendar/ical.min.js" type="application/javascript"></script>
+    <script src="js/calendar/ical_events.js" type="application/javascript"></script>
+    <script src="js/calendar/ical_fullcalendar.js" type="application/javascript"></script>
+    <script src="js/calendar/jquery.qtip.min.js" type="application/javascript"></script>
+    <script src="js/calendar/custom_display.js" type="application/javascript"></script>
 </head>
 
 <!-- Carousel of the news -->
 <section class="section" id="actu">
     <div id="carousel-actualite" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
-			@if($allNews->count() > 1)
+            @if($allNews->count() > 1)
             @foreach($allNews as $news)
-            	<li data-target="#carousel-actualite" data-slide-to="{{ $news->position - 1 }}"  @if($news->position == 1) class="active" @endif></li>
+            <li data-target="#carousel-actualite" data-slide-to="{{ $news->position - 1 }}" @if($news->position == 1) class="active" @endif></li>
             @endforeach
-			@endif
+            @endif
         </ol>
         <div class="carousel-inner" height="100%">
             @forelse($allNews as $news)
-	            <div class="carousel-item actu @if($news->position == 1) active @endif full-screen" style="background: url({{ asset('storage/' . $news->image) }}) top center; background-size: cover;">
-	                <div class="carousel-caption">
-	                    <h1>{{ $news->title }}</h1>
-	                    <br>
-	                    <p>{{ $news->desc }}</p>
-	                    <br>
-	                    @isset($news->button)
-	                    @isset($news->link)
-	                    <form action="{{ $news->link }}">
-	                        <input class="favorite styled" type="submit" value="{{ $news->button }}">
-	                    </form>
-	                    @endisset
-	                    @endisset
-	                </div>
+            <div class="carousel-item actu @if($news->position == 1) active @endif full-screen" style="background: url({{ asset('storage/' . $news->image) }}) top center; background-size: cover;">
+                <div class="carousel-caption">
+                    <h1>{{ $news->title }}</h1>
+                    <br>
+                    <p>{{ $news->desc }}</p>
+                    <br>
+                    @isset($news->button)
+                    @isset($news->link)
+                    <form action="{{ $news->link }}">
+                        <input class="favorite styled" type="submit" value="{{ $news->button }}">
+                    </form>
+                    @endisset
+                    @endisset
                 </div>
-			@empty
-				<div class="carousel-item actu active full-screen" style="background: url({{ asset('storage/' . $defaultNews->image) }}) top center; background-size: cover;">
-				<div class="carousel-caption">
-					<h1>{{ $defaultNews->title }}</h1>
-	                    <br>
-	                    <p>{{ $defaultNews->desc }}</p>
-	                    <br>
-	                    @isset($defaultNews->button)
-	                    @isset($defaultNews->link)
-	                    <form action="{{ $defaultNews->link }}">
-	                        <input class="favorite styled" type="submit" value="{{ $defaultNews->button }}">
-	                    </form>
-	                    @endisset
-	                    @endisset
-				</div>
-				</div>
-            @endforelse
             </div>
-
-            @if($allNews->count() > 1)
-            <!-- Arrow to go to the previous new -->
-            <a class="carousel-control-prev" href="#carousel-actualite" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-
-            <!-- Arrow to go to the next new -->
-            <a class="carousel-control-next" href="#carousel-actualite" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-            @endif
+            @empty
+            <div class="carousel-item actu active full-screen" style="background: url({{ asset('storage/' . $defaultNews->image) }}) top center; background-size: cover;">
+                <div class="carousel-caption">
+                    <h1>{{ $defaultNews->title }}</h1>
+                    <br>
+                    <p>{{ $defaultNews->desc }}</p>
+                    <br>
+                    @isset($defaultNews->button)
+                    @isset($defaultNews->link)
+                    <form action="{{ $defaultNews->link }}">
+                        <input class="favorite styled" type="submit" value="{{ $defaultNews->button }}">
+                    </form>
+                    @endisset
+                    @endisset
+                </div>
+            </div>
+            @endforelse
         </div>
+
+        @if($allNews->count() > 1)
+        <!-- Arrow to go to the previous new -->
+        <a class="carousel-control-prev" href="#carousel-actualite" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+
+        <!-- Arrow to go to the next new -->
+        <a class="carousel-control-next" href="#carousel-actualite" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+        @endif
+    </div>
 </section>
 
 <!-- Poles -->
@@ -109,19 +110,19 @@
             <div id="recipeCarousel" class="carousel slide w-100" data-ride="carousel">
                 <div class="carousel-inner w-100" role="listbox">
                     @foreach ($projets as $projet)
-                        <div class="carousel-item @if ($loop->first) active @endif">
-                            <div class="col-md-4">
-                                <div class="card custom-card text-center shadow mb-5 bg-white rounded">
-                                    <img class="card-img-top" src="{{ asset('storage/' . json_decode($projet->projet->images)[0]) }}" alt="Card image cap">
-                                    <div class="card-body d-flex flex-column">
-                                        <h5 class="card-title text-center font-weight-bold">{{ $projet->projet->title }}</h5>
-                                        <p class="card-text">{{ mb_strlen( $projet->projet->desc ) > 57 ? mb_substr($projet->projet->desc, 0, 54) . ' ...' : $projet->projet->desc }}
-                                        </p>
-                                        <a href="/projets/{{ $projet->projet_id }}" class="btn btn-rounded btn-primary">Découvrir</a>
-                                    </div>
+                    <div class="carousel-item @if ($loop->first) active @endif">
+                        <div class="col-md-4">
+                            <div class="card custom-card text-center shadow mb-5 bg-white rounded">
+                                <img class="card-img-top" src="{{ asset('storage/' . json_decode($projet->projet->images)[0]) }}" alt="Card image cap">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title text-center font-weight-bold">{{ $projet->projet->title }}</h5>
+                                    <p class="card-text">{{ mb_strlen( $projet->projet->desc ) > 57 ? mb_substr($projet->projet->desc, 0, 54) . ' ...' : $projet->projet->desc }}
+                                    </p>
+                                    <a href="/projets/{{ $projet->projet_id }}" class="btn btn-rounded btn-primary">Découvrir</a>
                                 </div>
                             </div>
                         </div>
+                    </div>
                     @endforeach
                 </div>
                 <a class="carousel-control-prev w-auto" href="#recipeCarousel" role="button" data-slide="prev">
@@ -140,9 +141,9 @@
 <!-- Agenda -->
 <section class="section" id="agenda">
     <h1 class="title lg text-center"> Agenda </h1>
-    <hr class="line-under-title">    
+    <hr class="line-under-title">
     <div id='calendar'></div>
-    </section>
+</section>
 
 <!-- Our association -->
 <section class="section grise" id="association">
@@ -156,7 +157,7 @@
                     Au travers de 5 pôles, tu pourras développer des sites web et des applications, réaliser des petits programmes utiles, créer ton propre jeu vidéo, participer à de grandes compétitions informatiques, ou encore bénéficier de notre structure d'entraide.<br><br>
                     Si tu as besoin d'aide avec ton ordinateur, ou si tu souhaites obtenir de précieux conseils en programmation ou en cybersécurité, nous sommes aussi là pour toi !<br><br>
                     ITS c'est avant tout une association qui te permettra de progresser en informatique dans un cadre chaleureux et agréable. Et ceci, quels que soient ton niveau et tes objectifs.<br><br>
-                    Alors n'hésite plus, ITS t'ouvre ses portes en Septembre pour ton plus grand bonheur ! 
+                    Alors n'hésite plus, ITS t'ouvre ses portes en Septembre pour ton plus grand bonheur !
                 </p>
             </div>
             <div class="col-md-5" id="asso-img">
@@ -225,8 +226,8 @@
             Ce projet associatif renforcera j’en suis certain l’entraide entre élèves-ingénieurs et par là même leur sentiment d’appartenance à une grande école d'ingénieurs.<br><br>
             Les 5 pôles mis en place permettent aux élèves de mettre en pratique et compléter leur formation académique, que ce soit à travers le développement de programmes utiles, de jeux vidéo, d’applications mobiles ou de site Web.<br><br>
             J’encourage particulièrement la participation à des compétitions informatiques bénéfiques à la visibilité de Télécom Physique Strasbourg et de son département Informatique et Réseaux.<br><br>Vous pourrez compter sur le soutien de votre directeur !"</p>
-        <img class="profil-rounded" src="/images/illustrations/collet.jpg">
-        <p id="nom"> Christophe Collet </p>
+        <img class="profil-rounded" src="/images/illustrations/Pregaldiny.jpg">
+        <p id="nom"> Pr Fabien Prégaldiny </p>
         <p id="fonction">Directeur de l’école d’ingénieur Télécom Physique Strasbourg</p>
     </div>
 </section>
@@ -288,7 +289,7 @@
                     <div class="form-group" style="width: 100%;">
                         <textarea class="form-control" type="text" placeholder="Message" rows="9" name="messages" style="resize: none;" required></textarea>
                     </div>
-                    <x-honey recaptcha/>
+                    <x-honey recaptcha />
                     <button type="submit" class="btn btn-rounded btn-primary" style="width: 200px;">Envoyer</button>
                 </form>
             </div>
