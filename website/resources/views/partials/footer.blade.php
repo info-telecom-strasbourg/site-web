@@ -23,6 +23,9 @@
                     <a class="social-icons" href="https://www.instagram.com/info.telecom.strasbourg/" target="_blank">
                         <i class="fab fa-instagram fa-4x fa-lg mr-3"></i>
                     </a>
+                    <a class="social-icons" href="https://fr.linkedin.com/company/info-telecom-strasbourg" target="_blank">
+                        <i class="fab fa-linkedin fa-4x fa-lg mr-3"></i>
+                    </a>
                 </div>
             </div>
         </div>
