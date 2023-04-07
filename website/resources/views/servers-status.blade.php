@@ -17,7 +17,7 @@
     <hr class="line-under-title">
     <br><br>
     <p>Lien vers la page de statut : <a href="https://uptime.its-tps.fr/status/its" target="_blank">https://uptime.its-tps.fr/status/its</a></p>
-    <iframe src="https://uptime.its-tps.fr/status/its" width="100%" height="2000px"></iframe>
+    <iframe src="https://uptime.its-tps.fr/status/its" width="100%" height="2500px"></iframe>
 </div>
 
 @endsection

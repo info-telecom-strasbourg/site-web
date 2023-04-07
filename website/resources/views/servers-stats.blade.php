@@ -321,7 +321,7 @@
             </div>
             <div class="counter">
                 <h3>IPv4 publiques</h3>
-                <h3><span data-target=<?php echo $ipv4s ?> class="count" style="font-size: 2em">0</span><span class="gbits"> /35</span></h3>
+                <h3><span data-target=<?php echo $ipv4s ?> class="count" style="font-size: 2em">0</span><span class="gbits"> /33</span></h3>
             </div>
             <div class="counter">
                 <h3>IPv6 publiques</h3>
