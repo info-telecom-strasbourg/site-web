@@ -68,32 +68,25 @@ class AdminMembresController extends Controller
     {
         $validatedRequest = $this->validator($request->all())->validate();
 
-        $user->update(['name' => $validatedRequest['name'], 'email' => $validatedRequest['email'], 
-        'role_id' => $validatedRequest['role'], 'class' => $validatedRequest['class'], 
-        'year' => $validatedRequest['year']]);
+        $user->update([
+            'name' => $validatedRequest['name'], 'email' => $validatedRequest['email'],
+            'role_id' => $validatedRequest['role'], 'class' => $validatedRequest['class'],
+            'year' => $validatedRequest['year']
+        ]);
 
 
 
-        if (($user->role_id >= 7 && $user->role_id <= 10) || $user->role_id == 5)
+        if (($user->role_id >= 7 && $user->role_id <= 10)) //|| $user->role_id == 5) bug Error 500 on respo comm
         {
-            if ($user->role_id == 7)
-            {
+            if ($user->role_id == 7) {
                 $pole = Pole::where('slug', '=', 'competitions')->first();
-            }
-            elseif ($user->role_id == 8)
-            {
+            } elseif ($user->role_id == 8) {
                 $pole = Pole::where('slug', '=', 'programmation_utilitaire')->first();
-            }
-            elseif ($user->role_id == 9)
-            {
+            } elseif ($user->role_id == 9) {
                 $pole = Pole::where('slug', '=', 'applications_et_sites_web')->first();
-            }
-            elseif ($user->role_id == 10)
-            {
+            } elseif ($user->role_id == 10) {
                 $pole = Pole::where('slug', '=', 'jeux_videos')->first();
-            }
-            elseif ($user->role_id == 4)
-            {
+            } elseif ($user->role_id == 4) {
                 $pole = Pole::where('slug', '=', 'cours')->first();
             }
 
@@ -127,8 +120,8 @@ class AdminMembresController extends Controller
             'role' => 'required|integer',
             'password' => 'nullable|string|min:8|confirmed',
             'image_profile' => 'nullable',
-			'class' => 'required|min:1',
-			'year' => 'required|min:4|max:4',
+            'class' => 'required|min:1',
+            'year' => 'required|min:4|max:4',
         ]);
     }
 
