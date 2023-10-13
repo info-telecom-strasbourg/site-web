@@ -17,7 +17,16 @@
     <hr class="line-under-title">
     <br><br>
     <p>Lien vers la page de statut : <a href="https://uptime.its-tps.fr/status/its" target="_blank">https://uptime.its-tps.fr/status/its</a></p>
-    <iframe src="https://uptime.its-tps.fr/status/its" width="100%" height="2500px"></iframe>
+    <iframe id="UptimeIframe" src="https://uptime.its-tps.fr/status/its" width="100%"></iframe>
+    <script>
+        // Selecting the iframe element
+        var iframe = document.getElementById("UptimeIframe");
+
+        // Adjusting the iframe height onload event
+        iframe.onload = function() {
+            iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px';
+        }
+    </script>
 </div>
 
 @endsection
